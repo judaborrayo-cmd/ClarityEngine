@@ -408,7 +408,17 @@ export default function HomePage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {caseStudies.map((study, index) => {
                 const IconComponent = study.icon;
-                const progressValue = index === 0 ? 85 : index === 1 ? 95 : index === 2 ? 70 : 80;
+                // Extract real metrics from case studies
+                let metric, progressValue, label;
+                if (study.id === 'lamark-agency') {
+                  metric = '$2M+'; label = 'Revenue'; progressValue = 90;
+                } else if (study.id === 'hapi-art') {
+                  metric = '10×'; label = 'ROAS'; progressValue = 100;
+                } else if (study.id === 'mandali-retreats') {
+                  metric = '5×'; label = 'ROAS'; progressValue = 75;
+                } else {
+                  metric = '11K+'; label = 'Members'; progressValue = 85;
+                }
                 return (
                   <article 
                     key={study.title} 
@@ -425,13 +435,13 @@ export default function HomePage() {
                           {study.stat}
                         </div>
                         
-                        {/* Animated Progress Bar */}
+                        {/* Animated Progress Bar with Real Metrics */}
                         <div className="mt-3">
-                          <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                            <span>Performance</span>
-                            <span>{progressValue}%</span>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-xs text-muted-foreground">{label} Achievement</span>
+                            <span className="text-lg font-bold text-primary">{metric}</span>
                           </div>
-                          <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
                             <div 
                               className="h-full bg-gradient-to-r from-primary via-accent to-secondary rounded-full animate-progress-fill transition-all duration-1000 group-hover:animate-pulse"
                               style={{ 
@@ -439,6 +449,9 @@ export default function HomePage() {
                                 animationDelay: `${index * 300 + 500}ms`
                               }}
                             ></div>
+                          </div>
+                          <div className="flex justify-end mt-1">
+                            <span className="text-xs text-muted-foreground">Excellence Level: {progressValue}%</span>
                           </div>
                         </div>
                       </div>
