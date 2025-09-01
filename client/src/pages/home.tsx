@@ -212,66 +212,69 @@ export default function HomePage() {
             
             {/* Animated Logo Carousel */}
             <div className="relative">
+              {/* Colorful top border */}
+              <div className="h-1 w-full bg-gradient-to-r from-primary via-accent to-secondary mb-8"></div>
+              
               <div className="flex animate-scroll">
                 {/* First set of logos */}
-                <div className="flex items-center gap-12 px-6 flex-shrink-0">
+                <div className="flex items-center gap-12 flex-shrink-0">
                   {/* Client Logos */}
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/steelfit.png" alt="SteelFit" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/steelfit.png" alt="SteelFit" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/cutera.png" alt="Cutera" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/cutera.png" alt="Cutera" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/mandali.png" alt="Mandali Retreats" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/mandali.png" alt="Mandali Retreats" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/core40.png" alt="Core 40" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/core40.png" alt="Core 40" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/motivating-masses.png" alt="Motivating The Masses" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/motivating-masses.png" alt="Motivating The Masses" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/magaya.png" alt="Magaya" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/magaya.png" alt="Magaya" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/columbus-travel.png" alt="Columbus Travel" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/columbus-travel.png" alt="Columbus Travel" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/mix-telematics.png" alt="Mix Telematics" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/mix-telematics.png" alt="Mix Telematics" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/eft-universe.png" alt="EFT Universe" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/eft-universe.png" alt="EFT Universe" className="max-h-16 max-w-36 object-contain" />
                   </div>
                   
                   {/* Platform/Technology Logos */}
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">Google Ads</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">Google Ads</text>
                     </svg>
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">Meta</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">Meta</text>
                     </svg>
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">YouTube</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">YouTube</text>
                     </svg>
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">LinkedIn</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">LinkedIn</text>
                     </svg>
                   </div>
                 </div>
@@ -279,62 +282,62 @@ export default function HomePage() {
                 {/* Duplicate set for seamless loop */}
                 <div className="flex items-center gap-12 px-6 flex-shrink-0">
                   {/* Client Logos */}
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/steelfit.png" alt="SteelFit" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/steelfit.png" alt="SteelFit" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/cutera.png" alt="Cutera" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/cutera.png" alt="Cutera" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/mandali.png" alt="Mandali Retreats" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/mandali.png" alt="Mandali Retreats" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/core40.png" alt="Core 40" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/core40.png" alt="Core 40" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/motivating-masses.png" alt="Motivating The Masses" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/motivating-masses.png" alt="Motivating The Masses" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/magaya.png" alt="Magaya" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/magaya.png" alt="Magaya" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/columbus-travel.png" alt="Columbus Travel" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/columbus-travel.png" alt="Columbus Travel" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/mix-telematics.png" alt="Mix Telematics" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/mix-telematics.png" alt="Mix Telematics" className="max-h-16 max-w-36 object-contain" />
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="/images/client-logos/eft-universe.png" alt="EFT Universe" className="max-h-12 max-w-28 object-contain" />
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <img src="/images/client-logos/eft-universe.png" alt="EFT Universe" className="max-h-16 max-w-36 object-contain" />
                   </div>
                   
                   {/* Platform/Technology Logos */}
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">Google Ads</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">Google Ads</text>
                     </svg>
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">Meta</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">Meta</text>
                     </svg>
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">YouTube</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">YouTube</text>
                     </svg>
                   </div>
-                  <div className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                    <svg className="h-8 w-20" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-sm font-bold">LinkedIn</text>
+                  <div className="h-20 w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                    <svg className="h-10 w-24" viewBox="0 0 100 32" fill="currentColor">
+                      <text x="0" y="20" className="text-base font-bold">LinkedIn</text>
                     </svg>
                   </div>
                 </div>
@@ -343,6 +346,9 @@ export default function HomePage() {
               {/* Gradient overlays for smooth edges */}
               <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-muted/50 to-transparent pointer-events-none"></div>
               <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-muted/50 to-transparent pointer-events-none"></div>
+              
+              {/* Colorful bottom border */}
+              <div className="h-1 w-full bg-gradient-to-r from-secondary via-accent to-primary mt-8"></div>
             </div>
           </div>
         </section>
