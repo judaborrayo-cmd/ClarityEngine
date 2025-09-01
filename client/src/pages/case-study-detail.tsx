@@ -93,28 +93,83 @@ const caseStudyData = {
     title: "Crafting Success: Mandali Retreats",
     subtitle: "Journey to 5X ROAS",
     category: "Wellness Marketing",
-    overview: "Strategic campaign development for wellness retreat business, achieving remarkable 5X return on advertising spend through targeted wellness marketing and audience development.",
-    challenge: "Mandali Retreats needed effective marketing strategies to reach their target audience in the wellness space while achieving profitable returns on their advertising investment.",
+    overview: "Mandali Retreats, a luxury wellness retreat center in Italy, sought to maximize return on advertising investment (ROI) across paid media channels, including Meta (Instagram and Facebook), Google Search, and YouTube advertising. Through meticulous strategic planning, creative direction, and advanced campaign execution, we delivered remarkable results, achieving consistent 5X ROAS and targeted campaigns that continue to generate thousands of Euros monthly.",
+    challenge: "Mandali Retreats needed to bridge the gap between online advertising and offline booking behavior while ensuring seamless data integration. The luxury wellness market required sophisticated targeting to reach high-value prospects across multiple touchpoints, from initial awareness through booking conversion, while maintaining cost efficiency across all channels.",
     solution: [
-      "Developed wellness-focused marketing strategies",
-      "Implemented targeted campaign development for retreat audience",
-      "Created strategic optimization for wellness industry",
-      "Established profitable growth frameworks for retreat business"
+      "Implemented comprehensive offline conversion tracking to bridge the gap between online advertising and offline booking behavior",
+      "Ensured seamless data integration to eliminate delays and streamline campaign optimization with precise attribution",
+      "Developed tiered remarketing campaigns based on user behavior, delivering tailored content at specific time intervals",
+      "Created high-quality content using professional video editing and diverse ad formats optimized for engagement",
+      "Designed geographic and optimized Google campaigns focusing on high-performing regions to reduce costs and increase efficiency",
+      "Strategically boosted key posts in Meta Ads Manager to amplify reach and impact at pivotal funnel stages",
+      "Built sophisticated remarketing funnels that consistently generate high ROAS and ongoing revenue"
     ],
     results: {
-      primary: "5X ROAS through strategic wellness marketing",
+      primary: "+5X ROAS across social media channels with consistent high-value returns on ad spend",
       metrics: [
-        { label: "ROAS Achieved", value: "5X", icon: TrendingUp },
-        { label: "Industry Focus", value: "Wellness", icon: Target },
-        { label: "Campaign Type", value: "Strategic", icon: DollarSign },
-        { label: "Business Model", value: "Retreats", icon: Users }
+        { label: "Social Media ROAS", value: "+5X", icon: TrendingUp },
+        { label: "Google Search ROAS", value: "+4X", icon: Target },
+        { label: "Monthly Revenue", value: "€1000s", icon: DollarSign },
+        { label: "Lead Quality", value: "Enhanced", icon: Users }
       ]
     },
+    detailedResults: [
+      {
+        title: "Social Media Performance",
+        description: "+5X ROAS across social media channels, consistently exceeding value expectations and delivering substantial returns on ad spend"
+      },
+      {
+        title: "Search Campaign Success", 
+        description: "+4X ROAS for Google Search campaigns, generating significant value from both branded and non-branded search terms"
+      },
+      {
+        title: "Revenue Generation",
+        description: "Remarketing funnels deliver thousands of Euros monthly, ensuring consistent growth and sustainable revenue streams"
+      },
+      {
+        title: "Enhanced Lead Generation",
+        description: "Intensified bookings for Mandali's retreats while optimizing costs geographically for maximum efficiency"
+      }
+    ],
+    strategies: [
+      {
+        category: "Conversion Tracking & Data Integration",
+        tactics: [
+          "Implemented comprehensive offline conversion tracking",
+          "Ensured seamless data integration eliminating delays",
+          "Enabled precise attribution and campaign optimization"
+        ]
+      },
+      {
+        category: "Tiered Remarketing Campaigns", 
+        tactics: [
+          "Day 1-7: Highlighted retreat benefits and luxurious facilities",
+          "Week 2-3: Showcased testimonials and social proof",
+          "Week 4+: Created urgency with time-sensitive promotions"
+        ]
+      },
+      {
+        category: "Creative Content & Testing",
+        tactics: [
+          "Utilized high-quality content using CapCut for diverse ad formats",
+          "Designed multiple ad variations by altering the first few seconds",
+          "Provided strategic direction for new promotional video shoots"
+        ]
+      },
+      {
+        category: "Geographic & Search Optimization",
+        tactics: [
+          "Optimized targeting by focusing on high-performing regions",
+          "Built Google Search campaigns to capture branded and high-intent search terms",
+          "Strategically boosted key posts to amplify reach at pivotal funnel stages"
+        ]
+      }
+    ],
     testimonial: {
-      quote: "The wellness marketing strategy was perfectly crafted for our retreat business. Achieving 5X ROAS transformed our ability to reach and serve our community.",
-      author: "Mandali Retreats Team"
+      quote: "Juda is an exciting person to work with - his passion for tackling problems and facing challenges is a joy to experience. Juda is constantly learning, which means his work is always on the cutting edge of innovation - an invaluable skill in the world of digital media strategy.",
+      author: "Beth Amant, Founder & Chief Creative"
     },
-    tags: ["5X ROAS", "Wellness Marketing", "Retreat Business", "Strategic Campaigns"],
+    tags: ["5X ROAS", "Luxury Wellness", "Meta Advertising", "Google Search", "Remarketing Funnels", "Conversion Tracking"],
     featured: true,
     videoUrl: "https://www.youtube.com/watch?v=g7yVF5F6l9s"
   },
@@ -278,6 +333,47 @@ export default function CaseStudyDetail() {
           </div>
         </div>
       </section>
+
+      {/* Detailed Results - Only for Mandali */}
+      {(study as any).detailedResults && (
+        <section className="px-6 py-16 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Detailed Results</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {(study as any).detailedResults.map((result: any, index: number) => (
+                <div key={index} className="bg-card border border-border rounded-2xl p-6">
+                  <h3 className="font-bold text-foreground mb-3">{result.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{result.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Strategies & Tactics - Only for Mandali */}
+      {(study as any).strategies && (
+        <section className="px-6 py-16 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Tactics & Strategies</h2>
+            <div className="space-y-8">
+              {(study as any).strategies.map((strategy: any, index: number) => (
+                <div key={index} className="border-l-4 border-primary pl-6">
+                  <h3 className="text-xl font-bold text-foreground mb-4">{strategy.category}</h3>
+                  <ul className="space-y-2">
+                    {strategy.tactics.map((tactic: string, tacticIndex: number) => (
+                      <li key={tacticIndex} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-muted-foreground">{tactic}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Testimonial */}
       <section className="px-6 py-16 lg:px-8 bg-muted/30">
