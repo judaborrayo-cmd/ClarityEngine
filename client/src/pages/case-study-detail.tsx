@@ -86,7 +86,8 @@ const caseStudyData = {
       author: "Lamark Agency Leadership Team"
     },
     tags: ["PPC Management", "Multi-Industry", "$2M Revenue", "11K Members", "Multi-Location Tracking", "Scalable Systems"],
-    featured: true
+    featured: true,
+    heroImage: "/images/lamark-agency-collage.webp"
   },
   "hapi-art": {
     title: "Building a Profitable 10X ROAS",
@@ -377,6 +378,22 @@ export default function CaseStudyDetail() {
           </div>
         </div>
       </section>
+
+      {/* Hero Image Section */}
+      {(study as any).heroImage && (
+        <section className="px-6 py-12 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-4xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={(study as any).heroImage}
+                alt={`${study.title} - Multi-industry campaign collage`}
+                className="w-full h-auto"
+                data-testid="case-study-hero-image"
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Video Section */}
       {(study as any).videoUrl && (
