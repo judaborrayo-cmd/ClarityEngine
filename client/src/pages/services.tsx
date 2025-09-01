@@ -150,18 +150,18 @@ export default function Services() {
             <article
               key={s.id}
               id={s.id}
-              className="rounded-2xl p-6 shadow-sm"
+              className="group rounded-2xl p-6 shadow-sm hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:text-white transition-all duration-300"
               style={{ border: `1px solid ${brand.pink}`, background: "#fff" }}
             >
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between hover:shadow-lg transition-shadow duration-300">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="max-w-3xl">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 rounded-lg" style={{ backgroundColor: brand.peach }}>
-                      <s.icon className="w-6 h-6" style={{ color: brand.purple }} />
+                    <div className="p-2 rounded-lg group-hover:bg-white/20" style={{ backgroundColor: brand.peach }}>
+                      <s.icon className="w-6 h-6 group-hover:text-white" style={{ color: brand.purple }} />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold">{s.title}</h2>
-                      <div className="flex gap-4 text-sm" style={{ color: brand.green }}>
+                      <h2 className="text-2xl font-bold group-hover:text-white">{s.title}</h2>
+                      <div className="flex gap-4 text-sm group-hover:text-white/90" style={{ color: brand.green }}>
                         <span className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
                           {s.timeline}
@@ -171,18 +171,18 @@ export default function Services() {
                   </div>
                   
                   {s.testimonial && (
-                    <div className="mb-3 p-3 rounded-lg" style={{ backgroundColor: brand.peach, color: brand.green }}>
+                    <div className="mb-3 p-3 rounded-lg group-hover:bg-white/20 group-hover:text-white/90" style={{ backgroundColor: brand.peach, color: brand.green }}>
                       <div className="flex items-start gap-2">
-                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: brand.purple }} />
+                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:text-white" style={{ color: brand.purple }} />
                         <span className="text-sm italic">"{s.testimonial}"</span>
                       </div>
                     </div>
                   )}
                   
-                  <p className="mt-2" style={{ color: brand.green }}>
+                  <p className="mt-2 group-hover:text-white/90" style={{ color: brand.green }}>
                     {s.summary}
                   </p>
-                  <ul className="mt-4 grid gap-2 list-disc pl-5" style={{ color: brand.green }}>
+                  <ul className="mt-4 grid gap-2 list-disc pl-5 group-hover:text-white/90" style={{ color: brand.green }}>
                     {s.bullets.map((b) => (
                       <li key={b}>{b}</li>
                     ))}
@@ -192,7 +192,7 @@ export default function Services() {
                 <div className="shrink-0">
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold text-white hover:scale-105 transition-transform"
+                    className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold text-white hover:scale-105 transition-transform group-hover:bg-white/20 group-hover:border group-hover:border-white/30"
                     style={{ background: brand.pink }}
                   >
                     {s.cta}
