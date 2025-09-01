@@ -94,27 +94,6 @@ export default function GrowthClarityAuditPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <Link to="/" className="flex items-center space-x-2">
-              <img
-                src="/images/clarity-engine-favicon.png"
-                alt="Clarity Engine Logo"
-                className="h-8 w-8"
-              />
-              <span className="text-xl font-bold text-foreground">Clarity Engine</span>
-            </Link>
-            <Link 
-              to="/#cta"
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-background via-background to-primary/5 py-24">
