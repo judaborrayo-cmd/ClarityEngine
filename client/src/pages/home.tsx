@@ -21,12 +21,12 @@ import {
 
 // Profile image paths
 const profileImages = {
-  lindsey: "/attached_assets/Lindsey_Bast_1756736137491.jpg",
-  mari: "/attached_assets/Mari_1756736137491.jpg",
-  alyssa: "/attached_assets/Alyssa_1756736137489.jpg",
-  daniela: "/attached_assets/Daniela_1756736137490.jpg",
-  mike: "/attached_assets/Mike_Berkman_1756736137491.jpg",
-  bill: "/attached_assets/Bill_Bowman_1756736137490.jpg"
+  lindsey: "/images/lindsey.jpg",
+  mari: "/images/mari.jpg",
+  alyssa: "/images/alyssa.jpg",
+  daniela: "/images/daniela.jpg",
+  mike: "/images/mike.jpg",
+  bill: "/images/bill.jpg"
 };
 
 export default function HomePage() {
@@ -316,6 +316,11 @@ export default function HomePage() {
                           src={testimonial.image} 
                           alt={testimonial.author}
                           className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.log(`Failed to load image: ${testimonial.image}`);
+                            e.currentTarget.style.display = 'none';
+                          }}
+                          onLoad={() => console.log(`Successfully loaded: ${testimonial.image}`)}
                         />
                       </div>
                       <div className="flex-1">
