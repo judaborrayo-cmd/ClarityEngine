@@ -119,7 +119,16 @@ export default function Services() {
         style={{ borderColor: "#e5e7eb" }}
       >
         {/* Video Background */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0" style={{ zIndex: -1 }}>
+          {/* Test background - bright color to see if it shows */}
+          <div 
+            className="absolute inset-0 w-full h-full"
+            style={{
+              backgroundColor: '#ff0000',
+              zIndex: 0
+            }}
+          />
+          
           {/* Fallback background image */}
           <div 
             className="absolute inset-0 w-full h-full"
@@ -128,7 +137,7 @@ export default function Services() {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              zIndex: 0
+              zIndex: 1
             }}
           />
           
@@ -158,12 +167,12 @@ export default function Services() {
           <div 
             className="absolute inset-0"
             style={{ 
-              background: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 245, 243, 0.9))`,
+              background: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 245, 243, 0.7))`,
               zIndex: 2
             }}
           />
         </div>
-        <div className="relative mx-auto max-w-4xl z-10">
+        <div className="relative mx-auto max-w-4xl" style={{ zIndex: 10 }}>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Services</h1>
           <p className="mt-3" style={{ color: brand.green }}>
             Choose your entry point or build a plan across channels. Start with a Clarity Audit or dive straight into
