@@ -115,7 +115,8 @@ const caseStudyData = {
       author: "Mandali Retreats Team"
     },
     tags: ["5X ROAS", "Wellness Marketing", "Retreat Business", "Strategic Campaigns"],
-    featured: true
+    featured: true,
+    videoUrl: "https://www.youtube.com/watch?v=g7yVF5F6l9s"
   },
   "fitness-roi": {
     title: "Maximizing ROI in Fitness",
@@ -154,6 +155,12 @@ const otherCaseStudies = [
   { id: "mandali-retreats", title: "Crafting Success: Mandali Retreats", category: "Wellness Marketing" },
   { id: "fitness-roi", title: "Maximizing ROI in Fitness", category: "Revenue Growth" }
 ];
+
+// Helper function to convert YouTube URL to embed URL
+function getYouTubeEmbedUrl(url: string): string {
+  const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+}
 
 export default function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -204,6 +211,24 @@ export default function CaseStudyDetail() {
           </div>
         </div>
       </section>
+
+      {/* Video Section */}
+      {(study as any).videoUrl && (
+        <section className="px-6 py-12 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-4xl">
+            <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+              <iframe
+                src={getYouTubeEmbedUrl((study as any).videoUrl)}
+                title="Case Study Video"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                data-testid="case-study-video"
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Results Metrics */}
       <section className="px-6 py-12 lg:px-8 bg-muted/30">
