@@ -48,12 +48,12 @@ const caseStudies = [
   {
     id: "core-40",
     title: "Maximizing ROI in Fitness",
-    subtitle: "High-Performance Training Studio Growth",
-    description: "Comprehensive marketing strategy for boutique fitness studio, establishing premium brand positioning and driving significant membership growth.",
+    subtitle: "$2M Revenue, 11K New Members",
+    description: "Comprehensive fitness marketing strategy that generated $2M+ in revenue while acquiring over 11,000 new members through strategic optimization.",
     results: [
-      "Premium brand establishment",
-      "Significant membership growth",
-      "High-performance positioning"
+      "$2M+ revenue generated",
+      "11K+ new members",
+      "Fitness growth expertise"
     ],
     category: "Fitness Marketing",
     image: "/images/case-study-core40.png",
@@ -87,20 +87,6 @@ const caseStudies = [
     image: "/images/case-study-mandali.png",
     featured: true
   },
-  {
-    id: "fitness-roi",
-    title: "Maximizing ROI in Fitness",
-    subtitle: "$2M Revenue, 11K New Members",
-    description: "Comprehensive fitness marketing strategy that generated $2M+ in revenue while acquiring over 11,000 new members.",
-    results: [
-      "$2M+ revenue generated",
-      "11K+ new members",
-      "Fitness growth expertise"
-    ],
-    category: "Revenue Growth",
-    image: "/images/case-study-fitness.png",
-    featured: true
-  }
 ];
 
 export default function CaseStudiesPage() {

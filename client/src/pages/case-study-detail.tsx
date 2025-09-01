@@ -273,30 +273,30 @@ const caseStudyData = {
       "Implemented performance tracking and optimization systems for continuous growth measurement"
     ],
     results: {
-      primary: "Significant membership growth and established brand recognition as premier training destination",
+      primary: "$2M+ revenue and 11K+ new members acquired through strategic fitness marketing",
       metrics: [
-        { label: "Studio Type", value: "Boutique", icon: Target },
-        { label: "Training Focus", value: "High-Performance", icon: TrendingUp },
-        { label: "Market Position", value: "Premium", icon: Users },
-        { label: "Growth Status", value: "Significant", icon: DollarSign }
+        { label: "Revenue Generated", value: "$2M+", icon: DollarSign },
+        { label: "New Members", value: "11K+", icon: Users },
+        { label: "Industry Focus", value: "Fitness", icon: Target },
+        { label: "Growth Type", value: "Sustainable", icon: TrendingUp }
       ]
     },
     detailedResults: [
       {
-        title: "Premium Brand Establishment",
-        description: "Successfully positioned Core 40 as the premier boutique training studio for high-performance athletes and serious fitness enthusiasts"
+        title: "Exceptional Revenue Generation",
+        description: "Generated over $2M+ in revenue through strategic fitness marketing campaigns and optimized member acquisition systems"
       },
       {
-        title: "Membership Growth Achievement", 
-        description: "Achieved significant membership growth through targeted marketing and strategic positioning in the competitive fitness market"
+        title: "Massive Member Acquisition", 
+        description: "Successfully acquired 11K+ new members through targeted marketing strategies and comprehensive growth systems"
       },
       {
-        title: "Community Building Success",
-        description: "Built a strong, engaged community of dedicated athletes who actively promote the studio through word-of-mouth referrals"
+        title: "Fitness Industry Expertise",
+        description: "Demonstrated specialized expertise in fitness marketing, delivering results that significantly exceed industry benchmarks"
       },
       {
-        title: "Market Differentiation",
-        description: "Successfully differentiated Core 40 from competitors through emphasis on high-performance training and elite fitness culture"
+        title: "Sustainable Growth Achievement",
+        description: "Established sustainable growth systems that continue to drive revenue and membership expansion in the competitive fitness market"
       }
     ],
     strategies: [
