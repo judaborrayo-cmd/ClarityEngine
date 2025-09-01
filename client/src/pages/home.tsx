@@ -365,26 +365,26 @@ export default function HomePage() {
                 return (
                   <article 
                     key={service.title} 
-                    className="group rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl transition-all duration-500 bg-card hover:scale-105 hover:border-primary/50 animate-fade-in-up"
+                    className="group rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl transition-all duration-500 bg-card hover:bg-primary hover:scale-105 hover:border-primary/50 animate-fade-in-up"
                     style={{ animationDelay: `${index * 150}ms` }}
                     data-testid={`service-card-${index}`}
                   >
                     <div className="flex items-center mb-4">
                       <div className="relative">
                         <div className="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <IconComponent className="relative text-2xl text-primary mr-3 group-hover:scale-110 transition-transform duration-300" />
+                        <IconComponent className="relative text-2xl text-primary group-hover:text-white mr-3 group-hover:scale-110 transition-all duration-300" />
                       </div>
-                      <h3 className="text-xl font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300" data-testid={`service-title-${index}`}>
+                      <h3 className="text-xl font-semibold text-card-foreground group-hover:text-white transition-colors duration-300" data-testid={`service-title-${index}`}>
                         {service.title}
                       </h3>
                     </div>
-                    <p className="text-muted-foreground" data-testid={`service-description-${index}`}>
+                    <p className="text-muted-foreground group-hover:text-white/90 transition-colors duration-300" data-testid={`service-description-${index}`}>
                       {service.description}
                     </p>
                     <div className="mt-4">
                       <button 
                         onClick={() => scrollToSection('cta')}
-                        className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+                        className="text-primary group-hover:text-white font-medium underline underline-offset-2 hover:text-primary/80 group-hover:hover:text-white/80 transition-colors"
                         data-testid={`service-learn-more-${index}`}
                       >
                         Learn more
