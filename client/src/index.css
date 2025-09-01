@@ -113,20 +113,20 @@ html {
     margin-left: 50%;
     margin-right: 50%;
   }
-  25% {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+  17% {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
   }
   50% {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
   }
-  75% {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+  83% {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
   }
   100% {
     width: 0%;
