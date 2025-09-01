@@ -99,9 +99,11 @@ export default function GrowthClarityAuditPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">CE</span>
-              </div>
+              <img
+                src="/images/clarity-engine-favicon.png"
+                alt="Clarity Engine Logo"
+                className="h-8 w-8"
+              />
               <span className="text-xl font-bold text-foreground">Clarity Engine</span>
             </Link>
             <Link 
@@ -178,35 +180,6 @@ export default function GrowthClarityAuditPage() {
         </div>
       </section>
 
-      {/* Navigation Tabs */}
-      <section className="border-b bg-white sticky top-0 z-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="flex space-x-8">
-            {[
-              { id: "what-included", label: "What's Included" },
-              { id: "process", label: "Process" },
-              { id: "faqs", label: "FAQs" },
-              { id: "pricing", label: "Pricing" }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id);
-                  document.getElementById(tab.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                  activeTab === tab.id 
-                    ? 'border-primary text-primary' 
-                    : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted'
-                }`}
-                data-testid={`tab-${tab.id}`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </section>
 
       {/* What's Included Section */}
       <section id="what-included" className="py-24 bg-background">
