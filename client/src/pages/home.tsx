@@ -534,16 +534,32 @@ export default function HomePage() {
                         </div>
                         <div className="flex-1">
                           <blockquote className="text-white leading-relaxed mb-4 group-hover:drop-shadow-lg transition-all duration-300" data-testid={`testimonial-quote-${index}`}>
-                            "{testimonial.quote.split(' ').map((word, wordIndex) => {
-                              const isKeyword = ['recommend', 'professional', 'exceptional', 'outstanding', 'phenomenal', 'talented', 'skilled', 'expertise', 'results', 'growth', 'strategic', 'innovative', 'excellent', 'effective'].some(
-                                keyword => word.toLowerCase().includes(keyword.toLowerCase())
-                              );
-                              return isKeyword ? (
-                                <span key={wordIndex} className="group-hover:bg-white group-hover:text-primary group-hover:px-1 group-hover:rounded transition-all duration-300">
-                                  {word}
-                                </span>
-                              ) : word;
-                            }).reduce((prev, curr, index) => [prev, index > 0 ? ' ' : '', curr])}"
+                            "{(() => {
+                              // Define specific highlights for each testimonial
+                              const highlights = {
+                                'Mari Smith': "It's always enjoyable writing a recommendation for someone as enjoyable as Juda",
+                                'Lindsey Best': "Juda gives it his all for his clients",
+                                'Alyssa Rhodes-Gay': "complete rockstar for his clients",
+                                'Daniela Quintana': "Juda is simply one of the best person I have had the opportunity to work with",
+                                'Mike Berkman': "I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint",
+                                'Bill Bowman': "able to manage complex advertising campaigns in a calm and focused way"
+                              };
+                              
+                              const highlightText = highlights[testimonial.author];
+                              if (highlightText && testimonial.quote.includes(highlightText)) {
+                                const parts = testimonial.quote.split(highlightText);
+                                return (
+                                  <>
+                                    {parts[0]}
+                                    <span className="group-hover:bg-white group-hover:text-primary group-hover:px-1 group-hover:rounded transition-all duration-300">
+                                      {highlightText}
+                                    </span>
+                                    {parts[1]}
+                                  </>
+                                );
+                              }
+                              return testimonial.quote;
+                            })()}"
                           </blockquote>
                         </div>
                       </div>
