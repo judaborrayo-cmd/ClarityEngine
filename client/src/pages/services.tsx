@@ -138,11 +138,11 @@ export default function Services() {
           frameBorder="0"
         />
         
-        {/* Gradient Overlay - 0% to 70% opacity top to bottom */}
+        {/* Gradient Overlay - 0% to 20% opacity top to bottom */}
         <div 
           className="absolute inset-0"
           style={{ 
-            background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 245, 243, 0.7))`,
+            background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 245, 243, 0.2))`,
             zIndex: 1
           }}
         />
