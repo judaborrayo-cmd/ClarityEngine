@@ -7,15 +7,13 @@ export default function Services() {
       icon: Search,
       title: "Growth Clarity Audit",
       timeline: "5-10 days delivery",
-      testimonial: "Identified $50K in quick wins within the first week",
+      testimonial: "Based on $3M+ in managed campaigns - uncover what's costing you conversions",
       summary:
-        "A 360° audit to uncover what's costing you conversions. You'll get a full-funnel review, a video walkthrough, and a prioritized action plan.",
+        "Full-funnel Growth & CRO audit to uncover what's costing you conversions. Based on $3M+ in campaign experience with clear, concise recording and PDF walk-through.",
       bullets: [
-        "Custom video walkthrough (15–30 min) + PDF summary",
-        "Tracking & attribution check (GA4, GTM, Ads pixels)",
-        "RO/ROAS snapshot with quick wins",
-        "Top 10–15 priorities ranked by impact",
-        "Email support for 2 weeks to implement fixes",
+        "PDF and Video Walkthrough of Opportunities - Clear, concise recording and PDF walk through of current opportunities to improve Return on Investment, Return on Ad Spend, Conversion Rates, and Costs Per Lead or Sale",
+        "1:1 Call (30-60 minutes) - for CMOs, Strategists, Advertisers, Builders and Owners",
+        "Email Support for 2 Weeks - Ask follow-up questions or get light implementation support via email",
       ],
       cta: "Book Clarity Audit",
     },
@@ -24,15 +22,14 @@ export default function Services() {
       icon: Target,
       title: "Google Ads Management",
       timeline: "2-3 week setup",
-      testimonial: "Reduced CPC by 47.9% while scaling to $250K+ spend",
+      testimonial: "Proven systems from managing $3M+ in ad spend across industries",
       summary:
-        "High-ROI Search, Performance Max, and YouTube campaigns built for efficiency, scale, and measurable results.",
+        "Based on over $3 Million of paid campaigns managed across Google and Meta. Bespoke approach based on your brand's strengths and funnels. Includes ongoing maintenance.",
       bullets: [
-        "Comprehensive account & tracking audit",
-        "Keyword + negative keyword architecture (theme-based)",
-        "Ad copy & extensions, testing roadmap, bidding strategy",
-        "Weekly optimization & reporting cadence",
-        "Landing page & funnel alignment for higher CVR",
+        "Google Search Strategy, Build, and Optimization - Working with your business to find the highest potential ROI strategy to follow with Google Ads",
+        "Extensive Audit of current Google/YouTube/Paid Media strategies",
+        "Google Ads Set-Up (Month 1) - Complete campaign setup including tracking, audience management, and strategic recommendations",
+        "Google Search Ads Optimization (Month 2) - Ongoing optimization and reporting cadence",
       ],
       cta: "Start Google Ads Management",
     },
@@ -41,15 +38,14 @@ export default function Services() {
       icon: Users,
       title: "Paid Social Media Growth",
       timeline: "1-2 week setup",
-      testimonial: "Achieved 10x ROAS generating $1M+ revenue",
+      testimonial: "Creative testing framework based on brand strengths and funnels",
       summary:
-        "Creative testing, precision targeting, and scaling across Meta & beyond. Brand story meets conversions.",
+        "Based on over $3 Million of paid campaigns managed across Google and Meta. You will receive a bespoke approach based on your brand's strengths and funnels. Includes ongoing maintenance.",
       bullets: [
-        "Hook → Retain → Reward creative testing framework",
-        "Cold / Warm / Remarketing tiers with tailored creative",
-        "Audience building (interests, lookalikes, UGC leverage)",
-        "Weekly creative + bid experimentation",
-        "Full-funnel metrics: CTR, CVR, CPA/ROAS",
+        "Social Media Ads Set-Up (Month 1) - Complete setup including tracking, creative brief development, audience research and strategic recommendations",
+        "Social Media Ads Optimization (Month 2) - Ongoing creative testing, audience optimization, and bid management",
+        "Weekly creative + bid experimentation with detailed reporting",
+        "Full-funnel metrics: CTR, CVR, CPA/ROAS tracking and optimization",
       ],
       cta: "Launch Social Campaign",
     },
@@ -58,15 +54,15 @@ export default function Services() {
       icon: Crown,
       title: "Fractional CMO",
       timeline: "3-month minimum",
-      testimonial: "Unified our marketing strategy and drove $2M+ revenue influence",
+      testimonial: "Senior-level package focused on maximizing ROI and profitable advertising strategies",
       summary:
-        "Senior-level partnership unifying strategy, offers, funnels, and paid media. Strategist + operator embedded with your team.",
+        "Growth Marketing Manager package. Senior level package focused on maximizing and strategizing based on your overall funnel. This is an ongoing relationship focused on maximizing ROI's and profitable advertising strategies.",
       bullets: [
-        "Quarterly growth roadmap & OKRs",
-        "Cross-channel budget & testing plan",
-        "Conversion rate optimization program",
-        "Reporting OS (weekly & monthly)",
-        "Vendor & team coordination (creative, web, email, media)",
+        "Growth Strategy (Month 1) - Full strategy development including funnel analysis, customer acquisition strategy, and budget allocation",
+        "Strategic Recommendations (Month 2) - Identify and Sales Focus Areas for upcoming Roadmaps based on conversations and research",
+        "Establish or Optimize Current Reporting and Tracking - Review current reporting and tracking systems",
+        "Conversion Rate Optimization Testing and Plan - CRO (Ongoing) - Provide templates, ideas, strategies, roadmaps, stakeholder communication",
+        "Month 3 and Ongoing - Paid Media Management + Strategy + Weekly Reporting + Weekly Calls + Growth Marketing Tests",
       ],
       cta: "Discuss CMO Partnership",
     },
@@ -75,7 +71,7 @@ export default function Services() {
       icon: Heart,
       title: "Non-Profit Google Grant Build",
       timeline: "2-4 weeks",
-      testimonial: "Helped unlock $120K annual grant value for education non-profit",
+      testimonial: "Grant best-practices to maintain $10K/month eligibility",
       summary:
         "Unlock and maximize your $10K/month Google Ad Grant with compliant structure, tracking, and training.",
       bullets: [
@@ -92,7 +88,7 @@ export default function Services() {
       icon: TrendingUp,
       title: "CRO & Funnel Optimization",
       timeline: "2-week analysis + testing",
-      testimonial: "Increased conversion rate by 45% in first 60 days",
+      testimonial: "Prioritized testing roadmap based on data and heuristic review",
       summary:
         "Prioritized testing roadmap across pages, offers, and analytics to increase CVR and ROAS.",
       bullets: [
@@ -206,6 +202,95 @@ export default function Services() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+      
+      {/* Real Case Studies Section */}
+      <section className="px-6 py-16 lg:px-8 border-t" style={{ borderColor: "#e5e7eb" }}>
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Real Results From $3M+ in Managed Ad Spend</h2>
+            <p className="mt-2" style={{ color: brand.green }}>Authentic case studies and proven outcomes across industries</p>
+          </div>
+          
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: brand.peach }}>
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: brand.purple }}>
+                  <TrendingUp className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold text-lg">Growth Across Industries</h3>
+              </div>
+              <p className="mb-4" style={{ color: brand.green }}>Multi-vertical campaign management showcasing adaptability across different business models and customer acquisition strategies.</p>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm" style={{ color: brand.green }}>Campaign Reach:</span>
+                  <span className="font-semibold">Multiple Industries</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm" style={{ color: brand.green }}>Total Managed:</span>
+                  <span className="font-semibold">$3M+ Ad Spend</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: brand.peach }}>
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: brand.purple }}>
+                  <Target className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold text-lg">Maximizing ROI in Fitness</h3>
+              </div>
+              <p className="mb-4" style={{ color: brand.green }}>Strategic campaign optimization for fitness industry client, demonstrating expertise in high-competition verticals.</p>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm" style={{ color: brand.green }}>Revenue Generated:</span>
+                  <span className="font-semibold text-xl" style={{ color: brand.purple }}>$2M+</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm" style={{ color: brand.green }}>Industry:</span>
+                  <span className="font-semibold">Fitness & Wellness</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: brand.peach }}>
+              <div className="mb-4">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: brand.purple }}>
+                  <Crown className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold text-lg">10x ROAS Achievement</h3>
+              </div>
+              <p className="mb-4" style={{ color: brand.green }}>Building a profitable advertising system that delivered exceptional return on ad spend through strategic optimization.</p>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm" style={{ color: brand.green }}>ROAS Achieved:</span>
+                  <span className="font-semibold text-xl" style={{ color: brand.purple }}>10x</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm" style={{ color: brand.green }}>System:</span>
+                  <span className="font-semibold">Profitable Ad System</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-8 p-6 rounded-2xl" style={{ backgroundColor: brand.peach }}>
+              <div className="text-center">
+                <div className="text-2xl font-bold" style={{ color: brand.purple }}>$3M+</div>
+                <div className="text-sm" style={{ color: brand.green }}>Total Ad Spend Managed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold" style={{ color: brand.purple }}>78%+</div>
+                <div className="text-sm" style={{ color: brand.green }}>Conversion Improvements</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold" style={{ color: brand.purple }}>321%+</div>
+                <div className="text-sm" style={{ color: brand.green }}>ROAS Increases</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
