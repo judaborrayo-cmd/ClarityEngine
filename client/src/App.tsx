@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import Services from "@/pages/services";
 import CaseStudies from "@/pages/case-studies";
 import CaseStudyDetail from "@/pages/case-study-detail";
+import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import NotFound from "@/pages/not-found";
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon.png";
@@ -33,6 +34,12 @@ function Navbar() {
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Services
+            </Link>
+            <Link 
+              to="/growth-clarity-audit" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Growth Audit
             </Link>
             <Link 
               to="/case-studies" 
@@ -67,6 +74,7 @@ function Router() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="*" element={<NotFound />} />

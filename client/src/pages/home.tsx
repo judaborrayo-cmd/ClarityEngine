@@ -257,13 +257,13 @@ export default function HomePage() {
               I bring clarity, structure, and impact to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel"]} />.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
-              <button 
-                onClick={() => scrollToSection('cta')}
-                className="rounded-2xl px-6 py-3 text-base font-semibold border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+              <Link 
+                to="/growth-clarity-audit"
+                className="rounded-2xl px-6 py-3 text-base font-semibold border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-200 inline-block text-center"
                 data-testid="hero-cta-audit"
               >
                 Start with a Growth Clarity Audit
-              </button>
+              </Link>
               <button 
                 onClick={() => scrollToSection('services')}
                 className="rounded-2xl px-6 py-3 text-base font-semibold text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
@@ -814,13 +814,13 @@ export default function HomePage() {
                 In 5–10 days, you'll receive a complete funnel review, video walkthrough, and a roadmap for measurable growth.
               </p>
               <div className="mt-6 flex justify-center">
-                <a 
-                  href="#" 
-                  className="rounded-2xl px-8 py-4 text-base font-semibold text-accent-foreground bg-accent hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:scale-105"
+                <Link 
+                  to="/growth-clarity-audit"
+                  className="rounded-2xl px-8 py-4 text-base font-semibold text-accent-foreground bg-accent hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:scale-105 inline-block"
                   data-testid="cta-book-audit"
                 >
                   Book Your Growth Clarity Audit
-                </a>
+                </Link>
               </div>
               <p className="mt-4 text-sm text-muted-foreground" data-testid="cta-guarantee">
                 <Shield className="inline mr-1" size={16} />
