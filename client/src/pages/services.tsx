@@ -142,7 +142,7 @@ export default function Services() {
         <div 
           className="absolute inset-0"
           style={{ 
-            background: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 245, 243, 0.8))`,
+            background: `linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 245, 243, 0.85))`,
             zIndex: 1
           }}
         />
