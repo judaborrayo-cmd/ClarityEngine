@@ -6,7 +6,6 @@ export default function Services() {
       id: "clarity-audit",
       icon: Search,
       title: "Growth Clarity Audit",
-      price: "Starting at $2,500",
       timeline: "5-10 days delivery",
       testimonial: "Identified $50K in quick wins within the first week",
       summary:
@@ -24,7 +23,6 @@ export default function Services() {
       id: "google-ads",
       icon: Target,
       title: "Google Ads Management",
-      price: "$3,000-8,000/month",
       timeline: "2-3 week setup",
       testimonial: "Reduced CPC by 47.9% while scaling to $250K+ spend",
       summary:
@@ -42,7 +40,6 @@ export default function Services() {
       id: "paid-social",
       icon: Users,
       title: "Paid Social Media Growth",
-      price: "$2,500-6,000/month",
       timeline: "1-2 week setup",
       testimonial: "Achieved 10x ROAS generating $1M+ revenue",
       summary:
@@ -60,7 +57,6 @@ export default function Services() {
       id: "fractional-cmo",
       icon: Crown,
       title: "Fractional CMO",
-      price: "$8,000-15,000/month",
       timeline: "3-month minimum",
       testimonial: "Unified our marketing strategy and drove $2M+ revenue influence",
       summary:
@@ -78,7 +74,6 @@ export default function Services() {
       id: "ad-grant",
       icon: Heart,
       title: "Non-Profit Google Grant Build",
-      price: "$4,000-7,000 one-time",
       timeline: "2-4 weeks",
       testimonial: "Helped unlock $120K annual grant value for education non-profit",
       summary:
@@ -96,7 +91,6 @@ export default function Services() {
       id: "cro",
       icon: TrendingUp,
       title: "CRO & Funnel Optimization",
-      price: "$3,500-6,000/month",
       timeline: "2-week analysis + testing",
       testimonial: "Increased conversion rate by 45% in first 60 days",
       summary:
@@ -172,10 +166,6 @@ export default function Services() {
                     <div>
                       <h2 className="text-2xl font-bold">{s.title}</h2>
                       <div className="flex gap-4 text-sm" style={{ color: brand.green }}>
-                        <span className="flex items-center gap-1">
-                          <DollarSign className="w-4 h-4" />
-                          {s.price}
-                        </span>
                         <span className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
                           {s.timeline}
@@ -304,7 +294,7 @@ export default function Services() {
             </div>
             
             <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: '#fef7f0' }}>
-              <h3 className="font-bold text-lg mb-2">💰 $10K-50K Monthly Ad Spend?</h3>
+              <h3 className="font-bold text-lg mb-2">🎯 Ready for Ongoing Management?</h3>
               <p className="mb-3" style={{ color: brand.green }}>Perfect for <strong>Google Ads Management</strong> or <strong>Paid Social Growth</strong> - Choose based on whether your audience searches (Google) or scrolls (Social).</p>
               <div className="flex gap-4">
                 <a href="#google-ads" className="text-sm font-medium" style={{ color: brand.purple }}>Google Ads →</a>
@@ -313,7 +303,7 @@ export default function Services() {
             </div>
             
             <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: '#fef7f0' }}>
-              <h3 className="font-bold text-lg mb-2">🏢 $50K+ Monthly Spend or Need Full Strategy?</h3>
+              <h3 className="font-bold text-lg mb-2">🏢 Need Full Strategic Partnership?</h3>
               <p className="mb-3" style={{ color: brand.green }}>Consider <strong>Fractional CMO</strong> - Unify all channels, team coordination, and strategic planning with hands-on execution.</p>
               <a href="#fractional-cmo" className="text-sm font-medium" style={{ color: brand.purple }}>Explore CMO Services →</a>
             </div>
