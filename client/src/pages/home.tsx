@@ -502,7 +502,7 @@ export default function HomePage() {
                 // Extract specific metrics for each case study
                 let metric, progressValue, label;
                 if (study.id === 'lamark-agency') {
-                  metric = '6-12'; label = 'Managed budgets simultaneously across 6-12 B2B and B2C clients'; progressValue = 100;
+                  metric = '6-12 Clients Per Month'; label = 'Managed budgets simultaneously across 6-12 B2B and B2C clients'; progressValue = 100;
                 } else if (study.id === 'hapi-art') {
                   metric = '8×+'; label = 'ROAS Achieved for Evergreen Ads: 8x+'; progressValue = 100;
                 } else if (study.id === 'mandali-retreats') {
