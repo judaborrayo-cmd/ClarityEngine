@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
+import CaseStudies from "@/pages/case-studies";
+import CaseStudyDetail from "@/pages/case-study-detail";
 import NotFound from "@/pages/not-found";
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon.png";
@@ -32,12 +34,12 @@ function Navbar() {
             >
               Services
             </Link>
-            <a 
-              href="#case-studies" 
+            <Link 
+              to="/case-studies" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Case Studies
-            </a>
+            </Link>
             <a 
               href="#about" 
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -65,6 +67,8 @@ function Router() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

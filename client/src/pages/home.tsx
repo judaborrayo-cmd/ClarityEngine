@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { 
   Rocket, 
   Menu, 
@@ -65,28 +66,32 @@ export default function HomePage() {
 
   const caseStudies = [
     {
-      icon: Mic,
-      title: "Lisa Nichols — Author & Speaker",
-      stat: "−47.9% CPC, optimized $250k+ ad spend",
-      description: "Scaled presence with efficient Google & YouTube campaigns; improved CTRs and lowered costs.",
+      id: "lamark-agency",
+      icon: Dumbbell,
+      title: "LamarK Agency — Fitness",
+      stat: "11k new members, $2M+ revenue influence",
+      description: "Scaled PPC programs and tracked multi‑location impact.",
     },
     {
+      id: "hapi-artr",
+      icon: Palette,
+      title: "Hapi Artr — E‑commerce",
+      stat: "10× ROAS, $1M+ revenue generated",
+      description: "Built a profitable system with creative testing and audience expansion.",
+    },
+    {
+      id: "mandali-retreats",
       icon: Waves,
       title: "Mandali Retreat — Luxury Wellness",
       stat: "5× ROAS while filling retreat bookings",
       description: "Multi‑channel strategy across Meta & Search; retargeting and geo‑segmented campaigns.",
     },
     {
-      icon: Palette,
-      title: "Hapi Art — E‑commerce",
-      stat: "10× ROAS, $1M+ revenue generated",
-      description: "Built a profitable system with creative testing and audience expansion.",
-    },
-    {
-      icon: Dumbbell,
-      title: "Lamark Agency — Fitness",
-      stat: "11k new members, $2M+ revenue influence",
-      description: "Scaled PPC programs and tracked multi‑location impact.",
+      id: "fitness-roi",
+      icon: TrendingUp,
+      title: "Maximizing ROI in Fitness",
+      stat: "$2M+ revenue, 11k new members",
+      description: "Comprehensive fitness marketing strategy delivering exceptional results.",
     },
   ];
 
@@ -266,13 +271,13 @@ export default function HomePage() {
                       {study.description}
                     </p>
                     <div className="mt-4">
-                      <a 
-                        href="#" 
+                      <Link 
+                        to={`/case-study/${study.id}`}
                         className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
                         data-testid={`case-study-link-${index}`}
                       >
                         Read full case study
-                      </a>
+                      </Link>
                     </div>
                   </article>
                 );
@@ -340,6 +345,63 @@ export default function HomePage() {
             
             <div className="text-center mt-12">
               <p className="text-sm text-muted-foreground">linkedin.com/in/judaborrayo/</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured On Section */}
+        <section className="px-6 py-16 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="featured-title">Featured On</h2>
+              <p className="text-muted-foreground">Recognized expertise in performance marketing and growth strategy</p>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-foreground">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
+                  <div className="text-sm text-muted-foreground">Contra Featured Expert</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
+                  <Target className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-foreground">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
+                  <div className="text-sm text-muted-foreground">Contra Featured Expert</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-foreground">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
+                  <div className="text-sm text-muted-foreground">Contra Featured Expert</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center mt-12">
+              <a 
+                href="https://contra.com/@judaborrayo" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
+                data-testid="contra-profile-link"
+              >
+                View Full Contra Profile
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>
