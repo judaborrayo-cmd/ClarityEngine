@@ -258,7 +258,7 @@ const caseStudyData = {
     videoUrl: "https://youtu.be/Mv9aaF1ISXQ"
   },
   "core-40": {
-    title: "Core 40 Fitness Transformation",
+    title: "Maximizing ROI in Fitness",
     subtitle: "High-Performance Training Studio Growth",
     category: "Fitness Marketing",
     overview: "Core 40, a boutique high-performance training studio, required a comprehensive marketing strategy to establish their premium fitness brand and attract dedicated athletes and fitness enthusiasts. Through targeted digital marketing, community building, and strategic positioning, we developed a growth system that positioned Core 40 as the premier destination for serious fitness training, resulting in significant membership growth and brand recognition in the competitive fitness market.",

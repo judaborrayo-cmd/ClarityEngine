@@ -47,7 +47,7 @@ const caseStudies = [
   },
   {
     id: "core-40",
-    title: "Core 40 Fitness Transformation",
+    title: "Maximizing ROI in Fitness",
     subtitle: "High-Performance Training Studio Growth",
     description: "Comprehensive marketing strategy for boutique fitness studio, establishing premium brand positioning and driving significant membership growth.",
     results: [
