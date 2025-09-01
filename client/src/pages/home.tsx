@@ -564,7 +564,7 @@ export default function HomePage() {
                             ></div>
                           </div>
                           <div className="flex justify-end mt-1">
-                            <span className="text-xs text-muted-foreground">Excellence Level: {progressValue}%</span>
+                            <span className="text-xs text-muted-foreground">Strategy & Execution: {progressValue}%</span>
                           </div>
                         </div>
                       </div>
