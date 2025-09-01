@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import clarityEngineLogo from "@assets/clarity-engine-logo.png";
 
+import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon.png";
+
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -123,7 +125,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3" data-testid="logo">
               <img
-                src={clarityEngineLogo}
+                src={Clarity_Engine_Favicon}
                 alt="Clarity Engine Logo"
                 className="h-8 w-8"
               />
@@ -209,7 +211,6 @@ export default function HomePage() {
           )}
         </div>
       </nav>
-
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative px-6 pt-20 pb-16 lg:px-8 bg-gradient-to-b from-background to-muted">
@@ -418,7 +419,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
       {/* Footer */}
       <footer className="px-6 py-16 lg:px-8 bg-muted border-t border-border">
         <div className="mx-auto max-w-6xl">
