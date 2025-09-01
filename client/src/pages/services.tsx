@@ -138,14 +138,6 @@ export default function Services() {
           frameBorder="0"
         />
         
-        {/* Gradient Overlay - 0% to 20% opacity top to bottom */}
-        <div 
-          className="absolute inset-0"
-          style={{ 
-            background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 245, 243, 0.2))`,
-            zIndex: 1
-          }}
-        />
         <div className="relative mx-auto max-w-4xl" style={{ zIndex: 10 }}>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Services</h1>
           <p className="mt-3" style={{ color: brand.green }}>
