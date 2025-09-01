@@ -19,6 +19,14 @@ import {
   Mail 
 } from "lucide-react";
 
+// Import profile images
+import lindseyImage from "@assets/Lindsey Bast.jpg_1756735713869.jpg";
+import mariImage from "@assets/Mari_1756735713869.jpg";
+import alyssaImage from "@assets/Alyssa.jpg_1756735713866.jpg";
+import danielaImage from "@assets/Daniela.jpg_1756735713868.jpg";
+import mikeImage from "@assets/Mike Berkman.jpg_1756735713869.jpg";
+import billImage from "@assets/Bill Bowman.jpg_1756735713867.jpg";
+
 export default function HomePage() {
   const services = [
     {
@@ -85,37 +93,43 @@ export default function HomePage() {
       quote: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
       author: "Lindsey Bast, Digital Strategist & Growth Marketer",
       gradient: "from-purple-500 to-purple-600",
-      profileColor: "border-white"
+      profileColor: "border-white",
+      image: "@assets/Lindsey Bast.jpg_1756735713869.jpg"
     },
     {
       quote: "It's always enjoyable writing a recommendation for someone as enjoyable as Juda. I've worked with Juda in a professional capacity for over a year now at Sociality Squared. We've worked on various clients together and he's worn many different hats.",
       author: "Mari Smith, Co-Founder & Marketing Director",
       gradient: "from-purple-500 to-purple-600",
-      profileColor: "border-white"
+      profileColor: "border-white",
+      image: "@assets/Mari_1756735713869.jpg"
     },
     {
       quote: "Juda is a phenomenal colleague and complete rockstar for his clients! I've had the pleasure of working with Juda for over a year, and we've collaborated on several large-scale digital marketing projects throughout that time.",
       author: "Alyssa Brooke-Gay, Senior Project Manager",
       gradient: "from-green-500 to-green-600",
-      profileColor: "border-white"
+      profileColor: "border-white",
+      image: "@assets/Alyssa.jpg_1756735713866.jpg"
     },
     {
       quote: "Juda is simply one of the best persons I have had the opportunity to work with. Not only he is proficient in Marketing, specially in the paid media field, but also, he has a very strong work ethic and solid soft skills. Juda is a team player.",
       author: "Daniela Goldzmindt, Marketing Manager",
       gradient: "from-pink-400 to-pink-500",
-      profileColor: "border-white"
+      profileColor: "border-white",
+      image: "@assets/Daniela.jpg_1756735713868.jpg"
     },
     {
       quote: "I had the pleasure of working with Juda during his tenure at LamarR. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
       author: "Mike Berkman, VP of Performance",
       gradient: "from-pink-400 to-pink-500",
-      profileColor: "border-white"
+      profileColor: "border-white",
+      image: "@assets/Mike Berkman.jpg_1756735713869.jpg"
     },
     {
       quote: "Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way. While working with him, he continually suggested new and interesting ways to accomplish our team goals.",
       author: "Bill Bowman, Vice President of Marketing",
       gradient: "from-blue-500 to-purple-600",
-      profileColor: "border-white"
+      profileColor: "border-white",
+      image: "@assets/Bill Bowman.jpg_1756735713867.jpg"
     }
   ];
 
@@ -295,8 +309,12 @@ export default function HomePage() {
                     </div>
                     
                     <div className="flex items-start gap-4 mb-6">
-                      <div className={`w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl font-bold ${testimonial.profileColor} border-4 backdrop-blur-sm`}>
-                        {testimonial.author.split(' ')[0][0]}{testimonial.author.split(' ')[1] ? testimonial.author.split(' ')[1][0] : ''}
+                      <div className={`w-16 h-16 rounded-full overflow-hidden ${testimonial.profileColor} border-4 backdrop-blur-sm flex-shrink-0`}>
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.author}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="flex-1">
                         <blockquote className="text-white leading-relaxed mb-4" data-testid={`testimonial-quote-${index}`}>
