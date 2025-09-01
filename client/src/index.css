@@ -307,49 +307,35 @@ html {
 
 /* Sequential case study highlight animation */
 @keyframes case-study-highlight {
-  0% {
+  0%, 85%, 100% {
     background: transparent;
-    color: inherit;
     transform: scale(1);
-    box-shadow: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
-  25% {
+  15%, 70% {
     background: linear-gradient(135deg, #1e40af, #7c3aed, #1e40af);
-    color: white;
     transform: scale(1.02);
     box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.25);
-  }
-  75% {
-    background: linear-gradient(135deg, #1e40af, #7c3aed, #1e40af);
-    color: white;
-    transform: scale(1.02);
-    box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.25);
-  }
-  100% {
-    background: transparent;
-    color: inherit;
-    transform: scale(1);
-    box-shadow: none;
   }
 }
 
-.animate-case-study-highlight-1 {
-  animation: case-study-highlight 6s ease-in-out;
+.case-study-card {
+  animation: case-study-highlight 8s ease-in-out;
+}
+
+.case-study-card:nth-child(1) {
   animation-delay: 1s;
 }
 
-.animate-case-study-highlight-2 {
-  animation: case-study-highlight 6s ease-in-out;
-  animation-delay: 3s;
+.case-study-card:nth-child(2) {
+  animation-delay: 2.5s;
 }
 
-.animate-case-study-highlight-3 {
-  animation: case-study-highlight 6s ease-in-out;
-  animation-delay: 5s;
+.case-study-card:nth-child(3) {
+  animation-delay: 4s;
 }
 
-.animate-case-study-highlight-4 {
-  animation: case-study-highlight 6s ease-in-out;
-  animation-delay: 7s;
+.case-study-card:nth-child(4) {
+  animation-delay: 5.5s;
 }
 
