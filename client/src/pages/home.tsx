@@ -273,7 +273,7 @@ export default function HomePage() {
                     <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-16 max-w-36 object-contain" />
                   </div>
                   <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-16 max-w-36 object-contain" />
+                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-12 max-w-32 object-contain" />
                   </div>
                   <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
                     <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-16 max-w-36 object-contain" />
@@ -336,7 +336,7 @@ export default function HomePage() {
                     <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-16 max-w-36 object-contain" />
                   </div>
                   <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-16 max-w-36 object-contain" />
+                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-12 max-w-32 object-contain" />
                   </div>
                   <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
                     <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-16 max-w-36 object-contain" />

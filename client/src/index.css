@@ -103,7 +103,7 @@ html {
 }
 
 .animate-scroll:hover {
-  animation-play-state: paused;
+  animation-duration: 15s; /* 2x faster than normal 30s */
 }
 
 /* Animated expanding/retracting border */
