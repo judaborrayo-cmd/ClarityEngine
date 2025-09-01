@@ -76,7 +76,7 @@ export default function HomePage() {
       id: "hapi-art",
       icon: Palette,
       title: "Hapi Art — E‑commerce",
-      stat: "10× ROAS, $1M+ revenue generated",
+      stat: "8×+ ROAS System Built",
       description: "Built a profitable system with creative testing and audience expansion.",
     },
     {
