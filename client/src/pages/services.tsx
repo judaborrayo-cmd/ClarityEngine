@@ -126,7 +126,7 @@ export default function Services() {
           </p>
 
           {/* Anchor chips - sticky navigation */}
-          <div className="mt-6 sticky top-24 bg-white/95 backdrop-blur-sm py-2 -mx-6 px-6 z-20 border-b" style={{ borderColor: "#e5e7eb" }}>
+          <div className="mt-6 sticky top-24 bg-white/95 backdrop-blur-sm py-2 -mx-6 px-6 z-10 border-b" style={{ borderColor: "#e5e7eb" }}>
             <div className="flex flex-wrap gap-3">
               {services.map((s) => (
                 <a
