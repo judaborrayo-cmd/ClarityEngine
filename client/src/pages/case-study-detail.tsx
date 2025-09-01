@@ -93,29 +93,85 @@ const caseStudyData = {
     title: "Building a Profitable 10X ROAS",
     subtitle: "Hapi Art Advertising System",
     category: "ROI Optimization",
-    overview: "Comprehensive advertising system design and implementation that achieved an exceptional 10X return on ad spend through strategic optimization and systematic approach to campaign management.",
-    challenge: "Hapi Art needed a profitable advertising system that could consistently deliver high returns while maintaining scalability and sustainable growth patterns.",
+    overview: "Hapi Art, an innovative e-commerce art platform, required a comprehensive advertising system capable of delivering exceptional returns while scaling their unique digital art marketplace. Through systematic optimization, advanced targeting strategies, and creative testing protocols, we developed a profitable 10X ROAS advertising system that generated over $1M+ in revenue while establishing Hapi Art as a leading player in the digital art e-commerce space.",
+    challenge: "Hapi Art faced the challenge of marketing digital art products in a highly competitive e-commerce landscape where visual appeal and audience targeting are critical. The brand needed an advertising system that could effectively showcase their artistic products, reach art enthusiasts and collectors, while achieving profitable returns on ad spend. The challenge was to create a scalable system that could consistently deliver high ROAS across multiple channels while building brand recognition in the digital art market.",
     solution: [
-      "Designed comprehensive advertising system architecture",
-      "Implemented strategic optimization protocols",
-      "Developed systematic approach to campaign management",
-      "Created sustainable growth frameworks for long-term profitability"
+      "Designed comprehensive advertising system architecture optimized for visual product marketing and art e-commerce",
+      "Implemented advanced audience targeting strategies focused on art enthusiasts, collectors, and creative professionals",
+      "Developed systematic creative testing protocols featuring high-quality art visuals and compelling ad formats",
+      "Created sophisticated funnel optimization strategies to maximize conversion rates from awareness to purchase",
+      "Built automated bid management and budget allocation systems for optimal ROAS performance",
+      "Established comprehensive tracking and attribution systems for accurate performance measurement",
+      "Implemented strategic remarketing campaigns targeting users based on art preferences and engagement behavior"
     ],
     results: {
-      primary: "10X ROAS achieved through systematic optimization",
+      primary: "10X ROAS achieved with $1M+ revenue generated through systematic optimization",
       metrics: [
         { label: "ROAS Achieved", value: "10X", icon: TrendingUp },
+        { label: "Revenue Generated", value: "$1M+", icon: DollarSign },
         { label: "System Type", value: "Comprehensive", icon: Target },
-        { label: "Optimization", value: "Strategic", icon: DollarSign },
-        { label: "Profitability", value: "Sustainable", icon: Users }
+        { label: "Market Position", value: "Leading", icon: Users }
       ]
     },
+    detailedResults: [
+      {
+        title: "Exceptional ROAS Performance",
+        description: "Achieved remarkable 10X return on ad spend, significantly exceeding industry benchmarks for e-commerce advertising performance"
+      },
+      {
+        title: "Revenue Generation Success", 
+        description: "Generated over $1M+ in revenue through strategic advertising campaigns and optimized conversion funnels"
+      },
+      {
+        title: "Market Position Establishment",
+        description: "Successfully established Hapi Art as a leading digital art e-commerce platform through strategic brand positioning and targeted marketing"
+      },
+      {
+        title: "Scalable System Development",
+        description: "Built a comprehensive, scalable advertising system that consistently delivers profitable results across multiple marketing channels"
+      }
+    ],
+    strategies: [
+      {
+        category: "Visual Creative Strategy & Testing",
+        tactics: [
+          "Developed high-impact visual advertising featuring Hapi Art's unique digital art pieces",
+          "Implemented systematic creative testing across multiple ad formats and visual styles",
+          "Created compelling storytelling approaches highlighting artist stories and creative processes"
+        ]
+      },
+      {
+        category: "Advanced Audience Targeting", 
+        tactics: [
+          "Built detailed personas targeting art enthusiasts, collectors, and creative professionals",
+          "Implemented lookalike audiences based on high-value customer segments",
+          "Created interest-based targeting focusing on art, design, and creative lifestyle preferences"
+        ]
+      },
+      {
+        category: "Conversion Funnel Optimization",
+        tactics: [
+          "Optimized entire customer journey from initial art discovery to final purchase completion",
+          "Implemented strategic remarketing sequences based on product browsing and engagement behavior",
+          "Developed time-sensitive promotional strategies to create urgency and drive conversions"
+        ]
+      },
+      {
+        category: "Performance Tracking & Optimization",
+        tactics: [
+          "Established comprehensive attribution modeling for accurate ROAS measurement",
+          "Implemented automated bid management strategies optimized for profitability",
+          "Created real-time performance monitoring dashboards for continuous optimization"
+        ]
+      }
+    ],
     testimonial: {
-      quote: "The advertising system delivered incredible results with 10X ROAS. The strategic optimization and systematic approach transformed our entire marketing performance.",
-      author: "Hapi Art Team"
+      quote: "The advertising system delivered incredible results with 10X ROAS and over $1M in revenue. The strategic optimization and systematic approach transformed our entire marketing performance, establishing us as a leader in the digital art marketplace.",
+      author: "Hapi Art Marketing Team"
     },
-    tags: ["10X ROAS", "Advertising Systems", "Strategic Optimization", "Profitability"],
-    featured: true
+    tags: ["10X ROAS", "$1M Revenue", "E-commerce", "Digital Art", "Visual Marketing", "Conversion Optimization"],
+    featured: true,
+    videoUrl: "https://www.youtube.com/watch?v=Hlea7gYuSvw"
   },
   "steel-fit-usa": {
     title: "Steel Fit USA",
