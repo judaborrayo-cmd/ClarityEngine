@@ -257,6 +257,90 @@ const caseStudyData = {
     featured: true,
     videoUrl: "https://youtu.be/Mv9aaF1ISXQ"
   },
+  "core-40": {
+    title: "Core 40 Fitness Transformation",
+    subtitle: "High-Performance Training Studio Growth",
+    category: "Fitness Marketing",
+    overview: "Core 40, a boutique high-performance training studio, required a comprehensive marketing strategy to establish their premium fitness brand and attract dedicated athletes and fitness enthusiasts. Through targeted digital marketing, community building, and strategic positioning, we developed a growth system that positioned Core 40 as the premier destination for serious fitness training, resulting in significant membership growth and brand recognition in the competitive fitness market.",
+    challenge: "Core 40 faced the challenge of establishing their boutique fitness studio in a highly competitive market dominated by large gym chains and fitness franchises. The studio needed to differentiate itself as a premium, high-performance training facility while attracting the right audience of dedicated athletes and serious fitness enthusiasts. The challenge was to build brand awareness, drive membership growth, and establish Core 40 as the go-to destination for elite fitness training in their local market.",
+    solution: [
+      "Developed comprehensive brand positioning strategy emphasizing high-performance training and elite fitness culture",
+      "Implemented targeted digital marketing campaigns focused on serious athletes and fitness enthusiasts",
+      "Created community-building initiatives to foster strong member engagement and loyalty",
+      "Built strategic content marketing showcasing training methodologies and member success stories",
+      "Established local market dominance through strategic partnerships and community outreach",
+      "Developed systematic member acquisition and retention strategies optimized for boutique fitness",
+      "Implemented performance tracking and optimization systems for continuous growth measurement"
+    ],
+    results: {
+      primary: "Significant membership growth and established brand recognition as premier training destination",
+      metrics: [
+        { label: "Studio Type", value: "Boutique", icon: Target },
+        { label: "Training Focus", value: "High-Performance", icon: TrendingUp },
+        { label: "Market Position", value: "Premium", icon: Users },
+        { label: "Growth Status", value: "Significant", icon: DollarSign }
+      ]
+    },
+    detailedResults: [
+      {
+        title: "Premium Brand Establishment",
+        description: "Successfully positioned Core 40 as the premier boutique training studio for high-performance athletes and serious fitness enthusiasts"
+      },
+      {
+        title: "Membership Growth Achievement", 
+        description: "Achieved significant membership growth through targeted marketing and strategic positioning in the competitive fitness market"
+      },
+      {
+        title: "Community Building Success",
+        description: "Built a strong, engaged community of dedicated athletes who actively promote the studio through word-of-mouth referrals"
+      },
+      {
+        title: "Market Differentiation",
+        description: "Successfully differentiated Core 40 from competitors through emphasis on high-performance training and elite fitness culture"
+      }
+    ],
+    strategies: [
+      {
+        category: "Premium Brand Positioning & Differentiation",
+        tactics: [
+          "Developed compelling brand messaging emphasizing high-performance training and elite athlete culture",
+          "Created premium visual identity and marketing materials reflecting boutique fitness excellence",
+          "Established thought leadership through expert training content and methodology showcases"
+        ]
+      },
+      {
+        category: "Targeted Digital Marketing & Acquisition", 
+        tactics: [
+          "Implemented precise audience targeting focusing on serious athletes and dedicated fitness enthusiasts",
+          "Developed high-converting lead generation campaigns optimized for boutique fitness membership",
+          "Created strategic social media presence showcasing training intensity and member achievements"
+        ]
+      },
+      {
+        category: "Community Building & Member Engagement",
+        tactics: [
+          "Built systematic community engagement programs fostering strong member loyalty and retention",
+          "Implemented member success story campaigns highlighting transformation and performance improvements",
+          "Created exclusive member events and challenges to strengthen studio community bonds"
+        ]
+      },
+      {
+        category: "Local Market Dominance & Growth",
+        tactics: [
+          "Established strategic partnerships with local athletic organizations and sports teams",
+          "Implemented referral programs leveraging satisfied member networks for organic growth",
+          "Created systematic local market outreach and community involvement initiatives"
+        ]
+      }
+    ],
+    testimonial: {
+      quote: "The marketing strategy transformed our boutique studio into the premier destination for serious athletes. The targeted approach and community-building initiatives have created incredible membership growth and brand recognition.",
+      author: "Core 40 Studio Leadership"
+    },
+    tags: ["Boutique Fitness", "High-Performance Training", "Premium Brand", "Community Building", "Athletic Performance", "Membership Growth"],
+    featured: true,
+    videoUrl: "https://www.youtube.com/watch?v=OMR1fsCbzTY"
+  },
   "steel-fit-usa": {
     title: "Steel Fit USA",
     subtitle: "Exceptional Growth with Paid Media Strategy",

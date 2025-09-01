@@ -46,6 +46,20 @@ const caseStudies = [
     featured: true
   },
   {
+    id: "core-40",
+    title: "Core 40 Fitness Transformation",
+    subtitle: "High-Performance Training Studio Growth",
+    description: "Comprehensive marketing strategy for boutique fitness studio, establishing premium brand positioning and driving significant membership growth.",
+    results: [
+      "Premium brand establishment",
+      "Significant membership growth",
+      "High-performance positioning"
+    ],
+    category: "Fitness Marketing",
+    image: "/images/case-study-core40.png",
+    featured: true
+  },
+  {
     id: "steel-fit-usa",
     title: "Steel Fit USA",
     subtitle: "Exceptional Growth with Paid Media Strategy",
