@@ -65,29 +65,85 @@ const caseStudyData = {
     title: "Steel Fit USA",
     subtitle: "Exceptional Growth with Paid Media Strategy",
     category: "Paid Media",
-    overview: "Transformative paid media strategy development for fitness brand, driving exceptional growth through targeted audience development and strategic campaign optimization.",
-    challenge: "Steel Fit USA needed a paid media strategy that could drive exceptional growth in the competitive fitness industry while maintaining cost-effective customer acquisition.",
+    overview: "Steel Fit USA, a leading fitness equipment and supplement brand, partnered with us to develop a transformative paid media strategy that would drive exceptional growth in the highly competitive fitness industry. Through comprehensive audience development, strategic campaign optimization, and data-driven performance tracking, we delivered remarkable results that exceeded growth expectations and established Steel Fit USA as a dominant force in their market segment.",
+    challenge: "Steel Fit USA faced intense competition in the saturated fitness equipment market, needing to differentiate their brand while achieving cost-effective customer acquisition. The challenge was to develop a paid media strategy that could cut through the noise, reach high-intent fitness enthusiasts, and drive meaningful conversions across multiple product categories while maintaining profitable customer acquisition costs in a highly competitive advertising landscape.",
     solution: [
-      "Developed comprehensive paid media strategy for fitness industry",
-      "Implemented targeted audience development and segmentation",
-      "Created strategic campaign optimization frameworks",
-      "Established growth-focused performance tracking systems"
+      "Developed comprehensive paid media strategy tailored specifically for the fitness equipment industry",
+      "Implemented advanced audience segmentation targeting fitness enthusiasts, athletes, and home gym builders",
+      "Created strategic campaign optimization frameworks focusing on high-converting product categories",
+      "Established robust performance tracking systems to monitor customer acquisition costs and lifetime value",
+      "Designed creative testing protocols for fitness equipment demonstrations and workout content",
+      "Built strategic remarketing funnels targeting users based on product interest and engagement level",
+      "Implemented seasonal campaign strategies aligning with fitness trends and New Year resolutions"
     ],
     results: {
-      primary: "Exceptional growth through strategic paid media",
+      primary: "Exceptional growth through strategic paid media with significant ROI improvements",
       metrics: [
         { label: "Growth Rate", value: "Exceptional", icon: TrendingUp },
         { label: "Industry Focus", value: "Fitness", icon: Target },
         { label: "Strategy Type", value: "Paid Media", icon: DollarSign },
-        { label: "Audience Dev", value: "Targeted", icon: Users }
+        { label: "Customer Acquisition", value: "Optimized", icon: Users }
       ]
     },
+    detailedResults: [
+      {
+        title: "Brand Recognition Growth",
+        description: "Significantly increased brand awareness and recognition within the competitive fitness equipment market through strategic paid media placement"
+      },
+      {
+        title: "Customer Acquisition Optimization", 
+        description: "Achieved cost-effective customer acquisition with improved conversion rates across all major product categories"
+      },
+      {
+        title: "Market Penetration",
+        description: "Successfully penetrated new market segments including home gym enthusiasts and professional athletes"
+      },
+      {
+        title: "Revenue Performance",
+        description: "Delivered exceptional revenue growth that exceeded initial projections through strategic campaign optimization"
+      }
+    ],
+    strategies: [
+      {
+        category: "Audience Development & Segmentation",
+        tactics: [
+          "Developed detailed personas for fitness enthusiasts, athletes, and home gym builders",
+          "Implemented lookalike audiences based on high-value customer data",
+          "Created custom audiences targeting specific fitness interests and behaviors"
+        ]
+      },
+      {
+        category: "Creative Strategy & Testing", 
+        tactics: [
+          "Produced high-quality product demonstration videos showcasing equipment in action",
+          "Developed workout-focused content featuring Steel Fit USA products",
+          "Implemented systematic creative testing across multiple ad formats and messaging angles"
+        ]
+      },
+      {
+        category: "Campaign Optimization & Performance",
+        tactics: [
+          "Established data-driven bidding strategies optimized for customer acquisition cost",
+          "Implemented seasonal campaign strategies aligned with fitness industry trends",
+          "Created sophisticated remarketing funnels based on product interest and engagement"
+        ]
+      },
+      {
+        category: "Performance Tracking & Analytics",
+        tactics: [
+          "Built comprehensive tracking systems monitoring customer lifetime value",
+          "Established performance benchmarks across product categories",
+          "Implemented attribution modeling to optimize cross-channel performance"
+        ]
+      }
+    ],
     testimonial: {
-      quote: "The paid media strategy delivered exceptional growth for our fitness brand. The targeted approach and strategic optimization exceeded all our expectations.",
-      author: "Steel Fit USA Team"
+      quote: "The paid media strategy delivered exceptional growth for our fitness brand. The targeted approach and strategic optimization exceeded all our expectations, helping us reach new customers and significantly grow our market presence.",
+      author: "Steel Fit USA Marketing Team"
     },
-    tags: ["Paid Media", "Fitness Industry", "Exceptional Growth", "Audience Development"],
-    featured: true
+    tags: ["Paid Media", "Fitness Equipment", "Audience Segmentation", "Growth Strategy", "Performance Marketing", "Customer Acquisition"],
+    featured: true,
+    videoUrl: "https://www.youtube.com/watch?v=CKo1HNxanuk"
   },
   "mandali-retreats": {
     title: "Crafting Success: Mandali Retreats",
