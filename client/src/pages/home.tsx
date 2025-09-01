@@ -18,6 +18,7 @@ import {
   Twitter, 
   Mail 
 } from "lucide-react";
+import clarityEngineLogo from "@assets/clarity-engine-logo.png";
 
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -122,7 +123,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3" data-testid="logo">
               <img
-                src="@assets/clarity-engine-logo.png"
+                src={clarityEngineLogo}
                 alt="Clarity Engine Logo"
                 className="h-8 w-8"
               />
@@ -215,7 +216,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="mx-auto h-28 w-28 mb-6 flex items-center justify-center">
               <img
-                src="@assets/clarity-engine-logo.png"
+                src={clarityEngineLogo}
                 alt="Clarity Engine Logo"
                 className="h-28 w-28 object-contain"
               />
@@ -390,7 +391,7 @@ export default function HomePage() {
             <div className="text-center rounded-3xl border border-border p-10 shadow-sm bg-card">
               <div className="mx-auto w-16 h-16 flex items-center justify-center mb-6">
                 <img
-                  src="@assets/clarity-engine-logo.png"
+                  src={clarityEngineLogo}
                   alt="Clarity Engine Logo"
                   className="h-16 w-16 object-contain"
                 />
@@ -425,7 +426,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center space-x-3 mb-4" data-testid="footer-logo">
                 <img
-                  src="@assets/clarity-engine-logo.png"
+                  src={clarityEngineLogo}
                   alt="Clarity Engine Logo"
                   className="h-8 w-8"
                 />
