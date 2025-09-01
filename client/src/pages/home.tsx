@@ -156,6 +156,7 @@ export default function HomePage() {
     }
   };
 
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <main>
@@ -505,15 +506,15 @@ export default function HomePage() {
                     <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 group-hover:opacity-30 group-hover:shadow-lg group-hover:shadow-white/30 transition-all duration-300"></div>
                     <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 group-hover:scale-150 group-hover:shadow-lg group-hover:shadow-white/40 transition-all duration-300"></div>
                     
-                    {/* Animated Quote Mark with glow */}
-                    <div className="absolute top-4 right-4 text-white opacity-20 group-hover:opacity-60 group-hover:drop-shadow-lg transition-all duration-300">
-                      <Quote size={32} className="transform group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300" />
+                    {/* Animated Quote Mark with enhanced movement */}
+                    <div className="absolute top-4 right-4 text-white opacity-20 group-hover:opacity-80 group-hover:drop-shadow-lg transition-all duration-500">
+                      <Quote size={32} className="transform group-hover:rotate-12 group-hover:scale-150 group-hover:-translate-y-2 group-hover:translate-x-1 transition-transform duration-500" />
                     </div>
                     
                     {/* Content */}
                     <div className="relative z-10">
                       <div className="mb-6">
-                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 group-hover:bg-white group-hover:bg-opacity-100 group-hover:text-primary group-hover:shadow-lg group-hover:shadow-white/50 rounded-full text-sm font-medium backdrop-blur-sm transition-all duration-300">
+                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm">
                           Colleague review
                         </div>
                       </div>
@@ -533,7 +534,16 @@ export default function HomePage() {
                         </div>
                         <div className="flex-1">
                           <blockquote className="text-white leading-relaxed mb-4 group-hover:drop-shadow-lg transition-all duration-300" data-testid={`testimonial-quote-${index}`}>
-                            "{testimonial.quote}"
+                            "{testimonial.quote.split(' ').map((word, wordIndex) => {
+                              const isKeyword = ['recommend', 'professional', 'exceptional', 'outstanding', 'phenomenal', 'talented', 'skilled', 'expertise', 'results', 'growth', 'strategic', 'innovative', 'excellent', 'effective'].some(
+                                keyword => word.toLowerCase().includes(keyword.toLowerCase())
+                              );
+                              return isKeyword ? (
+                                <span key={wordIndex} className="group-hover:bg-white group-hover:text-primary group-hover:px-1 group-hover:rounded transition-all duration-300">
+                                  {word}
+                                </span>
+                              ) : word;
+                            }).reduce((prev, curr, index) => [prev, index > 0 ? ' ' : '', curr])}"
                           </blockquote>
                         </div>
                       </div>
