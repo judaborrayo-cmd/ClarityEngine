@@ -4,7 +4,7 @@ export default function Services() {
       id: "clarity-audit",
       title: "Growth Clarity Audit",
       summary:
-        "A 360° audit to uncover what's costing you conversions. You'll get a full-funnel review, a video walkthrough, and a prioritized action plan.",
+        "A 360° audit to uncover what’s costing you conversions. You’ll get a full-funnel review, a video walkthrough, and a prioritized action plan.",
       bullets: [
         "Custom video walkthrough (15–30 min) + PDF summary",
         "Tracking & attribution check (GA4, GTM, Ads pixels)",
