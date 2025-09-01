@@ -348,19 +348,17 @@ html {
 @keyframes lightning-solidify {
   0% {
     opacity: 0.1;
-    filter: brightness(0.5);
   }
-  50% {
-    opacity: 0.6;
-    filter: brightness(0.8);
+  80% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
-    filter: brightness(1.2);
   }
 }
 
 .animate-lightning-solidify {
   animation: lightning-solidify 10s ease-in-out infinite;
+  animation-fill-mode: forwards;
 }
 
