@@ -20,6 +20,29 @@ import {
   Mail 
 } from "lucide-react";
 
+// Progress Bar Component
+function ProgressBar() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
+  return (
+    <div className="progress-bar">
+      <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+    </div>
+  );
+}
+
 // Rotating Word Component
 function RotatingWord({ words }: { words: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -186,6 +209,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
+      <ProgressBar />
       <main>
         {/* Hero Section */}
         <section className="relative px-6 pt-20 pb-16 lg:px-8 bg-gradient-to-b from-background to-muted overflow-hidden">

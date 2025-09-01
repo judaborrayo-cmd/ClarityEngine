@@ -1,6 +1,30 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Users, TrendingUp, DollarSign, Target } from "lucide-react";
+
+// Progress Bar Component
+function ProgressBar() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
+  return (
+    <div className="progress-bar">
+      <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+    </div>
+  );
+}
 
 const caseStudies = [
   {
@@ -92,6 +116,7 @@ const caseStudies = [
 export default function CaseStudiesPage() {
   return (
     <div className="min-h-screen bg-background">
+      <ProgressBar />
       {/* Header Section */}
       <section className="px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-6xl">
@@ -109,16 +134,16 @@ export default function CaseStudiesPage() {
             {caseStudies.map((study, index) => (
               <div 
                 key={study.id}
-                className="group relative bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-primary/20"
+                className="group relative bg-card border border-border rounded-3xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-primary/20 hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:text-white"
                 data-testid={`case-study-card-${index}`}
               >
                 {/* Category Badge */}
                 <div className="flex items-center justify-between mb-6">
-                  <Badge variant="secondary" className="text-xs font-medium">
+                  <Badge variant="secondary" className="text-xs font-medium group-hover:bg-white/20 group-hover:text-white">
                     {study.category}
                   </Badge>
                   {study.featured && (
-                    <Badge className="bg-primary/10 text-primary border-primary/20">
+                    <Badge className="bg-primary/10 text-primary border-primary/20 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30">
                       Featured
                     </Badge>
                   )}
@@ -126,13 +151,13 @@ export default function CaseStudiesPage() {
 
                 {/* Content */}
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-foreground mb-2" data-testid={`case-study-title-${index}`}>
+                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-white" data-testid={`case-study-title-${index}`}>
                     {study.title}
                   </h3>
-                  <p className="text-sm text-primary font-medium mb-4">
+                  <p className="text-sm text-primary font-medium mb-4 group-hover:text-white/90">
                     {study.subtitle}
                   </p>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-white/80">
                     {study.description}
                   </p>
 
@@ -141,7 +166,7 @@ export default function CaseStudiesPage() {
                     {study.results.map((result, resultIndex) => (
                       <div key={resultIndex} className="flex items-center gap-2 text-sm">
                         <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                        <span className="text-muted-foreground">{result}</span>
+                        <span className="text-muted-foreground group-hover:text-white/80">{result}</span>
                       </div>
                     ))}
                   </div>
@@ -150,7 +175,7 @@ export default function CaseStudiesPage() {
                 {/* CTA */}
                 <Link 
                   to={`/case-study/${study.id}`}
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors group-hover:gap-3"
+                  className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors group-hover:gap-3 group-hover:text-white"
                   data-testid={`case-study-link-${index}`}
                 >
                   Read full case study

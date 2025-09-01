@@ -1,5 +1,28 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+
+// Progress Bar Component
+function ProgressBar() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
+  return (
+    <div className="progress-bar">
+      <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+    </div>
+  );
+}
 import { 
   CheckCircle, 
   Clock, 
@@ -18,7 +41,7 @@ import {
 export default function GrowthClarityAuditPage() {
   const [activeTab, setActiveTab] = useState("what-included");
   const [visibleSteps, setVisibleSteps] = useState(new Set());
-  const stepRefs = useRef([]);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Intersection Observer for progressive reveal
   useEffect(() => {
@@ -26,8 +49,8 @@ export default function GrowthClarityAuditPage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const stepIndex = parseInt(entry.target.dataset.stepIndex);
-            setVisibleSteps(prev => new Set([...prev, stepIndex]));
+            const stepIndex = parseInt((entry.target as HTMLElement).dataset.stepIndex || '0');
+            setVisibleSteps(prev => new Set([...Array.from(prev), stepIndex]));
           }
         });
       },
@@ -117,6 +140,7 @@ export default function GrowthClarityAuditPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <ProgressBar />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-background via-background to-primary/5 py-24">
