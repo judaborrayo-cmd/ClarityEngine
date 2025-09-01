@@ -492,28 +492,28 @@ export default function HomePage() {
                 return (
                   <div 
                     key={index} 
-                    className={`group relative rounded-3xl p-8 text-white hover:text-gray-900 bg-gradient-to-br ${testimonial.gradient} hover:bg-white shadow-xl overflow-hidden hover:scale-105 transition-all duration-500 animate-float-up`}
+                    className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} hover:from-primary hover:to-accent shadow-xl hover:shadow-2xl hover:shadow-primary/25 overflow-hidden hover:scale-110 transition-all duration-500 animate-float-up hover:rotate-1`}
                     style={{ 
                       animationDelay: `${index * 250}ms`,
                       animationDuration: `${3 + (index % 3)}s`
                     }}
                     data-testid={`testimonial-card-${index}`}
                   >
-                    {/* Animated Decorative circles */}
-                    <div className="absolute -top-4 -left-4 w-8 h-8 bg-white group-hover:bg-primary opacity-30 rounded-full animate-pulse transition-colors duration-300"></div>
-                    <div className="absolute -top-2 -left-2 w-4 h-4 bg-white group-hover:bg-primary opacity-50 rounded-full animate-ping transition-colors duration-300" style={{ animationDelay: '1s' }}></div>
-                    <div className="absolute top-8 left-8 w-12 h-12 bg-white group-hover:bg-primary opacity-10 group-hover:opacity-20 transition-all duration-300"></div>
-                    <div className="absolute top-12 left-20 w-6 h-6 bg-white group-hover:bg-primary opacity-20 group-hover:scale-125 transition-all duration-300"></div>
+                    {/* Animated Decorative circles with glow effect */}
+                    <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full animate-pulse group-hover:bg-white group-hover:shadow-lg group-hover:shadow-white/50 transition-all duration-300"></div>
+                    <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full animate-ping group-hover:bg-white group-hover:shadow-lg group-hover:shadow-white/50 transition-all duration-300" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 group-hover:opacity-30 group-hover:shadow-lg group-hover:shadow-white/30 transition-all duration-300"></div>
+                    <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 group-hover:scale-150 group-hover:shadow-lg group-hover:shadow-white/40 transition-all duration-300"></div>
                     
-                    {/* Animated Quote Mark */}
-                    <div className="absolute top-4 right-4 text-white group-hover:text-primary opacity-20 group-hover:opacity-40 transition-all duration-300">
-                      <Quote size={32} className="transform group-hover:rotate-12 transition-transform duration-300" />
+                    {/* Animated Quote Mark with glow */}
+                    <div className="absolute top-4 right-4 text-white opacity-20 group-hover:opacity-60 group-hover:drop-shadow-lg transition-all duration-300">
+                      <Quote size={32} className="transform group-hover:rotate-12 group-hover:scale-125 transition-transform duration-300" />
                     </div>
                     
                     {/* Content */}
                     <div className="relative z-10">
                       <div className="mb-6">
-                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 group-hover:bg-primary group-hover:bg-opacity-100 group-hover:text-white rounded-full text-sm font-medium backdrop-blur-sm transition-all duration-300">
+                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 group-hover:bg-white group-hover:bg-opacity-100 group-hover:text-primary group-hover:shadow-lg group-hover:shadow-white/50 rounded-full text-sm font-medium backdrop-blur-sm transition-all duration-300">
                           Colleague review
                         </div>
                       </div>
@@ -532,13 +532,13 @@ export default function HomePage() {
                           />
                         </div>
                         <div className="flex-1">
-                          <blockquote className="text-white group-hover:text-gray-900 leading-relaxed mb-4 transition-colors duration-300" data-testid={`testimonial-quote-${index}`}>
+                          <blockquote className="text-white leading-relaxed mb-4 group-hover:drop-shadow-lg transition-all duration-300" data-testid={`testimonial-quote-${index}`}>
                             "{testimonial.quote}"
                           </blockquote>
                         </div>
                       </div>
                       
-                      <figcaption className="font-medium text-white group-hover:text-gray-900 opacity-90 transition-colors duration-300" data-testid={`testimonial-author-${index}`}>
+                      <figcaption className="font-medium text-white opacity-90 group-hover:drop-shadow-lg transition-all duration-300" data-testid={`testimonial-author-${index}`}>
                         - {testimonial.author}
                       </figcaption>
                     </div>
