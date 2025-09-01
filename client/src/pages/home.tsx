@@ -513,7 +513,7 @@ export default function HomePage() {
                 return (
                   <article 
                     key={study.title} 
-                    className="case-study-card group rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-102 animate-slide-in-left"
+                    className="group rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-102 animate-slide-in-left"
                     style={{ animationDelay: `${index * 200}ms` }}
                     data-testid={`case-study-card-${index}`}
                   >
