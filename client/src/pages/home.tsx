@@ -90,7 +90,7 @@ export default function HomePage() {
       id: "fitness-roi",
       icon: TrendingUp,
       title: "Maximizing ROI in Fitness",
-      stat: "Managed budgets up to $70,000 per month across verticals",
+      stat: "11k new members, $2M+ revenue influenced",
       description: "Comprehensive fitness marketing strategy delivering exceptional results.",
     },
   ];
@@ -508,7 +508,7 @@ export default function HomePage() {
                 } else if (study.id === 'mandali-retreats') {
                   metric = '15×+'; label = '15x+ ROAS across Google Ads and Meta for the last 3+ years'; progressValue = 100;
                 } else {
-                  metric = '365'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
+                  metric = '365 Days/year'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
                 }
                 return (
                   <article 
