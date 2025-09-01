@@ -482,6 +482,18 @@ export default function HomePage() {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground" data-testid="case-studies-title">Proof & Case Studies</h2>
               <p className="mt-2 text-muted-foreground" data-testid="case-studies-subtitle">Selected outcomes from recent work.</p>
+              <div className="mt-4">
+                <Link 
+                  to="/case-studies"
+                  className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors underline underline-offset-2"
+                  data-testid="all-case-studies-link"
+                >
+                  View All Case Studies
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 4l-1.41 1.41L15.17 10H4v2h11.17l-4.58 4.59L12 18l6-6-6-6z" />
+                  </svg>
+                </Link>
+              </div>
             </div>
             
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
@@ -490,11 +502,11 @@ export default function HomePage() {
                 // Extract specific metrics for each case study
                 let metric, progressValue, label;
                 if (study.id === 'lamark-agency') {
-                  metric = '6-12'; label = 'Managed budgets across 6-12 B2B and B2C clients'; progressValue = 80;
+                  metric = '6-12'; label = 'Managed budgets simultaneously across 6-12 B2B and B2C clients'; progressValue = 100;
                 } else if (study.id === 'hapi-art') {
-                  metric = '8×+'; label = 'ROAS Achieved for Evergreen Ads: 8x+'; progressValue = 80;
+                  metric = '8×+'; label = 'ROAS Achieved for Evergreen Ads: 8x+'; progressValue = 100;
                 } else if (study.id === 'mandali-retreats') {
-                  metric = '15×+'; label = '15x+ ROAS across Google Ads and Meta for the last 3+ years'; progressValue = 93;
+                  metric = '15×+'; label = '15x+ ROAS across Google Ads and Meta for the last 3+ years'; progressValue = 100;
                 } else {
                   metric = '365'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
                 }
@@ -533,7 +545,7 @@ export default function HomePage() {
                           )}
                           
                           <div className="flex justify-between items-center mb-2">
-                            <span className="text-xs text-muted-foreground">{label}</span>
+                            <span className="text-xs text-muted-foreground">Strategy & Execution:</span>
                             <div className="flex items-center gap-1">
                               <span className="text-lg font-bold text-primary group-hover:scale-110 transition-transform duration-300">{metric}</span>
                               {/* Upward scaling arrow for growth */}
