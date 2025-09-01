@@ -161,8 +161,48 @@ export default function HomePage() {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <main>
         {/* Hero Section */}
-        <section className="relative px-6 pt-20 pb-16 lg:px-8 bg-gradient-to-b from-background to-muted">
-          <div className="mx-auto max-w-4xl text-center">
+        <section className="relative px-6 pt-20 pb-16 lg:px-8 bg-gradient-to-b from-background to-muted overflow-hidden">
+          {/* Mountain Path Journey Background */}
+          <div className="absolute inset-0 -z-10">
+            {/* Mountain silhouettes */}
+            <svg className="absolute bottom-0 left-0 w-full h-48 opacity-10 text-primary" viewBox="0 0 1200 200" fill="none">
+              <path d="M0 200L100 120L200 150L300 80L400 110L500 60L600 90L700 40L800 70L900 30L1000 50L1100 20L1200 40V200H0Z" fill="currentColor" className="animate-fade-in-up" />
+              <path d="M0 200L150 140L250 170L350 100L450 130L550 80L650 110L750 60L850 90L950 50L1050 70L1150 40L1200 60V200H0Z" fill="currentColor" className="animate-fade-in-up opacity-50" style={{animationDelay: '0.5s'}} />
+            </svg>
+            
+            {/* Animated journey path */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" viewBox="0 0 1200 400">
+              <path 
+                d="M50 350 Q300 250 600 300 T1150 200" 
+                stroke="url(#journeyGradient)" 
+                strokeWidth="3" 
+                fill="none" 
+                strokeDasharray="15 10"
+                className="animate-path-pulse"
+              />
+              <defs>
+                <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#ef4444" />
+                  <stop offset="50%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#10b981" />
+                </linearGradient>
+              </defs>
+            </svg>
+            
+            {/* Clarity illumination orbs */}
+            <div className="absolute top-16 left-16 w-16 h-16 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full animate-pulse backdrop-blur-sm shadow-lg shadow-primary/20"></div>
+            <div className="absolute top-32 right-20 w-12 h-12 bg-gradient-to-r from-accent/15 to-primary/15 rounded-full animate-bounce backdrop-blur-sm shadow-lg shadow-accent/20" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
+            <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full animate-ping backdrop-blur-sm" style={{ animationDelay: '2s' }}></div>
+            
+            {/* Lightning bolt for breakthrough moments */}
+            <div className="absolute top-20 right-32 opacity-10 animate-pulse">
+              <svg className="w-12 h-12 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
+              </svg>
+            </div>
+          </div>
+          
+          <div className="mx-auto max-w-4xl text-center relative z-10">
             <div className="mx-auto h-28 w-28 mb-6 flex items-center justify-center">
               <img
                 src="/clarity-engine-logo.png"
@@ -170,8 +210,14 @@ export default function HomePage() {
                 className="h-28 w-28 object-contain"
               />
             </div>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground" data-testid="hero-title">
-              Scaling Ambitious Brands with ROI-Driven Paid Media & Growth Strategy
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground relative" data-testid="hero-title">
+              Scaling Ambitious Brands with <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">ROI-Driven</span> Paid Media & Growth Strategy
+              {/* Lightning accent for breakthrough */}
+              <div className="absolute -top-2 -right-2 opacity-30">
+                <svg className="w-6 h-6 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
+                </svg>
+              </div>
             </h1>
             <p className="mt-5 text-lg leading-8 text-muted-foreground" data-testid="hero-description">
               I help founders and teams turn ad spend into predictable growth. With over
@@ -353,8 +399,21 @@ export default function HomePage() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="px-6 py-16 lg:px-8">
-          <div className="mx-auto max-w-6xl">
+        <section id="services" className="px-6 py-16 lg:px-8 relative overflow-hidden">
+          {/* Connecting path from previous section */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
+            <svg className="w-12 h-16 text-primary opacity-30" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l-1.41 1.41L15.17 8H4v2h11.17l-4.58 4.59L12 16l6-6-6-6z" transform="rotate(90)" />
+            </svg>
+          </div>
+          
+          {/* Illumination beams */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-radial from-primary/10 to-transparent rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-radial from-accent/10 to-transparent rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+          </div>
+          
+          <div className="mx-auto max-w-6xl relative z-10">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground" data-testid="services-title">Services</h2>
               <p className="mt-2 text-muted-foreground" data-testid="services-subtitle">Choose your entry point or build a plan across channels.</p>
@@ -399,8 +458,27 @@ export default function HomePage() {
         </section>
 
         {/* Case Studies Section */}
-        <section id="case-studies" className="px-6 py-16 lg:px-8 bg-muted">
-          <div className="mx-auto max-w-6xl">
+        <section id="case-studies" className="px-6 py-16 lg:px-8 bg-muted relative overflow-hidden">
+          {/* Connecting path showing transformation */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
+            <svg className="w-16 h-16 text-accent opacity-40 animate-pulse" viewBox="0 0 24 24" fill="none">
+              <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" transform="rotate(90)" />
+            </svg>
+          </div>
+          
+          {/* Clarity illumination behind metrics */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/3 left-1/3 w-40 h-40 bg-gradient-radial from-green-500/10 to-transparent rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+            <div className="absolute bottom-1/3 right-1/3 w-36 h-36 bg-gradient-radial from-blue-500/10 to-transparent rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+            
+            {/* Success rays */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-10 left-10 w-1 h-20 bg-gradient-to-b from-primary/20 to-transparent transform rotate-45 animate-pulse" style={{animationDelay: '2s'}}></div>
+              <div className="absolute bottom-10 right-10 w-1 h-16 bg-gradient-to-b from-accent/20 to-transparent transform -rotate-45 animate-pulse" style={{animationDelay: '3s'}}></div>
+            </div>
+          </div>
+          
+          <div className="mx-auto max-w-6xl relative z-10">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground" data-testid="case-studies-title">Proof & Case Studies</h2>
               <p className="mt-2 text-muted-foreground" data-testid="case-studies-subtitle">Selected outcomes from recent work.</p>
@@ -427,7 +505,14 @@ export default function HomePage() {
                     style={{ animationDelay: `${index * 200}ms` }}
                     data-testid={`case-study-card-${index}`}
                   >
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-4 relative">
+                      {/* Mountain peak icon for scaling success */}
+                      <div className="absolute -top-3 -left-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                        <svg className="w-6 h-6 text-primary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22l-9-12z" />
+                        </svg>
+                      </div>
+                      
                       <div className="flex-1">
                         <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300" data-testid={`case-study-title-${index}`}>
                           {study.title}
@@ -437,10 +522,25 @@ export default function HomePage() {
                         </div>
                         
                         {/* Animated Progress Bar with Real Metrics */}
-                        <div className="mt-3">
+                        <div className="mt-3 relative">
+                          {/* Lightning bolt for high ROI/Revenue */}
+                          {(label === 'ROAS' || label === 'Revenue') && (
+                            <div className="absolute -top-2 -right-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                              <svg className="w-4 h-4 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
+                              </svg>
+                            </div>
+                          )}
+                          
                           <div className="flex justify-between items-center mb-2">
                             <span className="text-xs text-muted-foreground">{label} Achievement</span>
-                            <span className="text-lg font-bold text-primary">{metric}</span>
+                            <div className="flex items-center gap-1">
+                              <span className="text-lg font-bold text-primary group-hover:scale-110 transition-transform duration-300">{metric}</span>
+                              {/* Upward scaling arrow for growth */}
+                              <svg className="w-3 h-3 text-green-500 animate-bounce" fill="currentColor" viewBox="0 0 24 24" style={{animationDelay: `${index * 200 + 800}ms`}}>
+                                <path d="M7 14l5-5 5 5z" />
+                              </svg>
+                            </div>
                           </div>
                           <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
                             <div 

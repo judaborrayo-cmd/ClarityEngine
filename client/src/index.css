@@ -204,3 +204,104 @@ html {
   transform: scale(1.02);
 }
 
+/* Brand journey and clarity animations */
+@keyframes path-pulse {
+  0%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0.2;
+  }
+  50% {
+    stroke-dashoffset: -25;
+    opacity: 0.4;
+  }
+}
+
+@keyframes mountain-rise {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes clarity-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px currentColor;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor;
+    transform: scale(1.05);
+  }
+}
+
+.animate-path-pulse {
+  animation: path-pulse 4s ease-in-out infinite;
+}
+
+.animate-mountain-rise {
+  animation: mountain-rise 1.5s ease-out;
+}
+
+.animate-clarity-glow {
+  animation: clarity-glow 3s ease-in-out infinite;
+}
+
+/* Profit and scaling animations */
+@keyframes profit-surge {
+  0% {
+    transform: translateY(0) scale(1);
+    color: currentColor;
+  }
+  50% {
+    transform: translateY(-5px) scale(1.1);
+    color: #10b981;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    color: currentColor;
+  }
+}
+
+@keyframes lightning-strike {
+  0%, 90%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  5%, 10% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes mountain-ascent {
+  0% {
+    transform: translateY(10px) scale(0.8);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+}
+
+.animate-profit-surge {
+  animation: profit-surge 2s ease-in-out infinite;
+}
+
+.animate-lightning-strike {
+  animation: lightning-strike 3s ease-in-out infinite;
+}
+
+.animate-mountain-ascent {
+  animation: mountain-ascent 1.5s ease-out;
+}
+
+/* Radial gradient utility for illumination effects */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
