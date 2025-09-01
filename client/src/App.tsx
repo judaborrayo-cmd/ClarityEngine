@@ -7,6 +7,8 @@ import Home from "@/pages/home";
 import Services from "@/pages/services";
 import NotFound from "@/pages/not-found";
 
+import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon.png";
+
 function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
@@ -14,7 +16,7 @@ function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <img
-              src="/clarity-engine-logo.png"
+              src={Clarity_Engine_Favicon}
               alt="Clarity Engine Logo"
               className="h-8 w-8"
             />
