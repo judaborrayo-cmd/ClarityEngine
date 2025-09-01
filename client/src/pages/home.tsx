@@ -242,7 +242,7 @@ export default function HomePage() {
               />
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground relative" data-testid="hero-title">
-              Scaling Ambitious Brands with <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">ROI-Driven</span> Paid Media & Growth Strategy
+              Scaling Ambitious Brands with <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-lightning-solidify">ROI-Driven</span> Paid Media & Growth Strategy
               {/* Lightning accent for breakthrough */}
               <div className="absolute -top-2 -right-2 opacity-30">
                 <svg className="w-12 h-12 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
