@@ -25,23 +25,29 @@ function Navbar() {
           
           <div className="flex items-center space-x-8">
             <Link 
-              to="/" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Home
-            </Link>
-            <Link 
               to="/services" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Services
             </Link>
-            <Link 
-              to="/" 
+            <a 
+              href="#case-studies" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Case Studies
+            </a>
+            <a 
+              href="#about" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              About
+            </a>
+            <a 
+              href="#cta" 
               className="bg-primary text-primary-foreground px-6 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors"
             >
               Get Started
-            </Link>
+            </a>
           </div>
         </div>
       </div>
