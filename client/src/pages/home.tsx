@@ -69,7 +69,7 @@ export default function HomePage() {
       id: "lamark-agency",
       icon: Dumbbell,
       title: "Lamark Agency — Performance Marketing",
-      stat: "11k new members, $2M+ revenue influence",
+      stat: "Managed budgets up to $70,000 per month across verticals",
       description: "Scaled PPC programs and tracked multi‑location impact.",
     },
     {
