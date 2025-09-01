@@ -82,17 +82,41 @@ export default function HomePage() {
 
   const testimonials = [
     {
-      quote: "Juda is an exceptional marketing talent — he approaches challenges with a calm, focused mindset and consistently finds innovative solutions.",
-      author: "VP of Marketing",
+      quote: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
+      author: "Lindsey Bast, Digital Strategist & Growth Marketer",
+      gradient: "from-purple-500 to-purple-600",
+      profileColor: "border-white"
     },
     {
-      quote: "He brings a different level of analysis and thinking to every campaign. A true partner in driving growth.",
-      author: "VP of Performance",
+      quote: "It's always enjoyable writing a recommendation for someone as enjoyable as Juda. I've worked with Juda in a professional capacity for over a year now at Sociality Squared. We've worked on various clients together and he's worn many different hats.",
+      author: "Mari Smith, Co-Founder & Marketing Director",
+      gradient: "from-purple-500 to-purple-600",
+      profileColor: "border-white"
     },
     {
-      quote: "Always learning, always innovating. Juda brings clarity to complex challenges and executes with precision.",
-      author: "Founder, Chief Creative",
+      quote: "Juda is a phenomenal colleague and complete rockstar for his clients! I've had the pleasure of working with Juda for over a year, and we've collaborated on several large-scale digital marketing projects throughout that time.",
+      author: "Alyssa Brooke-Gay, Senior Project Manager",
+      gradient: "from-green-500 to-green-600",
+      profileColor: "border-white"
     },
+    {
+      quote: "Juda is simply one of the best persons I have had the opportunity to work with. Not only he is proficient in Marketing, specially in the paid media field, but also, he has a very strong work ethic and solid soft skills. Juda is a team player.",
+      author: "Daniela Goldzmindt, Marketing Manager",
+      gradient: "from-pink-400 to-pink-500",
+      profileColor: "border-white"
+    },
+    {
+      quote: "I had the pleasure of working with Juda during his tenure at LamarR. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
+      author: "Mike Berkman, VP of Performance",
+      gradient: "from-pink-400 to-pink-500",
+      profileColor: "border-white"
+    },
+    {
+      quote: "Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way. While working with him, he continually suggested new and interesting ways to accomplish our team goals.",
+      author: "Bill Bowman, Vice President of Marketing",
+      gradient: "from-blue-500 to-purple-600",
+      profileColor: "border-white"
+    }
   ];
 
   const achievements = [
@@ -245,27 +269,52 @@ export default function HomePage() {
         <section className="px-6 py-16 lg:px-8">
           <div className="mx-auto max-w-5xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground" data-testid="testimonials-title">What People Say</h2>
+              <h2 className="text-3xl font-bold text-foreground" data-testid="testimonials-title">Colleague Reviews</h2>
+              <p className="mt-2 text-muted-foreground">What industry professionals say about working with me</p>
             </div>
             
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial, index) => (
-                <figure 
+                <div 
                   key={index} 
-                  className="rounded-2xl border border-border p-6 shadow-sm bg-card"
+                  className={`relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} shadow-xl overflow-hidden`}
                   data-testid={`testimonial-card-${index}`}
                 >
-                  <div className="text-primary text-2xl mb-4">
-                    <Quote />
+                  {/* Decorative circles */}
+                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full"></div>
+                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full"></div>
+                  <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 rounded-full"></div>
+                  <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 rounded-full"></div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <div className="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm">
+                        Colleague review
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className={`w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl font-bold ${testimonial.profileColor} border-4 backdrop-blur-sm`}>
+                        {testimonial.author.split(' ')[0][0]}{testimonial.author.split(' ')[1] ? testimonial.author.split(' ')[1][0] : ''}
+                      </div>
+                      <div className="flex-1">
+                        <blockquote className="text-white leading-relaxed mb-4" data-testid={`testimonial-quote-${index}`}>
+                          "{testimonial.quote}"
+                        </blockquote>
+                      </div>
+                    </div>
+                    
+                    <figcaption className="font-medium text-white opacity-90" data-testid={`testimonial-author-${index}`}>
+                      - {testimonial.author}
+                    </figcaption>
                   </div>
-                  <blockquote className="text-card-foreground" data-testid={`testimonial-quote-${index}`}>
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <figcaption className="mt-4 text-sm text-muted-foreground" data-testid={`testimonial-author-${index}`}>
-                    — {testimonial.author}
-                  </figcaption>
-                </figure>
+                </div>
               ))}
+            </div>
+            
+            <div className="text-center mt-12">
+              <p className="text-sm text-muted-foreground">linkedin.com/in/judaborrayo/</p>
             </div>
           </div>
         </section>
