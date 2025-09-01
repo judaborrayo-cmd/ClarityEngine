@@ -90,7 +90,7 @@ export default function HomePage() {
       id: "fitness-roi",
       icon: TrendingUp,
       title: "Maximizing ROI in Fitness",
-      stat: "$2M+ revenue, 11k new members",
+      stat: "Managed budgets up to $70,000 per month across verticals",
       description: "Comprehensive fitness marketing strategy delivering exceptional results.",
     },
   ];
