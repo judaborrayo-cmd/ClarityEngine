@@ -115,10 +115,37 @@ export default function Services() {
     <main className="min-h-screen bg-white" style={{ color: brand.black }}>
       {/* Hero */}
       <section
-        className="px-6 pt-16 pb-8 lg:px-8 border-b"
-        style={{ borderColor: "#e5e7eb", background: `linear-gradient(#fff, ${brand.peach})` }}
+        className="relative px-6 pt-16 pb-8 lg:px-8 border-b overflow-hidden"
+        style={{ borderColor: "#e5e7eb" }}
       >
-        <div className="mx-auto max-w-4xl">
+        {/* Video Background */}
+        <div className="absolute inset-0 -z-10">
+          <iframe
+            src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&start=0&end=0"
+            title="Services Background Video"
+            className="w-full h-full object-cover"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'none',
+              border: 'none'
+            }}
+            allow="autoplay; encrypted-media"
+            allowFullScreen={false}
+          />
+          {/* Gradient Overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{ 
+              background: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 245, 243, 0.9))`,
+              zIndex: 1
+            }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-4xl z-10">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Services</h1>
           <p className="mt-3" style={{ color: brand.green }}>
             Choose your entry point or build a plan across channels. Start with a Clarity Audit or dive straight into
@@ -126,7 +153,7 @@ export default function Services() {
           </p>
 
           {/* Anchor chips - sticky navigation */}
-          <div className="mt-6 sticky top-24 bg-white/95 backdrop-blur-sm py-2 -mx-6 px-6 z-10 border-b" style={{ borderColor: "#e5e7eb" }}>
+          <div className="mt-6 sticky top-24 bg-white/95 backdrop-blur-sm py-2 -mx-6 px-6 z-20 border-b" style={{ borderColor: "#e5e7eb" }}>
             <div className="flex flex-wrap gap-3">
               {services.map((s) => (
                 <a
