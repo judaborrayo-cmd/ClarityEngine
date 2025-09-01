@@ -120,28 +120,46 @@ export default function Services() {
       >
         {/* Video Background */}
         <div className="absolute inset-0 -z-10">
-          <iframe
-            src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&start=0&end=0"
-            title="Services Background Video"
-            className="w-full h-full object-cover"
+          {/* Fallback background image */}
+          <div 
+            className="absolute inset-0 w-full h-full"
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              pointerEvents: 'none',
-              border: 'none'
+              background: 'url(https://img.youtube.com/vi/IjB6MY9GYx4/maxresdefault.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              zIndex: 0
             }}
-            allow="autoplay; encrypted-media"
-            allowFullScreen={false}
           />
+          
+          {/* Video iframe - simplified approach */}
+          <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
+            <iframe
+              src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
+              title="Services Background Video"
+              width="100%"
+              height="100%"
+              style={{
+                position: 'absolute',
+                top: '-10%',
+                left: '-10%',
+                width: '120%',
+                height: '120%',
+                pointerEvents: 'none',
+                border: 'none',
+                objectFit: 'cover'
+              }}
+              allow="autoplay; encrypted-media"
+              frameBorder="0"
+            />
+          </div>
+          
           {/* Gradient Overlay */}
           <div 
             className="absolute inset-0"
             style={{ 
               background: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 245, 243, 0.9))`,
-              zIndex: 1
+              zIndex: 2
             }}
           />
         </div>
