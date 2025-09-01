@@ -362,3 +362,50 @@ html {
   animation-fill-mode: forwards;
 }
 
+/* Celebration fog animation */
+.celebration-fog {
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.8) 0%,
+    rgba(147, 51, 234, 0.8) 15%,
+    rgba(236, 72, 153, 0.8) 30%,
+    rgba(59, 130, 246, 0.6) 45%,
+    rgba(16, 185, 129, 0.7) 60%,
+    rgba(147, 51, 234, 0.8) 75%,
+    rgba(59, 130, 246, 0.8) 90%,
+    rgba(236, 72, 153, 0.8) 100%
+  );
+  filter: blur(40px);
+  opacity: 0.3;
+  animation: celebrationFlow 15s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes celebrationFlow {
+  0% {
+    transform: translate(-20%, -20%) rotate(0deg) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translate(10%, -10%) rotate(90deg) scale(1.1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(20%, 10%) rotate(180deg) scale(1.2);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(-10%, 20%) rotate(270deg) scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-20%, -20%) rotate(360deg) scale(1);
+    opacity: 0.2;
+  }
+}
+

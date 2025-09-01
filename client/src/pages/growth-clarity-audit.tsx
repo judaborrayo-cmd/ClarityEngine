@@ -131,9 +131,13 @@ export default function GrowthClarityAuditPage() {
               </div>
             </div>
             <div className="lg:pl-12">
-              <div className="bg-white rounded-2xl shadow-xl p-8 border">
-                <h3 className="text-2xl font-bold text-foreground mb-6">What You'll Get</h3>
-                <ul className="space-y-4">
+              <div className="bg-white rounded-2xl shadow-xl p-8 border relative overflow-hidden">
+                {/* Animated celebration fog background */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="celebration-fog"></div>
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-6 relative z-10">What You'll Get</h3>
+                <ul className="space-y-4 relative z-10">
                   {[
                     "Full-funnel conversion audit",
                     "Video walkthrough of opportunities", 
@@ -147,7 +151,7 @@ export default function GrowthClarityAuditPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 pt-6 border-t">
+                <div className="mt-8 pt-6 border-t relative z-10">
                   <div className="text-center">
                     <span className="text-3xl font-bold text-foreground">$497</span>
                     <span className="text-muted-foreground ml-2">One-time investment</span>
