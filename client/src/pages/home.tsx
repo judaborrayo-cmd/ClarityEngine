@@ -121,7 +121,11 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3" data-testid="logo">
-              <Rocket className="text-2xl text-primary" />
+              <img
+                src="@assets/clarity-engine-logo.png"
+                alt="Clarity Engine Logo"
+                className="h-8 w-8"
+              />
               <span className="text-xl font-bold text-foreground">Clarity Engine</span>
             </div>
             
@@ -209,8 +213,12 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="relative px-6 pt-20 pb-16 lg:px-8 bg-gradient-to-b from-background to-muted">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mx-auto h-28 w-28 mb-6 bg-gradient-to-br from-primary to-secondary rounded-3xl flex items-center justify-center">
-              <Rocket className="text-4xl text-white" />
+            <div className="mx-auto h-28 w-28 mb-6 flex items-center justify-center">
+              <img
+                src="@assets/clarity-engine-logo.png"
+                alt="Clarity Engine Logo"
+                className="h-28 w-28 object-contain"
+              />
             </div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground" data-testid="hero-title">
               Scaling Ambitious Brands with ROI-Driven Paid Media & Growth Strategy
@@ -380,8 +388,12 @@ export default function HomePage() {
         <section id="cta" className="px-6 py-16 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className="text-center rounded-3xl border border-border p-10 shadow-sm bg-card">
-              <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-6">
-                <Rocket className="text-2xl text-white" />
+              <div className="mx-auto w-16 h-16 flex items-center justify-center mb-6">
+                <img
+                  src="@assets/clarity-engine-logo.png"
+                  alt="Clarity Engine Logo"
+                  className="h-16 w-16 object-contain"
+                />
               </div>
               <h2 className="text-3xl font-bold text-card-foreground" data-testid="cta-title">Ready to scale with clarity?</h2>
               <p className="mt-3 text-muted-foreground max-w-2xl mx-auto" data-testid="cta-description">
@@ -412,7 +424,11 @@ export default function HomePage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="flex items-center space-x-3 mb-4" data-testid="footer-logo">
-                <Rocket className="text-2xl text-primary" />
+                <img
+                  src="@assets/clarity-engine-logo.png"
+                  alt="Clarity Engine Logo"
+                  className="h-8 w-8"
+                />
                 <span className="text-xl font-bold text-foreground">Clarity Engine</span>
               </div>
               <p className="text-muted-foreground text-sm" data-testid="footer-description">
