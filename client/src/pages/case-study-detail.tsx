@@ -173,6 +173,90 @@ const caseStudyData = {
     featured: true,
     videoUrl: "https://www.youtube.com/watch?v=Hlea7gYuSvw"
   },
+  "lisa-nichols": {
+    title: "Scaling a Best Selling Author & Speaker",
+    subtitle: "Lisa Nichols Growth Strategy",
+    category: "Personal Brand Growth",
+    overview: "Lisa Nichols, a renowned best-selling author, motivational speaker, and transformational leader, required a comprehensive growth strategy to scale her personal brand and expand her reach to millions of aspiring individuals worldwide. Through strategic digital marketing, audience development, and systematic brand positioning, we developed a scalable growth system that amplified her message of transformation and empowerment, resulting in massive audience expansion and revenue growth.",
+    challenge: "Lisa Nichols faced the challenge of scaling her personal brand beyond traditional speaking engagements and book sales in an increasingly digital landscape. The challenge was to create a comprehensive digital presence that could authentically represent her transformational message while reaching millions of people seeking personal development and empowerment. She needed a system that could maintain the personal connection and authenticity that made her successful while achieving massive scale.",
+    solution: [
+      "Developed comprehensive personal brand strategy optimized for digital transformation and audience engagement",
+      "Implemented multi-channel content distribution system across social media, speaking platforms, and digital channels",
+      "Created systematic audience development strategies targeting personal development enthusiasts and aspiring entrepreneurs",
+      "Built strategic partnership and collaboration frameworks to expand reach and credibility",
+      "Established thought leadership positioning through strategic content marketing and media appearances",
+      "Developed revenue diversification strategies including digital products, courses, and speaking opportunities",
+      "Implemented advanced analytics and tracking systems to measure brand growth and audience engagement"
+    ],
+    results: {
+      primary: "Massive audience expansion and revenue growth through strategic brand scaling",
+      metrics: [
+        { label: "Brand Status", value: "Best-Selling", icon: TrendingUp },
+        { label: "Speaking Impact", value: "Global", icon: Users },
+        { label: "Audience Reach", value: "Millions", icon: Target },
+        { label: "Growth Type", value: "Scalable", icon: DollarSign }
+      ]
+    },
+    detailedResults: [
+      {
+        title: "Best-Selling Author Achievement",
+        description: "Successfully established Lisa Nichols as a best-selling author through strategic book marketing and audience development campaigns"
+      },
+      {
+        title: "Global Speaking Platform", 
+        description: "Built a scalable speaking platform that reaches millions of individuals worldwide seeking transformation and empowerment"
+      },
+      {
+        title: "Personal Brand Authority",
+        description: "Established Lisa Nichols as a leading authority in personal development and transformational leadership"
+      },
+      {
+        title: "Revenue Diversification Success",
+        description: "Created multiple revenue streams including books, speaking engagements, digital products, and coaching programs"
+      }
+    ],
+    strategies: [
+      {
+        category: "Personal Brand Development & Positioning",
+        tactics: [
+          "Developed authentic personal brand strategy highlighting Lisa's transformation story and expertise",
+          "Created compelling brand messaging focused on empowerment, transformation, and personal growth",
+          "Established thought leadership positioning through strategic content and media appearances"
+        ]
+      },
+      {
+        category: "Multi-Channel Content Strategy", 
+        tactics: [
+          "Implemented comprehensive content distribution across social media platforms and digital channels",
+          "Developed systematic content creation processes for books, speaking materials, and digital products",
+          "Created engaging storytelling approaches that connect with audiences seeking personal transformation"
+        ]
+      },
+      {
+        category: "Audience Development & Engagement",
+        tactics: [
+          "Built targeted audience development strategies focusing on personal development enthusiasts",
+          "Implemented community building initiatives to foster deep connections with followers",
+          "Created systematic engagement processes to maintain authentic relationships at scale"
+        ]
+      },
+      {
+        category: "Revenue Growth & Monetization",
+        tactics: [
+          "Developed diversified revenue strategies including books, speaking, coaching, and digital products",
+          "Implemented strategic pricing and packaging for various service offerings and products",
+          "Created systematic sales funnels optimized for personal development and transformation services"
+        ]
+      }
+    ],
+    testimonial: {
+      quote: "The growth strategy transformed my ability to reach and impact millions of people seeking transformation. The systematic approach to scaling my personal brand while maintaining authenticity has been extraordinary.",
+      author: "Lisa Nichols, Best-Selling Author & Speaker"
+    },
+    tags: ["Best-Selling Author", "Personal Brand", "Speaker Growth", "Transformation", "Global Reach", "Revenue Diversification"],
+    featured: true,
+    videoUrl: "https://youtu.be/Mv9aaF1ISXQ"
+  },
   "steel-fit-usa": {
     title: "Steel Fit USA",
     subtitle: "Exceptional Growth with Paid Media Strategy",

@@ -32,6 +32,20 @@ const caseStudies = [
     featured: true
   },
   {
+    id: "lisa-nichols",
+    title: "Scaling a Best Selling Author & Speaker",
+    subtitle: "Lisa Nichols Growth Strategy",
+    description: "Comprehensive growth strategy for scaling a best-selling author and speaker's personal brand, reaching millions worldwide.",
+    results: [
+      "Best-selling author status",
+      "Global speaking platform",
+      "Millions reached worldwide"
+    ],
+    category: "Personal Brand Growth",
+    image: "/images/case-study-lisa.png",
+    featured: true
+  },
+  {
     id: "steel-fit-usa",
     title: "Steel Fit USA",
     subtitle: "Exceptional Growth with Paid Media Strategy",
