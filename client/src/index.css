@@ -99,7 +99,7 @@ html {
 }
 
 .animate-scroll {
-  animation: scroll 40s linear infinite;
+  animation: scroll 30s linear infinite;
 }
 
 .animate-scroll:hover {
@@ -114,19 +114,19 @@ html {
     margin-right: 50%;
   }
   25% {
-    width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   50% {
-    width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   75% {
-    width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   100% {
     width: 0%;
@@ -136,5 +136,5 @@ html {
 }
 
 .animate-border-expand {
-  animation: border-expand 40s linear infinite;
+  animation: border-expand 30s linear infinite;
 }
