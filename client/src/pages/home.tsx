@@ -68,7 +68,7 @@ export default function HomePage() {
     {
       id: "lamark-agency",
       icon: Dumbbell,
-      title: "Lamark Agency — Fitness",
+      title: "Lamark Agency — Performance Marketing",
       stat: "11k new members, $2M+ revenue influence",
       description: "Scaled PPC programs and tracked multi‑location impact.",
     },
