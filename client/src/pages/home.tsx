@@ -214,7 +214,7 @@ export default function HomePage() {
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">ROI-Driven</span> Paid Media & Growth Strategy
               {/* Lightning accent for breakthrough */}
               <div className="absolute -top-2 -right-2 opacity-30">
-                <svg className="w-6 h-6 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-12 h-12 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
                 </svg>
               </div>
@@ -425,7 +425,7 @@ export default function HomePage() {
                 return (
                   <article 
                     key={service.title} 
-                    className="group rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl transition-all duration-500 bg-card hover:bg-primary hover:scale-105 hover:border-primary/50 animate-fade-in-up"
+                    className="group rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl transition-all duration-500 bg-card hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:border-primary/50 hover:shadow-2xl hover:shadow-blue-500/25 animate-fade-in-up"
                     style={{ animationDelay: `${index * 150}ms` }}
                     data-testid={`service-card-${index}`}
                   >
