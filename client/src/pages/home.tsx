@@ -487,16 +487,16 @@ export default function HomePage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {caseStudies.map((study, index) => {
                 const IconComponent = study.icon;
-                // Extract real metrics from case studies
+                // Extract specific metrics for each case study
                 let metric, progressValue, label;
                 if (study.id === 'lamark-agency') {
-                  metric = '$2M+'; label = 'Revenue'; progressValue = 90;
+                  metric = '6-12'; label = 'Managed budgets across 6-12 B2B and B2C clients'; progressValue = 80;
                 } else if (study.id === 'hapi-art') {
-                  metric = '10×'; label = 'ROAS'; progressValue = 100;
+                  metric = '8×+'; label = 'ROAS Achieved for Evergreen Ads: 8x+'; progressValue = 80;
                 } else if (study.id === 'mandali-retreats') {
-                  metric = '5×'; label = 'ROAS'; progressValue = 75;
+                  metric = '15×+'; label = '15x+ ROAS across Google Ads and Meta for the last 3+ years'; progressValue = 93;
                 } else {
-                  metric = '11K+'; label = 'Members'; progressValue = 85;
+                  metric = '365'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
                 }
                 return (
                   <article 
@@ -533,7 +533,7 @@ export default function HomePage() {
                           )}
                           
                           <div className="flex justify-between items-center mb-2">
-                            <span className="text-xs text-muted-foreground">{label} Achievement</span>
+                            <span className="text-xs text-muted-foreground">{label}</span>
                             <div className="flex items-center gap-1">
                               <span className="text-lg font-bold text-primary group-hover:scale-110 transition-transform duration-300">{metric}</span>
                               {/* Upward scaling arrow for growth */}
