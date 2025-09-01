@@ -115,52 +115,10 @@ export default function Services() {
     <main className="min-h-screen bg-white" style={{ color: brand.black }}>
       {/* Hero */}
       <section
-        className="relative px-6 pt-16 pb-8 lg:px-8 border-b overflow-hidden min-h-96"
-        style={{ 
-          borderColor: "#e5e7eb",
-          backgroundImage: 'url(https://img.youtube.com/vi/IjB6MY9GYx4/maxresdefault.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
+        className="px-6 pt-16 pb-8 lg:px-8 border-b"
+        style={{ borderColor: "#e5e7eb", background: `linear-gradient(#fff, ${brand.peach})` }}
       >
-        {/* Video Background - Using HTML5 video with converted video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            pointerEvents: 'none',
-            zIndex: -1
-          }}
-          onLoadedData={(e) => {
-            e.currentTarget.play().catch(console.log);
-          }}
-        >
-          {/* Using a placeholder video URL - you'll need to convert the YouTube video to MP4 */}
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-          {/* Fallback to background image */}
-          Your browser does not support the video tag.
-        </video>
-        
-        {/* Fallback iframe for YouTube (will show thumbnail) */}
-        <iframe
-          src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=0&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1"
-          title="Services Background Video Fallback"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            pointerEvents: 'none',
-            border: 'none',
-            zIndex: -2,
-            display: 'none'
-          }}
-          allow="encrypted-media"
-          frameBorder="0"
-        />
-        
-        <div className="relative mx-auto max-w-4xl" style={{ zIndex: 10 }}>
+        <div className="mx-auto max-w-4xl">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Services</h1>
           <p className="mt-3" style={{ color: brand.green }}>
             Choose your entry point or build a plan across channels. Start with a Clarity Audit or dive straight into
