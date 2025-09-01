@@ -488,61 +488,65 @@ export default function HomePage() {
             </div>
             
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={index} 
-                  className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} shadow-xl overflow-hidden hover:scale-105 transition-all duration-500 animate-float-up`}
-                  style={{ 
-                    animationDelay: `${index * 250}ms`,
-                    animationDuration: `${3 + (index % 3)}s`
-                  }}
-                  data-testid={`testimonial-card-${index}`}
-                >
-                  {/* Animated Decorative circles */}
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full animate-pulse"></div>
-                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 rounded-full group-hover:opacity-20 transition-opacity duration-300"></div>
-                  <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                  
-                  {/* Animated Quote Mark */}
-                  <div className="absolute top-4 right-4 text-white opacity-20 group-hover:opacity-40 transition-opacity duration-300">
-                    <Quote size={32} className="transform group-hover:rotate-12 transition-transform duration-300" />
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div className="mb-6">
-                      <div className="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm">
-                        Colleague review
-                      </div>
+              {testimonials.map((testimonial, index) => {
+                // Add swapping animation for first two testimonials
+                const swapClass = index === 0 ? 'animate-swap-right' : index === 1 ? 'animate-swap-left' : '';
+                return (
+                  <div 
+                    key={index} 
+                    className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} shadow-xl overflow-hidden hover:scale-105 transition-all duration-500 animate-float-up ${swapClass}`}
+                    style={{ 
+                      animationDelay: `${index * 250}ms`,
+                      animationDuration: `${3 + (index % 3)}s`
+                    }}
+                    data-testid={`testimonial-card-${index}`}
+                  >
+                    {/* Animated Decorative circles */}
+                    <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full animate-pulse"></div>
+                    <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 rounded-full group-hover:opacity-20 transition-opacity duration-300"></div>
+                    <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    
+                    {/* Animated Quote Mark */}
+                    <div className="absolute top-4 right-4 text-white opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+                      <Quote size={32} className="transform group-hover:rotate-12 transition-transform duration-300" />
                     </div>
                     
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className={`w-16 h-16 rounded-full overflow-hidden ${testimonial.profileColor} border-4 backdrop-blur-sm flex-shrink-0`}>
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.author}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            console.log(`Failed to load image: ${testimonial.image}`);
-                            e.currentTarget.style.display = 'none';
-                          }}
-                          onLoad={() => console.log(`Successfully loaded: ${testimonial.image}`)}
-                        />
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <div className="mb-6">
+                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm">
+                          Colleague review
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <blockquote className="text-white leading-relaxed mb-4" data-testid={`testimonial-quote-${index}`}>
-                          "{testimonial.quote}"
-                        </blockquote>
+                      
+                      <div className="flex items-start gap-4 mb-6">
+                        <div className={`w-16 h-16 rounded-full overflow-hidden ${testimonial.profileColor} border-4 backdrop-blur-sm flex-shrink-0`}>
+                          <img 
+                            src={testimonial.image} 
+                            alt={testimonial.author}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              console.log(`Failed to load image: ${testimonial.image}`);
+                              e.currentTarget.style.display = 'none';
+                            }}
+                            onLoad={() => console.log(`Successfully loaded: ${testimonial.image}`)}
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <blockquote className="text-white leading-relaxed mb-4" data-testid={`testimonial-quote-${index}`}>
+                            "{testimonial.quote}"
+                          </blockquote>
+                        </div>
                       </div>
+                      
+                      <figcaption className="font-medium text-white opacity-90" data-testid={`testimonial-author-${index}`}>
+                        - {testimonial.author}
+                      </figcaption>
                     </div>
-                    
-                    <figcaption className="font-medium text-white opacity-90" data-testid={`testimonial-author-${index}`}>
-                      - {testimonial.author}
-                    </figcaption>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             
             <div className="text-center mt-12">

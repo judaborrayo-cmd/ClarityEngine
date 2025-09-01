@@ -203,3 +203,36 @@ html {
 .hover\:scale-102:hover {
   transform: scale(1.02);
 }
+
+/* Testimonial swapping animations */
+@keyframes swap-right {
+  0%, 20% {
+    transform: translateX(0);
+  }
+  40%, 60% {
+    transform: translateX(calc(100% + 2rem));
+  }
+  80%, 100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes swap-left {
+  0%, 20% {
+    transform: translateX(0);
+  }
+  40%, 60% {
+    transform: translateX(calc(-100% - 2rem));
+  }
+  80%, 100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-swap-right {
+  animation: swap-right 8s infinite ease-in-out;
+}
+
+.animate-swap-left {
+  animation: swap-left 8s infinite ease-in-out;
+}
