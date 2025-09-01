@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { 
   CheckCircle, 
@@ -17,6 +17,29 @@ import {
 
 export default function GrowthClarityAuditPage() {
   const [activeTab, setActiveTab] = useState("what-included");
+  const [visibleSteps, setVisibleSteps] = useState(new Set());
+  const stepRefs = useRef([]);
+
+  // Intersection Observer for progressive reveal
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const stepIndex = parseInt(entry.target.dataset.stepIndex);
+            setVisibleSteps(prev => new Set([...prev, stepIndex]));
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    stepRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const deliverables = [
     {
@@ -115,7 +138,7 @@ export default function GrowthClarityAuditPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-primary hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                  className="bg-primary hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 spark-button"
                   data-testid="button-get-audit"
                 >
                   Get Your Audit
@@ -123,7 +146,7 @@ export default function GrowthClarityAuditPage() {
                 </button>
                 <Link
                   to="/#case-studies"
-                  className="border border-border hover:bg-muted text-foreground px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                  className="border border-border hover:bg-muted text-foreground px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 spark-button"
                   data-testid="link-view-results"
                 >
                   View Client Results
@@ -206,7 +229,12 @@ export default function GrowthClarityAuditPage() {
           </div>
           <div className="space-y-8">
             {processSteps.map((step, index) => (
-              <div key={index} className="flex gap-6 items-start">
+              <div 
+                key={index} 
+                ref={el => stepRefs.current[index] = el}
+                data-step-index={index}
+                className={`flex gap-6 items-start step-reveal ${visibleSteps.has(index) ? 'animate-in' : ''}`}
+              >
                 <div className="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
                   {step.step}
                 </div>
@@ -229,11 +257,21 @@ export default function GrowthClarityAuditPage() {
               Everything you need to know about the Growth Clarity Audit process.
             </p>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-8">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-lg border">
-                <h3 className="text-lg font-semibold text-foreground mb-3">{faq.question}</h3>
-                <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+              <div 
+                key={index} 
+                ref={el => stepRefs.current[processSteps.length + index] = el}
+                data-step-index={processSteps.length + index}
+                className={`flex gap-6 items-start step-reveal ${visibleSteps.has(processSteps.length + index) ? 'animate-in' : ''}`}
+              >
+                <div className="bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  {(index + 1).toString().padStart(2, '0')}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">{faq.question}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -302,7 +340,7 @@ export default function GrowthClarityAuditPage() {
             <div className="text-center">
               <Link
                 to="/#cta"
-                className="bg-primary hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 text-white px-12 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center gap-3"
+                className="bg-primary hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 text-white px-12 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center gap-3 spark-button"
                 data-testid="button-book-audit"
               >
                 Book Your Growth Clarity Audit
@@ -325,7 +363,7 @@ export default function GrowthClarityAuditPage() {
           </p>
           <Link
             to="/#cta"
-            className="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+            className="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2 spark-button"
             data-testid="button-footer-cta"
           >
             Get Started Today

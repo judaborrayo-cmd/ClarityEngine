@@ -409,3 +409,65 @@ html {
   }
 }
 
+/* Spark animation for CTA buttons */
+.spark-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.spark-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  transition: all 0.6s ease;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.spark-button:hover::before {
+  width: 300px;
+  height: 300px;
+  animation: sparkle 0.6s ease-out;
+}
+
+@keyframes sparkle {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* Progressive reveal animations */
+.step-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.step-reveal.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-reveal:nth-child(1) { transition-delay: 0.1s; }
+.step-reveal:nth-child(2) { transition-delay: 0.2s; }
+.step-reveal:nth-child(3) { transition-delay: 0.3s; }
+.step-reveal:nth-child(4) { transition-delay: 0.4s; }
+.step-reveal:nth-child(5) { transition-delay: 0.5s; }
+.step-reveal:nth-child(6) { transition-delay: 0.6s; }
+
