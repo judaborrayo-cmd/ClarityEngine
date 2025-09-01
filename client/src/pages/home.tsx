@@ -365,12 +365,16 @@ export default function HomePage() {
                 return (
                   <article 
                     key={service.title} 
-                    className="rounded-2xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow bg-card"
+                    className="group rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl transition-all duration-500 bg-card hover:scale-105 hover:border-primary/50 animate-fade-in-up"
+                    style={{ animationDelay: `${index * 150}ms` }}
                     data-testid={`service-card-${index}`}
                   >
                     <div className="flex items-center mb-4">
-                      <IconComponent className="text-2xl text-primary mr-3" />
-                      <h3 className="text-xl font-semibold text-card-foreground" data-testid={`service-title-${index}`}>
+                      <div className="relative">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <IconComponent className="relative text-2xl text-primary mr-3 group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300" data-testid={`service-title-${index}`}>
                         {service.title}
                       </h3>
                     </div>
@@ -404,22 +408,44 @@ export default function HomePage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {caseStudies.map((study, index) => {
                 const IconComponent = study.icon;
+                const progressValue = index === 0 ? 85 : index === 1 ? 95 : index === 2 ? 70 : 80;
                 return (
                   <article 
                     key={study.title} 
-                    className="rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-md transition-shadow"
+                    className="group rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-102 animate-slide-in-left"
+                    style={{ animationDelay: `${index * 200}ms` }}
                     data-testid={`case-study-card-${index}`}
                   >
                     <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="font-semibold text-card-foreground" data-testid={`case-study-title-${index}`}>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300" data-testid={`case-study-title-${index}`}>
                           {study.title}
                         </h3>
                         <div className="mt-1 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
                           {study.stat}
                         </div>
+                        
+                        {/* Animated Progress Bar */}
+                        <div className="mt-3">
+                          <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                            <span>Performance</span>
+                            <span>{progressValue}%</span>
+                          </div>
+                          <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+                            <div 
+                              className="h-full bg-gradient-to-r from-primary via-accent to-secondary rounded-full animate-progress-fill transition-all duration-1000 group-hover:animate-pulse"
+                              style={{ 
+                                width: `${progressValue}%`,
+                                animationDelay: `${index * 300 + 500}ms`
+                              }}
+                            ></div>
+                          </div>
+                        </div>
                       </div>
-                      <IconComponent className="text-primary text-xl" />
+                      <div className="relative ml-4">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
+                      </div>
                     </div>
                     <p className="text-muted-foreground" data-testid={`case-study-description-${index}`}>
                       {study.description}
@@ -452,14 +478,23 @@ export default function HomePage() {
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={index} 
-                  className={`relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} shadow-xl overflow-hidden`}
+                  className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} shadow-xl overflow-hidden hover:scale-105 transition-all duration-500 animate-float-up`}
+                  style={{ 
+                    animationDelay: `${index * 250}ms`,
+                    animationDuration: `${3 + (index % 3)}s`
+                  }}
                   data-testid={`testimonial-card-${index}`}
                 >
-                  {/* Decorative circles */}
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full"></div>
-                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full"></div>
-                  <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 rounded-full"></div>
-                  <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 rounded-full"></div>
+                  {/* Animated Decorative circles */}
+                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full animate-pulse"></div>
+                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                  <div className="absolute top-8 left-8 w-12 h-12 bg-white opacity-10 rounded-full group-hover:opacity-20 transition-opacity duration-300"></div>
+                  <div className="absolute top-12 left-20 w-6 h-6 bg-white opacity-20 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                  
+                  {/* Animated Quote Mark */}
+                  <div className="absolute top-4 right-4 text-white opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+                    <Quote size={32} className="transform group-hover:rotate-12 transition-transform duration-300" />
+                  </div>
                   
                   {/* Content */}
                   <div className="relative z-10">
