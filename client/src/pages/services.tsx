@@ -124,17 +124,39 @@ export default function Services() {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Video Background */}
+        {/* Video Background - Using HTML5 video with converted video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            pointerEvents: 'none',
+            zIndex: -1
+          }}
+          onLoadedData={(e) => {
+            e.currentTarget.play().catch(console.log);
+          }}
+        >
+          {/* Using a placeholder video URL - you'll need to convert the YouTube video to MP4 */}
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+          {/* Fallback to background image */}
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Fallback iframe for YouTube (will show thumbnail) */}
         <iframe
-          src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&start=0&enablejsapi=1"
-          title="Services Background Video"
+          src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=0&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1"
+          title="Services Background Video Fallback"
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             pointerEvents: 'none',
             border: 'none',
-            zIndex: -1
+            zIndex: -2,
+            display: 'none'
           }}
-          allow="autoplay; fullscreen; encrypted-media"
+          allow="encrypted-media"
           frameBorder="0"
         />
         
