@@ -68,14 +68,14 @@ export default function HomePage() {
     {
       id: "lamark-agency",
       icon: Dumbbell,
-      title: "LamarK Agency — Fitness",
+      title: "Lamark Agency — Fitness",
       stat: "11k new members, $2M+ revenue influence",
       description: "Scaled PPC programs and tracked multi‑location impact.",
     },
     {
-      id: "hapi-artr",
+      id: "hapi-art",
       icon: Palette,
-      title: "Hapi Artr — E‑commerce",
+      title: "Hapi Art — E‑commerce",
       stat: "10× ROAS, $1M+ revenue generated",
       description: "Built a profitable system with creative testing and audience expansion.",
     },

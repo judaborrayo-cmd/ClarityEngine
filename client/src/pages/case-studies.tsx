@@ -6,7 +6,7 @@ const caseStudies = [
   {
     id: "lamark-agency",
     title: "Growth Across Industries",
-    subtitle: "Pay Per Click LamarK Agency",
+    subtitle: "Pay Per Click Lamark Agency",
     description: "Multi-industry PPC strategy driving exceptional growth across diverse business sectors with targeted campaign optimization.",
     results: [
       "Multi-location tracking",
@@ -18,9 +18,9 @@ const caseStudies = [
     featured: true
   },
   {
-    id: "hapi-artr",
+    id: "hapi-art",
     title: "Building a Profitable 10X ROAS",
-    subtitle: "Hapi Artr Advertising System",
+    subtitle: "Hapi Art Advertising System",
     description: "Comprehensive advertising system design that delivered exceptional 10X return on ad spend through strategic optimization.",
     results: [
       "10X ROAS achieved",

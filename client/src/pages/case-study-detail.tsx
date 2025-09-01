@@ -7,10 +7,10 @@ import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarS
 const caseStudyData = {
   "lamark-agency": {
     title: "Growth Across Industries",
-    subtitle: "Pay Per Click LamarK Agency",
+    subtitle: "Pay Per Click Lamark Agency",
     category: "PPC Management",
     overview: "Strategic pay-per-click management across multiple industries, delivering scalable growth solutions and comprehensive tracking systems for diverse business sectors.",
-    challenge: "LamarK Agency needed a comprehensive PPC strategy that could work across multiple industries while maintaining efficiency and tracking performance across different business models and customer acquisition costs.",
+    challenge: "Lamark Agency needed a comprehensive PPC strategy that could work across multiple industries while maintaining efficiency and tracking performance across different business models and customer acquisition costs.",
     solution: [
       "Developed multi-industry PPC framework adaptable to different sectors",
       "Implemented comprehensive tracking systems for multi-location businesses",
@@ -28,17 +28,17 @@ const caseStudyData = {
     },
     testimonial: {
       quote: "The strategic approach to PPC management across our diverse client base has been exceptional. The multi-location tracking and scalable systems have transformed our service delivery.",
-      author: "LamarK Agency Team"
+      author: "Lamark Agency Team"
     },
     tags: ["PPC Management", "Multi-Industry", "Tracking Systems", "Scalable Growth"],
     featured: true
   },
-  "hapi-artr": {
+  "hapi-art": {
     title: "Building a Profitable 10X ROAS",
-    subtitle: "Hapi Artr Advertising System",
+    subtitle: "Hapi Art Advertising System",
     category: "ROI Optimization",
     overview: "Comprehensive advertising system design and implementation that achieved an exceptional 10X return on ad spend through strategic optimization and systematic approach to campaign management.",
-    challenge: "Hapi Artr needed a profitable advertising system that could consistently deliver high returns while maintaining scalability and sustainable growth patterns.",
+    challenge: "Hapi Art needed a profitable advertising system that could consistently deliver high returns while maintaining scalability and sustainable growth patterns.",
     solution: [
       "Designed comprehensive advertising system architecture",
       "Implemented strategic optimization protocols",
@@ -56,7 +56,7 @@ const caseStudyData = {
     },
     testimonial: {
       quote: "The advertising system delivered incredible results with 10X ROAS. The strategic optimization and systematic approach transformed our entire marketing performance.",
-      author: "Hapi Artr Team"
+      author: "Hapi Art Team"
     },
     tags: ["10X ROAS", "Advertising Systems", "Strategic Optimization", "Profitability"],
     featured: true
@@ -149,7 +149,7 @@ const caseStudyData = {
 
 const otherCaseStudies = [
   { id: "lamark-agency", title: "Growth Across Industries", category: "PPC Management" },
-  { id: "hapi-artr", title: "Building a Profitable 10X ROAS", category: "ROI Optimization" },
+  { id: "hapi-art", title: "Building a Profitable 10X ROAS", category: "ROI Optimization" },
   { id: "steel-fit-usa", title: "Steel Fit USA", category: "Paid Media" },
   { id: "mandali-retreats", title: "Crafting Success: Mandali Retreats", category: "Wellness Marketing" },
   { id: "fitness-roi", title: "Maximizing ROI in Fitness", category: "Revenue Growth" }
