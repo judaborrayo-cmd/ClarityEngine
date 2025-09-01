@@ -83,7 +83,7 @@ export default function HomePage() {
       id: "mandali-retreats",
       icon: Waves,
       title: "Mandali Retreat — Luxury Wellness",
-      stat: "5× ROAS while filling retreat bookings",
+      stat: "15× ROAS while filling retreat bookings",
       description: "Multi‑channel strategy across Meta & Search; retargeting and geo‑segmented campaigns.",
     },
     {
