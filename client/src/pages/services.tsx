@@ -150,18 +150,36 @@ export default function Services() {
             <article
               key={s.id}
               id={s.id}
-              className="group rounded-2xl p-6 shadow-sm hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:text-white transition-all duration-300"
-              style={{ border: `1px solid ${brand.pink}`, background: "#fff" }}
+              className="group rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg"
+              style={{ 
+                border: `1px solid ${brand.pink}`, 
+                background: "#fff",
+                cursor: "pointer"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #1e40af 100%)';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#fff';
+                e.currentTarget.style.color = brand.black;
+              }}
             >
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="max-w-3xl">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 rounded-lg group-hover:bg-white/20" style={{ backgroundColor: brand.peach }}>
-                      <s.icon className="w-6 h-6 group-hover:text-white" style={{ color: brand.purple }} />
+                    <div 
+                      className="icon-container p-2 rounded-lg transition-all duration-300" 
+                      style={{ backgroundColor: brand.peach }}
+                    >
+                      <s.icon 
+                        className="service-icon w-6 h-6 transition-all duration-300" 
+                        style={{ color: brand.purple }} 
+                      />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold group-hover:text-white">{s.title}</h2>
-                      <div className="flex gap-4 text-sm group-hover:text-white/90" style={{ color: brand.green }}>
+                      <h2 className="service-title text-2xl font-bold transition-all duration-300">{s.title}</h2>
+                      <div className="service-timeline flex gap-4 text-sm transition-all duration-300" style={{ color: brand.green }}>
                         <span className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
                           {s.timeline}
@@ -171,18 +189,24 @@ export default function Services() {
                   </div>
                   
                   {s.testimonial && (
-                    <div className="mb-3 p-3 rounded-lg group-hover:bg-white/20 group-hover:text-white/90" style={{ backgroundColor: brand.peach, color: brand.green }}>
+                    <div 
+                      className="testimonial-box mb-3 p-3 rounded-lg transition-all duration-300" 
+                      style={{ backgroundColor: brand.peach, color: brand.green }}
+                    >
                       <div className="flex items-start gap-2">
-                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:text-white" style={{ color: brand.purple }} />
+                        <CheckCircle 
+                          className="check-icon w-4 h-4 mt-0.5 flex-shrink-0 transition-all duration-300" 
+                          style={{ color: brand.purple }} 
+                        />
                         <span className="text-sm italic">"{s.testimonial}"</span>
                       </div>
                     </div>
                   )}
                   
-                  <p className="mt-2 group-hover:text-white/90" style={{ color: brand.green }}>
+                  <p className="service-summary mt-2 transition-all duration-300" style={{ color: brand.green }}>
                     {s.summary}
                   </p>
-                  <ul className="mt-4 grid gap-2 list-disc pl-5 group-hover:text-white/90" style={{ color: brand.green }}>
+                  <ul className="service-bullets mt-4 grid gap-2 list-disc pl-5 transition-all duration-300" style={{ color: brand.green }}>
                     {s.bullets.map((b) => (
                       <li key={b}>{b}</li>
                     ))}
@@ -192,7 +216,7 @@ export default function Services() {
                 <div className="shrink-0">
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold text-white hover:scale-105 transition-transform group-hover:bg-white/20 group-hover:border group-hover:border-white/30"
+                    className="service-cta inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold text-white hover:scale-105 transition-all duration-300"
                     style={{ background: brand.pink }}
                   >
                     {s.cta}

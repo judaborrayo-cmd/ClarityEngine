@@ -305,6 +305,45 @@ html {
   background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
+/* Service cards hover effects */
+article:hover .service-icon {
+  color: white !important;
+}
+
+article:hover .service-title {
+  color: white !important;
+}
+
+article:hover .service-timeline {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+article:hover .service-summary {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+article:hover .service-bullets {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+article:hover .check-icon {
+  color: white !important;
+}
+
+article:hover .icon-container {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+article:hover .testimonial-box {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+article:hover .service-cta {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
 /* Rotating word animation */
 @keyframes word-cycle {
   0%, 16.66% {
