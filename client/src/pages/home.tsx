@@ -534,15 +534,15 @@ export default function HomePage() {
                         </div>
                         <div className="flex-1">
                           <blockquote className="text-white leading-relaxed mb-4 group-hover:drop-shadow-lg transition-all duration-300" data-testid={`testimonial-quote-${index}`}>
-                            "{(() => {
-                              // Define specific highlights for each testimonial
-                              const highlights = {
-                                'Mari Smith': "It's always enjoyable writing a recommendation for someone as enjoyable as Juda",
-                                'Lindsey Best': "Juda gives it his all for his clients",
-                                'Alyssa Rhodes-Gay': "complete rockstar for his clients",
-                                'Daniela Quintana': "Juda is simply one of the best person I have had the opportunity to work with",
-                                'Mike Berkman': "I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint",
-                                'Bill Bowman': "able to manage complex advertising campaigns in a calm and focused way"
+"{(() => {
+                              // Define specific highlights for each testimonial using correct author names
+                              const highlights: Record<string, string> = {
+                                'Mari Smith, Co-Founder & Marketing Director': "It's always enjoyable writing a recommendation for someone as enjoyable as Juda",
+                                'Lindsey Bast, Digital Strategist & Growth Marketer': "Juda gives it his all for his clients",
+                                'Alyssa Brooke-Gay, Senior Project Manager': "complete rockstar for his clients",
+                                'Daniela Goldzmindt, Marketing Manager': "Juda is simply one of the best persons I have had the opportunity to work with",
+                                'Mike Berkman, VP of Performance': "I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint",
+                                'Bill Bowman, Vice President of Marketing': "able to manage complex advertising campaigns in a calm and focused way"
                               };
                               
                               const highlightText = highlights[testimonial.author];
