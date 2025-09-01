@@ -21,12 +21,12 @@ import {
 
 // Profile image paths
 const profileImages = {
-  lindsey: "/attached_assets/lindsey.jpg",
-  mari: "/attached_assets/mari.jpg",
-  alyssa: "/attached_assets/alyssa.jpg",
-  daniela: "/attached_assets/daniela.jpg",
-  mike: "/attached_assets/mike.jpg",
-  bill: "/attached_assets/bill.jpg"
+  lindsey: "/attached_assets/Lindsey_Bast_1756736137491.jpg",
+  mari: "/attached_assets/Mari_1756736137491.jpg",
+  alyssa: "/attached_assets/Alyssa_1756736137489.jpg",
+  daniela: "/attached_assets/Daniela_1756736137490.jpg",
+  mike: "/attached_assets/Mike_Berkman_1756736137491.jpg",
+  bill: "/attached_assets/Bill_Bowman_1756736137490.jpg"
 };
 
 export default function HomePage() {
