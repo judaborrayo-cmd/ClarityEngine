@@ -105,3 +105,36 @@ html {
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+/* Animated expanding/retracting border */
+@keyframes border-expand {
+  0% {
+    width: 0%;
+    margin-left: 50%;
+    margin-right: 50%;
+  }
+  25% {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  50% {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  75% {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  100% {
+    width: 0%;
+    margin-left: 50%;
+    margin-right: 50%;
+  }
+}
+
+.animate-border-expand {
+  animation: border-expand 40s linear infinite;
+}

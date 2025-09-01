@@ -212,8 +212,8 @@ export default function HomePage() {
             
             {/* Animated Logo Carousel */}
             <div className="relative">
-              {/* Colorful top border */}
-              <div className="h-1 w-full bg-gradient-to-r from-primary via-accent to-secondary mb-8"></div>
+              {/* Animated expanding/retracting top border */}
+              <div className="h-1 w-full bg-gradient-to-r from-primary via-accent to-secondary mb-8 animate-border-expand"></div>
               
               <div className="flex animate-scroll">
                 {/* First set of logos */}
@@ -347,8 +347,6 @@ export default function HomePage() {
               <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-muted/50 to-transparent pointer-events-none"></div>
               <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-muted/50 to-transparent pointer-events-none"></div>
               
-              {/* Colorful bottom border */}
-              <div className="h-1 w-full bg-gradient-to-r from-secondary via-accent to-primary mt-8"></div>
             </div>
           </div>
         </section>
