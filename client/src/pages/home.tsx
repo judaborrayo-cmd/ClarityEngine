@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
   Rocket, 
@@ -19,6 +19,33 @@ import {
   Twitter, 
   Mail 
 } from "lucide-react";
+
+// Rotating Word Component
+function RotatingWord({ words }: { words: string[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % words.length);
+        setIsVisible(true);
+      }, 300); // Half second fade out before changing
+    }, 2000); // Change word every 2 seconds
+
+    return () => clearInterval(interval);
+  }, [words.length]);
+
+  return (
+    <span 
+      className={`inline-block font-semibold text-primary transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      data-testid="rotating-word"
+    >
+      {words[currentIndex]}
+    </span>
+  );
+}
 
 // Profile image paths
 const profileImages = {
@@ -223,7 +250,7 @@ export default function HomePage() {
               I help founders and teams turn ad spend into predictable growth. With over
               <span className="font-semibold text-foreground"> $3M in ad budget managed</span> and
               <span className="font-semibold text-foreground"> multi-million in revenue driven</span>,
-              I bring clarity, structure, and impact to every campaign.
+              I bring clarity, structure, and impact to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel"]} />.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <button 
