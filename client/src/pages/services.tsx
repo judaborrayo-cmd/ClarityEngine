@@ -115,63 +115,37 @@ export default function Services() {
     <main className="min-h-screen bg-white" style={{ color: brand.black }}>
       {/* Hero */}
       <section
-        className="relative px-6 pt-16 pb-8 lg:px-8 border-b overflow-hidden"
-        style={{ borderColor: "#e5e7eb" }}
+        className="relative px-6 pt-16 pb-8 lg:px-8 border-b overflow-hidden min-h-96"
+        style={{ 
+          borderColor: "#e5e7eb",
+          backgroundImage: 'url(https://img.youtube.com/vi/IjB6MY9GYx4/maxresdefault.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
       >
         {/* Video Background */}
-        <div className="absolute inset-0" style={{ zIndex: -1 }}>
-          {/* Test background - bright color to see if it shows */}
-          <div 
-            className="absolute inset-0 w-full h-full"
-            style={{
-              backgroundColor: '#ff0000',
-              zIndex: 0
-            }}
-          />
-          
-          {/* Fallback background image */}
-          <div 
-            className="absolute inset-0 w-full h-full"
-            style={{
-              background: 'url(https://img.youtube.com/vi/IjB6MY9GYx4/maxresdefault.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              zIndex: 1
-            }}
-          />
-          
-          {/* Video iframe - simplified approach */}
-          <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-            <iframe
-              src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
-              title="Services Background Video"
-              width="100%"
-              height="100%"
-              style={{
-                position: 'absolute',
-                top: '-10%',
-                left: '-10%',
-                width: '120%',
-                height: '120%',
-                pointerEvents: 'none',
-                border: 'none',
-                objectFit: 'cover'
-              }}
-              allow="autoplay; encrypted-media"
-              frameBorder="0"
-            />
-          </div>
-          
-          {/* Gradient Overlay */}
-          <div 
-            className="absolute inset-0"
-            style={{ 
-              background: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 245, 243, 0.7))`,
-              zIndex: 2
-            }}
-          />
-        </div>
+        <iframe
+          src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
+          title="Services Background Video"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            pointerEvents: 'none',
+            border: 'none',
+            zIndex: -1
+          }}
+          allow="autoplay; encrypted-media"
+          frameBorder="0"
+        />
+        
+        {/* Gradient Overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            background: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 245, 243, 0.8))`,
+            zIndex: 1
+          }}
+        />
         <div className="relative mx-auto max-w-4xl" style={{ zIndex: 10 }}>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Services</h1>
           <p className="mt-3" style={{ color: brand.green }}>
