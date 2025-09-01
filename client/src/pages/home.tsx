@@ -222,9 +222,13 @@ export default function HomePage() {
             <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full animate-ping backdrop-blur-sm" style={{ animationDelay: '2s' }}></div>
             
             {/* Lightning bolt for breakthrough moments */}
-            <div className="absolute top-20 right-32 opacity-10 animate-pulse">
-              <svg className="w-12 h-12 text-accent" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
+            <div className="absolute top-20 right-32 opacity-10">
+              <svg className="w-12 h-12 text-accent" viewBox="0 0 24 24">
+                <path 
+                  d="M7 2v11h3v9l7-12h-4L17 2H7z" 
+                  fill="currentColor"
+                  className="animate-lightning-solidify"
+                />
               </svg>
             </div>
           </div>
