@@ -97,18 +97,18 @@ export default function HomePage() {
 
   const testimonials = [
     {
-      quote: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
-      author: "Lindsey Bast, Digital Strategist & Growth Marketer",
-      gradient: "from-purple-500 to-purple-600",
-      profileColor: "border-white",
-      image: profileImages.lindsey
-    },
-    {
       quote: "It's always enjoyable writing a recommendation for someone as enjoyable as Juda. I've worked with Juda in a professional capacity for over a year now at Sociality Squared. We've worked on various clients together and he's worn many different hats.",
       author: "Mari Smith, Co-Founder & Marketing Director",
       gradient: "from-purple-500 to-purple-600",
       profileColor: "border-white",
       image: profileImages.mari
+    },
+    {
+      quote: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
+      author: "Lindsey Bast, Digital Strategist & Growth Marketer",
+      gradient: "from-purple-500 to-purple-600",
+      profileColor: "border-white",
+      image: profileImages.lindsey
     },
     {
       quote: "Juda is a phenomenal colleague and complete rockstar for his clients! I've had the pleasure of working with Juda for over a year, and we've collaborated on several large-scale digital marketing projects throughout that time.",
