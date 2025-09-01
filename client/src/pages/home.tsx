@@ -700,33 +700,33 @@ export default function HomePage() {
             </div>
             
             <div className="space-y-6">
-              <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
-                  <Shield className="w-6 h-6 text-primary" />
+              <div className="group flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 cursor-pointer">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 group-hover:bg-white/20 rounded-lg transition-colors duration-300">
+                  <Shield className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-foreground">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
-                  <div className="text-sm text-muted-foreground">Contra Featured Expert</div>
+                  <div className="font-semibold text-foreground group-hover:text-white transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
+                  <div className="text-sm text-muted-foreground group-hover:text-white/90 transition-colors duration-300">Contra Featured Expert</div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
-                  <Target className="w-6 h-6 text-primary" />
+              <div className="group flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 cursor-pointer">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 group-hover:bg-white/20 rounded-lg transition-colors duration-300">
+                  <Target className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-foreground">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
-                  <div className="text-sm text-muted-foreground">Contra Featured Expert</div>
+                  <div className="font-semibold text-foreground group-hover:text-white transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
+                  <div className="text-sm text-muted-foreground group-hover:text-white/90 transition-colors duration-300">Contra Featured Expert</div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg">
-                  <Users className="w-6 h-6 text-primary" />
+              <div className="group flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 cursor-pointer">
+                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 group-hover:bg-white/20 rounded-lg transition-colors duration-300">
+                  <Users className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-foreground">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
-                  <div className="text-sm text-muted-foreground">Contra Featured Expert</div>
+                  <div className="font-semibold text-foreground group-hover:text-white transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
+                  <div className="text-sm text-muted-foreground group-hover:text-white/90 transition-colors duration-300">Contra Featured Expert</div>
                 </div>
               </div>
             </div>
