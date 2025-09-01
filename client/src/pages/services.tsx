@@ -126,7 +126,7 @@ export default function Services() {
       >
         {/* Video Background */}
         <iframe
-          src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
+          src="https://www.youtube.com/embed/IjB6MY9GYx4?autoplay=1&mute=1&loop=1&playlist=IjB6MY9GYx4&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&start=0&enablejsapi=1"
           title="Services Background Video"
           className="absolute inset-0 w-full h-full object-cover"
           style={{
@@ -134,15 +134,15 @@ export default function Services() {
             border: 'none',
             zIndex: -1
           }}
-          allow="autoplay; encrypted-media"
+          allow="autoplay; fullscreen; encrypted-media"
           frameBorder="0"
         />
         
-        {/* Gradient Overlay */}
+        {/* Gradient Overlay - 0% to 70% opacity top to bottom */}
         <div 
           className="absolute inset-0"
           style={{ 
-            background: `linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 245, 243, 0.85))`,
+            background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 245, 243, 0.7))`,
             zIndex: 1
           }}
         />
