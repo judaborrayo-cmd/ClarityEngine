@@ -278,7 +278,7 @@ export default function HomePage() {
               I help founders and teams turn ad spend into predictable growth. With over
               <span className="font-semibold text-foreground"> $3M in ad budget managed</span> and
               <span className="font-semibold text-foreground"> multi-million in revenue driven</span>,
-              I bring clarity, structure, and impact to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel"]} />.
+              I bring clarity, structure, and impact to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team"]} />.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <Link 
