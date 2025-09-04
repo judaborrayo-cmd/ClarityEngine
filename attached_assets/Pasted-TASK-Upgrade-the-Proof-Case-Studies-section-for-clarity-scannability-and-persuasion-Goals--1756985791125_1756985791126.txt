@@ -1,0 +1,124 @@
+TASK: Upgrade the “Proof & Case Studies” section for clarity, scannability, and persuasion.
+
+Goals
+
+Make results the visual hero.
+
+Improve scannability and consistency across cards.
+
+Add light interaction (hover/accordion) to preview details without leaving the page.
+
+Tie proof directly to a next step (micro-CTA).
+
+SECTION: Proof & Case Studies — Required Changes
+
+Headline & Subhead (replace current intro)
+
+Headline: “Real Brands. Real Results. Proven Growth.”
+
+Subhead: “Here’s how I’ve helped teams across industries scale with clarity and ROI.”
+
+Card Layout (uniform template for every case study)
+Each card should include, in this order:
+
+Top row (left): Client logo and client name.
+
+Top row (right): Large Metric Pill = value (big) + label (small).
+Examples: 6.2x ROAS, +$1.05M Bookings, -55% CPL, +12 Clinics / Month.
+
+One-sentence summary (outcome-first, no fluff).
+
+Meta line (small, muted): • Channels: … • Period: … • Services: …
+
+Outcome bullets (3–4 items, short):
+Examples: Revenue: +$310k, AOV: +18%, CAC: -37%, Leads: +142%, Show-up Rate: +19%.
+
+Bottom row:
+
+Left: small sparkline/icon placeholder (optional).
+
+Right: two links: Read case study (secondary) and Get results like this → (primary; anchors to your Audit CTA).
+
+Visual Storytelling
+
+Show the client logo on each card (repeat even if logos appear elsewhere).
+
+Add an optional thumbnail (ad creative, page mockup, or product) at the top of the card under the header row. If space is tight, keep thumbnails only on hover/expand.
+
+Interaction / Scannability
+
+Add a hover reveal or accordion that shows a short “Problem → Strategy → Result” snapshot (3 lines max) without navigating away.
+
+Keep summaries tight and cards equal height at desktop. Truncate long text with “…” plus “Read case study.”
+
+Outcome Tags (compact chips)
+
+Under the metric pill, add 2–3 small tags (e.g., 6x ROAS, +$1M Revenue, -55% CPL).
+
+Purpose: quick visual scan. Keep each tag ≤12 chars where possible.
+
+Micro-CTA inside Proof
+
+Add “Get results like this →” on every card (links to your Start a Growth Clarity Audit section with UTM).
+
+Keep “Read case study” as a secondary action.
+
+Filters (optional, if trivial to add)
+
+Add filter chips above the grid: [All] [E-com] [Services] [Wellness] [Luxury] and a Sort dropdown (Impact, Newest).
+
+Copy polish (example rewrites)
+
+Replace generic lines with outcome-first phrasing:
+
+“Built a profitable system with creative testing + segmented retargeting.”
+
+“Multi-channel strategy reduced CPL and scaled monthly bookings.”
+
+Accessibility & SEO
+
+Logos: alt="{Client} logo".
+
+Headline = <h2>. Cards = <article>. Metric pill uses <strong> for the value.
+
+Use aria-expanded on accordions; keyboard-focusable card actions.
+
+Motion (subtle, fast)
+
+Card hover: 2–3% scale, shadow increase, 150–250ms ease.
+
+Metric pill: fade/slide-up on enter (50–100ms stagger per card).
+
+Avoid long/looping animations; keep performance snappy.
+
+Mobile behavior
+
+Single-column stack, metric pill remains first in visual order.
+
+Collapse thumbnails by default; show on tap/expand.
+
+QA checklist
+
+Every card shows: logo, big metric, 1-line summary, meta line, 3–4 outcomes, two CTAs.
+
+Text lengths consistent; no card significantly taller than others on desktop.
+
+All images lazy-load; links tracked (see below).
+
+Analytics (if available)
+
+Track clicks: read_case_study_click, in_card_cta_click, with client_name, metric_value, metric_label.
+
+Example Card Content (use to structure all cards similarly)
+
+Metric Pill: +12 Clinics / Month
+
+Tags: CPL -55%, LTV +23%
+
+Summary: “Comprehensive fitness marketing delivering exceptional results.”
+
+Meta: • Channels: Search + YouTube • Period: 12 months • Services: Strategy, CRO, Retargeting, Email
+
+Outcomes: Leads +142%, CPL -55%, Show-up +19%, Revenue +$310k
+
+Done state: The Proof & Case Studies section presents uniform, outcome-first cards with large metrics, quick-scan tags, light hover/accordion detail, logos/thumbnails for recognition, and an in-card “Get results like this” CTA that links to the Growth Clarity Audit.
