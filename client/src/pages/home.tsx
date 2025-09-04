@@ -535,8 +535,8 @@ export default function HomePage() {
           
           <div className="mx-auto max-w-6xl relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground" data-testid="case-studies-title">Real Brands. Real Results. Proven Growth.</h2>
-              <p className="mt-2 text-muted-foreground" data-testid="case-studies-subtitle">Here's how I've helped teams across industries scale with clarity and ROI.</p>
+              <h2 className="text-3xl font-bold text-foreground" data-testid="case-studies-title">Proof & Case Studies</h2>
+              <p className="mt-2 text-muted-foreground" data-testid="case-studies-subtitle">Selected outcomes from recent work.</p>
               <div className="mt-4">
                 <Link 
                   to="/case-studies"
@@ -551,160 +551,94 @@ export default function HomePage() {
               </div>
             </div>
             
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {caseStudies.map((study, index) => {
-                // Extract client logo placeholder and main metric
-                let clientLogo, clientName, metricValue, metricLabel;
+                const IconComponent = study.icon;
+                // Extract specific metrics for each case study
+                let metric, progressValue, label;
                 if (study.id === 'lamark-agency') {
-                  clientName = 'Lamark Agency';
-                  clientLogo = '/images/client-logos/lamark.png';
-                  metricValue = '$70K';
-                  metricLabel = 'Monthly Budget';
+                  metric = '6-12 Clients Per Month'; label = 'Managed budgets simultaneously across 6-12 B2B and B2C clients'; progressValue = 100;
                 } else if (study.id === 'hapi-art') {
-                  clientName = 'Core 40 Fitness';
-                  clientLogo = '/images/client-logos/core40.png';
-                  metricValue = '8x+';
-                  metricLabel = 'ROAS';
+                  metric = '8×+'; label = 'ROAS Achieved for Evergreen Ads: 8x+'; progressValue = 100;
                 } else if (study.id === 'mandali-retreats') {
-                  clientName = 'Mandali Retreat';
-                  clientLogo = '/images/client-logos/mandali.png';
-                  metricValue = '15x+';
-                  metricLabel = 'ROAS';
+                  metric = '15×+'; label = '15x+ ROAS across Google Ads and Meta for the last 3+ years'; progressValue = 100;
                 } else {
-                  clientName = 'Maximizing ROI in Fitness';
-                  clientLogo = '/images/client-logos/fitness.png';
-                  metricValue = '365';
-                  metricLabel = 'Days/year';
+                  metric = '365 Days/year'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
                 }
-                
                 return (
                   <article 
                     key={study.title} 
-                    className="case-study-card group relative bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 hover:border-primary/20"
+                    className="group rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-102 animate-slide-in-left"
+                    style={{ animationDelay: `${index * 200}ms` }}
                     data-testid={`case-study-card-${index}`}
-                    tabIndex={0}
-                    role="article"
-                    aria-labelledby={`case-study-title-${index}`}
                   >
-                    <div className="p-6">
-                      {/* Header with client logo and metric pill */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <img 
-                            src={clientLogo} 
-                            alt={`${clientName} logo`}
-                            className="w-8 h-8 object-contain"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                              const nextElement = (e.target as HTMLElement).nextElementSibling as HTMLElement;
-                              if (nextElement) nextElement.style.display = 'flex';
-                            }}
-                          />
-                          <div className="w-8 h-8 bg-primary/10 rounded flex items-center justify-center text-primary font-bold text-sm" style={{display: 'none'}}>
-                            {clientName.charAt(0)}
-                          </div>
-                          <div>
-                            <h3 className="font-semibold text-foreground text-sm" data-testid={`case-study-title-${index}`}>
-                              {clientName}
-                            </h3>
-                            <div className="text-xs text-muted-foreground">{study.id === 'lamark-agency' ? 'B2B Marketing' : study.id === 'hapi-art' ? 'Fitness' : study.id === 'mandali-retreats' ? 'Luxury Wellness' : 'Fitness'}</div>
-                          </div>
+                    <div className="flex items-start justify-between mb-4 relative">
+                      {/* Mountain peak icon for scaling success */}
+                      <div className="absolute -top-3 -left-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                        <svg className="w-6 h-6 text-primary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22l-9-12z" />
+                        </svg>
+                      </div>
+                      
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300" data-testid={`case-study-title-${index}`}>
+                          {study.title}
+                        </h3>
+                        <div className="mt-1 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
+                          {study.stat}
                         </div>
                         
-                        {/* Large metric pill */}
-                        <div className="bg-green-500 text-white px-4 py-2 rounded-full text-center min-w-[80px]">
-                          <div className="text-lg font-bold">{metricValue}</div>
-                          <div className="text-xs opacity-90">{metricLabel}</div>
+                        {/* Animated Progress Bar with Real Metrics */}
+                        <div className="mt-3 relative">
+                          {/* Lightning bolt for high ROI/Revenue */}
+                          {(label === 'ROAS' || label === 'Revenue') && (
+                            <div className="absolute -top-2 -right-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                              <svg className="w-4 h-4 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
+                              </svg>
+                            </div>
+                          )}
+                          
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-xs text-muted-foreground">Strategy & Execution:</span>
+                            <div className="flex items-center gap-1">
+                              <span className="text-lg font-bold text-primary group-hover:scale-110 transition-transform duration-300">{metric}</span>
+                              {/* Upward scaling arrow for growth */}
+                              <svg className="w-3 h-3 text-green-500 animate-bounce" fill="currentColor" viewBox="0 0 24 24" style={{animationDelay: `${index * 200 + 800}ms`}}>
+                                <path d="M7 14l5-5 5 5z" />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
+                            <div 
+                              className="h-full bg-gradient-to-r from-primary via-accent to-secondary rounded-full animate-progress-fill transition-all duration-1000 group-hover:animate-pulse"
+                              style={{ 
+                                width: `${progressValue}%`,
+                                animationDelay: `${index * 300 + 500}ms`
+                              }}
+                            ></div>
+                          </div>
+                          <div className="flex justify-end mt-1">
+                            <span className="text-xs text-muted-foreground">Strategy & Execution: {progressValue}%</span>
+                          </div>
                         </div>
                       </div>
-                      
-                      {/* Summary */}
-                      <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                        {study.description}
-                      </p>
-                      
-                      {/* Meta line */}
-                      <div className="text-xs text-muted-foreground mb-4 space-y-1">
-                        <div>• Channels: {study.id === 'lamark-agency' ? 'Google Ads, Meta' : study.id === 'hapi-art' ? 'Google, Meta' : study.id === 'mandali-retreats' ? 'Google, Meta' : 'Multi-channel'}</div>
-                        <div>• Period: {study.id === 'lamark-agency' ? '12+ months' : study.id === 'hapi-art' ? '6 months' : study.id === 'mandali-retreats' ? '3+ years' : 'Ongoing'}</div>
-                        <div>• Services: Performance Marketing, Strategy, Optimization</div>
+                      <div className="relative ml-4">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
                       </div>
-                      
-                      {/* Outcome bullets */}
-                      <div className="space-y-2 mb-6">
-                        {study.id === 'lamark-agency' && [
-                          'Budget: Up to $70K/month managed',
-                          'Clients: 6-12 simultaneous accounts',
-                          'Verticals: B2B and B2C coverage',
-                          'Impact: Multi-location tracking'
-                        ].map((outcome: string, outcomeIndex: number) => (
-                          <div key={outcomeIndex} className="flex items-center gap-2 text-sm">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                            <span className="text-foreground font-medium">{outcome}</span>
-                          </div>
-                        ))}
-                        
-                        {study.id === 'hapi-art' && [
-                          'ROAS: 8x+ achieved consistently',
-                          'Revenue: Significant growth',
-                          'Ads: Evergreen performance',
-                          'Optimization: Ongoing improvements'
-                        ].map((outcome: string, outcomeIndex: number) => (
-                          <div key={outcomeIndex} className="flex items-center gap-2 text-sm">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                            <span className="text-foreground font-medium">{outcome}</span>
-                          </div>
-                        ))}
-                        
-                        {study.id === 'mandali-retreats' && [
-                          'ROAS: 15x+ sustained performance',
-                          'Duration: 3+ years consistent',
-                          'Channels: Google Ads + Meta',
-                          'Growth: Luxury wellness scaling'
-                        ].map((outcome: string, outcomeIndex: number) => (
-                          <div key={outcomeIndex} className="flex items-center gap-2 text-sm">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                            <span className="text-foreground font-medium">{outcome}</span>
-                          </div>
-                        ))}
-                        
-                        {study.id === 'maximizing-roi-fitness' && [
-                          'Leads: 365 days per year',
-                          'Sales: Continuous generation',
-                          'ROI: Maximized efficiency',
-                          'Strategy: Comprehensive approach'
-                        ].map((outcome: string, outcomeIndex: number) => (
-                          <div key={outcomeIndex} className="flex items-center gap-2 text-sm">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                            <span className="text-foreground font-medium">{outcome}</span>
-                          </div>
-                        ))}
-                      </div>
-                      
-                      {/* CTAs */}
-                      <div className="flex items-center justify-between">
-                        <Link 
-                          to={`/case-study/${study.id}`}
-                          className="text-primary font-medium text-sm hover:text-primary/80 transition-colors flex items-center gap-1"
-                          data-testid={`case-study-link-${index}`}
-                        >
-                          Read case study
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 4l-1.41 1.41L15.17 10H4v2h11.17l-4.58 4.59L12 18l6-6-6-6z" />
-                          </svg>
-                        </Link>
-                        
-                        <Link 
-                          to="/growth-clarity-audit?utm_source=homepage&utm_medium=case_study_card&utm_campaign=get_results&utm_content=case_study_${study.id}"
-                          className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors flex items-center gap-2"
-                          data-testid={`case-study-cta-${index}`}
-                        >
-                          Get results like this
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 4l-1.41 1.41L15.17 10H4v2h11.17l-4.58 4.59L12 18l6-6-6-6z" />
-                          </svg>
-                        </Link>
-                      </div>
+                    </div>
+                    <p className="text-muted-foreground" data-testid={`case-study-description-${index}`}>
+                      {study.description}
+                    </p>
+                    <div className="mt-4">
+                      <Link 
+                        to={`/case-study/${study.id}`}
+                        className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+                        data-testid={`case-study-link-${index}`}
+                      >
+                        Read full case study
+                      </Link>
                     </div>
                   </article>
                 );
