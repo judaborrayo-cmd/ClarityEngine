@@ -25,7 +25,9 @@ import {
   Handshake,
   Building2,
   Briefcase,
-  CheckCircle2
+  CheckCircle2,
+  Feather,
+  ShieldCheck
 } from "lucide-react";
 
 // Progress Bar Component
@@ -469,7 +471,7 @@ export default function HomePage() {
 
         {/* Dream Outcome Section */}
         <motion.section 
-          className="px-6 py-16 lg:px-8 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20"
+          className="relative px-6 py-16 lg:px-8 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -483,97 +485,104 @@ export default function HomePage() {
               That's the growth engine we build for ambitious brands.
             </p>
             
-            {/* Paired Before/After Comparison */}
+            {/* Top hairline divider */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+
+            {/* Paired Transformation Layout */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="mt-8 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] md:items-start gap-6 md:gap-8 max-w-6xl mx-auto"
+              className="mt-8 space-y-5 max-w-6xl mx-auto"
             >
-              {/* BEFORE column */}
-              <div>
-                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-rose-50 text-rose-700 border border-rose-100">
-                  Before
-                </span>
+              {[
+                {
+                  before: "Wasted budget on vanity metrics",
+                  after: "Campaigns tied to revenue outcomes",
+                  chips: [
+                    { icon: Zap, label: "7 days to clarity" },
+                    { icon: Feather, label: "Low effort" },
+                    { icon: ShieldCheck, label: "High confidence" }
+                  ]
+                },
+                {
+                  before: "No clear roadmap or milestones",
+                  after: "Clear funnel roadmap with milestones",
+                  chips: [
+                    { icon: Zap, label: "Week 1 plan" },
+                    { icon: Feather, label: "Low–Med effort" },
+                    { icon: ShieldCheck, label: "High confidence" }
+                  ]
+                },
+                {
+                  before: "Broken tracking hides true ROI",
+                  after: "Clean tracking that connects ad spend to revenue",
+                  chips: [
+                    { icon: Zap, label: "Within 1 sprint" },
+                    { icon: Feather, label: "One-time setup" },
+                    { icon: ShieldCheck, label: "High confidence" }
+                  ]
+                },
+                {
+                  before: "Cookie-cutter execution",
+                  after: "Custom strategy aligned to goals",
+                  chips: [
+                    { icon: Zap, label: "Fast iteration" },
+                    { icon: Feather, label: "Low effort" },
+                    { icon: ShieldCheck, label: "High confidence" }
+                  ]
+                }
+              ].map((row, i) => (
+                <div key={i} className="transformation-row group grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-6 items-stretch hover:bg-white/30 transition-all duration-300 rounded-3xl p-2 -m-2">
+                  {/* BEFORE */}
+                  <div className="before-card p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-md hover:shadow-xl hover:border-rose-200 hover:bg-rose-100/70 transition-all duration-300">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5 hover:text-rose-600 transition-colors duration-300" />
+                      <p className="text-[15px] leading-relaxed">{row.before}</p>
+                    </div>
+                  </div>
 
-                <div className="mt-4 space-y-4">
-                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
+                  {/* TRANSFORMATION SPINE */}
+                  <div className="relative flex items-center justify-center">
+                    {/* vertical gradient line on desktop */}
+                    <div className="hidden md:block absolute h-full w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent group-hover:via-neutral-300 transition-colors duration-300" />
+                    <span className="transform-pill md:absolute md:top-1/2 md:-translate-y-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm group-hover:shadow-md group-hover:border-neutral-300 group-hover:bg-neutral-50 transition-all duration-300">
+                      Transform
+                    </span>
+                  </div>
+
+                  {/* AFTER */}
+                  <div className="after-card p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-md hover:shadow-xl hover:border-emerald-200 hover:bg-emerald-100/70 transition-all duration-300">
                     <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Wasted budget on vanity metrics</p>
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5 hover:text-emerald-700 transition-colors duration-300" />
+                      <div>
+                        <p className="text-[15px] leading-relaxed">{row.after}</p>
+                        {/* Hormozi Value Chips */}
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {row.chips.map((chip, chipIdx) => (
+                            <span key={chipIdx} className="value-chip inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-white/70 border border-emerald-200 text-emerald-800 hover:bg-white hover:border-emerald-300 hover:shadow-sm transition-all duration-300">
+                              <chip.icon className="w-3.5 h-3.5" />
+                              {chip.label}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">No clear roadmap or milestones</p>
-                    </div>
-                  </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Broken tracking hides true ROI</p>
-                    </div>
-                  </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Cookie-cutter execution</p>
-                    </div>
+
+                  {/* mobile "Transform" pill between cards */}
+                  <div className="md:hidden flex justify-center -mt-2">
+                    <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+                      Transform
+                    </span>
                   </div>
                 </div>
-              </div>
-
-              {/* VS pillar (desktop) / Fix chip (mobile) */}
-              <div className="relative hidden md:flex items-center justify-center">
-                {/* dotted line */}
-                <div className="h-full border-l border-dotted border-neutral-300" />
-                {/* VS pill */}
-                <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
-                  VS
-                </span>
-              </div>
-              <div className="md:hidden flex justify-center">
-                <span className="inline-flex items-center px-2.5 py-1.5 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
-                  Fix
-                </span>
-              </div>
-
-              {/* AFTER column */}
-              <div>
-                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
-                  After
-                </span>
-
-                <div className="mt-4 space-y-4">
-                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Campaigns tied to revenue outcomes</p>
-                    </div>
-                  </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Clear funnel roadmap with milestones</p>
-                    </div>
-                  </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Clean tracking that connects ad spend to revenue</p>
-                    </div>
-                  </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
-                      <p className="text-[15px] leading-relaxed">Custom strategy aligned to goals</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </motion.div>
+
+            {/* Bottom hairline divider */}
+            <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
           </div>
         </motion.section>
 

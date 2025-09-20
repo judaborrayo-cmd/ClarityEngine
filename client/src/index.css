@@ -218,6 +218,47 @@ html {
   position: relative;
 }
 
+/* Transformation row group hover effects */
+.transformation-row:hover .before-card,
+div.transformation-row:hover div.before-card,
+[class*="transformation-row"]:hover [class*="before-card"],
+.group:hover .before-card,
+.transformation-row:hover > div:first-child,
+.group:hover > div:first-child {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
+  border-color: rgba(244, 63, 94, 0.6) !important;
+  background-color: rgba(254, 228, 224, 0.9) !important;
+  transform: translateY(-1px) !important;
+}
+
+.transformation-row:hover .after-card,
+div.transformation-row:hover div.after-card,
+[class*="transformation-row"]:hover [class*="after-card"],
+.group:hover .after-card,
+.transformation-row:hover > div:last-child,
+.group:hover > div:last-child {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  background-color: rgba(220, 252, 231, 0.9) !important;
+  transform: translateY(-1px) !important;
+}
+
+.transformation-row:hover .transform-pill,
+div.transformation-row:hover span.transform-pill {
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.15) !important;
+  background-color: rgb(248, 250, 252) !important;
+  border-color: rgb(156, 163, 175) !important;
+  transform: scale(1.05) !important;
+}
+
+.transformation-row:hover .value-chip,
+div.transformation-row:hover span.value-chip {
+  background-color: white !important;
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15) !important;
+  transform: scale(1.02) !important;
+}
+
 /* Brand journey and clarity animations */
 @keyframes path-pulse {
   0%, 100% {

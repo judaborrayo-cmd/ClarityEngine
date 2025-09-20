@@ -1,0 +1,154 @@
+Love where this landed. To make the “Imagine doubling your bookings…” block feel more premium (and make the contrast pop), I’d switch from “two columns + VS” to paired rows with a transformation spine + value chips. Each “Before” pain sits directly across from the “After” fix, and in the middle we show a subtle spine with a little “Transform” pill. Under each After item, add tiny chips for Speed, Effort, Confidence (Hormozi variables). On hover, both sides of the pair light up together.
+
+Below is a single prompt for Replit + a drop-in component.
+
+Prompt for Replit — Upgrade “Imagine doubling…” section
+
+Keep the headline/subheadline unchanged. Replace the current comparison with a paired transformation layout:
+
+Design goals
+
+Left = “Before” pains (rose tint, alert icon).
+
+Middle = subtle transformation spine with a “Transform” pill (no arrows).
+
+Right = “After” fixes (emerald tint, check icon) + micro value chips per row:
+
+Speed (how fast clarity/impact begins)
+
+Effort (how heavy for the client)
+
+Confidence (perceived likelihood of success)
+
+Motion: fade/slide on scroll; group hover highlights the whole row (both cards + spine dot).
+
+Mobile: stack rows with the “Transform” pill between the two cards.
+
+Copy pairs (use these)
+
+Wasted budget on vanity metrics ↔ Campaigns tied to revenue outcomes
+Chips: Speed “7 days to clarity”, Effort “Low”, Confidence “High”
+
+No clear roadmap or milestones ↔ Clear funnel roadmap with milestones
+Chips: Speed “Week 1 plan”, Effort “Low–Med”, Confidence “High”
+
+Broken tracking hides true ROI ↔ Clean tracking that connects ad spend to revenue
+Chips: Speed “Within 1 sprint”, Effort “Med (one-time)”, Confidence “High”
+
+Cookie-cutter execution ↔ Custom strategy aligned to goals
+Chips: Speed “Fast iteration”, Effort “Low”, Confidence “High”
+
+Style
+
+Pastel gradient backdrop (very light green/blue like you have).
+
+Rounded-2xl cards, soft borders/shadows, brand-green icons.
+
+Add a slim gradient divider above and below the section for rhythm.
+
+Drop-in React (Tailwind + lucide + optional Framer Motion)
+// BeforeAfterTransform.jsx
+import React from "react";
+import { AlertTriangle, CheckCircle2, Zap, Feather, ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
+
+const PAIRS = [
+  {
+    before: "Wasted budget on vanity metrics",
+    after: "Campaigns tied to revenue outcomes",
+    chips: [{icon: Zap, label: "7 days to clarity"}, {icon: Feather, label: "Low effort"}, {icon: ShieldCheck, label: "High confidence"}],
+  },
+  {
+    before: "No clear roadmap or milestones",
+    after: "Clear funnel roadmap with milestones",
+    chips: [{icon: Zap, label: "Week 1 plan"}, {icon: Feather, label: "Low–Med effort"}, {icon: ShieldCheck, label: "High confidence"}],
+  },
+  {
+    before: "Broken tracking hides true ROI",
+    after: "Clean tracking that connects ad spend to revenue",
+    chips: [{icon: Zap, label: "Within 1 sprint"}, {icon: Feather, label: "One-time setup"}, {icon: ShieldCheck, label: "High confidence"}],
+  },
+  {
+    before: "Cookie-cutter execution",
+    after: "Custom strategy aligned to goals",
+    chips: [{icon: Zap, label: "Fast iteration"}, {icon: Feather, label: "Low effort"}, {icon: ShieldCheck, label: "High confidence"}],
+  },
+];
+
+export default function BeforeAfterTransform() {
+  return (
+    <section className="relative py-16">
+      {/* top hairline divider */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Keep your existing H2 + subheadline above this component */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mt-8 space-y-5"
+        >
+          {PAIRS.map((row, i) => (
+            <div key={i} className="group grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-6 items-stretch">
+              {/* BEFORE */}
+              <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover:shadow transition">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
+                  <p className="text-[15px] leading-relaxed">{row.before}</p>
+                </div>
+              </div>
+
+              {/* SPINE */}
+              <div className="relative flex items-center justify-center">
+                {/* vertical gradient line on desktop */}
+                <div className="hidden md:block absolute h-full w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent" />
+                <span className="md:absolute md:top-1/2 md:-translate-y-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+                  Transform
+                </span>
+              </div>
+
+              {/* AFTER */}
+              <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm group-hover:shadow-md transition">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <p className="text-[15px] leading-relaxed">{row.after}</p>
+                    {/* value chips */}
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {row.chips.map((c, idx) => (
+                        <span key={idx} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-white/70 border border-emerald-200 text-emerald-800">
+                          <c.icon className="w-3.5 h-3.5" /> {c.label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* mobile "Transform" pill between cards */}
+              <div className="md:hidden flex justify-center -mt-2">
+                <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+                  Transform
+                </span>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* bottom hairline divider */}
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+    </section>
+  );
+}
+
+Optional micro-tweaks you can add (no extra copy needed)
+
+Row hover link: make the After card CTA-ish on hover (slight tint + pointer).
+
+Avatar awareness (later): if you want to go further, add the same persona tabs (Agencies/Marketing Teams/Executives/Growing Brands) above this block to swap in avatar-specific pairs—reuse the toggle pattern you already built.
+
+If you want, I can also give you a minimal Figma-style spec (spacing, font sizes, color tokens) so everything stays visually consistent.
