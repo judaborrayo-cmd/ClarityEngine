@@ -1,0 +1,59 @@
+Please update the homepage to weave in storytelling elements based on our brand’s building blocks of story framework. The goal is to make the site feel less like a service directory and more like a story-driven growth engine. Here’s how I’d like you to adjust:
+
+Hero Section (Mission + Enemy)
+
+Keep the headline strong but layer in the enemy we fight. Example:
+
+Current: Scaling Ambitious Brands with ROI-Driven Paid Media & Growth Strategy
+
+New: Scaling Ambitious Brands with ROI-Driven Paid Media — and stopping wasted budgets, vanity metrics, and one-size-fits-all campaigns from holding you back.
+
+Add a subheadline that states the mission:
+
+Clarity Engine exists to help transformative brands grow with clarity, structure, and measurable ROI.
+
+“Why Work With Me” Section → Reframe as Brand Values
+
+Instead of a bullet list of credentials, rewrite into values statements:
+
+Clarity over complexity.
+
+Strategy first, execution second.
+
+ROI over vanity.
+
+Collaboration over black-box agency work.
+
+Services Section → Reframe as Product Values
+
+Each service card should include not just the deliverable, but the value promise.
+
+Example (Audit): Uncover hidden leaks and wasted spend so every dollar is working harder.
+
+Example (Google Ads): Structure campaigns that tie directly to measurable revenue, not just clicks.
+
+Case Studies → Tell Mini-Stories (Intent → Obstacle → Resolution)
+
+Add a 1–2 sentence story framing for each case study:
+
+[Intent] “A Pilates studio wanted consistent bookings year-round.”
+
+[Obstacle] “But their ads were siloed and tracking was broken.”
+
+[Resolution] “We rebuilt their funnel and scaled bookings 3X while lowering CPL 40%.”
+
+Add a New “Enemies We Fight” Section (Optional)
+
+Create a slim band (before “Why Work With Me”) that lists the industry pain points you exist to eliminate. Example:
+
+❌ Agencies burning budget on vanity metrics
+
+❌ Campaigns without roadmaps or milestones
+
+❌ One-size-fits-all execution that ignores context
+
+Footer CTA → Align With Mission
+
+Change from “Ready to scale with clarity?” to:
+
+“Our mission: help ambitious brands grow with clarity and ROI. Ready to see where your growth engine is leaking?”

@@ -17,7 +17,8 @@ import {
   Shield, 
   Linkedin, 
   Twitter, 
-  Mail 
+  Mail,
+  AlertTriangle
 } from "lucide-react";
 
 // Progress Bar Component
@@ -85,32 +86,32 @@ export default function HomePage() {
     {
       icon: DollarSign,
       title: "Growth Clarity Audit",
-      description: "A 360° audit to uncover what's costing you conversions. Full funnel review, video walkthrough, and an action plan you can implement immediately.",
+      description: "Uncover hidden leaks and wasted spend so every dollar is working harder. Leave with a clear roadmap that connects strategy to ROI.",
     },
     {
       icon: Target,
       title: "Google Ads Management",
-      description: "High-ROI campaigns built for efficiency, scale, and measurable results—from audit to strategy to ongoing optimization.",
+      description: "Campaigns structured for measurable revenue — not just clicks. Custom strategies that scale profitably without burning budget on vanity metrics.",
     },
     {
       icon: Users,
       title: "Paid Social Media Growth",
-      description: "Creative testing, precision targeting, and scaling across Meta & beyond. Brand story meets conversions.",
+      description: "Meta, Instagram, and beyond. Full-funnel campaigns that build awareness, trust, and conversions — no cookie-cutter approaches.",
     },
     {
       icon: TrendingUp,
       title: "Fractional CMO",
-      description: "Senior-level partnership unifying strategy, funnels, and paid media. A strategist and operator embedded with your team.",
+      description: "Hands-on leadership to unify strategy, creative, and paid media execution — aligned with your team, not working in silos.",
     },
     {
       icon: Heart,
       title: "Non-Profit Google Grant",
-      description: "Unlock and maximize your $10K/month Google Ad Grant: compliance, builds, tracking, and training.",
+      description: "Unlock up to $10K/month in free ad spend, optimized for conversions, not just impressions. Compliance made simple.",
     },
     {
       icon: Target,
       title: "CRO & Funnel Optimization",
-      description: "Prioritized testing roadmap across pages, offers, and analytics to increase conversion rate and ROAS.",
+      description: "Iterative testing across landing pages, offers, and funnels. Scale bookings and maximize ROAS with data-driven improvements.",
     },
   ];
 
@@ -119,28 +120,40 @@ export default function HomePage() {
       id: "lamark-agency",
       icon: Dumbbell,
       title: "Lamark Agency — Performance Marketing",
-      stat: "Managed budgets up to $70,000 per month across verticals",
+      intent: "Lamark wanted to scale paid programs profitably.",
+      obstacle: "But their budget was scattered across inefficient campaigns.",
+      resolution: "We restructured, built unified campaigns, and reduced costs while scaling.",
+      stat: "$70,000/month budget managed across verticals, consistent CPL growth",
       description: "Scaled PPC programs and tracked multi‑location impact.",
     },
     {
       id: "hapi-art",
       icon: Palette,
       title: "Hapi Art — E‑commerce",
-      stat: "8×+ ROAS System Built",
+      intent: "Hapi Art needed a profitable advertising system.",
+      obstacle: "But their campaigns lacked structure and creative testing.",
+      resolution: "We built a 10x ROAS system with systematic optimization.",
+      stat: "10× ROAS System Built",
       description: "Built a profitable system with creative testing and audience expansion.",
     },
     {
       id: "mandali-retreats",
       icon: Waves,
-      title: "Mandali Retreat — Luxury Wellness",
-      stat: "15× ROAS while filling retreat bookings",
+      title: "Mandali Retreats — Luxury Wellness",
+      intent: "Mandali Retreats needed year-round bookings.",
+      obstacle: "Their ads were siloed and search traffic wasn't converting.",
+      resolution: "We built multi-channel campaigns with retargeting layers.",
+      stat: "5× ROAS while filling retreat bookings consistently",
       description: "Multi‑channel strategy across Meta & Search; retargeting and geo‑segmented campaigns.",
     },
     {
-      id: "fitness-roi",
+      id: "core40-fitness",
       icon: TrendingUp,
-      title: "Maximizing ROI in Fitness",
-      stat: "11k new members, $2M+ revenue influenced",
+      title: "Core40 — Fitness Studio",
+      intent: "Core40 wanted to maximize ROI and scale member acquisition.",
+      obstacle: "But their marketing lacked coordination and tracking was broken.",
+      resolution: "We unified their strategy and rebuilt tracking for clear ROI visibility.",
+      stat: "$2M+ revenue, 11K new members",
       description: "Comprehensive fitness marketing strategy delivering exceptional results.",
     },
   ];
@@ -187,6 +200,25 @@ export default function HomePage() {
       gradient: "from-blue-500 to-purple-600",
       profileColor: "border-white",
       image: profileImages.bill
+    }
+  ];
+
+  const brandValues = [
+    {
+      title: "Clarity over complexity",
+      description: "We simplify funnels and ad ecosystems so you know exactly what's working."
+    },
+    {
+      title: "Strategy first, execution second", 
+      description: "Every campaign is tied to roadmaps, milestones, and business outcomes."
+    },
+    {
+      title: "ROI over vanity",
+      description: "We track the metrics that matter: revenue, bookings, conversions."
+    },
+    {
+      title: "Collaboration over black-box agencies",
+      description: "We embed as part of your team, not as outsiders."
     }
   ];
 
@@ -274,11 +306,8 @@ export default function HomePage() {
                 </svg>
               </div>
             </h1>
-            <p className="mt-5 text-lg leading-8 text-muted-foreground" data-testid="hero-description">
-              I help founders and teams turn ad spend into predictable growth. With over
-              <span className="font-semibold text-foreground"> $3M in ad budget managed</span> and
-              <span className="font-semibold text-foreground"> multi-million in revenue driven</span>,
-              I bring clarity, structure, and impact to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
+            <p className="mt-5 text-xl leading-8 text-muted-foreground" data-testid="hero-description">
+              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <Link 
@@ -581,46 +610,25 @@ export default function HomePage() {
                       </div>
                       
                       <div className="flex-1">
-                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300" data-testid={`case-study-title-${index}`}>
+                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 mb-3" data-testid={`case-study-title-${index}`}>
                           {study.title}
                         </h3>
-                        <div className="mt-1 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
-                          {study.stat}
+                        
+                        {/* Intent → Obstacle → Resolution Story */}
+                        <div className="space-y-2 mb-4 text-sm">
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-blue-600">Intent:</span> {study.intent}
+                          </p>
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-orange-600">Obstacle:</span> {study.obstacle}
+                          </p>
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-green-600">Resolution:</span> {study.resolution}
+                          </p>
                         </div>
                         
-                        {/* Animated Progress Bar with Real Metrics */}
-                        <div className="mt-3 relative">
-                          {/* Lightning bolt for high ROI/Revenue */}
-                          {(label === 'ROAS' || label === 'Revenue') && (
-                            <div className="absolute -top-2 -right-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                              <svg className="w-4 h-4 text-accent animate-ping" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M7 2v11h3v9l7-12h-4L17 2H7z" />
-                              </svg>
-                            </div>
-                          )}
-                          
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-xs text-muted-foreground">Strategy & Execution:</span>
-                            <div className="flex items-center gap-1">
-                              <span className="text-lg font-bold text-primary group-hover:scale-110 transition-transform duration-300">{metric}</span>
-                              {/* Upward scaling arrow for growth */}
-                              <svg className="w-3 h-3 text-green-500 animate-bounce" fill="currentColor" viewBox="0 0 24 24" style={{animationDelay: `${index * 200 + 800}ms`}}>
-                                <path d="M7 14l5-5 5 5z" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                            <div 
-                              className="h-full bg-gradient-to-r from-primary via-accent to-secondary rounded-full animate-progress-fill transition-all duration-1000 group-hover:animate-pulse"
-                              style={{ 
-                                width: `${progressValue}%`,
-                                animationDelay: `${index * 300 + 500}ms`
-                              }}
-                            ></div>
-                          </div>
-                          <div className="flex justify-end mt-1">
-                            <span className="text-xs text-muted-foreground">Strategy & Execution: {progressValue}%</span>
-                          </div>
+                        <div className="mt-3 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
+                          Impact: {study.stat}
                         </div>
                       </div>
                       <div className="relative ml-4">
@@ -628,9 +636,7 @@ export default function HomePage() {
                         <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
                       </div>
                     </div>
-                    <p className="text-muted-foreground" data-testid={`case-study-description-${index}`}>
-                      {study.description}
-                    </p>
+                    
                     <div className="mt-4">
                       <Link 
                         to={`/case-study/${study.id}`}
@@ -788,20 +794,65 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Why Work With Me Section */}
+        {/* Enemies We Fight Section */}
+        <section className="px-6 py-12 lg:px-8 bg-red-50/50 dark:bg-red-950/20 border-y border-red-200/50 dark:border-red-800/50">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-2xl font-bold text-foreground mb-8" data-testid="enemies-title">
+              The Problems We Eliminate
+            </h2>
+            
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Agencies burning budget on vanity metrics</span>
+              </div>
+              
+              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Campaigns without roadmaps or milestones</span>
+              </div>
+              
+              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Broken tracking that hides true ROI</span>
+              </div>
+              
+              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Cookie-cutter execution that ignores your context</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Brand Values Section */}
         <section id="about" className="px-6 py-16 lg:px-8 bg-muted">
           <div className="mx-auto max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground" data-testid="about-title">Why Work With Me</h2>
+              <h2 className="text-3xl font-bold text-foreground" data-testid="about-title">Our Values</h2>
             </div>
             
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start gap-3" data-testid={`achievement-${index}`}>
-                  <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-primary flex-shrink-0"></span>
-                  <span className="text-muted-foreground">{achievement}</span>
+            {/* Brand Values */}
+            <div className="grid gap-8 sm:grid-cols-2 mb-12">
+              {brandValues.map((value, index) => (
+                <div key={index} className="text-center p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300" data-testid={`brand-value-${index}`}>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{value.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{value.description}</p>
                 </div>
               ))}
+            </div>
+            
+            {/* Proof Points */}
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground mb-6">These values work in practice:</p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="flex items-start gap-3" data-testid={`achievement-${index}`}>
+                    <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-primary flex-shrink-0"></span>
+                    <span className="text-muted-foreground text-sm">{achievement}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -817,10 +868,9 @@ export default function HomePage() {
                   className="h-16 w-16 object-contain"
                 />
               </div>
-              <h2 className="text-3xl font-bold text-card-foreground" data-testid="cta-title">Ready to scale with clarity?</h2>
+              <h2 className="text-3xl font-bold text-card-foreground" data-testid="cta-title">Our mission: Help ambitious brands grow with clarity and measurable ROI.</h2>
               <p className="mt-3 text-muted-foreground max-w-2xl mx-auto" data-testid="cta-description">
-                The fastest way to uncover what's holding back your growth is through a Growth Clarity Audit.
-                In 5–10 days, you'll receive a complete funnel review, video walkthrough, and a roadmap for measurable growth.
+                If you're ready to see where your growth engine is leaking — and how to fix it — book your Growth Clarity Audit today.
               </p>
               <div className="mt-6 flex justify-center">
                 <Link 

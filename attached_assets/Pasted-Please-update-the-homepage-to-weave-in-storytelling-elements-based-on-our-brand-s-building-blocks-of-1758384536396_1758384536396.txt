@@ -1,0 +1,126 @@
+Please update the homepage to weave in storytelling elements based on our brand’s building blocks of story framework (Brand Values, Mission, Product Values, Enemies). Below are specific copy updates for each section, along with structure and intent.
+
+1. Hero Section (Mission + Enemy)
+
+Current:
+Scaling Ambitious Brands with ROI-Driven Paid Media & Growth Strategy
+
+New Copy Example:
+Headline:
+Scaling Ambitious Brands with ROI-Driven Paid Media & Growth Strategy
+
+Subheadline:
+We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every campaign.
+
+CTA Buttons:
+
+Primary: Start with a Growth Clarity Audit
+
+Secondary: See Services
+
+2. Why Work With Me → Reframe as Brand Values
+
+Current:
+Simple bullets about spend managed and recognition.
+
+New Copy Example (turn bullets into value statements):
+
+Clarity over complexity. We simplify funnels and ad ecosystems so you know exactly what’s working.
+
+Strategy first, execution second. Every campaign is tied to roadmaps, milestones, and business outcomes.
+
+ROI over vanity. We track the metrics that matter: revenue, bookings, conversions.
+
+Collaboration over black-box agencies. We embed as part of your team, not as outsiders.
+
+Keep your “$3M+ in spend managed” and “multi-million in revenue driven” details — but frame them after these values as proof that the values work in practice.
+
+3. Services Section → Add Product Values
+
+Each card should keep the service name but expand the copy to emphasize the value delivered.
+
+Examples:
+
+Growth Clarity Audit
+Uncover hidden leaks and wasted spend. Leave with a clear roadmap that connects strategy to ROI.
+
+Google Ads Management
+Campaigns structured for measurable revenue — not just clicks. Custom strategies that scale profitably.
+
+Paid Social Media Growth
+Meta, Instagram, and beyond. Full-funnel campaigns that build awareness, trust, and conversions.
+
+Fractional CMO
+Hands-on leadership to unify strategy, creative, and paid media execution — aligned with your team.
+
+Non-Profit Google Grant
+Unlock up to $10K/month in free ad spend, optimized for conversions, not just impressions.
+
+CRO & Funnel Optimization
+Iterative testing across landing pages, offers, and funnels. Scale bookings and maximize ROAS.
+
+4. Case Studies → Add Intent → Obstacle → Resolution Framework
+
+Turn each case study into a mini story:
+
+Example: Lanark Agency – Performance Marketing
+
+Intent: Lanark wanted to scale paid programs profitably.
+
+Obstacle: But their budget was scattered across inefficient campaigns.
+
+Resolution: We restructured, built unified campaigns, and reduced costs while scaling.
+
+Impact: $71,000/month budget managed across verticals, consistent CPL growth.
+
+Example: Karabat Retreats – Luxury Wellness
+
+Intent: Karabat Retreats needed year-round bookings.
+
+Obstacle: Their ads were siloed and search traffic wasn’t converting.
+
+Resolution: We built multi-channel campaigns with retargeting layers.
+
+Impact: Consistent bookings across seasons.
+
+Do this structure for each study so the results feel like part of a narrative, not just a data point.
+
+5. New Section: “Enemies We Fight” (Optional but Recommended)
+
+Add a slim band before “Why Work With Me.”
+
+Headline:
+The Problems We Eliminate
+
+Bullets with Icons (❌):
+
+❌ Agencies burning budget on vanity metrics
+
+❌ Campaigns without roadmaps or milestones
+
+❌ Broken tracking that hides true ROI
+
+❌ Cookie-cutter execution that ignores your context
+
+This section creates contrast and sets up Clarity Engine as the antidote.
+
+6. Footer CTA → Align With Mission
+
+Current: Ready to scale with clarity?
+
+New Copy Example:
+Headline:
+Our mission: Help ambitious brands grow with clarity and measurable ROI.
+
+Subheadline:
+If you’re ready to see where your growth engine is leaking — and how to fix it — book your Growth Clarity Audit today.
+
+CTA Button: Book Your Growth Clarity Audit
+
+Why These Changes Matter
+
+They shift the site from a “list of services” to a movement: clear values, defined enemies, and a human mission.
+
+Every service and case study is tied back to a story (intent, obstacle, resolution).
+
+Visitors not only see what you do, but why it matters and who you’re fighting for (and against).
