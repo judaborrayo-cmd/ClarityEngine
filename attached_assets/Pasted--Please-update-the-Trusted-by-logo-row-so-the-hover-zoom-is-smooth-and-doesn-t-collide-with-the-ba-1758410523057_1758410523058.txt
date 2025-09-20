@@ -1,0 +1,78 @@
+“Please update the ‘Trusted by’ logo row so the hover zoom is smooth and doesn’t collide with the background logos. Wrap each logo image in a fixed-size container and only scale the image inside. The container should have overflow-hidden so the image never spills out. Use transform-gpu, will-change: transform, and a 300–500ms ease-out transition for smoothness. On hover, raise the z-index of the card so it visually sits above neighbors (without reflow) and add a subtle shadow. Keep the decorative background logos, but reduce their opacity and ensure they sit on a separate absolutely-positioned layer. Also fade that background layer slightly (e.g., opacity 40% → 30%) when any logo is hovered to reduce visual conflict.”
+
+code to paste (Tailwind)
+<section class="relative isolate py-10">
+  <!-- Background logo layer -->
+  <div class="pointer-events-none absolute inset-0 -z-10 opacity-40 transition-opacity duration-300 bg-[length:240px_120px] bg-center"
+       style="background-image: url('/assets/trusted-logos-bg.svg');">
+  </div>
+
+  <div class="mx-auto max-w-6xl px-4">
+    <h2 class="text-center text-sm font-semibold tracking-widest text-neutral-600 mb-6">
+      Trusted by Leading Brands Across Industries
+    </h2>
+
+    <!-- Grid of logo cards -->
+    <div id="trusted-logos"
+         class="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5">
+      <!-- Logo card -->
+      <a href="#" class="group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-shadow duration-300 overflow-hidden">
+        <div class="aspect-[3/1] p-4 flex items-center justify-center">
+          <img src="/assets/logos/bolay.svg" alt="Bolay"
+               class="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" />
+        </div>
+        <!-- lift + stacking w/o layout shift -->
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </a>
+
+      <!-- Duplicate the card for each logo -->
+      <a href="#" class="group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-shadow duration-300 overflow-hidden">
+        <div class="aspect-[3/1] p-4 flex items-center justify-center">
+          <img src="/assets/logos/shani-darden.svg" alt="Shani Darden"
+               class="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" />
+        </div>
+      </a>
+
+      <a href="#" class="group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-shadow duration-300 overflow-hidden">
+        <div class="aspect-[3/1] p-4 flex items-center justify-center">
+          <img src="/assets/logos/cutera.svg" alt="Cutera"
+               class="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" />
+        </div>
+      </a>
+
+      <!-- add more logos... -->
+    </div>
+  </div>
+</section>
+
+<script>
+// reduce background prominence when any logo is hovered
+const section = document.currentScript.closest('section');
+const bg = section.querySelector('div.absolute');
+const grid = section.querySelector('#trusted-logos');
+
+grid.addEventListener('mouseover', () => { bg.style.opacity = '0.30'; });
+grid.addEventListener('mouseout',  () => { bg.style.opacity = '0.40'; });
+
+// ensure hovered card stacks above neighbors without layout shift
+grid.addEventListener('mouseover', e => {
+  const card = e.target.closest('.group');
+  if (card) card.style.zIndex = 10;
+});
+grid.addEventListener('mouseout', e => {
+  const card = e.target.closest('.group');
+  if (card) card.style.zIndex = '';
+});
+</script>
+
+why this works
+
+the image scales, not the grid cell → no layout shift.
+
+the card has overflow-hidden → no spill/overlap with neighbors.
+
+transform-gpu + will-change + ease-out 500ms → smooth zoom.
+
+temporary higher z-index on hover gives a clean “pop” without affecting layout.
+
+fading the background logo layer during hover reduces the visual clash you were seeing.

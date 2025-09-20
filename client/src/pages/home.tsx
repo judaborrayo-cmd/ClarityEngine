@@ -128,6 +128,48 @@ export default function HomePage() {
 
   const [selectedAvatar, setSelectedAvatar] = useState<keyof typeof AVATARS>("Agencies");
 
+  // Logo hover interaction effect
+  useEffect(() => {
+    const setupLogoHoverEffects = () => {
+      const bg = document.getElementById('trusted-bg');
+      const logoCards = document.querySelectorAll('.logo-card');
+      
+      if (bg && logoCards.length > 0) {
+        // Add event listeners to each logo card
+        logoCards.forEach(card => {
+          const cardElement = card as HTMLElement;
+          
+          const handleMouseEnter = () => {
+            // Reduce background prominence when any logo is hovered
+            bg.style.opacity = '0.30';
+            
+            // Ensure hovered card stacks above neighbors without layout shift
+            cardElement.style.zIndex = '10';
+            cardElement.style.position = 'relative';
+          };
+
+          const handleMouseLeave = () => {
+            // Restore background prominence
+            bg.style.opacity = '0.40';
+            
+            // Reset z-index
+            cardElement.style.zIndex = '';
+          };
+
+          cardElement.addEventListener('mouseenter', handleMouseEnter);
+          cardElement.addEventListener('mouseleave', handleMouseLeave);
+        });
+      }
+    };
+
+    // Set up with a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(setupLogoHoverEffects, 500);
+    
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const services = [
     {
       icon: DollarSign,
@@ -586,8 +628,19 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        {/* Client Portfolio Carousel */}
-        <section className="px-6 py-16 lg:px-8 bg-muted/50 overflow-hidden">
+        {/* Trusted by Leading Brands */}
+        <section className="relative isolate py-16 px-6 lg:px-8">
+          {/* Background logo layer - subtle pattern */}
+          <div 
+            id="trusted-bg" 
+            className="pointer-events-none absolute inset-0 -z-10 opacity-40 transition-opacity duration-300"
+            style={{
+              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), 
+                               radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 50%)`,
+              backgroundSize: '200px 200px'
+            }}
+          />
+
           <div className="mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="clients-title">
@@ -598,147 +651,169 @@ export default function HomePage() {
                 multi-million dollar growth through strategic paid media and growth marketing across all major platforms.
               </p>
             </div>
-            
-            {/* Animated Logo Carousel */}
-            <div className="relative">
-              {/* Animated expanding/retracting top border */}
-              <div className="h-1 w-full bg-gradient-to-r from-primary via-accent to-secondary mb-8 animate-border-expand"></div>
-              
-              <div className="flex animate-scroll">
-                {/* First set of logos */}
-                <div className="flex items-center gap-12 flex-shrink-0">
-                  {/* Client Logos */}
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/steelfit.png" alt="SteelFit" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-12 max-w-32 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/cutera.png" alt="Cutera" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/mandali.png" alt="Mandali Retreats" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/core40.png" alt="Core 40" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/motivating-masses.png" alt="Motivating The Masses" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/magaya.png" alt="Magaya" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/columbus-travel.png" alt="Columbus Travel" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/mix-telematics.png" alt="Mix Telematics" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/eft-universe.png" alt="EFT Universe" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  
-                  {/* Platform/Technology Logos */}
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">Google Ads</text>
-                    </svg>
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">Meta</text>
-                    </svg>
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">YouTube</text>
-                    </svg>
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">LinkedIn</text>
-                    </svg>
-                  </div>
+
+            {/* Grid of logo cards */}
+            <div 
+              id="trusted-logos"
+              className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+            >
+              {/* Client Logo Cards */}
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/steelfit.png" 
+                    alt="SteelFit" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
                 </div>
-                
-                {/* Duplicate set for seamless loop */}
-                <div className="flex items-center gap-12 px-6 flex-shrink-0">
-                  {/* Client Logos */}
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/steelfit.png" alt="SteelFit" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/amawaterways.png" alt="AmaWaterways" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/bolay.png" alt="Bolay Kitchen" className="max-h-12 max-w-32 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/shani-darden.png" alt="Shani Darden Skincare" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/cutera.png" alt="Cutera" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/mandali.png" alt="Mandali Retreats" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/core40.png" alt="Core 40" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/motivating-masses.png" alt="Motivating The Masses" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/magaya.png" alt="Magaya" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/columbus-travel.png" alt="Columbus Travel" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/mix-telematics.png" alt="Mix Telematics" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <img src="/images/client-logos/eft-universe.png" alt="EFT Universe" className="max-h-16 max-w-36 object-contain hover:scale-[2.5] transition-transform duration-300 cursor-pointer" />
-                  </div>
-                  
-                  {/* Platform/Technology Logos */}
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">Google Ads</text>
-                    </svg>
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">Meta</text>
-                    </svg>
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">YouTube</text>
-                    </svg>
-                  </div>
-                  <div className="h-20 w-40 flex items-center justify-center transition-all duration-300">
-                    <svg className="h-10 w-24 hover:scale-[2.5] transition-transform duration-300 cursor-pointer" viewBox="0 0 100 32" fill="currentColor">
-                      <text x="0" y="20" className="text-base font-bold">LinkedIn</text>
-                    </svg>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/amawaterways.png" 
+                    alt="AmaWaterways" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/bolay.png" 
+                    alt="Bolay Kitchen" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/shani-darden.png" 
+                    alt="Shani Darden Skincare" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/cutera.png" 
+                    alt="Cutera" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/mandali.png" 
+                    alt="Mandali Retreats" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/core40.png" 
+                    alt="Core 40" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/motivating-masses.png" 
+                    alt="Motivating The Masses" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/magaya.png" 
+                    alt="Magaya" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/columbus-travel.png" 
+                    alt="Columbus Travel" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/mix-telematics.png" 
+                    alt="Mix Telematics" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/client-logos/eft-universe.png" 
+                    alt="EFT Universe" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              {/* Platform/Technology Logo Cards */}
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
+                    Google Ads
                   </div>
                 </div>
               </div>
-              
-              {/* Gradient overlays for smooth edges */}
-              <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-muted/50 to-transparent pointer-events-none"></div>
-              <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-muted/50 to-transparent pointer-events-none"></div>
-              
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
+                    Meta
+                  </div>
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
+                    YouTube
+                  </div>
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
+                    LinkedIn
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
 
         {/* How We Deliver Section */}
         <motion.section 
