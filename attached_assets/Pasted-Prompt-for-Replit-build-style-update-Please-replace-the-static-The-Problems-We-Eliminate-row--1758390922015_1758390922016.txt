@@ -1,0 +1,93 @@
+Prompt for Replit (build & style update)
+
+Please replace the static “The Problems We Eliminate” row with an interactive, avatar-based toggle. The goal: let visitors choose their profile (Agencies, Marketing Teams, Executives, Growing Brands) and instantly see the specific problems we eliminate for that avatar. Also, remove the red X’s; use brand-green line icons instead.
+
+Requirements
+
+Avatars (tabs at top)
+
+Labels: Agencies, Marketing Teams, Executives, Growing Brands
+
+Icons (lucide-react):
+
+Agencies → Building2
+
+Marketing Teams → Users
+
+Executives (Fractional CMO) → Briefcase
+
+Growing Brands → Rocket
+
+Selected tab: soft brand-green background, subtle shadow, rounded-2xl, icon in brand green.
+
+Hover: raise by 2–4px (transform translate-y), subtle shadow.
+
+Problems list (updates on tab click)
+
+4–6 cards in a responsive grid (1 col on mobile → 2 cols md+).
+
+Each card: white background, rounded-2xl, soft shadow, left-aligned content, green check icon (no red X).
+
+On hover: very light green border or shadow to feel interactive.
+
+Copy to use
+
+Agencies
+
+Clients frustrated with unclear ROI
+
+Campaigns wasting budget on bad structures
+
+Lack of scalable reporting
+
+Hard to differentiate from competitors
+
+Marketing Teams
+
+Overwhelmed by too many platforms
+
+Broken tracking between channels
+
+Struggling to hit lead/sales targets
+
+Internal bottlenecks slowing execution
+
+Executives
+
+No senior leader guiding marketing strategy
+
+Wasted ad spend due to misaligned vendors
+
+Disconnected marketing + sales goals
+
+Lack of clarity in decision-making
+
+Growing Brands
+
+Scaling ads but hitting a plateau
+
+Unclear funnel leaks costing sales
+
+Over-reliance on one channel
+
+Need predictable revenue, not seasonal spikes
+
+Section framing
+
+Title stays: The Problems We Eliminate
+
+Short helper line under title (muted text): Choose your profile to see the most common issues we solve.
+
+Styling notes
+
+Use Tailwind; keep it light and modern.
+
+Brand green for icons & accents (use existing token if we have one; otherwise use text-emerald-600 / bg-emerald-50).
+
+Spacing: generous (py-16 section; gap-6 grids; p-6 cards).
+
+Accessibility: buttons are semantic; tab state is aria-selected; ensure keyboard focus ring is visible.
+
+Animation (nice-to-have)
+
+Tabs & cards: small fade/slide in when switching avatars (Framer Motion whileInView or simple CSS transitions). Keep subtle.

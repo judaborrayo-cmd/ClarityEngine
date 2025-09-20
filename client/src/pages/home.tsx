@@ -22,7 +22,10 @@ import {
   AlertTriangle,
   CheckCircle,
   Zap,
-  Handshake
+  Handshake,
+  Building2,
+  Briefcase,
+  CheckCircle2
 } from "lucide-react";
 
 // Progress Bar Component
@@ -86,6 +89,43 @@ const profileImages = {
 };
 
 export default function HomePage() {
+  // Avatar problems data
+  const AVATARS = {
+    "Agencies": [
+      "Clients frustrated with unclear ROI",
+      "Campaigns wasting budget on bad structures", 
+      "Lack of scalable reporting",
+      "Hard to differentiate from competitors",
+    ],
+    "Marketing Teams": [
+      "Overwhelmed by too many platforms",
+      "Broken tracking between channels",
+      "Struggling to hit lead/sales targets", 
+      "Internal bottlenecks slowing execution",
+    ],
+    "Executives": [
+      "No senior leader guiding marketing strategy",
+      "Wasted ad spend due to misaligned vendors",
+      "Disconnected marketing + sales goals",
+      "Lack of clarity in decision-making",
+    ],
+    "Growing Brands": [
+      "Scaling ads but hitting a plateau",
+      "Unclear funnel leaks costing sales",
+      "Over-reliance on one channel",
+      "Need predictable revenue, not seasonal spikes",
+    ],
+  };
+
+  const AVATAR_TABS = [
+    { key: "Agencies" as const, icon: Building2 },
+    { key: "Marketing Teams" as const, icon: Users },
+    { key: "Executives" as const, icon: Briefcase },
+    { key: "Growing Brands" as const, icon: Rocket },
+  ];
+
+  const [selectedAvatar, setSelectedAvatar] = useState<keyof typeof AVATARS>("Agencies");
+
   const services = [
     {
       icon: DollarSign,
@@ -332,64 +372,77 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* The Problems We Eliminate Section - Moved up */}
+        {/* The Problems We Eliminate Section - Interactive Avatar-Based */}
         <motion.section 
-          className="px-6 py-12 lg:px-8 bg-red-50/50 dark:bg-red-950/20 border-y border-red-200/50 dark:border-red-800/50"
+          className="px-6 py-16 lg:px-8 bg-muted/30"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8" data-testid="enemies-title">
-              The Problems We Eliminate
-            </h2>
-            
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <motion.div 
-                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Agencies burning budget on vanity metrics</span>
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Campaigns without roadmaps or milestones</span>
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Broken tracking that hides true ROI</span>
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Cookie-cutter execution that ignores your context</span>
-              </motion.div>
+          <div className="mx-auto max-w-6xl">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-2" data-testid="problems-title">
+                The Problems We Eliminate
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Choose your profile to see the most common issues we solve.
+              </p>
             </div>
+
+            {/* Avatar Tabs */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+              {AVATAR_TABS.map(({ key, icon: Icon }) => {
+                const isActive = selectedAvatar === key;
+                return (
+                  <motion.button
+                    key={key}
+                    type="button"
+                    onClick={() => setSelectedAvatar(key)}
+                    aria-pressed={isActive}
+                    aria-selected={isActive}
+                    className={`group flex flex-col items-center justify-center px-5 py-3 rounded-2xl border transition-all duration-300
+                      focus:outline-none focus:ring-2 focus:ring-green-300
+                      ${isActive
+                        ? "bg-green-50 border-green-200 shadow-md scale-105"
+                        : "bg-white border-border hover:-translate-y-1 hover:shadow-lg hover:scale-105"}`
+                    }
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    data-testid={`avatar-tab-${key.toLowerCase().replace(' ', '-')}`}
+                  >
+                    <Icon className={`h-6 w-6 transition-colors duration-300 ${isActive ? "text-green-600" : "text-green-500 group-hover:text-green-600"}`} />
+                    <span className={`mt-2 text-sm font-medium transition-colors duration-300 ${isActive ? "text-green-800" : "text-foreground"}`}>
+                      {key}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Problems Grid */}
+            <motion.div 
+              key={selectedAvatar}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {AVATARS[selectedAvatar].map((problem, idx) => (
+                <motion.div
+                  key={`${selectedAvatar}-${idx}`}
+                  className="p-6 bg-white dark:bg-card rounded-2xl border border-border shadow-sm flex items-start gap-3 hover:shadow-md hover:border-green-100 dark:hover:border-green-800 transition-all duration-300"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: idx * 0.1 }}
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  data-testid={`problem-card-${idx}`}
+                >
+                  <CheckCircle2 className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <p className="text-[15px] leading-relaxed text-foreground">{problem}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </motion.section>
 

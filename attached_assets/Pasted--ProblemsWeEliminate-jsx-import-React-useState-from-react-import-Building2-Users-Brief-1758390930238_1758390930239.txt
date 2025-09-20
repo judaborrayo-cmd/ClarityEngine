@@ -1,0 +1,104 @@
+// ProblemsWeEliminate.jsx
+import React, { useState } from "react";
+import { Building2, Users, Briefcase, Rocket, CheckCircle2 } from "lucide-react";
+// If using Framer Motion, uncomment imports and wrappers (optional):
+// import { motion, AnimatePresence } from "framer-motion";
+
+const AVATARS = {
+  Agencies: [
+    "Clients frustrated with unclear ROI",
+    "Campaigns wasting budget on bad structures",
+    "Lack of scalable reporting",
+    "Hard to differentiate from competitors",
+  ],
+  "Marketing Teams": [
+    "Overwhelmed by too many platforms",
+    "Broken tracking between channels",
+    "Struggling to hit lead/sales targets",
+    "Internal bottlenecks slowing execution",
+  ],
+  Executives: [
+    "No senior leader guiding marketing strategy",
+    "Wasted ad spend due to misaligned vendors",
+    "Disconnected marketing + sales goals",
+    "Lack of clarity in decision-making",
+  ],
+  "Growing Brands": [
+    "Scaling ads but hitting a plateau",
+    "Unclear funnel leaks costing sales",
+    "Over-reliance on one channel",
+    "Need predictable revenue, not seasonal spikes",
+  ],
+};
+
+const TABS = [
+  { key: "Agencies", icon: Building2 },
+  { key: "Marketing Teams", icon: Users },
+  { key: "Executives", icon: Briefcase },
+  { key: "Growing Brands", icon: Rocket },
+];
+
+export default function ProblemsWeEliminate() {
+  const [selected, setSelected] = useState("Agencies");
+
+  return (
+    <section className="py-16 bg-[#fff8f6]">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">The Problems We Eliminate</h2>
+          <p className="mt-2 text-sm text-neutral-500">
+            Choose your profile to see the most common issues we solve.
+          </p>
+        </div>
+
+        {/* Avatar Tabs */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          {TABS.map(({ key, icon: Icon }) => {
+            const isActive = selected === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setSelected(key)}
+                aria-pressed={isActive}
+                aria-selected={isActive}
+                className={`group flex flex-col items-center justify-center px-5 py-3 rounded-2xl border transition
+                  focus:outline-none focus:ring-2 focus:ring-emerald-300
+                  ${isActive
+                    ? "bg-emerald-50 border-emerald-200 shadow"
+                    : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow"}`
+                }
+              >
+                <Icon className={`h-6 w-6 transition ${isActive ? "text-emerald-600" : "text-emerald-500 group-hover:text-emerald-600"}`} />
+                <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
+                  {key}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Problems Grid */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* If using AnimatePresence for nicer transitions, wrap map in AnimatePresence and each card in motion.div */}
+          {AVATARS[selected].map((problem, idx) => (
+            <div
+              key={`${selected}-${idx}`}
+              className="p-6 bg-white rounded-2xl border border-neutral-100 shadow-sm flex items-start gap-3 hover:shadow-md hover:border-emerald-100 transition"
+            >
+              <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+              <p className="text-[15px] leading-relaxed text-neutral-800">{problem}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/*
+Usage:
+import ProblemsWeEliminate from "@/components/ProblemsWeEliminate";
+...
+<ProblemsWeEliminate />
+*/
