@@ -1,0 +1,92 @@
+Please update the homepage to integrate storytelling, Hormozi’s value equation, and a more visually engaging design. The goal is to make the site not only clear and simple, but also persuasive and conversion-focused.
+
+1. Section Order & Structure
+
+New order of homepage sections should be:
+
+Hero (Mission + Enemy)
+
+The Problems We Eliminate (move this up from the bottom, right below hero)
+
+Dream Outcome Section (big visual promise)
+
+Services (reframed as “How We Deliver”)
+
+Value Equation Section (Dream Outcome, Likelihood, Speed, Ease — Hormozi’s model)
+
+Proof & Case Studies (intent → obstacle → resolution mini-stories)
+
+Our Values (Brand Values)
+
+Colleague Reviews
+
+CTA Footer
+
+2. Copy Changes
+Hero Section (Mission + Enemy)
+
+Headline:
+Scaling Ambitious Brands with ROI-Driven Paid Media & Growth Strategy
+
+Subheadline:
+We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every campaign.
+
+Problems We Eliminate (moved up top)
+
+Headline: The Problems We Eliminate
+Bullets (with icons ❌):
+
+❌ Agencies burning budget on vanity metrics
+
+❌ Campaigns without roadmaps or milestones
+
+❌ Broken tracking that hides true ROI
+
+❌ Cookie-cutter execution that ignores your context
+
+Dream Outcome Section
+
+Headline: Imagine doubling your bookings without doubling your ad spend.
+Subheadline: That’s the growth engine we build for ambitious brands.
+
+Visual: a bold graphic showing Before → After (scatter of messy campaigns vs. clean funnel with upward trend).
+
+Services → Reframed as “How We Deliver”
+
+Keep same service cards, but update copy with product values (see my last message).
+
+New Value Equation Section (Hormozi’s Four Variables)
+
+Headline: Why Clients Choose Clarity Engine
+Subheadline: We maximize the four variables that determine value.
+
+Dream Outcome: Predictable growth, full rooms, booked calendars.
+
+Likelihood of Success: Proven strategies, roadmaps, and $3M+ ad spend managed.
+
+Speed of Results: Funnel audits deliver clarity in as little as 7 days.
+
+Ease for You: We manage the complexity, you focus on your business.
+
+Visual idea: 4 columns with icons (🎯 Outcome, ✅ Success, ⚡ Speed, 🤝 Ease).
+
+Case Studies → Mini Stories
+
+Reformat each case study as:
+
+Intent → “They wanted predictable bookings.”
+
+Obstacle → “Their campaigns were scattered and underperforming.”
+
+Resolution → “We rebuilt the funnel and scaled bookings 3X.”
+
+Impact → actual KPI.
+
+Our Values (Brand Values)
+
+Keep current, but add icons and alternating backgrounds for visual interest.
+
+Footer CTA (Mission + Action)
+
+Headline: Our mission: Help ambitious brands grow with clarity and measurable ROI.
+Subheadline: Ready to see where your growth engine is leaking? Book your Growth Clarity Audit today.

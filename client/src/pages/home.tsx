@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { 
   Rocket, 
   Menu, 
@@ -328,6 +329,162 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* The Problems We Eliminate Section - Moved up */}
+        <motion.section 
+          className="px-6 py-12 lg:px-8 bg-red-50/50 dark:bg-red-950/20 border-y border-red-200/50 dark:border-red-800/50"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8" data-testid="enemies-title">
+              The Problems We Eliminate
+            </h2>
+            
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <motion.div 
+                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Agencies burning budget on vanity metrics</span>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Campaigns without roadmaps or milestones</span>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Broken tracking that hides true ROI</span>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <X className="text-red-500 flex-shrink-0" size={20} />
+                <span className="text-sm text-muted-foreground">Cookie-cutter execution that ignores your context</span>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Dream Outcome Section */}
+        <motion.section 
+          className="px-6 py-16 lg:px-8 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="mx-auto max-w-6xl text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6" data-testid="dream-outcome-title">
+              Imagine doubling your bookings without doubling your ad spend.
+            </h2>
+            <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+              That's the growth engine we build for ambitious brands.
+            </p>
+            
+            {/* Before/After Comparison Visual */}
+            <div className="relative w-full max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Before */}
+                <motion.div 
+                  className="bg-red-100/60 dark:bg-red-950/40 rounded-2xl p-8 border border-red-200/50"
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-4">Before: Scattered Campaigns</h3>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                      <span>Wasted budget on vanity metrics</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                      <span>No clear roadmap or milestones</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                      <span>Broken tracking, unclear ROI</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                      <span>Cookie-cutter execution</span>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                {/* Arrow */}
+                <div className="flex justify-center md:block hidden">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <svg className="w-12 h-12 text-primary mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                  </motion.div>
+                </div>
+                
+                {/* After */}
+                <motion.div 
+                  className="bg-green-100/60 dark:bg-green-950/40 rounded-2xl p-8 border border-green-200/50"
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-4">After: Clarity Engine</h3>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span>Clean funnel with clear metrics</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span>Predictable growth trajectory</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span>Measurable ROI at every step</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span>Custom strategy aligned to goals</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         {/* Client Portfolio Carousel */}
         <section className="px-6 py-16 lg:px-8 bg-muted/50 overflow-hidden">
           <div className="mx-auto max-w-6xl">
@@ -482,8 +639,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Services Section */}
-        <section id="services" className="px-6 py-16 lg:px-8 relative overflow-hidden">
+        {/* How We Deliver Section */}
+        <motion.section 
+          id="services" 
+          className="px-6 py-16 lg:px-8 relative overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           {/* Connecting path from previous section */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
             <svg className="w-12 h-16 text-primary opacity-30" fill="currentColor" viewBox="0 0 24 24">
@@ -499,7 +663,7 @@ export default function HomePage() {
           
           <div className="mx-auto max-w-6xl relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground" data-testid="services-title">Services</h2>
+              <h2 className="text-3xl font-bold text-foreground" data-testid="services-title">How We Deliver</h2>
               <p className="mt-2 text-muted-foreground" data-testid="services-subtitle">Choose your entry point or build a plan across channels.</p>
             </div>
             
@@ -539,10 +703,93 @@ export default function HomePage() {
               })}
             </div>
           </div>
-        </section>
+        </motion.section>
+
+        {/* Value Equation Section - Hormozi's Four Variables */}
+        <motion.section 
+          className="px-6 py-16 lg:px-8 bg-gray-50 dark:bg-gray-900/20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="mx-auto max-w-6xl text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="value-equation-title">
+              Why Clients Choose Clarity Engine
+            </h2>
+            <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+              We maximize the four variables that determine value.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <motion.div 
+                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Target className="mx-auto w-12 h-12 text-blue-600 mb-4"/>
+                <h4 className="font-bold text-lg mb-2 text-foreground">Dream Outcome</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Predictable growth, full rooms, booked calendars.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Shield className="mx-auto w-12 h-12 text-green-600 mb-4"/>
+                <h4 className="font-bold text-lg mb-2 text-foreground">Likelihood of Success</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Proven strategies & $3M+ managed ad spend.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <DollarSign className="mx-auto w-12 h-12 text-purple-600 mb-4"/>
+                <h4 className="font-bold text-lg mb-2 text-foreground">Speed</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Audits deliver clarity in as little as 7 days.
+                </p>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <Users className="mx-auto w-12 h-12 text-orange-600 mb-4"/>
+                <h4 className="font-bold text-lg mb-2 text-foreground">Ease</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  We manage complexity, you stay focused.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
 
         {/* Case Studies Section */}
-        <section id="case-studies" className="px-6 py-16 lg:px-8 bg-muted relative overflow-hidden">
+        <motion.section 
+          id="case-studies" 
+          className="px-6 py-16 lg:px-8 bg-muted relative overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           {/* Connecting path showing transformation */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
             <svg className="w-16 h-16 text-accent opacity-40 animate-pulse" viewBox="0 0 24 24" fill="none">
@@ -651,7 +898,7 @@ export default function HomePage() {
               })}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Testimonials Section */}
         <section className="px-6 py-16 lg:px-8">
@@ -794,39 +1041,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Enemies We Fight Section */}
-        <section className="px-6 py-12 lg:px-8 bg-red-50/50 dark:bg-red-950/20 border-y border-red-200/50 dark:border-red-800/50">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-8" data-testid="enemies-title">
-              The Problems We Eliminate
-            </h2>
-            
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Agencies burning budget on vanity metrics</span>
-              </div>
-              
-              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Campaigns without roadmaps or milestones</span>
-              </div>
-              
-              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Broken tracking that hides true ROI</span>
-              </div>
-              
-              <div className="flex items-center gap-3 p-4 bg-white/50 dark:bg-card/50 rounded-xl border border-red-200/50 dark:border-red-800/50">
-                <X className="text-red-500 flex-shrink-0" size={20} />
-                <span className="text-sm text-muted-foreground">Cookie-cutter execution that ignores your context</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Brand Values Section */}
-        <section id="about" className="px-6 py-16 lg:px-8 bg-muted">
+        <motion.section 
+          id="about" 
+          className="px-6 py-16 lg:px-8 bg-muted"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <div className="mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground" data-testid="about-title">Our Values</h2>
@@ -855,7 +1078,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* CTA Section */}
         <section id="cta" className="px-6 py-16 lg:px-8">
