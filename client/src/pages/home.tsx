@@ -483,82 +483,97 @@ export default function HomePage() {
               That's the growth engine we build for ambitious brands.
             </p>
             
-            {/* Before/After Comparison Visual */}
-            <div className="relative w-full max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                {/* Before */}
-                <motion.div 
-                  className="bg-red-100/60 dark:bg-red-950/40 rounded-2xl p-8 border border-red-200/50"
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-4">Before: Scattered Campaigns</h3>
-                  <div className="space-y-3 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <span>Wasted budget on vanity metrics</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <span>No clear roadmap or milestones</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <span>Broken tracking, unclear ROI</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <span>Cookie-cutter execution</span>
+            {/* Paired Before/After Comparison */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="mt-8 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] md:items-start gap-6 md:gap-8 max-w-6xl mx-auto"
+            >
+              {/* BEFORE column */}
+              <div>
+                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-rose-50 text-rose-700 border border-rose-100">
+                  Before
+                </span>
+
+                <div className="mt-4 space-y-4">
+                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Wasted budget on vanity metrics</p>
                     </div>
                   </div>
-                </motion.div>
-                
-                {/* Arrow */}
-                <div className="flex justify-center md:block hidden">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.4 }}
-                    viewport={{ once: true }}
-                  >
-                    <svg className="w-12 h-12 text-primary mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
-                    </svg>
-                  </motion.div>
+                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">No clear roadmap or milestones</p>
+                    </div>
+                  </div>
+                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Broken tracking hides true ROI</p>
+                    </div>
+                  </div>
+                  <div className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Cookie-cutter execution</p>
+                    </div>
+                  </div>
                 </div>
-                
-                {/* After */}
-                <motion.div 
-                  className="bg-green-100/60 dark:bg-green-950/40 rounded-2xl p-8 border border-green-200/50"
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-4">After: Clarity Engine</h3>
-                  <div className="space-y-3 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Clean funnel with clear metrics</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Predictable growth trajectory</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Measurable ROI at every step</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Custom strategy aligned to goals</span>
+              </div>
+
+              {/* VS pillar (desktop) / Fix chip (mobile) */}
+              <div className="relative hidden md:flex items-center justify-center">
+                {/* dotted line */}
+                <div className="h-full border-l border-dotted border-neutral-300" />
+                {/* VS pill */}
+                <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+                  VS
+                </span>
+              </div>
+              <div className="md:hidden flex justify-center">
+                <span className="inline-flex items-center px-2.5 py-1.5 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+                  Fix
+                </span>
+              </div>
+
+              {/* AFTER column */}
+              <div>
+                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                  After
+                </span>
+
+                <div className="mt-4 space-y-4">
+                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Campaigns tied to revenue outcomes</p>
                     </div>
                   </div>
-                </motion.div>
+                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Clear funnel roadmap with milestones</p>
+                    </div>
+                  </div>
+                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Clean tracking that connects ad spend to revenue</p>
+                    </div>
+                  </div>
+                  <div className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
+                      <p className="text-[15px] leading-relaxed">Custom strategy aligned to goals</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 

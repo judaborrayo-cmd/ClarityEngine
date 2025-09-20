@@ -1,0 +1,166 @@
+Prompt for Replit – Replace the Arrow With Paired Comparison
+
+Please replace the current Before/After block (with the purple arrow) with a paired comparison layout:
+
+Goals
+
+Emphasize contrast by aligning each “Before” pain with the specific “After” fix in the same row.
+
+No arrows. Use a small “VS” pill (desktop) or “Fix” chip (mobile) between columns.
+
+Use soft tints: rose for Before, emerald for After.
+
+Keep the headline/subheadline exactly as they are:
+“Imagine doubling your bookings without doubling your ad spend.” / “That’s the growth engine we build for ambitious brands.”
+
+Design
+
+Two columns on desktop; stacked on mobile.
+
+Left column header chip: Before (rose), right column header chip: After (emerald).
+
+Each row is a rounded card with an icon + text. Left uses AlertTriangle, right uses CheckCircle2.
+
+Subtle dotted vertical divider between columns on desktop with a small VS pill centered.
+
+Smooth fade/slide on scroll; quick crossfade when resizing.
+
+No fabricated numbers—if we ever show metrics deltas, they must be real; otherwise omit.
+
+Content Pairs (use these)
+Before ↔ After
+
+Wasted budget on vanity metrics ↔ Campaigns tied to revenue outcomes
+
+No clear roadmap or milestones ↔ Clear funnel roadmap with milestones
+
+Broken tracking hides true ROI ↔ Clean tracking that connects ad spend to revenue
+
+Cookie-cutter execution ↔ Custom strategy aligned to goals
+
+A11y & polish
+
+Keyboard focus rings, semantic headings.
+
+Generous spacing (py-16, gap-6/8), rounded-2xl, soft shadows.
+
+Drop-in React Component (Tailwind + lucide + optional Framer Motion)
+// BeforeAfterPairs.jsx
+import React from "react";
+import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+
+const PAIRS = [
+  {
+    before: "Wasted budget on vanity metrics",
+    after: "Campaigns tied to revenue outcomes",
+  },
+  {
+    before: "No clear roadmap or milestones",
+    after: "Clear funnel roadmap with milestones",
+  },
+  {
+    before: "Broken tracking hides true ROI",
+    after: "Clean tracking that connects ad spend to revenue",
+  },
+  {
+    before: "Cookie-cutter execution",
+    after: "Custom strategy aligned to goals",
+  },
+];
+
+export default function BeforeAfterPairs() {
+  return (
+    <section className="relative py-16">
+      {/* subtle top divider */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Keep your existing headline + subheadline above this component */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mt-8 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] md:items-start gap-6 md:gap-8"
+        >
+          {/* BEFORE column */}
+          <div>
+            <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-rose-50 text-rose-700 border border-rose-100">
+              Before
+            </span>
+
+            <div className="mt-4 space-y-4">
+              {PAIRS.map((p, i) => (
+                <div
+                  key={`before-${i}`}
+                  className="p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
+                    <p className="text-[15px] leading-relaxed">{p.before}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* VS pillar (desktop) / Fix chip (mobile) */}
+          <div className="relative hidden md:flex items-center justify-center">
+            {/* dotted line */}
+            <div className="w-px h-full bg-gradient-to-b from-transparent via-neutral-200 to-transparent" />
+            {/* VS pill */}
+            <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+              VS
+            </span>
+          </div>
+          <div className="md:hidden flex justify-center">
+            <span className="inline-flex items-center px-2.5 py-1.5 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+              Fix
+            </span>
+          </div>
+
+          {/* AFTER column */}
+          <div>
+            <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+              After
+            </span>
+
+            <div className="mt-4 space-y-4">
+              {PAIRS.map((p, i) => (
+                <div
+                  key={`after-${i}`}
+                  className="p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
+                    <p className="text-[15px] leading-relaxed">{p.after}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* bottom divider */}
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+    </section>
+  );
+}
+
+/*
+Usage:
+import BeforeAfterPairs from "@/components/BeforeAfterPairs";
+// Place it directly under your existing headline/subheadline block:
+<BeforeAfterPairs />
+*/
+
+Why this works
+
+It maps pain → fix one-to-one, so the transformation is obvious without guessing what an arrow means.
+
+The VS/Fix chip is subtle and semantic.
+
+The colors and icons reinforce “problem vs solution” without shouting.
