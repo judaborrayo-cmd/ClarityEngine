@@ -19,7 +19,10 @@ import {
   Linkedin, 
   Twitter, 
   Mail,
-  AlertTriangle
+  AlertTriangle,
+  CheckCircle,
+  Zap,
+  Handshake
 } from "lucide-react";
 
 // Progress Bar Component
@@ -729,8 +732,8 @@ export default function HomePage() {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <Target className="mx-auto w-12 h-12 text-blue-600 mb-4"/>
-                <h4 className="font-bold text-lg mb-2 text-foreground">Dream Outcome</h4>
+                <Target className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                <h4 className="font-semibold text-lg mb-2 text-foreground">Dream Outcome</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Predictable growth, full rooms, booked calendars.
                 </p>
@@ -743,10 +746,10 @@ export default function HomePage() {
                 transition={{ duration: 0.4, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <Shield className="mx-auto w-12 h-12 text-green-600 mb-4"/>
-                <h4 className="font-bold text-lg mb-2 text-foreground">Likelihood of Success</h4>
+                <CheckCircle className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                <h4 className="font-semibold text-lg mb-2 text-foreground">Likelihood of Success</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Proven strategies, roadmaps, and $3M+ ad spend managed.
+                  Proven strategies & $3M+ managed ad spend.
                 </p>
               </motion.div>
               
@@ -757,10 +760,10 @@ export default function HomePage() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <DollarSign className="mx-auto w-12 h-12 text-purple-600 mb-4"/>
-                <h4 className="font-bold text-lg mb-2 text-foreground">Speed of Results</h4>
+                <Zap className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                <h4 className="font-semibold text-lg mb-2 text-foreground">Speed</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Funnel audits deliver clarity in as little as 7 days.
+                  Audits deliver clarity in just 7 days.
                 </p>
               </motion.div>
               
@@ -771,10 +774,10 @@ export default function HomePage() {
                 transition={{ duration: 0.4, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <Users className="mx-auto w-12 h-12 text-orange-600 mb-4"/>
-                <h4 className="font-bold text-lg mb-2 text-foreground">Ease for You</h4>
+                <Handshake className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                <h4 className="font-semibold text-lg mb-2 text-foreground">Ease</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  We manage the complexity, you focus on your business.
+                  We manage complexity, you stay focused.
                 </p>
               </motion.div>
             </div>
