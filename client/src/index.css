@@ -204,6 +204,20 @@ html {
   transform: scale(1.02);
 }
 
+/* Logo hover effects - specific for carousel logos */
+.animate-scroll img,
+.animate-scroll svg {
+  transition: transform 300ms ease-in-out;
+  transform-origin: center;
+}
+
+.animate-scroll img:hover,
+.animate-scroll svg:hover {
+  transform: scale(2.5) !important;
+  z-index: 10;
+  position: relative;
+}
+
 /* Brand journey and clarity animations */
 @keyframes path-pulse {
   0%, 100% {
