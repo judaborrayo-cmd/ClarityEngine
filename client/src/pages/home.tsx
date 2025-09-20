@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Rocket, 
   Menu, 
@@ -372,79 +372,100 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* The Problems We Eliminate Section - Interactive Avatar-Based */}
-        <motion.section 
-          className="px-6 py-16 lg:px-8 bg-muted/30"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="mx-auto max-w-6xl">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-2" data-testid="problems-title">
+        {/* The Problems We Eliminate Section - Premium Polish */}
+        <section className="relative py-16 bg-[#fffefd]">
+          {/* Top gradient divider */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+
+          {/* Watermark */}
+          <svg
+            className="pointer-events-none absolute inset-x-0 -top-10 mx-auto opacity-[0.06] w-[720px] h-auto"
+            viewBox="0 0 800 200" aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="ceGrad" x1="0" x2="1">
+                <stop offset="0%" stopColor="#34d399"/>
+                <stop offset="100%" stopColor="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <path d="M20 150 C200 20, 600 280, 780 120" fill="none" stroke="url(#ceGrad)" strokeWidth="6" strokeLinecap="round"/>
+          </svg>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative max-w-6xl mx-auto px-4"
+          >
+            <div className="text-center">
+              <h2 className="text-3xl md:text-[40px] font-bold tracking-tight text-foreground mb-2" data-testid="problems-title">
                 The Problems We Eliminate
               </h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="mt-2 text-sm text-neutral-500">
                 Choose your profile to see the most common issues we solve.
               </p>
             </div>
 
-            {/* Avatar Tabs */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+            {/* Avatar Tabs with Mobile UX */}
+            <div className="mt-8 flex items-stretch gap-3 md:gap-4 justify-center md:flex-wrap md:justify-center
+                            overflow-x-auto md:overflow-visible px-2 -mx-2 md:mx-0 scroll-smooth snap-x snap-mandatory">
               {AVATAR_TABS.map(({ key, icon: Icon }) => {
                 const isActive = selectedAvatar === key;
                 return (
-                  <motion.button
+                  <button
                     key={key}
                     type="button"
                     onClick={() => setSelectedAvatar(key)}
                     aria-pressed={isActive}
                     aria-selected={isActive}
-                    className={`group flex flex-col items-center justify-center px-5 py-3 rounded-2xl border transition-all duration-300
-                      focus:outline-none focus:ring-2 focus:ring-green-300
-                      ${isActive
-                        ? "bg-green-50 border-green-200 shadow-md scale-105"
-                        : "bg-white border-border hover:-translate-y-1 hover:shadow-lg hover:scale-105"}`
-                    }
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                    className={`snap-start min-w-[150px] md:min-w-0 group flex flex-col items-center justify-center
+                                px-5 py-3 rounded-2xl border transition-all duration-300
+                                focus:outline-none focus:ring-2 focus:ring-emerald-300
+                                ${isActive
+                                  ? "bg-gradient-to-b from-emerald-50 to-white border-emerald-200 shadow ring-1 ring-inset ring-emerald-100"
+                                  : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow"}`}
                     data-testid={`avatar-tab-${key.toLowerCase().replace(' ', '-')}`}
                   >
-                    <Icon className={`h-6 w-6 transition-colors duration-300 ${isActive ? "text-green-600" : "text-green-500 group-hover:text-green-600"}`} />
-                    <span className={`mt-2 text-sm font-medium transition-colors duration-300 ${isActive ? "text-green-800" : "text-foreground"}`}>
+                    <Icon className={`h-6 w-6 transition-transform duration-200
+                                      ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
+                    <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
                       {key}
                     </span>
-                  </motion.button>
+                  </button>
                 );
               })}
             </div>
 
-            {/* Problems Grid */}
-            <motion.div 
-              key={selectedAvatar}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              {AVATARS[selectedAvatar].map((problem, idx) => (
-                <motion.div
-                  key={`${selectedAvatar}-${idx}`}
-                  className="p-6 bg-white dark:bg-card rounded-2xl border border-border shadow-sm flex items-start gap-3 hover:shadow-md hover:border-green-100 dark:hover:border-green-800 transition-all duration-300"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: idx * 0.1 }}
-                  whileHover={{ y: -2, scale: 1.02 }}
-                  data-testid={`problem-card-${idx}`}
-                >
-                  <CheckCircle2 className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
-                  <p className="text-[15px] leading-relaxed text-foreground">{problem}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+            {/* Problems Grid with AnimatePresence */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedAvatar}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+              >
+                {AVATARS[selectedAvatar].map((problem, idx) => (
+                  <div
+                    key={`${selectedAvatar}-${idx}`}
+                    className="p-5 md:p-6 rounded-2xl bg-emerald-50/40 border border-emerald-100/70 shadow-sm
+                               hover:shadow-md hover:border-emerald-200 transition-all duration-300
+                               flex items-start gap-3"
+                    data-testid={`problem-card-${idx}`}
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+                    <p className="text-[15px] leading-relaxed text-neutral-800">{problem}</p>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Bottom gradient divider */}
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
+        </section>
 
         {/* Dream Outcome Section */}
         <motion.section 
