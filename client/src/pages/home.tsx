@@ -746,7 +746,7 @@ export default function HomePage() {
                 <Shield className="mx-auto w-12 h-12 text-green-600 mb-4"/>
                 <h4 className="font-bold text-lg mb-2 text-foreground">Likelihood of Success</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Proven strategies & $3M+ managed ad spend.
+                  Proven strategies, roadmaps, and $3M+ ad spend managed.
                 </p>
               </motion.div>
               
@@ -758,9 +758,9 @@ export default function HomePage() {
                 viewport={{ once: true }}
               >
                 <DollarSign className="mx-auto w-12 h-12 text-purple-600 mb-4"/>
-                <h4 className="font-bold text-lg mb-2 text-foreground">Speed</h4>
+                <h4 className="font-bold text-lg mb-2 text-foreground">Speed of Results</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Audits deliver clarity in as little as 7 days.
+                  Funnel audits deliver clarity in as little as 7 days.
                 </p>
               </motion.div>
               
@@ -772,9 +772,9 @@ export default function HomePage() {
                 viewport={{ once: true }}
               >
                 <Users className="mx-auto w-12 h-12 text-orange-600 mb-4"/>
-                <h4 className="font-bold text-lg mb-2 text-foreground">Ease</h4>
+                <h4 className="font-bold text-lg mb-2 text-foreground">Ease for You</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  We manage complexity, you stay focused.
+                  We manage the complexity, you focus on your business.
                 </p>
               </motion.div>
             </div>
@@ -1093,7 +1093,7 @@ export default function HomePage() {
               </div>
               <h2 className="text-3xl font-bold text-card-foreground" data-testid="cta-title">Our mission: Help ambitious brands grow with clarity and measurable ROI.</h2>
               <p className="mt-3 text-muted-foreground max-w-2xl mx-auto" data-testid="cta-description">
-                If you're ready to see where your growth engine is leaking — and how to fix it — book your Growth Clarity Audit today.
+                Ready to see where your growth engine is leaking? Book your Growth Clarity Audit today.
               </p>
               <div className="mt-6 flex justify-center">
                 <Link 
