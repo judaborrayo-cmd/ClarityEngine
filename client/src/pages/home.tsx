@@ -30,6 +30,12 @@ import {
   ShieldCheck
 } from "lucide-react";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
+import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
+import ascendLogo from "@assets/ascend-logo-B_1758463167834.png";
+import microsoftLogo from "@assets/Microsoft-Design_1758463290202.png";
+import denaGamesLogo from "@assets/Dena-Games-Logo_1758463419409.png";
+import estrellaGymnasticsLogo from "@assets/Estrella-Gymnastics-logo_1758464245387.png";
+import capitalGymnasticsLogo from "@assets/capital-gymnastics-logo_1758464403830.png";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -800,6 +806,67 @@ export default function HomePage() {
                   <img 
                     src="/images/client-logos/eft-universe.png" 
                     alt="EFT Universe" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              {/* Second row of logos */}
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={popcornIndianaLogo} 
+                    alt="Popcorn Indiana" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={ascendLogo} 
+                    alt="Ascend" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={microsoftLogo} 
+                    alt="Microsoft" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={denaGamesLogo} 
+                    alt="DeNA Games" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={estrellaGymnasticsLogo} 
+                    alt="Estrella Gymnastics" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={capitalGymnasticsLogo} 
+                    alt="Capital Gymnastics" 
                     className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
                   />
                 </div>
