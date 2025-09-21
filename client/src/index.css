@@ -124,11 +124,22 @@ html {
   transform: scaleX(1); 
 }
 
-/* Respect reduced motion preferences */
+/* Respect reduced motion preferences - allow essential hover feedback while reducing motion */
 @media (prefers-reduced-motion: reduce) {
-  * { 
-    animation: none !important; 
-    transition: none !important; 
+  /* Disable auto-playing animations and transitions */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0ms !important;
+  }
+  
+  /* Allow essential hover feedback for safe properties only */
+  *:hover,
+  *:focus,
+  *:active {
+    transition-property: transform, box-shadow, opacity !important;
+    transition-duration: 1ms !important;
   }
 }
 
