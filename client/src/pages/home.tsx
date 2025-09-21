@@ -461,8 +461,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Avatar Tabs with Mobile UX */}
-            <div className="mt-8 flex items-stretch gap-3 md:gap-4 justify-center md:flex-wrap md:justify-center
+            {/* Avatar Tabs with Mobile UX and Animated Indicator */}
+            <div className="mt-8 relative flex items-stretch gap-3 md:gap-4 justify-center md:flex-wrap md:justify-center
                             overflow-x-auto md:overflow-visible px-2 -mx-2 md:mx-0 scroll-smooth snap-x snap-mandatory">
               {AVATAR_TABS.map(({ key, icon: Icon }) => {
                 const isActive = selectedAvatar === key;
@@ -473,19 +473,28 @@ export default function HomePage() {
                     onClick={() => setSelectedAvatar(key)}
                     aria-pressed={isActive}
                     aria-selected={isActive}
-                    className={`snap-start min-w-[150px] md:min-w-0 group flex flex-col items-center justify-center
+                    className={`relative snap-start min-w-[150px] md:min-w-0 group flex flex-col items-center justify-center
                                 px-5 py-3 rounded-2xl border transition-all duration-300
                                 focus:outline-none focus:ring-2 focus:ring-emerald-300
                                 ${isActive
-                                  ? "bg-gradient-to-b from-emerald-50 to-white border-emerald-200 shadow ring-1 ring-inset ring-emerald-100"
-                                  : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow"}`}
+                                  ? "bg-gradient-to-b from-emerald-50 to-white border-emerald-200 shadow ring-1 ring-inset ring-emerald-100 z-10"
+                                  : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow z-0"}`}
                     data-testid={`avatar-tab-${key.toLowerCase().replace(' ', '-')}`}
                   >
-                    <Icon className={`h-6 w-6 transition-transform duration-200
-                                      ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
-                    <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
-                      {key}
-                    </span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeTabIndicator"
+                        className="absolute inset-0 bg-gradient-to-b from-emerald-50 to-white border border-emerald-200 rounded-2xl shadow ring-1 ring-inset ring-emerald-100"
+                        transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                      />
+                    )}
+                    <div className="relative z-10 flex flex-col items-center justify-center">
+                      <Icon className={`h-6 w-6 transition-transform duration-200
+                                        ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
+                      <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
+                        {key}
+                      </span>
+                    </div>
                   </button>
                 );
               })}
