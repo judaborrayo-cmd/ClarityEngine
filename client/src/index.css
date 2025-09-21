@@ -106,6 +106,32 @@ html {
   animation-duration: 15s; /* 2x faster than normal 30s */
 }
 
+/* Link underline slide animation */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content:"";
+  position:absolute;
+  left:0; bottom:-2px; height:2px; width:100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .25s ease-out;
+}
+.link-underline:hover::after { 
+  transform: scaleX(1); 
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * { 
+    animation: none !important; 
+    transition: none !important; 
+  }
+}
+
 /* Animated expanding/retracting border */
 @keyframes border-expand {
   0% {
