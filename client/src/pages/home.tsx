@@ -614,9 +614,9 @@ export default function HomePage() {
                   ]
                 }
               ].map((row, i) => (
-                <div key={i} className="group grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
+                <div key={i} className="group/pair grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
                   {/* BEFORE card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover:shadow transition flex flex-col">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover/pair:shadow group-hover/pair:-translate-y-0.5 transition-all duration-300 flex flex-col">
                     <div className="flex items-start gap-3 flex-1">
                       <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
                       <p className="text-[15px] leading-relaxed">{row.before}</p>
@@ -626,13 +626,13 @@ export default function HomePage() {
                   {/* SPINE with centered Transform pill */}
                   <div className="relative hidden md:flex items-center justify-center">
                     <div className="absolute h-full w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent" />
-                    <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
+                    <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm group-hover/pair:shadow-md transition-shadow duration-300">
                       Transform
                     </span>
                   </div>
 
                   {/* AFTER card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-green-50 border border-green-100 text-green-900 shadow-sm group-hover:shadow-md transition flex flex-col">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-green-50 border border-green-100 text-green-900 shadow-sm group-hover/pair:shadow-md group-hover/pair:-translate-y-0.5 transition-all duration-300 flex flex-col">
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
                       <div>
