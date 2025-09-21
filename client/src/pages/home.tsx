@@ -530,10 +530,10 @@ export default function HomePage() {
             {/* centered legend row (replaces floating badge) */}
             <div className="mt-3 flex justify-center gap-2 mb-12">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                <Zap className="w-3.5 h-3.5" /> 2–4 weeks to clarity
+                <Zap className="w-3.5 h-3.5" /> Weekly, monthly, quarterly planning
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                <Feather className="w-3.5 h-3.5" /> Low effort
+                <Feather className="w-3.5 h-3.5" /> High clarity
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
                 <ShieldCheck className="w-3.5 h-3.5" /> High confidence
