@@ -470,7 +470,7 @@ export default function HomePage() {
                     onClick={() => setSelectedAvatar(key)}
                     aria-pressed={isActive}
                     aria-selected={isActive}
-                    className={`snap-start min-w-[150px] md:min-w-0 group flex flex-col items-center justify-center
+                    className={`snap-start min-w-[150px] md:min-w-0 group relative isolate overflow-hidden flex flex-col items-center justify-center
                                 px-5 py-3 rounded-2xl border transition-all duration-300
                                 focus:outline-none focus:ring-2 focus:ring-emerald-300
                                 ${isActive
@@ -478,11 +478,21 @@ export default function HomePage() {
                                   : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow"}`}
                     data-testid={`avatar-tab-${key.toLowerCase().replace(' ', '-')}`}
                   >
-                    <Icon className={`h-6 w-6 transition-transform duration-200
-                                      ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
-                    <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
-                      {key}
-                    </span>
+                    {/* light gradient hover (same as Services) */}
+                    {!isActive && (
+                      <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0
+                                       group-hover:opacity-100 transition duration-300
+                                       bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                    )}
+                    
+                    {/* existing icon + label */}
+                    <div className="relative z-10 flex flex-col items-center justify-center">
+                      <Icon className={`h-6 w-6 transition-transform duration-200
+                                        ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
+                      <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
+                        {key}
+                      </span>
+                    </div>
                   </button>
                 );
               })}
@@ -965,59 +975,83 @@ export default function HomePage() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <motion.div 
-                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                className="group relative isolate overflow-hidden text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <Target className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
-                <h4 className="font-semibold text-lg mb-2 text-foreground">Dream Outcome</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Predictable growth, full rooms, booked calendars.
-                </p>
+                {/* light gradient hover */}
+                <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0
+                                 group-hover:opacity-100 transition duration-300
+                                 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                <div className="relative z-10">
+                  <Target className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                  <h4 className="font-semibold text-lg mb-2 text-foreground">Dream Outcome</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Predictable growth, full rooms, booked calendars.
+                  </p>
+                </div>
               </motion.div>
               
               <motion.div 
-                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                className="group relative isolate overflow-hidden text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <CheckCircle className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
-                <h4 className="font-semibold text-lg mb-2 text-foreground">Likelihood of Success</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Proven strategies & $3M+ managed ad spend.
-                </p>
+                {/* light gradient hover */}
+                <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0
+                                 group-hover:opacity-100 transition duration-300
+                                 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                <div className="relative z-10">
+                  <CheckCircle className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                  <h4 className="font-semibold text-lg mb-2 text-foreground">Likelihood of Success</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Proven strategies & $3M+ managed ad spend.
+                  </p>
+                </div>
               </motion.div>
               
               <motion.div 
-                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                className="group relative isolate overflow-hidden text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <Zap className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
-                <h4 className="font-semibold text-lg mb-2 text-foreground">Speed</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Audits deliver clarity in just 7 days.
-                </p>
+                {/* light gradient hover */}
+                <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0
+                                 group-hover:opacity-100 transition duration-300
+                                 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                <div className="relative z-10">
+                  <Zap className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                  <h4 className="font-semibold text-lg mb-2 text-foreground">Speed</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Audits deliver clarity in just 7 days.
+                  </p>
+                </div>
               </motion.div>
               
               <motion.div 
-                className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
+                className="group relative isolate overflow-hidden text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-border hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <Handshake className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
-                <h4 className="font-semibold text-lg mb-2 text-foreground">Ease</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  We manage complexity, you stay focused.
-                </p>
+                {/* light gradient hover */}
+                <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0
+                                 group-hover:opacity-100 transition duration-300
+                                 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                <div className="relative z-10">
+                  <Handshake className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
+                  <h4 className="font-semibold text-lg mb-2 text-foreground">Ease</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    We manage complexity, you stay focused.
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
