@@ -610,13 +610,13 @@ export default function HomePage() {
                         {/* inline chips per row to echo legend */}
                         <div className="mt-3 flex flex-wrap gap-2">
                           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                            <Zap className="w-3.5 h-3.5" /> 2–4 weeks
+                            <Zap className="w-3.5 h-3.5" /> 2-4 week audits
                           </span>
                           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                            <Feather className="w-3.5 h-3.5" /> Low effort
+                            <Feather className="w-3.5 h-3.5" /> High ROI & ROAS focus
                           </span>
                           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                            <ShieldCheck className="w-3.5 h-3.5" /> High confidence
+                            <ShieldCheck className="w-3.5 h-3.5" /> High performance
                           </span>
                         </div>
                       </div>
