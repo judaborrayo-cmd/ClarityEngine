@@ -407,14 +407,14 @@ export default function HomePage() {
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <Link 
                 to="/growth-clarity-audit"
-                className="rounded-2xl px-6 py-3 text-base font-semibold border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-200 inline-block text-center"
+                className="inline-flex items-center justify-center rounded-xl border border-accent px-6 py-3 text-base font-semibold text-accent hover:bg-accent hover:text-accent-foreground shadow-sm transition transform-gpu will-change-transform hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:shadow-sm active:scale-[0.99]"
                 data-testid="hero-cta-audit"
               >
                 Start with a Growth Clarity Audit
               </Link>
               <button 
                 onClick={() => scrollToSection('services')}
-                className="rounded-2xl px-6 py-3 text-base font-semibold text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition transform-gpu will-change-transform hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:shadow-sm active:scale-[0.99]"
                 data-testid="hero-cta-services"
               >
                 See Services
@@ -1355,7 +1355,7 @@ export default function HomePage() {
               <div className="mt-6 flex justify-center">
                 <Link 
                   to="/growth-clarity-audit"
-                  className="rounded-2xl px-8 py-4 text-base font-semibold text-accent-foreground bg-accent hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:scale-105 inline-block"
+                  className="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-4 text-base font-semibold text-accent-foreground shadow-sm transition transform-gpu will-change-transform hover:bg-primary hover:text-primary-foreground hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:shadow-sm active:scale-[0.99]"
                   data-testid="cta-book-audit"
                 >
                   Book Your Growth Clarity Audit
