@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import MotionSection from "@/components/MotionSection";
+import { fadeUp } from "@/components/motionPresets";
+import Card from "@/components/Card";
 import { 
   Rocket, 
   Menu, 
@@ -878,13 +881,9 @@ export default function HomePage() {
 
 
         {/* How We Deliver Section */}
-        <motion.section 
+        <section 
           id="services" 
           className="px-6 py-16 lg:px-8 relative overflow-hidden"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
         >
           {/* Connecting path from previous section */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
@@ -905,20 +904,12 @@ export default function HomePage() {
               <p className="mt-2 text-muted-foreground" data-testid="services-subtitle">Choose your entry point or build a plan across channels.</p>
             </div>
             
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <MotionSection className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
-                  <article 
-                    key={service.title} 
-                    className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md animate-fade-in-up"
-                    style={{ animationDelay: `${index * 150}ms` }}
-                    data-testid={`service-card-${index}`}
-                  >
-                    {/* Hover overlay (no blends) */}
-                    <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
-                    {/* Content */}
-                    <div className="relative z-10 p-6">
+                  <motion.div key={service.title} variants={fadeUp}>
+                    <Card className="p-6" data-testid={`service-card-${index}`}>
                       <div className="flex items-center mb-4">
                         <div className="relative">
                           <IconComponent className="text-2xl text-primary mr-3 transition-all duration-300" />
@@ -933,19 +924,19 @@ export default function HomePage() {
                       <div className="mt-4">
                         <button 
                           onClick={() => scrollToSection('cta')}
-                          className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+                          className="link-underline text-primary font-medium hover:text-primary/80 transition-colors"
                           data-testid={`service-learn-more-${index}`}
                         >
                           Learn more
                         </button>
                       </div>
-                    </div>
-                  </article>
+                    </Card>
+                  </motion.div>
                 );
               })}
-            </div>
+            </MotionSection>
           </div>
-        </motion.section>
+        </section>
 
         {/* Value Equation Section - Hormozi's Four Variables */}
         <motion.section 
@@ -1024,13 +1015,9 @@ export default function HomePage() {
         </motion.section>
 
         {/* Case Studies Section */}
-        <motion.section 
+        <section 
           id="case-studies" 
           className="px-6 py-16 lg:px-8 bg-muted relative overflow-hidden"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
         >
           {/* Connecting path showing transformation */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
@@ -1058,7 +1045,7 @@ export default function HomePage() {
               <div className="mt-4">
                 <Link 
                   to="/case-studies"
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors underline underline-offset-2"
+                  className="link-underline inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
                   data-testid="all-case-studies-link"
                 >
                   View All Case Studies
@@ -1069,7 +1056,7 @@ export default function HomePage() {
               </div>
             </div>
             
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+            <MotionSection className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {caseStudies.map((study, index) => {
                 const IconComponent = study.icon;
                 // Extract specific metrics for each case study
@@ -1084,63 +1071,60 @@ export default function HomePage() {
                   metric = '365 Days/year'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
                 }
                 return (
-                  <article 
-                    key={study.title} 
-                    className="group rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-102 animate-slide-in-left"
-                    style={{ animationDelay: `${index * 200}ms` }}
-                    data-testid={`case-study-card-${index}`}
-                  >
-                    <div className="flex items-start justify-between mb-4 relative">
-                      {/* Mountain peak icon for scaling success */}
-                      <div className="absolute -top-3 -left-3 opacity-20 group-hover:opacity-40 transition-opacity">
-                        <svg className="w-6 h-6 text-primary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22l-9-12z" />
-                        </svg>
+                  <motion.div key={study.title} variants={fadeUp}>
+                    <Card className="p-6" data-testid={`case-study-card-${index}`}>
+                      <div className="flex items-start justify-between mb-4 relative">
+                        {/* Mountain peak icon for scaling success */}
+                        <div className="absolute -top-3 -left-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                          <svg className="w-6 h-6 text-primary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22l-9-12z" />
+                          </svg>
+                        </div>
+                        
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 mb-3" data-testid={`case-study-title-${index}`}>
+                            {study.title}
+                          </h3>
+                          
+                          {/* Intent → Obstacle → Resolution Story */}
+                          <div className="space-y-2 mb-4 text-sm">
+                            <p className="text-muted-foreground">
+                              <span className="font-medium text-blue-600">Intent:</span> {study.intent}
+                            </p>
+                            <p className="text-muted-foreground">
+                              <span className="font-medium text-orange-600">Obstacle:</span> {study.obstacle}
+                            </p>
+                            <p className="text-muted-foreground">
+                              <span className="font-medium text-green-600">Resolution:</span> {study.resolution}
+                            </p>
+                          </div>
+                          
+                          <div className="mt-3 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
+                            Impact: {study.stat}
+                          </div>
+                        </div>
+                        <div className="relative ml-4">
+                          <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                          <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
+                        </div>
                       </div>
                       
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 mb-3" data-testid={`case-study-title-${index}`}>
-                          {study.title}
-                        </h3>
-                        
-                        {/* Intent → Obstacle → Resolution Story */}
-                        <div className="space-y-2 mb-4 text-sm">
-                          <p className="text-muted-foreground">
-                            <span className="font-medium text-blue-600">Intent:</span> {study.intent}
-                          </p>
-                          <p className="text-muted-foreground">
-                            <span className="font-medium text-orange-600">Obstacle:</span> {study.obstacle}
-                          </p>
-                          <p className="text-muted-foreground">
-                            <span className="font-medium text-green-600">Resolution:</span> {study.resolution}
-                          </p>
-                        </div>
-                        
-                        <div className="mt-3 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
-                          Impact: {study.stat}
-                        </div>
+                      <div className="mt-4">
+                        <Link 
+                          to={`/case-study/${study.id}`}
+                          className="link-underline text-primary font-medium hover:text-primary/80 transition-colors"
+                          data-testid={`case-study-link-${index}`}
+                        >
+                          Read full case study
+                        </Link>
                       </div>
-                      <div className="relative ml-4">
-                        <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                    </div>
-                    
-                    <div className="mt-4">
-                      <Link 
-                        to={`/case-study/${study.id}`}
-                        className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
-                        data-testid={`case-study-link-${index}`}
-                      >
-                        Read full case study
-                      </Link>
-                    </div>
-                  </article>
+                    </Card>
+                  </motion.div>
                 );
               })}
-            </div>
+            </MotionSection>
           </div>
-        </motion.section>
+        </section>
 
         {/* Testimonials Section */}
         <section className="px-6 py-16 lg:px-8">
@@ -1150,18 +1134,14 @@ export default function HomePage() {
               <p className="mt-2 text-muted-foreground">What industry professionals say about working with me</p>
             </div>
             
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <MotionSection className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial, index) => {
                 return (
-                  <div 
-                    key={index} 
-                    className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} hover:from-primary hover:to-accent shadow-xl hover:shadow-2xl hover:shadow-primary/25 overflow-hidden hover:scale-110 transition-all duration-500 animate-float-up hover:rotate-1`}
-                    style={{ 
-                      animationDelay: `${index * 250}ms`,
-                      animationDuration: `${3 + (index % 3)}s`
-                    }}
-                    data-testid={`testimonial-card-${index}`}
-                  >
+                  <motion.div key={index} variants={fadeUp}>
+                    <div 
+                      className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} hover:from-primary hover:to-accent shadow-xl hover:shadow-2xl hover:shadow-primary/25 overflow-hidden hover:scale-110 transition-all duration-500 hover:rotate-1 transform-gpu will-change-transform`}
+                      data-testid={`testimonial-card-${index}`}
+                    >
                     {/* Animated Decorative circles with glow effect */}
                     <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full animate-pulse group-hover:bg-white group-hover:shadow-lg group-hover:shadow-white/50 transition-all duration-300"></div>
                     <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full animate-ping group-hover:bg-white group-hover:shadow-lg group-hover:shadow-white/50 transition-all duration-300" style={{ animationDelay: '1s' }}></div>
@@ -1230,10 +1210,11 @@ export default function HomePage() {
                         - {testimonial.author}
                       </figcaption>
                     </div>
-                  </div>
+                    </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </MotionSection>
             
             <div className="text-center mt-12">
               <p className="text-sm text-muted-foreground">linkedin.com/in/judaborrayo/</p>
@@ -1249,52 +1230,49 @@ export default function HomePage() {
               <p className="text-muted-foreground">Recognized expertise in performance marketing and growth strategy</p>
             </div>
             
-            <div className="space-y-6">
-              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
-                {/* Hover overlay (no blends) */}
-                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
-                {/* Content */}
-                <div className="relative z-10 flex items-center gap-4 p-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
-                    <Shield className="w-6 h-6 text-primary transition-colors duration-300" />
+            <MotionSection className="space-y-6">
+              <motion.div variants={fadeUp}>
+                <Card className="p-4 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                      <Shield className="w-6 h-6 text-primary transition-colors duration-300" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold text-foreground transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
+                      <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-foreground transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
-                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
-                  </div>
-                </div>
-              </div>
+                </Card>
+              </motion.div>
               
-              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
-                {/* Hover overlay (no blends) */}
-                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
-                {/* Content */}
-                <div className="relative z-10 flex items-center gap-4 p-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
-                    <Target className="w-6 h-6 text-primary transition-colors duration-300" />
+              <motion.div variants={fadeUp}>
+                <Card className="p-4 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                      <Target className="w-6 h-6 text-primary transition-colors duration-300" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
+                      <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
-                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
-                  </div>
-                </div>
-              </div>
+                </Card>
+              </motion.div>
               
-              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
-                {/* Hover overlay (no blends) */}
-                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
-                {/* Content */}
-                <div className="relative z-10 flex items-center gap-4 p-4">
-                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
-                    <Users className="w-6 h-6 text-primary transition-colors duration-300" />
+              <motion.div variants={fadeUp}>
+                <Card className="p-4 cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                      <Users className="w-6 h-6 text-primary transition-colors duration-300" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
+                      <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
-                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </Card>
+              </motion.div>
+            </MotionSection>
           </div>
         </section>
 
