@@ -523,99 +523,107 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6" data-testid="dream-outcome-title">
               Imagine doubling your bookings without doubling your ad spend.
             </h2>
-            <div className="flex items-center justify-center gap-3 mb-12">
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                That's the growth engine we build for ambitious brands.
-              </p>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-white/70 border border-emerald-200 text-emerald-800 hover:bg-white hover:border-emerald-300 hover:shadow-sm transition-all duration-300">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                High confidence
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-3">
+              That's the growth engine we build for ambitious brands.
+            </p>
+            
+            {/* centered legend row (replaces floating badge) */}
+            <div className="mt-3 flex justify-center gap-2 mb-12">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                <Zap className="w-3.5 h-3.5" /> 2–4 weeks to clarity
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                <Feather className="w-3.5 h-3.5" /> Low effort
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                <ShieldCheck className="w-3.5 h-3.5" /> High confidence
               </span>
             </div>
             
             {/* Top hairline divider */}
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
 
-            {/* Paired Transformation Layout */}
+            {/* column headers */}
+            <div className="mt-8 hidden md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-end md:gap-6">
+              <div className="flex justify-start">
+                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full border bg-rose-50 text-rose-700 border-rose-100 shadow-sm">
+                  Before
+                </span>
+              </div>
+              <div />
+              <div className="flex justify-end">
+                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full border bg-emerald-50 text-emerald-700 border-emerald-100 shadow-sm">
+                  After
+                </span>
+              </div>
+            </div>
+
+            {/* paired rows */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="mt-8 space-y-5 max-w-6xl mx-auto"
+              className="mt-4 space-y-5"
             >
               {[
                 {
                   before: "Wasted budget on vanity metrics",
                   after: "Campaigns tied to revenue outcomes",
-                  chips: [
-                    { icon: Zap, label: "2-4 weeks to clarity" },
-                    { icon: Feather, label: "Low effort" }
-                  ]
                 },
                 {
                   before: "No clear roadmap or milestones",
                   after: "Clear funnel roadmap with milestones",
-                  chips: [
-                    { icon: Zap, label: "Weekly, Monthly, Quarterly Plans" },
-                    { icon: Feather, label: "Low–Med effort" }
-                  ]
                 },
                 {
                   before: "Broken tracking hides true ROI",
                   after: "Clean tracking that connects ad spend to revenue",
-                  chips: [
-                    { icon: Zap, label: "Within 1 sprint" },
-                    { icon: Feather, label: "One-time setup" }
-                  ]
                 },
                 {
                   before: "Cookie-cutter execution",
                   after: "Custom strategy aligned to goals",
-                  chips: [
-                    { icon: Zap, label: "Fast iteration" },
-                    { icon: Feather, label: "Low effort" }
-                  ]
                 }
               ].map((row, i) => (
-                <div key={i} className="transformation-row group grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-6 items-stretch hover:bg-white/30 transition-all duration-300 rounded-3xl p-2 -m-2">
-                  {/* BEFORE */}
-                  <div className="before-card p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-md hover:shadow-xl hover:border-rose-200 hover:bg-rose-100/70 transition-all duration-300">
+                <div key={i} className="group grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
+                  {/* BEFORE card */}
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover:shadow transition">
                     <div className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5 hover:text-rose-600 transition-colors duration-300" />
+                      <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
                       <p className="text-[15px] leading-relaxed">{row.before}</p>
                     </div>
                   </div>
 
-                  {/* TRANSFORMATION SPINE */}
-                  <div className="relative flex items-center justify-center">
-                    {/* vertical gradient line on desktop */}
-                    <div className="hidden md:block absolute h-full w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent group-hover:via-neutral-300 transition-colors duration-300" />
-                    <span className="transform-pill md:absolute md:top-1/2 md:-translate-y-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm group-hover:shadow-md group-hover:border-neutral-300 group-hover:bg-neutral-50 transition-all duration-300">
+                  {/* SPINE with centered Transform pill */}
+                  <div className="relative hidden md:flex items-center justify-center">
+                    <div className="absolute h-full w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent" />
+                    <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
                       Transform
                     </span>
                   </div>
 
-                  {/* AFTER */}
-                  <div className="after-card p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-md hover:shadow-xl hover:border-emerald-200 hover:bg-emerald-100/70 transition-all duration-300">
+                  {/* AFTER card */}
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm group-hover:shadow-md transition">
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5 hover:text-emerald-700 transition-colors duration-300" />
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
                       <div>
                         <p className="text-[15px] leading-relaxed">{row.after}</p>
-                        {/* Hormozi Value Chips */}
+                        {/* inline chips per row to echo legend */}
                         <div className="mt-3 flex flex-wrap gap-2">
-                          {row.chips.map((chip, chipIdx) => (
-                            <span key={chipIdx} className="value-chip inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-white/70 border border-emerald-200 text-emerald-800 hover:bg-white hover:border-emerald-300 hover:shadow-sm transition-all duration-300">
-                              <chip.icon className="w-3.5 h-3.5" />
-                              {chip.label}
-                            </span>
-                          ))}
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                            <Zap className="w-3.5 h-3.5" /> 2–4 weeks
+                          </span>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                            <Feather className="w-3.5 h-3.5" /> Low effort
+                          </span>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                            <ShieldCheck className="w-3.5 h-3.5" /> High confidence
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* mobile "Transform" pill between cards */}
+                  {/* mobile Transform pill between stacked cards */}
                   <div className="md:hidden flex justify-center -mt-2">
                     <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
                       Transform
