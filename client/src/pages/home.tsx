@@ -552,7 +552,7 @@ export default function HomePage() {
                   before: "No clear roadmap or milestones",
                   after: "Clear funnel roadmap with milestones",
                   chips: [
-                    { icon: Zap, label: "Week 1 plan" },
+                    { icon: Zap, label: "Weekly, Monthly, Quarterly Plans" },
                     { icon: Feather, label: "Low–Med effort" },
                     { icon: ShieldCheck, label: "High confidence" }
                   ]
