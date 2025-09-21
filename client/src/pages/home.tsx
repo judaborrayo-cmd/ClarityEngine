@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import MotionSection from "@/components/MotionSection";
-import { fadeUp } from "@/components/motionPresets";
-import Card from "@/components/Card";
 import { 
   Rocket, 
   Menu, 
@@ -410,14 +407,14 @@ export default function HomePage() {
             <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
               <Link 
                 to="/growth-clarity-audit"
-                className="inline-flex items-center justify-center rounded-xl border border-accent px-6 py-3 text-base font-semibold text-accent hover:bg-accent hover:text-accent-foreground shadow-sm transition transform-gpu will-change-transform hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:shadow-sm active:scale-[0.99]"
+                className="rounded-2xl px-6 py-3 text-base font-semibold border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-200 inline-block text-center"
                 data-testid="hero-cta-audit"
               >
                 Start with a Growth Clarity Audit
               </Link>
               <button 
                 onClick={() => scrollToSection('services')}
-                className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition transform-gpu will-change-transform hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:shadow-sm active:scale-[0.99]"
+                className="rounded-2xl px-6 py-3 text-base font-semibold text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
                 data-testid="hero-cta-services"
               >
                 See Services
@@ -461,8 +458,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Avatar Tabs with Mobile UX and Animated Indicator */}
-            <div className="mt-8 relative flex items-stretch gap-3 md:gap-4 justify-center md:flex-wrap md:justify-center
+            {/* Avatar Tabs with Mobile UX */}
+            <div className="mt-8 flex items-stretch gap-3 md:gap-4 justify-center md:flex-wrap md:justify-center
                             overflow-x-auto md:overflow-visible px-2 -mx-2 md:mx-0 scroll-smooth snap-x snap-mandatory">
               {AVATAR_TABS.map(({ key, icon: Icon }) => {
                 const isActive = selectedAvatar === key;
@@ -473,28 +470,19 @@ export default function HomePage() {
                     onClick={() => setSelectedAvatar(key)}
                     aria-pressed={isActive}
                     aria-selected={isActive}
-                    className={`relative snap-start min-w-[150px] md:min-w-0 group flex flex-col items-center justify-center
+                    className={`snap-start min-w-[150px] md:min-w-0 group flex flex-col items-center justify-center
                                 px-5 py-3 rounded-2xl border transition-all duration-300
                                 focus:outline-none focus:ring-2 focus:ring-emerald-300
                                 ${isActive
-                                  ? "bg-gradient-to-b from-emerald-50 to-white border-emerald-200 shadow ring-1 ring-inset ring-emerald-100 z-10"
-                                  : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow z-0"}`}
+                                  ? "bg-gradient-to-b from-emerald-50 to-white border-emerald-200 shadow ring-1 ring-inset ring-emerald-100"
+                                  : "bg-white border-neutral-200 hover:-translate-y-0.5 hover:shadow"}`}
                     data-testid={`avatar-tab-${key.toLowerCase().replace(' ', '-')}`}
                   >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTabIndicator"
-                        className="absolute inset-0 bg-gradient-to-b from-emerald-50 to-white border border-emerald-200 rounded-2xl shadow ring-1 ring-inset ring-emerald-100"
-                        transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
-                      />
-                    )}
-                    <div className="relative z-10 flex flex-col items-center justify-center">
-                      <Icon className={`h-6 w-6 transition-transform duration-200
-                                        ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
-                      <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
-                        {key}
-                      </span>
-                    </div>
+                    <Icon className={`h-6 w-6 transition-transform duration-200
+                                      ${isActive ? "text-emerald-600 scale-105" : "text-emerald-500 group-hover:text-emerald-600"}`} />
+                    <span className={`mt-2 text-sm font-medium ${isActive ? "text-emerald-800" : "text-neutral-700"}`}>
+                      {key}
+                    </span>
                   </button>
                 );
               })}
@@ -623,9 +611,9 @@ export default function HomePage() {
                   ]
                 }
               ].map((row, i) => (
-                <div key={i} className="group/pair grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
+                <div key={i} className="group grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
                   {/* BEFORE card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover/pair:shadow group-hover/pair:-translate-y-0.5 transition-all duration-300 flex flex-col">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover:shadow transition flex flex-col">
                     <div className="flex items-start gap-3 flex-1">
                       <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
                       <p className="text-[15px] leading-relaxed">{row.before}</p>
@@ -635,13 +623,13 @@ export default function HomePage() {
                   {/* SPINE with centered Transform pill */}
                   <div className="relative hidden md:flex items-center justify-center">
                     <div className="absolute h-full w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent" />
-                    <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm group-hover/pair:shadow-md transition-shadow duration-300">
+                    <span className="absolute -translate-y-1/2 top-1/2 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-white border border-neutral-200 text-neutral-600 shadow-sm">
                       Transform
                     </span>
                   </div>
 
                   {/* AFTER card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-green-50 border border-green-100 text-green-900 shadow-sm group-hover/pair:shadow-md group-hover/pair:-translate-y-0.5 transition-all duration-300 flex flex-col">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-green-50 border border-green-100 text-green-900 shadow-sm group-hover:shadow-md transition flex flex-col">
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
                       <div>
@@ -890,9 +878,13 @@ export default function HomePage() {
 
 
         {/* How We Deliver Section */}
-        <section 
+        <motion.section 
           id="services" 
           className="px-6 py-16 lg:px-8 relative overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
           {/* Connecting path from previous section */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
@@ -913,12 +905,20 @@ export default function HomePage() {
               <p className="mt-2 text-muted-foreground" data-testid="services-subtitle">Choose your entry point or build a plan across channels.</p>
             </div>
             
-            <MotionSection className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
-                  <motion.div key={service.title} variants={fadeUp}>
-                    <Card className="p-6" data-testid={`service-card-${index}`}>
+                  <article 
+                    key={service.title} 
+                    className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md animate-fade-in-up"
+                    style={{ animationDelay: `${index * 150}ms` }}
+                    data-testid={`service-card-${index}`}
+                  >
+                    {/* Hover overlay (no blends) */}
+                    <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                    {/* Content */}
+                    <div className="relative z-10 p-6">
                       <div className="flex items-center mb-4">
                         <div className="relative">
                           <IconComponent className="text-2xl text-primary mr-3 transition-all duration-300" />
@@ -933,19 +933,19 @@ export default function HomePage() {
                       <div className="mt-4">
                         <button 
                           onClick={() => scrollToSection('cta')}
-                          className="link-underline text-primary font-medium hover:text-primary/80 transition-colors"
+                          className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
                           data-testid={`service-learn-more-${index}`}
                         >
                           Learn more
                         </button>
                       </div>
-                    </Card>
-                  </motion.div>
+                    </div>
+                  </article>
                 );
               })}
-            </MotionSection>
+            </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Value Equation Section - Hormozi's Four Variables */}
         <motion.section 
@@ -1024,9 +1024,13 @@ export default function HomePage() {
         </motion.section>
 
         {/* Case Studies Section */}
-        <section 
+        <motion.section 
           id="case-studies" 
           className="px-6 py-16 lg:px-8 bg-muted relative overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
           {/* Connecting path showing transformation */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
@@ -1054,7 +1058,7 @@ export default function HomePage() {
               <div className="mt-4">
                 <Link 
                   to="/case-studies"
-                  className="link-underline inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors"
+                  className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors underline underline-offset-2"
                   data-testid="all-case-studies-link"
                 >
                   View All Case Studies
@@ -1065,7 +1069,7 @@ export default function HomePage() {
               </div>
             </div>
             
-            <MotionSection className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {caseStudies.map((study, index) => {
                 const IconComponent = study.icon;
                 // Extract specific metrics for each case study
@@ -1080,60 +1084,63 @@ export default function HomePage() {
                   metric = '365 Days/year'; label = 'Evergreen Leads & Sales: 365 Days a Year'; progressValue = 100;
                 }
                 return (
-                  <motion.div key={study.title} variants={fadeUp}>
-                    <Card className="p-6" data-testid={`case-study-card-${index}`}>
-                      <div className="flex items-start justify-between mb-4 relative">
-                        {/* Mountain peak icon for scaling success */}
-                        <div className="absolute -top-3 -left-3 opacity-20 group-hover:opacity-40 transition-opacity">
-                          <svg className="w-6 h-6 text-primary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22l-9-12z" />
-                          </svg>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 mb-3" data-testid={`case-study-title-${index}`}>
-                            {study.title}
-                          </h3>
-                          
-                          {/* Intent → Obstacle → Resolution Story */}
-                          <div className="space-y-2 mb-4 text-sm">
-                            <p className="text-muted-foreground">
-                              <span className="font-medium text-blue-600">Intent:</span> {study.intent}
-                            </p>
-                            <p className="text-muted-foreground">
-                              <span className="font-medium text-orange-600">Obstacle:</span> {study.obstacle}
-                            </p>
-                            <p className="text-muted-foreground">
-                              <span className="font-medium text-green-600">Resolution:</span> {study.resolution}
-                            </p>
-                          </div>
-                          
-                          <div className="mt-3 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
-                            Impact: {study.stat}
-                          </div>
-                        </div>
-                        <div className="relative ml-4">
-                          <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                          <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
-                        </div>
+                  <article 
+                    key={study.title} 
+                    className="group rounded-2xl border border-border p-6 bg-card shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-102 animate-slide-in-left"
+                    style={{ animationDelay: `${index * 200}ms` }}
+                    data-testid={`case-study-card-${index}`}
+                  >
+                    <div className="flex items-start justify-between mb-4 relative">
+                      {/* Mountain peak icon for scaling success */}
+                      <div className="absolute -top-3 -left-3 opacity-20 group-hover:opacity-40 transition-opacity">
+                        <svg className="w-6 h-6 text-primary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22l-9-12z" />
+                        </svg>
                       </div>
                       
-                      <div className="mt-4">
-                        <Link 
-                          to={`/case-study/${study.id}`}
-                          className="link-underline text-primary font-medium hover:text-primary/80 transition-colors"
-                          data-testid={`case-study-link-${index}`}
-                        >
-                          Read full case study
-                        </Link>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 mb-3" data-testid={`case-study-title-${index}`}>
+                          {study.title}
+                        </h3>
+                        
+                        {/* Intent → Obstacle → Resolution Story */}
+                        <div className="space-y-2 mb-4 text-sm">
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-blue-600">Intent:</span> {study.intent}
+                          </p>
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-orange-600">Obstacle:</span> {study.obstacle}
+                          </p>
+                          <p className="text-muted-foreground">
+                            <span className="font-medium text-green-600">Resolution:</span> {study.resolution}
+                          </p>
+                        </div>
+                        
+                        <div className="mt-3 text-primary font-bold" data-testid={`case-study-stat-${index}`}>
+                          Impact: {study.stat}
+                        </div>
                       </div>
-                    </Card>
-                  </motion.div>
+                      <div className="relative ml-4">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    
+                    <div className="mt-4">
+                      <Link 
+                        to={`/case-study/${study.id}`}
+                        className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+                        data-testid={`case-study-link-${index}`}
+                      >
+                        Read full case study
+                      </Link>
+                    </div>
+                  </article>
                 );
               })}
-            </MotionSection>
+            </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Testimonials Section */}
         <section className="px-6 py-16 lg:px-8">
@@ -1143,14 +1150,18 @@ export default function HomePage() {
               <p className="mt-2 text-muted-foreground">What industry professionals say about working with me</p>
             </div>
             
-            <MotionSection className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial, index) => {
                 return (
-                  <motion.div key={index} variants={fadeUp}>
-                    <div 
-                      className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} hover:from-primary hover:to-accent shadow-xl hover:shadow-2xl hover:shadow-primary/25 overflow-hidden hover:scale-110 transition-all duration-500 hover:rotate-1 transform-gpu will-change-transform`}
-                      data-testid={`testimonial-card-${index}`}
-                    >
+                  <div 
+                    key={index} 
+                    className={`group relative rounded-3xl p-8 text-white bg-gradient-to-br ${testimonial.gradient} hover:from-primary hover:to-accent shadow-xl hover:shadow-2xl hover:shadow-primary/25 overflow-hidden hover:scale-110 transition-all duration-500 animate-float-up hover:rotate-1`}
+                    style={{ 
+                      animationDelay: `${index * 250}ms`,
+                      animationDuration: `${3 + (index % 3)}s`
+                    }}
+                    data-testid={`testimonial-card-${index}`}
+                  >
                     {/* Animated Decorative circles with glow effect */}
                     <div className="absolute -top-4 -left-4 w-8 h-8 bg-white opacity-30 rounded-full animate-pulse group-hover:bg-white group-hover:shadow-lg group-hover:shadow-white/50 transition-all duration-300"></div>
                     <div className="absolute -top-2 -left-2 w-4 h-4 bg-white opacity-50 rounded-full animate-ping group-hover:bg-white group-hover:shadow-lg group-hover:shadow-white/50 transition-all duration-300" style={{ animationDelay: '1s' }}></div>
@@ -1219,11 +1230,10 @@ export default function HomePage() {
                         - {testimonial.author}
                       </figcaption>
                     </div>
-                    </div>
-                  </motion.div>
+                  </div>
                 );
               })}
-            </MotionSection>
+            </div>
             
             <div className="text-center mt-12">
               <p className="text-sm text-muted-foreground">linkedin.com/in/judaborrayo/</p>
@@ -1239,49 +1249,52 @@ export default function HomePage() {
               <p className="text-muted-foreground">Recognized expertise in performance marketing and growth strategy</p>
             </div>
             
-            <MotionSection className="space-y-6">
-              <motion.div variants={fadeUp}>
-                <Card className="p-4 cursor-pointer">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
-                      <Shield className="w-6 h-6 text-primary transition-colors duration-300" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-foreground transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
-                      <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
-                    </div>
+            <div className="space-y-6">
+              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
+                {/* Hover overlay (no blends) */}
+                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-4 p-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                    <Shield className="w-6 h-6 text-primary transition-colors duration-300" />
                   </div>
-                </Card>
-              </motion.div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
+                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                  </div>
+                </div>
+              </div>
               
-              <motion.div variants={fadeUp}>
-                <Card className="p-4 cursor-pointer">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
-                      <Target className="w-6 h-6 text-primary transition-colors duration-300" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
-                      <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
-                    </div>
+              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
+                {/* Hover overlay (no blends) */}
+                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-4 p-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                    <Target className="w-6 h-6 text-primary transition-colors duration-300" />
                   </div>
-                </Card>
-              </motion.div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
+                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                  </div>
+                </div>
+              </div>
               
-              <motion.div variants={fadeUp}>
-                <Card className="p-4 cursor-pointer">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
-                      <Users className="w-6 h-6 text-primary transition-colors duration-300" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
-                      <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
-                    </div>
+              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
+                {/* Hover overlay (no blends) */}
+                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-4 p-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                    <Users className="w-6 h-6 text-primary transition-colors duration-300" />
                   </div>
-                </Card>
-              </motion.div>
-            </MotionSection>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
+                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1342,7 +1355,7 @@ export default function HomePage() {
               <div className="mt-6 flex justify-center">
                 <Link 
                   to="/growth-clarity-audit"
-                  className="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-4 text-base font-semibold text-accent-foreground shadow-sm transition transform-gpu will-change-transform hover:bg-primary hover:text-primary-foreground hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:shadow-sm active:scale-[0.99]"
+                  className="rounded-2xl px-8 py-4 text-base font-semibold text-accent-foreground bg-accent hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:scale-105 inline-block"
                   data-testid="cta-book-audit"
                 >
                   Book Your Growth Clarity Audit
