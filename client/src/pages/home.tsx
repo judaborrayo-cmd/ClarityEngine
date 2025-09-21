@@ -586,8 +586,8 @@ export default function HomePage() {
               ].map((row, i) => (
                 <div key={i} className="group grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
                   {/* BEFORE card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover:shadow transition">
-                    <div className="flex items-start gap-3">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-rose-50 border border-rose-100 text-rose-800 shadow-sm group-hover:shadow transition flex flex-col">
+                    <div className="flex items-start gap-3 flex-1">
                       <AlertTriangle className="w-5 h-5 text-rose-500 mt-0.5" />
                       <p className="text-[15px] leading-relaxed">{row.before}</p>
                     </div>
@@ -602,7 +602,7 @@ export default function HomePage() {
                   </div>
 
                   {/* AFTER card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm group-hover:shadow-md transition">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm group-hover:shadow-md transition flex flex-col">
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
                       <div>
