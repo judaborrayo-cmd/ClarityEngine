@@ -368,9 +368,9 @@ export default function HomePage() {
             </svg>
             
             {/* Clarity illumination orbs */}
-            <div className="absolute top-16 left-16 w-16 h-16 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full animate-pulse backdrop-blur-sm shadow-lg shadow-primary/20"></div>
-            <div className="absolute top-32 right-20 w-12 h-12 bg-gradient-to-r from-accent/15 to-primary/15 rounded-full animate-bounce backdrop-blur-sm shadow-lg shadow-accent/20" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
-            <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full animate-ping backdrop-blur-sm" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-16 left-16 w-16 h-16 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full animate-pulse shadow-lg shadow-primary/20"></div>
+            <div className="absolute top-32 right-20 w-12 h-12 bg-gradient-to-r from-accent/15 to-primary/15 rounded-full animate-bounce shadow-lg shadow-accent/20" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
+            <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
             
             {/* Lightning bolt for breakthrough moments */}
             <div className="absolute top-20 right-32 opacity-10">
@@ -501,7 +501,7 @@ export default function HomePage() {
                 {AVATARS[selectedAvatar].map((problem, idx) => (
                   <div
                     key={`${selectedAvatar}-${idx}`}
-                    className="p-5 md:p-6 rounded-2xl bg-emerald-50/40 border border-emerald-100/70 shadow-sm
+                    className="p-5 md:p-6 rounded-2xl bg-neutral-50/40 border border-neutral-100/70 shadow-sm
                                hover:shadow-md hover:border-emerald-200 transition-all duration-300
                                flex items-start gap-3"
                     data-testid={`problem-card-${idx}`}
@@ -559,7 +559,7 @@ export default function HomePage() {
               </div>
               <div />
               <div className="flex justify-end">
-                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full border bg-emerald-50 text-emerald-700 border-emerald-100 shadow-sm">
+                <span className="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full border bg-green-50 text-green-700 border-green-100 shadow-sm">
                   After
                 </span>
               </div>
@@ -629,7 +629,7 @@ export default function HomePage() {
                   </div>
 
                   {/* AFTER card */}
-                  <div className="h-full p-5 md:p-6 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-900 shadow-sm group-hover:shadow-md transition flex flex-col">
+                  <div className="h-full p-5 md:p-6 rounded-2xl bg-green-50 border border-green-100 text-green-900 shadow-sm group-hover:shadow-md transition flex flex-col">
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-0.5" />
                       <div>
@@ -691,7 +691,7 @@ export default function HomePage() {
               className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
             >
               {/* Client Logo Cards */}
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/steelfit.png" 
@@ -701,7 +701,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={amaWaterwaysLogo} 
@@ -711,7 +711,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/bolay.png" 
@@ -721,7 +721,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/shani-darden.png" 
@@ -731,7 +731,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/cutera.png" 
@@ -741,7 +741,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/mandali.png" 
@@ -751,7 +751,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/core40.png" 
@@ -761,7 +761,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/motivating-masses.png" 
@@ -771,7 +771,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/magaya.png" 
@@ -781,7 +781,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/columbus-travel.png" 
@@ -791,7 +791,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/mix-telematics.png" 
@@ -801,7 +801,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/eft-universe.png" 
@@ -812,7 +812,7 @@ export default function HomePage() {
               </div>
 
               {/* Second row of logos */}
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={popcornIndianaLogo} 
@@ -822,7 +822,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={ascendLogo} 
@@ -832,7 +832,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={microsoftLogo} 
@@ -842,7 +842,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={denaGamesLogo} 
@@ -852,7 +852,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={estrellaGymnasticsLogo} 
@@ -862,7 +862,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={capitalGymnasticsLogo} 
@@ -911,30 +911,34 @@ export default function HomePage() {
                 return (
                   <article 
                     key={service.title} 
-                    className="group rounded-2xl border border-border p-6 shadow-sm hover:shadow-xl transition-all duration-500 bg-card hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:border-primary/50 hover:shadow-2xl hover:shadow-blue-500/25 animate-fade-in-up"
+                    className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md animate-fade-in-up"
                     style={{ animationDelay: `${index * 150}ms` }}
                     data-testid={`service-card-${index}`}
                   >
-                    <div className="flex items-center mb-4">
-                      <div className="relative">
-                        <div className="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <IconComponent className="relative text-2xl text-primary group-hover:text-white mr-3 group-hover:scale-110 transition-all duration-300" />
+                    {/* Hover overlay (no blends) */}
+                    <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+                    {/* Content */}
+                    <div className="relative z-10 p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="relative">
+                          <IconComponent className="text-2xl text-primary mr-3 transition-all duration-300" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-card-foreground transition-colors duration-300" data-testid={`service-title-${index}`}>
+                          {service.title}
+                        </h3>
                       </div>
-                      <h3 className="text-xl font-semibold text-card-foreground group-hover:text-white transition-colors duration-300" data-testid={`service-title-${index}`}>
-                        {service.title}
-                      </h3>
-                    </div>
-                    <p className="text-muted-foreground group-hover:text-white/90 transition-colors duration-300" data-testid={`service-description-${index}`}>
-                      {service.description}
-                    </p>
-                    <div className="mt-4">
-                      <button 
-                        onClick={() => scrollToSection('cta')}
-                        className="text-primary group-hover:text-white font-medium underline underline-offset-2 hover:text-primary/80 group-hover:hover:text-white/80 transition-colors"
-                        data-testid={`service-learn-more-${index}`}
-                      >
-                        Learn more
-                      </button>
+                      <p className="text-muted-foreground transition-colors duration-300" data-testid={`service-description-${index}`}>
+                        {service.description}
+                      </p>
+                      <div className="mt-4">
+                        <button 
+                          onClick={() => scrollToSection('cta')}
+                          className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors"
+                          data-testid={`service-learn-more-${index}`}
+                        >
+                          Learn more
+                        </button>
+                      </div>
                     </div>
                   </article>
                 );
