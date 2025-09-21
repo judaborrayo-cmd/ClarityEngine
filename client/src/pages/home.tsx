@@ -523,9 +523,15 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6" data-testid="dream-outcome-title">
               Imagine doubling your bookings without doubling your ad spend.
             </h2>
-            <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-              That's the growth engine we build for ambitious brands.
-            </p>
+            <div className="flex items-center justify-center gap-3 mb-12">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                That's the growth engine we build for ambitious brands.
+              </p>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-white/70 border border-emerald-200 text-emerald-800 hover:bg-white hover:border-emerald-300 hover:shadow-sm transition-all duration-300">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                High confidence
+              </span>
+            </div>
             
             {/* Top hairline divider */}
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/60 to-transparent" />
@@ -544,8 +550,7 @@ export default function HomePage() {
                   after: "Campaigns tied to revenue outcomes",
                   chips: [
                     { icon: Zap, label: "2-4 weeks to clarity" },
-                    { icon: Feather, label: "Low effort" },
-                    { icon: ShieldCheck, label: "High confidence" }
+                    { icon: Feather, label: "Low effort" }
                   ]
                 },
                 {
@@ -553,8 +558,7 @@ export default function HomePage() {
                   after: "Clear funnel roadmap with milestones",
                   chips: [
                     { icon: Zap, label: "Weekly, Monthly, Quarterly Plans" },
-                    { icon: Feather, label: "Low–Med effort" },
-                    { icon: ShieldCheck, label: "High confidence" }
+                    { icon: Feather, label: "Low–Med effort" }
                   ]
                 },
                 {
@@ -562,8 +566,7 @@ export default function HomePage() {
                   after: "Clean tracking that connects ad spend to revenue",
                   chips: [
                     { icon: Zap, label: "Within 1 sprint" },
-                    { icon: Feather, label: "One-time setup" },
-                    { icon: ShieldCheck, label: "High confidence" }
+                    { icon: Feather, label: "One-time setup" }
                   ]
                 },
                 {
@@ -571,8 +574,7 @@ export default function HomePage() {
                   after: "Custom strategy aligned to goals",
                   chips: [
                     { icon: Zap, label: "Fast iteration" },
-                    { icon: Feather, label: "Low effort" },
-                    { icon: ShieldCheck, label: "High confidence" }
+                    { icon: Feather, label: "Low effort" }
                   ]
                 }
               ].map((row, i) => (
