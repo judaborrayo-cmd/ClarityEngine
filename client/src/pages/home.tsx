@@ -697,7 +697,7 @@ export default function HomePage() {
               <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/images/client-logos/amawaterways.png" 
+                    src="/attached_assets/ama-waterways-seeklogo_1758461361953.png" 
                     alt="AmaWaterways" 
                     className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
                   />
