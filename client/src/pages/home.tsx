@@ -590,8 +590,8 @@ export default function HomePage() {
                   after: "Clean tracking that connects ad spend to revenue",
                   chips: [
                     { icon: Zap, label: "2-4 week audits" },
-                    { icon: Feather, label: "High ROI & ROAS focus" },
-                    { icon: ShieldCheck, label: "High performance" }
+                    { icon: Feather, label: "Get more leads, sales, business" },
+                    { icon: ShieldCheck, label: "High trust" }
                   ]
                 },
                 {
