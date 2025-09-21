@@ -1,0 +1,140 @@
+Prompt for Replit — Fix green hover overlay + standardize card hovers
+
+What to do (in this order):
+
+Remove blend/backdrop side effects
+
+Search the codebase for: mix-blend-, backdrop-, bg-emerald-*/[0., ::before, ::after on hover.
+
+Delete any mix-blend-multiply, mix-blend-color, backdrop-blur, backdrop-brightness from hover overlays. We will use plain opacity instead.
+
+Clip & isolate each card
+
+On every card that has a gradient hover (Services, Case Studies, Featured On, Testimonials), ensure the root has:
+
+relative isolate overflow-hidden rounded-2xl border bg-white shadow-sm
+
+transition + subtle hover:shadow-md
+
+isolate creates a new stacking context so overlays don’t tint siblings.
+
+overflow-hidden and border-radius: inherit (via rounded-[inherit]) keep the overlay inside the card.
+
+Use a safe overlay recipe
+
+Add a non-interactive absolute layer that fades in on hover, with no blend modes:
+
+pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 group-hover:opacity-100
+
+A light gradient or single-color tint with low opacity (e.g. opacity-[.08] to .12 max).
+
+Layering
+
+Keep overlay at z-0.
+
+Put content wrapper at relative z-10.
+
+If any link/button becomes hard to read on hover, bump its color explicitly on group-hover:.
+
+Kill any global hover styles
+
+Ensure there is no global rule like *:hover { background: ... } or .group:hover * { ... } that could be painting large areas.
+
+Consistency
+
+Apply the same “card” recipe to: Service tiles, Case Study cards, Featured On rows, and Testimonial cards.
+
+Drop-in code (Tailwind + React pattern)
+
+A. Reusable Card wrapper (safe hover gradient)
+
+// Card.jsx
+export default function Card({ className = "", children }) {
+  return (
+    <div className={`group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md ${className}`}>
+      {/* Hover overlay (no blends) */}
+      <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10" />
+      {/* Content */}
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+Usage example (Services card)
+Replace your service tile root <div> with Card and remove any old hover ::before/::after:
+
+// ServiceCard.jsx
+import Card from "./Card";
+import { Target } from "lucide-react";
+
+export function ServiceCard() {
+  return (
+    <Card className="p-6">
+      <div className="flex items-start gap-3">
+        <Target className="w-5 h-5 text-neutral-700" />
+        <div>
+          <h3 className="text-lg font-semibold">Growth Clarity Audit</h3>
+          <p className="mt-1 text-sm text-neutral-600">
+            Uncover hidden leaks and wasted spend. Leave with a clear roadmap that ties strategy to ROI.
+          </p>
+          <a href="#audit" className="mt-3 inline-flex text-sm font-medium text-indigo-700 hover:text-indigo-800">
+            Learn more
+          </a>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+
+B. If you prefer not to make a component: inline classes
+
+<div className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md">
+  <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/10 via-indigo-500/10 to-emerald-500/10"></div>
+  <div className="relative z-10 p-6">
+    {/* your existing content */}
+  </div>
+</div>
+
+
+C. Case Studies / Featured rows (same fix)
+
+Replace any mix-blend-* on hover.
+
+Wrap each row with the same wrapper classes.
+
+If you had a colored strip under titles, move it inside the card content and set opacity directly instead of blend modes.
+
+D. Testimonials gradient cards
+If you want the gradient background all the time (not just on hover), keep it but avoid blend modes:
+
+<div className="relative isolate overflow-hidden rounded-2xl p-6 text-white shadow-sm"
+     style={{ background: "linear-gradient(135deg, #7C3AED 0%, #2563EB 50%, #10B981 100%)" }}>
+  {/* optional soft inner veil for readability */}
+  <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
+  <div className="relative z-10">
+    {/* testimonial content */}
+  </div>
+</div>
+
+
+E. Quick CSS audit list to send back
+
+Remove/replace anywhere you find:
+
+mix-blend-multiply, mix-blend-color, mix-blend-overlay
+
+backdrop-blur, backdrop-brightness, backdrop-*
+
+pseudo elements that lack rounded-[inherit] or overflow-hidden on the parent
+
+Add isolate to any card with an absolute overlay.
+
+Why this fixes the “green wash”
+
+The unwanted tint happens when a blending/overlapping layer isn’t clipped or inherits the page backdrop. isolate + overflow-hidden + no blend modes confines color to the card only. Using plain opacity on a subtle gradient keeps your brand look without bleeding into neighbors.
+
+If you want, I can also give you a tiny “lint checklist” for Replit (regexes to find offenders) and a one-liner utility class (e.g., .ce-card) to avoid repeating these long Tailwind strings.
