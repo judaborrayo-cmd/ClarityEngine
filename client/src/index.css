@@ -222,9 +222,9 @@ html {
 .transformation-row:hover .before-card,
 div.transformation-row:hover div.before-card,
 [class*="transformation-row"]:hover [class*="before-card"],
-.group:hover .before-card,
+.transformation-row .group:hover .before-card,
 .transformation-row:hover > div:first-child,
-.group:hover > div:first-child {
+.transformation-row .group:hover > div:first-child {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
   border-color: rgba(244, 63, 94, 0.6) !important;
   background-color: rgba(254, 228, 224, 0.9) !important;
@@ -234,9 +234,9 @@ div.transformation-row:hover div.before-card,
 .transformation-row:hover .after-card,
 div.transformation-row:hover div.after-card,
 [class*="transformation-row"]:hover [class*="after-card"],
-.group:hover .after-card,
+.transformation-row .group:hover .after-card,
 .transformation-row:hover > div:last-child,
-.group:hover > div:last-child {
+.transformation-row .group:hover > div:last-child {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
   border-color: rgba(16, 185, 129, 0.6) !important;
   background-color: rgba(220, 252, 231, 0.9) !important;

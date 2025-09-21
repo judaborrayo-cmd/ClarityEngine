@@ -666,11 +666,11 @@ export default function HomePage() {
           {/* Background logo layer - subtle pattern */}
           <div 
             id="trusted-bg" 
-            className="pointer-events-none absolute inset-0 -z-10 opacity-40 transition-opacity duration-300"
+            className="pointer-events-none absolute inset-0 -z-10 opacity-30 transition-opacity duration-300"
             style={{
-              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%), 
-                               radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 50%)`,
-              backgroundSize: '200px 200px'
+              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.03) 0%, transparent 50%), 
+                               radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.02) 0%, transparent 50%)`,
+              backgroundSize: '250px 250px'
             }}
           />
 
