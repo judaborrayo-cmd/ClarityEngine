@@ -543,7 +543,7 @@ export default function HomePage() {
                   before: "Wasted budget on vanity metrics",
                   after: "Campaigns tied to revenue outcomes",
                   chips: [
-                    { icon: Zap, label: "7 days to clarity" },
+                    { icon: Zap, label: "2-4 weeks to clarity" },
                     { icon: Feather, label: "Low effort" },
                     { icon: ShieldCheck, label: "High confidence" }
                   ]
