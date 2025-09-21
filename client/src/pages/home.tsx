@@ -570,18 +570,38 @@ export default function HomePage() {
                 {
                   before: "Wasted budget on vanity metrics",
                   after: "Campaigns tied to revenue outcomes",
+                  chips: [
+                    { icon: Zap, label: "2-4 week audits" },
+                    { icon: Feather, label: "High ROI & ROAS focus" },
+                    { icon: ShieldCheck, label: "High performance" }
+                  ]
                 },
                 {
                   before: "No clear roadmap or milestones",
                   after: "Clear funnel roadmap with milestones",
+                  chips: [
+                    { icon: Zap, label: "Weekly, monthly, quarterly planning" },
+                    { icon: Feather, label: "Iterative testing, Conversion Rate Optimization" },
+                    { icon: ShieldCheck, label: "Fast Execution" }
+                  ]
                 },
                 {
                   before: "Broken tracking hides true ROI",
                   after: "Clean tracking that connects ad spend to revenue",
+                  chips: [
+                    { icon: Zap, label: "2-4 week audits" },
+                    { icon: Feather, label: "High ROI & ROAS focus" },
+                    { icon: ShieldCheck, label: "High performance" }
+                  ]
                 },
                 {
                   before: "Cookie-cutter execution",
                   after: "Custom strategy aligned to goals",
+                  chips: [
+                    { icon: Zap, label: "2-4 week audits" },
+                    { icon: Feather, label: "High ROI & ROAS focus" },
+                    { icon: ShieldCheck, label: "High performance" }
+                  ]
                 }
               ].map((row, i) => (
                 <div key={i} className="group grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-6">
@@ -609,15 +629,11 @@ export default function HomePage() {
                         <p className="text-[15px] leading-relaxed">{row.after}</p>
                         {/* inline chips per row to echo legend */}
                         <div className="mt-3 flex flex-wrap gap-2">
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                            <Zap className="w-3.5 h-3.5" /> 2-4 week audits
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                            <Feather className="w-3.5 h-3.5" /> High ROI & ROAS focus
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
-                            <ShieldCheck className="w-3.5 h-3.5" /> High performance
-                          </span>
+                          {row.chips.map((chip, chipIdx) => (
+                            <span key={chipIdx} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-white/80 border border-neutral-200 text-neutral-700 shadow-sm">
+                              <chip.icon className="w-3.5 h-3.5" /> {chip.label}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
