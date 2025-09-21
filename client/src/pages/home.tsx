@@ -598,9 +598,9 @@ export default function HomePage() {
                   before: "Cookie-cutter execution",
                   after: "Custom strategy aligned to goals",
                   chips: [
-                    { icon: Zap, label: "2-4 week audits" },
-                    { icon: Feather, label: "High ROI & ROAS focus" },
-                    { icon: ShieldCheck, label: "High performance" }
+                    { icon: Zap, label: "90-day growth roadmap" },
+                    { icon: Feather, label: "Adaptive growth management" },
+                    { icon: ShieldCheck, label: "High Collaboration" }
                   ]
                 }
               ].map((row, i) => (
