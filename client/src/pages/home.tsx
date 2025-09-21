@@ -778,38 +778,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Platform/Technology Logo Cards */}
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
-                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
-                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
-                    Google Ads
-                  </div>
-                </div>
-              </div>
-
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
-                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
-                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
-                    Meta
-                  </div>
-                </div>
-              </div>
-
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
-                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
-                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
-                    YouTube
-                  </div>
-                </div>
-              </div>
-
-              <div className="logo-card group relative block rounded-2xl bg-white/70 backdrop-blur-sm ring-1 ring-neutral-200/60 hover:ring-neutral-300 transition-all duration-300 overflow-hidden cursor-pointer will-change-transform">
-                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
-                  <div className="text-neutral-700 font-bold text-sm transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110">
-                    LinkedIn
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
