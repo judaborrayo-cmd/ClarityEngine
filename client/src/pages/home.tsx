@@ -1176,13 +1176,13 @@ export default function HomePage() {
                     {/* Content */}
                     <div className="relative z-10">
                       <div className="mb-6">
-                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium backdrop-blur-sm">
+                        <div className="inline-block px-6 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium">
                           Colleague review
                         </div>
                       </div>
                       
                       <div className="flex items-start gap-4 mb-6">
-                        <div className={`w-16 h-16 rounded-full overflow-hidden ${testimonial.profileColor} border-4 backdrop-blur-sm flex-shrink-0`}>
+                        <div className={`w-16 h-16 rounded-full overflow-hidden ${testimonial.profileColor} border-4 flex-shrink-0`}>
                           <img 
                             src={testimonial.image} 
                             alt={testimonial.author}
@@ -1250,33 +1250,48 @@ export default function HomePage() {
             </div>
             
             <div className="space-y-6">
-              <div className="group flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 cursor-pointer">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 group-hover:bg-white/20 rounded-lg transition-colors duration-300">
-                  <Shield className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <div className="flex-1">
-                  <div className="font-semibold text-foreground group-hover:text-white transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
-                  <div className="text-sm text-muted-foreground group-hover:text-white/90 transition-colors duration-300">Contra Featured Expert</div>
-                </div>
-              </div>
-              
-              <div className="group flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 cursor-pointer">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 group-hover:bg-white/20 rounded-lg transition-colors duration-300">
-                  <Target className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
-                </div>
-                <div className="flex-1">
-                  <div className="font-semibold text-foreground group-hover:text-white transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
-                  <div className="text-sm text-muted-foreground group-hover:text-white/90 transition-colors duration-300">Contra Featured Expert</div>
+              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
+                {/* Hover overlay (no blends) */}
+                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-4 p-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                    <Shield className="w-6 h-6 text-primary transition-colors duration-300" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground transition-colors duration-300">Best English-speaking freelance Performance Marketing Specialists to hire in 2025</div>
+                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                  </div>
                 </div>
               </div>
               
-              <div className="group flex items-center gap-4 p-4 bg-card border border-border rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:via-purple-600 hover:to-blue-800 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 cursor-pointer">
-                <div className="flex items-center justify-center w-12 h-12 bg-primary/10 group-hover:bg-white/20 rounded-lg transition-colors duration-300">
-                  <Users className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
+              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
+                {/* Hover overlay (no blends) */}
+                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-4 p-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                    <Target className="w-6 h-6 text-primary transition-colors duration-300" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Ads freelancers to hire in 2025</div>
+                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <div className="font-semibold text-foreground group-hover:text-white transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
-                  <div className="text-sm text-muted-foreground group-hover:text-white/90 transition-colors duration-300">Contra Featured Expert</div>
+              </div>
+              
+              <div className="group relative isolate overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md cursor-pointer">
+                {/* Hover overlay (no blends) */}
+                <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br from-violet-500/8 via-indigo-500/8 to-emerald-500/8" />
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-4 p-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg transition-colors duration-300">
+                    <Users className="w-6 h-6 text-primary transition-colors duration-300" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-foreground transition-colors duration-300">Best Spanish-speaking Google Sheets freelancers to hire in 2025</div>
+                    <div className="text-sm text-muted-foreground transition-colors duration-300">Contra Featured Expert</div>
+                  </div>
                 </div>
               </div>
             </div>
