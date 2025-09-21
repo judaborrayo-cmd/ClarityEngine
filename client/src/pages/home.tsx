@@ -680,8 +680,8 @@ export default function HomePage() {
                 Trusted by Leading Brands Across Industries
               </h2>
               <p className="text-muted-foreground max-w-3xl mx-auto">
-                From fitness and wellness to SaaS and e-commerce, I've helped ambitious brands achieve 
-                multi-million dollar growth through strategic paid media and growth marketing across all major platforms.
+                From fitness and wellness to SaaS and e-commerce, we've helped ambitious brands achieve 
+                multi-million dollar growth through strategic paid media and growth marketing across Meta, Instagram, YouTube, Google Ads, and other major platforms.
               </p>
             </div>
 
