@@ -290,9 +290,10 @@ export default function CaseStudies() {
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Goal:</span> Mandali Retreats needed new client bookings.</p>
-                  <p><span className="font-semibold text-gray-900">Strategy:</span> Built lean search campaigns with story-aligned ads resulting in our team with conversion campaigns and retargeting lists.</p>
-                  <p><span className="font-semibold text-gray-900">Result:</span> 5x ROAS while filling retreat bookings consistently</p>
+                  <p><span className="font-semibold text-gray-900">Intent:</span> Mandali Retreats needed year-round bookings.</p>
+                  <p><span className="font-semibold text-gray-900">Obstacle:</span> Their ads were siloed and search traffic wasn't converting.</p>
+                  <p><span className="font-semibold text-gray-900">Resolution:</span> We built multi-channel campaigns with retargeting layers.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> 15× ROAS while filling retreat bookings consistently</p>
                 </div>
                 
                 <div className="mt-6">
