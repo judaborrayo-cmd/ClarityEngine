@@ -424,11 +424,12 @@ export default function HomePage() {
         <section className="relative isolate overflow-hidden bg-white">
           {/* animated gradient background */}
           <div className="absolute inset-0 -z-10">
-            <div className="h-full w-full min-h-[440px] md:min-h-[520px] animate-hero-gradient
+            <div className="h-full w-full min-h-[560px] md:min-h-[640px] animate-hero-gradient
               bg-[radial-gradient(1200px_600px_at_10%_0%,rgba(124,58,237,0.10),transparent_60%),radial-gradient(900px_500px_at_90%_20%,rgba(37,99,235,0.10),transparent_55%),radial-gradient(700px_400px_at_50%_100%,rgba(16,185,129,0.10),transparent_60%)]" />
           </div>
 
-          <div className="mx-auto max-w-6xl px-4 pt-16 md:pt-20 pb-8 md:pb-10">
+          {/* restore larger bottom padding */}
+          <div className="mx-auto max-w-6xl px-4 pt-16 md:pt-20 pb-14 md:pb-16">
             <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground relative" data-testid="hero-title">
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent animate-lightning-solidify">ROI-Driven</span> Paid Media & Growth Strategy
@@ -460,10 +461,13 @@ export default function HomePage() {
             </div>
             </div>
           </div>
+          
+          {/* add at the very bottom of the hero section */}
+          <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" />
         </section>
 
         {/* The Problems We Eliminate Section - Premium Polish */}
-        <section id="problems" className="relative z-10 -mt-6 md:-mt-12">
+        <section id="problems" className="relative z-10 mt-10 md:mt-14 lg:mt-16">
           <div className="mx-auto max-w-6xl px-4">
             <div className="relative py-16 bg-[#fffefd]">
           {/* Top gradient divider */}
