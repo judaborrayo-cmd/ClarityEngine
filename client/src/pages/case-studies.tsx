@@ -229,13 +229,13 @@ export default function CaseStudies() {
                 
                 <div className="space-y-4 text-gray-600">
                   <p><span className="font-semibold text-gray-900">Goal:</span> Lanark wanted to scale paid programs profitably.</p>
-                  <p><span className="font-semibold text-gray-900">Strategy:</span> Built lean budget gaps & refined across multipoint campaigns, and clarified campaigns, and clarified strategy while scaling.</p>
+                  <p><span className="font-semibold text-gray-900">Strategy:</span> Built lean budget gaps & refined across multipoint campaigns, and clarified strategy while scaling.</p>
                   <p><span className="font-semibold text-gray-900">Impact:</span> $76,000/month budget managed across verticals, consistent CPL growth.</p>
                 </div>
                 
                 <div className="mt-6">
                   <Link 
-                    to="/case-study/lanark-agency" 
+                    to="/case-study/lamark-agency" 
                     className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
@@ -260,7 +260,7 @@ export default function CaseStudies() {
                 <div className="space-y-4 text-gray-600">
                   <p><span className="font-semibold text-gray-900">Goal:</span> Hapi Art needed a complete advertising system.</p>
                   <p><span className="font-semibold text-gray-900">Strategy:</span> Built their campaigns across structure and internal testing approaches. Our work includes attribution optimization.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> Set for ROAS System Run.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> 10x ROAS System Built</p>
                 </div>
                 
                 <div className="mt-6">
@@ -278,7 +278,7 @@ export default function CaseStudies() {
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900" data-testid="case-mandel">
-                      Mandel Retreats — Luxury Wellness
+                      Mandali Retreats — Luxury Wellness
                     </h3>
                     <div className="mt-2 flex items-center">
                       <Badge variant="secondary" className="mr-2">Luxury Wellness</Badge>
@@ -288,14 +288,14 @@ export default function CaseStudies() {
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Goal:</span> Mandel Retreats needed new client bookings.</p>
+                  <p><span className="font-semibold text-gray-900">Goal:</span> Mandali Retreats needed new client bookings.</p>
                   <p><span className="font-semibold text-gray-900">Strategy:</span> Built lean search campaigns with story-aligned ads resulting in our team with conversion campaigns and retargeting lists.</p>
-                  <p><span className="font-semibold text-gray-900">Result:</span> 5+ ROAS while hitting reduced bookings substantially.</p>
+                  <p><span className="font-semibold text-gray-900">Result:</span> 5x ROAS while filling retreat bookings consistently</p>
                 </div>
                 
                 <div className="mt-6">
                   <Link 
-                    to="/case-study/mandel-retreats" 
+                    to="/case-study/lisa-nichols" 
                     className="text-purple-600 font-medium hover:text-purple-700 inline-flex items-center"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
@@ -308,7 +308,7 @@ export default function CaseStudies() {
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900" data-testid="case-corego">
-                      CoreGo — Fitness Studio
+                      Core40 — Fitness Studio
                     </h3>
                     <div className="mt-2 flex items-center">
                       <Badge variant="secondary" className="mr-2">Fitness</Badge>
@@ -318,14 +318,14 @@ export default function CaseStudies() {
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Goal:</span> CoreGo wanted to maximize ROI and wage member acquisition.</p>
+                  <p><span className="font-semibold text-gray-900">Goal:</span> Core40 wanted to maximize ROI and scale member acquisition.</p>
                   <p><span className="font-semibold text-gray-900">Strategy:</span> Our work focused local targeting strategy and search tracking for clear ROI channel.</p>
-                  <p><span className="font-semibold text-gray-900">Result:</span> 5× increased, 19% new members.</p>
+                  <p><span className="font-semibold text-gray-900">Result:</span> $2M+ revenue, 11K new members</p>
                 </div>
                 
                 <div className="mt-6">
                   <Link 
-                    to="/case-study/corego-fitness" 
+                    to="/case-study/core-40" 
                     className="text-red-600 font-medium hover:text-red-700 inline-flex items-center"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
