@@ -10,7 +10,7 @@ import CaseStudyDetail from "@/pages/case-study-detail";
 import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import NotFound from "@/pages/not-found";
 
-import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon.png";
+import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
 
 function Navbar() {
   return (
@@ -21,7 +21,7 @@ function Navbar() {
             <img
               src={Clarity_Engine_Favicon}
               alt="Clarity Engine Logo"
-              className="h-8 w-8"
+              className="h-8 w-auto object-contain"
             />
             <Link to="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
               Clarity Engine
