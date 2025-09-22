@@ -1363,9 +1363,6 @@ export default function HomePage() {
               })}
             </div>
             
-            <div className="text-center mt-12">
-              <p className="text-sm text-muted-foreground">linkedin.com/in/judaborrayo/</p>
-            </div>
           </div>
         </section>
 
