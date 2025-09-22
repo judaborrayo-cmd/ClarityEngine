@@ -702,6 +702,7 @@ export default function HomePage() {
             >
               {/* Client Logo Cards */}
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/steelfit.png" 
@@ -712,6 +713,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={amaWaterwaysLogo} 
@@ -722,6 +724,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/bolay.png" 
@@ -732,6 +735,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/shani-darden.png" 
@@ -742,6 +746,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/cutera.png" 
@@ -752,6 +757,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/mandali.png" 
@@ -762,6 +768,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/core40.png" 
@@ -772,6 +779,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/motivating-masses.png" 
@@ -782,6 +790,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/magaya.png" 
@@ -792,6 +801,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/columbus-travel.png" 
@@ -802,6 +812,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/mix-telematics.png" 
@@ -812,6 +823,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="/images/client-logos/eft-universe.png" 
@@ -823,6 +835,7 @@ export default function HomePage() {
 
               {/* Second row of logos */}
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={popcornIndianaLogo} 
@@ -833,6 +846,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={ascendLogo} 
@@ -843,6 +857,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={microsoftLogo} 
@@ -853,6 +868,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={denaGamesLogo} 
@@ -863,6 +879,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={estrellaGymnasticsLogo} 
@@ -873,6 +890,7 @@ export default function HomePage() {
               </div>
 
               <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src={capitalGymnasticsLogo} 
