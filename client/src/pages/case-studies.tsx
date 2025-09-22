@@ -321,9 +321,10 @@ export default function CaseStudies() {
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Goal:</span> Core40 wanted to maximize ROI and scale member acquisition.</p>
-                  <p><span className="font-semibold text-gray-900">Strategy:</span> Our work focused local targeting strategy and search tracking for clear ROI channel.</p>
-                  <p><span className="font-semibold text-gray-900">Result:</span> $2M+ revenue, 11K new members</p>
+                  <p><span className="font-semibold text-gray-900">Intent:</span> Core40 wanted to maximize ROI and scale member acquisition.</p>
+                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But their marketing lacked coordination and tracking was broken.</p>
+                  <p><span className="font-semibold text-gray-900">Resolution:</span> We unified their strategy and rebuilt tracking for clear ROI visibility.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> $2M+ revenue, 11K new members</p>
                 </div>
                 
                 <div className="mt-6">
