@@ -1156,7 +1156,7 @@ export default function HomePage() {
                       </div>
                       <div className="relative ml-4">
                         <div className="absolute -inset-2 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300" />
+                        <IconComponent className="relative text-primary text-xl group-hover:scale-110 transition-transform duration-300 group-hover:animate-spin" />
                       </div>
                     </div>
                     
