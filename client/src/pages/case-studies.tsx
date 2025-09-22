@@ -249,7 +249,7 @@ export default function CaseStudies() {
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900" data-testid="case-hapi">
-                      Hapi Art — E-commerce
+                      Hapi Art — E‑commerce
                     </h3>
                     <div className="mt-2 flex items-center">
                       <Badge variant="secondary" className="mr-2">E-commerce</Badge>
@@ -259,9 +259,10 @@ export default function CaseStudies() {
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Goal:</span> Hapi Art needed a complete advertising system.</p>
-                  <p><span className="font-semibold text-gray-900">Strategy:</span> Built their campaigns across structure and internal testing approaches. Our work includes attribution optimization.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> 10x ROAS System Built</p>
+                  <p><span className="font-semibold text-gray-900">Intent:</span> Hapi Art needed a profitable advertising system.</p>
+                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But their campaigns lacked structure and creative testing.</p>
+                  <p><span className="font-semibold text-gray-900">Resolution:</span> We built a 10x ROAS system with systematic optimization.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> 10× ROAS System Built</p>
                 </div>
                 
                 <div className="mt-6">
