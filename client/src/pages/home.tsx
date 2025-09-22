@@ -266,7 +266,7 @@ export default function Home() {
               <a href="#audit" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-audit">See scope & pricing</a>
             </Card>
             <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-retainer">Growth Retainer ($3,200+/mo)</h3>
+              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-retainer">Growth Retainer ($3,200–$15,000/mo)</h3>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
                 <li>Omni‑channel ads (Google, Meta, YouTube)</li>
                 <li>Tiered remarketing & CRO</li>
@@ -428,13 +428,14 @@ export default function Home() {
         <Section id="audit" className="py-16">
           <Card className="mx-auto max-w-4xl">
             <h2 className="text-2xl font-bold text-gray-900">Deep‑Dive Audit</h2>
-            <p className="mt-3 text-lg text-gray-600">Comprehensive assessment across tracking, structure, and creative with a 30‑day action plan.</p>
+            <p className="mt-3 text-lg text-gray-600">A comprehensive assessment of your tracking, campaign structure, and funnel with a prioritized 30-day action plan.</p>
             <ul className="mt-6 list-disc space-y-2 pl-6 text-gray-600">
-              <li>Analytics & pixel/setup verification</li>
-              <li>Campaign architecture & keyword/audience review</li>
-              <li>Funnel and CRO opportunities assessment</li>
-              <li>Prioritized roadmap with quick wins</li>
+              <li>Verify analytics & pixel setup</li>
+              <li>Rebuild campaigns for efficiency</li>
+              <li>Identify CRO opportunities</li>
+              <li>Provide a roadmap with quick wins</li>
             </ul>
+            <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Risk-free entry:</strong> If you choose a Growth Retainer within 14 days of receiving your audit, your $900 fee is fully credited toward your first month.</p>
             <div className="mt-8">
               <Link href="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Growth Clarity Audit</Link>
             </div>
@@ -446,11 +447,12 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-gray-900">Growth Retainer</h2>
             <p className="mt-3 text-lg text-gray-600">Hands‑on management and strategy to drive compounding results.</p>
             <ul className="mt-6 list-disc space-y-2 pl-6 text-gray-600">
-              <li>Weekly optimization & creative testing</li>
-              <li>Tiered remarketing & lifecycle orchestration</li>
-              <li>Full‑funnel reporting & decision cadence</li>
-              <li>Direct access for strategic pivots</li>
+              <li>Omni‑channel ads (Google, Meta, YouTube)</li>
+              <li>Tiered remarketing & CRO</li>
+              <li>Weekly optimization & reporting</li>
+              <li>Fractional CMO leadership</li>
             </ul>
+            <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Commitment terms:</strong> We start with an initial 90-day plan (enough time to implement, test, and prove results). After that, we move to a month-to-month partnership with just 30 days' notice. It gives us the runway to win together, while keeping things flexible for you.</p>
             <div className="mt-8">
               <PrimaryButton href="#book-intro" testId="button-retainer">Discuss Retainer Options</PrimaryButton>
             </div>
