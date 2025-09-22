@@ -467,13 +467,6 @@ export default function HomePage() {
           </div>
           
           <div className="mx-auto max-w-4xl text-center relative z-10">
-            <div className="mx-auto h-28 w-28 mb-6 flex items-center justify-center">
-              <img
-                src="/clarity-engine-logo.png"
-                alt="Clarity Engine Logo"
-                className="h-28 w-28 object-contain"
-              />
-            </div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground relative" data-testid="hero-title">
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent animate-lightning-solidify">ROI-Driven</span> Paid Media & Growth Strategy
               {/* Lightning accent for breakthrough */}
