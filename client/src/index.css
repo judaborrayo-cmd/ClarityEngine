@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes hero-pan { 0%{transform:translate3d(0,0,0)} 100%{transform:translate3d(-3%,-2%,0)} }
+.animate-hero-gradient { animation: hero-pan 18s ease-in-out infinite alternate; will-change: transform; backface-visibility: hidden; }
+@media (prefers-reduced-motion: reduce){ .animate-hero-gradient{ animation: none; } }
+
 :root {
   --background: hsl(0 0% 100%);
   --foreground: hsl(0 95% 1%);

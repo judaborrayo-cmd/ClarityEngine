@@ -421,52 +421,15 @@ export default function HomePage() {
       <ProgressBar />
       <main>
         {/* Hero Section */}
-        <section className="relative px-6 pt-20 pb-16 lg:px-8 bg-gradient-to-b from-background to-muted overflow-hidden">
-          {/* Mountain Path Journey Background */}
+        <section className="relative isolate overflow-hidden bg-white min-h-[520px] md:min-h-[600px]">
+          {/* animated gradient background */}
           <div className="absolute inset-0 -z-10">
-            {/* Mountain silhouettes */}
-            <svg className="absolute bottom-0 left-0 w-full h-48 opacity-10 text-primary" viewBox="0 0 1200 200" fill="none">
-              <path d="M0 200L100 120L200 150L300 80L400 110L500 60L600 90L700 40L800 70L900 30L1000 50L1100 20L1200 40V200H0Z" fill="currentColor" className="animate-fade-in-up" />
-              <path d="M0 200L150 140L250 170L350 100L450 130L550 80L650 110L750 60L850 90L950 50L1050 70L1150 40L1200 60V200H0Z" fill="currentColor" className="animate-fade-in-up opacity-50" style={{animationDelay: '0.5s'}} />
-            </svg>
-            
-            {/* Animated journey path */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" viewBox="0 0 1200 400">
-              <path 
-                d="M50 350 Q300 250 600 300 T1150 200" 
-                stroke="url(#journeyGradient)" 
-                strokeWidth="3" 
-                fill="none" 
-                strokeDasharray="15 10"
-                className="animate-path-pulse"
-              />
-              <defs>
-                <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#ef4444" />
-                  <stop offset="50%" stopColor="#3b82f6" />
-                  <stop offset="100%" stopColor="#10b981" />
-                </linearGradient>
-              </defs>
-            </svg>
-            
-            {/* Clarity illumination orbs */}
-            <div className="absolute top-16 left-16 w-16 h-16 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full animate-pulse shadow-lg shadow-primary/20"></div>
-            <div className="absolute top-32 right-20 w-12 h-12 bg-gradient-to-r from-accent/15 to-primary/15 rounded-full animate-bounce shadow-lg shadow-accent/20" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
-            <div className="absolute bottom-32 left-1/4 w-10 h-10 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
-            
-            {/* Lightning bolt for breakthrough moments */}
-            <div className="absolute top-20 right-32 opacity-10">
-              <svg className="w-12 h-12 text-green-500" viewBox="0 0 24 24">
-                <path 
-                  d="M7 2v11h3v9l7-12h-4L17 2H7z" 
-                  fill="currentColor"
-                  className="animate-lightning-solidify"
-                />
-              </svg>
-            </div>
+            <div className="h-full w-full min-h-[520px] md:min-h-[600px] animate-hero-gradient
+              bg-[radial-gradient(1200px_600px_at_10%_0%,rgba(124,58,237,0.10),transparent_60%),radial-gradient(900px_500px_at_90%_20%,rgba(37,99,235,0.10),transparent_55%),radial-gradient(700px_400px_at_50%_100%,rgba(16,185,129,0.10),transparent_60%)]" />
           </div>
-          
-          <div className="mx-auto max-w-4xl text-center relative z-10">
+
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+            <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground relative" data-testid="hero-title">
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent animate-lightning-solidify">ROI-Driven</span> Paid Media & Growth Strategy
               {/* Lightning accent for breakthrough */}
@@ -494,6 +457,7 @@ export default function HomePage() {
               >
                 See Services
               </button>
+            </div>
             </div>
           </div>
         </section>
