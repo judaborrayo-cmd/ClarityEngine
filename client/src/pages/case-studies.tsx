@@ -228,9 +228,10 @@ export default function CaseStudies() {
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Goal:</span> Lanark wanted to scale paid programs profitably.</p>
-                  <p><span className="font-semibold text-gray-900">Strategy:</span> Built lean budget gaps & refined across multipoint campaigns, and clarified strategy while scaling.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> $76,000/month budget managed across verticals, consistent CPL growth.</p>
+                  <p><span className="font-semibold text-gray-900">Intent:</span> Lamark wanted to scale paid programs profitably.</p>
+                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But their budget was scattered across inefficient campaigns.</p>
+                  <p><span className="font-semibold text-gray-900">Resolution:</span> We restructured, built unified campaigns, and reduced costs while scaling.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> $70,000/month budget managed across verticals, consistent CPL growth</p>
                 </div>
                 
                 <div className="mt-6">
