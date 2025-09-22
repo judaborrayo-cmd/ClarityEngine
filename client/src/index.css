@@ -647,3 +647,43 @@ article:hover .service-cta {
   100% { background-position: 0% 50%; }
 }
 
+/* Logo hover effects with rearrangement */
+.logo-row:has(.logo-item:hover) {
+  gap: 2.25rem;
+}
+
+.logo-row:has(.logo-item:hover) .logo-item:not(:hover) {
+  opacity: 0.7;
+  transform: translateY(2px);
+}
+
+/* Responsive adjustments for logo hover effects */
+@media (max-width: 768px) {
+  .logo-item {
+    flex-basis: 5rem !important;
+  }
+  
+  .logo-item:hover {
+    flex-basis: 6rem !important;
+  }
+  
+  .logo-item img:hover {
+    transform: scale(1.05) !important;
+  }
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .logo-item {
+    transition: opacity 0.2s ease-out !important;
+  }
+  
+  .logo-item img {
+    transition: filter 0.2s ease-out !important;
+  }
+  
+  .logo-item img:hover {
+    transform: none !important;
+  }
+}
+

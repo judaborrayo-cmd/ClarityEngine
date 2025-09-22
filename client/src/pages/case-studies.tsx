@@ -49,12 +49,14 @@ function ProgressBar() {
 }
 
 const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; className?: string }) => (
-  <img 
-    src={src} 
-    alt={alt} 
-    className={`h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 ${className}`}
-    data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
-  />
+  <div className={`logo-item relative isolate shrink-0 [flex-basis:7.5rem] transition-[flex-basis,margin] duration-300 ease-out hover:[flex-basis:9rem] hover:z-10 ${className}`}>
+    <img 
+      src={src} 
+      alt={alt} 
+      className="h-8 w-auto object-contain grayscale transition-all duration-300 ease-out hover:grayscale-0 hover:scale-110 hover:drop-shadow-lg"
+      data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
+    />
+  </div>
 );
 
 export default function CaseStudies() {
@@ -349,7 +351,7 @@ export default function CaseStudies() {
             {/* Brand Logos Grid */}
             <div className="space-y-8">
               {/* First row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
                 <LogoImage src={mandaliLogo} alt="Mandali" />
                 <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
                 <LogoImage src={bolayLogo} alt="Bolay" />
@@ -358,7 +360,7 @@ export default function CaseStudies() {
               </div>
               
               {/* Second row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
                 <LogoImage src={columbusLogo} alt="Columbus" />
                 <LogoImage src={magayaLogo} alt="Magaya" />
                 <LogoImage src={columbusLogo} alt="Columbus Capital" />
@@ -367,7 +369,7 @@ export default function CaseStudies() {
               </div>
               
               {/* Third row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
                 <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
                 <LogoImage src={ascendLogo} alt="Ascend" />
                 <LogoImage src={microsoftLogo} alt="Microsoft" />
@@ -376,7 +378,7 @@ export default function CaseStudies() {
               </div>
               
               {/* Fourth row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
                 <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
                 <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
                 <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
@@ -384,7 +386,7 @@ export default function CaseStudies() {
               </div>
               
               {/* Fifth row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
                 <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
                 <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
                 <LogoImage src={marketerHireLogo} alt="MarketerHire" />
