@@ -218,7 +218,7 @@ export default function CaseStudies() {
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900" data-testid="case-lanark">
-                      Lanark Agency — Performance Marketing
+                      Lamark Agency — Performance Marketing
                     </h3>
                     <div className="mt-2 flex items-center">
                       <Badge variant="secondary" className="mr-2">Performance Marketing</Badge>
