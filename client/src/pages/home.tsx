@@ -1161,7 +1161,7 @@ export default function HomePage() {
                   <Zap className="mx-auto w-8 h-8 text-indigo-600 mb-4"/>
                   <h4 className="font-semibold text-lg mb-2 text-foreground">Speed</h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Audits deliver clarity in just 7 days.
+                    Audits deliver clarity in days or weeks, not months.
                   </p>
                 </div>
               </motion.div>
