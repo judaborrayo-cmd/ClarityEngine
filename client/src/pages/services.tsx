@@ -1,511 +1,357 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, Users, TrendingUp, Crown, Heart, Target, Clock, DollarSign, CheckCircle, ArrowRight } from "lucide-react";
-
-// Progress Bar Component
-function ProgressBar() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', updateScrollProgress);
-    return () => window.removeEventListener('scroll', updateScrollProgress);
-  }, []);
-
-  return (
-    <div className="progress-bar">
-      <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
-    </div>
-  );
-}
+import { Search, Users, TrendingUp, Target, BarChart3, Crown, CheckCircle, ArrowRight } from "lucide-react";
 
 export default function Services() {
-  const services = [
-    {
-      id: "clarity-audit",
-      icon: Search,
-      title: "Growth Clarity Audit",
-      timeline: "5-10 days delivery",
-      testimonial: "Based on $3M+ in managed campaigns - uncover what's costing you conversions",
-      summary:
-        "Full-funnel Growth & CRO audit to uncover what's costing you conversions. Based on $3M+ in campaign experience with clear, concise recording and PDF walk-through.",
-      bullets: [
-        "PDF and Video Walkthrough of Opportunities - Clear, concise recording and PDF walk through of current opportunities to improve Return on Investment, Return on Ad Spend, Conversion Rates, and Costs Per Lead or Sale",
-        "1:1 Call (30-60 minutes) - for CMOs, Strategists, Advertisers, Builders and Owners",
-        "Email Support for 2 Weeks - Ask follow-up questions or get light implementation support via email",
-      ],
-      cta: "Book Clarity Audit",
-    },
-    {
-      id: "google-ads",
-      icon: Target,
-      title: "Google Ads Management",
-      timeline: "2-3 week setup",
-      testimonial: "Proven systems from managing $3M+ in ad spend across industries",
-      summary:
-        "Based on over $3 Million of paid campaigns managed across Google and Meta. Bespoke approach based on your brand's strengths and funnels. Includes ongoing maintenance.",
-      bullets: [
-        "Google Search Strategy, Build, and Optimization - Working with your business to find the highest potential ROI strategy to follow with Google Ads",
-        "Extensive Audit of current Google/YouTube/Paid Media strategies",
-        "Google Ads Set-Up (Month 1) - Complete campaign setup including tracking, audience management, and strategic recommendations",
-        "Google Search Ads Optimization (Month 2) - Ongoing optimization and reporting cadence",
-      ],
-      cta: "Start Google Ads Management",
-    },
-    {
-      id: "paid-social",
-      icon: Users,
-      title: "Paid Social Media Growth",
-      timeline: "1-2 week setup",
-      testimonial: "Creative testing framework based on brand strengths and funnels",
-      summary:
-        "Based on over $3 Million of paid campaigns managed across Google and Meta. You will receive a bespoke approach based on your brand's strengths and funnels. Includes ongoing maintenance.",
-      bullets: [
-        "Social Media Ads Set-Up (Month 1) - Complete setup including tracking, creative brief development, audience research and strategic recommendations",
-        "Social Media Ads Optimization (Month 2) - Ongoing creative testing, audience optimization, and bid management",
-        "Weekly creative + bid experimentation with detailed reporting",
-        "Full-funnel metrics: CTR, CVR, CPA/ROAS tracking and optimization",
-      ],
-      cta: "Launch Social Campaign",
-    },
-    {
-      id: "fractional-cmo",
-      icon: Crown,
-      title: "Fractional CMO",
-      timeline: "3-month minimum",
-      testimonial: "Senior-level package focused on maximizing ROI and profitable advertising strategies",
-      summary:
-        "Growth Marketing Manager package. Senior level package focused on maximizing and strategizing based on your overall funnel. This is an ongoing relationship focused on maximizing ROI's and profitable advertising strategies.",
-      bullets: [
-        "Growth Strategy (Month 1) - Full strategy development including funnel analysis, customer acquisition strategy, and budget allocation",
-        "Strategic Recommendations (Month 2) - Identify and Sales Focus Areas for upcoming Roadmaps based on conversations and research",
-        "Establish or Optimize Current Reporting and Tracking - Review current reporting and tracking systems",
-        "Conversion Rate Optimization Testing and Plan - CRO (Ongoing) - Provide templates, ideas, strategies, roadmaps, stakeholder communication",
-        "Month 3 and Ongoing - Paid Media Management + Strategy + Weekly Reporting + Weekly Calls + Growth Marketing Tests",
-      ],
-      cta: "Discuss CMO Partnership",
-    },
-    {
-      id: "ad-grant",
-      icon: Heart,
-      title: "Non-Profit Google Grant Build",
-      timeline: "2-4 weeks",
-      testimonial: "Grant best-practices to maintain $10K/month eligibility",
-      summary:
-        "Unlock and maximize your $10K/month Google Ad Grant with compliant structure, tracking, and training.",
-      bullets: [
-        "Grant best-practices to maintain eligibility",
-        "Full Search campaign build (themes/ad groups)",
-        "Conversion tracking (GTM/GA4/Ads), policy compliance",
-        "Negative keyword hygiene & QS improvements",
-        "Team handoff + training",
-      ],
-      cta: "Apply for Grant Build",
-    },
-    {
-      id: "cro",
-      icon: TrendingUp,
-      title: "CRO & Funnel Optimization",
-      timeline: "2-week analysis + testing",
-      testimonial: "Prioritized testing roadmap based on data and heuristic review",
-      summary:
-        "Prioritized testing roadmap across pages, offers, and analytics to increase CVR and ROAS.",
-      bullets: [
-        "Heuristic & data review (GA4, Hotjar, ads data)",
-        "Hypotheses ranked by ICE/PIE score",
-        "A/B testing & instrumentation checklist",
-        "Creative briefs for ads & landers",
-        "Weekly stand-ups to iterate & scale winners",
-      ],
-      cta: "Start CRO Program",
-    },
-  ];
-
-  // Brand colors
-  const brand = {
-    pink: "#fd89c0",
-    green: "#0d513a",
-    purple: "#5242f3",
-    peach: "#fff5f3",
-    black: "#030000",
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
-      <ProgressBar />
-      <main className="min-h-screen bg-white" style={{ color: brand.black }}>
-      {/* Hero */}
-      <section
-        className="px-6 pt-16 pb-8 lg:px-8 border-b"
-        style={{ borderColor: "#e5e7eb", background: `linear-gradient(#fff, ${brand.peach})` }}
-      >
-        <div className="mx-auto max-w-4xl">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Services</h1>
-          <p className="mt-3" style={{ color: brand.green }}>
-            Choose your entry point or build a plan across channels. Start with a Clarity Audit or dive straight into
-            management.
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="px-6 pt-20 pb-16 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl" data-testid="text-services-hero-title">
+            Services Designed to Drive Measurable Growth
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-gray-600" data-testid="text-services-hero-subhead">
+            Choose your entry point — from fast clarity audits to ongoing growth retainers. Each service is built to maximize ROI.
           </p>
-
-          {/* Anchor chips - sticky navigation */}
-          <div className="mt-6 sticky top-24 bg-white/95 backdrop-blur-sm py-2 -mx-6 px-6 z-10 border-b" style={{ borderColor: "#e5e7eb" }}>
-            <div className="flex flex-wrap gap-3">
-              {services.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="rounded-full px-4 py-2 text-sm border hover:bg-pink-50 transition-colors"
-                  style={{ borderColor: brand.pink, color: brand.green }}
-                >
-                  {s.title}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services list */}
-      <section className="px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-6xl grid gap-10">
-          {services.map((s) => (
-            <article
-              key={s.id}
-              id={s.id}
-              className="group rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg"
-              style={{ 
-                border: `1px solid ${brand.pink}`, 
-                background: "#fff",
-                cursor: "pointer"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, #2563eb 0%, #9333ea 50%, #1e40af 100%)';
-                e.currentTarget.style.color = 'white';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#fff';
-                e.currentTarget.style.color = brand.black;
-              }}
+          
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              href="/#book-intro"
+              className="rounded-md bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
+              data-testid="button-book-intro-hero"
             >
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div className="max-w-3xl">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div 
-                      className="icon-container p-2 rounded-lg transition-all duration-300" 
-                      style={{ backgroundColor: brand.peach }}
-                    >
-                      <s.icon 
-                        className="service-icon w-6 h-6 transition-all duration-300" 
-                        style={{ color: brand.purple }} 
-                      />
-                    </div>
-                    <div>
-                      <h2 className="service-title text-2xl font-bold transition-all duration-300">{s.title}</h2>
-                      <div className="service-timeline flex gap-4 text-sm transition-all duration-300" style={{ color: brand.green }}>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          {s.timeline}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {s.testimonial && (
-                    <div 
-                      className="testimonial-box mb-3 p-3 rounded-lg transition-all duration-300" 
-                      style={{ backgroundColor: brand.peach, color: brand.green }}
-                    >
-                      <div className="flex items-start gap-2">
-                        <CheckCircle 
-                          className="check-icon w-4 h-4 mt-0.5 flex-shrink-0 transition-all duration-300" 
-                          style={{ color: brand.purple }} 
-                        />
-                        <span className="text-sm italic">"{s.testimonial}"</span>
-                      </div>
-                    </div>
-                  )}
-                  
-                  <p className="service-summary mt-2 transition-all duration-300" style={{ color: brand.green }}>
-                    {s.summary}
+              Book a 10-min Intro Call
+            </a>
+            <Link
+              to="/growth-clarity-audit"
+              className="rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-sm hover:bg-gray-50 transition-colors"
+              data-testid="button-explore-audit-hero"
+            >
+              Explore Growth Audit
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Flagship Offers */}
+      <section className="px-6 py-16 lg:px-8 bg-gray-50">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* Growth Clarity Audit */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-200" data-testid="card-audit-offer">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-indigo-50 p-2">
+                  <Search className="h-6 w-6 text-indigo-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-xl font-bold text-gray-900" data-testid="text-audit-title">
+                    Growth Clarity Audit ($497–$900 one-time)
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1" data-testid="text-audit-who">
+                    For founders & teams who want quick clarity on wasted spend, broken tracking, and growth opportunities.
                   </p>
-                  <ul className="service-bullets mt-4 grid gap-2 list-disc pl-5 transition-all duration-300" style={{ color: brand.green }}>
-                    {s.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
                 </div>
+              </div>
+              
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start" data-testid="text-audit-bullet-1">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">Full-funnel audit + PDF/Video walkthrough</span>
+                </li>
+                <li className="flex items-start" data-testid="text-audit-bullet-2">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">30–60 min strategy call</span>
+                </li>
+                <li className="flex items-start" data-testid="text-audit-bullet-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">2 weeks of support</span>
+                </li>
+                <li className="flex items-start" data-testid="text-audit-bullet-4">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">Risk-free entry: credit applied to your first retainer month if you sign within 14 days</span>
+                </li>
+              </ul>
+              
+              <Link
+                to="/growth-clarity-audit"
+                className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors"
+                data-testid="button-audit-details"
+              >
+                See Growth Audit Details
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
 
-                <div className="shrink-0">
-                  <a
-                    href="#contact"
-                    className="service-cta inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold text-white hover:scale-105 transition-all duration-300"
-                    style={{ background: brand.pink }}
-                  >
-                    {s.cta}
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
+            {/* Growth Retainer */}
+            <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-200" data-testid="card-retainer-offer">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-indigo-50 p-2">
+                  <TrendingUp className="h-6 w-6 text-indigo-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-xl font-bold text-gray-900" data-testid="text-retainer-title">
+                    Growth Retainer ($3,200–$15,000/mo)
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-1" data-testid="text-retainer-who">
+                    For brands ready to scale with expert ongoing management.
+                  </p>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
-      
-      {/* Real Case Studies Section */}
-      <section className="px-6 py-16 lg:px-8 border-t" style={{ borderColor: "#e5e7eb" }}>
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Real Results From $3M+ in Managed Ad Spend</h2>
-            <p className="mt-2" style={{ color: brand.green }}>Authentic case studies and proven outcomes across industries</p>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: brand.peach }}>
-              <div className="mb-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: brand.purple }}>
-                  <TrendingUp className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-bold text-lg">Growth Across Industries</h3>
-              </div>
-              <p className="mb-4" style={{ color: brand.green }}>Multi-vertical campaign management showcasing adaptability across different business models and customer acquisition strategies.</p>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm" style={{ color: brand.green }}>Campaign Reach:</span>
-                  <span className="font-semibold">Multiple Industries</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm" style={{ color: brand.green }}>Total Managed:</span>
-                  <span className="font-semibold">$3M+ Ad Spend</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: brand.peach }}>
-              <div className="mb-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: brand.purple }}>
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-bold text-lg">Maximizing ROI in Fitness</h3>
-              </div>
-              <p className="mb-4" style={{ color: brand.green }}>Strategic campaign optimization for fitness industry client, demonstrating expertise in high-competition verticals.</p>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm" style={{ color: brand.green }}>Revenue Generated:</span>
-                  <span className="font-semibold text-xl" style={{ color: brand.purple }}>$2M+</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm" style={{ color: brand.green }}>Industry:</span>
-                  <span className="font-semibold">Fitness & Wellness</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: brand.peach }}>
-              <div className="mb-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: brand.purple }}>
-                  <Crown className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-bold text-lg">10x ROAS Achievement</h3>
-              </div>
-              <p className="mb-4" style={{ color: brand.green }}>Building a profitable advertising system that delivered exceptional return on ad spend through strategic optimization.</p>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm" style={{ color: brand.green }}>ROAS Achieved:</span>
-                  <span className="font-semibold text-xl" style={{ color: brand.purple }}>10x</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm" style={{ color: brand.green }}>System:</span>
-                  <span className="font-semibold">Profitable Ad System</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-8 p-6 rounded-2xl" style={{ backgroundColor: brand.peach }}>
-              <div className="text-center">
-                <div className="text-2xl font-bold" style={{ color: brand.purple }}>$3M+</div>
-                <div className="text-sm" style={{ color: brand.green }}>Total Ad Spend Managed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold" style={{ color: brand.purple }}>78%+</div>
-                <div className="text-sm" style={{ color: brand.green }}>Conversion Improvements</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold" style={{ color: brand.purple }}>321%+</div>
-                <div className="text-sm" style={{ color: brand.green }}>ROAS Increases</div>
-              </div>
+              
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start" data-testid="text-retainer-bullet-1">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">Omni-channel ads (Google, Meta, YouTube)</span>
+                </li>
+                <li className="flex items-start" data-testid="text-retainer-bullet-2">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">Tiered remarketing & CRO</span>
+                </li>
+                <li className="flex items-start" data-testid="text-retainer-bullet-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">Weekly optimization & reporting</span>
+                </li>
+                <li className="flex items-start" data-testid="text-retainer-bullet-4">
+                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" />
+                  <span className="text-gray-600">Fractional CMO leadership</span>
+                </li>
+              </ul>
+              
+              <p className="text-sm text-gray-500 mb-6" data-testid="text-retainer-commitment">
+                Initial 90-day plan → then month-to-month with 30 days' notice.
+              </p>
+              
+              <a
+                href="/#book-intro"
+                className="inline-flex items-center justify-center w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 transition-colors"
+                data-testid="button-retainer-discuss"
+              >
+                Discuss Retainer Options
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Process Section */}
-      <section
-        className="px-6 py-16 lg:px-8 border-t"
-        style={{ borderColor: "#e5e7eb", background: brand.peach }}
-      >
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">How We Work Together</h2>
-            <p className="mt-2" style={{ color: brand.green }}>From kickoff to measurable results in 3 clear phases</p>
-          </div>
-          
-          {/* 3-Step Process */}
-          <div className="grid gap-8 md:grid-cols-3 mb-16">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-2xl font-bold text-white mb-4" style={{ backgroundColor: brand.purple }}>
-                1
-              </div>
-              <h3 className="text-xl font-bold mb-2">Week 1-2: Discovery & Strategy</h3>
-              <p style={{ color: brand.green }}>Access & analytics audit → roadmap → stakeholder alignment</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-2xl font-bold text-white mb-4" style={{ backgroundColor: brand.pink }}>
-                2
-              </div>
-              <h3 className="text-xl font-bold mb-2">Week 3-6: Build & Launch</h3>
-              <p style={{ color: brand.green }}>Campaign setup → creative production → testing framework → go live</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-2xl font-bold text-white mb-4" style={{ backgroundColor: brand.green }}>
-                3
-              </div>
-              <h3 className="text-xl font-bold mb-2">Ongoing: Optimize & Scale</h3>
-              <p style={{ color: brand.green }}>Weekly optimization → monthly reporting → continuous improvement</p>
-            </div>
-          </div>
-          
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div>
-              <h3 className="text-xl font-bold">How engagements work</h3>
-              <ul className="mt-4 list-disc pl-5" style={{ color: brand.green }}>
-                <li>Kickoff → access & analytics check → roadmap</li>
-                <li>Build → launch → iterate weekly</li>
-                <li>Reporting OS with clear KPIs & ROI focus</li>
-                <li>Slack/email support throughout engagement</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold">Who this is for</h3>
-              <ul className="mt-4 list-disc pl-5" style={{ color: brand.green }}>
-                <li>Ambitious brands in E-commerce, Retreats, Luxury, Education</li>
-                <li>Teams that value strategy + hands-on execution</li>
-                <li>Leaders who want measurable outcomes, not vanity metrics</li>
-                <li>Companies ready to invest in sustainable growth</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold">Starting points</h3>
-              <ul className="mt-4 list-disc pl-5" style={{ color: brand.green }}>
-                <li><a href="#clarity-audit" className="underline hover:opacity-70">Growth Clarity Audit</a> – fastest way to identify wins</li>
-                <li><a href="#google-ads" className="underline hover:opacity-70">Google Ads Management</a> – Search/PMAX/YouTube</li>
-                <li><a href="#paid-social" className="underline hover:opacity-70">Paid Social Growth</a> – creative testing & scale</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Service Selection Guide */}
+      {/* Other Services */}
       <section className="px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Which Service Is Right for You?</h2>
-            <p className="mt-2" style={{ color: brand.green }}>Choose based on your current stage and goals</p>
-          </div>
-          
-          <div className="grid gap-6">
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: '#fef7f0' }}>
-              <h3 className="font-bold text-lg mb-2">🔍 Just Getting Started or Unclear on Issues?</h3>
-              <p className="mb-3" style={{ color: brand.green }}>Start with <strong>Growth Clarity Audit</strong> - Get a complete picture of opportunities and priorities before investing in ongoing management.</p>
-              <a href="#clarity-audit" className="text-sm font-medium" style={{ color: brand.purple }}>View Clarity Audit →</a>
-            </div>
-            
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: '#fef7f0' }}>
-              <h3 className="font-bold text-lg mb-2">🎯 Ready for Ongoing Management?</h3>
-              <p className="mb-3" style={{ color: brand.green }}>Perfect for <strong>Google Ads Management</strong> or <strong>Paid Social Growth</strong> - Choose based on whether your audience searches (Google) or scrolls (Social).</p>
-              <div className="flex gap-4">
-                <a href="#google-ads" className="text-sm font-medium" style={{ color: brand.purple }}>Google Ads →</a>
-                <a href="#paid-social" className="text-sm font-medium" style={{ color: brand.purple }}>Paid Social →</a>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Google Ads Management */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow" data-testid="card-google-ads">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-blue-50 p-2">
+                  <Target className="h-5 w-5 text-blue-600" />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900" data-testid="text-google-ads-title">
+                  Google Ads Management
+                </h3>
               </div>
+              <ul className="space-y-2 mb-4">
+                <li className="flex items-start" data-testid="text-google-ads-bullet-1">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Capture high-intent buyers</span>
+                </li>
+                <li className="flex items-start" data-testid="text-google-ads-bullet-2">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Optimize cost per lead</span>
+                </li>
+              </ul>
+              <a href="/#book-intro" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium" data-testid="link-google-ads-playbook">
+                See playbook →
+              </a>
             </div>
-            
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: '#fef7f0' }}>
-              <h3 className="font-bold text-lg mb-2">🏢 Need Full Strategic Partnership?</h3>
-              <p className="mb-3" style={{ color: brand.green }}>Consider <strong>Fractional CMO</strong> - Unify all channels, team coordination, and strategic planning with hands-on execution.</p>
-              <a href="#fractional-cmo" className="text-sm font-medium" style={{ color: brand.purple }}>Explore CMO Services →</a>
+
+            {/* Meta Campaigns */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow" data-testid="card-meta-campaigns">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-purple-50 p-2">
+                  <Users className="h-5 w-5 text-purple-600" />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900" data-testid="text-meta-title">
+                  Meta Campaigns
+                </h3>
+              </div>
+              <ul className="space-y-2 mb-4">
+                <li className="flex items-start" data-testid="text-meta-bullet-1">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Build scalable creative systems</span>
+                </li>
+                <li className="flex items-start" data-testid="text-meta-bullet-2">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Tiered remarketing</span>
+                </li>
+              </ul>
+              <a href="/#book-intro" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium" data-testid="link-meta-playbook">
+                See playbook →
+              </a>
             </div>
-            
-            <div className="p-6 rounded-2xl border" style={{ borderColor: brand.pink, backgroundColor: '#fef7f0' }}>
-              <h3 className="font-bold text-lg mb-2">📊 Good Traffic but Poor Conversions?</h3>
-              <p className="mb-3" style={{ color: brand.green }}>Start with <strong>CRO & Funnel Optimization</strong> - Fix your conversion rate first, then scale with confidence.</p>
-              <a href="#cro" className="text-sm font-medium" style={{ color: brand.purple }}>Start CRO Program →</a>
+
+            {/* CRO & Funnel Optimization */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow" data-testid="card-cro">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-green-50 p-2">
+                  <TrendingUp className="h-5 w-5 text-green-600" />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900" data-testid="text-cro-title">
+                  CRO & Funnel Optimization
+                </h3>
+              </div>
+              <ul className="space-y-2 mb-4">
+                <li className="flex items-start" data-testid="text-cro-bullet-1">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Funnel testing & iteration</span>
+                </li>
+                <li className="flex items-start" data-testid="text-cro-bullet-2">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Conversion tracking clarity</span>
+                </li>
+              </ul>
+              <a href="/#book-intro" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium" data-testid="link-cro-playbook">
+                See playbook →
+              </a>
+            </div>
+
+            {/* Attribution & Reporting */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow" data-testid="card-attribution">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-orange-50 p-2">
+                  <BarChart3 className="h-5 w-5 text-orange-600" />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900" data-testid="text-attribution-title">
+                  Attribution & Reporting
+                </h3>
+              </div>
+              <ul className="space-y-2 mb-4">
+                <li className="flex items-start" data-testid="text-attribution-bullet-1">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Unified metrics dashboard</span>
+                </li>
+                <li className="flex items-start" data-testid="text-attribution-bullet-2">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Data for decisions, not noise</span>
+                </li>
+              </ul>
+              <a href="/#book-intro" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium" data-testid="link-attribution-playbook">
+                See playbook →
+              </a>
+            </div>
+
+            {/* YouTube Ads */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow" data-testid="card-youtube">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-red-50 p-2">
+                  <Users className="h-5 w-5 text-red-600" />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900" data-testid="text-youtube-title">
+                  YouTube Ads
+                </h3>
+              </div>
+              <ul className="space-y-2 mb-4">
+                <li className="flex items-start" data-testid="text-youtube-bullet-1">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Educate & capture viewers</span>
+                </li>
+                <li className="flex items-start" data-testid="text-youtube-bullet-2">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">High-intent video targeting</span>
+                </li>
+              </ul>
+              <a href="/#book-intro" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium" data-testid="link-youtube-playbook">
+                See playbook →
+              </a>
+            </div>
+
+            {/* Fractional CMO */}
+            <div className="rounded-2xl bg-white p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow" data-testid="card-fractional-cmo">
+              <div className="flex items-center mb-4">
+                <div className="rounded-lg bg-indigo-50 p-2">
+                  <Crown className="h-5 w-5 text-indigo-600" />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900" data-testid="text-cmo-title">
+                  Fractional CMO
+                </h3>
+              </div>
+              <ul className="space-y-2 mb-4">
+                <li className="flex items-start" data-testid="text-cmo-bullet-1">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Strategic leadership without full-time hire</span>
+                </li>
+                <li className="flex items-start" data-testid="text-cmo-bullet-2">
+                  <div className="w-1 h-1 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-600">Align teams around a growth roadmap</span>
+                </li>
+              </ul>
+              <a href="/#book-intro" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium" data-testid="link-cmo-playbook">
+                See playbook →
+              </a>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* FAQ Section */}
-      <section className="px-6 py-16 lg:px-8" style={{ backgroundColor: brand.peach }}>
+
+      {/* Comparison Snapshot */}
+      <section className="px-6 py-16 lg:px-8 bg-gray-50">
         <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
-          </div>
-          
-          <div className="grid gap-6">
-            <div className="p-6 rounded-2xl bg-white border" style={{ borderColor: brand.pink }}>
-              <h3 className="font-bold text-lg mb-2">Can services be combined?</h3>
-              <p style={{ color: brand.green }}>Absolutely! Many clients start with a Clarity Audit, then move into management services. Fractional CMO includes multiple services in one strategic package.</p>
-            </div>
-            
-            <div className="p-6 rounded-2xl bg-white border" style={{ borderColor: brand.pink }}>
-              <h3 className="font-bold text-lg mb-2">What if I'm not seeing results?</h3>
-              <p style={{ color: brand.green }}>Every engagement includes regular reporting and optimization. If we're not hitting targets after 60-90 days, we'll pivot strategy or pause to reassess approach.</p>
-            </div>
-            
-            <div className="p-6 rounded-2xl bg-white border" style={{ borderColor: brand.pink }}>
-              <h3 className="font-bold text-lg mb-2">How hands-on are you vs. just strategy?</h3>
-              <p style={{ color: brand.green }}>I'm both strategist AND operator. I build campaigns, write ad copy, set up tracking, and optimize weekly. You get thinking + doing in one person.</p>
-            </div>
-            
-            <div className="p-6 rounded-2xl bg-white border" style={{ borderColor: brand.pink }}>
-              <h3 className="font-bold text-lg mb-2">What size businesses do you work with?</h3>
-              <p style={{ color: brand.green }}>Primarily work with established businesses spending $10K+ monthly on ads, or ready to scale to that level. From ambitious startups to $50M+ companies.</p>
-            </div>
-            
-            <div className="p-6 rounded-2xl bg-white border" style={{ borderColor: brand.pink }}>
-              <h3 className="font-bold text-lg mb-2">How do contracts work?</h3>
-              <p style={{ color: brand.green }}>Clarity Audit is one-time project. Management services typically start with 3-6 month minimums. Fractional CMO is minimum 3 months, often 6-12 month engagements.</p>
-            </div>
+          <div className="overflow-hidden bg-white shadow-sm rounded-2xl border border-gray-200">
+            <table className="min-w-full divide-y divide-gray-200" data-testid="table-comparison">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Perfect for
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Commitment
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Pricing
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                <tr data-testid="row-audit">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Quick clarity & roadmap</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">One-time</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$497–$900</td>
+                </tr>
+                <tr data-testid="row-retainer">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Scale + compounding growth</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">90 days → monthly</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$3,200–$15,000/mo</td>
+                </tr>
+                <tr data-testid="row-other">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Tactical support</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Flexible</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Varies</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
-      
-      {/* Contact CTA */}
-      <section id="contact" className="px-6 py-16 lg:px-8 text-center">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="mb-8" style={{ color: brand.green }}>Book a 15-minute call to discuss your goals and determine the best starting point.</p>
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-lg font-semibold text-white hover:scale-105 transition-transform"
-            style={{ background: brand.purple }}
-          >
-            Schedule Strategy Call
-            <ArrowRight className="w-5 h-5" />
-          </a>
-          <p className="mt-4 text-sm" style={{ color: brand.green }}>No sales pitch. Just a genuine conversation about your growth challenges.</p>
+
+      {/* CTA Strip */}
+      <section className="px-6 py-16 lg:px-8 bg-indigo-50">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900" data-testid="text-cta-headline">
+            Ready to Find the Right Fit?
+          </h2>
+          <p className="mt-4 text-lg text-gray-600" data-testid="text-cta-subhead">
+            Start with a quick intro call to align on goals and see which service unlocks the most growth for your brand.
+          </p>
+          <div className="mt-8">
+            <a
+              href="/#book-intro"
+              className="inline-flex items-center rounded-md bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
+              data-testid="button-book-intro-cta"
+            >
+              Book a 10-min Intro Call
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </div>
         </div>
       </section>
-    </main>
     </div>
   );
 }

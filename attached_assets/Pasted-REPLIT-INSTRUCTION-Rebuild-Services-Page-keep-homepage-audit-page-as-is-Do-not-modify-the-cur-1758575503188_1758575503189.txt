@@ -1,0 +1,159 @@
+REPLIT INSTRUCTION — Rebuild Services Page (keep homepage + audit page as-is)
+
+Do not modify the current Homepage and do not rebuild the existing Growth Audit page. This task is only for the /services page.
+
+0) Page goal
+
+Make the Services page short, scannable, and action-focused. Flagship offers (Audit + Retainer) first. Everything has a clear CTA.
+
+1) Hero (top of Services)
+
+H1: Services Designed to Drive Measurable Growth
+
+Subhead: Choose your entry point — from fast clarity audits to ongoing growth retainers. Each service is built to maximize ROI.
+
+Buttons (side-by-side):
+
+Primary (solid): Book a 10-min Intro Call → link /#book-intro
+
+Secondary (outline): Explore Growth Audit → link to the existing audit page (keep current URL, e.g., /growth-clarity-audit)
+
+Spacing: generous top/bottom padding; centered content; max-width ~max-w-3xl.
+
+2) Flagship Offers (two highlight cards at the top)
+A) Growth Clarity Audit (card #1)
+
+Card title: Growth Clarity Audit ($497–$900 one-time)
+
+Who it’s for (small eyebrow): For founders & teams who want quick clarity on wasted spend, broken tracking, and growth opportunities.
+
+Bullets (2–4 max):
+
+Full-funnel audit + PDF/Video walkthrough
+
+30–60 min strategy call
+
+2 weeks of support
+
+Risk-free entry: credit applied to your first retainer month if you sign within 14 days
+
+CTA button (outline): See Growth Audit Details → link to existing audit page (same URL as above).
+
+B) Growth Retainer (card #2)
+
+Card title: Growth Retainer ($3,200–$15,000/mo)
+
+Who it’s for (small eyebrow): For brands ready to scale with expert ongoing management.
+
+Bullets (2–4 max):
+
+Omni-channel ads (Google, Meta, YouTube)
+
+Tiered remarketing & CRO
+
+Weekly optimization & reporting
+
+Fractional CMO leadership
+
+Commitment note (small text under bullets):
+Initial 90-day plan → then month-to-month with 30 days’ notice.
+
+CTA button (solid): Discuss Retainer Options → link /#book-intro
+
+Layout: on desktop, show the two cards side-by-side; on mobile, stacked. Use the same card style as your homepage tiles (rounded-2xl, subtle border/shadow).
+
+3) Other Services (compact tiles grid)
+
+Create a 2 or 3-column tile grid. Each tile has: title, 2 bullets max, and a small text link See playbook (for now link to /#book-intro or keep as # if we’ll add subpages later).
+
+Tiles:
+
+Google Ads Management
+
+Capture high-intent buyers
+
+Optimize cost per lead
+Link: See playbook
+
+Meta Campaigns
+
+Build scalable creative systems
+
+Tiered remarketing
+Link: See playbook
+
+CRO & Funnel Optimization
+
+Funnel testing & iteration
+
+Conversion tracking clarity
+Link: See playbook
+
+Attribution & Reporting
+
+Unified metrics dashboard
+
+Data for decisions, not noise
+Link: See playbook
+
+YouTube Ads
+
+Educate & capture viewers
+
+High-intent video targeting
+Link: See playbook
+
+Fractional CMO
+
+Strategic leadership without full-time hire
+
+Align teams around a growth roadmap
+Link: See playbook
+
+Style: match the “Services at a glance” component from the homepage (same spacing, typography, and hover styles).
+
+4) (Optional) Comparison Snapshot (compact table)
+
+A simple 3-column table comparing Audit vs Retainer vs Other Services. Keep it tight; no long paragraphs.
+
+Headers: Perfect for · Commitment · Pricing
+
+Audit: Quick clarity & roadmap · One-time · $497–$900
+
+Retainer: Scale + compounding growth · 90 days → monthly · $3,200–$15,000/mo
+
+Other Services: Tactical support · Flexible · Varies
+
+Place this below the tiles. If space feels heavy, omit this section.
+
+5) CTA Strip (bottom)
+
+Headline: Ready to Find the Right Fit?
+
+Subhead: Start with a quick intro call to align on goals and see which service unlocks the most growth for your brand.
+
+Button (solid): Book a 10-min Intro Call → /#book-intro
+
+Full-width, subtle gray/brand-tinted background, centered content.
+
+6) Styling & UX rules
+
+Keep copy tight and scannable. No long paragraphs on this page.
+
+Use the same button hierarchy as homepage (solid = primary; outline/link = secondary).
+
+Maintain consistent paddings and max-w-7xl container.
+
+All buttons and “See playbook” links must be clickable (no dead UI).
+
+7) Links / Routing
+
+Do not change the Growth Audit page route.
+
+All “Book a 10-min Intro Call” buttons → /#book-intro.
+
+“See Growth Audit Details” → audit page URL (unchanged).
+
+“See playbook” links can point to /#book-intro for now.
+
+If anything is unclear, ask before changing other pages. The scope is Services page only, with homepage + Growth Audit page left intact.
