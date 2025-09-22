@@ -36,6 +36,12 @@ import microsoftLogo from "@assets/Microsoft-Design_1758463290202.png";
 import denaGamesLogo from "@assets/Dena-Games-Logo_1758463419409.png";
 import estrellaGymnasticsLogo from "@assets/Estrella-Gymnastics-logo_1758464245387.png";
 import capitalGymnasticsLogo from "@assets/capital-gymnastics-logo_1758464403830.png";
+import tigarGymnasticsLogo from "@assets/Tigar Gymnastics Logo-vmake_1758554236584.png";
+import houstonGymnasticsLogo from "@assets/Houston-Gymnastics-Academy-vmake_1758554236584.png";
+import sgtMenuLogo from "@assets/SGT-MENU-LOGO-1_1758554236584.png";
+import noTypicalMomentsLogo from "@assets/No-Typical-Moments-Logo_1758554458418.png";
+import marketerHireLogo from "@assets/MarketerHire Logo_1758554458419.png";
+import rowlandBallardLogo from "@assets/Rowland-Ballard-Logo_1758554468287.png";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -971,6 +977,73 @@ export default function HomePage() {
                   <img 
                     src={capitalGymnasticsLogo} 
                     alt="Capital Gymnastics" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              {/* Third row of logos */}
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={tigarGymnasticsLogo} 
+                    alt="Tigar Gymnastics" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={houstonGymnasticsLogo} 
+                    alt="Houston Gymnastics Academy" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={sgtMenuLogo} 
+                    alt="Scottsdale Gymnastics & Trampoline" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={noTypicalMomentsLogo} 
+                    alt="No Typical Moments" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={marketerHireLogo} 
+                    alt="MarketerHire" 
+                    className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
+                  />
+                </div>
+              </div>
+
+              <div className="logo-card group relative isolate block rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="aspect-[3/2] p-4 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={rowlandBallardLogo} 
+                    alt="Rowland Ballard School" 
                     className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out transform-gpu will-change-transform group-hover:scale-110" 
                   />
                 </div>
