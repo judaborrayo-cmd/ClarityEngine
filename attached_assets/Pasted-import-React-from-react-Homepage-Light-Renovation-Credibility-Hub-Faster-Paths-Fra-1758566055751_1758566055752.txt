@@ -1,0 +1,338 @@
+import React from "react";
+
+/**
+ * Homepage Light Renovation — Credibility Hub + Faster Paths
+ * Framework: React + TailwindCSS (no external deps)
+ *
+ * What this file includes:
+ *  - Hero with 2 CTAs and Microproof
+ *  - Proof Bar (logos/metrics)
+ *  - Value Ladder (3 cards)
+ *  - YouTube Cred Block (1 feature + 2 thumbs)
+ *  - Services Tiles
+ *  - Case Study Cards (carousel-ready grid)
+ *  - FAQ (3–5 items)
+ *  - Sticky CTA (mobile & desktop)
+ *
+ * Replace placeholder text, logos, links, and metrics with real data.
+ */
+
+const Section = ({ id, className = "", children }) => (
+  <section id={id} className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>
+    {children}
+  </section>
+);
+
+const PrimaryButton = ({ href = "#", children }) => (
+  <a
+    href={href}
+    className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-black hover:bg-gray-900 transition"
+  >
+    {children}
+  </a>
+);
+
+const SecondaryButton = ({ href = "#", children }) => (
+  <a
+    href={href}
+    className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold border border-gray-300 text-gray-900 hover:bg-gray-50 transition"
+  >
+    {children}
+  </a>
+);
+
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center rounded-full border border-gray-200 bg-white/60 px-3 py-1 text-xs font-medium text-gray-700 backdrop-blur">
+    {children}
+  </span>
+);
+
+const Card = ({ children, className = "" }) => (
+  <div className={`rounded-2xl border border-gray-200 bg-white p-6 shadow-sm ${className}`}>
+    {children}
+  </div>
+);
+
+const Divider = () => <div className="h-px w-full bg-gray-100" />;
+
+const Logo = ({ label = "Logo" }) => (
+  <div className="h-8 w-28 rounded bg-gray-100 text-gray-400 flex items-center justify-center text-xs">
+    {label}
+  </div>
+);
+
+const YouTubeEmbed = ({ src, title }) => (
+  <div className="relative w-full overflow-hidden rounded-2xl" style={{ paddingTop: "56.25%" }}>
+    <iframe
+      className="absolute inset-0 h-full w-full"
+      src={src}
+      title={title}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
+  </div>
+);
+
+// --- SIMPLE CONFIG FOR EASY SWAPS ---
+const CONFIG = {
+  featuredVideo: {
+    id: "dQw4w9WgXcQ", // TODO: replace with your video id only
+    title: "How I Scale Paid Media in 90 Days",
+    url() {
+      return `https://www.youtube.com/embed/${this.id}`;
+    },
+  },
+  sideVideos: [
+    { id: "r6zIGXun57U", title: "Audit Teardown: Fix Tracking Fast", href: "https://www.youtube.com/watch?v=r6zIGXun57U" },
+    { id: "9bZkp7q19f0", title: "Tiered Remarketing in Practice", href: "https://www.youtube.com/watch?v=9bZkp7q19f0" },
+  ],
+};
+
+export default function HomepageLightRenovation() {
+  return (
+    <main className="relative min-h-screen overflow-x-hidden bg-white text-gray-900">
+      {/* --- HERO --- */}
+      <Section id="hero" className="pt-14 pb-12 lg:pt-20 lg:pb-16">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl">
+            Smarter ads. More bookings. Consistent growth.
+          </h1>
+          <p className="mt-4 text-lg text-gray-600">
+            Paid media + CRO for retreats and transformative brands.
+          </p>
+
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <PrimaryButton href="#book-intro">Book a 10‑min Intro Call</PrimaryButton>
+            <SecondaryButton href="#services">Explore Services & Wins</SecondaryButton>
+          </div>
+
+          {/* Microproof row */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <Badge>$2M+ tracked revenue</Badge>
+            <Badge>10+ years experience</Badge>
+            <Badge>Google & Meta certified</Badge>
+            <Badge>Real results, fast iteration</Badge>
+          </div>
+        </div>
+      </Section>
+
+      {/* --- PROOF BAR --- */}
+      <div className="bg-gray-50 py-6">
+        <Section id="proof-bar" className="">
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Logo label="Powers" />
+            <Logo label="Columbus" />
+            <Logo label="Monisha" />
+            <div className="text-sm text-gray-600">-56% CPL in 60 days</div>
+            <div className="text-sm text-gray-600">3× more calls booked</div>
+          </div>
+        </Section>
+      </div>
+
+      {/* --- VALUE LADDER --- */}
+      <Section id="value-ladder" className="py-14">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl">Work with me, your way</h2>
+          <p className="mt-2 text-gray-600">Start quick, then go deeper as needed.</p>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <Card>
+            <h3 className="text-lg font-semibold">Intro Call (Free, 10 min)</h3>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-600">
+              <li>Align on goals</li>
+              <li>Spot bottlenecks</li>
+              <li>Map next step</li>
+            </ul>
+            <a href="#book-intro" className="mt-4 inline-block text-sm font-semibold text-black underline">See details</a>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold">Deep‑Dive Audit ($600–900)</h3>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-600">
+              <li>Tracking & funnel assessment</li>
+              <li>Account structure review</li>
+              <li>30‑day action plan</li>
+            </ul>
+            <a href="#audit" className="mt-4 inline-block text-sm font-semibold text-black underline">See scope & pricing</a>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold">Growth Retainer ($3,200+/mo)</h3>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-600">
+              <li>Omni‑channel ads (Google, Meta, YouTube)</li>
+              <li>Tiered remarketing & CRO</li>
+              <li>Weekly iteration & reporting</li>
+            </ul>
+            <a href="#retainer" className="mt-4 inline-block text-sm font-semibold text-black underline">See program</a>
+          </Card>
+        </div>
+      </Section>
+
+      {/* --- YOUTUBE CRED BLOCK --- */}
+      <Section id="youtube" className="py-14">
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <YouTubeEmbed
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="How I Scale Paid Media in 90 Days"
+            />
+          </div>
+          <div className="space-y-4">
+            <Card>
+              <h3 className="text-sm font-semibold">How I Scale in 90 Days</h3>
+              <p className="mt-2 text-sm text-gray-600">A quick walkthrough of the discovery → diagnose → design → drive framework.</p>
+              <a href="https://youtube.com" className="mt-3 inline-block text-sm font-semibold text-black underline">Watch on YouTube</a>
+            </Card>
+            <Card>
+              <h3 className="text-sm font-semibold">Audit Teardown (5 mins)</h3>
+              <p className="mt-2 text-sm text-gray-600">Common tracking gaps and how to fix them fast.</p>
+              <a href="https://youtube.com" className="mt-3 inline-block text-sm font-semibold text-black underline">Watch clip</a>
+            </Card>
+          </div>
+        </div>
+      </Section>
+
+      {/* --- SERVICES TILES --- */}
+      <Section id="services" className="py-14">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl">Services at a glance</h2>
+          <p className="mt-2 text-gray-600">Outcome‑focused playbooks you can plug in.</p>
+        </div>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { title: "Google Ads Strategy", bullets: ["Capture high‑intent", "Cut CPL & waste"], href: "#google" },
+            { title: "Meta Campaigns", bullets: ["Scalable creative", "Tiered remarketing"], href: "#meta" },
+            { title: "Conversion Optimization", bullets: ["Funnel testing", "Clearer tracking"], href: "#cro" },
+            { title: "Attribution & Reporting", bullets: ["Unified metrics", "Decisions, not noise"], href: "#attr" },
+            { title: "YouTube Ads", bullets: ["Educate & capture", "High‑intent viewers"], href: "#yt" },
+            { title: "Landing Pages", bullets: ["Persuasive UX", "Faster experiments"], href: "#lp" },
+          ].map((s) => (
+            <Card key={s.title}>
+              <h3 className="text-lg font-semibold">{s.title}</h3>
+              <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-600">
+                {s.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+              <a href={s.href} className="mt-4 inline-block text-sm font-semibold text-black underline">See playbook</a>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* --- CASE STUDY PREVIEWS --- */}
+      <Section id="case-studies" className="py-14">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl">Selected wins</h2>
+          <p className="mt-2 text-gray-600">Problem → Approach → Result. Short and sweet.</p>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <Card>
+            <h3 className="text-base font-semibold">Gym chain (10+ locations)</h3>
+            <Divider />
+            <ul className="mt-3 space-y-2 text-sm text-gray-700">
+              <li><span className="font-medium">Problem:</span> Rising CPL, flat sign‑ups</li>
+              <li><span className="font-medium">Approach:</span> Tiered remarketing + search overhaul</li>
+              <li><span className="font-medium">Result:</span> −56% CPL in 60 days</li>
+            </ul>
+            <a href="#cs-gym" className="mt-4 inline-block text-sm font-semibold text-black underline">Open full case study</a>
+          </Card>
+          <Card>
+            <h3 className="text-base font-semibold">Luxury travel (Galápagos)</h3>
+            <Divider />
+            <ul className="mt-3 space-y-2 text-sm text-gray-700">
+              <li><span className="font-medium">Problem:</span> Wasted spend, broken tracking</li>
+              <li><span className="font-medium">Approach:</span> Fix tracking + rebuild search</li>
+              <li><span className="font-medium">Result:</span> More qualified calls, better ROAS</li>
+            </ul>
+            <a href="#cs-travel" className="mt-4 inline-block text-sm font-semibold text-black underline">Open full case study</a>
+          </Card>
+          <Card>
+            <h3 className="text-base font-semibold">Fine jewelry (e‑com)</h3>
+            <Divider />
+            <ul className="mt-3 space-y-2 text-sm text-gray-700">
+              <li><span className="font-medium">Problem:</span> Low AOV catalog retargeting</li>
+              <li><span className="font-medium">Approach:</span> Dynamic sets + creative testing</li>
+              <li><span className="font-medium">Result:</span> Higher AOV & repeat buyers</li>
+            </ul>
+            <a href="#cs-jewelry" className="mt-4 inline-block text-sm font-semibold text-black underline">Open full case study</a>
+          </Card>
+        </div>
+      </Section>
+
+      {/* --- FAQ --- */}
+      <Section id="faq" className="py-14">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl">FAQs</h2>
+          <p className="mt-2 text-gray-600">Quick answers to common questions.</p>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <Card>
+            <h3 className="font-semibold">How fast can I see results?</h3>
+            <p className="mt-2 text-sm text-gray-600">Most clients see meaningful movement in 30–60 days once tracking and structure are fixed.</p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold">What budgets do you work with?</h3>
+            <p className="mt-2 text-sm text-gray-600">From test budgets to $30k+/mo. The playbook adapts to your growth stage.</p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold">Do you require long‑term contracts?</h3>
+            <p className="mt-2 text-sm text-gray-600">No annual lock‑in. We start with a 90‑day plan and iterate from there.</p>
+          </Card>
+          <Card>
+            <h3 className="font-semibold">Will you work with our team?</h3>
+            <p className="mt-2 text-sm text-gray-600">Yes. I plug in as a partner or fractional CMO and collaborate with your team.</p>
+          </Card>
+        </div>
+      </Section>
+
+      {/* --- BOOKING TARGETS (ANCHORS) --- */}
+      <Section id="book-intro" className="py-14">
+        <Card className="mx-auto max-w-3xl">
+          <h2 className="text-xl font-bold">Book a 10‑minute Intro Call</h2>
+          <p className="mt-2 text-sm text-gray-600">Align goals, surface bottlenecks, and set the next step. No prep required.</p>
+          {/* Replace with your Calendly embed or form */}
+          <div className="mt-6 h-64 w-full rounded-xl bg-gray-50 p-4 text-gray-500">
+            Calendly/Form embed goes here
+          </div>
+        </Card>
+      </Section>
+
+      <Section id="audit" className="py-14">
+        <Card className="mx-auto max-w-3xl">
+          <h2 className="text-xl font-bold">Deep‑Dive Audit</h2>
+          <p className="mt-2 text-sm text-gray-600">Comprehensive assessment across tracking, structure, and creative with a 30‑day action plan.</p>
+          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600">
+            <li>Analytics & pixel/setup verification</li>
+            <li>Campaign architecture & keyword/audience review</li>
+            <li>Funnel and CRO opportunities</li>
+            <li>Prioritized roadmap with quick wins</li>
+          </ul>
+        </Card>
+      </Section>
+
+      <Section id="retainer" className="py-14">
+        <Card className="mx-auto max-w-3xl">
+          <h2 className="text-xl font-bold">Growth Retainer</h2>
+          <p className="mt-2 text-sm text-gray-600">Hands‑on management and strategy to drive compounding results.</p>
+          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600">
+            <li>Weekly optimization & creative testing</li>
+            <li>Tiered remarketing & lifecycle orchestration</li>
+            <li>Full‑funnel reporting & decision cadence</li>
+          </ul>
+        </Card>
+      </Section>
+
+      {/* --- STICKY CTA --- */}
+      <a
+        href="#book-intro"
+        className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-gray-900"
+      >
+        Book Intro Call
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+          <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h9.69L10.22 6.04a.75.75 0 1 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.21H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+        </svg>
+      </a>
+    </main>
+  );
+}
