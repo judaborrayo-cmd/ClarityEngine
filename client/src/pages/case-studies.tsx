@@ -15,6 +15,15 @@ import sgtMenuLogo from "@assets/SGT-MENU-LOGO-1_1758554236584.png";
 import noTypicalMomentsLogo from "@assets/No-Typical-Moments-Logo_1758554458418.png";
 import marketerHireLogo from "@assets/MarketerHire Logo_1758554458419.png";
 import rowlandBallardLogo from "@assets/Rowland-Ballard-Logo_1758554468287.png";
+import bolayLogo from "@assets/Bolay_Official_Logo_Vertical_RGB_1756749176444.png";
+import core40Logo from "@assets/Core40_Logo_1756749176445.png";
+import cuteraLogo from "@assets/Cutera-Laser-Genesis-Subpage_1756749176443.png";
+import eftUniverseLogo from "@assets/EFTUniverse-logo_320x132 (1)_1756749176445.png";
+import magayaLogo from "@assets/LOGO_MAGAYA_MEDIUM-GREY_1756749176446.png";
+import mandaliLogo from "@assets/mandali_logo-actual_1756749176444.png";
+import mixTelematicsLogo from "@assets/mix-telematics-logo-actual_1756749176445.png";
+import motivatingMassesLogo from "@assets/Motivating_The_Masses_Logo_Transparent_1756749176445.png";
+import columbusLogo from "@assets/2LOGO-NEW-COLUMBUS-01-(1)_1756749176442.png";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -341,14 +350,32 @@ export default function CaseStudies() {
             <div className="space-y-8">
               {/* First row */}
               <div className="flex flex-wrap items-center justify-center gap-8">
-                <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
+                <LogoImage src={mandaliLogo} alt="Mandali" />
                 <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
-                <LogoImage src={ascendLogo} alt="Ascend" />
-                <LogoImage src={microsoftLogo} alt="Microsoft" />
-                <LogoImage src={denaGamesLogo} alt="Dena Games" />
+                <LogoImage src={bolayLogo} alt="Bolay" />
+                <LogoImage src={cuteraLogo} alt="Cutera" />
+                <LogoImage src={motivatingMassesLogo} alt="Motivating The Masses" />
               </div>
               
               {/* Second row */}
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                <LogoImage src={columbusLogo} alt="Columbus" />
+                <LogoImage src={magayaLogo} alt="Magaya" />
+                <LogoImage src={columbusLogo} alt="Columbus Capital" />
+                <LogoImage src={mixTelematicsLogo} alt="Mix Telematics" />
+                <LogoImage src={eftUniverseLogo} alt="EFT Universe" />
+              </div>
+              
+              {/* Third row */}
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
+                <LogoImage src={ascendLogo} alt="Ascend" />
+                <LogoImage src={microsoftLogo} alt="Microsoft" />
+                <LogoImage src={denaGamesLogo} alt="Dena Games" />
+                <LogoImage src={core40Logo} alt="Core40" />
+              </div>
+              
+              {/* Fourth row */}
               <div className="flex flex-wrap items-center justify-center gap-8">
                 <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
                 <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
@@ -356,7 +383,7 @@ export default function CaseStudies() {
                 <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
               </div>
               
-              {/* Third row */}
+              {/* Fifth row */}
               <div className="flex flex-wrap items-center justify-center gap-8">
                 <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
                 <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
