@@ -1,4 +1,29 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Search, Users, TrendingUp, Crown, Heart, Target, Clock, DollarSign, CheckCircle, ArrowRight } from "lucide-react";
+
+// Progress Bar Component
+function ProgressBar() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
+  return (
+    <div className="progress-bar">
+      <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+    </div>
+  );
+}
 
 export default function Services() {
   const services = [
@@ -112,7 +137,9 @@ export default function Services() {
   };
 
   return (
-    <main className="min-h-screen bg-white" style={{ color: brand.black }}>
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <ProgressBar />
+      <main className="min-h-screen bg-white" style={{ color: brand.black }}>
       {/* Hero */}
       <section
         className="px-6 pt-16 pb-8 lg:px-8 border-b"
@@ -479,5 +506,6 @@ export default function Services() {
         </div>
       </section>
     </main>
+    </div>
   );
 }

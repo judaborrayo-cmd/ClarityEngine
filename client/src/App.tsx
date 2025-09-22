@@ -8,6 +8,8 @@ import Services from "@/pages/services";
 import CaseStudies from "@/pages/case-studies";
 import CaseStudyDetail from "@/pages/case-study-detail";
 import GrowthClarityAudit from "@/pages/growth-clarity-audit";
+import About from "@/pages/about";
+import Testimonials from "@/pages/testimonials";
 import NotFound from "@/pages/not-found";
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
@@ -36,29 +38,29 @@ function Navbar() {
               Services
             </Link>
             <Link 
-              to="/growth-clarity-audit" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Growth Audit
-            </Link>
-            <Link 
               to="/case-studies" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Case Studies
             </Link>
-            <a 
-              href="#about" 
+            <Link 
+              to="/about" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               About
-            </a>
-            <a 
-              href="#cta" 
+            </Link>
+            <Link 
+              to="/testimonials" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Testimonials
+            </Link>
+            <Link 
+              to="/#book-intro" 
               className="bg-primary text-primary-foreground px-6 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -77,6 +79,8 @@ function Router() {
           <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

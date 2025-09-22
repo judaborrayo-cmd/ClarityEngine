@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logo-B_1758463167834.png";
@@ -263,7 +263,7 @@ export default function Home() {
                 <li>Account structure review</li>
                 <li>30‑day action plan</li>
               </ul>
-              <a href="#audit" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-audit">See scope & pricing</a>
+              <Link to="/growth-clarity-audit" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-audit">See scope & pricing</Link>
             </Card>
             <Card>
               <h3 className="text-xl font-semibold text-gray-900" data-testid="card-retainer">Growth Retainer ($3,200–$15,000/mo)</h3>
@@ -437,7 +437,7 @@ export default function Home() {
             </ul>
             <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Risk-free entry:</strong> If you choose a Growth Retainer within 14 days of receiving your audit, your $900 fee is fully credited toward your first month.</p>
             <div className="mt-8">
-              <Link href="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Growth Clarity Audit</Link>
+              <Link to="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Growth Clarity Audit</Link>
             </div>
           </Card>
         </Section>
