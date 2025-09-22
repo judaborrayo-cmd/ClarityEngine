@@ -967,10 +967,10 @@ export default function HomePage() {
         >
           <div className="mx-auto max-w-6xl text-center">
             <h2 className="text-3xl font-bold text-foreground mb-4" data-testid="value-equation-title">
-              Why Clients Choose Clarity Engine
+              We maximize the four variables that determine value.
             </h2>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-              We maximize the four variables that determine value.
+              Why Clients Choose Clarity Engine
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
