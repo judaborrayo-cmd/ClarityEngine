@@ -1,0 +1,111 @@
+Totally hear you. We’ll **keep the Growth Audit PAGE intact** (the one you screenshotted) and **not rebuild it**. We’ll just link to it from the new homepage. Here’s a single, ready-to-paste master prompt for Replit that does exactly that.
+
+---
+
+# MASTER PROMPT FOR REPLIT (paste as one message)
+
+**Do not change the current homepage.** It’s the new conversion-first (Fernando-style) page. Keep it exactly as is.
+
+**Also do not rebuild or replace the existing Growth Audit page.** Keep the current page at its URL (e.g., `/growth-clarity-audit` or whatever it is now). We’ll only link to it from the homepage. No layout changes to the Growth Audit page unless I explicitly request later.
+
+---
+
+## Site structure to build (homepage stays as-is)
+
+1. **Homepage** (already published)
+
+   * No structural changes.
+   * Optional: add a small **metrics micro-proof strip** right under the hero/proof bar (copy: “\$3M+ ad spend managed · 10+ years experience · 10,000+ hours in growth strategy”).
+   * In the Value Ladder, make the **“Deep-Dive Audit” card link to the existing Growth Audit page** (do not inline or rebuild that page).
+
+2. **Case Studies page** (new)
+   Purpose: proof of results + the framework behind them.
+   Include these sections from the old design/screenshots:
+
+   * **How We Deliver** (services grid: Growth Clarity Audit / Google Ads Mgmt / Paid Social Growth / CRO & Funnel Optimization).
+   * **Proof & Case Studies** (pastel block with Intent / Obstacle / Resolution / Impact cards).
+   * **Trusted by Leading Brands Across Industries** (logos grid).
+     Finish with a CTA: **Book a 10-min Intro Call** (links to `/#book-intro`).
+
+3. **About page** (new)
+   Purpose: philosophy + credibility.
+   Include:
+
+   * **We Maximize the Four Variables That Determine Value** (Dream Outcome / Likelihood of Success / Speed / Ease).
+   * **Our Values** (Clarity over complexity, Strategy first, ROI over vanity, Collaboration…).
+   * **Stats strip** (\$3M+ · 10+ years · 10,000+ hours).
+   * **Featured On** (Contra badges/list items).
+     End with CTA to **Book a 10-min Intro Call**.
+
+4. **Testimonials page** (new)
+   Purpose: social proof.
+   Include:
+
+   * **Colleague Reviews** (the colorful cards with names/titles).
+     Optionally add any short client quotes if available.
+     CTA → **Book a 10-min Intro Call**.
+
+5. **Services page** (new)
+   Purpose: deeper detail on each offering.
+
+   * One block per service: Google Ads, Meta Ads, CRO, Attribution & Reporting, YouTube Ads, Landing Pages.
+   * Each block: outcome headline, 3–4 bullets, example deliverables, CTA to **Book a 10-min Intro Call**.
+   * **Do NOT move or merge the Growth Audit PAGE here.** We’ll keep the separate Growth Audit page intact. You can include a short “Audit” blurb with a button that links out to the existing Growth Audit page.
+
+---
+
+## Growth Audit PAGE — preserve as-is
+
+* Keep the current Growth Audit page (path and layout) untouched.
+* Do not port it into other pages or rebuild its sections.
+* The only change right now is **routing**: homepage audit card should link to this page.
+
+> If you need a URL, use the current live path (e.g., `/growth-clarity-audit`). If different, keep whatever it is now and link accordingly.
+
+---
+
+## Navigation (top)
+
+* Services
+* Case Studies
+* About
+* Testimonials
+* **Get Started** (button; links to `/#book-intro` on the homepage)
+
+## Footer
+
+**Clarity Engine**
+Helping ambitious brands grow with clarity and measurable ROI.
+
+**Navigation**
+Services · Case Studies · About · Testimonials · Get Started
+
+**Contact**
+[hello@clarityengine.com](mailto:hello@clarityengine.com)
+[www.clarityengine.com](http://www.clarityengine.com)
+
+**Social**
+LinkedIn · YouTube (future) · Instagram
+
+**Legal**
+Privacy Policy · Terms & Conditions
+
+---
+
+## Design rules
+
+* **Homepage:** keep the current clean, conversion-first look (no new heavy sections).
+* **Supporting pages:** feel free to reuse the colorful/gradient styles from the old sections/screenshots.
+* **Consistency:** unify typography, spacing, and button styles across all pages. All pages should include a clear CTA to **Book a 10-min Intro Call**.
+
+---
+
+## Routing & links
+
+* Value Ladder “Deep-Dive Audit” → link to the **existing Growth Audit page**.
+* All CTAs “Book a 10-min Intro Call” → `/#book-intro`.
+* Top nav + footer should point to the new pages once created.
+
+---
+
+If anything is unclear, ask before changing the homepage or the Growth Audit page. The priority is: **(1) keep homepage as-is, (2) keep Growth Audit page as-is, (3) add the new supporting pages and map in the old sections.**
