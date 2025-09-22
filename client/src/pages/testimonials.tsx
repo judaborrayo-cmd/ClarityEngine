@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Star, Quote } from "lucide-react";
+import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
+import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
+import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
+import danielaGutenkovski from "@assets/Daniela_1758572440824.jpg";
+import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
+import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -29,20 +35,20 @@ export default function Testimonials() {
   const colleagueReviews = [
     {
       id: 1,
-      name: "Matt Smith",
-      title: "Co-Founder & Creative Director",
-      avatar: "👨‍💼",
-      review: "It's always enjoyable recommendation has us making a difference with Julia on every project. We've worked together and look forward to continuing our partnership again and again.",
+      name: "Mari Smith",
+      title: "Co-Founder & Marketing Strategist",
+      avatar: mariSmithPhoto,
+      review: "It's always enjoyable recommendation to work with Julia as a serious professional who can get going with strong work and keeping moving forward. I especially enjoyed her quality focused approach and they work very efficiently.",
       bgColor: "bg-gradient-to-br from-purple-500 to-purple-600",
       textColor: "text-white",
       type: "Colleague review"
     },
     {
       id: 2,
-      name: "Lindsay Bass",
+      name: "Lindsey Bass",
       title: "Digital Strategist & Growth Manager",
-      avatar: "👩‍💻",
-      review: "I highly recommend Julia as a skilled and professional growth marketer. I've worked with Julia for over a year and have been continuously impressed with her work and the results she gets for our clients.",
+      avatar: lindseyBassPhoto,
+      review: "I highly recommend Julia as a skilled and professional growth marketer. I've worked with Julia for over a year and have been continuously impressed by her work and the results she gets for our clients.",
       bgColor: "bg-gradient-to-br from-purple-400 to-purple-500",
       textColor: "text-white",
       type: "Colleague review"
@@ -51,38 +57,38 @@ export default function Testimonials() {
       id: 3,
       name: "Alyssa Armand-Roy",
       title: "Senior Product Manager",
-      avatar: "👩‍🦱",
-      review: "Julia is a phenomenal colleague and someone I always try to collaborate with. She has expertise in multiple large-scale digital marketing campaigns and consistently delivers excellent results.",
+      avatar: alyssaArmandRoyPhoto,
+      review: "Julia is a phenomenal colleague and someone I always try to collaborate with for my internal marketing needs. I've worked with Julia for over a year and we've done several large-scale digital marketing experiments that wins.",
       bgColor: "bg-gradient-to-br from-green-500 to-green-600",
       textColor: "text-white",
       type: "Colleague review"
     },
     {
       id: 4,
-      name: "Diamis Guttenstein",
+      name: "Daniela Gutenkovski",
       title: "Marketing Manager",
-      avatar: "👩‍💼",
-      review: "Julia is a very natural part of the team member I have found myself with. Not only is she accomplished, but she also has a great work... Julia is smart and accomplished.",
+      avatar: danielaGutenkovski,
+      review: "Working with Julia is like having one of the best partners I know of for strategy. Not only is she professional but she is also great for industry. She never stops measuring next step. Julia is a champion.",
       bgColor: "bg-gradient-to-br from-pink-500 to-pink-600",
       textColor: "text-white",
       type: "Colleague review"
     },
     {
       id: 5,
-      name: "John Bankston",
-      title: "VP of Maintenance",
-      avatar: "👨‍💻",
-      review: "I felt the pleasure of working with Julia! Julia has proven to be knowledgeable. I know he means Emily or client and knows Emily or project, hence the enthusiasm...",
+      name: "Mike Berkman",
+      title: "VP of Performance",
+      avatar: mikeBerkmanPhoto,
+      review: "Julia has the pleasure of working with Julia. Julia has become of working with different proposals according to her team, so that never missing we worked them first in my many strategies in the team for key term mapping and other always very important, yet she's on our team goals.",
       bgColor: "bg-gradient-to-br from-pink-400 to-pink-500",
       textColor: "text-white",
       type: "Colleague review"
     },
     {
       id: 6,
-      name: "Eli Benjamin",
+      name: "Bill Bowman",
       title: "Vice President of Marketing",
-      avatar: "👨‍💼",
-      review: "Julia is excellent for marketing client. He is able to manage projects well and perform campaigns in a calm and focused way and he continuously engages...",
+      avatar: billBowmanPhoto,
+      review: "Julia brings a very holistic view of digital marketing talent. She is able to manage and iterate on campaigns in a calm and focused way, and also how she approaches problems. She continually recognizes one and successfully sets us on our goals.",
       bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
       textColor: "text-white",
       type: "Colleague review"
@@ -129,8 +135,12 @@ export default function Testimonials() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center">
-                      <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl mr-3">
-                        {review.avatar}
+                      <div className="w-12 h-12 rounded-full overflow-hidden bg-white/20 flex items-center justify-center mr-3">
+                        <img 
+                          src={review.avatar} 
+                          alt={review.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div>
                         <span className="text-xs font-medium opacity-75 uppercase tracking-wide">
