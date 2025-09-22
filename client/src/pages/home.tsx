@@ -87,6 +87,82 @@ function RotatingWord({ words }: { words: string[] }) {
   );
 }
 
+// Animated Counter Component
+function AnimatedCounter({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const elementRef = useState<HTMLSpanElement | null>(null)[0];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            const duration = 2000; // 2 seconds
+            const startTime = Date.now();
+            const startValue = 0;
+            const endValue = value;
+
+            const updateCount = () => {
+              const now = Date.now();
+              const progress = Math.min((now - startTime) / duration, 1);
+              const easedProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+              const currentValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+              
+              setCount(currentValue);
+
+              if (progress < 1) {
+                requestAnimationFrame(updateCount);
+              }
+            };
+
+            requestAnimationFrame(updateCount);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    // Simple timeout to trigger animation when component mounts and is visible
+    const timer = setTimeout(() => {
+      if (!hasAnimated) {
+        setHasAnimated(true);
+        const duration = 2000;
+        const startTime = Date.now();
+        const startValue = 0;
+        const endValue = value;
+
+        const updateCount = () => {
+          const now = Date.now();
+          const progress = Math.min((now - startTime) / duration, 1);
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          const currentValue = Math.floor(startValue + (endValue - startValue) * easedProgress);
+          
+          setCount(currentValue);
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          }
+        };
+
+        requestAnimationFrame(updateCount);
+      }
+    }, 500); // Small delay to ensure element is rendered
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [value, hasAnimated]);
+
+  return (
+    <span>
+      {prefix}{count.toLocaleString()}{suffix}
+    </span>
+  );
+}
+
 // Profile image paths
 const profileImages = {
   lindsey: "/images/lindsey.jpg",
@@ -1365,7 +1441,7 @@ export default function HomePage() {
             </div>
             
             {/* Brand Values */}
-            <div className="grid gap-8 sm:grid-cols-2 mb-12">
+            <div className="grid gap-8 sm:grid-cols-2">
               {brandValues.map((value, index) => (
                 <div key={index} className="text-center p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300" data-testid={`brand-value-${index}`}>
                   <h3 className="text-xl font-bold text-foreground mb-3">{value.title}</h3>
@@ -1373,17 +1449,56 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            
-            {/* Proof Points */}
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-6">These values work in practice:</p>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-start gap-3" data-testid={`achievement-${index}`}>
-                    <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-primary flex-shrink-0"></span>
-                    <span className="text-muted-foreground text-sm">{achievement}</span>
+          </div>
+        </motion.section>
+
+        {/* Stats Section */}
+        <motion.section 
+          className="px-6 py-16 lg:px-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {/* Ad Spend Stat */}
+              <div className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md p-8 text-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-adspend">
+                    <AnimatedCounter value={3} prefix="$" suffix="M+" />
                   </div>
-                ))}
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    in ad spend managed across growth brands
+                  </p>
+                </div>
+              </div>
+
+              {/* Years Experience Stat */}
+              <div className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md p-8 text-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-experience">
+                    <AnimatedCounter value={10} suffix="+" />
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    years in paid media & growth strategy
+                  </p>
+                </div>
+              </div>
+
+              {/* Hours Stat */}
+              <div className="group relative isolate overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md p-8 text-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-indigo-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="text-4xl font-bold text-primary mb-2" data-testid="stat-hours">
+                    <AnimatedCounter value={10000} suffix="+" />
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    hours managing ads & strategy
+                  </p>
+                </div>
               </div>
             </div>
           </div>
