@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ClarityEngineAvatarProblems from "@/components/ClarityEngineAvatarProblems";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logo-B_1758463167834.png";
@@ -196,9 +195,6 @@ export default function Home() {
             </div>
           </div>
         </Section>
-
-        {/* --- PROBLEMS WE ELIMINATE --- */}
-        <ClarityEngineAvatarProblems />
 
         {/* --- PROOF BAR --- */}
         <div className="bg-gray-50 py-8">
