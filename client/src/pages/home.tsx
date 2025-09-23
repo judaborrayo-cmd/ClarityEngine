@@ -292,10 +292,13 @@ export default function Home() {
         <Section id="youtube" className="py-16">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <YouTubeEmbed
-                src={CONFIG.featuredVideo.url()}
-                title={CONFIG.featuredVideo.title}
-              />
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4" data-testid="featured-video-title">{CONFIG.featuredVideo.title}</h3>
+                <YouTubeEmbed
+                  src={CONFIG.featuredVideo.url()}
+                  title={CONFIG.featuredVideo.title}
+                />
+              </div>
             </div>
             <div className="space-y-6">
               <Card>
