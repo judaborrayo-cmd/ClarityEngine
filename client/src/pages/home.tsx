@@ -178,16 +178,14 @@ export default function Home() {
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent">ROI-Driven</span> Paid Media & Growth Strategy
             </h1>
             <p className="mt-6 text-xl leading-8 text-gray-600" data-testid="hero-description">
-              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />. Serious, high-impact conversations only—your $75 deposit is fully credited if we're a fit.
+              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <div className="text-center">
-                <PrimaryButton href="#book-intro" testId="hero-cta-book">Book a Strategic Intro Call</PrimaryButton>
-                <p className="mt-2 text-sm text-gray-500">10–20 min · $75 deposit · Credited to first engagement</p>
-              </div>
+              <PrimaryButton href="#book-intro" testId="hero-cta-book">Book a Strategic Intro Call</PrimaryButton>
               <SecondaryButton href="#services" testId="hero-cta-services">Explore Services & Wins</SecondaryButton>
             </div>
+            <p className="mt-4 text-sm text-gray-500 text-center">10–20 min · $75 deposit · Credited to first engagement</p>
 
             {/* Microproof row */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2" data-testid="hero-badges">
