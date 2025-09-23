@@ -394,7 +394,7 @@ export default function Home() {
             </Card>
             <Card>
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-budgets">What budgets do you work with?</h3>
-              <p className="mt-3 text-gray-600">From test budgets to $30k+/mo. The playbook adapts to your growth stage and business model. If your budget and goals aren't a fit, we'll let you know quickly and point you in the right direction.</p>
+              <p className="mt-3 text-gray-600">From 5k budgets to $30k+/mo. The playbook adapts to your growth stage and business model. If your budget and goals aren't a fit, we'll let you know quickly and point you in the right direction.</p>
             </Card>
             <Card>
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-contracts">Do you require long‑term contracts?</h3>
