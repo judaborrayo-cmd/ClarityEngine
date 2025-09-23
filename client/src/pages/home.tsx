@@ -317,7 +317,7 @@ export default function Home() {
         <Section id="services" className="py-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Services at a glance</h2>
-            <p className="mt-4 text-xl text-gray-600">Outcome‑focused playbooks you can plug in.</p>
+            <p className="mt-4 text-xl text-gray-600">Outcome‑focused playbooks we can plug in.</p>
           </div>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {[
