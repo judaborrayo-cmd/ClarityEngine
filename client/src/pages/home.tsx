@@ -148,7 +148,7 @@ const YouTubeEmbed = ({ src, title }: { src: string; title: string }) => (
 const CONFIG = {
   featuredVideo: {
     id: "dQw4w9WgXcQ", // TODO: replace with your video id only
-    title: "How I Scale Paid Media in 90 Days",
+    title: "How We Scale Paid Media in 90 Days",
     url() {
       return `https://www.youtube.com/embed/${this.id}`;
     },
@@ -299,7 +299,7 @@ export default function Home() {
             </div>
             <div className="space-y-6">
               <Card>
-                <h3 className="text-lg font-semibold text-gray-900">How I Scale in 90 Days</h3>
+                <h3 className="text-lg font-semibold text-gray-900">How We Scale in 90 Days</h3>
                 <p className="mt-3 text-gray-600">A quick walkthrough of the discovery → diagnose → design → drive framework.</p>
                 <a href={CONFIG.sideVideos[0].href} className="mt-4 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-video-scale">Watch on YouTube</a>
               </Card>
@@ -401,7 +401,7 @@ export default function Home() {
             </Card>
             <Card>
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-team">Will you work with our team?</h3>
-              <p className="mt-3 text-gray-600">Yes. I plug in as a partner or fractional CMO and collaborate seamlessly with your existing team.</p>
+              <p className="mt-3 text-gray-600">Yes. We plug in as partners or fractional CMOs and collaborate seamlessly with your existing team.</p>
             </Card>
             <Card>
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-deposit">Why is there a $75 deposit?</h3>
