@@ -251,7 +251,7 @@ export default function Home() {
         {/* --- VALUE LADDER --- */}
         <Section id="value-ladder" className="py-16">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Work with me, your way</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Work with us, your way</h2>
             <p className="mt-4 text-xl text-gray-600">Start quick, then go deeper as needed.</p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
