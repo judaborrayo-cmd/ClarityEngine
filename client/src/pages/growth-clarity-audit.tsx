@@ -69,7 +69,7 @@ export default function GrowthClarityAuditPage() {
       icon: Search,
       title: "Full-Funnel Growth & CRO Audit",
       description: "Uncover What's Costing You Conversions",
-      details: "Full-funnel audit for funnel breakdowns. I'll analyze your funnel, tracking, and Ad ROI—then show you how to scale smarter."
+      details: "Full-funnel audit for funnel breakdowns. We'll analyze your funnel, tracking, and Ad ROI—then show you how to scale smarter."
     },
     {
       icon: Video,
@@ -100,7 +100,7 @@ export default function GrowthClarityAuditPage() {
     {
       step: "02", 
       title: "Deep-Dive Analysis",
-      description: "I'll analyze your funnels, tracking, ad accounts, landing pages, and conversion optimization opportunities."
+      description: "We'll analyze your funnels, tracking, ad accounts, landing pages, and conversion optimization opportunities."
     },
     {
       step: "03",
@@ -130,7 +130,7 @@ export default function GrowthClarityAuditPage() {
     },
     {
       question: "Do you work with my specific industry?",
-      answer: "I've worked across fitness, SaaS, e-commerce, wellness, and many other industries. The audit framework applies universally while recommendations are tailored to your specific business model."
+      answer: "We've worked across fitness, SaaS, e-commerce, wellness, and many other industries. The audit framework applies universally while recommendations are tailored to your specific business model."
     },
     {
       question: "What happens after the audit?",
