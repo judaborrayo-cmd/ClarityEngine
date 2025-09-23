@@ -178,11 +178,14 @@ export default function Home() {
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent">ROI-Driven</span> Paid Media & Growth Strategy
             </h1>
             <p className="mt-6 text-xl leading-8 text-gray-600" data-testid="hero-description">
-              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
+              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />. Serious, high-impact conversations only—your $75 deposit is fully credited if we're a fit.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <PrimaryButton href="#book-intro" testId="hero-cta-book">Book a 10‑min Intro Call</PrimaryButton>
+              <div className="text-center">
+                <PrimaryButton href="#book-intro" testId="hero-cta-book">Book a Strategic Intro Call</PrimaryButton>
+                <p className="mt-2 text-sm text-gray-500">10–20 min · $75 deposit · Credited to first engagement</p>
+              </div>
               <SecondaryButton href="#services" testId="hero-cta-services">Explore Services & Wins</SecondaryButton>
             </div>
 
@@ -193,6 +196,9 @@ export default function Home() {
               <Badge>Proven results across Retreats, E-commerce, Luxury, and Education</Badge>
               <Badge>10+ years in paid media & growth strategy</Badge>
               <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>
+            </div>
+            <div className="mt-4">
+              <p className="text-xs text-gray-500">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
             </div>
           </div>
         </Section>
@@ -252,11 +258,12 @@ export default function Home() {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-intro-call">Intro Call (Free, 10 min)</h3>
+              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-intro-call">Strategic Intro Call (10–20 min)</h3>
+              <p className="mt-2 text-sm font-medium text-gray-700">$75 deposit · credited to audit/retainer</p>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
-                <li>Align on goals</li>
-                <li>Spot bottlenecks</li>
-                <li>Map next step</li>
+                <li>Pinpoint biggest growth leaks (ads, tracking, funnel)</li>
+                <li>Immediate next steps + quick wins</li>
+                <li>Deposit fully credited if we move forward</li>
               </ul>
               <a href="#book-intro" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-intro-call">See details</a>
             </Card>
@@ -386,7 +393,7 @@ export default function Home() {
             </Card>
             <Card>
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-budgets">What budgets do you work with?</h3>
-              <p className="mt-3 text-gray-600">From test budgets to $30k+/mo. The playbook adapts to your growth stage and business model.</p>
+              <p className="mt-3 text-gray-600">From test budgets to $30k+/mo. The playbook adapts to your growth stage and business model. If your budget and goals aren't a fit, we'll let you know quickly and point you in the right direction.</p>
             </Card>
             <Card>
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-contracts">Do you require long‑term contracts?</h3>
@@ -396,14 +403,32 @@ export default function Home() {
               <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-team">Will you work with our team?</h3>
               <p className="mt-3 text-gray-600">Yes. I plug in as a partner or fractional CMO and collaborate seamlessly with your existing team.</p>
             </Card>
+            <Card>
+              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-deposit">Why is there a $75 deposit?</h3>
+              <p className="mt-3 text-gray-600">It keeps the calendar focused on serious, high-impact conversations. It also covers prep time and ensures we're both invested. If we decide to work together, the deposit is fully credited toward your first audit or retainer.</p>
+            </Card>
+            <Card>
+              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-duration">Is the call only 10 minutes?</h3>
+              <p className="mt-3 text-gray-600">Plan for 10–20 minutes. The goal is speed and clarity—identify your biggest ROI blockers, outline next steps, and confirm fit.</p>
+            </Card>
           </div>
         </Section>
 
         {/* --- BOOKING TARGETS (ANCHORS) --- */}
         <Section id="book-intro" className="py-16">
           <Card className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold text-gray-900" data-testid="booking-title">Book a 10‑minute Intro Call</h2>
-            <p className="mt-3 text-lg text-gray-600">Align goals, surface bottlenecks, and set the next step. No prep required.</p>
+            <h2 className="text-2xl font-bold text-gray-900" data-testid="booking-title">Book a Strategic Intro Call (10–20 min)</h2>
+            <p className="mt-3 text-lg text-gray-600">Aligned goals, surface bottlenecks, set the next step. A <strong>$75 deposit</strong> is required to reserve your slot and is <strong>fully credited</strong> toward your first audit or retainer if we're a fit.</p>
+            
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">Qualifying questions you'll answer when booking:</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Current monthly ad spend (range)</li>
+                <li>• Primary growth goal for next 3–6 months</li>
+                <li>• Biggest challenge right now (tracking, ROI, CAC, scaling, etc.)</li>
+                <li>• Timeline to start (immediately, 30–60 days, 90+ days)</li>
+              </ul>
+            </div>
             
             {/* Calendly embed placeholder - replace with actual Calendly code */}
             <div className="mt-8">
@@ -421,11 +446,12 @@ export default function Home() {
                     {`<!-- Calendly inline widget end -->`}</code>
                   </div>
                   <div className="mt-4">
-                    <PrimaryButton href="https://calendly.com/your-link" testId="button-calendly">Book Now on Calendly</PrimaryButton>
+                    <PrimaryButton href="https://calendly.com/your-link" testId="button-calendly">Book Strategic Intro Call</PrimaryButton>
                   </div>
                 </div>
               </div>
             </div>
+            <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
           </Card>
         </Section>
 
@@ -458,7 +484,7 @@ export default function Home() {
             </ul>
             <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Commitment terms:</strong> We start with an initial 90-day plan (enough time to implement, test, and prove results). After that, we move to a month-to-month partnership with just 30 days' notice. It gives us the runway to win together, while keeping things flexible for you.</p>
             <div className="mt-8">
-              <PrimaryButton href="#book-intro" testId="button-retainer">Discuss Retainer Options</PrimaryButton>
+              <PrimaryButton href="#book-intro" testId="button-retainer">Book Strategic Intro Call</PrimaryButton>
             </div>
           </Card>
         </Section>
@@ -474,7 +500,7 @@ export default function Home() {
           }}
           style={{ marginBottom: 'max(env(safe-area-inset-bottom), 0px)' }}
         >
-          <span className="hidden sm:inline">Book Intro Call</span>
+          <span className="hidden sm:inline">Book Strategic Intro Call</span>
           <span className="sm:hidden">Book Call</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
             <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h9.69L10.22 6.04a.75.75 0 1 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.21H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />

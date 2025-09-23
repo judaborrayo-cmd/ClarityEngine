@@ -1,0 +1,100 @@
+Prompt for Replit (paste this):
+
+Goal: Update home page copy to position the intro call as a premium, deposit-required session: “Strategic Intro Call (10–20 min) — $75 deposit, fully credited toward first audit or retainer if we’re a fit.” Keep the minimalist design intact.
+
+1) Hero section
+
+Hero primary CTA button text
+Replace: Book a 10-min Intro Call
+With: Book a Strategic Intro Call
+
+Hero CTA sublabel (small text under or beside button, if present)
+Add (or replace existing helper text): 10–20 min · $75 deposit · Credited to first engagement
+
+Optional hero blurb (one sentence appended to the paragraph)
+Append this sentence: Serious, high-impact conversations only—your $75 deposit is fully credited if we’re a fit.
+
+2) “Work with me, your way” → Intro Call card
+
+Card title
+Replace: Intro Call (10 min)
+With: Strategic Intro Call (10–20 min)
+
+Price/label line (if present)
+Add/Replace with: $75 deposit · credited to audit/retainer
+
+Bullets (keep 3 bullets, concise)
+Replace existing bullets with:
+
+Pinpoint biggest growth leaks (ads, tracking, funnel)
+
+Immediate next steps + quick wins
+
+Deposit fully credited if we move forward
+
+3) Mid-page booking block (Calendly embed area)
+
+Block heading
+Replace: Book a 10-minute Intro Call
+With: Book a Strategic Intro Call (10–20 min)
+
+Block subtext (the paragraph above/below the embed)
+Replace with:
+Aligned goals, surface bottlenecks, set the next step. A **$75 deposit** is required to reserve your slot and is **fully credited** toward your first audit or retainer if we’re a fit.
+
+Calendly hint line (small caption under the embed, if present)
+Add: Serious inquiries only. Limited availability each week.
+
+4) FAQs (add two, update one)
+
+Add FAQ #1
+Q: Why is there a $75 deposit?
+A: It keeps the calendar focused on serious, high-impact conversations. It also covers prep time and ensures we’re both invested. If we decide to work together, the deposit is fully credited toward your first audit or retainer.
+
+Add FAQ #2
+Q: Is the call only 10 minutes?
+A: Plan for 10–20 minutes. The goal is speed and clarity—identify your biggest ROI blockers, outline next steps, and confirm fit.
+
+Update existing “What budgets do you work with?”
+Append this line to the answer: If your budget and goals aren’t a fit, we’ll let you know quickly and point you in the right direction.
+
+5) CTA buttons (any duplicates on page)
+
+Replace all instances of: Book a 10-min Intro Call
+With: Book a Strategic Intro Call
+
+If button supports a secondary label/tooltip, set it to: 10–20 min · $75 deposit · Credited
+
+6) Microcopy under “We’re best for… / badges” (optional line)
+
+Add a small muted line (same style as existing subtle badges):
+Paid booking filters for seriousness; deposit credited if we’re a fit.
+
+7) Qualifying questions (to mirror Calendly form)
+
+Add this short list wherever you show “What to expect” or near the embed as a small block titled “Qualifying questions you’ll answer when booking”:
+
+Current monthly ad spend (range)
+
+Primary growth goal for next 3–6 months
+
+Biggest challenge right now (tracking, ROI, CAC, scaling, etc.)
+
+Timeline to start (immediately, 30–60 days, 90+ days)
+
+Style to match existing small cards; no new heavy UI.
+
+8) Footer sticky CTA (if present)
+
+Replace: Book a 10-min call →
+With: Book Strategic Intro Call →
+
+Optional mini-label below: 10–20 min · $75 deposit · Credited
+
+9) Don’t change:
+
+Services/Audit/Retainer sections content besides references to the old “10-minute call.”
+
+Layout, spacing, or colors.
+
+Copy hygiene: Title-case the main headings, sentence-case body. Keep em-dashes and bullets consistent with current typography.
