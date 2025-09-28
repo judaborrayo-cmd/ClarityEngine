@@ -124,7 +124,7 @@ const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; cla
   <img 
     src={src} 
     alt={alt} 
-    className={`h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 ${className}`}
+    className={`h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 ${className}`}
     data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
   />
 );
