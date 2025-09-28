@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProblemsTicker from "@/components/ProblemsTicker";
+import { Quote } from "lucide-react";
+import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
+import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
+import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
+import danielaGutenkovski from "@assets/Daniela_1758572440824.jpg";
+import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
+import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logojpg-x-small_1759067902299.jpeg";
@@ -159,6 +166,83 @@ const CONFIG = {
   ],
 };
 
+// --- TESTIMONIALS DATA ---
+const testimonials = [
+  {
+    id: 1,
+    name: "Mari Smith",
+    title: "Co-Founder & Marketing Director",
+    avatar: mariSmithPhoto,
+    review: "It's always enjoyable writing a recommendation for someone as enjoyable as Juda. I've worked with Juda in a professional capacity for over a year now at Sociality Squared. We've worked on his various clients together and he's worn many different hats.",
+    bgColor: "bg-gradient-to-br from-purple-500 to-purple-600",
+    textColor: "text-white"
+  },
+  {
+    id: 2,
+    name: "Lindsey Bast",
+    title: "Digital Strategist & Growth Marketer",
+    avatar: lindseyBassPhoto,
+    review: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
+    bgColor: "bg-gradient-to-br from-purple-400 to-purple-500",
+    textColor: "text-white"
+  },
+  {
+    id: 3,
+    name: "Alyssa Brooke-Gay",
+    title: "Senior Project Manager",
+    avatar: alyssaArmandRoyPhoto,
+    review: "Juda is a phenomenal colleague and complete rockstar for his clients! I've had the pleasure of working with Juda for over a year, and we've collaborated on several large-scale digital marketing projects throughout that time.",
+    bgColor: "bg-gradient-to-br from-green-500 to-green-600",
+    textColor: "text-white"
+  },
+  {
+    id: 4,
+    name: "Daniela Goldzmindt",
+    title: "Marketing Manager",
+    avatar: danielaGutenkovski,
+    review: "Juda is simply one of the best persons I have had the opportunity to work with. Not only he is proficient in Marketing, specially in the paid media field, but also, he has a very strong work ethic and solid soft skills. Juda is a team player.",
+    bgColor: "bg-gradient-to-br from-pink-500 to-pink-600",
+    textColor: "text-white"
+  },
+  {
+    id: 5,
+    name: "Mike Berkman",
+    title: "VP of Performance",
+    avatar: mikeBerkmanPhoto,
+    review: "I had the pleasure of working with Juda during his tenure at LamarR. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
+    bgColor: "bg-gradient-to-br from-pink-400 to-pink-500",
+    textColor: "text-white"
+  },
+  {
+    id: 6,
+    name: "Bill Bowman",
+    title: "Vice President of Marketing",
+    avatar: billBowmanPhoto,
+    review: "Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way. While working with him, he continually suggested new and interesting ways to accomplish our team goals.",
+    bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
+    textColor: "text-white"
+  }
+];
+
+// --- TESTIMONIAL COMPONENT ---
+const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
+  <div className={`${testimonial.bgColor} ${testimonial.textColor} rounded-2xl p-6 shadow-lg`}>
+    <Quote className="h-8 w-8 mb-4 opacity-80" />
+    <p className="text-lg mb-6 leading-relaxed">{testimonial.review}</p>
+    <div className="flex items-center gap-4">
+      <img 
+        src={testimonial.avatar} 
+        alt={testimonial.name}
+        className="w-12 h-12 rounded-full object-cover border-2 border-white/20"
+      />
+      <div>
+        <p className="font-semibold">{testimonial.name}</p>
+        <p className="text-sm opacity-90">{testimonial.title}</p>
+      </div>
+    </div>
+  </div>
+);
+
 export default function Home() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -197,6 +281,16 @@ export default function Home() {
             </div>
             <div className="mt-4">
               <p className="text-xs text-gray-500">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
+            </div>
+          </div>
+        </Section>
+
+        {/* --- TESTIMONIALS AFTER HERO --- */}
+        <Section id="testimonials-hero" className="py-12 bg-gray-50">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-8">
+              <TestimonialCard testimonial={testimonials[0]} />
+              <TestimonialCard testimonial={testimonials[2]} />
             </div>
           </div>
         </Section>
@@ -454,6 +548,11 @@ export default function Home() {
             </div>
             <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
           </Card>
+          
+          {/* Testimonial in booking section */}
+          <div className="mt-8 max-w-4xl mx-auto">
+            <TestimonialCard testimonial={testimonials[1]} />
+          </div>
         </Section>
 
         <Section id="audit" className="py-16">
@@ -471,6 +570,13 @@ export default function Home() {
               <Link to="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Growth Clarity Audit</Link>
             </div>
           </Card>
+        </Section>
+
+        {/* --- TESTIMONIAL BEFORE RETAINER --- */}
+        <Section id="testimonial-retainer" className="py-12 bg-white">
+          <div className="mx-auto max-w-4xl">
+            <TestimonialCard testimonial={testimonials[4]} />
+          </div>
         </Section>
 
         <Section id="retainer" className="py-16">
