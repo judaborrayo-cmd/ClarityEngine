@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ProblemsTicker from "@/components/ProblemsTicker";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
-import ascendLogo from "@assets/ascend-logo-B_1758463167834.png";
+import ascendLogo from "@assets/ascend-logojpg-x-small_1759067902299.jpeg";
 import microsoftLogo from "@assets/Microsoft-Design_1758463290202.png";
 import denaGamesLogo from "@assets/Dena-Games-Logo_1758463419409.png";
 import estrellaGymnasticsLogo from "@assets/Estrella-Gymnastics-logo_1758464245387.png";
