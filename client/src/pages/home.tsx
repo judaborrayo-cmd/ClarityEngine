@@ -289,7 +289,7 @@ export default function Home() {
         <Section id="testimonials-hero" className="py-12 bg-gray-50">
           <div className="mx-auto max-w-6xl">
             <div className="grid md:grid-cols-2 gap-8">
-              <TestimonialCard testimonial={testimonials[0]} />
+              <TestimonialCard testimonial={testimonials[4]} />
               <TestimonialCard testimonial={testimonials[2]} />
             </div>
           </div>
@@ -575,7 +575,7 @@ export default function Home() {
         {/* --- TESTIMONIAL BEFORE RETAINER --- */}
         <Section id="testimonial-retainer" className="py-12 bg-white">
           <div className="mx-auto max-w-4xl">
-            <TestimonialCard testimonial={testimonials[4]} />
+            <TestimonialCard testimonial={testimonials[0]} />
           </div>
         </Section>
 
