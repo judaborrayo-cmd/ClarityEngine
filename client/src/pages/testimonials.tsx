@@ -78,7 +78,7 @@ export default function Testimonials() {
       name: "Mike Berkman",
       title: "VP of Performance",
       avatar: mikeBerkmanPhoto,
-      review: "I had the pleasure of working with Juda during his tenure at LamarR. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
+      review: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
       bgColor: "bg-gradient-to-br from-pink-400 to-pink-500",
       textColor: "text-white",
       type: "Colleague review"
