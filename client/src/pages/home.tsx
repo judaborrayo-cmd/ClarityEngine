@@ -96,7 +96,7 @@ const Section = ({ id, className = "", children }: { id: string; className?: str
 const PrimaryButton = ({ href = "#", children, testId }: { href?: string; children: React.ReactNode; testId?: string }) => (
   <a
     href={href}
-    className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200"
+    className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
     data-testid={testId}
   >
     {children}
