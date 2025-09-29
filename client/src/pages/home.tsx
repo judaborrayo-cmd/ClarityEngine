@@ -596,23 +596,6 @@ export default function Home() {
           </Card>
         </Section>
 
-        {/* --- STICKY CTA --- */}
-        <a
-          href="#book-intro"
-          className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full bg-green-600 px-4 py-3 text-sm font-semibold text-white shadow-xl hover:bg-green-700 transition-all duration-200 hover:scale-105 sm:px-6 sm:py-4 sm:bottom-6 sm:right-6"
-          data-testid="sticky-cta"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('book-intro');
-          }}
-          style={{ marginBottom: 'max(env(safe-area-inset-bottom), 0px)' }}
-        >
-          <span className="hidden sm:inline">Book Strategic Intro Call</span>
-          <span className="sm:hidden">Book Call</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
-            <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h9.69L10.22 6.04a.75.75 0 1 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.21H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
-          </svg>
-        </a>
       </main>
     </div>
   );
