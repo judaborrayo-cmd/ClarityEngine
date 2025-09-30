@@ -269,7 +269,7 @@ export default function Home() {
               <PrimaryButton href="#book-intro" testId="hero-cta-book">Book a Strategic Intro Call</PrimaryButton>
               <SecondaryButton href="#services" testId="hero-cta-services">Explore Services & Wins</SecondaryButton>
             </div>
-            <p className="mt-4 text-sm text-gray-500 text-center">10–20 min · $75 deposit · Credited to first engagement</p>
+            <p className="mt-4 text-sm text-gray-500 text-center">20–30 min · $75 deposit · Credited to first engagement</p>
 
             {/* Microproof row */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2" data-testid="hero-badges">
@@ -350,7 +350,7 @@ export default function Home() {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-intro-call">Strategic Intro Call (10–20 min)</h3>
+              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-intro-call">Strategic Intro Call (20–30 min)</h3>
               <p className="mt-2 text-sm font-medium text-gray-700">$75 deposit · credited to audit/retainer</p>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
                 <li>Pinpoint biggest growth leaks (ads, tracking, funnel)</li>
@@ -503,8 +503,8 @@ export default function Home() {
               <p className="mt-3 text-gray-600">It keeps the calendar focused on serious, high-impact conversations. It also covers prep time and ensures we're both invested. If we decide to work together, the deposit is fully credited toward your first audit or retainer.</p>
             </Card>
             <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-duration">Is the call only 10 minutes?</h3>
-              <p className="mt-3 text-gray-600">Plan for 10–20 minutes. The goal is speed and clarity—identify your biggest ROI blockers, outline next steps, and confirm fit.</p>
+              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-duration">How long is the Strategic Intro Call?</h3>
+              <p className="mt-3 text-gray-600">Plan for 20–30 minutes. The goal is speed and clarity—identify your biggest ROI blockers, outline next steps, and confirm fit.</p>
             </Card>
           </div>
         </Section>
@@ -512,7 +512,7 @@ export default function Home() {
         {/* --- BOOKING TARGETS (ANCHORS) --- */}
         <Section id="book-intro" className="py-16">
           <Card className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold text-gray-900" data-testid="booking-title">Book a Strategic Intro Call (10–20 min)</h2>
+            <h2 className="text-2xl font-bold text-gray-900" data-testid="booking-title">Book a Strategic Intro Call (20–30 min)</h2>
             <p className="mt-3 text-lg text-gray-600">Aligned goals, surface bottlenecks, set the next step. A <strong>$75 deposit</strong> is required to reserve your slot and is <strong>fully credited</strong> toward your first audit or retainer if we're a fit.</p>
             
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
