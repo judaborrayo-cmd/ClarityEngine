@@ -4,6 +4,7 @@ import ProblemsTicker from "@/components/ProblemsTicker";
 import HeroCTAs from "@/components/HeroCTAs";
 import StartCards from "@/components/StartCards";
 import ExitIntentModal from "@/components/ExitIntentModal";
+import CalendlyInline from "@/components/CalendlyInline";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -499,11 +500,7 @@ export default function Home() {
             
             {/* Calendly inline widget */}
             <div className="mt-8" id="book-intro">
-              <div
-                className="calendly-inline-widget rounded-2xl border border-gray-200"
-                data-url="https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min?primary_color=634fe3"
-                style={{ minWidth: "320px", height: "700px" }}
-              />
+              <CalendlyInline height={700} />
             </div>
             <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
           </Card>
