@@ -35,6 +35,31 @@ export default function ProblemsTicker() {
     ],
   };
 
+  // Color schemes for each category
+  const colors: Record<Cat, { bg: string; bgActive: string; text: string; textLight: string; arrow: string }> = {
+    revenue: {
+      bg: "bg-blue-50",
+      bgActive: "bg-blue-500",
+      text: "text-blue-900",
+      textLight: "text-blue-700",
+      arrow: "text-blue-300"
+    },
+    growth: {
+      bg: "bg-green-50",
+      bgActive: "bg-green-500",
+      text: "text-green-900",
+      textLight: "text-green-700",
+      arrow: "text-green-300"
+    },
+    conversion: {
+      bg: "bg-purple-50",
+      bgActive: "bg-purple-500",
+      text: "text-purple-900",
+      textLight: "text-purple-700",
+      arrow: "text-purple-300"
+    }
+  };
+
   // Duplicate array so the marquee loops seamlessly
   const items = useMemo(() => [...data[cat], ...data[cat]], [cat]);
 
@@ -62,8 +87,10 @@ export default function ProblemsTicker() {
                   onClick={() => setCat(key)}
                   aria-pressed={active}
                   className={[
-                    "px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-lg transition",
-                    active ? "bg-slate-100 text-slate-900" : "text-slate-600 hover:text-slate-900",
+                    "px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-lg transition-all duration-300",
+                    active 
+                      ? `${colors[key].bgActive} text-white font-semibold shadow-sm` 
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50",
                   ].join(" ")}
                 >
                   {label}
@@ -73,16 +100,16 @@ export default function ProblemsTicker() {
           </div>
 
           {/* Ticker row */}
-          <div className="flex items-center justify-between gap-3">
+          <div className={`flex items-center justify-between gap-3 rounded-lg p-3 transition-colors duration-300 ${colors[cat].bg}`}>
             {/* Marquee container */}
             <div className="relative w-full overflow-hidden">
-              <div className="ticker-track whitespace-nowrap text-slate-600 text-sm sm:text-[0.95rem]">
+              <div className={`ticker-track whitespace-nowrap text-sm sm:text-[0.95rem] transition-colors duration-300`}>
                 {/* We render the sequence twice; CSS moves it left to create an infinite loop */}
                 <span className="inline-block pr-8">
                   {items.map((text, i) => (
                     <span key={i} className="mx-3">
-                      <span className="text-slate-900">{text}</span>
-                      <span className="mx-3 text-slate-300">→</span>
+                      <span className={`font-medium ${colors[cat].text} transition-colors duration-300`}>{text}</span>
+                      <span className={`mx-3 ${colors[cat].arrow} transition-colors duration-300`}>→</span>
                     </span>
                   ))}
                 </span>
@@ -92,7 +119,7 @@ export default function ProblemsTicker() {
             {/* Quiet CTA (sticks on the right) */}
             <a
               href="#book-intro"
-              className="shrink-0 pl-3 text-sm font-medium text-indigo-600 hover:text-indigo-700"
+              className={`shrink-0 pl-3 text-sm font-medium ${colors[cat].textLight} hover:${colors[cat].text} transition-colors duration-300`}
             >
               Book a clarity call →
             </a>
