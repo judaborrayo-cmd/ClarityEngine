@@ -547,7 +547,20 @@ export default function Home() {
             </ul>
             <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Commitment terms:</strong> We start with an initial 90-day plan (enough time to implement, test, and prove results). After that, we move to a month-to-month partnership with just 30 days' notice. It gives us the runway to win together, while keeping things flexible for you.</p>
             <div className="mt-8">
-              <PrimaryButton href="#book-intro" testId="button-retainer">Book Strategic Intro Call</PrimaryButton>
+              <button
+                type="button"
+                onClick={() => {
+                  if ((window as any).Calendly) {
+                    (window as any).Calendly.initPopupWidget({
+                      url: 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min'
+                    });
+                  }
+                }}
+                className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
+                data-testid="button-retainer"
+              >
+                Book Strategic Intro Call
+              </button>
             </div>
           </Card>
         </Section>

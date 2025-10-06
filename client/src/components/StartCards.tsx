@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
+
 interface StartCardsProps {
   onOpenWaitlist: () => void;
 }
@@ -31,13 +39,20 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
               <li className="py-2 px-3">$75 deposit credited toward Audit or Retainer</li>
             </ul>
           </div>
-          <a
-            href="#book-call"
+          <button
+            type="button"
+            onClick={() => {
+              if (window.Calendly) {
+                window.Calendly.initPopupWidget({
+                  url: 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min'
+                });
+              }
+            }}
             className="mt-5 inline-flex items-center justify-center rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-sm py-2 px-4 font-medium"
             data-testid="button-start-book-call"
           >
             Book a Call — $75
-          </a>
+          </button>
         </div>
 
         {/* 2) Deep Dive Audit (highlighted) */}
