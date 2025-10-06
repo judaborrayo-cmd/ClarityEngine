@@ -52,10 +52,10 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
             </p>
             <ul className="text-sm text-gray-700 divide-y divide-gray-200 rounded-lg border border-green-100">
               <li className="py-2 px-3">Audit of Google, Meta, YouTube &amp; tracking setup</li>
-              <li className="py-2 px-3">Written 20–30 page performance report &amp; action plan</li>
+              <li className="py-2 px-3">Actionable performance report &amp; action plan</li>
               <li className="py-2 px-3">Creative &amp; CRO feedback with performance benchmarks</li>
               <li className="py-2 px-3">Competitor insights + prioritized growth roadmap</li>
-              <li className="py-2 px-3">Live 60-min walkthrough + Q&amp;A (2-week turnaround)</li>
+              <li className="py-2 px-3">Live 60-min walkthrough + Q&amp;A (2-3 week turnaround)</li>
             </ul>
           </div>
           <div>
