@@ -501,8 +501,8 @@ export default function Home() {
             <div className="mt-8" id="book-intro">
               <div
                 className="calendly-inline-widget rounded-2xl border border-gray-200"
-                data-url="YOUR_CALENDLY_URL"
-                style={{ minWidth: "320px", height: "720px" }}
+                data-url="https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min?primary_color=634fe3"
+                style={{ minWidth: "320px", height: "700px" }}
               />
             </div>
             <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>

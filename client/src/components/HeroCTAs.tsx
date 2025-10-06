@@ -6,7 +6,7 @@ export default function HeroCTAs() {
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto justify-center">
         <a
           href="#book-call"
-          className="inline-flex items-center justify-center px-5 py-3 rounded-2xl shadow hover:shadow-md transition border border-black/10 bg-black text-white text-sm font-medium"
+          className="inline-flex items-center justify-center px-5 py-3 rounded-2xl shadow hover:shadow-md transition bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90"
           aria-label="Book a Strategic Intro Call"
           data-testid="hero-cta-book-call"
         >

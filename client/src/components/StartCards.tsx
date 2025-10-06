@@ -19,7 +19,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
           </p>
           <a
             href="#book-call"
-            className="inline-flex items-center justify-center w-full rounded-xl bg-black text-white text-sm py-2 hover:opacity-90 transition"
+            className="inline-flex items-center justify-center w-full rounded-xl bg-primary text-primary-foreground text-sm py-2 hover:bg-primary/90 transition"
             data-testid="button-start-book-call"
           >
             Book a Call

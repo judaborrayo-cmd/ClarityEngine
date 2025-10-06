@@ -123,11 +123,11 @@ export default function ExitIntentModal() {
           <a
             href="#book-call"
             onClick={close}
-            className="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors text-center"
+            className="block w-full rounded-xl px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-center"
             data-testid="button-quick-call"
           >
             <div className="font-semibold">Book Strategic Intro Call</div>
-            <div className="text-xs text-gray-600 mt-0.5">Want answers in days? Start here (20-30 min)</div>
+            <div className="text-xs opacity-90 mt-0.5">Want answers in days? Start here (20-30 min)</div>
           </a>
         </div>
 
