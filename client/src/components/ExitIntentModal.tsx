@@ -70,15 +70,12 @@ export default function ExitIntentModal() {
 
   return (
     <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-4" data-testid="exit-intent-modal">
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-        <div className="text-sm font-semibold mb-1 text-gray-900">
-          We're currently full — join the waitlist to get notified when spots open.
+      <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
+        <div className="text-base font-semibold mb-2 text-gray-900">
+          We're currently almost at capacity — join the waitlist to get notified when spots open.
         </div>
-        <p className="text-xs text-gray-600 mb-4">
-          Add your details and we'll email you as soon as we have availability.
-        </p>
 
-        <form onSubmit={onSubmit} className="space-y-3">
+        <form onSubmit={onSubmit} className="space-y-3 mb-5">
           <input
             required
             type="text"
@@ -100,25 +97,48 @@ export default function ExitIntentModal() {
             data-testid="input-waitlist-email"
           />
 
-          <div className="flex items-center gap-2">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-black text-white hover:opacity-90 disabled:opacity-60"
-              data-testid="button-waitlist-submit"
-            >
-              {submitting ? "Submitting..." : "Join Waitlist"}
-            </button>
-            <button
-              type="button"
-              onClick={close}
-              className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
-              data-testid="button-waitlist-close"
-            >
-              Not now
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium bg-black text-white hover:opacity-90 disabled:opacity-60"
+            data-testid="button-waitlist-submit"
+          >
+            {submitting ? "Submitting..." : "Join Waitlist"}
+          </button>
         </form>
+
+        <div className="border-t border-gray-200 pt-4 space-y-3">
+          <p className="text-sm font-medium text-gray-900 mb-3">Need answers faster?</p>
+          
+          <a
+            href="/checkout/audit"
+            onClick={close}
+            className="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors text-center"
+            data-testid="button-quick-audit"
+          >
+            <div className="font-semibold">Deep Dive Audit</div>
+            <div className="text-xs text-gray-600 mt-0.5">Get answers in weeks, not months</div>
+          </a>
+
+          <a
+            href="#book-call"
+            onClick={close}
+            className="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors text-center"
+            data-testid="button-quick-call"
+          >
+            <div className="font-semibold">Book Strategic Intro Call</div>
+            <div className="text-xs text-gray-600 mt-0.5">Want answers in days? Start here (20-30 min)</div>
+          </a>
+        </div>
+
+        <button
+          type="button"
+          onClick={close}
+          className="w-full mt-4 px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
+          data-testid="button-waitlist-close"
+        >
+          Not now
+        </button>
       </div>
     </div>
   );
