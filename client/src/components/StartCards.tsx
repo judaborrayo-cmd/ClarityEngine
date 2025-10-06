@@ -42,10 +42,16 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
           <button
             type="button"
             onClick={() => {
+              const calendlyUrl = 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min';
               if (window.Calendly) {
-                window.Calendly.initPopupWidget({
-                  url: 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min'
-                });
+                try {
+                  window.Calendly.initPopupWidget({ url: calendlyUrl });
+                } catch (error) {
+                  console.error('Calendly popup error:', error);
+                  window.open(calendlyUrl, '_blank');
+                }
+              } else {
+                window.open(calendlyUrl, '_blank');
               }
             }}
             className="mt-5 inline-flex items-center justify-center rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-sm py-2 px-4 font-medium"

@@ -550,10 +550,16 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => {
+                  const calendlyUrl = 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min';
                   if ((window as any).Calendly) {
-                    (window as any).Calendly.initPopupWidget({
-                      url: 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min'
-                    });
+                    try {
+                      (window as any).Calendly.initPopupWidget({ url: calendlyUrl });
+                    } catch (error) {
+                      console.error('Calendly popup error:', error);
+                      window.open(calendlyUrl, '_blank');
+                    }
+                  } else {
+                    window.open(calendlyUrl, '_blank');
                   }
                 }}
                 className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
