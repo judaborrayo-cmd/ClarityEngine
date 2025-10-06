@@ -1,0 +1,124 @@
+Update my React + Vite app so the Calendly inline widget renders reliably.
+
+Load https://assets.calendly.com/assets/external/widget.js once at app start (index.html or programmatically).
+
+Create src/components/CalendlyInline.jsx that:
+
+Mounts a <div ref> as the parent container.
+
+In useEffect, waits for window.Calendly then calls Calendly.initInlineWidget({ url, parentElement }).
+
+If Calendly isn’t available after 2 seconds, render a fallback <iframe> using src="https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min?embed_domain=" + window.location.hostname + "&embed_type=Inline&hide_gdpr_banner=1".
+
+Replace any raw HTML snippet you added with this React component.
+
+Ensure all React attributes use className, not class.
+
+Keep styling minimal (rounded border) and height ~720px.
+
+Code (drop-in component + script include)
+<!-- index.html (Vite) — add this in <head> so Calendly is available globally -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script id="calendly-script" async src="https://assets.calendly.com/assets/external/widget.js"></script>
+    <title>Clarity Engine</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+// src/components/CalendlyInline.jsx
+import React, { useEffect, useRef, useState } from "react";
+
+const CALENDLY_URL =
+  "https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min";
+
+export default function CalendlyInline({ height = 720 }) {
+  const containerRef = useRef(null);
+  const [fallback, setFallback] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+
+    function init() {
+      if (window.Calendly && containerRef.current) {
+        try {
+          window.Calendly.initInlineWidget({
+            url: CALENDLY_URL,
+            parentElement: containerRef.current,
+          });
+          return true;
+        } catch (_) {
+          // fall through to fallback
+        }
+      }
+      return false;
+    }
+
+    // Try immediately
+    if (!init()) {
+      // Try again when the script loads
+      const onLoad = () => init();
+      const script = document.getElementById("calendly-script");
+      if (script) script.addEventListener("load", onLoad);
+
+      // Give it 2s, then fallback to iframe
+      timeoutId = window.setTimeout(() => {
+        if (!init()) setFallback(true);
+      }, 2000);
+
+      return () => {
+        if (script) script.removeEventListener("load", onLoad);
+        if (timeoutId) window.clearTimeout(timeoutId);
+      };
+    }
+  }, []);
+
+  // Fallback iframe (works even if Calendly JS fails). Needs embed_domain.
+  if (fallback) {
+    const embedDomain =
+      typeof window !== "undefined" ? window.location.hostname : "replit.dev";
+    const src = `${CALENDLY_URL}?embed_domain=${embedDomain}&embed_type=Inline&hide_gdpr_banner=1`;
+    return (
+      <iframe
+        title="Calendly"
+        src={src}
+        style={{ width: "100%", height }}
+        frameBorder="0"
+        className="rounded-2xl border border-gray-200"
+      />
+    );
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="calendly-inline-widget rounded-2xl border border-gray-200"
+      style={{ minWidth: 320, height }}
+      aria-label="Calendly inline scheduler"
+    />
+  );
+}
+
+// Usage (e.g., in src/pages/Home.jsx)
+import CalendlyInline from "../components/CalendlyInline";
+
+export default function Home() {
+  return (
+    <>
+      {/* ... your hero ... */}
+
+      <section id="book-call" className="container mx-auto px-4 py-12">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-3">
+          Book a Strategic Intro Call
+        </h2>
+        <CalendlyInline height={720} />
+      </section>
+    </>
+  );
+}
