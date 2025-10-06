@@ -14,7 +14,7 @@ export default function HeroCTAs() {
         </a>
         <Link
           to="/checkout/audit"
-          className="inline-flex items-center justify-center px-5 py-3 rounded-2xl shadow hover:shadow-md transition border border-black/10 bg-white text-gray-900 text-sm font-medium"
+          className="inline-flex items-center justify-center px-5 py-3 rounded-2xl shadow hover:shadow-md transition border border-black/10 bg-white text-gray-900 text-sm font-medium hover:bg-green-600 hover:text-white hover:border-green-600"
           aria-label="Order Your Deep Dive Audit"
           data-testid="hero-cta-order-audit"
         >

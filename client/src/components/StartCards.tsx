@@ -34,9 +34,9 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
         </div>
 
         {/* Deep Dive Audit (highlighted) */}
-        <div className="flex flex-col justify-between rounded-2xl border-2 border-purple-500 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 bg-white p-6 relative" data-testid="card-deep-dive">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-            Most Popular
+        <div className="flex flex-col justify-between rounded-2xl border-2 border-green-500 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 bg-white p-6 relative" data-testid="card-deep-dive">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+            Audit Deep Dive
           </div>
           <div>
             <div className="text-lg font-semibold mb-2">Deep Dive Audit</div>
@@ -53,7 +53,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
             </p>
             <Link
               to="/checkout/audit"
-              className="inline-flex items-center justify-center w-full rounded-xl bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white text-sm py-2 font-medium transition"
+              className="inline-flex items-center justify-center w-full rounded-xl bg-green-600 text-white hover:bg-green-700 text-sm py-2 font-medium transition"
               data-testid="button-start-order-audit"
             >
               Order Your Deep Dive Audit
@@ -81,12 +81,19 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
       </div>
 
       {/* Metrics / Proof Row */}
-      <div className="mt-10 text-sm text-gray-600 flex flex-col sm:flex-row gap-2 sm:gap-6 justify-center items-center">
-        <span className="text-green-600 font-medium">$3M+</span> ad spend managed
-        <span className="hidden sm:inline">•</span>
-        <span className="text-green-600 font-medium">10+ years</span> experience
-        <span className="hidden sm:inline">•</span>
-        <span className="text-green-600 font-medium">10,000+</span> hours in paid media
+      <div className="mt-10 flex flex-col sm:flex-row gap-8 sm:gap-12 justify-center items-center">
+        <div className="text-center">
+          <div className="text-3xl sm:text-4xl font-bold text-blue-600">$3M+</div>
+          <div className="text-xs sm:text-sm text-gray-600 mt-1">in ad spend managed across growth brands</div>
+        </div>
+        <div className="text-center">
+          <div className="text-3xl sm:text-4xl font-bold text-green-600">10+</div>
+          <div className="text-xs sm:text-sm text-gray-600 mt-1">years in paid media & growth strategy</div>
+        </div>
+        <div className="text-center">
+          <div className="text-3xl sm:text-4xl font-bold text-purple-600">10,000+</div>
+          <div className="text-xs sm:text-sm text-gray-600 mt-1">hours managing ads & strategy</div>
+        </div>
       </div>
     </section>
   );
