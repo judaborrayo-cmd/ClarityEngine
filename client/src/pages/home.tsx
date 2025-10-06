@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProblemsTicker from "@/components/ProblemsTicker";
+import HeroCTAs from "@/components/HeroCTAs";
+import StartCards from "@/components/StartCards";
+import ExitIntentModal from "@/components/ExitIntentModal";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -251,6 +254,12 @@ export default function Home() {
     }
   };
 
+  const openWaitlist = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const evt = new MouseEvent("mouseout", { clientY: -1, relatedTarget: null, bubbles: true });
+    document.dispatchEvent(evt);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <ProgressBar />
@@ -265,11 +274,7 @@ export default function Home() {
               We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
             </p>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <PrimaryButton href="#book-intro" testId="hero-cta-book">Book a Strategic Intro Call</PrimaryButton>
-              <SecondaryButton href="#services" testId="hero-cta-services">Explore Services & Wins</SecondaryButton>
-            </div>
-            <p className="mt-4 text-sm text-gray-500 text-center">20–30 min · $75 deposit · Credited to first engagement</p>
+            <HeroCTAs />
 
             {/* Microproof row */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2" data-testid="hero-badges">
@@ -342,42 +347,9 @@ export default function Home() {
           </Section>
         </div>
 
-        {/* --- VALUE LADDER --- */}
+        {/* --- START CARDS (CRO) --- */}
         <Section id="value-ladder" className="py-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Work with us, your way</h2>
-            <p className="mt-4 text-xl text-gray-600">Start quick, then go deeper as needed.</p>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-intro-call">Strategic Intro Call (20–30 min)</h3>
-              <p className="mt-2 text-sm font-medium text-gray-700">$75 deposit · credited to audit/retainer</p>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
-                <li>Pinpoint biggest growth leaks (ads, tracking, funnel)</li>
-                <li>Immediate next steps + quick wins</li>
-                <li>Deposit fully credited if we move forward</li>
-              </ul>
-              <a href="#book-intro" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-intro-call">See details</a>
-            </Card>
-            <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-audit">Deep‑Dive Audit ($600–900)</h3>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
-                <li>Tracking & funnel assessment</li>
-                <li>Account structure review</li>
-                <li>30‑day action plan</li>
-              </ul>
-              <Link to="/growth-clarity-audit" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-audit">See scope & pricing</Link>
-            </Card>
-            <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="card-retainer">Growth Retainer ($3,200–$15,000/mo)</h3>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
-                <li>Omni‑channel ads (Google, Meta, YouTube)</li>
-                <li>Tiered remarketing & CRO</li>
-                <li>Weekly iteration & reporting</li>
-              </ul>
-              <a href="#retainer" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-retainer">See program</a>
-            </Card>
-          </div>
+          <StartCards onOpenWaitlist={openWaitlist} />
         </Section>
 
         {/* --- YOUTUBE CRED BLOCK --- */}
@@ -509,8 +481,8 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* --- BOOKING TARGETS (ANCHORS) --- */}
-        <Section id="book-intro" className="py-16">
+        {/* --- BOOKING SECTION (#book-call and #book-intro) --- */}
+        <Section id="book-call" className="py-16">
           <Card className="mx-auto max-w-4xl">
             <h2 className="text-2xl font-bold text-gray-900" data-testid="booking-title">Book a Strategic Intro Call (20–30 min)</h2>
             <p className="mt-3 text-lg text-gray-600">Aligned goals, surface bottlenecks, set the next step. A <strong>$75 deposit</strong> is required to reserve your slot and is <strong>fully credited</strong> toward your first audit or retainer if we're a fit.</p>
@@ -525,26 +497,13 @@ export default function Home() {
               </ul>
             </div>
             
-            {/* Calendly embed placeholder - replace with actual Calendly code */}
-            <div className="mt-8">
-              <div 
-                className="h-96 w-full rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center"
-                data-testid="calendly-placeholder"
-              >
-                <div className="text-center">
-                  <p className="text-gray-500 text-lg mb-4">📅 Calendly Integration Ready</p>
-                  <p className="text-gray-400 text-sm mb-4">Replace this section with your Calendly embed code:</p>
-                  <div className="text-left text-xs text-gray-400 bg-white p-4 rounded border mb-4 max-w-md">
-                    <code>{`<!-- Calendly inline widget begin -->`}<br/>
-                    {`<div class="calendly-inline-widget" data-url="https://calendly.com/your-username/10min" style="min-width:320px;height:580px;"></div>`}<br/>
-                    {`<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>`}<br/>
-                    {`<!-- Calendly inline widget end -->`}</code>
-                  </div>
-                  <div className="mt-4">
-                    <PrimaryButton href="https://calendly.com/your-link" testId="button-calendly">Book Strategic Intro Call</PrimaryButton>
-                  </div>
-                </div>
-              </div>
+            {/* Calendly inline widget */}
+            <div className="mt-8" id="book-intro">
+              <div
+                className="calendly-inline-widget rounded-2xl border border-gray-200"
+                data-url="YOUR_CALENDLY_URL"
+                style={{ minWidth: "320px", height: "720px" }}
+              />
             </div>
             <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
           </Card>
@@ -596,6 +555,7 @@ export default function Home() {
           </Card>
         </Section>
 
+        <ExitIntentModal />
       </main>
     </div>
   );

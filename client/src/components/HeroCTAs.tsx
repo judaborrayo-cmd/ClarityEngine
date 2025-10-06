@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 export default function HeroCTAs() {
   return (
@@ -13,7 +13,7 @@ export default function HeroCTAs() {
           <span className="mr-2">💬</span> Book a Strategic Intro Call
         </a>
         <Link
-          href="/checkout/audit"
+          to="/checkout/audit"
           className="inline-flex items-center justify-center px-5 py-3 rounded-2xl shadow hover:shadow-md transition border border-black/10 bg-white text-gray-900 text-sm font-medium"
           aria-label="Order Your Deep Dive Audit"
           data-testid="hero-cta-order-audit"

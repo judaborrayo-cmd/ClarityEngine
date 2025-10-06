@@ -10,6 +10,7 @@ import CaseStudyDetail from "@/pages/case-study-detail";
 import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import About from "@/pages/about";
 import Testimonials from "@/pages/testimonials";
+import CheckoutAudit from "@/pages/checkout-audit";
 import NotFound from "@/pages/not-found";
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
@@ -77,6 +78,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />
+          <Route path="/checkout/audit" element={<CheckoutAudit />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="/about" element={<About />} />

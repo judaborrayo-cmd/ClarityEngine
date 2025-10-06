@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 interface StartCardsProps {
   onOpenWaitlist: () => void;
@@ -38,7 +38,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
             Credited to your first month if there is a fit.
           </div>
           <Link
-            href="/checkout/audit"
+            to="/checkout/audit"
             className="inline-flex items-center justify-center w-full rounded-xl bg-white text-gray-900 border border-gray-200 text-sm py-2 hover:shadow transition"
             data-testid="button-start-order-audit"
           >

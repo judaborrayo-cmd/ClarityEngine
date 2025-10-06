@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 
 export default function CheckoutAudit() {
@@ -7,7 +7,7 @@ export default function CheckoutAudit() {
       <main className="relative">
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 mb-6 inline-block" data-testid="link-back-home">
+            <Link to="/" className="text-sm text-gray-600 hover:text-gray-900 mb-6 inline-block" data-testid="link-back-home">
               ← Back to Home
             </Link>
             
@@ -121,7 +121,7 @@ export default function CheckoutAudit() {
 
                 <div className="mt-4 text-center">
                   <p className="text-xs text-gray-500">
-                    Not ready yet? <Link href="/" className="text-black font-medium hover:underline">Go back to homepage</Link>
+                    Not ready yet? <Link to="/" className="text-black font-medium hover:underline">Go back to homepage</Link>
                   </p>
                 </div>
               </div>
