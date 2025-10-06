@@ -6,42 +6,58 @@ const CALENDLY_URL =
 export default function CalendlyInline({ height = 720 }) {
   const containerRef = useRef(null);
   const [fallback, setFallback] = useState(false);
+  const initializedRef = useRef(false);
 
   useEffect(() => {
     let timeoutId;
+    let script = document.getElementById("calendly-script");
 
     function init() {
+      if (initializedRef.current) return true;
+      
       if (window.Calendly && containerRef.current) {
         try {
           window.Calendly.initInlineWidget({
             url: CALENDLY_URL,
             parentElement: containerRef.current,
           });
+          initializedRef.current = true;
           return true;
         } catch (_) {
-          // fall through to fallback
+          // fall through to retry or fallback
         }
       }
       return false;
     }
 
+    const onLoad = () => {
+      init();
+    };
+
     // Try immediately
-    if (!init()) {
-      // Try again when the script loads
-      const onLoad = () => init();
-      const script = document.getElementById("calendly-script");
-      if (script) script.addEventListener("load", onLoad);
+    init();
 
-      // Give it 2s, then fallback to iframe
-      timeoutId = window.setTimeout(() => {
-        if (!init()) setFallback(true);
-      }, 2000);
-
-      return () => {
-        if (script) script.removeEventListener("load", onLoad);
-        if (timeoutId) window.clearTimeout(timeoutId);
-      };
+    // Always attach load listener in case script loads later
+    if (script) {
+      script.addEventListener("load", onLoad);
     }
+
+    // Give it 2s, then fallback to iframe if not initialized
+    timeoutId = window.setTimeout(() => {
+      if (!initializedRef.current) {
+        setFallback(true);
+      }
+    }, 2000);
+
+    // Cleanup function always runs on unmount
+    return () => {
+      if (script) {
+        script.removeEventListener("load", onLoad);
+      }
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   // Fallback iframe (works even if Calendly JS fails). Needs embed_domain.
