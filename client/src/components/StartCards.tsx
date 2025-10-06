@@ -1,13 +1,5 @@
 import { Link } from "react-router-dom";
 
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
-
 interface StartCardsProps {
   onOpenWaitlist: () => void;
 }
@@ -39,26 +31,13 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
               <li className="py-2 px-3">$75 deposit credited toward Audit or Retainer</li>
             </ul>
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              const calendlyUrl = 'https://calendly.com/juda-borrayo/strategic-intro-call-10-20-min';
-              if (window.Calendly) {
-                try {
-                  window.Calendly.initPopupWidget({ url: calendlyUrl });
-                } catch (error) {
-                  console.error('Calendly popup error:', error);
-                  window.open(calendlyUrl, '_blank');
-                }
-              } else {
-                window.open(calendlyUrl, '_blank');
-              }
-            }}
+          <a
+            href="#book-call"
             className="mt-5 inline-flex items-center justify-center rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-sm py-2 px-4 font-medium"
             data-testid="button-start-book-call"
           >
             Book a Call — $75
-          </button>
+          </a>
         </div>
 
         {/* 2) Deep Dive Audit (highlighted) */}
