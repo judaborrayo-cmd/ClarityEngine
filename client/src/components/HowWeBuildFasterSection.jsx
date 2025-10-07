@@ -78,7 +78,7 @@ export default function HowWeBuildFasterSection() {
     <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster" data-testid="section-how-we-build-faster">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
-        We're a strategic partner (fractional CMO energy) that blends human insight with AI-accelerated execution—so you get strategy, design, and delivery at 10× speed.
+        We're a strategic partner (fractional CMO energy) that blends human insight with AI-accelerated execution—so you get strategy, creative direction, and collaboration at 10× speed.
       </p>
 
       {/* Compact, single-row feel on desktop */}
