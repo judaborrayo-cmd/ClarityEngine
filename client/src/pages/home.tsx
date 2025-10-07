@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ProblemsTicker from "@/components/ProblemsTicker";
 import HeroCTAs from "@/components/HeroCTAs";
 import StartCards from "@/components/StartCards";
+import ScaleAndAudit from "@/components/ScaleAndAudit";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import { Quote } from "lucide-react";
@@ -353,31 +354,9 @@ export default function Home() {
           <StartCards onOpenWaitlist={openWaitlist} />
         </Section>
 
-        {/* --- YOUTUBE CRED BLOCK --- */}
+        {/* --- SCALE AND AUDIT SECTION --- */}
         <Section id="youtube" className="py-16">
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div className="lg:col-span-2">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4" data-testid="featured-video-title">{CONFIG.featuredVideo.title}</h3>
-                <YouTubeEmbed
-                  src={CONFIG.featuredVideo.url()}
-                  title={CONFIG.featuredVideo.title}
-                />
-              </div>
-            </div>
-            <div className="space-y-6">
-              <Card>
-                <h3 className="text-lg font-semibold text-gray-900">How We Scale in 90 Days</h3>
-                <p className="mt-3 text-gray-600">A quick walkthrough of the discovery → diagnose → design → drive framework.</p>
-                <a href={CONFIG.sideVideos[0].href} className="mt-4 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-video-scale">Watch on YouTube</a>
-              </Card>
-              <Card>
-                <h3 className="text-lg font-semibold text-gray-900">Audit Teardown (5 mins)</h3>
-                <p className="mt-3 text-gray-600">Common tracking gaps and how to fix them fast.</p>
-                <a href={CONFIG.sideVideos[1].href} className="mt-4 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-video-audit">Watch clip</a>
-              </Card>
-            </div>
-          </div>
+          <ScaleAndAudit videoUrl={CONFIG.featuredVideo.url()} />
         </Section>
 
         {/* --- SERVICES TILES --- */}
