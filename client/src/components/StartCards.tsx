@@ -76,7 +76,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
         {/* 3) Growth Retainer */}
         <div className="h-full flex flex-col justify-between rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition transform hover:-translate-y-1 bg-white p-6 relative text-left" data-testid="card-retainer-waitlist">
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-            Highest Value
+            Strategy & Execution
           </div>
           <div>
             <div className="text-lg font-semibold mb-1 text-gray-900">Growth Retainer</div>
