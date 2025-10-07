@@ -1,39 +1,49 @@
+Update the “How We Build Faster” section:
+
+Keep the same title/intro. Limit vertical height to a single 3×3 row on desktop (compact spacing).
+
+Replace the existing tiles with a mixed grid: 4 AI tools (with big logo) + 5 solutions (with mini-logo cluster inside the tile).
+
+Tools: ChatGPT, MidJourney, Replit, VMake (use my uploaded logos).
+
+Solutions (each needs a 1-line description + mini-logo cluster):
+
+Conversion Rate Optimization — “Friction fixes, proof, speed, and clearer CTAs.” (mini logos: Google Ads, Shopify, GA/Analytics)
+
+Content Creation — “On-brand assets for ads, social, landing pages.” (Photoshop, Canva, MidJourney)
+
+Collaboration & Workflows — “Tight feedback loops with async + weekly cadence.” (Google Drive, Dropbox, Teamwork)
+
+Ideation & Strategy — “Offer angles, testing plans, and priorities.” (ChatGPT, Replit, Gemini/Claude)
+
+Performance Analysis — “Benchmarks, cohorts, and ROI clarity.” (Google Analytics, Sheets, Looker/Datastudio)
+
+Hover behavior for all tiles: slight scale (1.05) + soft gradient glow; tool logos gently pulse.
+
+Place mini-logos center-right inside solution tiles (absolute, small, 16–24px; wrap into two rows if needed). On mobile, center them beneath the title/desc.
+
+Add/replace the component file with the code below: src/components/BuildFaster.jsx. Ensure image paths use /images/<file>; I’ll upload the assets (examples in code comments).
+
+Do not modify other sections.
+
+code (replace src/components/BuildFaster.jsx)
+// src/components/BuildFaster.jsx
+import React from "react";
+
 /**
- * HowWeBuildFasterSection.jsx
- * --------------------------------------------------------------
- * 3×3 mixed grid: AI tools (with big logo) + Solutions (with mini-logo clusters)
+ * Put your logo files in /public/images/ with names like:
+ *  chatgpt.png, midjourney.png, replit.png, vmake.png,
+ *  google-ads.png, shopify.png, ga.png, photoshop.png, canva.png,
+ *  drive.png, dropbox.png, teamwork.png, gemini.png, claude.png,
+ *  sheets.png, looker.png
  */
 
 const toolsAndSolutions = [
   // ---- AI TOOLS (big logo) ----
-  { 
-    kind: "tool", 
-    name: "ChatGPT", 
-    img: "/images/chatgpt.png", 
-    desc: "Strategy generation & prompt engineering",
-    accent: "from-teal-500/15 to-cyan-400/10",
-  },
-  { 
-    kind: "tool", 
-    name: "MidJourney", 
-    img: "/images/midjourney.png", 
-    desc: "Concept visuals & brand imagery",
-    accent: "from-violet-500/15 to-purple-400/10",
-  },
-  { 
-    kind: "tool", 
-    name: "Replit", 
-    img: "/images/replit.png", 
-    desc: "Rapid code & web builds",
-    accent: "from-orange-500/15 to-amber-400/10",
-  },
-  { 
-    kind: "tool", 
-    name: "VMake", 
-    img: "/images/vmake.png", 
-    desc: "AI image enhancement & upscaling",
-    accent: "from-sky-500/15 to-blue-400/10",
-  },
+  { kind: "tool", name: "ChatGPT", img: "/images/chatgpt.png", desc: "Strategy generation & prompt engineering" },
+  { kind: "tool", name: "MidJourney", img: "/images/midjourney.png", desc: "Concept visuals & brand imagery" },
+  { kind: "tool", name: "Replit", img: "/images/replit.png", desc: "Rapid code & web builds" },
+  { kind: "tool", name: "VMake", img: "/images/vmake.png", desc: "AI image enhancement & upscaling" },
 
   // ---- SOLUTIONS (with mini logo cluster) ----
   {
@@ -54,7 +64,7 @@ const toolsAndSolutions = [
     accent: "from-pink-500/15 to-rose-400/10",
     mini: [
       { img: "/images/photoshop.png", alt: "Photoshop" },
-      { img: "/images/figma.png", alt: "Figma" },
+      { img: "/images/canva.png", alt: "Canva" },
       { img: "/images/midjourney.png", alt: "MidJourney" },
     ],
   },
@@ -66,7 +76,7 @@ const toolsAndSolutions = [
     mini: [
       { img: "/images/drive.png", alt: "Google Drive" },
       { img: "/images/dropbox.png", alt: "Dropbox" },
-      { img: "/images/teams.png", alt: "Teams" },
+      { img: "/images/teamwork.png", alt: "Teamwork" },
     ],
   },
   {
@@ -78,6 +88,7 @@ const toolsAndSolutions = [
       { img: "/images/chatgpt.png", alt: "ChatGPT" },
       { img: "/images/replit.png", alt: "Replit" },
       { img: "/images/gemini.png", alt: "Gemini" },
+      { img: "/images/claude.png", alt: "Claude" },
     ],
   },
   {
@@ -93,12 +104,13 @@ const toolsAndSolutions = [
   },
 ];
 
-export default function HowWeBuildFasterSection() {
+export default function BuildFaster() {
   return (
-    <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster" data-testid="section-how-we-build-faster">
+    <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
-        We're a strategic partner (fractional CMO energy) that blends insight with AI-accelerated execution—for 10× speed.
+        We’re a strategic partner (fractional CMO energy) blending human insight with AI-accelerated execution — so you get
+        strategy, design, and delivery at 10× speed.
       </p>
 
       {/* Compact single-row feel (3x3 on desktop) */}
@@ -115,21 +127,25 @@ export default function HowWeBuildFasterSection() {
           50% { transform: scale(1.12); opacity: 0.97; }
         }
         .animate-pulse-slow { animation: pulseGrow 3.8s ease-in-out infinite; }
-        .group:hover .animate-pulse-slow { animation: pulseGrow 2.2s ease-in-out infinite; }
+        .group-hover\\:animate-pulse-grow:hover { animation: pulseGrow 2.2s ease-in-out infinite; }
       `}</style>
     </section>
   );
 }
 
-function Tile(props) {
+function Tile(props: {
+  kind: "tool" | "solution";
+  name: string;
+  desc: string;
+  img?: string;
+  accent?: string;
+  mini?: { img: string; alt: string }[];
+}) {
   const { kind, name, desc, img, accent, mini = [] } = props;
 
   return (
-    <div 
-      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105 text-left"
-      data-testid={`${kind}-tile-${name.toLowerCase().replace(/\s+/g, '-')}`}
-    >
-      {/* Gradient glow on hover */}
+    <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105 text-left">
+      {/* Gradient glow on hover (stronger for solutions) */}
       <div
         className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${
           accent ?? "from-transparent to-transparent"
@@ -143,11 +159,11 @@ function Tile(props) {
             <img
               src={img}
               alt={name}
-              className="h-8 sm:h-10 w-auto animate-pulse-slow"
-              data-testid={`img-${name.toLowerCase()}`}
+              className="h-8 sm:h-10 w-auto animate-pulse-slow group-hover:animate-pulse-grow"
             />
           ) : (
             <div className="h-8 w-8 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
+              {/* fallback icon square for solutions */}
               <span className="text-gray-400 text-xs">★</span>
             </div>
           )}
@@ -174,7 +190,6 @@ function Tile(props) {
                   alt={m.alt}
                   title={m.alt}
                   className="h-4 w-4 sm:h-5 sm:w-5 object-contain opacity-80 hover:opacity-100 transition"
-                  data-testid={`mini-logo-${m.alt.toLowerCase().replace(/\s+/g, '-')}`}
                 />
               ))}
             </div>
