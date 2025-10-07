@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 
 /** Compact month-by-month roadmap with color accents */
 function MonthRoadmap() {
@@ -74,7 +75,6 @@ function TeardownGrid() {
   const items: Array<{ title: string; desc: string }> = [
     { title: "Tracking & Attribution", desc: "Pixels, CAPI, GTM, events, GA4 hygiene and deduping." },
     { title: "Account Structure", desc: "Objectives, naming, signal quality, consolidation for learning." },
-    { title: "Budget & Pacing", desc: "Spend allocation, phase stability, throttling/volume risks." },
     { title: "Audiences & Exclusions", desc: "Signals by stage, overlap control, remarketing tiers." },
     { title: "Creative Diagnostics", desc: "Hooks, formats, thumb-stop rate, offer/angle effectiveness." },
     { title: "Competitor Research", desc: "Spy tools, positioning gaps, ad-angle library & white space." },
@@ -86,7 +86,7 @@ function TeardownGrid() {
 
   return (
     <section className="mt-6">
-      <div className="rounded-2xl border border-gray-200 bg-white p-4">
+      <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4">
         <div className="text-base font-semibold text-gray-900 mb-1">
           Audit Teardown (What We Check)
         </div>
@@ -99,14 +99,13 @@ function TeardownGrid() {
           {items.map(({ title, desc }) => (
             <details
               key={title}
-              className="group rounded-xl border border-gray-200 hover:border-gray-300 bg-white"
+              className="group rounded-xl border border-gray-200 hover:border-purple-300 bg-white hover:shadow-md transition-all"
               data-testid={`accordion-${title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <summary className="cursor-pointer list-none p-3">
-                <div className="text-sm font-medium text-gray-900">{title}</div>
-                <div className="text-[12px] text-gray-500">
-                  <span className="group-open:hidden">Tap to expand</span>
-                  <span className="hidden group-open:inline">Hide</span>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-sm font-medium text-gray-900">{title}</div>
+                  <ChevronDown className="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 mt-0.5" />
                 </div>
               </summary>
               <div className="px-3 pb-3 text-[12px] text-gray-700">{desc}</div>
