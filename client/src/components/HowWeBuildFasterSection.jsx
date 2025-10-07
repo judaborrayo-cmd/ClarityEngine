@@ -1,110 +1,124 @@
 /**
  * HowWeBuildFasterSection.jsx
  * --------------------------------------------------------------
- * Drop-in homepage section for Clarity Engine (light version)
- * Isolated styling; does not alter global theme or layout.
- *
- * Install Framer Motion if needed:
- *    npm i framer-motion
+ * 3×3 mixed grid: AI tools (with logos) + Solutions (with icons)
  */
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+const items = [
+  // --- AI Tools (logos) ---
+  {
+    kind: "tool",
+    name: "ChatGPT",
+    img: "/images/chatgpt.png",
+    desc: "Strategy generation & prompt engineering",
+    accent: "from-teal-500/15 to-cyan-400/10",
+  },
+  {
+    kind: "tool",
+    name: "MidJourney",
+    img: "/images/midjourney.png",
+    desc: "Concept visuals & brand imagery",
+    accent: "from-violet-500/15 to-purple-400/10",
+  },
+  {
+    kind: "tool",
+    name: "Replit",
+    img: "/images/replit.png",
+    desc: "Rapid code & web builds",
+    accent: "from-orange-500/15 to-amber-400/10",
+  },
+  {
+    kind: "tool",
+    name: "VMake",
+    img: "/images/vmake.png",
+    desc: "AI image enhancement & upscaling",
+    accent: "from-sky-500/15 to-blue-400/10",
+  },
 
-const TOOLS = [
-  { name: "GPT", benefit: "Turns data & ideas into strategy, creative, and clarity—fast." },
-  { name: "MJ", benefit: "Brings visual concepts to life in minutes, not days." },
-  { name: "REPL", benefit: "Turns strategy into live tools, dashboards & prototypes." },
-  { name: "GA4", benefit: "Turns numbers into insights & action for paid growth." },
-  { name: "META", benefit: "Accelerates creative testing & audience learnings." },
-  { name: "KLAW", benefit: "Designs automated emails that personalize & convert." },
-  { name: "DFW", benefit: "Cleans & enriches product feeds to boost ROAS." },
-  { name: "UX", benefit: "Turns brand ideas into clear, conversion-first visuals." },
-  { name: "AI+", benefit: "Synthesizes messy inputs into crisp direction & briefs." },
+  // --- Solutions (icons) ---
+  {
+    kind: "solution",
+    name: "Conversion Rate Optimization",
+    icon: "⚡️",
+    desc: "Friction fixes, proof, speed, and clearer CTAs",
+    accent: "from-purple-500/15 to-purple-400/10",
+  },
+  {
+    kind: "solution",
+    name: "Content Creation",
+    icon: "✍️",
+    desc: "On-brand assets for ads, social, and landing pages",
+    accent: "from-pink-500/15 to-rose-400/10",
+  },
+  {
+    kind: "solution",
+    name: "Collaboration & Workflows",
+    icon: "🤝",
+    desc: "Tight feedback loops with async + weekly cadence",
+    accent: "from-blue-500/15 to-cyan-400/10",
+  },
+  {
+    kind: "solution",
+    name: "Ideation & Strategy",
+    icon: "💡",
+    desc: "Offer angles, testing plans, and priorities",
+    accent: "from-amber-500/15 to-lime-400/10",
+  },
+  {
+    kind: "solution",
+    name: "Performance Analysis",
+    icon: "📊",
+    desc: "Benchmarks, cohorts, and ROI clarity",
+    accent: "from-green-500/15 to-emerald-400/10",
+  },
 ];
-
-function ToolTile({ name, benefit }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.div
-      className="relative aspect-square rounded-2xl bg-white shadow-lg ring-1 ring-black/5 flex flex-col items-center justify-center text-center overflow-hidden cursor-pointer transition-all duration-300"
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      onClick={() => setHovered(!hovered)}
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
-      data-testid={`tool-tile-${name.toLowerCase()}`}
-    >
-      <motion.div
-        animate={{
-          background: hovered
-            ? "linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%)"
-            : "transparent",
-          color: hovered ? "#fff" : "#000",
-        }}
-        transition={{ duration: 0.25 }}
-        className="absolute inset-0"
-      />
-      <div className="relative z-10 px-3">
-        <div className="text-lg font-semibold mb-2">{name}</div>
-        {hovered && (
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="text-sm leading-snug"
-          >
-            {benefit}
-          </motion.p>
-        )}
-      </div>
-    </motion.div>
-  );
-}
 
 export default function HowWeBuildFasterSection() {
   return (
-    <section className="relative bg-white py-24 sm:py-28" data-testid="section-how-we-build-faster">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold text-gray-900">How We Build Faster</h2>
-        <p className="mt-4 max-w-2xl mx-auto text-gray-600 text-lg leading-relaxed">
-          We blend human strategy with AI acceleration. From page redesigns to CRO experiments and
-          ad creative — we use modern tools to turn ideas into execution at{" "}
-          <span className="font-semibold text-gray-900">10× speed</span>. You get strategy, design,
-          and direction — all synthesized through data and experience.
-        </p>
+    <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster" data-testid="section-how-we-build-faster">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
+      <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+        We're a strategic partner (fractional CMO energy) that blends human insight with AI-accelerated execution—so you get strategy, design, and delivery at 10× speed.
+      </p>
 
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8">
-          {TOOLS.map((t) => (
-            <ToolTile key={t.name} name={t.name} benefit={t.benefit} />
-          ))}
-        </div>
-
-        <div className="mt-12">
-          <a
-            href="/how-we-work"
-            className="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#a78bfa] to-[#06b6d4] text-white font-semibold shadow hover:opacity-90 transition"
-            data-testid="link-explore-tools"
+      {/* Compact, single-row feel on desktop */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        {items.map((it) => (
+          <div
+            key={it.name}
+            className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105"
+            data-testid={`${it.kind}-tile-${it.name.toLowerCase().replace(/\s+/g, '-')}`}
           >
-            Explore Our Tools
-            <svg
-              className="ml-2 h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-        </div>
+            {/* Gradient glow on hover */}
+            <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${it.accent ?? "from-transparent to-transparent"} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+            <div className="relative p-6 flex flex-col items-center text-center">
+              {/* Logo or icon */}
+              {it.kind === "tool" ? (
+                <img
+                  src={it.img}
+                  alt={it.name}
+                  className="h-10 sm:h-12 mb-3 mx-auto animate-pulse-slow group-hover:animate-pulse-grow"
+                  data-testid={`img-${it.name.toLowerCase()}`}
+                />
+              ) : (
+                <div className="text-3xl sm:text-4xl mb-3 select-none" data-testid={`icon-${it.name.toLowerCase().replace(/\s+/g, '-')}`}>{it.icon}</div>
+              )}
+              <h3 className="font-semibold text-gray-900 text-sm sm:text-base mb-1">{it.name}</h3>
+              <p className="text-[12px] text-gray-600 leading-snug">{it.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
+
+      <style>{`
+        @keyframes pulseGrow {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.12); opacity: 0.97; }
+        }
+        .animate-pulse-slow { animation: pulseGrow 3.8s ease-in-out infinite; }
+        .group-hover\\:animate-pulse-grow:hover { animation: pulseGrow 2.2s ease-in-out infinite; }
+      `}</style>
     </section>
   );
 }
