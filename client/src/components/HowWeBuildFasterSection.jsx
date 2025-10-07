@@ -1,186 +1,213 @@
 /**
  * HowWeBuildFasterSection.jsx
- * --------------------------------------------------------------
- * 3×3 mixed grid: AI tools (with big logo) + Solutions (with mini-logo clusters)
+ * Place these images in /public/images/ (adjust names if needed):
+ * chatgpt.png
+ * Midjourney-Logo.png
+ * Replit_logo.png
+ * vmake.png
+ * Photoshop.png
+ * Figma-Logo.png
+ * YouTube-logo.png
+ * Google Ads Logo.jpg
+ * Logo_Google_Analytics.png
+ * Shopify Logo.png
+ * Google_Drive_-_New_Logo.png
+ * Dropbox_(service)-Logo.wine.png
+ * Microsoft-Teams-Symbol.png
+ * gemini-logo.png
+ * Reddit-Logo.png
+ * Instagram_logo_2016.svg.png
  */
 
-const toolsAndSolutions = [
-  // ---- AI TOOLS (big logo) ----
-  { 
-    kind: "tool", 
-    name: "ChatGPT", 
-    img: "/images/chatgpt.png", 
+const items = [
+  // Tools
+  {
+    type: "tool",
+    name: "ChatGPT",
     desc: "Strategy generation & prompt engineering",
-    accent: "from-teal-500/15 to-cyan-400/10",
+    main: { img: "/images/chatgpt.png" },
+    poweredBy: [
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
+    ],
+    accent: "from-purple-500/15 to-blue-400/10",
   },
-  { 
-    kind: "tool", 
-    name: "MidJourney", 
-    img: "/images/midjourney.png", 
+  {
+    type: "tool",
+    name: "MidJourney",
     desc: "Concept visuals & brand imagery",
-    accent: "from-violet-500/15 to-purple-400/10",
+    main: { img: "/images/Midjourney-Logo.png" },
+    poweredBy: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Figma", img: "/images/Figma-Logo.png" },
+    ],
+    accent: "from-pink-500/15 to-rose-400/10",
   },
-  { 
-    kind: "tool", 
-    name: "Replit", 
-    img: "/images/replit.png", 
+  {
+    type: "tool",
+    name: "Replit",
     desc: "Rapid code & web builds",
-    accent: "from-orange-500/15 to-amber-400/10",
+    main: { img: "/images/Replit_logo.png" },
+    poweredBy: [
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
+    ],
+    accent: "from-indigo-500/15 to-cyan-400/10",
   },
-  { 
-    kind: "tool", 
-    name: "VMake", 
-    img: "/images/vmake.png", 
+  {
+    type: "tool",
+    name: "VMake",
     desc: "AI image enhancement & upscaling",
-    accent: "from-sky-500/15 to-blue-400/10",
+    main: { img: "/images/vmake.png" },
+    poweredBy: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+    ],
+    accent: "from-emerald-500/15 to-green-400/10",
   },
 
-  // ---- SOLUTIONS (with mini logo cluster) ----
+  // Solutions
   {
-    kind: "solution",
+    type: "solution",
     name: "Conversion Rate Optimization",
-    desc: "Friction fixes, proof, speed, and clearer CTAs.",
-    accent: "from-purple-500/15 to-purple-400/10",
-    mini: [
-      { img: "/images/google-ads.png", alt: "Google Ads" },
-      { img: "/images/shopify.png", alt: "Shopify" },
-      { img: "/images/ga.png", alt: "Google Analytics" },
+    desc: "Friction fixes, proof, speed, clearer CTAs.",
+    main: { emoji: "⚡️" },
+    poweredBy: [
+      { name: "Google Ads", img: "/images/Google Ads Logo.jpg" },
+      { name: "Google Analytics", img: "/images/Logo_Google_Analytics.png" },
+      { name: "Shopify", img: "/images/Shopify Logo.png" },
     ],
+    accent: "from-purple-500/12 to-purple-400/8",
   },
   {
-    kind: "solution",
+    type: "solution",
     name: "Content Creation",
     desc: "On-brand assets for ads, social, landing pages.",
-    accent: "from-pink-500/15 to-rose-400/10",
-    mini: [
-      { img: "/images/photoshop.png", alt: "Photoshop" },
-      { img: "/images/figma.png", alt: "Figma" },
-      { img: "/images/midjourney.png", alt: "MidJourney" },
+    main: { emoji: "✍️" },
+    poweredBy: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "Instagram", img: "/images/Instagram_logo_2016.svg.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
     ],
+    accent: "from-pink-500/12 to-rose-400/8",
   },
   {
-    kind: "solution",
+    type: "solution",
     name: "Collaboration & Workflows",
     desc: "Tight feedback loops with async + weekly cadence.",
-    accent: "from-blue-500/15 to-cyan-400/10",
-    mini: [
-      { img: "/images/drive.png", alt: "Google Drive" },
-      { img: "/images/dropbox.png", alt: "Dropbox" },
-      { img: "/images/teams.png", alt: "Teams" },
+    main: { emoji: "🤝" },
+    poweredBy: [
+      { name: "Google Drive", img: "/images/Google_Drive_-_New_Logo.png" },
+      { name: "Dropbox", img: "/images/Dropbox_(service)-Logo.wine.png" },
+      { name: "Microsoft Teams", img: "/images/Microsoft-Teams-Symbol.png" },
     ],
+    accent: "from-blue-500/12 to-cyan-400/8",
   },
   {
-    kind: "solution",
+    type: "solution",
     name: "Ideation & Strategy",
-    desc: "Offer angles, testing plans, and priorities.",
-    accent: "from-amber-500/15 to-lime-400/10",
-    mini: [
-      { img: "/images/chatgpt.png", alt: "ChatGPT" },
-      { img: "/images/replit.png", alt: "Replit" },
-      { img: "/images/gemini.png", alt: "Gemini" },
+    desc: "Offer angles, testing plans, priorities.",
+    main: { emoji: "💡" },
+    poweredBy: [
+      { name: "ChatGPT", img: "/images/chatgpt.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Reddit", img: "/images/Reddit-Logo.png" },
     ],
+    accent: "from-amber-500/12 to-lime-400/8",
   },
   {
-    kind: "solution",
+    type: "solution",
     name: "Performance Analysis",
-    desc: "Benchmarks, cohorts, and ROI clarity.",
-    accent: "from-green-500/15 to-emerald-400/10",
-    mini: [
-      { img: "/images/ga.png", alt: "Analytics" },
-      { img: "/images/sheets.png", alt: "Google Sheets" },
-      { img: "/images/looker.png", alt: "Looker Studio" },
+    desc: "Benchmarks, cohorts, ROI clarity.",
+    main: { emoji: "📊" },
+    poweredBy: [
+      { name: "Google Analytics", img: "/images/Logo_Google_Analytics.png" },
+      { name: "Google Ads", img: "/images/Google Ads Logo.jpg" },
+      { name: "Shopify", img: "/images/Shopify Logo.png" },
     ],
+    accent: "from-green-500/12 to-emerald-400/8",
   },
 ];
+
+function MiniLogo({ name, img }) {
+  return (
+    <div className="relative group/mini">
+      <img
+        src={img}
+        alt={name}
+        className="h-4 w-4 sm:h-5 sm:w-5 object-contain opacity-85 hover:opacity-100 transition"
+        data-testid={`mini-logo-${name.toLowerCase().replace(/\s+/g, '-')}`}
+      />
+      <span
+        className="
+          pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1 z-50
+          whitespace-nowrap rounded-md bg-black text-white text-[10px] px-2 py-1
+          opacity-0 group-hover/mini:opacity-100 transition-opacity duration-200
+        "
+      >
+        {name}
+      </span>
+    </div>
+  );
+}
 
 export default function HowWeBuildFasterSection() {
   return (
     <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster" data-testid="section-how-we-build-faster">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
-        We're a strategic partner (fractional CMO energy) that blends insight with AI-accelerated execution—for 10× speed.
+        We're a strategic partner (fractional CMO energy) blending human insight with AI-accelerated execution —
+        so you get strategy, design, and delivery at 10× speed.
       </p>
 
-      {/* Compact single-row feel (3x3 on desktop) */}
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-5 max-w-5xl mx-auto">
-        {toolsAndSolutions.map((it) => (
-          <Tile key={it.name} {...it} />
-        ))}
-      </div>
-
-      {/* animations */}
-      <style>{`
-        @keyframes pulseGrow {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.12); opacity: 0.97; }
-        }
-        .animate-pulse-slow { animation: pulseGrow 3.8s ease-in-out infinite; }
-        .group:hover .animate-pulse-slow { animation: pulseGrow 2.2s ease-in-out infinite; }
-      `}</style>
-    </section>
-  );
-}
-
-function Tile(props) {
-  const { kind, name, desc, img, accent, mini = [] } = props;
-
-  return (
-    <div 
-      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105 text-left"
-      data-testid={`${kind}-tile-${name.toLowerCase().replace(/\s+/g, '-')}`}
-    >
-      {/* Gradient glow on hover */}
-      <div
-        className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${
-          accent ?? "from-transparent to-transparent"
-        } opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-      />
-
-      <div className="relative p-5 flex flex-col h-full">
-        {/* header row */}
-        <div className="flex items-center gap-3 mb-2">
-          {kind === "tool" ? (
-            <img
-              src={img}
-              alt={name}
-              className="h-8 sm:h-10 w-auto animate-pulse-slow"
-              data-testid={`img-${name.toLowerCase()}`}
-            />
-          ) : (
-            <div className="h-8 w-8 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
-              <span className="text-gray-400 text-xs">★</span>
-            </div>
-          )}
-          <div className="font-semibold text-gray-900 text-sm sm:text-base">{name}</div>
-        </div>
-
-        {/* description */}
-        <div className="text-[12px] text-gray-600 leading-snug pr-16 sm:pr-20">{desc}</div>
-
-        {/* mini-logo cluster for solutions */}
-        {kind === "solution" && mini.length > 0 && (
-          <div className="mt-2 relative h-12">
+        {items.map((it) => (
+          <div
+            key={it.name}
+            className="
+              group relative rounded-2xl border border-gray-200 bg-white shadow-sm
+              transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105
+            "
+            data-testid={`${it.type}-tile-${it.name.toLowerCase().replace(/\s+/g, '-')}`}
+          >
             <div
-              className="
-                absolute right-3 top-1/2 -translate-y-1/2
-                flex flex-wrap gap-1.5 w-28 justify-end
-                sm:w-32
-              "
-            >
-              {mini.map((m) => (
+              className={`
+                pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br
+                ${it.accent ?? "from-transparent to-transparent"}
+                opacity-0 group-hover:opacity-100 transition-opacity duration-500
+              `}
+            />
+
+            <div className="relative p-5 flex flex-col items-center text-center">
+              {it.main?.img ? (
                 <img
-                  key={m.alt + m.img}
-                  src={m.img}
-                  alt={m.alt}
-                  title={m.alt}
-                  className="h-4 w-4 sm:h-5 sm:w-5 object-contain opacity-80 hover:opacity-100 transition"
-                  data-testid={`mini-logo-${m.alt.toLowerCase().replace(/\s+/g, '-')}`}
+                  src={it.main.img}
+                  alt={it.name}
+                  className="h-12 w-auto mb-2 object-contain"
+                  data-testid={`img-${it.name.toLowerCase().replace(/\s+/g, '-')}`}
                 />
-              ))}
+              ) : (
+                <div className="h-12 w-12 mb-2 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
+                  <span className="text-xl">{it.main?.emoji ?? "★"}</span>
+                </div>
+              )}
+
+              <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{it.name}</h3>
+              <p className="text-[12px] text-gray-600 leading-snug mt-1">{it.desc}</p>
+
+              {it.poweredBy && it.poweredBy.length > 0 && (
+                <div className="mt-3 flex items-center gap-2 overflow-visible">
+                  {it.poweredBy.map((m) => (
+                    <MiniLogo key={m.name} name={m.name} img={m.img} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        )}
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
