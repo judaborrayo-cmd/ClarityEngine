@@ -43,7 +43,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
         {/* 2) Deep Dive Audit (highlighted) */}
         <div className="h-full flex flex-col justify-between rounded-2xl border-2 border-green-500 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 bg-white p-6 relative text-left" data-testid="card-deep-dive">
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-            Audit Deep Dive
+            3 Month Roadmap
           </div>
           <div>
             <div className="text-lg font-semibold mb-1 text-gray-900">Deep Dive Audit</div>
@@ -84,6 +84,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
               Ongoing partnership combining strategy, execution &amp; optimization across channels.
             </p>
             <ul className="text-sm text-gray-700 divide-y divide-gray-200 rounded-lg border border-gray-100">
+              <li className="py-2 px-3">3 Month Paid Media &amp; CRO Roadmap</li>
               <li className="py-2 px-3">Omni-channel ads: Google, Meta, YouTube (+ new channels as needed)</li>
               <li className="py-2 px-3">Creative testing system, offers/ad-angle development &amp; CRO roadmap</li>
               <li className="py-2 px-3">Tracking &amp; attribution upgrades, KPI dashboards, weekly reporting</li>
