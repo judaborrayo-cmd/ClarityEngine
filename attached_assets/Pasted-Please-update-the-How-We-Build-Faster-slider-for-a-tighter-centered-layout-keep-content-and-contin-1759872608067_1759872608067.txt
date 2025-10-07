@@ -1,29 +1,59 @@
-import { useMemo, useRef } from "react";
+Please update the How We Build Faster slider for a tighter, centered layout (keep content and continuous scroll):
 
-import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
-import midjourneyLogo from '@assets/Midjourney-Logo_1759865050220.png';
-import replitLogo from '@assets/Replit_logo_1759865452229.png';
-import vmakeLogo from '@assets/vmake_1759865086289.png';
-import googleDriveLogo from '@assets/Google_Drive_-_New_Logo_1759865428146.png';
-import microsoftTeamsLogo from '@assets/Microsoft-Teams-Symbol_1759865428146.png';
-import dropboxLogo from '@assets/Dropbox_(service)-Logo.wine_1759865428146.png';
-import figmaLogo from '@assets/Figma-Logo_1759865443714.png';
-import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
-import googleAnalyticsLogo from '@assets/Logo_Google_Analytics_1759865466930.png';
-import canvaLogo from '@assets/Canva Logo_1759871045288.jpeg';
-import photoshopLogo from '@assets/Photoshop_1759870952584.png';
+Constrain the slider frame to max-w-5xl mx-auto so it matches other sections.
 
-const ITEMS = [
-  // Tools
+Show 3 full cards on desktop, 2 on tablet, 1 on mobile. Use fixed card bases with Tailwind arbitrary values:
+
+mobile: basis-[100%]
+
+md: basis-[calc((100%-24px)/2)] with mr-6
+
+lg: basis-[calc((100%-48px)/3)] with mr-6
+
+Keep continuous left/right wrap; arrows should jump from start → end and end → start.
+
+Arrows: center vertically, symmetrical horizontally, always visible on desktop, 32px circle with bg-purple-600 text-white, hover bg-purple-700.
+
+Keep the larger “powered-by” chips.
+
+Slightly increase the center title readability: text-base on md+, leading-snug.
+
+Replace src/components/BuildFaster.jsx with the code below (no other changes).
+
+Code (replace src/components/BuildFaster.jsx)
+// src/components/BuildFaster.jsx
+import React, { useMemo, useRef } from "react";
+
+/**
+ * Images expected in /public/images/ (adjust if your names differ):
+ * chatgpt.png, Midjourney-Logo.png, Replit_logo.png, vmake.png,
+ * Photoshop.png, Figma-Logo.png, YouTube-logo.png,
+ * Google-Ads-Logo.jpg, Google-Analytics.png, Shopify-Logo.png,
+ * Google-Drive-Logo.png, Dropbox-Logo.png, Microsoft-Teams.png,
+ * gemini-logo.png, Reddit-Logo.png, Instagram-Logo.png
+ */
+
+type Mini = { name: string; img: string };
+type Item = {
+  type: "tool" | "solution";
+  name: string;         // for top logo alt
+  centerLabel: string;  // bold center title
+  desc: string;
+  main?: { img?: string; emoji?: string };
+  stack?: Mini[];
+};
+
+const ITEMS: Item[] = [
+  // Tools (center labels per your request)
   {
     type: "tool",
     name: "ChatGPT",
     centerLabel: "Strategy and Execution",
     desc: "Strategy generation & prompt engineering",
-    main: { img: chatgptLogo },
+    main: { img: "/images/chatgpt.png" },
     stack: [
-      { name: "Replit", img: replitLogo },
-      { name: "Gemini", img: geminiLogo },
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
     ],
   },
   {
@@ -31,10 +61,10 @@ const ITEMS = [
     name: "MidJourney",
     centerLabel: "Visuals",
     desc: "Concept visuals & brand imagery",
-    main: { img: midjourneyLogo },
+    main: { img: "/images/Midjourney-Logo.png" },
     stack: [
-      { name: "Photoshop", img: photoshopLogo },
-      { name: "Figma", img: figmaLogo },
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Figma", img: "/images/Figma-Logo.png" },
     ],
   },
   {
@@ -42,9 +72,9 @@ const ITEMS = [
     name: "Replit",
     centerLabel: "Landing Pages",
     desc: "Rapid code & web builds",
-    main: { img: replitLogo },
+    main: { img: "/images/Replit_logo.png" },
     stack: [
-      { name: "Replit", img: replitLogo },
+      { name: "Replit", img: "/images/Replit_logo.png" },
       { name: "YouTube", img: "/images/YouTube-logo.png" },
     ],
   },
@@ -53,10 +83,10 @@ const ITEMS = [
     name: "VMake",
     centerLabel: "Visual Enhancements",
     desc: "AI image enhancement & upscaling",
-    main: { img: vmakeLogo },
+    main: { img: "/images/vmake.png" },
     stack: [
-      { name: "Photoshop", img: photoshopLogo },
-      { name: "MidJourney", img: midjourneyLogo },
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
     ],
   },
 
@@ -68,9 +98,9 @@ const ITEMS = [
     desc: "Friction fixes, proof, speed, clearer CTAs.",
     main: { emoji: "⚡️" },
     stack: [
-      { name: "Figma", img: figmaLogo },
-      { name: "Replit", img: replitLogo },
-      { name: "MidJourney", img: midjourneyLogo },
+      { name: "Google Ads", img: "/images/Google-Ads-Logo.jpg" },
+      { name: "GA4", img: "/images/Google-Analytics.png" },
+      { name: "Shopify", img: "/images/Shopify-Logo.png" },
     ],
   },
   {
@@ -80,10 +110,10 @@ const ITEMS = [
     desc: "On-brand assets for ads, social, landing pages.",
     main: { emoji: "✍️" },
     stack: [
-      { name: "Canva", img: canvaLogo },
-      { name: "MidJourney", img: midjourneyLogo },
-      { name: "ChatGPT", img: chatgptLogo },
-      { name: "Google Drive", img: googleDriveLogo },
+      { name: "Canva", img: "/images/Photoshop.png" /* TODO: swap to Canva path if added */ },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "Instagram", img: "/images/Instagram-Logo.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
     ],
   },
   {
@@ -93,9 +123,9 @@ const ITEMS = [
     desc: "Tight feedback loops with async + weekly cadence.",
     main: { emoji: "🤝" },
     stack: [
-      { name: "Teams", img: microsoftTeamsLogo },
-      { name: "Drive", img: googleDriveLogo },
-      { name: "Dropbox", img: dropboxLogo },
+      { name: "Teams", img: "/images/Microsoft-Teams.png" },
+      { name: "Drive", img: "/images/Google-Drive-Logo.png" },
+      { name: "Dropbox", img: "/images/Dropbox-Logo.png" },
     ],
   },
   {
@@ -105,10 +135,10 @@ const ITEMS = [
     desc: "Offer angles, testing plans, priorities.",
     main: { emoji: "💡" },
     stack: [
-      { name: "MidJourney", img: midjourneyLogo },
-      { name: "Replit", img: replitLogo },
-      { name: "Figma", img: figmaLogo },
-      { name: "ChatGPT", img: chatgptLogo },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Figma", img: "/images/Figma-Logo.png" },
+      { name: "ChatGPT", img: "/images/chatgpt.png" },
     ],
   },
   {
@@ -118,14 +148,15 @@ const ITEMS = [
     desc: "Benchmarks, cohorts, ROI clarity.",
     main: { emoji: "📊" },
     stack: [
-      { name: "GA4", img: googleAnalyticsLogo },
-      { name: "ChatGPT", img: chatgptLogo },
-      { name: "Gemini", img: geminiLogo },
+      { name: "GA4", img: "/images/Google-Analytics.png" },
+      { name: "ChatGPT", img: "/images/chatgpt.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
     ],
   },
 ];
 
-function StackChip({ name, img }) {
+// Larger chip (logo + label)
+function StackChip({ name, img }: Mini) {
   return (
     <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-[13px] leading-none shadow-sm hover:shadow transition">
       <img src={img} alt={name} className="h-[28px] w-[28px] object-contain" />
@@ -134,7 +165,7 @@ function StackChip({ name, img }) {
   );
 }
 
-function Card({ item }) {
+function Card({ item }: { item: Item }) {
   return (
     <div
       className="
@@ -143,11 +174,10 @@ function Card({ item }) {
         lg:basis-[calc((100%-48px)/3)]
       "
       data-card
-      data-testid={`${item.type}-tile-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
     >
       <div className="h-full rounded-2xl border border-gray-200 bg-white shadow-sm p-5 text-center">
         {item.main?.img ? (
-          <img src={item.main.img} alt={item.name} className="h-12 w-auto mx-auto mb-2 object-contain" data-testid={`img-${item.name.toLowerCase().replace(/\s+/g, '-')}`} />
+          <img src={item.main.img} alt={item.name} className="h-12 w-auto mx-auto mb-2 object-contain" />
         ) : (
           <div className="h-12 w-12 mx-auto mb-2 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
             <span className="text-xl">{item.main?.emoji ?? "★"}</span>
@@ -174,22 +204,22 @@ function Card({ item }) {
   );
 }
 
-export default function HowWeBuildFasterSection() {
-  const trackRef = useRef(null);
+export default function BuildFaster() {
+  const trackRef = useRef<HTMLDivElement>(null);
   const items = useMemo(() => ITEMS, []);
 
+  // width of one card (first child) + 24px gap (mr-6)
   const cardWidth = () => {
     const el = trackRef.current;
     if (!el) return 0;
-    const first = el.querySelector("[data-card]");
+    const first = el.querySelector<HTMLElement>("[data-card]");
     return first ? first.offsetWidth + 24 : el.clientWidth * 0.9;
   };
 
   const scrollPrev = () => {
     const el = trackRef.current;
     if (!el) return;
-    const threshold = 10;
-    if (el.scrollLeft <= threshold) {
+    if (Math.round(el.scrollLeft) <= 0) {
       el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" });
       return;
     }
@@ -199,8 +229,7 @@ export default function HowWeBuildFasterSection() {
   const scrollNext = () => {
     const el = trackRef.current;
     if (!el) return;
-    const threshold = 10;
-    const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - threshold;
+    const atEnd = Math.ceil(el.scrollLeft + el.clientWidth) >= el.scrollWidth;
     if (atEnd) {
       el.scrollTo({ left: 0, behavior: "smooth" });
       return;
@@ -209,7 +238,7 @@ export default function HowWeBuildFasterSection() {
   };
 
   return (
-    <section className="px-4 py-14" aria-label="How We Build Faster" data-testid="section-how-we-build-faster">
+    <section className="px-4 py-14" aria-label="How We Build Faster">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-6 text-sm sm:text-base">
@@ -218,12 +247,12 @@ export default function HowWeBuildFasterSection() {
       </div>
 
       <div className="relative max-w-5xl mx-auto">
+        {/* Arrows: smaller, centered, symmetrical */}
         <button
           type="button"
           onClick={scrollPrev}
           aria-label="Previous"
           className="hidden lg:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full bg-purple-600 text-white shadow hover:bg-purple-700"
-          data-testid="button-slider-prev"
         >
           ‹
         </button>
@@ -232,21 +261,22 @@ export default function HowWeBuildFasterSection() {
           onClick={scrollNext}
           aria-label="Next"
           className="hidden lg:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 h-8 w-8 items-center justify-center rounded-full bg-purple-600 text-white shadow hover:bg-purple-700"
-          data-testid="button-slider-next"
         >
           ›
         </button>
 
+        {/* Track */}
         <div
           ref={trackRef}
           className="overflow-x-auto scrollbar-hide flex snap-x snap-mandatory"
           style={{ scrollBehavior: "smooth" }}
-          data-testid="slider-container"
         >
+          {/* small left spacer to soften edge */}
           <div className="shrink-0 basis-[8px]" aria-hidden />
           {items.map((item) => (
             <Card key={item.name} item={item} />
           ))}
+          {/* right spacer */}
           <div className="shrink-0 basis-[8px]" aria-hidden />
         </div>
       </div>
