@@ -1,3 +1,45 @@
+Create a React + Tailwind component file called HowWeBuildFasterSection.jsx that I can drop directly into my homepage.
+Do not edit or overwrite any existing design, styles, or global layout.
+Only generate this one component and make sure it visually matches the light, modern Clarity Engine brand: white backgrounds, subtle shadows, and purple-blue gradients on hover.
+
+Component requirements:
+
+Responsive 3×3 grid of tool tiles (GPT, MJ, REPL, GA4, META, KLAW, DFW, UX, AI+).
+
+Each tile is a white rounded card with a soft drop shadow.
+
+On hover (or tap on mobile):
+
+Card background becomes a soft purple-blue gradient (from-[#a78bfa] to-[#06b6d4]).
+
+Show a one-line description of the tool.
+
+Smooth fade-in transition (0.25s).
+
+Tiles are equal height/width with auto-fit grid layout.
+
+Section should have generous padding top/bottom and be centered between other homepage sections.
+
+The background of the section itself stays white — not dark.
+
+Heading: How We Build Faster (H2, centered on desktop, left on mobile).
+
+Subheading paragraph below it.
+
+CTA button below: “Explore Our Tools” → links to /how-we-work.
+
+Use Tailwind and Framer Motion. Do not modify Tailwind config or global CSS.
+
+Integration note:
+I’ll import it like this:
+
+import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
+<HowWeBuildFasterSection />
+
+
+Output only the full JSX file code.
+
+✅ Code to Paste (if you prefer to skip the prompt and add directly)
 /**
  * HowWeBuildFasterSection.jsx
  * --------------------------------------------------------------
@@ -36,7 +78,6 @@ function ToolTile({ name, benefit }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3 }}
-      data-testid={`tool-tile-${name.toLowerCase()}`}
     >
       <motion.div
         animate={{
@@ -67,7 +108,7 @@ function ToolTile({ name, benefit }) {
 
 export default function HowWeBuildFasterSection() {
   return (
-    <section className="relative bg-white py-24 sm:py-28" data-testid="section-how-we-build-faster">
+    <section className="relative bg-white py-24 sm:py-28">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-gray-900">How We Build Faster</h2>
         <p className="mt-4 max-w-2xl mx-auto text-gray-600 text-lg leading-relaxed">
@@ -87,7 +128,6 @@ export default function HowWeBuildFasterSection() {
           <a
             href="/how-we-work"
             className="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#a78bfa] to-[#06b6d4] text-white font-semibold shadow hover:opacity-90 transition"
-            data-testid="link-explore-tools"
           >
             Explore Our Tools
             <svg
