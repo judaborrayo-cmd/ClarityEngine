@@ -1,3 +1,20 @@
+Please restructure ONLY the “How We Scale Paid Media in 90 Days” block:
+
+Keep the big video on the left and its CTA strip below it.
+
+On the right, show the Month 1 / Month 2 / Month 3+ roadmap card (compact height, colored accents).
+
+Move Audit Teardown (What We Check) to a full-width section beneath the two columns, laid out as a horizontal grid: 5 columns × 2 rows on xl screens, 3×? on md, 2×? on small. Each item should be a compact tile that expands (accordion/disclosure) to show a one-sentence explanation.
+
+Remove any leftover “watch” links.
+
+Keep typography, spacing, and CTA styles consistent with the site.
+
+Replace the existing src/components/ScaleAndAudit.jsx with the code I provide below, and keep usage the same in Home.jsx via <ScaleAndAudit videoUrl="..."/>.
+
+Code (replace src/components/ScaleAndAudit.jsx)
+// src/components/ScaleAndAudit.jsx
+import React from "react";
 import { Link } from "react-router-dom";
 
 /** Compact month-by-month roadmap with color accents */
@@ -100,7 +117,6 @@ function TeardownGrid() {
             <details
               key={title}
               className="group rounded-xl border border-gray-200 hover:border-gray-300 bg-white"
-              data-testid={`accordion-${title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <summary className="cursor-pointer list-none p-3">
                 <div className="text-sm font-medium text-gray-900">{title}</div>
@@ -118,13 +134,9 @@ function TeardownGrid() {
   );
 }
 
-interface ScaleAndAuditProps {
-  videoUrl?: string;
-}
-
 export default function ScaleAndAudit({
   videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ",
-}: ScaleAndAuditProps) {
+}) {
   return (
     <section className="container mx-auto px-4 py-12" aria-label="Scale in 90 Days">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Scale Paid Media in 90 Days</h2>
@@ -162,7 +174,6 @@ export default function ScaleAndAudit({
             <Link
               to="/checkout/audit"
               className="mt-3 sm:mt-0 inline-flex items-center justify-center rounded-xl bg-green-500 text-white hover:bg-green-600 text-sm py-2 px-4 font-medium"
-              data-testid="button-scale-audit-order"
             >
               Order Your Deep Dive Audit
             </Link>
@@ -178,3 +189,14 @@ export default function ScaleAndAudit({
     </section>
   );
 }
+
+
+This layout:
+
+Balances the first row (video + compact roadmap).
+
+Moves the audit checklist to a full-width, horizontal, expandable grid (5×2 on xl) to remove the column height imbalance.
+
+Adds your requested Competitor Research item.
+
+Keeps a little color (purple/green/indigo) without overpowering the page.
