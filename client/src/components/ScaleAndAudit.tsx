@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 /** Compact month-by-month roadmap with color accents */
 function MonthRoadmap() {
@@ -72,6 +73,8 @@ function MonthRoadmap() {
 
 /** Full-width, horizontal audit checklist with expandable tiles */
 function TeardownGrid() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const items: Array<{ title: string; desc: string }> = [
     { title: "Tracking & Attribution", desc: "Pixels, CAPI, GTM, events, GA4 hygiene and deduping." },
     { title: "Account Structure", desc: "Objectives, naming, signal quality, consolidation for learning." },
@@ -96,21 +99,35 @@ function TeardownGrid() {
 
         {/* 5×2 on xl, 3 cols on md, 2 on small */}
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
-          {items.map(({ title, desc }) => (
-            <details
-              key={title}
-              className="group rounded-xl border border-gray-200 hover:border-purple-300 bg-white hover:shadow-md transition-all"
-              data-testid={`accordion-${title.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              <summary className="cursor-pointer list-none p-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="text-sm font-medium text-gray-900">{title}</div>
-                  <ChevronDown className="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 mt-0.5" />
-                </div>
-              </summary>
-              <div className="px-3 pb-3 text-[12px] text-gray-700">{desc}</div>
-            </details>
-          ))}
+          {items.map(({ title, desc }, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={title}
+                className="rounded-xl border border-gray-200 hover:border-purple-300 bg-white hover:shadow-md transition-all"
+                data-testid={`accordion-${title.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full text-left cursor-pointer p-3"
+                  aria-expanded={isOpen}
+                  data-testid={`button-${title.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="text-sm font-medium text-gray-900">{title}</div>
+                    <ChevronDown 
+                      className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 mt-0.5 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+                </button>
+                {isOpen && (
+                  <div className="px-3 pb-3 text-[12px] text-gray-700">{desc}</div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
