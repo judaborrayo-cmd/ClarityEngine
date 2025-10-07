@@ -182,7 +182,7 @@ export default function About() {
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-4xl font-extrabold text-purple-600 mb-2" data-testid="stat-hours">10,000+</div>
+                  <div className="text-4xl font-extrabold text-purple-600 mb-2" data-testid="stat-hours">20,800+</div>
                   <div className="text-sm text-gray-600">hours managing ads & strategy</div>
                 </div>
               </div>

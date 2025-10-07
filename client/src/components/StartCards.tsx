@@ -121,7 +121,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
           </span>
         </div>
         <div>
-          <span className="text-purple-700 font-bold text-base">10,000+</span>
+          <span className="text-purple-700 font-bold text-base">20,800+</span>
           <span className="block text-gray-600 text-xs">
             hours managing ads &amp; strategy
           </span>
