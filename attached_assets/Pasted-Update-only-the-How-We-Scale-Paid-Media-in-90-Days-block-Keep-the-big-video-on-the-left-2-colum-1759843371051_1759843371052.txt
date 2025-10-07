@@ -1,3 +1,24 @@
+Update only the “How We Scale Paid Media in 90 Days” block:
+
+Keep the big video on the left (2 columns wide) with the CTA strip below it; no “watch on YouTube/clip” links.
+
+On the right, replace the current “How We Scale…” mini-graphic with a Month 1 / Month 2 / Month 3+ roadmap card that uses colored accents (purple/green) and concise rows.
+
+Keep the “Audit Teardown (What We Check)” card, but add a Competitor Research row.
+
+Improve visual balance by:
+
+Making the right column a stack of two cards of compact height,
+
+Using items-start and consistent internal spacing, and
+
+Limiting each card’s text with short rows (no long paragraphs).
+
+Do not change other sections. Replace the existing component file with the code below.
+
+Code (replace src/components/ScaleAndAudit.jsx)
+// src/components/ScaleAndAudit.jsx
+import React from "react";
 import { Link } from "react-router-dom";
 
 /** Month-by-month colored roadmap */
@@ -80,7 +101,7 @@ function TeardownList() {
     ["Budget & Pacing", "Spend allocation, phase stability, throttling risks"],
     ["Audiences & Exclusions", "Signals by stage, overlap control, volume"],
     ["Creative Diagnostics", "Hooks, formats, thumb-stop rate, offer angle"],
-    ["Competitor Research", "Spy tools, positioning gaps, ad angle library"],
+    ["Competitor Research", "Spy tools, positioning gaps, ad angle library"], // <— added
     ["Bidding & Delivery", "Caps, optimization events, placements, learning"],
     ["Landing Pages & CRO", "Speed, clarity, proof, CTAs, UX frictions"],
     ["Measurement & Benchmarks", "Targets, cohorts, rolling trendlines"],
@@ -107,13 +128,9 @@ function TeardownList() {
   );
 }
 
-interface ScaleAndAuditProps {
-  videoUrl?: string;
-}
-
 export default function ScaleAndAudit({
   videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ",
-}: ScaleAndAuditProps) {
+}) {
   return (
     <section className="container mx-auto px-4 py-12" aria-label="Scale in 90 Days">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Scale Paid Media in 90 Days</h2>
@@ -150,7 +167,6 @@ export default function ScaleAndAudit({
             <Link
               to="/checkout/audit"
               className="mt-3 sm:mt-0 inline-flex items-center justify-center rounded-xl bg-green-500 text-white hover:bg-green-600 text-sm py-2 px-4 font-medium"
-              data-testid="button-scale-audit-order"
             >
               Order Your Deep Dive Audit
             </Link>
