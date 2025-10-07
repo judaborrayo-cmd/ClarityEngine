@@ -19,10 +19,17 @@
  * Instagram_logo_2016.svg.png
  */
 
-import chatgptLogo from '@assets/Chat GPT Logo_1759865076284.png';
+import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
 import midjourneyLogo from '@assets/Midjourney-Logo_1759865050220.png';
-import replitLogo from '@assets/Replit_logo_1759865058011.png';
+import replitLogo from '@assets/Replit_logo_1759865452229.png';
 import vmakeLogo from '@assets/vmake_1759865086289.png';
+import googleDriveLogo from '@assets/Google_Drive_-_New_Logo_1759865428146.png';
+import microsoftTeamsLogo from '@assets/Microsoft-Teams-Symbol_1759865428146.png';
+import dropboxLogo from '@assets/Dropbox_(service)-Logo.wine_1759865428146.png';
+import figmaLogo from '@assets/Figma-Logo_1759865443714.png';
+import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
+import googleAnalyticsLogo from '@assets/Logo_Google_Analytics_1759865466930.png';
+import canvaLogo from '@assets/stock_images/canva_logo_design_to_253db32b.jpg';
 
 const items = [
   // Tools
@@ -78,9 +85,9 @@ const items = [
     desc: "Friction fixes, proof, speed, clearer CTAs.",
     main: { emoji: "⚡️" },
     poweredBy: [
-      { name: "Google Ads", img: "/images/Google Ads Logo.jpg" },
-      { name: "Google Analytics", img: "/images/Logo_Google_Analytics.png" },
-      { name: "Shopify", img: "/images/Shopify Logo.png" },
+      { name: "Figma", img: figmaLogo },
+      { name: "Replit", img: replitLogo },
+      { name: "MidJourney", img: midjourneyLogo },
     ],
     accent: "from-purple-500/12 to-purple-400/8",
   },
@@ -90,10 +97,10 @@ const items = [
     desc: "On-brand assets for ads, social, landing pages.",
     main: { emoji: "✍️" },
     poweredBy: [
-      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Canva", img: canvaLogo },
       { name: "MidJourney", img: midjourneyLogo },
-      { name: "Instagram", img: "/images/Instagram_logo_2016.svg.png" },
-      { name: "YouTube", img: "/images/YouTube-logo.png" },
+      { name: "ChatGPT", img: chatgptLogo },
+      { name: "Google Drive", img: googleDriveLogo },
     ],
     accent: "from-pink-500/12 to-rose-400/8",
   },
@@ -103,9 +110,9 @@ const items = [
     desc: "Tight feedback loops with async + weekly cadence.",
     main: { emoji: "🤝" },
     poweredBy: [
-      { name: "Google Drive", img: "/images/Google_Drive_-_New_Logo.png" },
-      { name: "Dropbox", img: "/images/Dropbox_(service)-Logo.wine.png" },
-      { name: "Microsoft Teams", img: "/images/Microsoft-Teams-Symbol.png" },
+      { name: "Microsoft Teams", img: microsoftTeamsLogo },
+      { name: "Google Drive", img: googleDriveLogo },
+      { name: "Dropbox", img: dropboxLogo },
     ],
     accent: "from-blue-500/12 to-cyan-400/8",
   },
@@ -115,10 +122,10 @@ const items = [
     desc: "Offer angles, testing plans, priorities.",
     main: { emoji: "💡" },
     poweredBy: [
-      { name: "ChatGPT", img: chatgptLogo },
-      { name: "Gemini", img: "/images/gemini-logo.png" },
+      { name: "MidJourney", img: midjourneyLogo },
       { name: "Replit", img: replitLogo },
-      { name: "Reddit", img: "/images/Reddit-Logo.png" },
+      { name: "Figma", img: figmaLogo },
+      { name: "ChatGPT", img: chatgptLogo },
     ],
     accent: "from-amber-500/12 to-lime-400/8",
   },
@@ -128,9 +135,9 @@ const items = [
     desc: "Benchmarks, cohorts, ROI clarity.",
     main: { emoji: "📊" },
     poweredBy: [
-      { name: "Google Analytics", img: "/images/Logo_Google_Analytics.png" },
-      { name: "Google Ads", img: "/images/Google Ads Logo.jpg" },
-      { name: "Shopify", img: "/images/Shopify Logo.png" },
+      { name: "Google Analytics", img: googleAnalyticsLogo },
+      { name: "ChatGPT", img: chatgptLogo },
+      { name: "Gemini", img: geminiLogo },
     ],
     accent: "from-green-500/12 to-emerald-400/8",
   },
