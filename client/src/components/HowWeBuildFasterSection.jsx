@@ -19,15 +19,19 @@
  * Instagram_logo_2016.svg.png
  */
 
+import chatgptLogo from '@assets/stock_images/chatgpt_logo_openai_02268e40.jpg';
+import midjourneyLogo from '@assets/stock_images/midjourney_logo_ai_dadc73cf.jpg';
+import replitLogo from '@assets/stock_images/replit_logo_programm_d6db1874.jpg';
+
 const items = [
   // Tools
   {
     type: "tool",
     name: "ChatGPT",
     desc: "Strategy generation & prompt engineering",
-    main: { img: "/images/chatgpt.png" },
+    main: { img: chatgptLogo },
     poweredBy: [
-      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Replit", img: replitLogo },
       { name: "Gemini", img: "/images/gemini-logo.png" },
     ],
     accent: "from-purple-500/15 to-blue-400/10",
@@ -36,7 +40,7 @@ const items = [
     type: "tool",
     name: "MidJourney",
     desc: "Concept visuals & brand imagery",
-    main: { img: "/images/Midjourney-Logo.png" },
+    main: { img: midjourneyLogo },
     poweredBy: [
       { name: "Photoshop", img: "/images/Photoshop.png" },
       { name: "Figma", img: "/images/Figma-Logo.png" },
@@ -47,9 +51,9 @@ const items = [
     type: "tool",
     name: "Replit",
     desc: "Rapid code & web builds",
-    main: { img: "/images/Replit_logo.png" },
+    main: { img: replitLogo },
     poweredBy: [
-      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Replit", img: replitLogo },
       { name: "YouTube", img: "/images/YouTube-logo.png" },
     ],
     accent: "from-indigo-500/15 to-cyan-400/10",
@@ -86,7 +90,7 @@ const items = [
     main: { emoji: "✍️" },
     poweredBy: [
       { name: "Photoshop", img: "/images/Photoshop.png" },
-      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "MidJourney", img: midjourneyLogo },
       { name: "Instagram", img: "/images/Instagram_logo_2016.svg.png" },
       { name: "YouTube", img: "/images/YouTube-logo.png" },
     ],
@@ -110,9 +114,9 @@ const items = [
     desc: "Offer angles, testing plans, priorities.",
     main: { emoji: "💡" },
     poweredBy: [
-      { name: "ChatGPT", img: "/images/chatgpt.png" },
+      { name: "ChatGPT", img: chatgptLogo },
       { name: "Gemini", img: "/images/gemini-logo.png" },
-      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Replit", img: replitLogo },
       { name: "Reddit", img: "/images/Reddit-Logo.png" },
     ],
     accent: "from-amber-500/12 to-lime-400/8",
