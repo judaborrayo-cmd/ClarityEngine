@@ -10,7 +10,8 @@ import dropboxLogo from '@assets/Dropbox_(service)-Logo.wine_1759865428146.png';
 import figmaLogo from '@assets/Figma-Logo_1759865443714.png';
 import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
 import googleAnalyticsLogo from '@assets/Logo_Google_Analytics_1759865466930.png';
-import canvaLogo from '@assets/stock_images/canva_logo_design_to_253db32b.jpg';
+import canvaLogo from '@assets/Canva Logo_1759871045288.jpeg';
+import photoshopLogo from '@assets/Photoshop_1759870952584.png';
 
 const ITEMS = [
   // Tools
@@ -30,7 +31,7 @@ const ITEMS = [
     desc: "Concept visuals & brand imagery",
     main: { img: midjourneyLogo },
     stack: [
-      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Photoshop", img: photoshopLogo },
       { name: "Figma", img: figmaLogo },
     ],
   },
@@ -50,7 +51,7 @@ const ITEMS = [
     desc: "AI image enhancement & upscaling",
     main: { img: vmakeLogo },
     stack: [
-      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Photoshop", img: photoshopLogo },
       { name: "MidJourney", img: midjourneyLogo },
     ],
   },
