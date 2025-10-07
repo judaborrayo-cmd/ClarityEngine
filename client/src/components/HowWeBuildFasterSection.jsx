@@ -19,9 +19,10 @@
  * Instagram_logo_2016.svg.png
  */
 
-import chatgptLogo from '@assets/stock_images/chatgpt_logo_openai_02268e40.jpg';
-import midjourneyLogo from '@assets/stock_images/midjourney_logo_ai_dadc73cf.jpg';
-import replitLogo from '@assets/stock_images/replit_logo_programm_d6db1874.jpg';
+import chatgptLogo from '@assets/Chat GPT Logo_1759865076284.png';
+import midjourneyLogo from '@assets/Midjourney-Logo_1759865050220.png';
+import replitLogo from '@assets/Replit_logo_1759865058011.png';
+import vmakeLogo from '@assets/vmake_1759865086289.png';
 
 const items = [
   // Tools
@@ -62,10 +63,10 @@ const items = [
     type: "tool",
     name: "VMake",
     desc: "AI image enhancement & upscaling",
-    main: { img: "/images/vmake.png" },
+    main: { img: vmakeLogo },
     poweredBy: [
       { name: "Photoshop", img: "/images/Photoshop.png" },
-      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "MidJourney", img: midjourneyLogo },
     ],
     accent: "from-emerald-500/15 to-green-400/10",
   },
