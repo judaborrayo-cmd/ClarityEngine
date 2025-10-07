@@ -272,7 +272,7 @@ export default function Home() {
               Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent">ROI-Driven</span> Paid Media & Growth Strategy
             </h1>
             <p className="mt-6 text-xl leading-8 text-gray-600" data-testid="hero-description">
-              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Clarity Engine exists to bring clarity, structure, and measurable ROI to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
+              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Bringing clarity to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
             </p>
 
             <HeroCTAs />
