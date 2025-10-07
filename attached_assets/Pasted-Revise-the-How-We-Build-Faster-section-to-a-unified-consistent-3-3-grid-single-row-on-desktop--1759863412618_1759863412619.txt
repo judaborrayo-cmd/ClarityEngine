@@ -1,0 +1,329 @@
+Revise the “How We Build Faster” section to a unified, consistent 3×3 grid (single row on desktop).
+Do not change the section title or intro.
+
+Goals
+
+All 9 tiles share the same structure:
+
+centered main logo/icon (~48px high),
+
+name,
+
+one-line description,
+
+a centered “Powered by” mini-logo row (16–20px each) with hover tooltips that show each logo’s name.
+
+Hover on tile: scale(1.05) + soft gradient glow.
+
+Mobile: 2 columns; tablet/desktop: 3×3.
+
+Content (4 AI tools + 5 solutions):
+
+AI Tools (main logo = big):
+
+ChatGPT — Strategy generation & prompt engineering.
+Powered by: Replit, Gemini
+
+MidJourney — Concept visuals & brand imagery.
+Powered by: Photoshop, Figma
+
+Replit — Rapid code & web builds.
+Powered by: GitHub (use Replit logo again if GitHub not available), YouTube
+
+VMake — AI image enhancement & upscaling.
+Powered by: Photoshop, MidJourney
+
+Solutions (main icon = emoji; show mini logos to indicate stack):
+5) Conversion Rate Optimization — Friction fixes, proof, speed, clearer CTAs.
+Powered by: Google Ads, Google Analytics, Shopify
+6) Content Creation — On-brand assets for ads, social, landing pages.
+Powered by: Photoshop, MidJourney, Instagram, YouTube
+7) Collaboration & Workflows — Tight feedback loops with async + weekly cadence.
+Powered by: Google Drive, Dropbox, Microsoft Teams
+8) Ideation & Strategy — Offer angles, testing plans, priorities.
+Powered by: ChatGPT, Gemini, Replit, Reddit
+9) Performance Analysis — Benchmarks, cohorts, ROI clarity.
+Powered by: Google Analytics, Google Ads, Shopify
+
+Logos / asset mapping (please place/replace in /public/images/ and update import paths if needed):
+
+/images/chatgpt.png (I will upload/replace)
+
+/images/Midjourney-Logo.png
+
+/images/Replit_logo.png
+
+/images/vmake.png
+
+/images/Photoshop.png
+
+/images/Figma-Logo.png
+
+/images/YouTube-logo.png (or the provided file name)
+
+/images/Google Ads Logo.jpg
+
+/images/Logo_Google_Analytics.png
+
+/images/Shopify Logo.png
+
+/images/Google_Drive_-_New_Logo.png
+
+/images/Dropbox_(service)-Logo.wine.png
+
+/images/Microsoft-Teams-Symbol.png
+
+/images/gemini-logo.png (rename gemini-logo_bran...512x512.png to gemini-logo.png)
+
+/images/Reddit-Logo.png
+
+/images/Instagram_logo_2016.svg.png
+
+Implementation details
+
+Replace the current component with the code I provide below as src/components/BuildFaster.jsx.
+
+Use a reusable MiniLogo component with a tooltip on hover (no external libs).
+
+Keep the section compact; don’t add extra vertical spacing.
+
+Ensure all images use object-contain and consistent heights.
+
+Code (replace src/components/BuildFaster.jsx)
+// src/components/BuildFaster.jsx
+import React from "react";
+
+/**
+ * Place these images in /public/images/ (adjust names if needed):
+ * chatgpt.png
+ * Midjourney-Logo.png
+ * Replit_logo.png
+ * vmake.png
+ * Photoshop.png
+ * Figma-Logo.png
+ * YouTube-logo.png
+ * Google Ads Logo.jpg
+ * Logo_Google_Analytics.png
+ * Shopify Logo.png
+ * Google_Drive_-_New_Logo.png
+ * Dropbox_(service)-Logo.wine.png
+ * Microsoft-Teams-Symbol.png
+ * gemini-logo.png   (rename your gemini asset to this)
+ * Reddit-Logo.png
+ * Instagram_logo_2016.svg.png
+ */
+
+type Mini = { name: string; img: string };
+type Item = {
+  type: "tool" | "solution";
+  name: string;
+  desc: string;
+  main?: { img?: string; emoji?: string };
+  poweredBy?: Mini[];
+  accent?: string; // optional gradient accent
+};
+
+// --- data: unified 3×3 grid (AI tools + solutions) ---
+const items: Item[] = [
+  // Tools
+  {
+    type: "tool",
+    name: "ChatGPT",
+    desc: "Strategy generation & prompt engineering",
+    main: { img: "/images/chatgpt.png" },
+    poweredBy: [
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
+    ],
+    accent: "from-purple-500/15 to-blue-400/10",
+  },
+  {
+    type: "tool",
+    name: "MidJourney",
+    desc: "Concept visuals & brand imagery",
+    main: { img: "/images/Midjourney-Logo.png" },
+    poweredBy: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Figma", img: "/images/Figma-Logo.png" },
+    ],
+    accent: "from-pink-500/15 to-rose-400/10",
+  },
+  {
+    type: "tool",
+    name: "Replit",
+    desc: "Rapid code & web builds",
+    main: { img: "/images/Replit_logo.png" },
+    poweredBy: [
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
+    ],
+    accent: "from-indigo-500/15 to-cyan-400/10",
+  },
+  {
+    type: "tool",
+    name: "VMake",
+    desc: "AI image enhancement & upscaling",
+    main: { img: "/images/vmake.png" },
+    poweredBy: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+    ],
+    accent: "from-emerald-500/15 to-green-400/10",
+  },
+
+  // Solutions
+  {
+    type: "solution",
+    name: "Conversion Rate Optimization",
+    desc: "Friction fixes, proof, speed, clearer CTAs.",
+    main: { emoji: "⚡️" },
+    poweredBy: [
+      { name: "Google Ads", img: "/images/Google Ads Logo.jpg" },
+      { name: "Google Analytics", img: "/images/Logo_Google_Analytics.png" },
+      { name: "Shopify", img: "/images/Shopify Logo.png" },
+    ],
+    accent: "from-purple-500/12 to-purple-400/8",
+  },
+  {
+    type: "solution",
+    name: "Content Creation",
+    desc: "On-brand assets for ads, social, landing pages.",
+    main: { emoji: "✍️" },
+    poweredBy: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "Instagram", img: "/images/Instagram_logo_2016.svg.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
+    ],
+    accent: "from-pink-500/12 to-rose-400/8",
+  },
+  {
+    type: "solution",
+    name: "Collaboration & Workflows",
+    desc: "Tight feedback loops with async + weekly cadence.",
+    main: { emoji: "🤝" },
+    poweredBy: [
+      { name: "Google Drive", img: "/images/Google_Drive_-_New_Logo.png" },
+      { name: "Dropbox", img: "/images/Dropbox_(service)-Logo.wine.png" },
+      { name: "Microsoft Teams", img: "/images/Microsoft-Teams-Symbol.png" },
+    ],
+    accent: "from-blue-500/12 to-cyan-400/8",
+  },
+  {
+    type: "solution",
+    name: "Ideation & Strategy",
+    desc: "Offer angles, testing plans, priorities.",
+    main: { emoji: "💡" },
+    poweredBy: [
+      { name: "ChatGPT", img: "/images/chatgpt.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Reddit", img: "/images/Reddit-Logo.png" },
+    ],
+    accent: "from-amber-500/12 to-lime-400/8",
+  },
+  {
+    type: "solution",
+    name: "Performance Analysis",
+    desc: "Benchmarks, cohorts, ROI clarity.",
+    main: { emoji: "📊" },
+    poweredBy: [
+      { name: "Google Analytics", img: "/images/Logo_Google_Analytics.png" },
+      { name: "Google Ads", img: "/images/Google Ads Logo.jpg" },
+      { name: "Shopify", img: "/images/Shopify Logo.png" },
+    ],
+    accent: "from-green-500/12 to-emerald-400/8",
+  },
+];
+
+// Tooltip mini-logo
+function MiniLogo({ name, img }: Mini) {
+  return (
+    <div className="relative group/mini">
+      <img
+        src={img}
+        alt={name}
+        className="h-4 w-4 sm:h-5 sm:w-5 object-contain opacity-85 hover:opacity-100 transition"
+      />
+      {/* custom tooltip */}
+      <span
+        className="
+          pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1
+          whitespace-nowrap rounded-md bg-black text-white text-[10px] px-2 py-1
+          opacity-0 group-hover/mini:opacity-100 transition-opacity
+        "
+      >
+        {name}
+      </span>
+    </div>
+  );
+}
+
+export default function BuildFaster() {
+  return (
+    <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
+      <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+        We’re a strategic partner (fractional CMO energy) blending human insight with AI-accelerated execution —
+        so you get strategy, design, and delivery at 10× speed.
+      </p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        {items.map((it) => (
+          <div
+            key={it.name}
+            className="
+              group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm
+              transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105
+            "
+          >
+            {/* subtle gradient glow */}
+            <div
+              className={`
+                pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br
+                ${it.accent ?? "from-transparent to-transparent"}
+                opacity-0 group-hover:opacity-100 transition-opacity duration-500
+              `}
+            />
+
+            <div className="relative p-5 flex flex-col items-center text-center">
+              {/* main logo/icon */}
+              {it.main?.img ? (
+                <img
+                  src={it.main.img}
+                  alt={it.name}
+                  className="h-12 w-auto mb-2 object-contain"
+                />
+              ) : (
+                <div className="h-12 w-12 mb-2 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
+                  <span className="text-xl">{it.main?.emoji ?? "★"}</span>
+                </div>
+              )}
+
+              <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{it.name}</h3>
+              <p className="text-[12px] text-gray-600 leading-snug mt-1">{it.desc}</p>
+
+              {/* powered-by mini logos */}
+              {it.poweredBy && it.poweredBy.length > 0 && (
+                <div className="mt-3 flex items-center gap-2">
+                  {it.poweredBy.map((m) => (
+                    <MiniLogo key={m.name} name={m.name} img={m.img} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
+Notes
+
+Upload/rename your assets to match the /images/... paths above. If a filename differs, just update the array entry for that logo.
+
+The tooltip behavior is built into each mini logo; hover shows the name (no extra library).
+
+All tiles share the same structure now, so the section reads as one cohesive system—mixing AI tools and solutions, with “powered by” logos on every card.
