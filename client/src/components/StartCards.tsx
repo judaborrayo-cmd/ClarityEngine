@@ -115,7 +115,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
           </span>
         </div>
         <div>
-          <span className="text-green-600 font-bold text-base">10+</span>
+          <span className="text-green-600 font-bold text-base">12+</span>
           <span className="block text-gray-600 text-xs">
             years in paid media &amp; growth strategy
           </span>

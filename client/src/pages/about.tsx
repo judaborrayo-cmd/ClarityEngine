@@ -177,7 +177,7 @@ export default function About() {
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-4xl font-extrabold text-green-600 mb-2" data-testid="stat-years">10+</div>
+                  <div className="text-4xl font-extrabold text-green-600 mb-2" data-testid="stat-years">12+</div>
                   <div className="text-sm text-gray-600">years in paid media & growth strategy</div>
                 </div>
                 

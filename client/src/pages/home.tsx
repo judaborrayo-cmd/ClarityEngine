@@ -282,7 +282,7 @@ export default function Home() {
               <Badge>$3M+ in ad spend managed across growth brands</Badge>
               <Badge>Multi-million in revenue driven through paid media</Badge>
               <Badge>Proven results across Retreats, E-commerce, Luxury, and Education</Badge>
-              <Badge>10+ years in paid media & growth strategy</Badge>
+              <Badge>12+ years in paid media & growth strategy</Badge>
               <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>
             </div>
             <div className="mt-4">
