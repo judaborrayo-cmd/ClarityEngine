@@ -101,7 +101,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
             className="mt-5 inline-flex items-center justify-center rounded-xl border border-gray-300 text-gray-900 text-sm py-2 px-4 hover:shadow"
             data-testid="button-start-join-waitlist"
           >
-            Join Waitlist
+            Apply to Wait List
           </button>
         </div>
       </div>
