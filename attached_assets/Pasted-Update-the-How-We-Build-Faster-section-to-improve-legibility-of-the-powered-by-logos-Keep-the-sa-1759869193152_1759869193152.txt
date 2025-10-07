@@ -1,0 +1,224 @@
+Update the How We Build Faster section to improve legibility of the “powered by” logos:
+
+Keep the same 3×3 grid, titles, and descriptions.
+
+Replace the tiny icon row with readable chips (logo + short label), 18–20px logos and 11–12px text, wrapping to max 2 rows.
+
+Each chip: rounded pill, subtle border, white background, slight lift on hover; still show a tooltip on hover.
+
+If an item has >4 stack logos, show the first 4 chips and then a “+N” chip.
+
+Keep the current assets, but I’m re-uploading/renaming as needed — please map to the paths used in the code.
+
+Do not change other sections. Replace the component below in src/components/BuildFaster.jsx.
+
+Code (replace src/components/BuildFaster.jsx)
+// src/components/BuildFaster.jsx
+import React from "react";
+
+/**
+ * Place these images in /public/images/ (rename if needed to match below):
+ * chatgpt.png
+ * Midjourney-Logo.png
+ * Replit_logo.png
+ * vmake.png
+ * Photoshop.png
+ * Figma-Logo.png
+ * YouTube-logo.png
+ * Google-Ads-Logo.jpg          (rename from "Google Ads Logo.jpg")
+ * Google-Analytics.png         (rename from "Logo_Google_Analytics.png")
+ * Shopify-Logo.png             (rename from "Shopify Logo.png")
+ * Google-Drive-Logo.png        (rename from "Google_Drive_-_New_Logo.png")
+ * Dropbox-Logo.png             (rename from "Dropbox_(service)-Logo.wine.png")
+ * Microsoft-Teams.png          (rename from "Microsoft-Teams-Symbol.png")
+ * gemini-logo.png
+ * Reddit-Logo.png
+ * Instagram-Logo.png           (rename from "Instagram_logo_2016.svg.png" to a png)
+ */
+
+type Mini = { name: string; img: string };
+type Item = {
+  type: "tool" | "solution";
+  name: string;
+  desc: string;
+  main?: { img?: string; emoji?: string };
+  stack?: Mini[];
+  accent?: string;
+};
+
+// --- content (unchanged from the agreed mix) ---
+const items: Item[] = [
+  // Tools
+  {
+    type: "tool",
+    name: "ChatGPT",
+    desc: "Strategy generation & prompt engineering",
+    main: { img: "/images/chatgpt.png" },
+    stack: [
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
+    ],
+    accent: "from-purple-500/14 to-blue-400/10",
+  },
+  {
+    type: "tool",
+    name: "MidJourney",
+    desc: "Concept visuals & brand imagery",
+    main: { img: "/images/Midjourney-Logo.png" },
+    stack: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "Figma", img: "/images/Figma-Logo.png" },
+    ],
+    accent: "from-pink-500/14 to-rose-400/10",
+  },
+  {
+    type: "tool",
+    name: "Replit",
+    desc: "Rapid code & web builds",
+    main: { img: "/images/Replit_logo.png" },
+    stack: [
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
+    ],
+    accent: "from-indigo-500/14 to-cyan-400/10",
+  },
+  {
+    type: "tool",
+    name: "VMake",
+    desc: "AI image enhancement & upscaling",
+    main: { img: "/images/vmake.png" },
+    stack: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+    ],
+    accent: "from-emerald-500/14 to-green-400/10",
+  },
+
+  // Solutions
+  {
+    type: "solution",
+    name: "Conversion Rate Optimization",
+    desc: "Friction fixes, proof, speed, clearer CTAs.",
+    main: { emoji: "⚡️" },
+    stack: [
+      { name: "Google Ads", img: "/images/Google-Ads-Logo.jpg" },
+      { name: "GA4", img: "/images/Google-Analytics.png" },
+      { name: "Shopify", img: "/images/Shopify-Logo.png" },
+    ],
+    accent: "from-purple-500/10 to-purple-400/6",
+  },
+  {
+    type: "solution",
+    name: "Content Creation",
+    desc: "On-brand assets for ads, social, landing pages.",
+    main: { emoji: "✍️" },
+    stack: [
+      { name: "Photoshop", img: "/images/Photoshop.png" },
+      { name: "MidJourney", img: "/images/Midjourney-Logo.png" },
+      { name: "Instagram", img: "/images/Instagram-Logo.png" },
+      { name: "YouTube", img: "/images/YouTube-logo.png" },
+    ],
+    accent: "from-pink-500/10 to-rose-400/6",
+  },
+  {
+    type: "solution",
+    name: "Collaboration & Workflows",
+    desc: "Tight feedback loops with async + weekly cadence.",
+    main: { emoji: "🤝" },
+    stack: [
+      { name: "Drive", img: "/images/Google-Drive-Logo.png" },
+      { name: "Dropbox", img: "/images/Dropbox-Logo.png" },
+      { name: "Teams", img: "/images/Microsoft-Teams.png" },
+    ],
+    accent: "from-blue-500/10 to-cyan-400/6",
+  },
+  {
+    type: "solution",
+    name: "Ideation & Strategy",
+    desc: "Offer angles, testing plans, priorities.",
+    main: { emoji: "💡" },
+    stack: [
+      { name: "ChatGPT", img: "/images/chatgpt.png" },
+      { name: "Gemini", img: "/images/gemini-logo.png" },
+      { name: "Replit", img: "/images/Replit_logo.png" },
+      { name: "Reddit", img: "/images/Reddit-Logo.png" },
+    ],
+    accent: "from-amber-500/10 to-lime-400/6",
+  },
+  {
+    type: "solution",
+    name: "Performance Analysis",
+    desc: "Benchmarks, cohorts, ROI clarity.",
+    main: { emoji: "📊" },
+    stack: [
+      { name: "GA4", img: "/images/Google-Analytics.png" },
+      { name: "Google Ads", img: "/images/Google-Ads-Logo.jpg" },
+      { name: "Shopify", img: "/images/Shopify-Logo.png" },
+    ],
+    accent: "from-green-500/10 to-emerald-400/6",
+  },
+];
+
+// ---- Reusable chip with logo + label + tooltip ----
+function StackChip({ name, img }: Mini) {
+  return (
+    <div className="relative group">
+      <div className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 text-[11px] leading-none shadow-sm hover:shadow transition">
+        <img src={img} alt={name} className="h-5 w-5 object-contain" />
+        <span className="text-gray-800">{name}</span>
+      </div>
+      <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 rounded-md bg-black/80 px-2 py-1 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity">
+        {name}
+      </span>
+    </div>
+  );
+}
+
+export default function BuildFaster() {
+  return (
+    <section className="container mx-auto px-4 py-14 text-center" aria-label="How We Build Faster">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Build Faster</h2>
+      <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+        We're a strategic partner (fractional CMO energy) blending human insight with AI-accelerated execution — so you get strategy, design, and delivery at 10× speed.
+      </p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        {items.map((it) => (
+          <div
+            key={it.name}
+            className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105"
+          >
+            <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${it.accent ?? "from-transparent to-transparent"} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+            <div className="relative p-5 flex flex-col items-center text-center">
+              {/* Main logo/icon */}
+              {it.main?.img ? (
+                <img src={it.main.img} alt={it.name} className="h-12 w-auto mb-2 object-contain" />
+              ) : (
+                <div className="h-12 w-12 mb-2 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
+                  <span className="text-xl">{it.main?.emoji ?? "★"}</span>
+                </div>
+              )}
+
+              <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{it.name}</h3>
+              <p className="text-[12px] text-gray-600 leading-snug mt-1">{it.desc}</p>
+
+              {/* Readable stack chips */}
+              {it.stack && it.stack.length > 0 && (
+                <div className="mt-3 flex flex-wrap justify-center gap-2 max-w-[260px]">
+                  {it.stack.slice(0, 4).map((m) => (
+                    <StackChip key={m.name} name={m.name} img={m.img} />
+                  ))}
+                  {it.stack.length > 4 && (
+                    <div className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 text-[11px] leading-none shadow-sm">
+                      +{it.stack.length - 4}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

@@ -1,24 +1,3 @@
-/**
- * HowWeBuildFasterSection.jsx
- * Place these images in /public/images/ (adjust names if needed):
- * chatgpt.png
- * Midjourney-Logo.png
- * Replit_logo.png
- * vmake.png
- * Photoshop.png
- * Figma-Logo.png
- * YouTube-logo.png
- * Google Ads Logo.jpg
- * Logo_Google_Analytics.png
- * Shopify Logo.png
- * Google_Drive_-_New_Logo.png
- * Dropbox_(service)-Logo.wine.png
- * Microsoft-Teams-Symbol.png
- * gemini-logo.png
- * Reddit-Logo.png
- * Instagram_logo_2016.svg.png
- */
-
 import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
 import midjourneyLogo from '@assets/Midjourney-Logo_1759865050220.png';
 import replitLogo from '@assets/Replit_logo_1759865452229.png';
@@ -38,44 +17,44 @@ const items = [
     name: "ChatGPT",
     desc: "Strategy generation & prompt engineering",
     main: { img: chatgptLogo },
-    poweredBy: [
+    stack: [
       { name: "Replit", img: replitLogo },
-      { name: "Gemini", img: "/images/gemini-logo.png" },
+      { name: "Gemini", img: geminiLogo },
     ],
-    accent: "from-purple-500/15 to-blue-400/10",
+    accent: "from-purple-500/14 to-blue-400/10",
   },
   {
     type: "tool",
     name: "MidJourney",
     desc: "Concept visuals & brand imagery",
     main: { img: midjourneyLogo },
-    poweredBy: [
+    stack: [
       { name: "Photoshop", img: "/images/Photoshop.png" },
-      { name: "Figma", img: "/images/Figma-Logo.png" },
+      { name: "Figma", img: figmaLogo },
     ],
-    accent: "from-pink-500/15 to-rose-400/10",
+    accent: "from-pink-500/14 to-rose-400/10",
   },
   {
     type: "tool",
     name: "Replit",
     desc: "Rapid code & web builds",
     main: { img: replitLogo },
-    poweredBy: [
+    stack: [
       { name: "Replit", img: replitLogo },
       { name: "YouTube", img: "/images/YouTube-logo.png" },
     ],
-    accent: "from-indigo-500/15 to-cyan-400/10",
+    accent: "from-indigo-500/14 to-cyan-400/10",
   },
   {
     type: "tool",
     name: "VMake",
     desc: "AI image enhancement & upscaling",
     main: { img: vmakeLogo },
-    poweredBy: [
+    stack: [
       { name: "Photoshop", img: "/images/Photoshop.png" },
       { name: "MidJourney", img: midjourneyLogo },
     ],
-    accent: "from-emerald-500/15 to-green-400/10",
+    accent: "from-emerald-500/14 to-green-400/10",
   },
 
   // Solutions
@@ -84,80 +63,75 @@ const items = [
     name: "Conversion Rate Optimization",
     desc: "Friction fixes, proof, speed, clearer CTAs.",
     main: { emoji: "⚡️" },
-    poweredBy: [
+    stack: [
       { name: "Figma", img: figmaLogo },
       { name: "Replit", img: replitLogo },
       { name: "MidJourney", img: midjourneyLogo },
     ],
-    accent: "from-purple-500/12 to-purple-400/8",
+    accent: "from-purple-500/10 to-purple-400/6",
   },
   {
     type: "solution",
     name: "Content Creation",
     desc: "On-brand assets for ads, social, landing pages.",
     main: { emoji: "✍️" },
-    poweredBy: [
+    stack: [
       { name: "Canva", img: canvaLogo },
       { name: "MidJourney", img: midjourneyLogo },
       { name: "ChatGPT", img: chatgptLogo },
       { name: "Google Drive", img: googleDriveLogo },
     ],
-    accent: "from-pink-500/12 to-rose-400/8",
+    accent: "from-pink-500/10 to-rose-400/6",
   },
   {
     type: "solution",
     name: "Collaboration & Workflows",
     desc: "Tight feedback loops with async + weekly cadence.",
     main: { emoji: "🤝" },
-    poweredBy: [
-      { name: "Microsoft Teams", img: microsoftTeamsLogo },
-      { name: "Google Drive", img: googleDriveLogo },
+    stack: [
+      { name: "Teams", img: microsoftTeamsLogo },
+      { name: "Drive", img: googleDriveLogo },
       { name: "Dropbox", img: dropboxLogo },
     ],
-    accent: "from-blue-500/12 to-cyan-400/8",
+    accent: "from-blue-500/10 to-cyan-400/6",
   },
   {
     type: "solution",
     name: "Ideation & Strategy",
     desc: "Offer angles, testing plans, priorities.",
     main: { emoji: "💡" },
-    poweredBy: [
+    stack: [
       { name: "MidJourney", img: midjourneyLogo },
       { name: "Replit", img: replitLogo },
       { name: "Figma", img: figmaLogo },
       { name: "ChatGPT", img: chatgptLogo },
     ],
-    accent: "from-amber-500/12 to-lime-400/8",
+    accent: "from-amber-500/10 to-lime-400/6",
   },
   {
     type: "solution",
     name: "Performance Analysis",
     desc: "Benchmarks, cohorts, ROI clarity.",
     main: { emoji: "📊" },
-    poweredBy: [
-      { name: "Google Analytics", img: googleAnalyticsLogo },
+    stack: [
+      { name: "GA4", img: googleAnalyticsLogo },
       { name: "ChatGPT", img: chatgptLogo },
       { name: "Gemini", img: geminiLogo },
     ],
-    accent: "from-green-500/12 to-emerald-400/8",
+    accent: "from-green-500/10 to-emerald-400/6",
   },
 ];
 
-function MiniLogo({ name, img }) {
+function StackChip({ name, img }) {
   return (
-    <div className="relative group/mini">
-      <img
-        src={img}
-        alt={name}
-        className="h-4 w-4 sm:h-5 sm:w-5 object-contain opacity-85 hover:opacity-100 transition"
-        data-testid={`mini-logo-${name.toLowerCase().replace(/\s+/g, '-')}`}
-      />
-      <span
-        className="
-          pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1 z-50
-          whitespace-nowrap rounded-md bg-black text-white text-[10px] px-2 py-1
-          opacity-0 group-hover/mini:opacity-100 transition-opacity duration-200
-        "
+    <div className="relative group">
+      <div className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-2.5 py-1 text-[11px] leading-none shadow-sm hover:shadow transition-shadow">
+        <img src={img} alt={name} className="h-5 w-5 object-contain" data-testid={`chip-logo-${name.toLowerCase().replace(/\s+/g, '-')}`} />
+        <span className="text-gray-800 font-medium">{name}</span>
+      </div>
+      <span 
+        role="tooltip"
+        className="pointer-events-none absolute -top-7 left-1/2 -translate-x-1/2 rounded-md bg-black/80 px-2 py-1 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50"
       >
         {name}
       </span>
@@ -178,28 +152,14 @@ export default function HowWeBuildFasterSection() {
         {items.map((it) => (
           <div
             key={it.name}
-            className="
-              group relative rounded-2xl border border-gray-200 bg-white shadow-sm
-              transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105
-            "
+            className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-transform duration-300 ease-in-out hover:shadow-md hover:scale-105"
             data-testid={`${it.type}-tile-${it.name.toLowerCase().replace(/\s+/g, '-')}`}
           >
-            <div
-              className={`
-                pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br
-                ${it.accent ?? "from-transparent to-transparent"}
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500
-              `}
-            />
-
+            <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${it.accent ?? "from-transparent to-transparent"} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+            
             <div className="relative p-5 flex flex-col items-center text-center">
               {it.main?.img ? (
-                <img
-                  src={it.main.img}
-                  alt={it.name}
-                  className="h-12 w-auto mb-2 object-contain"
-                  data-testid={`img-${it.name.toLowerCase().replace(/\s+/g, '-')}`}
-                />
+                <img src={it.main.img} alt={it.name} className="h-12 w-auto mb-2 object-contain" data-testid={`img-${it.name.toLowerCase().replace(/\s+/g, '-')}`} />
               ) : (
                 <div className="h-12 w-12 mb-2 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
                   <span className="text-xl">{it.main?.emoji ?? "★"}</span>
@@ -209,11 +169,16 @@ export default function HowWeBuildFasterSection() {
               <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{it.name}</h3>
               <p className="text-[12px] text-gray-600 leading-snug mt-1">{it.desc}</p>
 
-              {it.poweredBy && it.poweredBy.length > 0 && (
-                <div className="mt-3 flex items-center gap-2 overflow-visible">
-                  {it.poweredBy.map((m) => (
-                    <MiniLogo key={m.name} name={m.name} img={m.img} />
+              {it.stack && it.stack.length > 0 && (
+                <div className="mt-3 flex flex-wrap justify-center gap-2 max-w-[260px]">
+                  {it.stack.slice(0, 4).map((m) => (
+                    <StackChip key={m.name} name={m.name} img={m.img} />
                   ))}
+                  {it.stack.length > 4 && (
+                    <div className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2.5 py-1 text-[11px] leading-none shadow-sm font-medium text-gray-800">
+                      +{it.stack.length - 4}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
