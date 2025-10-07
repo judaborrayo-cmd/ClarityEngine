@@ -4,6 +4,7 @@ import ProblemsTicker from "@/components/ProblemsTicker";
 import HeroCTAs from "@/components/HeroCTAs";
 import StartCards from "@/components/StartCards";
 import ScaleAndAudit from "@/components/ScaleAndAudit";
+import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import { Quote } from "lucide-react";
@@ -358,6 +359,9 @@ export default function Home() {
         <Section id="youtube" className="py-16">
           <ScaleAndAudit videoUrl={CONFIG.featuredVideo.url()} />
         </Section>
+
+        {/* --- HOW WE BUILD FASTER SECTION --- */}
+        <HowWeBuildFasterSection />
 
         {/* --- SERVICES TILES --- */}
         <Section id="services" className="py-16">
