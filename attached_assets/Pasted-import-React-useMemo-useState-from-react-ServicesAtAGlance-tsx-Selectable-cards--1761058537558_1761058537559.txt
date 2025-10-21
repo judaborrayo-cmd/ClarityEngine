@@ -1,0 +1,181 @@
+import React, { useMemo, useState } from "react";
+
+/**
+ * ServicesAtAGlance.tsx
+ * Selectable cards + gradient content panel.
+ * - Cards (tabs) on top
+ * - Gradient demo panel below that swaps GIF/MP4/image + copy
+ * - On-brand selection effect (ring + glow + scale)
+ * - Accessible roles for tabs/tabpanel
+ */
+
+const Pill = ({ label }: { label: string }) => (
+  <span className="inline-flex items-center rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 backdrop-blur transition-colors hover:bg-white">
+    {label}
+  </span>
+);
+
+function Media({ src, alt = "" }: { src: string; alt?: string }) {
+  const isVideo = src.endsWith(".mp4") || src.endsWith(".webm");
+  if (isVideo) {
+    return (
+      <video
+        className="h-full w-full rounded-xl object-cover"
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+    );
+  }
+  return <img className="h-full w-full rounded-xl object-cover" src={src} alt={alt} />;
+}
+
+export default function ServicesAtAGlance() {
+  const services = useMemo(
+    () => [
+      {
+        id: "google-ads",
+        title: "Google Ads Strategy",
+        bullets: ["Capture high-intent searches", "Cut CPL & eliminate waste"],
+        tools: ["Search", "PMax", "YouTube", "GA4"],
+        // TODO: replace with your media file
+        media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
+        gradient: { from: "from-violet-50", to: "to-emerald-50" },
+      },
+      {
+        id: "meta-campaigns",
+        title: "Meta Campaigns",
+        bullets: ["Scalable creative systems", "Tiered remarketing"],
+        tools: ["Meta", "Catalog", "DCT", "UGC"],
+        media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
+        gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
+      },
+      {
+        id: "conversion-optimization",
+        title: "Conversion Optimization",
+        bullets: ["Funnel testing & optimization", "Clearer tracking & attribution"],
+        tools: ["CRO", "Hotjar", "GA4", "AB"],
+        media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
+        gradient: { from: "from-indigo-50", to: "to-sky-50" },
+      },
+      {
+        id: "attribution-reporting",
+        title: "Attribution & Reporting",
+        bullets: ["Unified metrics dashboard", "Decisions, not noise"],
+        tools: ["GA4", "Looker", "Sheets", "Cohorts"],
+        media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
+        gradient: { from: "from-emerald-50", to: "to-violet-50" },
+      },
+      {
+        id: "youtube-ads",
+        title: "YouTube Ads",
+        bullets: ["Educate & capture viewers", "High-intent video targeting"],
+        tools: ["In-Stream", "Discovery", "Retargeting"],
+        media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
+        gradient: { from: "from-rose-50", to: "to-amber-50" },
+      },
+      {
+        id: "landing-pages",
+        title: "Landing Pages",
+        bullets: ["Persuasive UX design", "Faster experiments"],
+        tools: ["Figma", "Replit (prototype)", "Dev handoff"],
+        media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
+        gradient: { from: "from-slate-50", to: "to-violet-50" },
+      },
+    ],
+    []
+  );
+
+  const [activeId, setActiveId] = useState<string>(services[0].id);
+  const active = services.find((s) => s.id === activeId)!;
+
+  return (
+    <section id="services-at-a-glance" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">Services at a glance</h2>
+        <p className="mt-4 text-lg text-gray-700">Outcome-focused playbooks we can plug in.</p>
+      </div>
+
+      {/* Cards grid (tabs) */}
+      <div role="tablist" aria-label="Service tabs" className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s) => {
+          const selected = s.id === activeId;
+          return (
+            <button
+              key={s.id}
+              role="tab"
+              aria-selected={selected}
+              aria-controls={`service-panel-${s.id}`}
+              onClick={() => setActiveId(s.id)}
+              className={`group flex flex-col justify-between rounded-2xl border bg-white p-6 text-left shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none ${
+                selected
+                  ? "border-violet-300 ring-2 ring-violet-500/70 shadow-lg scale-[1.01]"
+                  : "border-black/10"
+              }`}
+            >
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900">{s.title}</h3>
+                <ul className="mt-3 space-y-2 text-gray-700">
+                  {s.bullets.map((b, i) => (
+                    <li key={i} className="flex gap-2">
+                      <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span className="text-sm">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {s.tools.map((t: string) => (
+                  <Pill key={t} label={t} />
+                ))}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Gradient demo panel (tabpanel) */}
+      <div
+        id={`service-panel-${active.id}`}
+        role="tabpanel"
+        aria-labelledby={active.id}
+        className={`mt-10 rounded-3xl bg-gradient-to-br ${active.gradient.from} ${active.gradient.to} p-6 sm:p-8 lg:p-10 shadow-[0_12px_50px_-20px_rgba(0,0,0,0.3)]`}
+      >
+        <div className="grid items-center gap-8 lg:grid-cols-2">
+          {/* Media area */}
+          <div className="aspect-video w-full overflow-hidden rounded-xl bg-white/40 ring-1 ring-black/5">
+            <Media src={active.media.src} alt={active.media.alt} />
+          </div>
+
+          {/* Text area */}
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900">{active.title}</h3>
+            <p className="mt-3 text-gray-800/90">
+              Here’s what this playbook unlocks and how we typically execute. Swap this paragraph with your own copy.
+            </p>
+            <ul className="mt-4 space-y-2 text-gray-800">
+              {active.bullets.map((b, i) => (
+                <li key={i} className="flex gap-2">
+                  <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-violet-600" />
+                  <span className="text-sm leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {active.tools.map((t: string) => (
+                <span
+                  key={t}
+                  className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-800 ring-1 ring-black/10 backdrop-blur"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

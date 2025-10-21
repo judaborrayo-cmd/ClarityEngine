@@ -5,6 +5,7 @@ import HeroCTAs from "@/components/HeroCTAs";
 import StartCards from "@/components/StartCards";
 import ScaleAndAudit from "@/components/ScaleAndAudit";
 import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
+import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import { Quote } from "lucide-react";
@@ -363,33 +364,8 @@ export default function Home() {
         {/* --- HOW WE BUILD FASTER SECTION --- */}
         <HowWeBuildFasterSection />
 
-        {/* --- SERVICES TILES --- */}
-        <Section id="services" className="py-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Services at a glance</h2>
-            <p className="mt-4 text-xl text-gray-600">Outcome‑focused playbooks we can plug in.</p>
-          </div>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { title: "Google Ads Strategy", bullets: ["Capture high‑intent searches", "Cut CPL & eliminate waste"], href: "#google", testId: "service-google" },
-              { title: "Meta Campaigns", bullets: ["Scalable creative systems", "Tiered remarketing"], href: "#meta", testId: "service-meta" },
-              { title: "Conversion Optimization", bullets: ["Funnel testing & optimization", "Clearer tracking & attribution"], href: "#cro", testId: "service-cro" },
-              { title: "Attribution & Reporting", bullets: ["Unified metrics dashboard", "Decisions, not noise"], href: "#attr", testId: "service-attribution" },
-              { title: "YouTube Ads", bullets: ["Educate & capture viewers", "High‑intent video targeting"], href: "#yt", testId: "service-youtube" },
-              { title: "Landing Pages", bullets: ["Persuasive UX design", "Faster experiments"], href: "#lp", testId: "service-landing" },
-            ].map((service) => (
-              <Card key={service.title}>
-                <h3 className="text-xl font-semibold text-gray-900" data-testid={service.testId}>{service.title}</h3>
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-600">
-                  {service.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-                <a href={service.href} className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid={`link-${service.testId}`}>See playbook</a>
-              </Card>
-            ))}
-          </div>
-        </Section>
+        {/* --- SERVICES AT A GLANCE --- */}
+        <ServicesAtAGlance />
 
         {/* --- CASE STUDY PREVIEWS --- */}
         <Section id="case-studies" className="py-16">
