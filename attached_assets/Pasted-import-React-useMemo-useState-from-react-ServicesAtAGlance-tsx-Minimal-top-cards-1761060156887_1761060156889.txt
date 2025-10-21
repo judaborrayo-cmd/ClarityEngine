@@ -1,13 +1,4 @@
-import { useMemo, useState } from "react";
-import { BarChart3, Target, Pencil } from "lucide-react";
-
-// Import brand logos
-import googleAdsLogo from '@assets/Google Ads Logo_1759863433370.jpg';
-import metaLogo from '@assets/Meta-Logo_1759863433370.png';
-import instagramLogo from '@assets/Instagram_logo_2016.svg_1759863433370.png';
-import ga4Logo from '@assets/Logo_Google_Analytics_1759865466930.png';
-import figmaLogo from '@assets/Figma-Logo-New-Oct-21_1761057022426.png';
-import replitLogo from '@assets/Replit_logo_1759865452229.png';
+import React, { useMemo, useState } from "react";
 
 /**
  * ServicesAtAGlance.tsx
@@ -15,9 +6,10 @@ import replitLogo from '@assets/Replit_logo_1759865452229.png';
  * - Cards act as tabs; selected card has violet ring/glow/scale.
  * - Panel swaps media + copy per service.
  * - Media supports GIF/PNG/JPG and MP4/WebM.
+ * - Replace logo src/media src with your actual assets later.
  */
 
-function Media({ src, alt = "" }: { src: string; alt?: string }) {
+function Media({ src, alt = "" }) {
   const isVideo = src?.endsWith(".mp4") || src?.endsWith(".webm");
   if (isVideo) {
     return (
@@ -28,51 +20,28 @@ function Media({ src, alt = "" }: { src: string; alt?: string }) {
         muted
         loop
         playsInline
-        data-testid="media-video"
       />
     );
   }
-  return <img className="h-full w-full rounded-xl object-cover" src={src} alt={alt} data-testid="media-image" />;
+  return <img className="h-full w-full rounded-xl object-cover" src={src} alt={alt} />;
 }
 
-interface LogoBadgeProps {
-  src?: string;
-  alt?: string;
-  label: string;
-  icon?: React.ComponentType<{ className?: string }>;
-}
-
-function LogoBadge({ src, alt, label, icon: Icon }: LogoBadgeProps) {
-  // If we have an icon component, render it
-  if (Icon) {
-    return (
-      <div className="flex items-center gap-1.5 rounded-sm bg-white/80 px-2 py-1 ring-1 ring-black/10">
-        <Icon className="h-4 w-4 text-gray-700" />
-        <span className="text-[11px] font-medium text-gray-800">{label}</span>
-      </div>
-    );
-  }
-  
-  // If we have a logo src, render the image
-  if (src) {
-    return (
-      <img
-        src={src}
-        alt={alt || label}
-        className="h-6 w-auto rounded-sm bg-white/80 ring-1 ring-black/10 p-1 object-contain"
-      />
-    );
-  }
-  
-  // Fallback to text label
-  return (
+function LogoBadge({ src, alt, label }) {
+  // If you don’t have logos yet, label renders as a fallback.
+  return src ? (
+    <img
+      src={src}
+      alt={alt || label}
+      className="h-6 w-auto rounded-sm bg-white/80 ring-1 ring-black/10 p-1 object-contain"
+    />
+  ) : (
     <span className="rounded-sm bg-white/80 px-2 py-1 text-[11px] font-medium text-gray-800 ring-1 ring-black/10">
       {label}
     </span>
   );
 }
 
-function Pill({ children }: { children: React.ReactNode }) {
+function Pill({ children }) {
   return (
     <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-800 ring-1 ring-black/10 backdrop-blur">
       {children}
@@ -87,13 +56,14 @@ export default function ServicesAtAGlance() {
         id: "google-ads",
         title: "Google Ads Strategy",
         logos: [
-          { src: googleAdsLogo, label: "Google Ads" },
-          { src: ga4Logo, label: "GA4" },
+          { src: "/logos/google.svg", label: "Google" },
+          { src: "/logos/ga4.svg", label: "GA4" },
+          { src: "/logos/youtube.svg", label: "YouTube" },
         ],
         media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
         gradient: { from: "from-violet-50", to: "to-emerald-50" },
         paragraph:
-          "Capture high-intent searches and eliminate wasted spend. We audit your account structure, refine targeting, and build scalable campaigns that convert.",
+          "Here’s what this playbook unlocks and how we typically execute. Swap this paragraph with your own copy.",
         bullets: ["Capture high-intent searches", "Cut CPL & eliminate waste"],
         tools: ["Search", "PMax", "YouTube", "GA4"],
       },
@@ -101,13 +71,14 @@ export default function ServicesAtAGlance() {
         id: "meta-campaigns",
         title: "Meta Campaigns",
         logos: [
-          { src: metaLogo, label: "Meta" },
-          { src: instagramLogo, label: "Instagram" },
+          { src: "/logos/meta.svg", label: "Meta" },
+          { src: "/logos/instagram.svg", label: "Instagram" },
+          { src: "/logos/catalog.svg", label: "Catalog" },
         ],
         media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
         gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
         paragraph:
-          "Build scalable creative systems and tiered remarketing funnels. We help you test, iterate, and scale what works across Meta's entire ecosystem.",
+          "Here’s what this playbook unlocks and how we typically execute. Swap this paragraph with your own copy.",
         bullets: ["Scalable creative systems", "Tiered remarketing"],
         tools: ["Meta", "Catalog", "DCT", "UGC"],
       },
@@ -115,13 +86,14 @@ export default function ServicesAtAGlance() {
         id: "conversion-optimization",
         title: "Conversion Optimization",
         logos: [
-          { icon: Target, label: "CRO" },
-          { src: ga4Logo, label: "GA4" },
+          { src: "/logos/hotjar.svg", label: "Hotjar" },
+          { src: "/logos/ga4.svg", label: "GA4" },
+          { src: "/logos/ab.svg", label: "A/B" },
         ],
         media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
         gradient: { from: "from-indigo-50", to: "to-sky-50" },
         paragraph:
-          "Turn traffic into revenue. We run structured tests on your funnels, fix tracking gaps, and optimize for real conversions—not vanity metrics.",
+          "Here’s what this playbook unlocks and how we typically execute. Swap this paragraph with your own copy.",
         bullets: ["Funnel testing & optimization", "Clearer tracking & attribution"],
         tools: ["CRO", "Hotjar", "GA4", "AB"],
       },
@@ -129,13 +101,14 @@ export default function ServicesAtAGlance() {
         id: "attribution-reporting",
         title: "Attribution & Reporting",
         logos: [
-          { src: ga4Logo, label: "GA4" },
-          { icon: BarChart3, label: "Analytics" },
+          { src: "/logos/ga4.svg", label: "GA4" },
+          { src: "/logos/looker.svg", label: "Looker" },
+          { src: "/logos/sheets.svg", label: "Sheets" },
         ],
         media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
         gradient: { from: "from-emerald-50", to: "to-violet-50" },
         paragraph:
-          "See what's actually driving revenue. We build unified dashboards that connect the dots between channels, campaigns, and conversions.",
+          "Here’s what this playbook unlocks and how we typically execute. Swap this paragraph with your own copy.",
         bullets: ["Unified metrics dashboard", "Decisions, not noise"],
         tools: ["GA4", "Looker", "Sheets", "Cohorts"],
       },
@@ -143,12 +116,13 @@ export default function ServicesAtAGlance() {
         id: "youtube-ads",
         title: "YouTube Ads",
         logos: [
-          { src: googleAdsLogo, label: "Google Ads" },
+          { src: "/logos/youtube.svg", label: "YouTube" },
+          { src: "/logos/google.svg", label: "Google" },
         ],
         media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
         gradient: { from: "from-rose-50", to: "to-amber-50" },
         paragraph:
-          "Educate, engage, and convert viewers at scale. We build high-intent video campaigns that capture attention and drive action.",
+          "Here’s what this playbook unlocks and how we typically execute. Swap this paragraph with your own copy.",
         bullets: ["Educate & capture viewers", "High-intent video targeting"],
         tools: ["In-Stream", "Discovery", "Retargeting"],
       },
@@ -156,9 +130,9 @@ export default function ServicesAtAGlance() {
         id: "landing-pages",
         title: "Landing Pages",
         logos: [
-          { src: figmaLogo, label: "Figma" },
-          { src: replitLogo, label: "Replit" },
-          { icon: Pencil, label: "Dev" },
+          { src: "/logos/figma.svg", label: "Figma" },
+          { src: "/logos/replit.svg", label: "Replit" },
+          { src: "/logos/dev.svg", label: "Dev" },
         ],
         media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
         gradient: { from: "from-slate-50", to: "to-violet-50" },
@@ -171,14 +145,14 @@ export default function ServicesAtAGlance() {
     []
   );
 
-  const [activeId, setActiveId] = useState<string>(services[0].id);
+  const [activeId, setActiveId] = useState(services[0].id);
   const active = services.find((s) => s.id === activeId)!;
 
   return (
     <section id="services-at-a-glance" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900" data-testid="services-heading">Services at a glance</h2>
-        <p className="mt-4 text-lg text-gray-700" data-testid="services-subheading">Outcome-focused playbooks we can plug in.</p>
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">Services at a glance</h2>
+        <p className="mt-4 text-lg text-gray-700">Outcome-focused playbooks we can plug in.</p>
       </div>
 
       {/* Top grid (minimal cards: title + logos) */}
@@ -188,22 +162,20 @@ export default function ServicesAtAGlance() {
           return (
             <button
               key={s.id}
-              id={`tab-${s.id}`}
               role="tab"
               aria-selected={selected}
               aria-controls={`service-panel-${s.id}`}
               onClick={() => setActiveId(s.id)}
-              data-testid={`tab-${s.id}`}
               className={`group flex flex-col gap-4 rounded-2xl border bg-white p-6 text-left shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none ${
                 selected
                   ? "border-violet-300 ring-2 ring-violet-500/70 shadow-lg scale-[1.01]"
                   : "border-black/10"
               }`}
             >
-              <h3 className="text-xl font-semibold text-gray-900" data-testid={`tab-title-${s.id}`}>{s.title}</h3>
+              <h3 className="text-xl font-semibold text-gray-900">{s.title}</h3>
               <div className="flex flex-wrap items-center gap-2">
                 {s.logos.map((lg, i) => (
-                  <LogoBadge key={i} src={lg.src} alt={lg.label} label={lg.label} icon={lg.icon} />
+                  <LogoBadge key={i} src={lg.src} alt={lg.label} label={lg.label} />
                 ))}
               </div>
             </button>
@@ -215,8 +187,7 @@ export default function ServicesAtAGlance() {
       <div
         id={`service-panel-${active.id}`}
         role="tabpanel"
-        aria-labelledby={`tab-${active.id}`}
-        data-testid="service-panel"
+        aria-labelledby={active.id}
         className={`mt-10 rounded-3xl bg-gradient-to-br ${active.gradient.from} ${active.gradient.to} p-6 sm:p-8 lg:p-10 shadow-[0_12px_50px_-20px_rgba(0,0,0,0.3)]`}
       >
         <div className="grid items-center gap-8 lg:grid-cols-2">
@@ -227,8 +198,8 @@ export default function ServicesAtAGlance() {
 
           {/* Copy */}
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900" data-testid="panel-title">{active.title}</h3>
-            <p className="mt-3 text-gray-800/90" data-testid="panel-description">{active.paragraph}</p>
+            <h3 className="text-2xl font-semibold text-gray-900">{active.title}</h3>
+            <p className="mt-3 text-gray-800/90">{active.paragraph}</p>
             <ul className="mt-4 space-y-2 text-gray-800">
               {active.bullets.map((b, i) => (
                 <li key={i} className="flex gap-2">
