@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useEffect, forwardRef } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 
 const Arrow = ({ direction = "right", className = "" }) => (
   <svg
@@ -33,7 +33,7 @@ const Pill = ({ label }) => (
   </span>
 );
 
-const StepCard = forwardRef(({
+const StepCard = ({
   index,
   active,
   onSelect,
@@ -43,12 +43,10 @@ const StepCard = forwardRef(({
   gradientFrom,
   gradientTo,
   iconLabel,
-}, ref) => {
+}) => {
   return (
     <button
-      ref={ref}
       onClick={onSelect}
-      data-testid={`step-card-${index + 1}`}
       className={`group snap-center w-[82vw] sm:w-[420px] lg:w-[520px] shrink-0 rounded-2xl border border-black/5 bg-gradient-to-b ${gradientFrom} ${gradientTo} p-6 text-left shadow-[0_6px_24px_-8px_rgba(0,0,0,0.15)] transition transform duration-300 ease-out hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.25)] ${
         active ? "ring-2 ring-violet-500 scale-[1.02]" : ""
       }`}
@@ -77,9 +75,9 @@ const StepCard = forwardRef(({
       </div>
     </button>
   );
-});
+};
 
-export default function HowWeBuildFasterSection() {
+export default function HowWeBuildFaster() {
   const steps = useMemo(
     () => [
       {
@@ -148,7 +146,6 @@ export default function HowWeBuildFasterSection() {
   return (
     <section
       id="how-we-build-faster"
-      data-testid="section-how-we-build-faster"
       className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24"
     >
       <div className="mx-auto max-w-3xl text-center">
@@ -165,14 +162,13 @@ export default function HowWeBuildFasterSection() {
         <button
           aria-label="Previous"
           onClick={() => go(-1)}
-          data-testid="button-timeline-prev"
           className="rounded-full bg-violet-600 text-white p-3 shadow hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-40"
           disabled={active === 0}
         >
           <Arrow direction="left" />
         </button>
 
-        <div className="relative w-full" data-testid="timeline-progress-bar">
+        <div className="relative w-full">
           <div className="h-1 w-full rounded-full bg-gray-200" />
           <div
             className="absolute left-0 top-0 h-1 rounded-full bg-violet-600 transition-all"
@@ -183,7 +179,6 @@ export default function HowWeBuildFasterSection() {
         <button
           aria-label="Next"
           onClick={() => go(1)}
-          data-testid="button-timeline-next"
           className="rounded-full bg-violet-600 text-white p-3 shadow hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-40"
           disabled={active === steps.length - 1}
         >
