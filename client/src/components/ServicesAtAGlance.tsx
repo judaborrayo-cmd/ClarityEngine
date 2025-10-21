@@ -4,6 +4,7 @@ import { Target, BarChart3, FlaskConical } from "lucide-react";
 // Import brand logos
 import googleAdsLogo from '@assets/Google-Ads-Logo-Trans_1761062080038.png';
 import metaLogo from '@assets/Meta Logo_1761062070889.png';
+import youtubeLogo from '@assets/YouTube-logo-video-platform-social-media-transparent-PNG-image_1761062130515.png';
 
 /**
  * ServicesAtAGlance.tsx
@@ -98,7 +99,7 @@ export default function ServicesAtAGlance() {
         id: "youtube",
         topTitle: "YouTube Advertising",
         bottomTitle: "YouTube Ads",
-        logo: { type: 'image' as const, src: googleAdsLogo },
+        logo: { type: 'image' as const, src: youtubeLogo },
         media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
         gradient: { from: "from-rose-50", to: "to-amber-50" },
         paragraph:
@@ -108,7 +109,7 @@ export default function ServicesAtAGlance() {
       },
       {
         id: "landing-pages",
-        topTitle: "A/B Test Landing Pages",
+        topTitle: "A/B Testing",
         bottomTitle: "Landing Pages",
         logo: { type: 'icon' as const, icon: FlaskConical },
         media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
