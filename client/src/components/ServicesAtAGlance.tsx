@@ -50,7 +50,7 @@ export default function ServicesAtAGlance() {
       {
         id: "google-ads",
         topTitle: "Google Ads Advertising",
-        bottomTitle: "Google Ads Strategy",
+        bottomTitle: "Google Ads Advertising",
         logo: { type: 'image' as const, src: googleAdsLogo },
         media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
         gradient: { from: "from-violet-50", to: "to-emerald-50" },
@@ -62,7 +62,7 @@ export default function ServicesAtAGlance() {
       {
         id: "meta",
         topTitle: "Meta Advertising",
-        bottomTitle: "Meta Campaigns",
+        bottomTitle: "Meta Advertising",
         logo: { type: 'image' as const, src: metaLogo },
         media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
         gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
@@ -74,7 +74,7 @@ export default function ServicesAtAGlance() {
       {
         id: "cro",
         topTitle: "Conversion Rate Optimization",
-        bottomTitle: "Conversion Optimization",
+        bottomTitle: "Conversion Rate Optimization",
         logo: { type: 'icon' as const, icon: Target },
         media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
         gradient: { from: "from-indigo-50", to: "to-sky-50" },
@@ -86,7 +86,7 @@ export default function ServicesAtAGlance() {
       {
         id: "reporting",
         topTitle: "Strategic Reporting & KPI Optimization",
-        bottomTitle: "Attribution & Reporting",
+        bottomTitle: "Strategic Reporting & KPI Optimization",
         logo: { type: 'icon' as const, icon: BarChart3 },
         media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
         gradient: { from: "from-emerald-50", to: "to-violet-50" },
@@ -98,7 +98,7 @@ export default function ServicesAtAGlance() {
       {
         id: "youtube",
         topTitle: "YouTube Advertising",
-        bottomTitle: "YouTube Ads",
+        bottomTitle: "YouTube Advertising",
         logo: { type: 'image' as const, src: youtubeLogo },
         media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
         gradient: { from: "from-rose-50", to: "to-amber-50" },
@@ -110,7 +110,7 @@ export default function ServicesAtAGlance() {
       {
         id: "landing-pages",
         topTitle: "A/B Testing",
-        bottomTitle: "Landing Pages",
+        bottomTitle: "A/B Testing",
         logo: { type: 'icon' as const, icon: FlaskConical },
         media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
         gradient: { from: "from-slate-50", to: "to-violet-50" },
@@ -130,7 +130,7 @@ export default function ServicesAtAGlance() {
     <section id="services-at-a-glance" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900" data-testid="services-heading">Services at a glance</h2>
-        <p className="mt-4 text-lg text-gray-700" data-testid="services-subheading">Outcome-focused playbooks we can plug in.</p>
+        <p className="mt-4 text-lg text-gray-700" data-testid="services-subheading">Strategies adjusted based on business needs & audit.</p>
       </div>
 
       {/* TOP: Pressable button cards (one big logo + title) */}
