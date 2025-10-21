@@ -2,8 +2,8 @@ import { useMemo, useState } from "react";
 import { Target, BarChart3, FlaskConical } from "lucide-react";
 
 // Import brand logos
-import googleAdsLogo from '@assets/Google Ads Logo_1759863433370.jpg';
-import metaLogo from '@assets/Meta-Logo_1759863433370.png';
+import googleAdsLogo from '@assets/Google-Ads-Logo-Trans_1761062080038.png';
+import metaLogo from '@assets/Meta Logo_1761062070889.png';
 
 /**
  * ServicesAtAGlance.tsx
