@@ -4,7 +4,7 @@ import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
 import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
 import midjourneyLogo from '@assets/Midjourney-Logo_1759865050220.png';
 import photoshopLogo from '@assets/Photoshop_1759870952584.png';
-import figmaLogo from '@assets/Figma-Logo_1759865443714.png';
+import figmaLogo from '@assets/Figma-Logo-New-Oct-21_1761057022426.png';
 import replitLogo from '@assets/Replit_logo_1759865452229.png';
 import googleAnalyticsLogo from '@assets/Logo_Google_Analytics_1759865466930.png';
 import googleDriveLogo from '@assets/Google_Drive_-_New_Logo_1759865428146.png';
@@ -105,7 +105,7 @@ export default function HowWeBuildFasterSection() {
       {
         title: "Visual Concepts",
         subtitle:
-          "See ideas in minutes. Midjourney concepts refined in Figma/Photoshop for instant creative alignment.",
+          "Collaborate with developers and designers faster. Midjourney concepts refined in Figma/Photoshop and keep everyone on the same page.",
         tools: ["Midjourney", "Photoshop", "Figma"],
         iconLabel: "Step 2",
         gradientFrom: "from-pink-50",
@@ -253,7 +253,7 @@ export default function HowWeBuildFasterSection() {
           ].map((tool) => (
             <div
               key={tool.name}
-              className="grayscale hover:grayscale-0 transition-all duration-300"
+              className="transition-all duration-300 hover:scale-110"
             >
               <img
                 src={tool.logo}
