@@ -1,5 +1,16 @@
 import { useMemo, useRef, useState, useEffect, forwardRef } from "react";
 
+import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
+import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
+import midjourneyLogo from '@assets/Midjourney-Logo_1759865050220.png';
+import photoshopLogo from '@assets/Photoshop_1759870952584.png';
+import figmaLogo from '@assets/Figma-Logo_1759865443714.png';
+import replitLogo from '@assets/Replit_logo_1759865452229.png';
+import googleAnalyticsLogo from '@assets/Logo_Google_Analytics_1759865466930.png';
+import googleDriveLogo from '@assets/Google_Drive_-_New_Logo_1759865428146.png';
+import microsoftTeamsLogo from '@assets/Microsoft-Teams-Symbol_1759865428146.png';
+import dropboxLogo from '@assets/Dropbox_(service)-Logo.wine_1759865428146.png';
+
 const Arrow = ({ direction = "right", className = "" }) => (
   <svg
     className={"h-5 w-5 " + className}
@@ -137,7 +148,7 @@ export default function HowWeBuildFasterSection() {
 
   useEffect(() => {
     const el = itemRefs.current[active];
-    el?.scrollIntoView({ behavior: "smooth", inline: "center" });
+    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, [active]);
 
   const go = (dir) =>
@@ -153,7 +164,7 @@ export default function HowWeBuildFasterSection() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
-          How We Build Faster
+          How We Get to Winning Results Faster
         </h2>
         <p className="mt-4 text-lg text-gray-700">
           Strategy → visuals → prototypes → data → collaboration. We blend
@@ -227,26 +238,29 @@ export default function HowWeBuildFasterSection() {
         <p className="text-center text-sm font-medium text-gray-500">
           Built using your favorite tools — powered by ours.
         </p>
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
           {[
-            "ChatGPT",
-            "Gemini",
-            "Midjourney",
-            "Photoshop",
-            "Figma",
-            "Replit",
-            "GA4",
-            "Google Drive",
-            "Slack",
-            "Teams",
-            "Dropbox",
-          ].map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-black/10 bg-white px-3 py-1 text-gray-500 shadow-sm grayscale hover:grayscale-0 transition"
+            { name: "ChatGPT", logo: chatgptLogo },
+            { name: "Gemini", logo: geminiLogo },
+            { name: "Midjourney", logo: midjourneyLogo },
+            { name: "Photoshop", logo: photoshopLogo },
+            { name: "Figma", logo: figmaLogo },
+            { name: "Replit", logo: replitLogo },
+            { name: "GA4", logo: googleAnalyticsLogo },
+            { name: "Google Drive", logo: googleDriveLogo },
+            { name: "Teams", logo: microsoftTeamsLogo },
+            { name: "Dropbox", logo: dropboxLogo },
+          ].map((tool) => (
+            <div
+              key={tool.name}
+              className="grayscale hover:grayscale-0 transition-all duration-300"
             >
-              {t}
-            </span>
+              <img
+                src={tool.logo}
+                alt={tool.name}
+                className="h-8 w-auto object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
