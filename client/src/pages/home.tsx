@@ -8,7 +8,6 @@ import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
 import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
-import FaqPodium from "@/components/FaqPodium";
 import FaqHybrid from "@/components/FaqHybrid";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
@@ -409,9 +408,11 @@ export default function Home() {
           </div>
         </Section>
 
-        {/* --- FAQ --- */}
-        <Section id="faq" className="py-16">
-          <FaqPodium />
+        {/* --- COMPACT FAQ (below Selected Wins) --- */}
+        <Section id="faq" className="pt-20 pb-12 scroll-mt-20">
+          <div className="mx-auto max-w-5xl">
+            <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />
+          </div>
         </Section>
 
         {/* --- BOOKING SECTION (#book-call and #book-intro) --- */}
@@ -482,13 +483,6 @@ export default function Home() {
               <PrimaryButton href="#book-intro" testId="button-retainer">Book Strategic Intro Call</PrimaryButton>
             </div>
           </Card>
-        </Section>
-
-        {/* --- COMPACT FAQ (below booking sections) --- */}
-        <Section id="faq-compact" className="py-12">
-          <div className="mx-auto max-w-5xl">
-            <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />
-          </div>
         </Section>
 
         <ExitIntentModal />
