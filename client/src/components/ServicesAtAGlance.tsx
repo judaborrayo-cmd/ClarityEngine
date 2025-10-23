@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Target, BarChart3, FlaskConical } from "lucide-react";
 
 // Import brand logos
@@ -7,138 +7,10 @@ import metaLogo from '@assets/Meta Logo_1761062070889.png';
 import youtubeLogo from '@assets/YouTube-logo-video-platform-social-media-transparent-PNG-image_1761062130515.png';
 
 /**
- * Services at a Glance — Preview + Expanded Panel
- * Framework: React + Tailwind (no external deps)
- * Accessibility: keyboard focusable buttons, aria-pressed, aria-expanded
- * 
- * Optimized for Hormozi's Value Equation:
- * - Maximize dream outcome & likelihood of success
- * - Minimize time delay & effort for the client
+ * ServicesAtAGlance.tsx
+ * Top row = big pressable buttons (single large logo + new title)
+ * Bottom panel = detailed gradient view that swaps per selection
  */
-
-type ServiceLogo = {
-  type: 'image' | 'icon';
-  src?: string;
-  icon?: React.ComponentType<{ className?: string }>;
-};
-
-type Service = {
-  id: string;
-  name: string;
-  logo: ServiceLogo;
-  preview: string;        // 1–2 line TL;DR
-  tags: string[];
-  long: string;           // full description paragraph(s)
-  bullets: string[];
-  media: { src: string; alt: string };
-  gradientFrom: string;   // tailwind color tokens for subtle panel gradient
-  gradientTo: string;
-};
-
-const SERVICES: Service[] = [
-  {
-    id: "google",
-    name: "Google Ads Advertising",
-    logo: { type: 'image', src: googleAdsLogo },
-    preview: "Capture high-intent demand and turn it into revenue. We cut waste, structure for scale, and show what's working fast.",
-    tags: ["Search", "PMax", "Shopping", "GA4"],
-    long: "We turn Google into your most reliable sales channel. From search to Performance Max, we refine structure, tracking, and creative so you capture the right traffic—not just clicks. You get a system that scales intelligently, cuts wasted spend, and surfaces the insights you need to make confident decisions faster.",
-    bullets: [
-      "Capture high-intent leads and buyers",
-      "Eliminate wasted spend through better structure",
-      "Build a scalable, data-driven foundation for growth",
-      "See what's working faster with clear KPI visibility",
-    ],
-    media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
-    gradientFrom: "from-emerald-50",
-    gradientTo: "to-white",
-  },
-  {
-    id: "meta",
-    name: "Meta Advertising",
-    logo: { type: 'image', src: metaLogo },
-    preview: "Systematic creative + tiered remarketing that compounds results. Test faster, reach farther, acquire customers profitably.",
-    tags: ["Creative Systems", "DCT", "UGC", "Catalog"],
-    long: "We build creative systems and remarketing funnels that compound results. From prospecting to retargeting, every layer is designed to increase relevance, test faster, and drive profitable customer acquisition—without the chaos of constant guesswork.",
-    bullets: [
-      "Scalable creative frameworks for faster testing",
-      "Tiered remarketing systems that build momentum",
-      "Proven ad strategies that reach, convert, and retain",
-      "Real insights that turn creative into predictable growth",
-    ],
-    media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
-    gradientFrom: "from-fuchsia-50",
-    gradientTo: "to-white",
-  },
-  {
-    id: "youtube",
-    name: "YouTube Advertising",
-    logo: { type: 'image', src: youtubeLogo },
-    preview: "High-intent video that educates and converts. Win attention at scale and move viewers to action with measurable ROI.",
-    tags: ["In-Stream", "Discovery", "Retargeting"],
-    long: "We design high-intent video campaigns that educate, engage, and convert. Using proven targeting and messaging frameworks, we help you build authority and capture attention at scale—so every view moves your audience closer to action.",
-    bullets: [
-      "High-intent video targeting to reach ready buyers",
-      "Story-driven ads that build trust and desire",
-      "Efficient testing for creative and audience alignment",
-      "Combine awareness + conversion for measurable ROI",
-    ],
-    media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
-    gradientFrom: "from-rose-50",
-    gradientTo: "to-white",
-  },
-  {
-    id: "cro",
-    name: "Conversion Rate Optimization",
-    logo: { type: 'icon', icon: Target },
-    preview: "Make every click count. We find friction, fix tracking, and test changes that lift conversions across your funnel.",
-    tags: ["UX", "Copy", "Attribution", "Heatmaps"],
-    long: "We turn data into design decisions. Our CRO process finds friction, fixes tracking, and tests solutions that lift performance across every funnel stage. You'll know exactly where growth is hiding—and how to unlock it—without wasting months guessing.",
-    bullets: [
-      "Funnel testing that uncovers true growth levers",
-      "Clearer tracking and attribution for faster insights",
-      "UX and copy optimizations proven to convert",
-      "Continuous iteration for compounding returns",
-    ],
-    media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
-    gradientFrom: "from-indigo-50",
-    gradientTo: "to-white",
-  },
-  {
-    id: "ab",
-    name: "A/B Testing",
-    logo: { type: 'icon', icon: FlaskConical },
-    preview: "Test smarter without heavy dev lift. Rapid prototypes → faster insights → confident rollouts.",
-    tags: ["Figma", "Replit", "Dev Handoff"],
-    long: "We use rapid, low-friction testing inside Replit to prototype messaging, UX, and funnel flow—then hand off to your team for implementation. This makes experimentation faster, cheaper, and easier to sustain, so you find winning ideas before competitors do.",
-    bullets: [
-      "Faster testing cycles → faster insights",
-      "Validate creative and copy without heavy dev lift",
-      "Collaborative iteration that blends speed with precision",
-      "Make decisions based on proof, not opinion",
-    ],
-    media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
-    gradientFrom: "from-violet-50",
-    gradientTo: "to-white",
-  },
-  {
-    id: "reporting",
-    name: "Strategic Reporting & KPI Optimization",
-    logo: { type: 'icon', icon: BarChart3 },
-    preview: "Know what drives revenue—not vanity metrics. Unified dashboards for faster, clearer decisions.",
-    tags: ["GA4", "Looker", "Sheets", "Cohorts"],
-    long: "We build unified dashboards that connect the dots between ad spend, funnel performance, and revenue. You'll know exactly which campaigns move the needle, so your team can focus on what's profitable—and stop wasting time on what's not.",
-    bullets: [
-      "Unified reporting across Google, Meta, and YouTube",
-      "Clarity on what drives revenue (not vanity metrics)",
-      "Faster decision cycles with data you can trust",
-      "Scalable visibility for leadership and ops teams",
-    ],
-    media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
-    gradientFrom: "from-teal-50",
-    gradientTo: "to-white",
-  },
-];
 
 function Media({ src, alt = "" }: { src: string; alt?: string }) {
   const isVideo = src?.endsWith(".mp4") || src?.endsWith(".webm");
@@ -158,197 +30,183 @@ function Media({ src, alt = "" }: { src: string; alt?: string }) {
   return <img className="h-full w-full rounded-xl object-cover" src={src} alt={alt} data-testid="media-image" />;
 }
 
+function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-800 ring-1 ring-black/10 backdrop-blur">
+      {children}
+    </span>
+  );
+}
+
+interface ServiceLogo {
+  type: 'image' | 'icon';
+  src?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
+
 export default function ServicesAtAGlance() {
-  const [activeId, setActiveId] = useState<string>(SERVICES[0].id);
-  const [expanded, setExpanded] = useState<boolean>(true);
+  const services = useMemo(
+    () => [
+      {
+        id: "google-ads",
+        topTitle: "Google Ads Advertising",
+        bottomTitle: "Google Ads Advertising",
+        logo: { type: 'image' as const, src: googleAdsLogo },
+        media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
+        gradient: { from: "from-violet-50", to: "to-emerald-50" },
+        paragraph:
+          "Capture high-intent searches and eliminate wasted spend. We audit your account structure, refine targeting, and build scalable campaigns that convert.",
+        bullets: ["Capture high-intent searches", "Cut CPL & eliminate waste"],
+        tools: ["Search", "PMax", "YouTube", "GA4"],
+      },
+      {
+        id: "meta",
+        topTitle: "Meta Advertising",
+        bottomTitle: "Meta Advertising",
+        logo: { type: 'image' as const, src: metaLogo },
+        media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
+        gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
+        paragraph:
+          "Build scalable creative systems and tiered remarketing funnels. We help you test, iterate, and scale what works across Meta's entire ecosystem.",
+        bullets: ["Scalable creative systems", "Tiered remarketing"],
+        tools: ["Meta", "Catalog", "DCT", "UGC"],
+      },
+      {
+        id: "cro",
+        topTitle: "Conversion Rate Optimization",
+        bottomTitle: "Conversion Rate Optimization",
+        logo: { type: 'icon' as const, icon: Target },
+        media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
+        gradient: { from: "from-indigo-50", to: "to-sky-50" },
+        paragraph:
+          "Turn traffic into revenue. We run structured tests on your funnels, fix tracking gaps, and optimize for real conversions—not vanity metrics.",
+        bullets: ["Funnel testing & optimization", "Clearer tracking & attribution"],
+        tools: ["CRO", "Hotjar", "GA4", "AB"],
+      },
+      {
+        id: "reporting",
+        topTitle: "Strategic Reporting & KPI Optimization",
+        bottomTitle: "Strategic Reporting & KPI Optimization",
+        logo: { type: 'icon' as const, icon: BarChart3 },
+        media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
+        gradient: { from: "from-emerald-50", to: "to-violet-50" },
+        paragraph:
+          "See what's actually driving revenue. We build unified dashboards that connect the dots between channels, campaigns, and conversions.",
+        bullets: ["Unified metrics dashboard", "Decisions, not noise"],
+        tools: ["GA4", "Looker", "Sheets", "Cohorts"],
+      },
+      {
+        id: "youtube",
+        topTitle: "YouTube Advertising",
+        bottomTitle: "YouTube Advertising",
+        logo: { type: 'image' as const, src: youtubeLogo },
+        media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
+        gradient: { from: "from-rose-50", to: "to-amber-50" },
+        paragraph:
+          "Educate, engage, and convert viewers at scale. We build high-intent video campaigns that capture attention and drive action.",
+        bullets: ["Educate & capture viewers", "High-intent video targeting"],
+        tools: ["In-Stream", "Discovery", "Retargeting"],
+      },
+      {
+        id: "landing-pages",
+        topTitle: "A/B Testing",
+        bottomTitle: "A/B Testing",
+        logo: { type: 'icon' as const, icon: FlaskConical },
+        media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
+        gradient: { from: "from-slate-50", to: "to-violet-50" },
+        paragraph:
+          "We prototype in Replit for look-and-feel, copy, and flow; your devs build the production pages. Then we iterate together.",
+        bullets: ["Persuasive UX design", "Faster experiments"],
+        tools: ["Figma", "Replit (prototype)", "Dev handoff"],
+      },
+    ],
+    []
+  );
 
-  const active = SERVICES.find((s) => s.id === activeId)!;
-
-  const handleSelect = (id: string) => {
-    // Selecting a new card switches preview and collapses details (mobile-friendly)
-    setActiveId(id);
-    setExpanded(false);
-  };
+  const [activeId, setActiveId] = useState<string>(services[0].id);
+  const active = services.find((s) => s.id === activeId)!;
 
   return (
     <section id="services-at-a-glance" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-      {/* Heading */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight" data-testid="services-heading">
-          Services at a Glance
-        </h2>
-        <p className="mt-2 text-sm sm:text-base text-slate-600" data-testid="services-subheading">
-          Quick previews on hover/tap. Click "Read details" to see how we get you results—faster.
-        </p>
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900" data-testid="services-heading">Services at a glance</h2>
+        <p className="mt-4 text-lg text-gray-700" data-testid="services-subheading">Strategies adjusted based on business needs & audit.</p>
       </div>
 
-      {/* Cards */}
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-        role="tablist"
-        aria-label="Services"
-      >
-        {SERVICES.map((svc) => {
-          const isActive = svc.id === activeId;
-          const Logo = svc.logo.type === 'icon' ? svc.logo.icon : null;
-          
+      {/* TOP: Pressable button cards (one big logo + title) */}
+      <div role="tablist" aria-label="Service tabs" className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s) => {
+          const selected = s.id === activeId;
           return (
             <button
-              key={svc.id}
+              key={s.id}
+              id={`tab-${s.id}`}
               role="tab"
-              aria-selected={isActive}
-              aria-pressed={isActive}
-              aria-controls={`service-panel-${svc.id}`}
-              onMouseEnter={() => handleSelect(svc.id)}
-              onFocus={() => handleSelect(svc.id)}
-              onClick={() =>
-                isActive ? setExpanded((v) => !v) : handleSelect(svc.id)
-              }
-              data-testid={`tab-${svc.id}`}
-              className={[
-                "group relative w-full rounded-2xl border",
-                "bg-white/70 backdrop-blur",
-                "px-5 py-6 text-left transition-all duration-200",
-                isActive
-                  ? "border-violet-300 ring-2 ring-violet-200"
-                  : "border-slate-200 hover:border-violet-200",
-              ].join(" ")}
+              aria-selected={selected}
+              aria-controls={`service-panel-${s.id}`}
+              onClick={() => setActiveId(s.id)}
+              data-testid={`tab-${s.id}`}
+              className={`group flex flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-8 text-center shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none ${
+                selected
+                  ? "border-violet-300 ring-2 ring-violet-500/70 shadow-lg scale-[1.01]"
+                  : "border-black/10"
+              }`}
             >
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <h3 className="text-base sm:text-lg font-semibold" data-testid={`service-name-${svc.id}`}>
-                    {svc.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-600 line-clamp-2" data-testid={`service-preview-${svc.id}`}>
-                    {svc.preview}
-                  </p>
+              {/* BIG logo */}
+              {s.logo.type === 'image' && s.logo.src ? (
+                <img
+                  src={s.logo.src}
+                  alt={s.topTitle}
+                  className="h-12 w-auto sm:h-14 lg:h-16 object-contain"
+                  data-testid={`logo-${s.id}`}
+                />
+              ) : s.logo.type === 'icon' && s.logo.icon ? (
+                <div className="flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-xl bg-gradient-to-br from-violet-50 to-indigo-50 ring-1 ring-violet-200">
+                  {(() => {
+                    const Icon = s.logo.icon;
+                    return <Icon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-violet-600" />;
+                  })()}
                 </div>
-                <span
-                  className={[
-                    "ml-3 inline-flex h-12 w-12 items-center justify-center rounded-xl border flex-shrink-0",
-                    isActive
-                      ? "border-violet-300"
-                      : "border-slate-200 group-hover:border-violet-200",
-                  ].join(" ")}
-                  aria-hidden
-                >
-                  {svc.logo.type === 'image' && svc.logo.src ? (
-                    <img src={svc.logo.src} alt="" className="h-8 w-8 object-contain" />
-                  ) : Logo ? (
-                    <Logo className="h-6 w-6 opacity-60" />
-                  ) : (
-                    <svg
-                      className="h-5 w-5 opacity-60"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M10 3l6 4v6l-6 4-6-4V7l6-4z" />
-                    </svg>
-                  )}
-                </span>
-              </div>
-
-              {/* Micro-tags */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                {svc.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs px-2 py-1 rounded-full border border-slate-200 text-slate-600"
-                    data-testid={`tag-${t.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* Mobile hint */}
-              <div className="mt-4 block sm:hidden">
-                <span className="text-xs text-violet-700 font-medium">
-                  {isActive && !expanded ? "Tap to read details" : " "}
-                </span>
-              </div>
+              ) : (
+                <div className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-xl bg-white/80 ring-1 ring-black/10" />
+              )}
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900" data-testid={`tab-title-${s.id}`}>{s.topTitle}</h3>
             </button>
           );
         })}
       </div>
 
-      {/* Preview + Expanded Panel */}
+      {/* BOTTOM: Detailed gradient panel */}
       <div
         id={`service-panel-${active.id}`}
         role="tabpanel"
-        aria-expanded={expanded}
+        aria-labelledby={`tab-${active.id}`}
         data-testid="service-panel"
-        className={[
-          "mt-6 rounded-3xl border border-slate-200",
-          "bg-gradient-to-br",
-          active.gradientFrom,
-          active.gradientTo,
-          "p-5 sm:p-8",
-        ].join(" ")}
+        className={`mt-10 rounded-3xl bg-gradient-to-br ${active.gradient.from} ${active.gradient.to} p-6 sm:p-8 lg:p-10 shadow-[0_12px_50px_-20px_rgba(0,0,0,0.3)]`}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-          {/* Left: media */}
-          <div className="aspect-video w-full rounded-2xl bg-white/60 border border-slate-200 flex items-center justify-center overflow-hidden">
-            {active.media.src ? (
-              <Media src={active.media.src} alt={active.media.alt} />
-            ) : (
-              <span className="text-sm text-slate-500">
-                Media preview (ad examples, dashboards, flows)
-              </span>
-            )}
+        <div className="grid items-center gap-8 lg:grid-cols-2">
+          {/* Media */}
+          <div className="aspect-video w-full overflow-hidden rounded-xl bg-white/40 ring-1 ring-black/5">
+            <Media src={active.media.src} alt={active.media.alt} />
           </div>
 
-          {/* Right: copy */}
+          {/* Copy */}
           <div>
-            <div className="flex items-start justify-between">
-              <h3 className="text-xl font-semibold" data-testid="panel-service-name">{active.name}</h3>
-              <button
-                className="ml-3 hidden sm:inline-flex text-sm text-violet-700 font-medium hover:text-violet-800"
-                onClick={() => setExpanded((v) => !v)}
-                data-testid="button-toggle-details-desktop"
-              >
-                {expanded ? "Collapse" : "Read details"}
-              </button>
+            <h3 className="text-2xl font-semibold text-gray-900" data-testid="panel-title">{active.bottomTitle}</h3>
+            <p className="mt-3 text-gray-800/90" data-testid="panel-description">{active.paragraph}</p>
+            <ul className="mt-4 space-y-2 text-gray-800">
+              {active.bullets.map((b, i) => (
+                <li key={i} className="flex gap-2">
+                  <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-violet-600" />
+                  <span className="text-sm leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {active.tools.map((t, i) => (
+                <Pill key={i}>{t}</Pill>
+              ))}
             </div>
-
-            {/* Preview line always visible */}
-            <p className="mt-2 text-slate-700" data-testid="panel-preview">{active.preview}</p>
-
-            {/* Expanded details */}
-            <div
-              className={[
-                "transition-all duration-200",
-                expanded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 h-0 overflow-hidden",
-              ].join(" ")}
-            >
-              <p className="mt-4 text-slate-700" data-testid="panel-long-description">{active.long}</p>
-              <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {active.bullets.map((b, i) => (
-                  <li key={i} className="flex items-start gap-2" data-testid={`bullet-${i}`}>
-                    <span className="mt-1 h-2 w-2 rounded-full bg-violet-500 flex-shrink-0"></span>
-                    <span className="text-sm text-slate-800">{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5">
-                <a
-                  href="#book"
-                  className="inline-flex items-center justify-center rounded-xl bg-violet-600 text-white px-4 py-2 text-sm font-medium hover:bg-violet-700 transition-colors"
-                  data-testid="button-book-call"
-                >
-                  Book a Strategic Intro Call
-                </a>
-              </div>
-            </div>
-
-            {/* Mobile toggle */}
-            <button
-              className="mt-3 sm:hidden inline-flex text-sm text-violet-700 font-medium hover:text-violet-800"
-              onClick={() => setExpanded((v) => !v)}
-              data-testid="button-toggle-details-mobile"
-            >
-              {expanded ? "Collapse" : "Read details"}
-            </button>
           </div>
         </div>
       </div>
