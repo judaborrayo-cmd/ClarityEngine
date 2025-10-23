@@ -1,0 +1,184 @@
+// src/components/FaqCompact.tsx
+import React, { useState, useMemo } from "react";
+
+type QA = { id: string; q: string; a: string; popular?: boolean };
+type Category = { id: string; title: string; items: QA[] };
+
+const CATEGORIES: Category[] = [
+  {
+    id: "budget-fit",
+    title: "Budget & Fit",
+    items: [
+      {
+        id: "budgets",
+        q: "What budgets do you work with?",
+        a: "Most clients invest $4k–$30k+/mo across Google, Meta, or YouTube. Below ~$4k, testing cycles slow down. Not there yet? We’ll map a foundation until you’re ready to scale.",
+      },
+      {
+        id: "brands",
+        q: "What types of brands do you usually work with?",
+        a: "Purpose-driven teams in health, wellness, travel, education, lifestyle. Best fit = brands that value iteration, KPIs, and long-term growth.",
+      },
+      {
+        id: "good-fit",
+        q: "How do I know if we’re a good fit?",
+        a: "You value transparency, learning, and data-backed advertising—and you’re ready to invest for compounding returns.",
+      },
+    ],
+  },
+  {
+    id: "process-collab",
+    title: "Process & Collaboration",
+    items: [
+      {
+        id: "with-team",
+        q: "Will you work with our team?",
+        a: "Yes—partners or fractional CMO. We align with SEO, design, web, analytics to keep tracking, creative, and funnel strategy tight.",
+      },
+      {
+        id: "after-audit",
+        q: "What happens after the initial audit?",
+        a: "You get a roadmap: quick wins + longer plays + measurement plan. Implement with your team or keep us on to execute/optimize.",
+      },
+      {
+        id: "collab-agencies",
+        q: "Can you collaborate with my existing agency or freelancers?",
+        a: "Absolutely. We bridge creative, web, and ads; and can refer trusted partners for video, design, or analytics.",
+      },
+    ],
+  },
+  {
+    id: "outcomes",
+    title: "Outcomes & Philosophy",
+    items: [
+      {
+        id: "speed",
+        q: "How fast can I see results?",
+        a: "Audits deliver clarity in days/weeks. Most see movement in 30–60 days once tracking and structure are fixed.",
+      },
+      {
+        id: "different",
+        q: "What makes your approach different?",
+        a: "Strategy + execution + optimization in one loop. Every test compounds into a system that scales profitably.",
+      },
+    ],
+  },
+  {
+    id: "logistics",
+    title: "Logistics & Engagement",
+    items: [
+      {
+        id: "contracts",
+        q: "Do you require long-term contracts?",
+        a: "No annual lock-in. We start with a 90-day plan and iterate based on results.",
+      },
+      {
+        id: "deposit",
+        q: "Why is there a $75 deposit?",
+        a: "It focuses calendars on serious calls, covers prep, and is credited to your first audit or retainer if we proceed.",
+      },
+    ],
+  },
+];
+
+type Props = { defaultVisibleCategories?: number };
+
+export default function FaqCompact({ defaultVisibleCategories = 2 }: Props) {
+  const [openMap, setOpenMap] = useState<Record<string, string | null>>({});
+  const [showAll, setShowAll] = useState(false);
+
+  const toggle = (catId: string, itemId: string) => {
+    setOpenMap((prev) => ({
+      ...prev,
+      [catId]: prev[catId] === itemId ? null : itemId,
+    }));
+  };
+
+  const visibleCats = useMemo(
+    () => (showAll ? CATEGORIES : CATEGORIES.slice(0, defaultVisibleCategories)),
+    [showAll, defaultVisibleCategories]
+  );
+
+  return (
+    <section id="faqs" className="w-full">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+          FAQs
+        </h2>
+        <p className="mt-2 text-sm sm:text-base text-slate-600">
+          Quick answers to help you decide with confidence.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {visibleCats.map((cat) => (
+          <div key={cat.id} className="space-y-3 border border-slate-100 p-4 rounded-2xl bg-white/70 backdrop-blur">
+            <h3 className="font-semibold text-lg text-slate-800 mb-2 border-b border-slate-100 pb-1">
+              {cat.title}
+            </h3>
+            {cat.items.map((it) => {
+              const open = openMap[cat.id] === it.id;
+              return (
+                <div key={it.id}>
+                  <button
+                    onClick={() => toggle(cat.id, it.id)}
+                    aria-expanded={open}
+                    aria-controls={`faq-${it.id}`}
+                    className="w-full text-left text-[15px] font-medium text-slate-900 py-2 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
+                  >
+                    {it.q}
+                    <svg
+                      className={`h-4 w-4 transition-transform ${
+                        open ? "rotate-180" : ""
+                      }`}
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M5.23 7.21a.75.75 0 011.06.02L10 11.107l3.71-3.877a.75.75 0 111.08 1.04l-4.24 4.43a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" />
+                    </svg>
+                  </button>
+                  <div
+                    id={`faq-${it.id}`}
+                    className={`text-slate-700 text-sm overflow-hidden transition-all duration-300 ${
+                      open ? "max-h-[160px] opacity-100 pb-2" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    {it.a}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      {CATEGORIES.length > defaultVisibleCategories && (
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => setShowAll((v) => !v)}
+            className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium hover:border-violet-300"
+          >
+            {showAll ? "Show less" : "View all FAQs"}
+          </button>
+        </div>
+      )}
+
+      <div className="mt-6 text-center">
+        <a href="/faq" className="text-sm text-violet-700 font-medium">
+          See full FAQ →
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Usage:
+ * 1. Save as src/components/FaqCompact.tsx
+ * 2. Import into your page:
+ *      import FaqCompact from "./components/FaqCompact";
+ *      ...
+ *      <FaqCompact defaultVisibleCategories={2} />
+ * 3. Place it BELOW your Calendly embed + Deep Dive sections.
+ *    This makes it a “decision-support” section before conversion.
+ */

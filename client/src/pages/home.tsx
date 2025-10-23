@@ -9,6 +9,7 @@ import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import FaqPodium from "@/components/FaqPodium";
+import FaqHybrid from "@/components/FaqHybrid";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -481,6 +482,13 @@ export default function Home() {
               <PrimaryButton href="#book-intro" testId="button-retainer">Book Strategic Intro Call</PrimaryButton>
             </div>
           </Card>
+        </Section>
+
+        {/* --- COMPACT FAQ (below booking sections) --- */}
+        <Section id="faq-compact" className="py-12">
+          <div className="mx-auto max-w-5xl">
+            <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />
+          </div>
         </Section>
 
         <ExitIntentModal />
