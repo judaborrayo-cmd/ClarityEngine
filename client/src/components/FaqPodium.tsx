@@ -133,7 +133,7 @@ const CATEGORIES: Category[] = [
       {
         id: "intro-length",
         q: "How long is the Strategic Intro Call?",
-        a: "Plan for 20–30 minutes. We surface your biggest ROI blockers, align on goals, and outline next steps.",
+        a: "Plan for 30 minutes. We surface your biggest ROI blockers, align on goals, and outline next steps.",
       },
     ],
   },
