@@ -1,0 +1,260 @@
+<!-- /services -->
+<main class="relative w-full">
+
+  <!-- ===== 1) HERO ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Services Built to Drive Measurable Growth — with Strategy That Scales
+      </h1>
+      <p class="mt-4 text-gray-600 max-w-3xl mx-auto">
+        Choose your starting point — from a Deep-Dive Growth Audit to long-term partnerships. 
+        Everything is designed for brands that live on leads and bookings: retreats, travel, fitness, 
+        and multi-location companies.
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#calendly"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  bg-indigo-600 text-white hover:bg-indigo-700">
+          Book a 30-min Strategy Call — $75
+        </a>
+        <a href="#audit"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+          Explore Deep-Dive Audit
+        </a>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-2">
+        New clients are accepted by application or completion of a Deep-Dive Audit.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 2) MAIN SERVICE OPTIONS (AUDIT + RETAINER) ===== -->
+  <section class="py-6">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
+
+      <!-- Deep-Dive Growth Audit -->
+      <article id="audit"
+               class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold mb-2">Deep-Dive Growth Audit (Full-Funnel)</h3>
+        <p class="text-gray-600 mb-4">
+          Pinpoint what’s working, what’s not, and what to fix first across ads, tracking, offers, and funnel. 
+          Built to unlock faster bookings and lower CPL for retreats, travel operators, fitness studios/gyms, and multi-location brands.
+        </p>
+        <ul class="text-sm text-gray-600 mb-5 space-y-2">
+          <li class="flex items-start gap-2"><span>•</span><span>Full-funnel audit with PDF + video walkthrough</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>30–60-minute strategy call to review findings</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Priority actions: quick wins, CRO tests, remarketing tiers</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>2 weeks of post-audit support via email</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a href="#calendly"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    bg-indigo-600 text-white hover:bg-indigo-700">
+            Book a 30-min Strategy Call — $75
+          </a>
+          <a href="#audit-details"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+            See Audit Details
+          </a>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Most partners start here — the audit becomes your 90-day roadmap.
+        </p>
+      </article>
+
+      <!-- Growth Retainer (By Application) -->
+      <article
+        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold mb-2">Growth Retainer (By Application / Waitlist)</h3>
+        <p class="text-gray-600 mb-4">
+          Ongoing, hands-on growth management: paid media, CRO, and attribution working together to scale bookings 
+          and revenue. Best for founders and teams ready to compound wins post-audit.
+        </p>
+        <ul class="text-sm text-gray-600 mb-5 space-y-2">
+          <li class="flex items-start gap-2"><span>•</span><span>Omni-channel strategy across Google, Meta, and YouTube</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Tiered remarketing (Day 1–7, Week 2–4, 30+ days)</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Offer + landing page testing to lift bookings and memberships</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Attribution + reporting focused on ROAS, CPA, and payback</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Fractional CMO guidance for multi-location ops</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a href="#waitlist"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    bg-indigo-600 text-white hover:bg-indigo-700">
+            Apply for Waitlist
+          </a>
+          <a href="#calendly"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+            Discuss Fit on a Call — $75
+          </a>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Limited slots. New clients typically onboard after a completed audit.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 3) SUPPORTING SERVICES GRID (tailored) ===== -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold text-center">Specialized Playbooks &amp; Capabilities</h2>
+      <p class="text-gray-600 text-center mt-2 max-w-3xl mx-auto">
+        Built for brands that depend on demand generation: retreats, travel, fitness, and multi-location companies.
+      </p>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Paid Media</p>
+          <h4 class="mt-2 font-semibold">Google Ads Management</h4>
+          <p class="mt-2 text-gray-600">
+            Capture high-intent searchers for bookings and leads (retreat dates, itineraries, class signups).
+          </p>
+          <a href="#google" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Paid Media</p>
+          <h4 class="mt-2 font-semibold">Meta Campaigns</h4>
+          <p class="mt-2 text-gray-600">
+            Scalable creative systems + tiered remarketing to turn interest into inquiries and bookings.
+          </p>
+          <a href="#meta" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">CRO</p>
+          <h4 class="mt-2 font-semibold">CRO &amp; Funnel Optimization</h4>
+          <p class="mt-2 text-gray-600">
+            Lift conversion rates for retreat applications, tour inquiries, trial passes, and memberships.
+          </p>
+          <a href="#cro" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Analytics</p>
+          <h4 class="mt-2 font-semibold">Attribution &amp; Reporting</h4>
+          <p class="mt-2 text-gray-600">
+            Unify GA4 + ad platforms to see ROAS, CPA, and payback clearly across locations.
+          </p>
+          <a href="#attribution" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Video Ads</p>
+          <h4 class="mt-2 font-semibold">YouTube Ads</h4>
+          <p class="mt-2 text-gray-600">
+            Educate and convert with high-intent audiences (itineraries, destination research, gym near me).
+          </p>
+          <a href="#youtube" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Strategy</p>
+          <h4 class="mt-2 font-semibold">Fractional CMO</h4>
+          <p class="mt-2 text-gray-600">
+            Align teams, locations, and vendors behind a unified roadmap and weekly reporting rhythm.
+          </p>
+          <a href="#fcm" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4) MINI COMPARISON TABLE ===== -->
+  <section class="py-6">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="overflow-x-auto rounded-2xl border border-gray-200">
+        <table class="w-full text-left text-sm md:text-base">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="py-3 px-4 font-semibold">Perfect For</th>
+              <th class="py-3 px-4 font-semibold">Commitment</th>
+              <th class="py-3 px-4 font-semibold">Entry Path</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t">
+              <td class="py-3 px-4">Quick clarity &amp; prioritized roadmap</td>
+              <td class="py-3 px-4">One-time</td>
+              <td class="py-3 px-4">Deep-Dive Audit</td>
+            </tr>
+            <tr class="border-t bg-gray-50">
+              <td class="py-3 px-4">Scale &amp; compound growth across channels/locations</td>
+              <td class="py-3 px-4">90 days → ongoing</td>
+              <td class="py-3 px-4">Retainer (by application)</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 px-4">Tactical projects (ads, CRO, analytics)</td>
+              <td class="py-3 px-4">Flexible</td>
+              <td class="py-3 px-4">Custom Projects</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5) FINAL CTA / APPLICATION ===== -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center rounded-3xl bg-gray-50 py-16">
+      <h2 class="text-3xl font-semibold">Ready to Find the Right Fit?</h2>
+      <p class="text-gray-600 mt-3 max-w-3xl mx-auto">
+        Start with a paid 30-minute strategy call to align on goals, assess fit, and identify your fastest wins. 
+        <br class="hidden sm:block" />
+        <span class="text-gray-500">Ongoing engagements begin with an audit or an approved application.</span>
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#calendly"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  bg-indigo-600 text-white hover:bg-indigo-700">
+          Book a 30-min Strategy Call — $75
+        </a>
+        <a href="#waitlist"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+          Join Retainer Waitlist
+        </a>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">
+        Trusted by founders managing $5k–$70k per month in ad spend.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== PLACEHOLDERS FOR FUTURE WIDGETS ===== -->
+  <section id="calendly" class="max-w-3xl mx-auto px-4 pb-16">
+    <!-- Calendly (30-min, $75) embed mounts here -->
+    <div class="rounded-2xl border border-dashed border-gray-300 p-8 text-center text-gray-500">
+      Calendly embed placeholder — 30-minute Strategy Call ($75)
+    </div>
+  </section>
+
+  <section id="waitlist" class="max-w-3xl mx-auto px-4 pb-24">
+    <!-- Waitlist/application form mounts here -->
+    <div class="rounded-2xl border border-dashed border-gray-300 p-8 text-center text-gray-500">
+      Retainer waitlist/application placeholder
+    </div>
+  </section>
+
+</main>

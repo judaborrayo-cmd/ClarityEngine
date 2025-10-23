@@ -1,0 +1,240 @@
+<!-- /services -->
+<main class="relative w-full">
+
+  <!-- ===== 1) HERO ===== -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Services Built to Drive Measurable Growth — with Strategy That Scales
+      </h1>
+      <p class="mt-4 text-gray-600 max-w-3xl mx-auto">
+        Choose your starting point — from fast clarity audits to long-term growth partnerships.
+        Each service is designed to maximize ROI and decision-making clarity.
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#calendly"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  bg-indigo-600 text-white hover:bg-indigo-700">
+          Book a 10-min Intro Call →
+        </a>
+        <a href="#audit"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+          Explore Growth Audit →
+        </a>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-2">
+        New clients are accepted by application or audit completion only.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 2) MAIN SERVICE OPTIONS (AUDIT + RETAINER) ===== -->
+  <section class="py-6">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
+      <!-- Audit Card -->
+      <article id="audit"
+               class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold mb-2">Growth Clarity Audit (Fast ROI Review)</h3>
+        <p class="text-gray-600 mb-4">
+          Pinpoint what’s working, what’s not, and what to fix first to improve performance and profitability.
+        </p>
+        <ul class="text-sm text-gray-600 mb-5 space-y-2">
+          <li class="flex items-start gap-2"><span>•</span><span>Full-funnel audit &amp; PDF/video walkthrough</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>30–60-min strategy call</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>2 weeks of post-audit support</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a href="#calendly"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    bg-indigo-600 text-white hover:bg-indigo-700">
+            Book Intro Call →
+          </a>
+          <a href="#audit-details"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+            See Growth Audit Details →
+          </a>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Most founders start here — 80% of retainer clients begin with an audit.
+        </p>
+      </article>
+
+      <!-- Retainer Card -->
+      <article
+        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <h3 class="text-xl font-semibold mb-2">Growth Retainer (By Application Only)</h3>
+        <p class="text-gray-600 mb-4">
+          Ongoing strategic partnership for scaling ad performance, optimizing funnels, and compounding ROI.
+        </p>
+        <ul class="text-sm text-gray-600 mb-5 space-y-2">
+          <li class="flex items-start gap-2"><span>•</span><span>Omni-channel strategy across Google, Meta, and YouTube</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Tiered remarketing and CRO systems</span></li>
+          <li class="flex items-start gap-2"><span>•</span><span>Fractional CMO guidance and reporting</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-3">
+          <a href="#waitlist"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    bg-indigo-600 text-white hover:bg-indigo-700">
+            Apply for Waitlist →
+          </a>
+          <a href="#calendly"
+             class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                    border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+            Discuss Fit on a Call →
+          </a>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">
+          Limited monthly slots. New clients onboard after a completed audit.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 3) SUPPORTING SERVICES GRID ===== -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-semibold text-center">Specialized Playbooks &amp; Capabilities</h2>
+      <p class="text-gray-600 text-center mt-2 max-w-3xl mx-auto">
+        Select capabilities we deploy inside audits and ongoing partnerships.
+      </p>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card template -->
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Paid Media</p>
+          <h4 class="mt-2 font-semibold">Google Ads Management</h4>
+          <p class="mt-2 text-gray-600">Capture high-intent buyers and maximize conversions.</p>
+          <a href="#google" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Paid Media</p>
+          <h4 class="mt-2 font-semibold">Meta Campaigns</h4>
+          <p class="mt-2 text-gray-600">Build scalable creative systems and tiered remarketing.</p>
+          <a href="#meta" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">CRO</p>
+          <h4 class="mt-2 font-semibold">CRO &amp; Funnel Optimization</h4>
+          <p class="mt-2 text-gray-600">Test, refine, and scale conversion systems with clarity.</p>
+          <a href="#cro" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Analytics</p>
+          <h4 class="mt-2 font-semibold">Attribution &amp; Reporting</h4>
+          <p class="mt-2 text-gray-600">Unify your metrics and make confident decisions.</p>
+          <a href="#attribution" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Video Ads</p>
+          <h4 class="mt-2 font-semibold">YouTube Ads</h4>
+          <p class="mt-2 text-gray-600">Educate and convert viewers through high-intent targeting.</p>
+          <a href="#youtube" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Strategy</p>
+          <h4 class="mt-2 font-semibold">Fractional CMO</h4>
+          <p class="mt-2 text-gray-600">Align your team around a unified growth roadmap.</p>
+          <a href="#fcm" class="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700">
+            Learn more →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4) MINI COMPARISON TABLE ===== -->
+  <section class="py-6">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="overflow-x-auto rounded-2xl border border-gray-200">
+        <table class="w-full text-left text-sm md:text-base">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="py-3 px-4 font-semibold">Perfect For</th>
+              <th class="py-3 px-4 font-semibold">Commitment</th>
+              <th class="py-3 px-4 font-semibold">Entry Path</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t">
+              <td class="py-3 px-4">Quick clarity &amp; roadmap</td>
+              <td class="py-3 px-4">One-time</td>
+              <td class="py-3 px-4">Growth Audit</td>
+            </tr>
+            <tr class="border-t bg-gray-50">
+              <td class="py-3 px-4">Scale &amp; compound growth</td>
+              <td class="py-3 px-4">90 days → ongoing</td>
+              <td class="py-3 px-4">Retainer (by application)</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 px-4">Tactical support / specific projects</td>
+              <td class="py-3 px-4">Flexible</td>
+              <td class="py-3 px-4">Custom Projects</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5) FINAL CTA / APPLICATION ===== -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center rounded-3xl bg-gray-50 py-16">
+      <h2 class="text-3xl font-semibold">Ready to Find the Right Fit?</h2>
+      <p class="text-gray-600 mt-3 max-w-3xl mx-auto">
+        Start with a 10-minute intro call to align on goals and see which service unlocks the most growth for your brand.
+        <br class="hidden sm:block" />
+        <span class="text-gray-500">All ongoing engagements begin with an audit or approved application.</span>
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#calendly"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  bg-indigo-600 text-white hover:bg-indigo-700">
+          Book a 10-min Intro Call →
+        </a>
+        <a href="#waitlist"
+           class="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm
+                  border border-gray-300 bg-white text-gray-900 hover:bg-gray-50">
+          Join Waitlist for Retainer →
+        </a>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">
+        Trusted by founders managing $5k–$70k per month in ad spend.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== PLACEHOLDERS FOR FUTURE WIDGETS ===== -->
+  <section id="calendly" class="max-w-3xl mx-auto px-4 pb-16">
+    <!-- Calendly embed mounts here in the future -->
+    <div class="rounded-2xl border border-dashed border-gray-300 p-8 text-center text-gray-500">
+      Calendly embed placeholder
+    </div>
+  </section>
+
+  <section id="waitlist" class="max-w-3xl mx-auto px-4 pb-24">
+    <!-- Waitlist/apply form mounts here -->
+    <div class="rounded-2xl border border-dashed border-gray-300 p-8 text-center text-gray-500">
+      Retainer waitlist/application placeholder
+    </div>
+  </section>
+
+</main>
