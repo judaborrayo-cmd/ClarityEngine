@@ -50,25 +50,35 @@ export default function ServicesAtAGlance() {
       {
         id: "google-ads",
         topTitle: "Google Ads Advertising",
-        bottomTitle: "Google Ads Advertising",
+        bottomTitle: "Capture Demand. Convert Faster.",
         logo: { type: 'image' as const, src: googleAdsLogo },
         media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
         gradient: { from: "from-violet-50", to: "to-emerald-50" },
         paragraph:
-          "Capture high-intent searches and eliminate wasted spend. We audit your account structure, refine targeting, and build scalable campaigns that convert.",
-        bullets: ["Capture high-intent searches", "Cut CPL & eliminate waste"],
+          "We turn Google into your most reliable sales channel. From search to Performance Max, we refine structure, tracking, and creative so you capture the right traffic—not just clicks. You get a system that scales intelligently, cuts wasted spend, and surfaces the insights you need to make confident decisions faster.",
+        bullets: [
+          "Capture high-intent leads and buyers",
+          "Eliminate wasted spend through better structure",
+          "Build a scalable, data-driven foundation for growth",
+          "See what's working faster with clear KPI visibility"
+        ],
         tools: ["Search", "PMax", "YouTube", "GA4"],
       },
       {
         id: "meta",
         topTitle: "Meta Advertising",
-        bottomTitle: "Meta Advertising",
+        bottomTitle: "Scale What Works Across Meta's Ecosystem",
         logo: { type: 'image' as const, src: metaLogo },
         media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
         gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
         paragraph:
-          "Build scalable creative systems and tiered remarketing funnels. We help you test, iterate, and scale what works across Meta's entire ecosystem.",
-        bullets: ["Scalable creative systems", "Tiered remarketing"],
+          "We build creative systems and remarketing funnels that compound results. From prospecting to retargeting, every layer is designed to increase relevance, test faster, and drive profitable customer acquisition—without the chaos of constant guesswork.",
+        bullets: [
+          "Scalable creative frameworks for faster testing",
+          "Tiered remarketing systems that build momentum",
+          "Proven ad strategies that reach, convert, and retain",
+          "Real insights that turn creative into predictable growth"
+        ],
         tools: ["Meta", "Catalog", "DCT", "UGC"],
       },
       {
@@ -98,13 +108,18 @@ export default function ServicesAtAGlance() {
       {
         id: "youtube",
         topTitle: "YouTube Advertising",
-        bottomTitle: "YouTube Advertising",
+        bottomTitle: "Turn Attention Into Demand",
         logo: { type: 'image' as const, src: youtubeLogo },
         media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
         gradient: { from: "from-rose-50", to: "to-amber-50" },
         paragraph:
-          "Educate, engage, and convert viewers at scale. We build high-intent video campaigns that capture attention and drive action.",
-        bullets: ["Educate & capture viewers", "High-intent video targeting"],
+          "We design high-intent video campaigns that educate, engage, and convert. Using proven targeting and messaging frameworks, we help you build authority and capture attention at scale—so every view moves your audience closer to action.",
+        bullets: [
+          "High-intent video targeting to reach ready buyers",
+          "Story-driven ads that build trust and desire",
+          "Efficient testing for creative and audience alignment",
+          "Combine awareness + conversion for measurable ROI"
+        ],
         tools: ["In-Stream", "Discovery", "Retargeting"],
       },
       {
