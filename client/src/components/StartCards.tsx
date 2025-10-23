@@ -12,7 +12,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
       </h2>
       <p className="text-gray-600 text-sm max-w-xl mx-auto mb-10">
         All Intro Calls and Audits credit into monthly retainers — when there's a
-        long-term fit. <span className="text-gray-900 font-medium">All paths lead to profits.</span>
+        long-term fit. <span className="text-gray-900 font-medium">Different brands need different levels of support — start where you'll see ROI fastest.</span>
       </p>
 
       <div className="grid sm:grid-cols-3 items-stretch gap-6 max-w-6xl mx-auto">
