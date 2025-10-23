@@ -71,7 +71,7 @@ export default function ProblemsTicker() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center pt-2 sm:pt-3">
           <p className="text-sm font-medium text-gray-600 mb-2">
-            We find solutions to:
+            We find Solutions to Difficult problems for Growth-Minded Founders and Teams:
           </p>
         </div>
         <div className="flex flex-col gap-2 pb-2 sm:pb-3">
