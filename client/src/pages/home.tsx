@@ -440,6 +440,9 @@ export default function Home() {
               <CalendlyInline height={700} />
             </div>
             <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
+            <p className="mt-3 text-center text-sm text-gray-600" data-testid="calendly-testimonial">
+              ⭐⭐⭐⭐⭐ "Best 30 minutes I spent all quarter." - CEO
+            </p>
           </Card>
           
           {/* Testimonial in booking section */}
