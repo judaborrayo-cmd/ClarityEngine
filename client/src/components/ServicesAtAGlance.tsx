@@ -154,7 +154,11 @@ export default function ServicesAtAGlance() {
   );
 
   const [activeId, setActiveId] = useState<string>(services[0].id);
-  const active = services.find((s) => s.id === activeId)!;
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  
+  // Show hovered service if hovering, otherwise show the locked/active selection
+  const displayedId = hoveredId || activeId;
+  const active = services.find((s) => s.id === displayedId)!;
 
   return (
     <section id="services-at-a-glance" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
@@ -175,6 +179,8 @@ export default function ServicesAtAGlance() {
               aria-selected={selected}
               aria-controls={`service-panel-${s.id}`}
               onClick={() => setActiveId(s.id)}
+              onMouseEnter={() => setHoveredId(s.id)}
+              onMouseLeave={() => setHoveredId(null)}
               data-testid={`tab-${s.id}`}
               className={`group flex flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-8 text-center shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none ${
                 selected
