@@ -84,25 +84,35 @@ export default function ServicesAtAGlance() {
       {
         id: "cro",
         topTitle: "Conversion Rate Optimization",
-        bottomTitle: "Conversion Rate Optimization",
+        bottomTitle: "Make Every Click Count",
         logo: { type: 'icon' as const, icon: Target },
         media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
         gradient: { from: "from-indigo-50", to: "to-sky-50" },
         paragraph:
-          "Turn traffic into revenue. We run structured tests on your funnels, fix tracking gaps, and optimize for real conversions—not vanity metrics.",
-        bullets: ["Funnel testing & optimization", "Clearer tracking & attribution"],
+          "We turn data into design decisions. Our CRO process finds friction, fixes tracking, and tests solutions that lift performance across every funnel stage. You'll know exactly where growth is hiding—and how to unlock it—without wasting months guessing.",
+        bullets: [
+          "Funnel testing that uncovers true growth levers",
+          "Clearer tracking and attribution for faster insights",
+          "UX and copy optimizations proven to convert",
+          "Continuous iteration for compounding returns"
+        ],
         tools: ["CRO", "Hotjar", "GA4", "AB"],
       },
       {
         id: "reporting",
         topTitle: "Strategic Reporting & KPI Optimization",
-        bottomTitle: "Strategic Reporting & KPI Optimization",
+        bottomTitle: "See What's Actually Driving Growth",
         logo: { type: 'icon' as const, icon: BarChart3 },
         media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
         gradient: { from: "from-emerald-50", to: "to-violet-50" },
         paragraph:
-          "See what's actually driving revenue. We build unified dashboards that connect the dots between channels, campaigns, and conversions.",
-        bullets: ["Unified metrics dashboard", "Decisions, not noise"],
+          "We build unified dashboards that connect the dots between ad spend, funnel performance, and revenue. You'll know exactly which campaigns move the needle, so your team can focus on what's profitable—and stop wasting time on what's not.",
+        bullets: [
+          "Unified reporting across Google, Meta, and YouTube",
+          "Clarity on what drives revenue (not vanity metrics)",
+          "Faster decision cycles with data you can trust",
+          "Scalable visibility for leadership and ops teams"
+        ],
         tools: ["GA4", "Looker", "Sheets", "Cohorts"],
       },
       {
@@ -125,13 +135,18 @@ export default function ServicesAtAGlance() {
       {
         id: "landing-pages",
         topTitle: "A/B Testing",
-        bottomTitle: "A/B Testing",
+        bottomTitle: "Test Smarter. Scale Faster.",
         logo: { type: 'icon' as const, icon: FlaskConical },
         media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
         gradient: { from: "from-slate-50", to: "to-violet-50" },
         paragraph:
-          "We prototype in Replit for look-and-feel, copy, and flow; your devs build the production pages. Then we iterate together.",
-        bullets: ["Persuasive UX design", "Faster experiments"],
+          "We use rapid, low-friction testing inside Replit to prototype messaging, UX, and funnel flow—then hand off to your team for implementation. This makes experimentation faster, cheaper, and easier to sustain, so you find winning ideas before competitors do.",
+        bullets: [
+          "Faster testing cycles → faster insights",
+          "Validate creative and copy without heavy dev lift",
+          "Collaborative iteration that blends speed with precision",
+          "Make decisions based on proof, not opinion"
+        ],
         tools: ["Figma", "Replit (prototype)", "Dev handoff"],
       },
     ],
