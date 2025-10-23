@@ -8,6 +8,7 @@ import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
 import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
+import FaqPodium from "@/components/FaqPodium";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -409,36 +410,7 @@ export default function Home() {
 
         {/* --- FAQ --- */}
         <Section id="faq" className="py-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">FAQs</h2>
-            <p className="mt-4 text-xl text-gray-600">Quick answers to common questions.</p>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-results">How fast can I see results?</h3>
-              <p className="mt-3 text-gray-600">Audits deliver clarity in days or weeks, not months. Most clients see meaningful movement in 30–60 days once tracking and structure are fixed.</p>
-            </Card>
-            <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-budgets">What budgets do you work with?</h3>
-              <p className="mt-3 text-gray-600">From 5k budgets to $30k+/mo. The playbook adapts to your growth stage and business model. If your budget and goals aren't a fit, we'll let you know quickly and point you in the right direction.</p>
-            </Card>
-            <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-contracts">Do you require long‑term contracts?</h3>
-              <p className="mt-3 text-gray-600">No annual lock‑in. We start with a 90‑day plan and iterate from there based on results.</p>
-            </Card>
-            <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-team">Will you work with our team?</h3>
-              <p className="mt-3 text-gray-600">Yes. We plug in as partners or fractional CMOs and collaborate seamlessly with your existing team.</p>
-            </Card>
-            <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-deposit">Why is there a $75 deposit?</h3>
-              <p className="mt-3 text-gray-600">It keeps the calendar focused on serious, high-impact conversations. It also covers prep time and ensures we're both invested. If we decide to work together, the deposit is fully credited toward your first audit or retainer.</p>
-            </Card>
-            <Card>
-              <h3 className="text-lg font-semibold text-gray-900" data-testid="faq-duration">How long is the Strategic Intro Call?</h3>
-              <p className="mt-3 text-gray-600">Plan for 20–30 minutes. The goal is speed and clarity—identify your biggest ROI blockers, outline next steps, and confirm fit.</p>
-            </Card>
-          </div>
+          <FaqPodium />
         </Section>
 
         {/* --- BOOKING SECTION (#book-call and #book-intro) --- */}
