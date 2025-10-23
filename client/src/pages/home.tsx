@@ -431,8 +431,12 @@ export default function Home() {
               </ul>
             </div>
             
+            <p className="mt-6 text-center text-base font-medium text-gray-700" data-testid="calendly-reminder">
+              You'll get clarity on what's working, what's missing, and where to focus next — no fluff.
+            </p>
+            
             {/* Calendly inline widget */}
-            <div className="mt-8" id="book-intro">
+            <div className="mt-6" id="book-intro">
               <CalendlyInline height={700} />
             </div>
             <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
