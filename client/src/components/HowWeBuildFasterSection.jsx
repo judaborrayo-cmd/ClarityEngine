@@ -170,6 +170,9 @@ export default function HowWeBuildFasterSection() {
           Strategy → visuals → prototypes → data → collaboration. We blend
           people, process, and AI tools so your team ships faster.
         </p>
+        <p className="mt-1 text-sm text-gray-500 text-center" data-testid="trust-indicator">
+          Used by founders and marketing teams managing $5k–$70k per month in ad spend.
+        </p>
       </div>
 
       <div className="mt-12 flex items-center justify-between gap-6">
