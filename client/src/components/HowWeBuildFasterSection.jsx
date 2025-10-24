@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState, useEffect, forwardRef } from "react";
+import { MousePointer2, Video, Camera, Mic } from "lucide-react";
 
 import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
 import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
@@ -238,34 +239,96 @@ export default function HowWeBuildFasterSection() {
       </div>
 
       <div className="mt-16 border-t border-black/5 pt-8">
-        <p className="text-center text-sm font-medium text-gray-500">
+        <p className="text-center text-sm font-medium text-gray-500 mb-6">
           Built using your favorite tools — powered by ours.
         </p>
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-          {[
-            { name: "ChatGPT", logo: chatgptLogo },
-            { name: "Gemini", logo: geminiLogo },
-            { name: "Midjourney", logo: midjourneyLogo },
-            { name: "Photoshop", logo: photoshopLogo },
-            { name: "Figma", logo: figmaLogo },
-            { name: "Replit", logo: replitLogo },
-            { name: "GA4", logo: googleAnalyticsLogo },
-            { name: "Google Drive", logo: googleDriveLogo },
-            { name: "Teams", logo: microsoftTeamsLogo },
-            { name: "Dropbox", logo: dropboxLogo },
-          ].map((tool) => (
-            <div
-              key={tool.name}
-              className="transition-all duration-300 hover:scale-110"
-            >
-              <img
-                src={tool.logo}
-                alt={tool.name}
-                className="h-8 w-auto object-contain"
-              />
-            </div>
-          ))}
+        
+        {/* Animated Tools Ticker */}
+        <div className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4">
+          <div className="tools-ticker-track whitespace-nowrap flex items-center gap-12">
+            {/* First set of tools */}
+            {[
+              { name: "ChatGPT", logo: chatgptLogo },
+              { name: "Gemini", logo: geminiLogo },
+              { name: "Mouseflow", icon: MousePointer2 },
+              { name: "CapCut", icon: Video },
+              { name: "Midjourney", logo: midjourneyLogo },
+              { name: "Photoshop", logo: photoshopLogo },
+              { name: "Zoom", icon: Camera },
+              { name: "Krisp.ai", icon: Mic },
+              { name: "Figma", logo: figmaLogo },
+              { name: "Replit", logo: replitLogo },
+              { name: "GA4", logo: googleAnalyticsLogo },
+              { name: "Google Drive", logo: googleDriveLogo },
+              { name: "Teams", logo: microsoftTeamsLogo },
+              { name: "Dropbox", logo: dropboxLogo },
+            ].map((tool) => (
+              <div key={`${tool.name}-1`} className="inline-flex items-center gap-2 shrink-0">
+                {tool.logo ? (
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
+                    {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
+                    <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                  </div>
+                )}
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {[
+              { name: "ChatGPT", logo: chatgptLogo },
+              { name: "Gemini", logo: geminiLogo },
+              { name: "Mouseflow", icon: MousePointer2 },
+              { name: "CapCut", icon: Video },
+              { name: "Midjourney", logo: midjourneyLogo },
+              { name: "Photoshop", logo: photoshopLogo },
+              { name: "Zoom", icon: Camera },
+              { name: "Krisp.ai", icon: Mic },
+              { name: "Figma", logo: figmaLogo },
+              { name: "Replit", logo: replitLogo },
+              { name: "GA4", logo: googleAnalyticsLogo },
+              { name: "Google Drive", logo: googleDriveLogo },
+              { name: "Teams", logo: microsoftTeamsLogo },
+              { name: "Dropbox", logo: dropboxLogo },
+            ].map((tool) => (
+              <div key={`${tool.name}-2`} className="inline-flex items-center gap-2 shrink-0">
+                {tool.logo ? (
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
+                    {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
+                    <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Inline styles for ticker animation */}
+        <style>{`
+          @keyframes tools-ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .tools-ticker-track {
+            animation: tools-ticker-scroll 30s linear infinite;
+          }
+          .tools-ticker-track:hover {
+            animation-play-state: paused;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .tools-ticker-track { animation: none; }
+          }
+        `}</style>
       </div>
     </section>
   );
