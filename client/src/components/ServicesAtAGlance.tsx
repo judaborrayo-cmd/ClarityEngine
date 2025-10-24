@@ -52,7 +52,7 @@ export default function ServicesAtAGlance() {
     "Replit (prototype)": "Ship pages at sprint speed.",
     "Prototype": "Quickly test real ideas.",
     "Dev handoff": "Clean specs, fewer revisions.",
-    "GA4": "All others bring data.",
+    "GA4": "In God we trust, all others bring data.",
     "Hotjar": "See friction. Fix flow.",
     "Mouseflow": "See friction. Fix flow.",
     "Sheets": "Fast models, clear numbers.",
