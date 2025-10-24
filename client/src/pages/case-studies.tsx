@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Search, Target, Users, Crown, Heart, BarChart3, Star, Quote } from "lucide-react";
+import { ArrowRight, Star, Quote, Target, Users, Heart } from "lucide-react";
+import HowWeDeliverSection from "@/components/HowWeDeliverSection";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logojpg-x-small_1759067902299.jpeg";
@@ -149,116 +150,8 @@ export default function CaseStudies() {
         </section>
 
         {/* How We Deliver Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900" data-testid="how-we-deliver-title">
-                How We Deliver
-              </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Choose your entry point or build a plan across channels.
-              </p>
-            </div>
-            
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Search className="h-8 w-8 text-blue-600" />
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">Growth Clarity Audit</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Uncover hidden leaks and wasted spend so every dollar is working harder. Leave with a clear roadmap that connects strategy to ROI.
-                </p>
-                <Link 
-                  to="/growth-clarity-audit" 
-                  className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center"
-                  data-testid="link-audit"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Target className="h-8 w-8 text-green-600" />
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">Google Ads Management</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Campaigns structured for measurable revenue—not just clicks. Custom strategies that serve profitable without burning budget on vanity metrics.
-                </p>
-                <Link 
-                  to="/services#google-ads" 
-                  className="text-green-600 font-medium hover:text-green-700 inline-flex items-center"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Users className="h-8 w-8 text-purple-600" />
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">Paid Social Media Growth</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Meta, Instagram, and beyond. Full-funnel campaigns that build awareness, trust, and conversions—no cookie-cutter approaches.
-                </p>
-                <Link 
-                  to="/services#paid-social" 
-                  className="text-purple-600 font-medium hover:text-purple-700 inline-flex items-center"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Crown className="h-8 w-8 text-yellow-600" />
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">Fractional CMO</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Hands-on leadership to unify strategy, creative, and paid media execution—unlocking value across your marketing stack.
-                </p>
-                <Link 
-                  to="/services#fractional-cmo" 
-                  className="text-yellow-600 font-medium hover:text-yellow-700 inline-flex items-center"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Heart className="h-8 w-8 text-red-600" />
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">Non-Profit Google Grant</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Unlock up to $10k/month in free ad spend for conversions, not just impressions. Grant best-practices to maximize impact.
-                </p>
-                <Link 
-                  to="/services#nonprofit-grant" 
-                  className="text-red-600 font-medium hover:text-red-700 inline-flex items-center"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <BarChart3 className="h-8 w-8 text-indigo-600" />
-                  <h3 className="ml-3 text-lg font-semibold text-gray-900">CRO & Funnel Optimization</h3>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Iterative testing across landing pages, offers, and funnels. Scale bookings and revenue without scaling acquisition costs.
-                </p>
-                <Link 
-                  to="/services#cro" 
-                  className="text-indigo-600 font-medium hover:text-indigo-700 inline-flex items-center"
-                >
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
+        <section className="bg-gray-50">
+          <HowWeDeliverSection />
         </section>
 
         {/* Proof & Case Studies Section */}
