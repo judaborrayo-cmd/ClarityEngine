@@ -312,7 +312,7 @@ export default function Home() {
         <div className="bg-gray-50 py-8">
           <Section id="proof-bar" className="">
             <div className="text-center mb-6">
-              <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Trusted by Leading Brands</h2>
+              <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Trusted by Leading Brands</h2>
             </div>
             
             {/* Three rows of logos */}
