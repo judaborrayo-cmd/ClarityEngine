@@ -1,0 +1,131 @@
+<!-- ===== Logo Ticker with Hover Tooltips ===== -->
+<section class="py-10">
+  <div class="max-w-6xl mx-auto px-4">
+    <p class="text-center text-sm text-gray-500 mb-4">Built using your favorite tools — powered by ours.</p>
+
+    <div class="ticker relative overflow-hidden rounded-2xl border border-gray-200 bg-white/60">
+      <style>
+        @keyframes ticker-scroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .ticker-track {
+          animation: ticker-scroll 30s linear infinite;
+          will-change: transform;
+        }
+        .ticker:hover .ticker-track { animation-play-state: paused; }
+      </style>
+
+      <!-- Track: duplicate the row twice for seamless loop -->
+      <div class="ticker-track flex items-center gap-10 whitespace-nowrap">
+        <!-- ROW 1 -->
+        <div class="flex items-center gap-10 px-6 py-5">
+          <!-- Use your real logo srcs; keep the data-tip texts exactly. -->
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Polish creatives for conversion.">
+            <img alt="Photoshop" src="/assets/logos/photoshop.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Polish creatives for conversion.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Draft, iterate, decide faster.">
+            <img alt="ChatGPT" src="/assets/logos/chatgpt.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Draft, iterate, decide faster.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Cross-check strategy with AI.">
+            <img alt="Gemini" src="/assets/logos/gemini.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Cross-check strategy with AI.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="See friction. Fix flow.">
+            <img alt="Mouseflow" src="/assets/logos/mouseflow.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              See friction. Fix flow.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Edit fast. Test faster.">
+            <img alt="CapCut" src="/assets/logos/capcut.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Edit fast. Test faster.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Concept visuals in hours.">
+            <img alt="Midjourney" src="/assets/logos/midjourney.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Concept visuals in hours.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Meet, align, move forward.">
+            <img alt="Zoom" src="/assets/logos/zoom.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Meet, align, move forward.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Clean audio, clearer calls.">
+            <img alt="Krisp.ai" src="/assets/logos/krisp.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Clean audio, clearer calls.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Prototype, share, get approval.">
+            <img alt="Figma" src="/assets/logos/figma.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Prototype, share, get approval.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Ship pages at sprint speed.">
+            <img alt="Replit" src="/assets/logos/replit.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Ship pages at sprint speed.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="All others bring data.">
+            <img alt="Google Analytics" src="/assets/logos/ga4.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              All others bring data.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="We work in your drive.">
+            <img alt="Google Drive" src="/assets/logos/drive.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              We work in your drive.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="We plug into Teams.">
+            <img alt="Microsoft Teams" src="/assets/logos/teams.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              We plug into Teams.
+            </div>
+          </div>
+
+          <div class="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100" data-tip="Assets ready when needed.">
+            <img alt="Dropbox" src="/assets/logos/dropbox.svg" class="h-7 object-contain" />
+            <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+              Assets ready when needed.
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2 (duplicate for seamless loop) -->
+        <div class="flex items-center gap-10 px-6 py-5">
+          <!-- Duplicate the exact same 14 .tool blocks here -->
+          <!-- Tip: Replit, copy/paste the entire block above to here unchanged -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
