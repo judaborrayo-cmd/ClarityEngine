@@ -45,32 +45,45 @@ export default function Services() {
             className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition"
             data-testid="card-audit-offer"
           >
-            <h3 className="text-xl font-semibold mb-2 text-gray-900" data-testid="text-audit-title">
-              Deep-Dive Growth Audit (Full-Funnel)
-            </h3>
-            <p className="text-gray-600 mb-4" data-testid="text-audit-description">
-              Pinpoint what's working, what's not, and what to fix first across ads, tracking, offers, and funnel. 
-              Built to unlock faster bookings and lower CPL for retreats, travel operators, fitness studios/gyms, and multi-location brands.
-            </p>
-            <ul className="text-sm text-gray-600 mb-5 space-y-2">
-              <li className="flex items-start gap-2" data-testid="text-audit-bullet-1">
-                <span>•</span>
-                <span>Full-funnel audit with PDF + video walkthrough</span>
+            {/* Header with icon */}
+            <div className="flex items-start gap-3 mb-2">
+              {/* Magnifying glass icon */}
+              <svg className="h-6 w-6 text-indigo-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="7" strokeWidth="2"></circle>
+                <path d="M20 20l-3.5-3.5" strokeWidth="2" strokeLinecap="round"></path>
+              </svg>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900" data-testid="text-audit-title">
+                  Deep-Dive Growth Audit (Full-Funnel)
+                </h3>
+                <p className="text-gray-600" data-testid="text-audit-description">
+                  Pinpoint what's working, what's not, and what to fix first across ads, tracking, offers, and funnel.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature list with green check circles */}
+            <ul className="mt-4 space-y-2">
+              <li className="flex items-start gap-3" data-testid="text-audit-bullet-1">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Full-funnel audit with PDF + video walkthrough</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-audit-bullet-2">
-                <span>•</span>
-                <span>30–60-minute strategy call to review findings</span>
+              <li className="flex items-start gap-3" data-testid="text-audit-bullet-2">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">30–60-minute strategy call to review findings</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-audit-bullet-3">
-                <span>•</span>
-                <span>Priority actions: quick wins, CRO tests, remarketing tiers</span>
+              <li className="flex items-start gap-3" data-testid="text-audit-bullet-3">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Priority actions: quick wins, CRO tests, tiered remarketing</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-audit-bullet-4">
-                <span>•</span>
-                <span>2 weeks of post-audit support via email</span>
+              <li className="flex items-start gap-3" data-testid="text-audit-bullet-4">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">2 weeks of post-audit support via email</span>
               </li>
             </ul>
-            <div className="flex flex-wrap gap-3">
+
+            {/* Buttons (unchanged labels) */}
+            <div className="mt-5 flex flex-wrap gap-3">
               <a
                 href="#calendly"
                 className="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
@@ -86,46 +99,57 @@ export default function Services() {
                 See Audit Details
               </a>
             </div>
+
             <p className="text-xs text-gray-400 mt-3">
               Most partners start here — the audit becomes your 90-day roadmap.
             </p>
           </article>
 
-          {/* Growth Retainer (By Application) */}
+          {/* Growth Retainer */}
           <article
             className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition"
             data-testid="card-retainer-offer"
           >
-            <h3 className="text-xl font-semibold mb-2 text-gray-900" data-testid="text-retainer-title">
-              Growth Retainer (By Application / Waitlist)
-            </h3>
-            <p className="text-gray-600 mb-4" data-testid="text-retainer-description">
-              Ongoing, hands-on growth management: paid media, CRO, and attribution working together to scale bookings 
-              and revenue. Best for founders and teams ready to compound wins post-audit.
-            </p>
-            <ul className="text-sm text-gray-600 mb-5 space-y-2">
-              <li className="flex items-start gap-2" data-testid="text-retainer-bullet-1">
-                <span>•</span>
-                <span>Omni-channel strategy across Google, Meta, and YouTube</span>
+            {/* Header with icon */}
+            <div className="flex items-start gap-3 mb-2">
+              {/* Trending up icon */}
+              <svg className="h-6 w-6 text-indigo-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M3 17l6-6 4 4 7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+              </svg>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900" data-testid="text-retainer-title">
+                  Growth Retainer (By Application / Waitlist)
+                </h3>
+                <p className="text-gray-600" data-testid="text-retainer-description">
+                  Hands-on growth management to scale bookings and revenue across channels and locations.
+                </p>
+              </div>
+            </div>
+
+            <ul className="mt-4 space-y-2">
+              <li className="flex items-start gap-3" data-testid="text-retainer-bullet-1">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Omni-channel strategy across Google, Meta, and YouTube</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-retainer-bullet-2">
-                <span>•</span>
-                <span>Tiered remarketing (Day 1–7, Week 2–4, 30+ days)</span>
+              <li className="flex items-start gap-3" data-testid="text-retainer-bullet-2">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Tiered remarketing (Day 1–7, Week 2–4, 30+ days)</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-retainer-bullet-3">
-                <span>•</span>
-                <span>Offer + landing page testing to lift bookings and memberships</span>
+              <li className="flex items-start gap-3" data-testid="text-retainer-bullet-3">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Offer + landing page testing to lift bookings and memberships</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-retainer-bullet-4">
-                <span>•</span>
-                <span>Attribution + reporting focused on ROAS, CPA, and payback</span>
+              <li className="flex items-start gap-3" data-testid="text-retainer-bullet-4">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Attribution + reporting focused on ROAS, CPA, payback</span>
               </li>
-              <li className="flex items-start gap-2" data-testid="text-retainer-bullet-5">
-                <span>•</span>
-                <span>Fractional CMO guidance for multi-location ops</span>
+              <li className="flex items-start gap-3" data-testid="text-retainer-bullet-5">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
+                <span className="text-gray-700">Fractional CMO guidance for multi-location ops</span>
               </li>
             </ul>
-            <div className="flex flex-wrap gap-3">
+
+            <div className="mt-5 flex flex-wrap gap-3">
               <a
                 href="#waitlist"
                 className="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
@@ -141,6 +165,7 @@ export default function Services() {
                 Discuss Fit on a Call — $75
               </a>
             </div>
+
             <p className="text-xs text-gray-400 mt-3">
               Limited slots. New clients typically onboard after a completed audit.
             </p>
@@ -148,117 +173,123 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ===== 3) SUPPORTING SERVICES GRID (tailored) ===== */}
+      {/* ===== 3) SERVICES AT A GLANCE ===== */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl font-semibold text-center text-gray-900">
-            Specialized Playbooks &amp; Capabilities
-          </h2>
-          <p className="text-gray-600 text-center mt-2 max-w-3xl mx-auto">
-            Built for brands that depend on demand generation: retreats, travel, fitness, and multi-location companies.
-          </p>
+          <h2 className="text-2xl font-semibold text-center text-gray-900">Services at a glance</h2>
+          <p className="text-gray-600 text-center mt-2">Strategies adjusted based on business needs &amp; audit.</p>
 
+          {/* Grid of 6 cards (match homepage look) */}
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition" data-testid="card-google-ads">
-              <p className="text-xs uppercase tracking-wide text-gray-500">Paid Media</p>
-              <h4 className="mt-2 font-semibold text-gray-900" data-testid="text-google-ads-title">
-                Google Ads Management
-              </h4>
-              <p className="mt-2 text-gray-600" data-testid="text-google-ads-description">
-                Capture high-intent searchers for bookings and leads (retreat dates, itineraries, class signups).
+            {/* Card */}
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:ring-1 hover:ring-indigo-200 transition" data-testid="card-google-ads">
+              <div className="flex items-center gap-3">
+                <img alt="Google" className="h-6 w-6" src="https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png" />
+                <h3 className="font-semibold text-gray-900" data-testid="text-google-ads-title">Google Ads Advertising</h3>
+              </div>
+              <p className="mt-3 text-gray-600" data-testid="text-google-ads-description">
+                Capture demand: searchers for retreat dates, itineraries, class signups, local queries.
               </p>
-              <a
-                href="#google"
-                className="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700"
-                data-testid="link-google-ads-playbook"
-              >
-                Learn more →
-              </a>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition" data-testid="card-meta-campaigns">
-              <p className="text-xs uppercase tracking-wide text-gray-500">Paid Media</p>
-              <h4 className="mt-2 font-semibold text-gray-900" data-testid="text-meta-title">
-                Meta Campaigns
-              </h4>
-              <p className="mt-2 text-gray-600" data-testid="text-meta-description">
-                Scalable creative systems + tiered remarketing to turn interest into inquiries and bookings.
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:ring-1 hover:ring-indigo-200 transition" data-testid="card-meta-campaigns">
+              <div className="flex items-center gap-3">
+                <img alt="Meta" className="h-6 w-6" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Meta_Platforms_Inc._logo.svg" />
+                <h3 className="font-semibold text-gray-900" data-testid="text-meta-title">Meta Advertising</h3>
+              </div>
+              <p className="mt-3 text-gray-600" data-testid="text-meta-description">
+                Scalable creative systems + remarketing to convert interest into inquiries &amp; bookings.
               </p>
-              <a
-                href="#meta"
-                className="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700"
-                data-testid="link-meta-playbook"
-              >
-                Learn more →
-              </a>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition" data-testid="card-cro">
-              <p className="text-xs uppercase tracking-wide text-gray-500">CRO</p>
-              <h4 className="mt-2 font-semibold text-gray-900" data-testid="text-cro-title">
-                CRO &amp; Funnel Optimization
-              </h4>
-              <p className="mt-2 text-gray-600" data-testid="text-cro-description">
-                Lift conversion rates for retreat applications, tour inquiries, trial passes, and memberships.
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:ring-1 hover:ring-indigo-200 transition" data-testid="card-cro">
+              <div className="flex items-center gap-3">
+                <svg className="h-6 w-6 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 12h16M4 6h10M4 18h7" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                <h3 className="font-semibold text-gray-900" data-testid="text-cro-title">Conversion Rate Optimization</h3>
+              </div>
+              <p className="mt-3 text-gray-600" data-testid="text-cro-description">
+                Improve landing flow for applications, tour inquiries, trials, passes, memberships.
               </p>
-              <a
-                href="#cro"
-                className="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700"
-                data-testid="link-cro-playbook"
-              >
-                Learn more →
-              </a>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition" data-testid="card-attribution">
-              <p className="text-xs uppercase tracking-wide text-gray-500">Analytics</p>
-              <h4 className="mt-2 font-semibold text-gray-900" data-testid="text-attribution-title">
-                Attribution &amp; Reporting
-              </h4>
-              <p className="mt-2 text-gray-600" data-testid="text-attribution-description">
-                Unify GA4 + ad platforms to see ROAS, CPA, and payback clearly across locations.
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:ring-1 hover:ring-indigo-200 transition" data-testid="card-attribution">
+              <div className="flex items-center gap-3">
+                <svg className="h-6 w-6 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M3 3v18h18" strokeWidth="2"/>
+                  <path d="M7 15l3-3 2 2 4-4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <h3 className="font-semibold text-gray-900" data-testid="text-attribution-title">Strategic Reporting &amp; KPI Optimization</h3>
+              </div>
+              <p className="mt-3 text-gray-600" data-testid="text-attribution-description">
+                Unify GA4 + platforms. See ROAS, CPA, and payback clearly across locations.
               </p>
-              <a
-                href="#attribution"
-                className="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700"
-                data-testid="link-attribution-playbook"
-              >
-                Learn more →
-              </a>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition" data-testid="card-youtube">
-              <p className="text-xs uppercase tracking-wide text-gray-500">Video Ads</p>
-              <h4 className="mt-2 font-semibold text-gray-900" data-testid="text-youtube-title">
-                YouTube Ads
-              </h4>
-              <p className="mt-2 text-gray-600" data-testid="text-youtube-description">
-                Educate and convert with high-intent audiences (itineraries, destination research, gym near me).
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:ring-1 hover:ring-indigo-200 transition" data-testid="card-youtube">
+              <div className="flex items-center gap-3">
+                <svg className="h-6 w-6 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M10 8l6 4-6 4V8z"/>
+                </svg>
+                <h3 className="font-semibold text-gray-900" data-testid="text-youtube-title">YouTube Advertising</h3>
+              </div>
+              <p className="mt-3 text-gray-600" data-testid="text-youtube-description">
+                Educate &amp; convert high-intent audiences (destination research, "gym near me").
               </p>
-              <a
-                href="#youtube"
-                className="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700"
-                data-testid="link-youtube-playbook"
-              >
-                Learn more →
-              </a>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 p-6 bg-white shadow-sm hover:shadow-md transition" data-testid="card-fractional-cmo">
-              <p className="text-xs uppercase tracking-wide text-gray-500">Strategy</p>
-              <h4 className="mt-2 font-semibold text-gray-900" data-testid="text-cmo-title">
-                Fractional CMO
-              </h4>
-              <p className="mt-2 text-gray-600" data-testid="text-cmo-description">
-                Align teams, locations, and vendors behind a unified roadmap and weekly reporting rhythm.
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:ring-1 hover:ring-indigo-200 transition" data-testid="card-ab-testing">
+              <div className="flex items-center gap-3">
+                <svg className="h-6 w-6 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 4v16M4 12h16" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                <h3 className="font-semibold text-gray-900" data-testid="text-ab-testing-title">A/B Testing</h3>
+              </div>
+              <p className="mt-3 text-gray-600" data-testid="text-ab-testing-description">
+                Systematic experiments on offers, creatives, and funnels to compound wins.
               </p>
-              <a
-                href="#fcm"
-                className="mt-4 inline-block text-indigo-600 font-semibold hover:text-indigo-700"
-                data-testid="link-cmo-playbook"
-              >
-                Learn more →
-              </a>
+            </div>
+          </div>
+
+          {/* Gradient panel beneath grid (match homepage feel) */}
+          <div
+            className="mt-10 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.05)]"
+            style={{background: "radial-gradient(120% 120% at 0% 0%, rgba(99,102,241,0.08) 0%, rgba(16,185,129,0.08) 60%, rgba(255,255,255,0.9) 100%)"}}
+          >
+            <div className="grid md:grid-cols-2 gap-6 items-start">
+              <div className="h-44 bg-white/60 rounded-xl border border-white/40 shadow-inner hidden md:block"></div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900">Capture Demand. Convert Faster.</h3>
+                <p className="mt-2 text-gray-700">
+                  We turn Google into your most reliable sales channel. From Search to Performance Max, we refine structure,
+                  tracking, and creative so you capture the right traffic — not just clicks — and make confident decisions faster.
+                </p>
+                <ul className="mt-4 space-y-2 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                    Capture high-intent leads and buyers
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                    Eliminate wasted spend through better structure
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                    Build a scalable, data-driven foundation for growth
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                    See what's working faster with clear KPI visibility
+                  </li>
+                </ul>
+                <div className="mt-4 flex flex-wrap gap-2 text-xs">
+                  <span className="px-2 py-1 rounded-full bg-white border text-gray-600">Search</span>
+                  <span className="px-2 py-1 rounded-full bg-white border text-gray-600">PMax</span>
+                  <span className="px-2 py-1 rounded-full bg-white border text-gray-600">YouTube</span>
+                  <span className="px-2 py-1 rounded-full bg-white border text-gray-600">GA4</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
