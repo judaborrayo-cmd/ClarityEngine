@@ -358,7 +358,7 @@ export default function Home() {
         </Section>
 
         {/* --- SCALE AND AUDIT SECTION --- */}
-        <Section id="youtube" className="py-16">
+        <Section id="how-we-scale" className="py-16">
           <ScaleAndAudit videoUrl={CONFIG.featuredVideo.url()} />
         </Section>
 

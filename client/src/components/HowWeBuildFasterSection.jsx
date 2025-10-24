@@ -158,7 +158,7 @@ export default function HowWeBuildFasterSection() {
 
   return (
     <section
-      id="how-we-scale"
+      id="how-we-build-faster"
       data-testid="section-how-we-build-faster"
       className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24"
     >
