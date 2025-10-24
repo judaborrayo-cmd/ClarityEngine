@@ -52,12 +52,6 @@ function Navbar() {
               About
             </Link>
             <Link 
-              to="/testimonials" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Testimonials
-            </Link>
-            <Link 
               to="/#book-intro" 
               className="bg-primary text-primary-foreground px-6 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors"
             >

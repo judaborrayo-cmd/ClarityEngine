@@ -1,0 +1,49 @@
+You are editing this project. Make ONLY the changes below.
+
+A) Navigation
+
+Remove the Testimonials item from the header navigation (do not delete the testimonials page file; simply remove its nav link).
+
+Keep Case Studies in the nav pointing to the existing Case Studies page (/case-studies).
+
+Do not change the Services/About links or their anchor behavior.
+
+B) Expand the Case Studies page by appending the current Testimonials content
+
+Open the Testimonials page and locate these sections in order:
+
+Page hero heading “Testimonials” (ignore this page-level H1; do not copy it).
+
+“Colleague Reviews” section (grid of colored testimonial cards).
+
+“Client Results” section (icons + short outcome blurbs).
+
+Bottom CTA section that begins “Ready to join our success stories?” with 2 buttons.
+
+Copy those three content sections only (not the page H1) and append them to the bottom of the Case Studies page, after the current “Trusted by Leading Brands…” logos strip and before the page’s own bottom CTA (if present).
+
+When pasting into Case Studies, downgrade headings so the hierarchy is valid:
+
+“Colleague Reviews” → <h2>
+
+Any card titles inside remain as they are (typically <p>/labels).
+
+“Client Results” → <h2>
+
+“Ready to join our success stories?” → <h2>
+
+Keep all original Tailwind classes/styles from those sections so the design remains identical.
+
+Do not alter any copy.
+
+If both pages contain a bottom CTA, keep both; on Case Studies, place the imported Testimonials CTA above the existing Case Studies CTA if there’s overlap.
+
+C) Do not change or delete the Testimonials page file; it will simply no longer be linked in the header.
+
+D) Accessibility/IDs
+
+Ensure any duplicated IDs from the Testimonials markup are made unique on Case Studies (e.g., change id="client-results" to id="client-results-cs").
+
+Preserve all button links exactly as they are (e.g., book call, view case studies, start audit).
+
+If helpful, use the code block below as a structural anchor to paste the imported sections, but prefer copying the exact markup from the Testimonials page so visuals match 1:1.
