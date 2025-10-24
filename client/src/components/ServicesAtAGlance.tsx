@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Target, BarChart3, FlaskConical } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 // Import brand logos
 import googleAdsLogo from '@assets/Google-Ads-Logo-Trans_1761062080038.png';
@@ -45,6 +46,32 @@ interface ServiceLogo {
 }
 
 export default function ServicesAtAGlance() {
+  // Tool tooltip mapping
+  const toolTooltips: Record<string, string> = {
+    "Figma": "Prototype, share, get approval.",
+    "Replit (prototype)": "Ship pages at sprint speed.",
+    "Prototype": "Quickly test real ideas.",
+    "Dev handoff": "Clean specs, fewer revisions.",
+    "GA4": "All others bring data.",
+    "Hotjar": "See friction. Fix flow.",
+    "Mouseflow": "See friction. Fix flow.",
+    "Sheets": "Fast models, clear numbers.",
+    "Looker": "Answers, not dashboards.",
+    "Cohorts": "Retention tells the truth.",
+    "In-Stream": "Tell the story mid-scroll.",
+    "Discovery": "Meet buyers researching.",
+    "Retargeting": "Don't waste warm attention.",
+    "Catalog": "Dynamic creatives at scale.",
+    "DCT": "Test creatives systematically.",
+    "UGC": "Social proof that sells.",
+    "Search": "Show up when they search.",
+    "PMax": "Omnipresence without chaos.",
+    "YouTube": "Turn attention into demand.",
+    "Meta": "Scale what works across platforms.",
+    "CRO": "See friction. Fix flow.",
+    "AB": "Test smarter. Scale faster.",
+  };
+
   const services = useMemo(
     () => [
       {
@@ -248,14 +275,35 @@ export default function ServicesAtAGlance() {
                 </li>
               ))}
             </ul>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {active.tools.map((t, i) => (
-                <Pill key={i}>{t}</Pill>
-              ))}
-            </div>
+            <TooltipProvider delayDuration={200}>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {active.tools.map((t, i) => (
+                  <Tooltip key={i}>
+                    <TooltipTrigger asChild>
+                      <div className="ce-logo group cursor-pointer">
+                        <Pill>{t}</Pill>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      className="bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-lg max-w-[200px] text-center"
+                    >
+                      {toolTooltips[t] || t}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+            </TooltipProvider>
           </div>
         </div>
       </div>
+
+      {/* Tooltip hover effects */}
+      <style>{`
+        .ce-logo { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+        .ce-logo > * { transition: transform 0.18s ease, filter 0.18s ease; }
+        .ce-logo:hover > * { transform: scale(1.06); filter: saturate(1.15); }
+      `}</style>
     </section>
   );
 }

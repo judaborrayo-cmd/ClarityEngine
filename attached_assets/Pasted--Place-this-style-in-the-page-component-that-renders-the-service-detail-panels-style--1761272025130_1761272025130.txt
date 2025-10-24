@@ -1,0 +1,72 @@
+<!-- Place this <style> in the page/component that renders the service detail panels -->
+<style>
+  .ce-logo { position:relative; display:flex; align-items:center; justify-content:center; }
+  .ce-logo img, .ce-logo svg { transition: transform .18s ease, filter .18s ease; }
+  .ce-logo:hover img, .ce-logo:hover svg { transform: scale(1.06); filter: saturate(1.15); }
+
+  /* Tooltip */
+  .ce-tip {
+    position:absolute; left:50%; bottom:100%;
+    transform: translate(-50%, -6px); 
+    background:#111827; color:#fff; font-size:12px; line-height:1;
+    padding:6px 8px; border-radius:8px; white-space:nowrap;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    opacity:0; pointer-events:none; transition:opacity .18s ease, transform .18s ease;
+  }
+  .ce-logo:hover .ce-tip { opacity:1; transform: translate(-50%, -10px); }
+  .ce-tip:after { /* small arrow */
+    content:""; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    border:6px solid transparent; border-top-color:#111827;
+  }
+
+  /* Optional: pause subtle bg animation in the panel while hovering any logo */
+  .ce-panel:hover .ce-anim { animation-play-state: paused; }
+</style>
+
+<!-- Optional helper script: show tooltip on tap for mobile -->
+<script>
+  document.addEventListener('click', function(e){
+    const logo = e.target.closest('.ce-logo');
+    if(!logo) return;
+    // brief show on tap
+    const tip = logo.querySelector('.ce-tip');
+    if(!tip) return;
+    tip.style.opacity = '1';
+    tip.style.transform = 'translate(-50%, -10px)';
+    setTimeout(()=>{ tip.style.opacity=''; tip.style.transform=''; }, 1200);
+  }, { passive:true });
+</script>
+
+<!-- ===== Example: inside a service detail panel ===== -->
+<div class="ce-panel rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.05)] bg-white/70">
+  <!-- Your existing panel content … -->
+
+  <!-- Logo row (use your real logos; keep your current markup; just wrap each in .ce-logo and add data-tip) -->
+  <div class="mt-4 flex flex-wrap items-center gap-4">
+    <!-- Figma -->
+    <div class="ce-logo h-8 w-8" data-tip="Prototype, share, get approval.">
+      <img src="/assets/logos/figma.svg" alt="Figma" class="h-8 w-8 object-contain" />
+      <span class="ce-tip">Prototype, share, get approval.</span>
+    </div>
+
+    <!-- Replit -->
+    <div class="ce-logo h-8 w-8" data-tip="Ship pages at sprint speed.">
+      <img src="/assets/logos/replit.svg" alt="Replit" class="h-8 w-8 object-contain" />
+      <span class="ce-tip">Ship pages at sprint speed.</span>
+    </div>
+
+    <!-- GA4 -->
+    <div class="ce-logo h-8 w-8" data-tip="All others bring data.">
+      <img src="/assets/logos/ga4.svg" alt="Google Analytics 4" class="h-8 w-8 object-contain" />
+      <span class="ce-tip">All others bring data.</span>
+    </div>
+
+    <!-- Mouseflow / Hotjar (use whichever you show) -->
+    <div class="ce-logo h-8 w-8" data-tip="See friction. Fix flow.">
+      <img src="/assets/logos/mouseflow.svg" alt="Mouseflow" class="h-8 w-8 object-contain" />
+      <span class="ce-tip">See friction. Fix flow.</span>
+    </div>
+
+    <!-- Add as many logos as needed; just keep the .ce-logo wrapper + .ce-tip text -->
+  </div>
+</div>
