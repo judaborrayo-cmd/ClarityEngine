@@ -93,6 +93,38 @@ const StepCard = forwardRef(({
 });
 
 export default function HowWeBuildFasterSection() {
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const tickerRef = useRef(null);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const diff = e.clientX - startX;
+    setScrollOffset(prev => prev + diff);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, startX]);
+
   const steps = useMemo(
     () => [
       {
@@ -246,8 +278,19 @@ export default function HowWeBuildFasterSection() {
         
         {/* Animated Tools Ticker */}
         <TooltipProvider delayDuration={200}>
-          <div className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4">
-            <div className="tools-ticker-track whitespace-nowrap flex items-center gap-12">
+          <div 
+            className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4 select-none"
+            onMouseDown={handleMouseDown}
+            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+          >
+            <div 
+              ref={tickerRef}
+              className="tools-ticker-track whitespace-nowrap flex items-center gap-12"
+              style={{
+                animationPlayState: isDragging ? 'paused' : 'running',
+                transform: `translateX(${scrollOffset}px)`
+              }}
+            >
               {/* Tool descriptions mapping */}
               {(() => {
                 const toolDescriptions = {
@@ -347,8 +390,8 @@ export default function HowWeBuildFasterSection() {
         {/* Inline styles for ticker animation */}
         <style>{`
           @keyframes tools-ticker-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
           }
           .tools-ticker-track {
             animation: tools-ticker-scroll 30s linear infinite;
