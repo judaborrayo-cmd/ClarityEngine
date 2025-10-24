@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState, useEffect, forwardRef } from "react";
 import { MousePointer2, Video, Camera, Mic } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
 import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
@@ -244,74 +245,104 @@ export default function HowWeBuildFasterSection() {
         </p>
         
         {/* Animated Tools Ticker */}
-        <div className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4">
-          <div className="tools-ticker-track whitespace-nowrap flex items-center gap-12">
-            {/* First set of tools */}
-            {[
-              { name: "ChatGPT", logo: chatgptLogo },
-              { name: "Gemini", logo: geminiLogo },
-              { name: "Mouseflow", icon: MousePointer2 },
-              { name: "CapCut", icon: Video },
-              { name: "Midjourney", logo: midjourneyLogo },
-              { name: "Photoshop", logo: photoshopLogo },
-              { name: "Zoom", icon: Camera },
-              { name: "Krisp.ai", icon: Mic },
-              { name: "Figma", logo: figmaLogo },
-              { name: "Replit", logo: replitLogo },
-              { name: "GA4", logo: googleAnalyticsLogo },
-              { name: "Google Drive", logo: googleDriveLogo },
-              { name: "Teams", logo: microsoftTeamsLogo },
-              { name: "Dropbox", logo: dropboxLogo },
-            ].map((tool) => (
-              <div key={`${tool.name}-1`} className="inline-flex items-center gap-2 shrink-0">
-                {tool.logo ? (
-                  <img
-                    src={tool.logo}
-                    alt={tool.name}
-                    className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-                  />
-                ) : (
-                  <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                    {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
-                    <span className="text-sm font-medium text-gray-700">{tool.name}</span>
-                  </div>
-                )}
-              </div>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {[
-              { name: "ChatGPT", logo: chatgptLogo },
-              { name: "Gemini", logo: geminiLogo },
-              { name: "Mouseflow", icon: MousePointer2 },
-              { name: "CapCut", icon: Video },
-              { name: "Midjourney", logo: midjourneyLogo },
-              { name: "Photoshop", logo: photoshopLogo },
-              { name: "Zoom", icon: Camera },
-              { name: "Krisp.ai", icon: Mic },
-              { name: "Figma", logo: figmaLogo },
-              { name: "Replit", logo: replitLogo },
-              { name: "GA4", logo: googleAnalyticsLogo },
-              { name: "Google Drive", logo: googleDriveLogo },
-              { name: "Teams", logo: microsoftTeamsLogo },
-              { name: "Dropbox", logo: dropboxLogo },
-            ].map((tool) => (
-              <div key={`${tool.name}-2`} className="inline-flex items-center gap-2 shrink-0">
-                {tool.logo ? (
-                  <img
-                    src={tool.logo}
-                    alt={tool.name}
-                    className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-                  />
-                ) : (
-                  <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                    {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
-                    <span className="text-sm font-medium text-gray-700">{tool.name}</span>
-                  </div>
-                )}
-              </div>
-            ))}
+        <TooltipProvider delayDuration={200}>
+          <div className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4">
+            <div className="tools-ticker-track whitespace-nowrap flex items-center gap-12">
+              {/* Tool descriptions mapping */}
+              {(() => {
+                const toolDescriptions = {
+                  "Photoshop": "Polish creatives for conversion.",
+                  "ChatGPT": "Draft, iterate, decide faster.",
+                  "Gemini": "Cross-check strategy with AI.",
+                  "Mouseflow": "See friction. Fix flow.",
+                  "CapCut": "Edit fast. Test faster.",
+                  "Midjourney": "Concept visuals in hours.",
+                  "Zoom": "Meet, align, move forward.",
+                  "Krisp.ai": "Clean audio, clearer calls.",
+                  "Figma": "Prototype, share, get approval.",
+                  "Replit": "Ship pages at sprint speed.",
+                  "GA4": "All others bring data.",
+                  "Google Drive": "We work in your drive.",
+                  "Microsoft Teams": "We plug into Teams.",
+                  "Teams": "We plug into Teams.",
+                  "Dropbox": "Assets ready when needed.",
+                };
+
+                const tools = [
+                  { name: "ChatGPT", logo: chatgptLogo },
+                  { name: "Gemini", logo: geminiLogo },
+                  { name: "Mouseflow", icon: MousePointer2 },
+                  { name: "CapCut", icon: Video },
+                  { name: "Midjourney", logo: midjourneyLogo },
+                  { name: "Photoshop", logo: photoshopLogo },
+                  { name: "Zoom", icon: Camera },
+                  { name: "Krisp.ai", icon: Mic },
+                  { name: "Figma", logo: figmaLogo },
+                  { name: "Replit", logo: replitLogo },
+                  { name: "GA4", logo: googleAnalyticsLogo },
+                  { name: "Google Drive", logo: googleDriveLogo },
+                  { name: "Teams", logo: microsoftTeamsLogo },
+                  { name: "Dropbox", logo: dropboxLogo },
+                ];
+
+                return (
+                  <>
+                    {/* First set of tools */}
+                    {tools.map((tool) => (
+                      <Tooltip key={`${tool.name}-1`}>
+                        <TooltipTrigger asChild>
+                          <div className="inline-flex items-center gap-2 shrink-0 cursor-pointer">
+                            {tool.logo ? (
+                              <img
+                                src={tool.logo}
+                                alt={tool.name}
+                                className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                              />
+                            ) : (
+                              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200 hover:border-violet-400 transition-colors">
+                                {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
+                                <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                              </div>
+                            )}
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="font-medium">{tool.name}</p>
+                          <p className="text-xs text-muted-foreground">{toolDescriptions[tool.name]}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                    {/* Duplicate set for seamless loop */}
+                    {tools.map((tool) => (
+                      <Tooltip key={`${tool.name}-2`}>
+                        <TooltipTrigger asChild>
+                          <div className="inline-flex items-center gap-2 shrink-0 cursor-pointer">
+                            {tool.logo ? (
+                              <img
+                                src={tool.logo}
+                                alt={tool.name}
+                                className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                              />
+                            ) : (
+                              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200 hover:border-violet-400 transition-colors">
+                                {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
+                                <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                              </div>
+                            )}
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="font-medium">{tool.name}</p>
+                          <p className="text-xs text-muted-foreground">{toolDescriptions[tool.name]}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </>
+                );
+              })()}
+            </div>
           </div>
-        </div>
+        </TooltipProvider>
 
         {/* Inline styles for ticker animation */}
         <style>{`
