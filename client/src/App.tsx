@@ -1,8 +1,9 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useEffect } from "react";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import CaseStudies from "@/pages/case-studies";
@@ -33,7 +34,7 @@ function Navbar() {
           
           <div className="flex items-center space-x-8">
             <Link 
-              to="/services" 
+              to="/#services" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Services
@@ -45,7 +46,7 @@ function Navbar() {
               Case Studies
             </Link>
             <Link 
-              to="/about" 
+              to="/#how-we-scale" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               About
@@ -70,6 +71,52 @@ function Navbar() {
 }
 
 function Router() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Handle smooth scroll on homepage for anchor links
+    const handleSmoothScroll = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement).closest('a[href]');
+      if (!link) return;
+      
+      const href = link.getAttribute('href');
+      if (!href) return;
+      
+      // Only handle our specific anchor links
+      if (!['/#services', '/#how-we-scale'].includes(href)) return;
+      
+      // Only intercept if we're already on the homepage
+      if (location.pathname !== '/') return;
+      
+      e.preventDefault();
+      const id = href.split('#')[1];
+      const target = document.getElementById(id);
+      
+      if (target) {
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    };
+
+    document.addEventListener('click', handleSmoothScroll);
+    return () => document.removeEventListener('click', handleSmoothScroll);
+  }, [location.pathname]);
+
+  // Handle hash on page load (when navigating from other pages)
+  useEffect(() => {
+    if (location.hash && location.pathname === '/') {
+      const id = location.hash.substring(1);
+      setTimeout(() => {
+        const target = document.getElementById(id);
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <>
       <Navbar />

@@ -161,7 +161,7 @@ export default function ServicesAtAGlance() {
   const active = services.find((s) => s.id === displayedId)!;
 
   return (
-    <section id="services-at-a-glance" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <section id="services" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900" data-testid="services-heading">Services at a glance</h2>
         <p className="mt-4 text-lg text-gray-700" data-testid="services-subheading">Strategies adjusted based on business needs & audit.</p>

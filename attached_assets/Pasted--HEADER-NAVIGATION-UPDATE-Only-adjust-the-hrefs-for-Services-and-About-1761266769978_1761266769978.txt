@@ -1,0 +1,68 @@
+<!-- =========================
+HEADER NAVIGATION UPDATE
+Only adjust the hrefs for Services and About.
+Keep all styling, classes, and other links the same.
+========================= -->
+<nav class="flex items-center gap-6">
+  <a href="/#services" class="text-gray-700 hover:text-gray-900">Services</a>
+  <a href="/case-studies" class="text-gray-700 hover:text-gray-900">Case Studies</a>
+  <a href="/#how-we-scale" class="text-gray-700 hover:text-gray-900">About</a>
+  <a href="/testimonials" class="text-gray-700 hover:text-gray-900">Testimonials</a>
+  <!-- Leave “Book Strategic Intro Call” exactly as it is in your current code -->
+</nav>
+
+<!-- =========================
+ANCHOR BEHAVIOR SCRIPT
+Enables smooth scroll when already on home.
+Does NOT affect any other link or button.
+========================= -->
+<script>
+(function () {
+  const HOME_PATHS = ['/', '/index.html', ''];
+  const isHome = () => HOME_PATHS.includes(location.pathname);
+
+  // Safely ensure IDs exist without changing any content
+  function ensureIds() {
+    if (!isHome()) return;
+    const setId = (text, id) => {
+      const el = Array.from(document.querySelectorAll('h1, h2, h3')).find(
+        e => e.textContent.trim().toLowerCase() === text.toLowerCase()
+      );
+      if (el && !el.closest('section')?.id) {
+        const sec = el.closest('section');
+        if (sec) sec.id = id;
+      }
+    };
+    if (!document.getElementById('services')) setId('Services at a glance', 'services');
+    if (!document.getElementById('how-we-scale')) setId('How We Scale Paid Media in 90 Days', 'how-we-scale');
+  }
+
+  // Smooth scroll on same-page clicks
+  function wireSmoothScroll() {
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!['/#services', '/#how-we-scale'].includes(href)) return;
+      if (!isHome()) return; // normal nav on other pages
+      e.preventDefault();
+      const id = href.split('#')[1];
+      const target = document.getElementById(id);
+      if (target) {
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      ensureIds();
+      wireSmoothScroll();
+    });
+  } else {
+    ensureIds();
+    wireSmoothScroll();
+  }
+})();
+</script>
