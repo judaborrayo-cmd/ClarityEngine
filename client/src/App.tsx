@@ -114,6 +114,12 @@ function Router() {
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 100);
+    } else if (!location.hash) {
+      // Scroll to top when navigating to a new page without a hash
+      // Use setTimeout to ensure it runs after route content renders
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
     }
   }, [location]);
 
