@@ -244,247 +244,89 @@ export default function HowWeBuildFasterSection() {
         </p>
         
         {/* Animated Tools Ticker */}
-        <div className="ticker relative overflow-hidden rounded-xl border border-gray-200 bg-white/60">
-          <div className="ticker-track flex items-center gap-10 whitespace-nowrap px-6 py-5">
+        <div className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4">
+          <div className="tools-ticker-track whitespace-nowrap flex items-center gap-12">
             {/* First set of tools */}
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={photoshopLogo} alt="Photoshop" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Polish creatives for conversion.
+            {[
+              { name: "ChatGPT", logo: chatgptLogo },
+              { name: "Gemini", logo: geminiLogo },
+              { name: "Mouseflow", icon: MousePointer2 },
+              { name: "CapCut", icon: Video },
+              { name: "Midjourney", logo: midjourneyLogo },
+              { name: "Photoshop", logo: photoshopLogo },
+              { name: "Zoom", icon: Camera },
+              { name: "Krisp.ai", icon: Mic },
+              { name: "Figma", logo: figmaLogo },
+              { name: "Replit", logo: replitLogo },
+              { name: "GA4", logo: googleAnalyticsLogo },
+              { name: "Google Drive", logo: googleDriveLogo },
+              { name: "Teams", logo: microsoftTeamsLogo },
+              { name: "Dropbox", logo: dropboxLogo },
+            ].map((tool) => (
+              <div key={`${tool.name}-1`} className="inline-flex items-center gap-2 shrink-0">
+                {tool.logo ? (
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
+                    {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
+                    <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                  </div>
+                )}
               </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={chatgptLogo} alt="ChatGPT" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Draft, iterate, decide faster.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={geminiLogo} alt="Gemini" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Cross-check strategy with AI.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <MousePointer2 className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">Mouseflow</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                See friction. Fix flow.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <Video className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">CapCut</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Edit fast. Test faster.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={midjourneyLogo} alt="Midjourney" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Concept visuals in hours.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <Camera className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">Zoom</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Meet, align, move forward.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <Mic className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">Krisp.ai</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Clean audio, clearer calls.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={figmaLogo} alt="Figma" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Prototype, share, get approval.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={replitLogo} alt="Replit" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Ship pages at sprint speed.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={googleAnalyticsLogo} alt="Google Analytics" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                All others bring data.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={googleDriveLogo} alt="Google Drive" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                We work in your drive.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={microsoftTeamsLogo} alt="Microsoft Teams" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                We plug into Teams.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={dropboxLogo} alt="Dropbox" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Assets ready when needed.
-              </div>
-            </div>
-
+            ))}
             {/* Duplicate set for seamless loop */}
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={photoshopLogo} alt="Photoshop" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Polish creatives for conversion.
+            {[
+              { name: "ChatGPT", logo: chatgptLogo },
+              { name: "Gemini", logo: geminiLogo },
+              { name: "Mouseflow", icon: MousePointer2 },
+              { name: "CapCut", icon: Video },
+              { name: "Midjourney", logo: midjourneyLogo },
+              { name: "Photoshop", logo: photoshopLogo },
+              { name: "Zoom", icon: Camera },
+              { name: "Krisp.ai", icon: Mic },
+              { name: "Figma", logo: figmaLogo },
+              { name: "Replit", logo: replitLogo },
+              { name: "GA4", logo: googleAnalyticsLogo },
+              { name: "Google Drive", logo: googleDriveLogo },
+              { name: "Teams", logo: microsoftTeamsLogo },
+              { name: "Dropbox", logo: dropboxLogo },
+            ].map((tool) => (
+              <div key={`${tool.name}-2`} className="inline-flex items-center gap-2 shrink-0">
+                {tool.logo ? (
+                  <img
+                    src={tool.logo}
+                    alt={tool.name}
+                    className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
+                    {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
+                    <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                  </div>
+                )}
               </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={chatgptLogo} alt="ChatGPT" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Draft, iterate, decide faster.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={geminiLogo} alt="Gemini" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Cross-check strategy with AI.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <MousePointer2 className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">Mouseflow</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                See friction. Fix flow.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <Video className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">CapCut</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Edit fast. Test faster.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={midjourneyLogo} alt="Midjourney" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Concept visuals in hours.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <Camera className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">Zoom</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Meet, align, move forward.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
-                <Mic className="h-5 w-5 text-violet-600" />
-                <span className="text-sm font-medium text-gray-700">Krisp.ai</span>
-              </div>
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Clean audio, clearer calls.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={figmaLogo} alt="Figma" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Prototype, share, get approval.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={replitLogo} alt="Replit" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Ship pages at sprint speed.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={googleAnalyticsLogo} alt="Google Analytics" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                All others bring data.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={googleDriveLogo} alt="Google Drive" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                We work in your drive.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={microsoftTeamsLogo} alt="Microsoft Teams" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                We plug into Teams.
-              </div>
-            </div>
-
-            <div className="tool group relative h-12 w-28 flex items-center justify-center opacity-80 hover:opacity-100">
-              <img src={dropboxLogo} alt="Dropbox" className="h-7 object-contain" />
-              <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-lg bg-gray-900 text-white text-xs opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition whitespace-nowrap">
-                Assets ready when needed.
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Inline styles for ticker animation */}
         <style>{`
-          @keyframes ticker-scroll {
+          @keyframes tools-ticker-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
-          .ticker-track {
-            animation: ticker-scroll 30s linear infinite;
-            will-change: transform;
+          .tools-ticker-track {
+            animation: tools-ticker-scroll 30s linear infinite;
           }
-          .ticker:hover .ticker-track {
+          .tools-ticker-track:hover {
             animation-play-state: paused;
           }
           @media (prefers-reduced-motion: reduce) {
-            .ticker-track { animation: none; }
+            .tools-ticker-track { animation: none; }
           }
         `}</style>
       </div>
