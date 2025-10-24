@@ -353,9 +353,6 @@ export default function HowWeBuildFasterSection() {
           .tools-ticker-track {
             animation: tools-ticker-scroll 30s linear infinite;
           }
-          .tools-ticker-track:hover {
-            animation-play-state: paused;
-          }
           @media (prefers-reduced-motion: reduce) {
             .tools-ticker-track { animation: none; }
           }
