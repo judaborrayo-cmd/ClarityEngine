@@ -162,9 +162,19 @@ export default function ServicesAtAGlance() {
 
   return (
     <section id="services" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900" data-testid="services-heading">Services at a glance</h2>
-        <p className="mt-4 text-lg text-gray-700" data-testid="services-subheading">Strategies adjusted based on business needs & audit.</p>
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
+          Services at a glance
+        </p>
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl" data-testid="services-heading">
+          Services Designed to Drive<br />Measurable Growth
+        </h2>
+        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto" data-testid="services-subheading">
+          Choose your entry point — from fast clarity audits to ongoing growth retainers. Each service is built to maximize ROI.
+        </p>
+        <p className="mt-3 text-sm text-gray-500 italic" data-testid="services-note">
+          Strategies adjusted based on business needs & audit.
+        </p>
       </div>
 
       {/* TOP: Pressable button cards (one big logo + title) */}
