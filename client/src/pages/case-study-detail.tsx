@@ -783,7 +783,6 @@ export default function CaseStudyDetail() {
           {slug === "hapi-art" && (
             <BeforeAfter 
               rows={[
-                { before: "Messy product/SKU reporting", after: "Clean SKU & category-level reporting" },
                 { before: "One-off creatives, little iteration", after: "Creative testing sprints with winners rolled out" },
                 { before: "Shallow retargeting pools", after: "Multi-signal retargeting (views, carts, PDP depth, time-on-site)" },
                 { before: "Unclear ROAS and budget confidence", after: "Trusted ROAS with LTV overlays and budget guardrails" },

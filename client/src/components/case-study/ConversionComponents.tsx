@@ -217,7 +217,7 @@ export function ProfitableAdvertisingCard() {
       <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
         <figure className="p-4">
           <img
-            src="/attached_assets/Profitable Advertising Image.webp"
+            src="/attached_assets/Profitable Advertising Image_1761578948637.webp"
             alt="Meta Ads performance table and summary for Hapi Art"
             loading="lazy"
             className="w-full h-auto rounded-xl"
