@@ -431,42 +431,46 @@ const caseStudyData = {
     title: "Crafting Success: Mandali Retreats",
     subtitle: "Journey to 5X ROAS",
     category: "Wellness Marketing",
-    overview: "Mandali Retreats, a luxury wellness retreat center in Italy, sought to maximize return on advertising investment (ROI) across paid media channels, including Meta (Instagram and Facebook), Google Search, and YouTube advertising. Through meticulous strategic planning, creative direction, and advanced campaign execution, we delivered remarkable results, achieving consistent 5X ROAS and targeted campaigns that continue to generate thousands of Euros monthly.",
+    overview: "Clarity Engine implemented a repeatable, multi-channel system for Mandali Retreats—combining creative testing, geo-targeted campaigns, and structured remarketing. The result: +5× ROAS across social and +4× ROAS on Google Search, with stronger lead quality and steady monthly demand.",
     challenge: "Mandali Retreats needed to bridge the gap between online advertising and offline booking behavior while ensuring seamless data integration. The luxury wellness market required sophisticated targeting to reach high-value prospects across multiple touchpoints, from initial awareness through booking conversion, while maintaining cost efficiency across all channels.",
     solution: [
-      "Implemented comprehensive offline conversion tracking to bridge the gap between online advertising and offline booking behavior",
-      "Ensured seamless data integration to eliminate delays and streamline campaign optimization with precise attribution",
-      "Developed tiered remarketing campaigns based on user behavior, delivering tailored content at specific time intervals",
-      "Created high-quality content using professional video editing and diverse ad formats optimized for engagement",
-      "Designed geographic and optimized Google campaigns focusing on high-performing regions to reduce costs and increase efficiency",
-      "Strategically boosted key posts in Meta Ads Manager to amplify reach and impact at pivotal funnel stages",
-      "Built sophisticated remarketing funnels that consistently generate high ROAS and ongoing revenue"
+      "Implemented unified tracking and CRM handoff for faster follow-ups, closing the awareness-to-booking gap",
+      "Developed geo-targeted campaigns in high-intent regions to maximize booking quality and reduce wasted spend",
+      "Created creative testing cadence with structured remarketing to deliver consistent ROAS",
+      "Built split Google Search campaigns separating brand vs high-intent non-brand queries for +4× ROAS",
+      "Established systematic social campaigns across Meta and YouTube achieving +5× ROAS with steady month-over-month growth",
+      "Designed tiered remarketing sequences based on user behavior and engagement stages",
+      "Implemented comprehensive tracking architecture enabling precise attribution and campaign optimization"
     ],
     results: {
-      primary: "+5X ROAS across social media channels with consistent high-value returns on ad spend",
+      primary: "+5× ROAS across social and +4× ROAS on Google Search with stronger lead quality",
       metrics: [
-        { label: "Social Media ROAS", value: "+5X", icon: TrendingUp },
-        { label: "Google Search ROAS", value: "+4X", icon: Target },
-        { label: "Monthly Revenue", value: "€1000s", icon: DollarSign },
-        { label: "Lead Quality", value: "Enhanced", icon: Users }
+        { label: "Social ROAS", value: "+5×", icon: TrendingUp },
+        { label: "Google Search ROAS", value: "+4×", icon: Target },
+        { label: "Geo-targeted wins", value: "High-intent regions", icon: Target },
+        { label: "Lead quality", value: "Consistent MoM", icon: Users }
       ]
     },
     detailedResults: [
       {
-        title: "Social Media Performance",
-        description: "+5X ROAS across social media channels, consistently exceeding value expectations and delivering substantial returns on ad spend"
+        title: "Unified Tracking & CRM Integration",
+        description: "Closed the awareness-to-booking gap with unified tracking and CRM handoff, enabling faster follow-ups and better conversion rates"
       },
       {
-        title: "Search Campaign Success", 
-        description: "+4X ROAS for Google Search campaigns, generating significant value from both branded and non-branded search terms"
+        title: "Geo-Targeted Campaign Success", 
+        description: "Focused spend on high-intent regions, delivering stronger lead quality and more efficient cost-per-acquisition"
       },
       {
-        title: "Revenue Generation",
-        description: "Remarketing funnels deliver thousands of Euros monthly, ensuring consistent growth and sustainable revenue streams"
+        title: "Creative Testing & Remarketing",
+        description: "Implemented structured creative testing cadence with systematic remarketing, achieving consistent ROAS performance"
       },
       {
-        title: "Enhanced Lead Generation",
-        description: "Intensified bookings for Mandali's retreats while optimizing costs geographically for maximum efficiency"
+        title: "Search Campaign Optimization",
+        description: "Split brand vs high-intent non-brand search campaigns, achieving +4× ROAS on Google Search"
+      },
+      {
+        title: "Social Media Excellence",
+        description: "+5× ROAS across Meta and YouTube with steady month-over-month growth and reliable performance"
       }
     ],
     strategies: [
@@ -659,6 +663,20 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
+          
+          {/* StatStrip - Only for Mandali Retreats */}
+          {slug === "mandali-retreats" && (
+            <div className="mx-auto max-w-4xl">
+              <StatStrip 
+                items={[
+                  { k: "+5× ROAS", v: "Social (Meta/YouTube)" },
+                  { k: "+4× ROAS", v: "Google Search" },
+                  { k: "Geo-targeted wins", v: "High-intent regions" },
+                  { k: "Lead quality ↑", v: "Consistent month-over-month" },
+                ]}
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -740,6 +758,19 @@ export default function CaseStudyDetail() {
               />
             </>
           )}
+          
+          {/* Mid Page CTA - Only for Mandali Retreats */}
+          {slug === "mandali-retreats" && (
+            <>
+              <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
+                These learnings now inform how Clarity Engine scales retreat & wellness brands—balancing creative velocity with precise targeting.
+              </p>
+              <MidPageCTA 
+                title="Curious what this could look like for your retreat or center?"
+                body="Book a Strategic Intro Call—get a quick teardown and the fastest wins."
+              />
+            </>
+          )}
         </div>
       </section>
 
@@ -788,6 +819,20 @@ export default function CaseStudyDetail() {
                 { before: "Unclear ROAS and budget confidence", after: "Trusted ROAS with LTV overlays and budget guardrails" },
               ]}
               title="Before vs After (E-commerce System)"
+            />
+          )}
+          
+          {/* Before After - Only for Mandali Retreats */}
+          {slug === "mandali-retreats" && (
+            <BeforeAfter 
+              rows={[
+                { before: "Awareness → booking gap; manual responses", after: "Unified tracking + CRM handoff; faster follow-ups" },
+                { before: "Broad targeting; scattered data", after: "Geo-targeted campaigns in high-intent regions" },
+                { before: "One-off creatives; inconsistent ROAS", after: "Creative testing cadence; structured remarketing" },
+                { before: "Search mixed low/high intent", after: "Split brand vs high-intent non-brand; +4× ROAS" },
+                { before: "Social spend lacked reliability", after: "+5× ROAS across social; steady MoM" },
+              ]}
+              title="Before vs After (Retreats Growth System)"
             />
           )}
         </div>
@@ -839,6 +884,7 @@ export default function CaseStudyDetail() {
         <div className="mx-auto max-w-4xl text-center">
           {slug === "lamark-agency" && <TestimonialIntro />}
           {slug === "hapi-art" && <TestimonialIntroLine />}
+          {slug === "mandali-retreats" && <TestimonialIntroLine />}
           
           {(study.testimonial as any).isResultsSummary ? (
             <div data-testid="results-summary">
@@ -876,6 +922,18 @@ export default function CaseStudyDetail() {
             <BottomCTA 
               title="Ready to apply a proven 10×-ready system to your store?"
               body="Let's review your ads, landing flow, and tracking to uncover the next 2–3 profit levers."
+            />
+          </div>
+        </section>
+      )}
+      
+      {/* Bottom CTA - Only for Mandali Retreats */}
+      {slug === "mandali-retreats" && (
+        <section className="px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <BottomCTA 
+              title="Ready to apply a proven growth system to your retreat?"
+              body="Let's review your ads, landing flow, and tracking to find the next 2–3 booking levers."
             />
           </div>
         </section>

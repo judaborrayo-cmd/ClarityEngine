@@ -1,0 +1,108 @@
+Goal: Make the Mandali Retreats case study conversion-focused and consistent with Lamark/Hapi Art patterns. Keep the existing testimonial text as-is (don’t invent/alter quotes). Use only verified language already on this page.
+
+1) Voice & intro
+
+Keep the hero title.
+
+Tighten the intro paragraph to focus on the system and outcomes (no revenue figures unless explicitly verified). Use:
+
+Clarity Engine implemented a repeatable, multi-channel system for Mandali Retreats—combining creative testing, geo-targeted campaigns, and structured remarketing. The result: +5× ROAS across social and +4× ROAS on Google Search, with stronger lead quality and steady monthly demand.
+
+2) At-a-Glance stat strip (under hero / above video)
+
+Add a 4-card strip like the other pages:
+
++5× ROAS — Social (Meta/YouTube)
+
++4× ROAS — Google Search
+
+Geo-targeted wins — High-intent regions
+
+Stronger lead quality — Consistent month-over-month
+
+3) Video → Key Results → Context line + Mid-page CTA
+
+Keep the video and existing Key Results.
+
+Insert a single context sentence above a mid-page CTA:
+
+These learnings now inform how Clarity Engine scales retreat & wellness brands—balancing creative velocity with precise targeting.
+
+Mid-page CTA block:
+
+Title: Curious what this could look like for your retreat or center?
+
+Body: Book a Strategic Intro Call—get a quick teardown and the fastest wins.
+
+Button: Book a Strategic Intro Call (use the same booking URL as the site header).
+
+Style identical to Hapi Art’s mid CTA (gradient card, hover lift).
+
+4) “Before vs After” snapshot (place below The Solution, above Detailed Results)
+
+Use a two-column list with these rows (short, factual):
+
+Before: Awareness → booking gap; manual responses.
+After: Unified tracking + CRM handoff; faster follow-ups.
+
+Before: Broad targeting; scattered data.
+After: Geo-targeted campaigns in high-intent regions.
+
+Before: One-off creatives; inconsistent ROAS.
+After: Creative testing cadence; structured remarketing.
+
+Before: Search campaigns mixed low/high intent.
+After: Split brand vs high-intent non-brand; +4× ROAS on Search.
+
+Before: Social spend lacked reliability.
+After: +5× ROAS across social with steady month-over-month.
+
+5) Verified Metrics panel (optional, below video or above Before/After)
+
+If you keep a metrics panel like Hapi Art, use only:
+
++5× ROAS — Social (Meta/YouTube)
+
++4× ROAS — Google Search
+
+Geo-wins — High-intent regions
+
+Lead quality ↑ — Consistent MoM
+
+Add a tiny footnote: “Based on platform reporting; monetary figures omitted.”
+
+6) Testimonial handling
+
+Preserve the existing quote exactly.
+
+Insert a neutral intro line above it:
+
+This systemized approach was validated with Mandali Retreats and continues to guide Clarity Engine’s playbook for wellness & retreats.
+
+7) Bottom CTA (above Other Case Studies)
+
+Headline: Ready to apply a proven growth system to your retreat?
+
+Body: Let’s review your ads, landing flow, and tracking to find the next 2–3 booking levers.
+
+Button: Book a Strategic Intro Call (same link).
+
+Use the dark (black) variant you used on Hapi Art.
+
+8) Design & accessibility
+
+Reuse the exact components/styles from Lamark/Hapi Art (stat strip, mid CTA, before/after, bottom CTA).
+
+Buttons: text-[15px] font-semibold rounded-2xl px-5 py-3 shadow-sm ring-1 ring-black/10 hover:shadow-lg transition hover:-translate-y-[1px].
+
+Ensure contrast on colored labels; add aria-labels to CTA links and video.
+
+Acceptance criteria
+
+New stat strip, context + mid CTA, Before/After, and bottom CTA are present and responsive.
+
+Testimonial unchanged; intro line added above it.
+
+No unverified monetary claims; only +5× / +4× ROAS and qualitative outcomes.
+
+Visuals match Hapi Art / Lamark components
