@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Star, Quote, Target, Users, Heart } from "lucide-react";
+import { ArrowRight, Star, Quote, Target, Users, Heart, ShoppingCart, Dumbbell, Package, Plane } from "lucide-react";
 import HowWeDeliverSection from "@/components/HowWeDeliverSection";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
@@ -246,6 +246,7 @@ export default function CaseStudies() {
                   <Link 
                     to="/case-study/lamark-agency" 
                     className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center"
+                    data-testid="link-case-lamark"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -263,7 +264,7 @@ export default function CaseStudies() {
                       <Badge variant="secondary" className="mr-2">E-commerce</Badge>
                     </div>
                   </div>
-                  <Users className="h-8 w-8 text-green-600" />
+                  <ShoppingCart className="h-8 w-8 text-green-600" />
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
@@ -277,17 +278,18 @@ export default function CaseStudies() {
                   <Link 
                     to="/case-study/hapi-art" 
                     className="text-green-600 font-medium hover:text-green-700 inline-flex items-center"
+                    data-testid="link-case-hapi"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </div>
               </div>
 
-              {/* Mandel Retreats Case Study */}
+              {/* Mandali Retreats Case Study */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-mandel">
+                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-mandali">
                       Mandali Retreats — Luxury Wellness
                     </h3>
                     <div className="mt-2 flex items-center">
@@ -301,31 +303,32 @@ export default function CaseStudies() {
                   <p><span className="font-semibold text-gray-900">Intent:</span> Mandali Retreats needed year-round bookings.</p>
                   <p><span className="font-semibold text-gray-900">Obstacle:</span> Their ads were siloed and search traffic wasn't converting.</p>
                   <p><span className="font-semibold text-gray-900">Resolution:</span> We built multi-channel campaigns with retargeting layers.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> 15× ROAS while filling retreat bookings consistently</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> +5× ROAS while filling retreat bookings consistently</p>
                 </div>
                 
                 <div className="mt-6">
                   <Link 
-                    to="/case-study/lisa-nichols" 
+                    to="/case-study/mandali-retreats" 
                     className="text-purple-600 font-medium hover:text-purple-700 inline-flex items-center"
+                    data-testid="link-case-mandali"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </div>
               </div>
 
-              {/* CoreGo Case Study */}
+              {/* Core40 Case Study */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-corego">
+                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-core40">
                       Core40 — Fitness Studio
                     </h3>
                     <div className="mt-2 flex items-center">
                       <Badge variant="secondary" className="mr-2">Fitness</Badge>
                     </div>
                   </div>
-                  <Target className="h-8 w-8 text-red-600" />
+                  <Dumbbell className="h-8 w-8 text-red-600" />
                 </div>
                 
                 <div className="space-y-4 text-gray-600">
@@ -339,6 +342,71 @@ export default function CaseStudies() {
                   <Link 
                     to="/case-study/core-40" 
                     className="text-red-600 font-medium hover:text-red-700 inline-flex items-center"
+                    data-testid="link-case-core40"
+                  >
+                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Steel Fit USA Case Study */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-steel-fit">
+                      Steel Fit USA — Paid Media
+                    </h3>
+                    <div className="mt-2 flex items-center">
+                      <Badge variant="secondary" className="mr-2">Paid Media</Badge>
+                    </div>
+                  </div>
+                  <Package className="h-8 w-8 text-orange-600" />
+                </div>
+                
+                <div className="space-y-4 text-gray-600">
+                  <p><span className="font-semibold text-gray-900">Intent:</span> Steel Fit USA needed exceptional growth with paid media.</p>
+                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But they faced intense competition in the fitness equipment market.</p>
+                  <p><span className="font-semibold text-gray-900">Resolution:</span> We developed comprehensive paid media strategy with advanced audience segmentation.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> Exceptional growth with optimized customer acquisition</p>
+                </div>
+                
+                <div className="mt-6">
+                  <Link 
+                    to="/case-study/steel-fit-usa" 
+                    className="text-orange-600 font-medium hover:text-orange-700 inline-flex items-center"
+                    data-testid="link-case-steel-fit"
+                  >
+                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Lisa Nichols Case Study */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-lisa-nichols">
+                      Lisa Nichols — Personal Brand Growth
+                    </h3>
+                    <div className="mt-2 flex items-center">
+                      <Badge variant="secondary" className="mr-2">Personal Brand</Badge>
+                    </div>
+                  </div>
+                  <Plane className="h-8 w-8 text-indigo-600" />
+                </div>
+                
+                <div className="space-y-4 text-gray-600">
+                  <p><span className="font-semibold text-gray-900">Intent:</span> Lisa Nichols needed to scale her personal brand globally.</p>
+                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But scaling beyond traditional speaking required digital transformation.</p>
+                  <p><span className="font-semibold text-gray-900">Resolution:</span> We built a comprehensive growth strategy maintaining authenticity at scale.</p>
+                  <p><span className="font-semibold text-gray-900">Impact:</span> Best-selling author with global speaking platform reaching millions</p>
+                </div>
+                
+                <div className="mt-6">
+                  <Link 
+                    to="/case-study/lisa-nichols" 
+                    className="text-indigo-600 font-medium hover:text-indigo-700 inline-flex items-center"
+                    data-testid="link-case-lisa-nichols"
                   >
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
