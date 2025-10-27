@@ -135,10 +135,10 @@ export default function CaseStudies() {
       <ProgressBar />
       <main className="relative">
         
-        {/* Hero Section */}
+        {/* Hero Section with Trusted Brands */}
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
+            <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl" data-testid="page-title">
                 Case Studies
               </h1>
@@ -146,23 +146,9 @@ export default function CaseStudies() {
                 Proven results and the strategic framework behind them. See how we've helped ambitious brands achieve measurable growth.
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* Trusted by Leading Brands Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900" data-testid="trusted-brands-title">
-                Trusted by Leading Brands Across Industries
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-4xl mx-auto">
-                From fitness and wellness to SaaS and e-commerce, we've helped ambitious brands achieve multi-million dollar growth through strategic paid media and growth marketing across Meta, Instagram, YouTube, Google Ads, and other major platforms.
-              </p>
-            </div>
             
             {/* Brand Logos Grid */}
-            <div className="space-y-8">
+            <div className="space-y-8 mt-12">
               {/* First row */}
               <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
                 <LogoImage src={mandaliLogo} alt="Mandali" />
