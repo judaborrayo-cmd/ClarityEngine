@@ -1,0 +1,82 @@
+Goal: Make the Hapi Art case study more conversion-oriented while keeping the voice “Clarity Engine” (not “I”). Keep the existing Hapi Art testimonial exactly as it is. Do not invent quotes.
+
+Edits to make:
+
+Intro reframing (hero paragraph)
+
+Replace current intro copy with:
+
+Clarity Engine’s scalable e-commerce advertising framework was refined in a fast-moving multi-industry environment and applied to Hapi Art’s marketplace—optimizing creative testing, funnel structure, and attribution. The result: a profitable system achieving 10× ROAS and $1M+ in tracked revenue.
+
+Add At-a-Glance stat strip (under hero / above video)
+
+4 cards:
+
+10× ROAS — profitable efficiency
+
+$1M+ revenue — tracked from campaigns
+
+Full-funnel system — creative + targeting + attribution
+
+Scalable ops — automation & dashboards
+
+Add context line + Mid-page CTA (after Key Results)
+
+Context line above the CTA:
+These e-commerce learnings now inform how Clarity Engine scales other shops—balancing creative velocity with precise attribution.
+
+CTA block:
+
+Title: Curious what this could look like for your store?
+
+Body: Book a Strategic Intro Call—get a quick teardown of your current setup and the fastest wins.
+
+Button: Book a Strategic Intro Call (link to the same booking URL used in the header).
+
+Add “Before vs After” snapshot (between Solution and Detailed Results)
+
+Before: messy product-level reporting; one-off creatives; shallow retargeting; unclear ROAS.
+
+After: clean SKU/category reporting; creative testing sprints; multi-signal retargeting; trusted ROAS with LTV overlays.
+
+Keep testimonial; add a neutral intro line directly above it
+
+Add: This systemized approach was validated on Hapi Art and continues to guide Clarity Engine’s e-commerce playbook today.
+
+Bottom CTA (above “Other Case Studies”)
+
+Headline: Ready to apply a proven 10×-ready system to your store?
+
+Body: Let’s review your ads, landing flow, and tracking to uncover the next 2–3 profit levers.
+
+Button: Book a Strategic Intro Call (same link).
+
+Button & section polish (same motion/contrast as Lamark)
+
+Buttons: text-[15px] font-semibold rounded-2xl px-5 py-3 shadow-sm ring-1 ring-black/10 hover:shadow-lg transition hover:-translate-y-[1px]
+
+CTA sections: light gradient for mid-CTA; dark (black) for the bottom CTA.
+
+Placement (same pattern as Lamark):
+
+Hero / intro → At-a-Glance → (keep video)
+
+Images/Video → Key Results → Context line → MidPageCTA
+
+The Challenge → The Solution → BeforeAfter
+
+Detailed Results → Testimonial intro line → (existing testimonial) → BottomCTA → Other Case Studies
+
+Acceptance criteria:
+
+No first-person singular; use “we”/“Clarity Engine”.
+
+Testimonial unchanged (exact text).
+
+New sections responsive and visually consistent with the site.
+
+CTAs link to the existing booking route.
+
+Reusable React + Tailwind snippet (drop-in)
+
+Paste into a shared components file and import on the Hapi Art page. Update bookUrl if your route differs. Pass in Hapi-specific content via props.

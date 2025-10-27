@@ -59,7 +59,13 @@ export function AtAGlance() {
   );
 }
 
-export function MidPageCTA() {
+export function MidPageCTA({
+  title = "Curious what this could look like for you?",
+  body = "Book a Strategic Intro Call — we'll review your current setup and outline the quickest wins.",
+}: {
+  title?: string;
+  body?: string;
+} = {}) {
   return (
     <section
       aria-labelledby="mid-cta"
@@ -68,10 +74,10 @@ export function MidPageCTA() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 id="mid-cta" className="text-xl font-semibold text-foreground">
-          Curious what this could look like for you?
+          {title}
         </h2>
         <p className="mt-2 text-gray-700 dark:text-gray-300">
-          Book a Strategic Intro Call — we'll review your current setup and outline the quickest wins.
+          {body}
         </p>
         <div className="mt-4">
           <CTAButton>Book a Strategic Intro Call</CTAButton>
@@ -81,8 +87,14 @@ export function MidPageCTA() {
   );
 }
 
-export function BeforeAfter() {
-  const rows = [
+export function BeforeAfter({
+  rows,
+  title = "Before vs After (Agency-Side Portfolio)",
+}: {
+  rows?: { before: string; after: string }[];
+  title?: string;
+} = {}) {
+  const defaultRows = [
     {
       before: "Fragmented reporting across industries",
       after: "Unified frameworks and portfolio-level reporting",
@@ -100,10 +112,12 @@ export function BeforeAfter() {
       after: "Precise attribution and scalable budgeting protocols",
     },
   ];
+  const displayRows = rows || defaultRows;
+  
   return (
     <section aria-labelledby="before-after" className="my-12" data-testid="before-after-section">
       <h2 id="before-after" className="text-lg font-semibold text-foreground">
-        Before vs After (Agency-Side Portfolio)
+        {title}
       </h2>
       <div className="mt-4 overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-50 dark:bg-gray-800">
@@ -113,13 +127,37 @@ export function BeforeAfter() {
           </div>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {rows.map((r, idx) => (
+          {displayRows.map((r, idx) => (
             <li key={idx} className="grid grid-cols-1 md:grid-cols-2">
               <div className="p-4 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900">{r.before}</div>
               <div className="p-4 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900 md:border-l md:border-gray-100 dark:md:border-gray-800">{r.after}</div>
             </li>
           ))}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+export function StatStrip({
+  items,
+}: {
+  items: { k: string; v: string }[];
+}) {
+  return (
+    <section aria-labelledby="stat-strip" className="mt-10">
+      <h2 id="stat-strip" className="sr-only">At a glance</h2>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((it) => (
+          <div
+            key={it.k}
+            className="rounded-2xl border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 p-4 shadow-sm"
+            data-testid={`stat-${it.k.toLowerCase().replace(/\s+/g, '-')}`}
+          >
+            <div className="text-2xl font-bold text-foreground">{it.k}</div>
+            <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">{it.v}</div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -134,7 +172,22 @@ export function TestimonialIntro() {
   );
 }
 
-export function BottomCTA() {
+export function TestimonialIntroLine() {
+  return (
+    <p className="mx-auto max-w-3xl text-center text-gray-700 dark:text-gray-300 mb-4">
+      This systemized approach was validated on Hapi Art and continues to guide
+      Clarity Engine's e-commerce playbook today.
+    </p>
+  );
+}
+
+export function BottomCTA({
+  title = "Ready to apply proven multi-industry systems to your growth?",
+  body = "Let's review your PPC structure and identify the next 2–3 efficiency wins across your funnel.",
+}: {
+  title?: string;
+  body?: string;
+} = {}) {
   return (
     <section
       aria-labelledby="bottom-cta"
@@ -143,10 +196,10 @@ export function BottomCTA() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 id="bottom-cta" className="text-xl font-semibold">
-          Ready to apply proven multi-industry systems to your growth?
+          {title}
         </h2>
         <p className="mt-2 text-gray-200 dark:text-gray-300">
-          Let's review your PPC structure and identify the next 2–3 efficiency wins across your funnel.
+          {body}
         </p>
         <div className="mt-4">
           <CTAButton>

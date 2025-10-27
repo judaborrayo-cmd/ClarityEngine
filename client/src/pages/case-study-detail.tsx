@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
-import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro } from "@/components/case-study/ConversionComponents";
+import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine } from "@/components/case-study/ConversionComponents";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -94,7 +94,7 @@ const caseStudyData = {
     title: "Building a Profitable 10X ROAS",
     subtitle: "Hapi Art Advertising System",
     category: "ROI Optimization",
-    overview: "Hapi Art, an innovative e-commerce art platform, required a comprehensive advertising system capable of delivering exceptional returns while scaling their unique digital art marketplace. Through systematic optimization, advanced targeting strategies, and creative testing protocols, we developed a profitable 10X ROAS advertising system that generated over $1M+ in revenue while establishing Hapi Art as a leading player in the digital art e-commerce space.",
+    overview: "Clarity Engine's scalable e-commerce advertising framework was refined in a fast-moving multi-industry environment and applied to Hapi Art's marketplace—optimizing creative testing, funnel structure, and attribution. The result: a profitable system achieving 10× ROAS and $1M+ in tracked revenue.",
     challenge: "Hapi Art faced the challenge of marketing digital art products in a highly competitive e-commerce landscape where visual appeal and audience targeting are critical. The brand needed an advertising system that could effectively showcase their artistic products, reach art enthusiasts and collectors, while achieving profitable returns on ad spend. The challenge was to create a scalable system that could consistently deliver high ROAS across multiple channels while building brand recognition in the digital art market.",
     solution: [
       "Designed comprehensive advertising system architecture optimized for visual product marketing and art e-commerce",
@@ -644,6 +644,20 @@ export default function CaseStudyDetail() {
               <AtAGlance />
             </div>
           )}
+          
+          {/* StatStrip - Only for Hapi Art */}
+          {slug === "hapi-art" && (
+            <div className="mx-auto max-w-4xl">
+              <StatStrip 
+                items={[
+                  { k: "10× ROAS", v: "Profitable efficiency" },
+                  { k: "$1M+ revenue", v: "Tracked from campaigns" },
+                  { k: "Full-funnel system", v: "Creative · Targeting · Attribution" },
+                  { k: "Scalable ops", v: "Automation & dashboards" },
+                ]}
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -712,6 +726,19 @@ export default function CaseStudyDetail() {
               <MidPageCTA />
             </>
           )}
+          
+          {/* Mid Page CTA - Only for Hapi Art */}
+          {slug === "hapi-art" && (
+            <>
+              <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
+                These e-commerce learnings now inform how Clarity Engine scales other shops—balancing creative velocity with precise attribution.
+              </p>
+              <MidPageCTA 
+                title="Curious what this could look like for your store?"
+                body="Book a Strategic Intro Call—get a quick teardown of your current setup and the fastest wins."
+              />
+            </>
+          )}
         </div>
       </section>
 
@@ -741,6 +768,19 @@ export default function CaseStudyDetail() {
           {/* Before After - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
             <BeforeAfter />
+          )}
+          
+          {/* Before After - Only for Hapi Art */}
+          {slug === "hapi-art" && (
+            <BeforeAfter 
+              rows={[
+                { before: "Messy product/SKU reporting", after: "Clean SKU & category-level reporting" },
+                { before: "One-off creatives, little iteration", after: "Creative testing sprints with winners rolled out" },
+                { before: "Shallow retargeting pools", after: "Multi-signal retargeting (views, carts, PDP depth, time-on-site)" },
+                { before: "Unclear ROAS and budget confidence", after: "Trusted ROAS with LTV overlays and budget guardrails" },
+              ]}
+              title="Before vs After (E-commerce System)"
+            />
           )}
         </div>
       </section>
@@ -790,6 +830,7 @@ export default function CaseStudyDetail() {
       <section className="px-6 py-16 lg:px-8 bg-muted/30">
         <div className="mx-auto max-w-4xl text-center">
           {slug === "lamark-agency" && <TestimonialIntro />}
+          {slug === "hapi-art" && <TestimonialIntroLine />}
           <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
             "{study.testimonial.quote}"
           </blockquote>
@@ -804,6 +845,18 @@ export default function CaseStudyDetail() {
         <section className="px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <BottomCTA />
+          </div>
+        </section>
+      )}
+      
+      {/* Bottom CTA - Only for Hapi Art */}
+      {slug === "hapi-art" && (
+        <section className="px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <BottomCTA 
+              title="Ready to apply a proven 10×-ready system to your store?"
+              body="Let's review your ads, landing flow, and tracking to uncover the next 2–3 profit levers."
+            />
           </div>
         </section>
       )}
