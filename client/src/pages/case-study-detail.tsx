@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -599,6 +599,42 @@ export default function CaseStudyDetail() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               {study.overview}
             </p>
+            
+            {/* Industry Icons - Only for Lamark Agency */}
+            {slug === "lamark-agency" && (
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-14 h-14 bg-violet-100 rounded-full flex items-center justify-center">
+                    <Dumbbell className="w-7 h-7 text-violet-600" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">Fitness</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center">
+                    <Heart className="w-7 h-7 text-blue-600" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">Healthcare</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center">
+                    <ShoppingCart className="w-7 h-7 text-green-600" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">E-commerce</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center">
+                    <Plane className="w-7 h-7 text-amber-600" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">Travel</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center">
+                    <Package className="w-7 h-7 text-indigo-600" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">Logistics</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
