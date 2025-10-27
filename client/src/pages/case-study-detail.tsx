@@ -695,6 +695,20 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
+          
+          {/* StatStrip - Only for Core40 */}
+          {slug === "core-40" && (
+            <div className="mx-auto max-w-4xl">
+              <StatStrip 
+                items={[
+                  { k: "$2M+", v: "Revenue generated" },
+                  { k: "11K+", v: "New members acquired" },
+                  { k: "–38%", v: "Reduction in cost per lead" },
+                  { k: "+26%", v: "Improved lead-to-member conversion rate" },
+                ]}
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -802,6 +816,19 @@ export default function CaseStudyDetail() {
               />
             </>
           )}
+          
+          {/* Mid Page CTA - Only for Core40 */}
+          {slug === "core-40" && (
+            <>
+              <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
+                These outcomes demonstrate how Clarity Engine helps fitness brands scale efficiently with creative testing and precise audience segmentation.
+              </p>
+              <MidPageCTA 
+                title="Curious what this could look like for your fitness brand?"
+                body="Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins."
+              />
+            </>
+          )}
         </div>
       </section>
 
@@ -878,6 +905,20 @@ export default function CaseStudyDetail() {
                 { before: "Irregular campaign performance", after: "Consistent weekly optimization cycles" },
               ]}
               title="Before vs After (Personal Brand Growth System)"
+            />
+          )}
+          
+          {/* Before After - Only for Core40 */}
+          {slug === "core-40" && (
+            <BeforeAfter 
+              rows={[
+                { before: "High cost per lead and inconsistent ads", after: "–38% CPL with optimized tracking" },
+                { before: "Limited new member flow", after: "11K+ new members from retargeting & lookalike campaigns" },
+                { before: "Fragmented local targeting", after: "Unified strategy across high-performing regions" },
+                { before: "Lack of brand consistency", after: "Strong positioning as a premium fitness experience" },
+                { before: "Low conversion from lead to member", after: "+26% conversion rate and sustained retention" },
+              ]}
+              title="Before vs After (Fitness Growth Framework)"
             />
           )}
         </div>
@@ -1011,6 +1052,18 @@ export default function CaseStudyDetail() {
             <BottomCTA 
               title="Ready to scale your brand with a proven growth framework?"
               body="Let's review your ads, funnels, and tracking to uncover the next 2–3 high-impact wins."
+            />
+          </div>
+        </section>
+      )}
+      
+      {/* Bottom CTA - Only for Core40 */}
+      {slug === "core-40" && (
+        <section className="px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <BottomCTA 
+              title="Ready to grow your studio with a proven fitness marketing framework?"
+              body="Let's review your ads, funnels, and tracking to identify the next 2–3 high-impact wins."
             />
           </div>
         </section>
