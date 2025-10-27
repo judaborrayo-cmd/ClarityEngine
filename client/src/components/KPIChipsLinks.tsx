@@ -58,11 +58,6 @@ export function KPIChipsLinks({
                 <span className="rounded-full border border-gray-200 bg-white px-2 py-0.5 text-[11px] text-gray-700" data-testid={`badge-client-${i}`}>
                   {k.client}
                 </span>
-                {k.type && (
-                  <span className="rounded-full border border-gray-200 bg-white px-2 py-0.5 text-[11px] text-gray-600" data-testid={`badge-type-${i}`}>
-                    {k.type}
-                  </span>
-                )}
               </div>
 
               <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-2">
