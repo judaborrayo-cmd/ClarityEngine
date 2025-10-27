@@ -24,11 +24,11 @@ import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
 import danielaGutenkovski from "@assets/Daniela_1758572440824.jpg";
 import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
 import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
-import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761591215293.png";
+import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761604917835.png";
 import hapiArtImage from "@assets/Hapi Art Resized_1761591215292.png";
 import steelFitImage from "@assets/Steel Fit USA New 1600 by 1000_1761591662248.png";
 import core40Image from "@assets/Core40 Image 1600 by 1000_1761591215292.jpg";
-import mandaliImage from "@assets/Mandali 1600 by 1000_1761591286806.jpg";
+import mandaliImage from "@assets/Mandali 1600 by 1000_1761604910726.jpg";
 import lamarkImage from "@assets/Lamark Media 1600 by 1000_1761591605719.png";
 
 // Progress Bar Component

@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import mandaliImage from "@assets/Mandali 1600 by 1000_1761604910726.jpg";
+import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761604917835.png";
 
 type HomeCS = {
   slug: string;
@@ -28,7 +30,7 @@ export function FeaturedCaseStudiesHome() {
       impact: "+16.5× ROAS across social; +29.06× ROAS on Search",
       problem: "Needed consistent ROAS & better offline conversion handoff",
       solution: "Geo-targeted campaigns, creative testing, CRM/booking handoff",
-      image: "/assets/case-studies/mandali-cover-1600x1000.webp",
+      image: mandaliImage,
       imageAlt: "Mandali lake and retreat setting",
     },
     {
@@ -37,7 +39,7 @@ export function FeaturedCaseStudiesHome() {
       impact: "Expanded reach & online revenue growth",
       problem: "Needed brand growth & global scaling",
       solution: "Paid media strategy + conversion refinement",
-      image: "/assets/case-studies/lisa-nichols-cover-1600x1000.webp",
+      image: lisaNicholsImage,
       imageAlt: "Lisa Nichols event creative",
     },
   ];
