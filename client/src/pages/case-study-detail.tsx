@@ -9,42 +9,42 @@ const caseStudyData = {
     title: "Growth Across Industries",
     subtitle: "Pay Per Click Lamark Agency",
     category: "PPC Management",
-    overview: "Lamark Agency, a multi-industry digital marketing agency, required a sophisticated PPC management system capable of delivering consistent results across diverse business sectors including fitness, healthcare, e-commerce, and professional services. Through the development of scalable frameworks, comprehensive tracking systems, and industry-specific optimization protocols, we successfully transformed their client delivery model, achieving remarkable growth across all verticals while maintaining operational efficiency and profitability.",
-    challenge: "Lamark Agency faced the complex challenge of managing PPC campaigns across vastly different industries, each with unique customer behaviors, acquisition costs, and conversion patterns. The agency needed a unified system that could adapt to various business models while providing accurate performance tracking, budget allocation, and ROI measurement across multiple locations and client verticals. The solution required seamless integration with existing workflows while maintaining the flexibility to scale efficiently.",
+    overview: "Lamark Agency, a multi-industry digital marketing agency, required a sophisticated PPC management system capable of delivering consistent results across diverse business sectors including fitness, healthcare, e-commerce, travel, and logistics. Through the development of scalable frameworks, comprehensive tracking systems, and industry-specific optimization protocols, we successfully transformed their client delivery model, achieving remarkable growth across all verticals while maintaining operational efficiency and profitability.",
+    challenge: "Lamark Agency faced the complex challenge of managing PPC campaigns across vastly different industries, each with unique customer behaviors, acquisition costs, and conversion patterns. The agency needed a unified system that could adapt to various business models while providing accurate performance tracking, budget allocation, and ROI measurement across multiple client accounts and verticals. The solution required seamless integration with existing workflows while maintaining the flexibility to scale efficiently as the agency grew.",
     solution: [
       "Developed comprehensive multi-industry PPC framework adaptable to different business sectors and customer acquisition models",
-      "Implemented advanced tracking systems enabling precise multi-location performance measurement and attribution",
+      "Implemented advanced tracking systems enabling precise performance measurement and attribution across client accounts",
       "Created scalable campaign structures allowing efficient management across diverse client portfolios",
       "Established industry-specific performance benchmarks and optimization protocols tailored to each vertical",
-      "Built automated reporting systems providing real-time insights across all client accounts and locations",
+      "Built automated reporting systems providing real-time insights across all client accounts",
       "Designed flexible budget allocation strategies optimized for different industry seasonality and customer lifecycles",
       "Implemented cross-industry learning protocols to apply successful strategies across different business sectors"
     ],
     results: {
-      primary: "Multi-location impact tracking with scalable PPC growth across diverse industries",
+      primary: "Successfully managed $70K+ monthly ad spend across diverse industries with scalable PPC systems",
       metrics: [
-        { label: "Revenue Influence", value: "$2M+", icon: DollarSign },
-        { label: "New Members", value: "11K+", icon: Users },
-        { label: "Industries Served", value: "Multiple", icon: Target },
-        { label: "Tracking System", value: "Multi-location", icon: TrendingUp }
+        { label: "Monthly Ad Spend", value: "$70K+", icon: DollarSign },
+        { label: "Client Portfolio", value: "Multi-Industry", icon: Users },
+        { label: "Industries Served", value: "5+", icon: Target },
+        { label: "Performance", value: "Consistent CPL Growth", icon: TrendingUp }
       ]
     },
     detailedResults: [
       {
-        title: "Revenue Impact Achievement",
-        description: "Generated over $2M+ in revenue influence across all client verticals through strategic PPC optimization and multi-channel campaign management"
+        title: "Large-Scale Budget Management",
+        description: "Successfully managed $70,000+ in monthly advertising budget across multiple client verticals, ensuring optimal allocation and performance tracking"
       },
       {
-        title: "Member Acquisition Success", 
-        description: "Acquired 11,000+ new members across fitness and membership-based client businesses through targeted acquisition campaigns"
+        title: "Multi-Industry Campaign Excellence", 
+        description: "Delivered consistent performance improvements across fitness, healthcare, e-commerce, travel, and logistics sectors through tailored strategies"
       },
       {
-        title: "Multi-Location Tracking Excellence",
-        description: "Successfully implemented comprehensive tracking systems enabling precise performance measurement across multiple business locations and territories"
+        title: "Scalable System Development",
+        description: "Built comprehensive PPC management systems enabling the agency to efficiently handle growing client portfolios without compromising quality"
       },
       {
-        title: "Scalable System Implementation",
-        description: "Developed and deployed scalable PPC management systems that efficiently handle diverse client portfolios without compromising performance quality"
+        title: "Consistent Lead Generation Growth",
+        description: "Achieved consistent cost-per-lead reductions and conversion improvements across all verticals through systematic optimization"
       }
     ],
     strategies: [
@@ -59,7 +59,7 @@ const caseStudyData = {
       {
         category: "Advanced Tracking & Attribution", 
         tactics: [
-          "Implemented comprehensive multi-location tracking systems",
+          "Implemented comprehensive tracking systems across client accounts",
           "Built custom attribution models for complex customer journey mapping",
           "Created automated reporting dashboards for real-time performance monitoring"
         ]
@@ -82,10 +82,10 @@ const caseStudyData = {
       }
     ],
     testimonial: {
-      quote: "The strategic approach to PPC management across our diverse client base has been exceptional. The multi-location tracking and scalable systems have transformed our service delivery, enabling us to achieve remarkable results like $2M+ revenue influence and 11K+ new member acquisitions.",
+      quote: "The strategic approach to PPC management across our diverse client base has been exceptional. The scalable systems and multi-industry expertise transformed our service delivery, enabling us to efficiently manage significant monthly budgets while achieving consistent performance improvements for clients across all verticals.",
       author: "Lamark Agency Leadership Team"
     },
-    tags: ["PPC Management", "Multi-Industry", "$2M Revenue", "11K Members", "Multi-Location Tracking", "Scalable Systems"],
+    tags: ["PPC Management", "Multi-Industry", "$70K Monthly Budget", "Scalable Systems", "Diverse Verticals", "Consistent Growth"],
     featured: true,
     heroImage: "/images/lamark-agency-collage.webp"
   },
