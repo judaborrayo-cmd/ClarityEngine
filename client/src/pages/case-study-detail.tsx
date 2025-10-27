@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
 import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
+import core40PortfolioImage from "@assets/Core40-Image_1761608258683.png";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -342,7 +343,8 @@ const caseStudyData = {
     },
     tags: ["Boutique Fitness", "High-Performance Training", "Premium Brand", "Community Building", "Athletic Performance", "Membership Growth"],
     featured: true,
-    videoUrl: "https://www.youtube.com/watch?v=OMR1fsCbzTY"
+    videoUrl: "https://www.youtube.com/watch?v=OMR1fsCbzTY",
+    portfolioImage: core40PortfolioImage
   },
   "steel-fit-usa": {
     title: "Steel Fit USA",
@@ -723,6 +725,22 @@ export default function CaseStudyDetail() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 data-testid="case-study-video"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Portfolio Image Section - Core 40 */}
+      {(study as any).portfolioImage && (
+        <section className="px-6 py-12 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-5xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={(study as any).portfolioImage}
+                alt="Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"
+                className="w-full h-auto"
+                data-testid="case-study-portfolio-image"
               />
             </div>
           </div>
