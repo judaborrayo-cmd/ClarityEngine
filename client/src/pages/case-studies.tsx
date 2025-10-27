@@ -140,7 +140,7 @@ export default function CaseStudies() {
     {
       slug: "/case-study/mandali-retreats",
       title: "Mandali Retreats — Luxury Wellness",
-      impact: "+5× ROAS while filling retreat bookings consistently",
+      impact: "+16.5× ROAS social, +29.06× ROAS search while filling retreat bookings consistently",
       image: mandaliImage,
       imageAlt: "Mandali luxury wellness retreat in Italy",
       problem: "Luxury wellness market needed sophisticated targeting and offline conversion tracking.",
@@ -199,7 +199,8 @@ export default function CaseStudies() {
     { metric: "5–6% CTR", context: "Top creatives · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
     { metric: "$70K+ monthly ad spend", context: "Portfolio mgmt", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
     { metric: "Consistent CPL at scale", context: "Multi-industry", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
-    { metric: "+5× ROAS", context: "Retreat bookings", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
+    { metric: "+16.5× ROAS", context: "Social · Retreat bookings", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
+    { metric: "+29.06× ROAS", context: "Search · Retreat bookings", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
     { metric: "$2M+ revenue", context: "Member growth", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
     { metric: "11K+ new members", context: "Acquisition campaign", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
   ];

@@ -429,24 +429,24 @@ const caseStudyData = {
   },
   "mandali-retreats": {
     title: "Crafting Success: Mandali Retreats",
-    subtitle: "Journey to 5X ROAS",
+    subtitle: "Journey to 16.5× Social & 29.06× Search ROAS",
     category: "Wellness Marketing",
-    overview: "Clarity Engine implemented a repeatable, multi-channel system for Mandali Retreats—combining creative testing, geo-targeted campaigns, and structured remarketing. The result: +5× ROAS across social and +4× ROAS on Google Search, with stronger lead quality and steady monthly demand.",
+    overview: "Clarity Engine implemented a repeatable, multi-channel system for Mandali Retreats—combining creative testing, geo-targeted campaigns, and structured remarketing. The result: +16.5× ROAS across social and +29.06× ROAS on Google Search, with stronger lead quality and steady monthly demand.",
     challenge: "Mandali Retreats needed to bridge the gap between online advertising and offline booking behavior while ensuring seamless data integration. The luxury wellness market required sophisticated targeting to reach high-value prospects across multiple touchpoints, from initial awareness through booking conversion, while maintaining cost efficiency across all channels.",
     solution: [
       "Implemented unified tracking and CRM handoff for faster follow-ups, closing the awareness-to-booking gap",
       "Developed geo-targeted campaigns in high-intent regions to maximize booking quality and reduce wasted spend",
       "Created creative testing cadence with structured remarketing to deliver consistent ROAS",
-      "Built split Google Search campaigns separating brand vs high-intent non-brand queries for +4× ROAS",
-      "Established systematic social campaigns across Meta and YouTube achieving +5× ROAS with steady month-over-month growth",
+      "Built split Google Search campaigns separating brand vs high-intent non-brand queries for +29.06× ROAS",
+      "Established systematic social campaigns across Meta and YouTube achieving +16.5× ROAS with steady month-over-month growth",
       "Designed tiered remarketing sequences based on user behavior and engagement stages",
       "Implemented comprehensive tracking architecture enabling precise attribution and campaign optimization"
     ],
     results: {
-      primary: "+5× ROAS across social and +4× ROAS on Google Search with stronger lead quality",
+      primary: "+16.5× ROAS across social and +29.06× ROAS on Google Search with stronger lead quality",
       metrics: [
-        { label: "Social ROAS", value: "+5×", icon: TrendingUp },
-        { label: "Google Search ROAS", value: "+4×", icon: Target },
+        { label: "Social ROAS", value: "+16.5×", icon: TrendingUp },
+        { label: "Google Search ROAS", value: "+29.06×", icon: Target },
         { label: "Geo-targeted wins", value: "High-intent regions", icon: Target },
         { label: "Lead quality", value: "Consistent MoM", icon: Users }
       ]
@@ -466,11 +466,11 @@ const caseStudyData = {
       },
       {
         title: "Search Campaign Optimization",
-        description: "Split brand vs high-intent non-brand search campaigns, achieving +4× ROAS on Google Search"
+        description: "Split brand vs high-intent non-brand search campaigns, achieving +29.06× ROAS on Google Search"
       },
       {
         title: "Social Media Excellence",
-        description: "+5× ROAS across Meta and YouTube with steady month-over-month growth and reliable performance"
+        description: "+16.5× ROAS across Meta and YouTube with steady month-over-month growth and reliable performance"
       }
     ],
     strategies: [
@@ -511,7 +511,7 @@ const caseStudyData = {
       quote: "Juda is an exciting person to work with - his passion for tackling problems and facing challenges is a joy to experience. Juda is constantly learning, which means his work is always on the cutting edge of innovation - an invaluable skill in the world of digital media strategy.",
       author: "Beth Amant, Founder & Chief Creative"
     },
-    tags: ["5X ROAS", "Luxury Wellness", "Meta Advertising", "Google Search", "Remarketing Funnels", "Conversion Tracking"],
+    tags: ["16.5× Social ROAS", "29.06× Search ROAS", "Luxury Wellness", "Meta Advertising", "Google Search", "Remarketing Funnels", "Conversion Tracking"],
     featured: true,
     videoUrl: "https://www.youtube.com/watch?v=g7yVF5F6l9s"
   },
@@ -669,8 +669,8 @@ export default function CaseStudyDetail() {
             <div className="mx-auto max-w-4xl">
               <StatStrip 
                 items={[
-                  { k: "+5× ROAS", v: "Social (Meta/YouTube)" },
-                  { k: "+4× ROAS", v: "Google Search" },
+                  { k: "+16.5× ROAS", v: "Social (Meta/YouTube)" },
+                  { k: "+29.06× ROAS", v: "Google Search" },
                   { k: "Geo-targeted wins", v: "High-intent regions" },
                   { k: "Lead quality ↑", v: "Consistent month-over-month" },
                 ]}
@@ -829,8 +829,8 @@ export default function CaseStudyDetail() {
                 { before: "Awareness → booking gap; manual responses", after: "Unified tracking + CRM handoff; faster follow-ups" },
                 { before: "Broad targeting; scattered data", after: "Geo-targeted campaigns in high-intent regions" },
                 { before: "One-off creatives; inconsistent ROAS", after: "Creative testing cadence; structured remarketing" },
-                { before: "Search mixed low/high intent", after: "Split brand vs high-intent non-brand; +4× ROAS" },
-                { before: "Social spend lacked reliability", after: "+5× ROAS across social; steady MoM" },
+                { before: "Search mixed low/high intent", after: "Split brand vs high-intent non-brand; +29.06× ROAS" },
+                { before: "Social spend lacked reliability", after: "+16.5× ROAS across social; steady MoM" },
               ]}
               title="Before vs After (Retreats Growth System)"
             />
