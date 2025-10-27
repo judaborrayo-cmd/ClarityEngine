@@ -25,7 +25,7 @@ const caseStudyData = {
       metrics: [
         { label: "Monthly Ad Spend", value: "$70K+", icon: DollarSign },
         { label: "Client Portfolio", value: "Multi-Industry", icon: Users },
-        { label: "Industries Served", value: "5+", icon: Target },
+        { label: "Industries Served", value: "10+", icon: Target },
         { label: "Performance", value: "Consistent CPL Growth", icon: TrendingUp }
       ]
     },
