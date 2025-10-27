@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarS
 const caseStudyData = {
   "lamark-agency": {
     title: "Growth Across Industries",
-    subtitle: "Pay Per Click Lamark Agency",
+    subtitle: "Pay Per Click at Lamark Performance Marketing Agency",
     category: "PPC Management",
     overview: "Lamark Agency, a multi-industry digital marketing agency, required a sophisticated PPC management system capable of delivering consistent results across diverse business sectors including fitness, healthcare, e-commerce, travel, and logistics. Through the development of scalable frameworks, comprehensive tracking systems, and industry-specific optimization protocols, we successfully transformed their client delivery model, achieving remarkable growth across all verticals while maintaining operational efficiency and profitability.",
     challenge: "Lamark Agency faced the complex challenge of managing PPC campaigns across vastly different industries, each with unique customer behaviors, acquisition costs, and conversion patterns. The agency needed a unified system that could adapt to various business models while providing accurate performance tracking, budget allocation, and ROI measurement across multiple client accounts and verticals. The solution required seamless integration with existing workflows while maintaining the flexibility to scale efficiently as the agency grew.",
