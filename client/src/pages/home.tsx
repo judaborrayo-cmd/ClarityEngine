@@ -345,7 +345,7 @@ export default function Home() {
               {/* Key metrics */}
               <div className="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-gray-200">
                 <div className="text-sm font-semibold text-green-600" data-testid="metric-cpl">-56% CPL in 60 days</div>
-                <div className="text-sm font-semibold text-green-600" data-testid="metric-calls">3× more calls booked</div>
+                <div className="text-sm font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
                 <div className="text-sm font-semibold text-green-600" data-testid="metric-revenue">$3M+ in ad spend managed</div>
               </div>
             </div>
