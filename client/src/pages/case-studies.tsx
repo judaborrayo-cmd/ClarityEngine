@@ -443,34 +443,6 @@ export default function CaseStudies() {
           </div>
         </section>
 
-        {/* Ready to join our success stories CTA */}
-        <section id="success-cta-cs" className="py-16 bg-green-50">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Ready to join our success stories?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Let's discuss how we can deliver similar results for your brand.
-            </p>
-            <div className="space-x-4">
-              <Link 
-                to="/#book-intro" 
-                className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200"
-                data-testid="cta-book-call"
-              >
-                Book a 10‑min Intro Call
-              </Link>
-              <Link 
-                to="/case-studies" 
-                className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold border border-green-300 text-green-700 hover:bg-green-50 transition-colors duration-200"
-                data-testid="cta-case-studies"
-              >
-                View Case Studies
-              </Link>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
         <section className="py-16 bg-green-50">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
@@ -480,20 +452,13 @@ export default function CaseStudies() {
             <p className="text-xl text-gray-600 mb-8">
               Let's discuss your growth goals and map out a strategy that delivers measurable ROI.
             </p>
-            <div className="space-x-4">
+            <div className="flex justify-center">
               <Link 
                 to="/#book-intro" 
-                className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200"
-                data-testid="cta-book-call"
+                className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary/90 shadow-lg ring-2 ring-primary/20 hover:-translate-y-0.5 transition-all duration-200"
+                data-testid="cta-book-strategic-call"
               >
-                Book a 10‑min Intro Call
-              </Link>
-              <Link 
-                to="/growth-clarity-audit" 
-                className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold border border-green-300 text-green-700 hover:bg-green-50 transition-colors duration-200"
-                data-testid="cta-audit"
-              >
-                Start with an Audit
+                Book Strategic Intro Call
               </Link>
             </div>
           </div>
