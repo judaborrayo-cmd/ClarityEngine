@@ -9,7 +9,7 @@ import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
-import { SelectedWinsSection } from "@/components/SelectedWinsSection";
+import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -369,10 +369,10 @@ export default function Home() {
         {/* --- SERVICES AT A GLANCE --- */}
         <ServicesAtAGlance />
 
-        {/* --- SELECTED WINS --- */}
-        <SelectedWinsSection />
+        {/* --- FEATURED CASE STUDIES --- */}
+        <FeaturedCaseStudiesHome />
 
-        {/* --- COMPACT FAQ (below Selected Wins) --- */}
+        {/* --- COMPACT FAQ --- */}
         <Section id="faq" className="pt-20 pb-12 scroll-mt-20">
           <div className="mx-auto max-w-5xl">
             <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />

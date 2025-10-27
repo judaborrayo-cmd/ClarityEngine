@@ -1,6 +1,16 @@
 # Overview
 
-This is a full-stack web application built with React and Express.js featuring a modern tech stack. The application uses a monorepo structure with separate client and server directories, shared schema definitions, and a comprehensive UI component library built with Radix UI and Tailwind CSS. The project is configured for PostgreSQL database integration using Drizzle ORM and includes development tools for a smooth coding experience.
+This is a marketing agency website built with React and Express.js showcasing paid media services designed to convert visitors through clear service descriptions, social proof, and strategic CTAs. The site targets growth-minded founders managing $5k-$70k/month in ad spend. Features multiple conversion paths with case studies optimized for conversion using Clarity Engine voice.
+
+# Recent Changes
+
+**October 27, 2025**
+- Replaced homepage case study section with FeaturedCaseStudiesHome carousel component
+- Carousel displays 6 case studies in swipeable 2-up format (desktop), 1-up on mobile
+- Each card includes: image, title, impact line, Problem/Solution block, and CTA
+- Verified Mandali Retreats ROAS: +16.5× social, +29.06× search (updated sitewide)
+- Includes navigation arrows and "View all case studies →" link
+- All case study content uses verified metrics only
 
 # User Preferences
 

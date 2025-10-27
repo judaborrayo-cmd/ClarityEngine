@@ -1,0 +1,107 @@
+Goal: Replace the current homepage case-study area with a 2-up, swipeable “Featured Case Studies” carousel that matches the visual language of the Case Studies page (big images, impact line, Problem/Solution mini-block), but simplified for the homepage. Include a View all case studies → link.
+
+Do not touch the primary CTA section placement or copy.
+
+1) Section structure
+
+Title: Featured Case Studies
+
+Small helper line: Proof in one glance. Swipe to explore.
+
+Right-aligned text link: View all case studies → linking to /case-studies.
+
+2) Carousel behavior
+
+Desktop: show 2 full cards with a peek of the next (~20px) to suggest more.
+
+Tablet: show 1 full card + peek.
+
+Mobile: show 1 card (full width), horizontal swipe.
+
+Use scroll-snap + arrow buttons (previous / next) that scroll by ~one card width. Keyboard accessible; add aria-labels.
+
+No autoplay.
+
+3) Card content & styling (each card links to its case study)
+
+Big image on top, 16:10 aspect; class suggestion: h-64 sm:h-72 object-cover w-full rounded-t-2xl. (We’ll upload 1600×1000px assets.)
+
+Title (client + vertical).
+
+Impact line in brand green (short, verified).
+
+Always-visible Problem / Solution mini-block (no toggles):
+
+Problem: label in pink (text-pink-500)
+
+Solution: label in emerald (text-emerald-500)
+
+Subtle Read case study → button (secondary style) at the bottom.
+
+Card container: rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg hover:-translate-y-[1px] transition.
+
+4) Items to include (verified, link each card)
+
+Hapi Art — E-commerce
+Impact: 10× ROAS with creative testing sprints & precise attribution
+Problem: Needed profitable scale & clear attribution
+Solution: Creative testing cadence, prospecting/retargeting structure, SKU/category reporting
+Link: /case-study/hapi-art
+Image: upload hapi-art-cover-1600x1000.webp
+
+Growth Across Industries (Lamark)
+Impact: Consistent CPL at scale across multi-account portfolios
+Problem: Portfolio complexity across industries & accounts reduced clarity
+Solution: Unified frameworks, reporting, and optimization protocols
+Link: /case-study/lamark-agency
+Image: lamark-cover-1600x1000.webp
+
+Mandali Retreats — Luxury Wellness
+Impact: +5× ROAS across social; +4× on Search
+Problem: Luxury retreat needed consistent ROAS & better offline conversion handoff
+Solution: Geo-targeted campaigns, creative testing, CRM/booking handoff
+Link: /case-study/mandali-retreats
+Image: mandali-cover-1600x1000.webp
+
+Steel Fit USA — Paid Media
+Impact: +106% lift in ROAS
+Problem: High CPL & stagnating returns
+Solution: Tiered remarketing + search rebuild
+Link: /case-study/steel-fit-usa
+Image: steelfit-cover-1600x1000.webp
+
+Core40 — Fitness Studio
+Impact: Higher ROI & steady sign-ups
+Problem: Needed to maximize ROI & grow memberships
+Solution: Multi-channel ads + landing optimization
+Link: /case-study/core40-fitness
+Image: core40-cover-1600x1000.webp
+
+Lisa Nichols — Personal Brand Growth
+Impact: Expanded reach & online revenue growth
+Problem: Needed brand growth & global scaling
+Solution: Paid media strategy + conversion refinement
+Link: /case-study/lisa-nichols
+Image: lisa-nichols-cover-1600x1000.webp
+
+5) Accessibility & polish
+
+All interactive elements keyboard-navigable; add focus rings.
+
+aria-label="Read case study: [title]" on the card link.
+
+Keep font sizes consistent with the Case Studies page components.
+
+Acceptance criteria
+
+Two full cards visible on desktop with a peek of the next; swipe/arrow navigation works.
+
+Each card links to its case study; a “View all case studies →” link is present.
+
+Visuals match the Case Studies page but remain lighter (no long body text).
+
+No unverified claims added.
+
+Drop-in React + Tailwind code
+
+Add this component to the homepage (or shared components). Update image paths to your uploaded 1600×1000 assets.
