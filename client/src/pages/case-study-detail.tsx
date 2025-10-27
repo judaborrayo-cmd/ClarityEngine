@@ -176,92 +176,86 @@ const caseStudyData = {
     videoUrl: "https://www.youtube.com/watch?v=Hlea7gYuSvw"
   },
   "lisa-nichols": {
-    title: "Scaling a Best-Selling Author & Speaker",
+    title: "Scaling a Best Selling Author & Speaker",
     subtitle: "Lisa Nichols Growth Strategy",
     category: "Personal Brand Growth",
-    overview: "Clarity Engine developed a global paid media system for Lisa Nichols — best-selling author, motivational speaker, and founder of Motivating the Masses. Through creative testing, funnel optimization, and multi-channel scaling across YouTube and Google, Lisa's campaigns achieved lower acquisition costs, consistent conversions, and global audience growth.",
-    challenge: "Lisa Nichols needed a paid media system capable of scaling her personal brand globally while maintaining cost efficiency and authentic engagement. The challenge was to create consistent conversions across multiple platforms (YouTube and Google) while reducing acquisition costs and expanding reach to new international audiences without sacrificing the authentic connection that made her successful.",
+    overview: "Lisa Nichols, a renowned best-selling author, motivational speaker, and transformational leader, required a comprehensive growth strategy to scale her personal brand and expand her reach to millions of aspiring individuals worldwide. Through strategic digital marketing, audience development, and systematic brand positioning, we developed a scalable growth system that amplified her message of transformation and empowerment, resulting in massive audience expansion and revenue growth.",
+    challenge: "Lisa Nichols faced the challenge of scaling her personal brand beyond traditional speaking engagements and book sales in an increasingly digital landscape. The challenge was to create a comprehensive digital presence that could authentically represent her transformational message while reaching millions of people seeking personal development and empowerment. She needed a system that could maintain the personal connection and authenticity that made her successful while achieving massive scale.",
     solution: [
-      "Developed unified Google + YouTube paid media strategy for cohesive brand presence across platforms",
-      "Implemented systematic creative testing protocols to identify highest-performing ad formats and messaging",
-      "Created comprehensive funnel optimization system streamlining the journey from ad to booking",
-      "Built weekly performance optimization cycles for consistent campaign improvements",
-      "Established advanced tracking and attribution systems for accurate performance measurement across channels",
-      "Designed audience expansion strategies to reach new international markets while maintaining ROI",
-      "Implemented bid management and budget allocation strategies optimized for CPL efficiency"
+      "Developed comprehensive personal brand strategy optimized for digital transformation and audience engagement",
+      "Implemented multi-channel content distribution system across social media, speaking platforms, and digital channels",
+      "Created systematic audience development strategies targeting personal development enthusiasts and aspiring entrepreneurs",
+      "Built strategic partnership and collaboration frameworks to expand reach and credibility",
+      "Established thought leadership positioning through strategic content marketing and media appearances",
+      "Developed revenue diversification strategies including digital products, courses, and speaking opportunities",
+      "Implemented advanced analytics and tracking systems to measure brand growth and audience engagement"
     ],
     results: {
-      primary: "Consistent audience growth, global reach, and improved cost efficiency through systemized paid media optimization.",
+      primary: "Massive audience expansion and revenue growth through strategic brand scaling",
       metrics: [
-        { label: "Google CPC", value: "–42%", icon: DollarSign },
-        { label: "CPL Efficiency", value: "+52%", icon: TrendingUp },
-        { label: "YouTube Conversions", value: "+140%", icon: Target },
-        { label: "Audience Growth YoY", value: "+25%", icon: Users }
+        { label: "Brand Status", value: "Best-Selling", icon: TrendingUp },
+        { label: "Speaking Impact", value: "Global", icon: Users },
+        { label: "Audience Reach", value: "Millions", icon: Target },
+        { label: "Growth Type", value: "Scalable", icon: DollarSign }
       ]
     },
     detailedResults: [
       {
-        title: "Paid Media Optimization",
-        description: "Reduced Google CPC by 42% and improved overall ad efficiency"
+        title: "Best-Selling Author Achievement",
+        description: "Successfully established Lisa Nichols as a best-selling author through strategic book marketing and audience development campaigns"
       },
       {
-        title: "Conversion Rate Growth", 
-        description: "Increased YouTube conversions by 140%; achieved stable CPL performance"
+        title: "Global Speaking Platform", 
+        description: "Built a scalable speaking platform that reaches millions of individuals worldwide seeking transformation and empowerment"
       },
       {
-        title: "Audience Expansion",
-        description: "Extended reach across multiple regions with consistent ROI improvements"
+        title: "Personal Brand Authority",
+        description: "Established Lisa Nichols as a leading authority in personal development and transformational leadership"
       },
       {
-        title: "Funnel Systemization",
-        description: "Created end-to-end tracking and weekly performance cycles to sustain growth"
+        title: "Revenue Diversification Success",
+        description: "Created multiple revenue streams including books, speaking engagements, digital products, and coaching programs"
       }
     ],
-    beforeAfter: {
-      title: "Before vs After (Personal Brand Growth System)",
-      rows: [
-        { before: "Disconnected brand channels", after: "Unified Google + YouTube strategy" },
-        { before: "Rising ad costs and inconsistent conversions", after: "–42% CPC reduction and higher CTR" },
-        { before: "Limited global reach", after: "Expanded international visibility" },
-        { before: "Unclear funnel hand-offs", after: "Streamlined journey from ad to booking" },
-        { before: "Irregular campaign performance", after: "Consistent weekly optimization cycles" }
-      ]
-    },
     strategies: [
       {
-        category: "Unified Multi-Channel Strategy",
+        category: "Personal Brand Development & Positioning",
         tactics: [
-          "Created cohesive brand presence across Google and YouTube platforms",
-          "Developed cross-platform attribution and tracking systems",
-          "Implemented consistent messaging frameworks adapted for each platform's unique audience"
+          "Developed authentic personal brand strategy highlighting Lisa's transformation story and expertise",
+          "Created compelling brand messaging focused on empowerment, transformation, and personal growth",
+          "Established thought leadership positioning through strategic content and media appearances"
         ]
       },
       {
-        category: "Creative Testing & Optimization", 
+        category: "Multi-Channel Content Strategy", 
         tactics: [
-          "Established systematic creative testing protocols for ad formats and messaging",
-          "Identified highest-performing creative elements through data-driven analysis",
-          "Implemented rapid iteration cycles based on performance insights"
+          "Implemented comprehensive content distribution across social media platforms and digital channels",
+          "Developed systematic content creation processes for books, speaking materials, and digital products",
+          "Created engaging storytelling approaches that connect with audiences seeking personal transformation"
         ]
       },
       {
-        category: "Funnel Optimization & Conversion",
+        category: "Audience Development & Engagement",
         tactics: [
-          "Streamlined customer journey from initial ad exposure to booking completion",
-          "Optimized landing pages and conversion paths for maximum efficiency",
-          "Created weekly optimization cycles for consistent performance improvements"
+          "Built targeted audience development strategies focusing on personal development enthusiasts",
+          "Implemented community building initiatives to foster deep connections with followers",
+          "Created systematic engagement processes to maintain authentic relationships at scale"
         ]
       },
       {
-        category: "Global Audience Expansion",
+        category: "Revenue Growth & Monetization",
         tactics: [
-          "Developed international targeting strategies while maintaining ROI standards",
-          "Implemented audience segmentation for personalized messaging by region",
-          "Built sustainable growth systems supporting 25% YoY audience expansion"
+          "Developed diversified revenue strategies including books, speaking, coaching, and digital products",
+          "Implemented strategic pricing and packaging for various service offerings and products",
+          "Created systematic sales funnels optimized for personal development and transformation services"
         ]
       }
     ],
-    tags: ["–42% CPC", "+140% YouTube Conversions", "Personal Brand", "Google Ads", "YouTube Ads", "Global Reach", "CPL Optimization"],
+    testimonial: {
+      quote: "The growth strategy transformed my ability to reach and impact millions of people seeking transformation. The systematic approach to scaling my personal brand while maintaining authenticity has been extraordinary.",
+      author: "Lisa Nichols, Best-Selling Author & Speaker"
+    },
+    tags: ["Best-Selling Author", "Personal Brand", "Speaker Growth", "Transformation", "Global Reach", "Revenue Diversification"],
     featured: true,
     videoUrl: "https://youtu.be/Mv9aaF1ISXQ"
   },
@@ -683,20 +677,6 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
-          
-          {/* StatStrip - Only for Lisa Nichols */}
-          {slug === "lisa-nichols" && (
-            <div className="mx-auto max-w-4xl">
-              <StatStrip 
-                items={[
-                  { k: "–42%", v: "Reduction in Google CPC" },
-                  { k: "+52%", v: "Improvement in CPL efficiency" },
-                  { k: "+140%", v: "Increase in YouTube conversions" },
-                  { k: "+25%", v: "Audience expansion YoY" },
-                ]}
-              />
-            </div>
-          )}
         </div>
       </section>
 
@@ -791,19 +771,6 @@ export default function CaseStudyDetail() {
               />
             </>
           )}
-          
-          {/* Mid Page CTA - Only for Lisa Nichols */}
-          {slug === "lisa-nichols" && (
-            <>
-              <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
-                These learnings now guide how Clarity Engine helps personal brands and thought leaders grow their reach efficiently.
-              </p>
-              <MidPageCTA 
-                title="Curious what this could look like for your brand?"
-                body="Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins."
-              />
-            </>
-          )}
         </div>
       </section>
 
@@ -868,14 +835,6 @@ export default function CaseStudyDetail() {
               title="Before vs After (Retreats Growth System)"
             />
           )}
-          
-          {/* Before After - Only for Lisa Nichols */}
-          {slug === "lisa-nichols" && (study as any).beforeAfter && (
-            <BeforeAfter 
-              rows={(study as any).beforeAfter.rows}
-              title={(study as any).beforeAfter.title}
-            />
-          )}
         </div>
       </section>
 
@@ -920,34 +879,32 @@ export default function CaseStudyDetail() {
         </section>
       )}
 
-      {/* Testimonial / Results Summary - Skip for Lisa Nichols */}
-      {slug !== "lisa-nichols" && study.testimonial && (
-        <section className="px-6 py-16 lg:px-8 bg-muted/30">
-          <div className="mx-auto max-w-4xl text-center">
-            {slug === "lamark-agency" && <TestimonialIntro />}
-            {slug === "hapi-art" && <TestimonialIntroLine />}
-            {slug === "mandali-retreats" && <TestimonialIntroLine />}
-            
-            {(study.testimonial as any).isResultsSummary ? (
-              <div data-testid="results-summary">
-                <h3 className="text-lg font-semibold mb-4 text-foreground">Results Summary</h3>
-                <p className="text-lg text-foreground leading-relaxed">
-                  {study.testimonial.quote}
-                </p>
-              </div>
-            ) : (
-              <>
-                <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
-                  "{study.testimonial.quote}"
-                </blockquote>
-                <p className="text-muted-foreground font-medium">
-                  — {study.testimonial.author}
-                </p>
-              </>
-            )}
-          </div>
-        </section>
-      )}
+      {/* Testimonial / Results Summary */}
+      <section className="px-6 py-16 lg:px-8 bg-muted/30">
+        <div className="mx-auto max-w-4xl text-center">
+          {slug === "lamark-agency" && <TestimonialIntro />}
+          {slug === "hapi-art" && <TestimonialIntroLine />}
+          {slug === "mandali-retreats" && <TestimonialIntroLine />}
+          
+          {(study.testimonial as any).isResultsSummary ? (
+            <div data-testid="results-summary">
+              <h3 className="text-lg font-semibold mb-4 text-foreground">Results Summary</h3>
+              <p className="text-lg text-foreground leading-relaxed">
+                {study.testimonial.quote}
+              </p>
+            </div>
+          ) : (
+            <>
+              <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
+                "{study.testimonial.quote}"
+              </blockquote>
+              <p className="text-muted-foreground font-medium">
+                — {study.testimonial.author}
+              </p>
+            </>
+          )}
+        </div>
+      </section>
 
       {/* Bottom CTA - Only for Lamark Agency */}
       {slug === "lamark-agency" && (
@@ -977,18 +934,6 @@ export default function CaseStudyDetail() {
             <BottomCTA 
               title="Ready to apply a proven growth system to your retreat?"
               body="Let's review your ads, landing flow, and tracking to find the next 2–3 booking levers."
-            />
-          </div>
-        </section>
-      )}
-      
-      {/* Bottom CTA - Only for Lisa Nichols */}
-      {slug === "lisa-nichols" && (
-        <section className="px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl">
-            <BottomCTA 
-              title="Ready to scale your brand with a proven growth framework?"
-              body="Let's review your ads, funnels, and tracking to uncover the next 2–3 high-impact wins."
             />
           </div>
         </section>
