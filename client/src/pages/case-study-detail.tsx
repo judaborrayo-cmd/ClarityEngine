@@ -731,22 +731,6 @@ export default function CaseStudyDetail() {
         </section>
       )}
 
-      {/* Portfolio Image Section - Core 40 */}
-      {(study as any).portfolioImage && (
-        <section className="px-6 py-12 lg:px-8 bg-muted/30">
-          <div className="mx-auto max-w-5xl">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={(study as any).portfolioImage}
-                alt="Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"
-                className="w-full h-auto"
-                data-testid="case-study-portfolio-image"
-              />
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Results Metrics */}
       <section className="px-6 py-12 lg:px-8 bg-muted/30">
         <div className="mx-auto max-w-4xl">
@@ -897,6 +881,22 @@ export default function CaseStudyDetail() {
           )}
         </div>
       </section>
+
+      {/* Portfolio Image Section - Core 40 */}
+      {(study as any).portfolioImage && (
+        <section className="px-6 py-12 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-5xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={(study as any).portfolioImage}
+                alt="Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"
+                className="w-full h-auto"
+                data-testid="case-study-portfolio-image"
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Detailed Results - Only for Mandali */}
       {(study as any).detailedResults && (
