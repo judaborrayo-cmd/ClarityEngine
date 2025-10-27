@@ -83,8 +83,8 @@ const caseStudyData = {
       }
     ],
     testimonial: {
-      quote: "The strategic approach to PPC management across our diverse client base has been exceptional. The scalable systems and multi-industry expertise transformed our service delivery, enabling us to efficiently manage significant monthly budgets while achieving consistent performance improvements for clients across all verticals.",
-      author: "Lamark Agency Leadership Team"
+      quote: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
+      author: "Mike Berkman, VP of Performance"
     },
     tags: ["PPC Management", "Multi-Industry", "$70K Monthly Budget", "Scalable Systems", "Diverse Verticals", "Consistent Growth"],
     featured: true,
