@@ -129,7 +129,7 @@ export function CaseStudyCarousel({
                 alt={c.imageAlt}
                 aria-label={`Case study image for ${c.title}`}
                 loading="lazy"
-                className="h-72 sm:h-80 w-full rounded-t-2xl object-contain bg-gradient-to-br from-gray-50 to-gray-100"
+                className="h-72 sm:h-80 object-cover rounded-t-2xl w-full"
               />
             </a>
             <div className="p-4 sm:p-5">

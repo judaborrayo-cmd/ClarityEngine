@@ -23,9 +23,11 @@ import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
 import danielaGutenkovski from "@assets/Daniela_1758572440824.jpg";
 import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
 import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
-import lisaNicholsImage from "@assets/lisa-nichols-image.png";
-import hapiArtImage from "@assets/hapi-art-image.png";
-import steelFitImage from "@assets/steel-fit-image.png";
+import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761591215293.png";
+import hapiArtImage from "@assets/Hapi Art Resized_1761591215292.png";
+import steelFitImage from "@assets/Steel Fit Strategic Approach Resized_1761591215293.png";
+import core40Image from "@assets/Core40 Image 1600 by 1000_1761591215292.jpg";
+import mandaliImage from "@assets/Mandali 1600 by 1000_1761591286806.jpg";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -137,8 +139,8 @@ export default function CaseStudies() {
       slug: "/case-study/mandali-retreats",
       title: "Mandali Retreats — Luxury Wellness",
       impact: "+5× ROAS while filling retreat bookings consistently",
-      image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop",
-      imageAlt: "Luxury wellness retreat in Italy",
+      image: mandaliImage,
+      imageAlt: "Mandali luxury wellness retreat in Italy",
       problem: "Luxury wellness market needed sophisticated targeting and offline conversion tracking.",
       solution: "Implemented tiered remarketing, offline conversion tracking, and geographic optimization.",
     },
@@ -146,8 +148,8 @@ export default function CaseStudies() {
       slug: "/case-study/core-40",
       title: "Core40 — Fitness Studio",
       impact: "$2M+ revenue, 11K new members acquired",
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop",
-      imageAlt: "High-performance fitness training",
+      image: core40Image,
+      imageAlt: "Core40 fitness studio training",
       problem: "Boutique studio needed to differentiate and scale member acquisition profitably.",
       solution: "Premium brand positioning, targeted digital marketing, and community-building initiatives.",
     },
