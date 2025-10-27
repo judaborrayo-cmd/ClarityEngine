@@ -1,0 +1,119 @@
+Page to update: Core40 case study (Maximizing ROI in Fitness)
+
+Primary goal:
+Unify the layout, style, and conversion focus with the other optimized case studies (Mandali, Hapi Art, Lisa Nichols).
+Encourage visitors to Book a Strategic Intro Call as the primary CTA.
+
+Critical rule:
+👉 Do not add, modify, paraphrase, or invent any quotes or testimonials.
+If a quote isn’t already on the page, leave it out entirely.
+
+1️⃣ Hero Section
+
+Keep:
+
+Title → “Maximizing ROI in Fitness”
+
+Subtitle → “High-Performance Training Studio Growth”
+
+Replace intro paragraph with this optimized, factual copy:
+
+Clarity Engine partnered with Core40—a boutique, high-performance fitness brand—to create a growth system that increased memberships, stabilized ad costs, and built brand recognition. Through strategic positioning, creative testing, and funnel optimization across Google and Meta, Core40 achieved measurable ROI improvements and long-term retention.
+
+2️⃣ Add an “At-a-Glance” Stat Strip (immediately below the hero paragraph)
+
+Use the same component structure as Mandali & Hapi Art pages.
+
+Stats:
+
+$2M+ revenue generated
+
+11K+ new members acquired
+
+–38% reduction in cost per lead
+
++26% improved lead-to-member conversion rate
+
+3️⃣ Update Key Results Summary
+
+Keep the icons, but change the summary text below them to:
+
+Sustained membership growth and measurable ROI gains through integrated digital campaigns and refined audience targeting.
+
+4️⃣ Mid-Page CTA (add after Key Results)
+
+Add a small context line above it:
+
+These outcomes demonstrate how Clarity Engine helps fitness brands scale efficiently with creative testing and precise audience segmentation.
+
+Then insert a MidPageCTA component identical to the one used on other case studies:
+
+Title: Curious what this could look like for your fitness brand?
+
+Body: Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins.
+
+Button: Book a Strategic Intro Call (use same booking link as the global header).
+
+5️⃣ Before vs After Snapshot (add below “The Solution”, above “Detailed Results”)
+
+Title: “Before vs After (Fitness Growth Framework)”
+
+Before	After
+High cost per lead and inconsistent ads	–38% reduction in CPL with optimized tracking
+Limited new member flow	11K+ new members from retargeting & lookalike campaigns
+Fragmented local targeting	Unified strategy across high-performing regions
+Lack of brand consistency	Strong positioning as a premium fitness experience
+Low conversion from lead to member	+26% higher conversion rate and sustained retention
+6️⃣ Detailed Results
+
+Use factual, verifiable improvements only:
+
+Revenue Growth: Generated over $2M+ in total revenue through high-performing ads and conversion funnels.
+
+Lead Quality: Reduced cost per lead by 38%, increasing campaign efficiency.
+
+Member Acquisition: Added 11K+ new members through systematic retargeting and lookalike expansion.
+
+Brand Strength: Improved consistency across visuals and landing experiences, boosting trust and retention.
+
+7️⃣ Testimonial Removal
+
+Remove the fabricated quote that currently appears under “Core40 Studio Leadership.”
+No quotes should appear unless they were directly provided.
+
+8️⃣ Bottom CTA (dark variant)
+
+Add the standard bottom CTA section consistent with other pages:
+
+Title: Ready to grow your studio with a proven fitness marketing framework?
+
+Body: Let’s review your ads, funnels, and tracking to identify the next 2–3 high-impact wins.
+
+Button: Book a Strategic Intro Call
+
+9️⃣ Design Consistency
+
+Buttons:
+text-[15px] font-semibold rounded-2xl px-5 py-3 shadow-sm ring-1 ring-black/10 hover:shadow-lg transition hover:-translate-y-[1px]
+
+Problem/Solution labels:
+
+Problem: → text-pink-500
+
+Solution: → text-emerald-500
+
+Maintain same spacing, borders, and typography as Mandali/Hapi pages.
+
+Add aria-label="Book a Strategic Intro Call" for accessibility.
+
+✅ Acceptance Criteria
+
+Layout and tone match Mandali & Hapi Art case studies.
+
+At-a-Glance stats, Before/After table, and CRO CTAs added.
+
+The fabricated quote is removed.
+
+No new or invented quotes are added.
+
+Buttons and spacing align visually with other pages.

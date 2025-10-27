@@ -1,0 +1,125 @@
+// Core40 CRO sections – self-contained React + Tailwind (no external deps)
+
+import React from "react";
+
+const BOOK_URL = "/book-a-strategic-intro-call"; // update if your route differs
+
+function CTAButton({ children, href = BOOK_URL }) {
+  return (
+    <a
+      href={href}
+      aria-label="Book a Strategic Intro Call"
+      className="inline-flex items-center justify-center text-[15px] font-semibold rounded-2xl px-5 py-3 bg-black text-white hover:bg-black/90 shadow-sm ring-1 ring-black/10 hover:shadow-lg transition hover:-translate-y-[1px]"
+    >
+      {children}
+      <span aria-hidden className="ml-2">→</span>
+    </a>
+  );
+}
+
+export function StatStrip({ items }) {
+  return (
+    <section className="mt-6">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((it, i) => (
+          <div key={i} className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+            <div className="text-2xl font-bold">{it.k}</div>
+            <div className="mt-1 text-sm text-gray-600">{it.v}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function MidPageCTA({
+  title = "Curious what this could look like for your fitness brand?",
+  body = "Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins.",
+}) {
+  return (
+    <section className="my-16 rounded-3xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-8 shadow-sm">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        <p className="mt-2 text-gray-700">{body}</p>
+        <div className="mt-4">
+          <CTAButton>Book a Strategic Intro Call</CTAButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function BeforeAfter({ title, rows }) {
+  return (
+    <section className="my-12">
+      <h2 className="text-lg font-semibold">{title}</h2>
+      <div className="mt-4 overflow-hidden rounded-2xl border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-50">
+          <div className="p-3 text-sm font-medium text-gray-700">Before</div>
+          <div className="p-3 text-sm font-medium text-gray-700 md:border-l md:border-gray-200">
+            After
+          </div>
+        </div>
+        <ul className="divide-y divide-gray-200">
+          {rows.map((r, i) => (
+            <li key={i} className="grid grid-cols-1 md:grid-cols-2">
+              <div className="p-4 text-gray-800">{r.before}</div>
+              <div className="p-4 md:border-l md:border-gray-100">{r.after}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export function BottomCTA({
+  title = "Ready to grow your studio with a proven fitness marketing framework?",
+  body = "Let’s review your ads, funnels, and tracking to identify the next 2–3 high-impact wins.",
+}) {
+  return (
+    <section className="my-16 rounded-3xl bg-black p-8 text-white">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        <p className="mt-2 text-gray-200">{body}</p>
+        <div className="mt-4">
+          <CTAButton className="bg-white text-black hover:bg-white/90">
+            Book a Strategic Intro Call
+          </CTAButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------- Where to insert these ----------
+// 1. Under the hero intro paragraph:
+<StatStrip
+  items={[
+    { k: "$2M+", v: "Revenue generated" },
+    { k: "11K+", v: "New members acquired" },
+    { k: "–38%", v: "Reduction in cost per lead" },
+    { k: "+26%", v: "Improved lead-to-member conversion rate" },
+  ]}
+/>
+
+// 2. After Key Results:
+<p className="mt-6 text-center text-gray-700">
+  These outcomes demonstrate how Clarity Engine helps fitness brands scale efficiently with creative testing and precise audience segmentation.
+</p>
+<MidPageCTA />
+
+// 3. Below “The Solution”, above “Detailed Results”:
+<BeforeAfter
+  title="Before vs After (Fitness Growth Framework)"
+  rows={[
+    { before: "High cost per lead and inconsistent ads", after: "–38% CPL with optimized tracking" },
+    { before: "Limited new member flow", after: "11K+ new members from retargeting & lookalike campaigns" },
+    { before: "Fragmented local targeting", after: "Unified strategy across high-performing regions" },
+    { before: "Lack of brand consistency", after: "Strong positioning as a premium fitness experience" },
+    { before: "Low conversion from lead to member", after: "+26% conversion rate and sustained retention" },
+  ]}
+/>
+
+// 4. Above “Other Case Studies”:
+<BottomCTA />

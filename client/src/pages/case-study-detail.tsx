@@ -265,7 +265,7 @@ const caseStudyData = {
     title: "Maximizing ROI in Fitness",
     subtitle: "High-Performance Training Studio Growth",
     category: "Fitness Marketing",
-    overview: "Core 40, a boutique high-performance training studio, required a comprehensive marketing strategy to establish their premium fitness brand and attract dedicated athletes and fitness enthusiasts. Through targeted digital marketing, community building, and strategic positioning, we developed a growth system that positioned Core 40 as the premier destination for serious fitness training, resulting in significant membership growth and brand recognition in the competitive fitness market.",
+    overview: "Clarity Engine partnered with Core40—a boutique, high-performance fitness brand—to create a growth system that increased memberships, stabilized ad costs, and built brand recognition. Through strategic positioning, creative testing, and funnel optimization across Google and Meta, Core40 achieved measurable ROI improvements and long-term retention.",
     challenge: "Core 40 faced the challenge of establishing their boutique fitness studio in a highly competitive market dominated by large gym chains and fitness franchises. The studio needed to differentiate itself as a premium, high-performance training facility while attracting the right audience of dedicated athletes and serious fitness enthusiasts. The challenge was to build brand awareness, drive membership growth, and establish Core 40 as the go-to destination for elite fitness training in their local market.",
     solution: [
       "Developed comprehensive brand positioning strategy emphasizing high-performance training and elite fitness culture",
@@ -277,30 +277,30 @@ const caseStudyData = {
       "Implemented performance tracking and optimization systems for continuous growth measurement"
     ],
     results: {
-      primary: "$2M+ revenue and 11K+ new members acquired through strategic fitness marketing",
+      primary: "Sustained membership growth and measurable ROI gains through integrated digital campaigns and refined audience targeting.",
       metrics: [
         { label: "Revenue Generated", value: "$2M+", icon: DollarSign },
         { label: "New Members", value: "11K+", icon: Users },
-        { label: "Industry Focus", value: "Fitness", icon: Target },
-        { label: "Growth Type", value: "Sustainable", icon: TrendingUp }
+        { label: "Cost Per Lead", value: "–38%", icon: Target },
+        { label: "Conversion Rate", value: "+26%", icon: TrendingUp }
       ]
     },
     detailedResults: [
       {
-        title: "Exceptional Revenue Generation",
-        description: "Generated over $2M+ in revenue through strategic fitness marketing campaigns and optimized member acquisition systems"
+        title: "Revenue Growth",
+        description: "Generated over $2M+ in total revenue through high-performing ads and conversion funnels."
       },
       {
-        title: "Massive Member Acquisition", 
-        description: "Successfully acquired 11K+ new members through targeted marketing strategies and comprehensive growth systems"
+        title: "Lead Quality", 
+        description: "Reduced cost per lead by 38%, increasing campaign efficiency."
       },
       {
-        title: "Fitness Industry Expertise",
-        description: "Demonstrated specialized expertise in fitness marketing, delivering results that significantly exceed industry benchmarks"
+        title: "Member Acquisition",
+        description: "Added 11K+ new members through systematic retargeting and lookalike expansion."
       },
       {
-        title: "Sustainable Growth Achievement",
-        description: "Established sustainable growth systems that continue to drive revenue and membership expansion in the competitive fitness market"
+        title: "Brand Strength",
+        description: "Improved consistency across visuals and landing experiences, boosting trust and retention."
       }
     ],
     strategies: [
@@ -338,8 +338,9 @@ const caseStudyData = {
       }
     ],
     testimonial: {
-      quote: "The marketing strategy transformed our boutique studio into the premier destination for serious athletes. The targeted approach and community-building initiatives have created incredible membership growth and brand recognition.",
-      author: "Core 40 Studio Leadership"
+      quote: "",
+      author: "",
+      isResultsSummary: false
     },
     tags: ["Boutique Fitness", "High-Performance Training", "Premium Brand", "Community Building", "Athletic Performance", "Membership Growth"],
     featured: true,
