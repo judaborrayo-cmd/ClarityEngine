@@ -1,0 +1,64 @@
+Prompt for Replit (single message)
+
+Goal: Keep the page conversion-oriented while making the voice “Clarity Engine” (not “I”). Keep the existing testimonial exactly as it is. Don’t invent or modify quotes.
+
+Edits to make (no new deps; Tailwind only):
+
+Voice & framing
+
+Replace any first-person singular (“I did…”, “I helped…”) with Clarity Engine or we.
+
+Update the intro paragraph to position this as agency-side, multi-industry experience that informed Clarity Engine’s framework:
+
+Use:
+“Clarity Engine’s scalable PPC framework was developed and refined within a fast-paced, multi-industry performance environment—managing significant monthly ad spend across fitness, healthcare, e-commerce, travel, and logistics. The result: repeatable systems that deliver measurable growth across verticals.”
+
+Mid-page context line (above the mid CTA)
+
+Insert a single sentence above the mid CTA block that connects the case study to the reader:
+“These insights now inform how Clarity Engine helps brands scale—combining agency-tested rigor with adaptable frameworks built for modern growth.”
+
+Keep testimonial + add a neutral intro line (do NOT edit the quote)
+
+Directly above the testimonial, add:
+“These scalable systems were first proven in a multi-industry agency environment and continue to guide how Clarity Engine operates today.”
+
+Bottom CTA copy (headline + body)
+
+Headline: Ready to apply proven multi-industry systems to your growth?
+
+Body: “Let’s review your PPC structure and identify the next 2–3 efficiency wins across your funnel.”
+
+CTA polish (both CTAs)
+
+Increase button legibility and add subtle motion:
+
+Add classes: text-[15px] font-semibold rounded-2xl px-5 py-3 shadow-sm ring-1 ring-black/10 hover:shadow-lg transition hover:-translate-y-[1px]
+
+Wrap the mid and bottom CTA sections with a soft gradient container for contrast (see snippet).
+
+Placement (unchanged from current page)
+
+Hero / intro → At-a-Glance
+
+Images → Key Results → MidPageCTA
+
+The Challenge → The Solution → BeforeAfter
+
+Detailed Results → Testimonial intro line → Testimonial → BottomCTA → Other Case Studies
+
+Acceptance criteria:
+
+Language consistently uses we/Clarity Engine; no first-person singular.
+
+Testimonial text remains exactly as it is.
+
+Mid-page context line appears above the mid CTA.
+
+Bottom CTA uses the new headline/body.
+
+Buttons have motion/contrast and pass accessible contrast.
+
+React + Tailwind snippet (drop-in)
+
+Use the gradient wrappers + updated CTAs without changing your routing. Set bookUrl to your existing booking link (same as header button). Keep your current testimonial; just render <TestimonialIntro /> immediately above it.

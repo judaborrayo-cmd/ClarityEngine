@@ -18,8 +18,10 @@ export function CTAButton({
       to={href}
       aria-label={ariaLabel}
       className={[
-        "inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold",
-        "shadow-sm hover:shadow-md transition",
+        "inline-flex items-center justify-center",
+        "text-[15px] font-semibold rounded-2xl px-5 py-3",
+        "shadow-sm ring-1 ring-black/10 hover:shadow-lg",
+        "transition hover:-translate-y-[1px]",
         "bg-primary text-primary-foreground hover:bg-primary/90",
         className,
       ].join(" ")}
@@ -123,6 +125,15 @@ export function BeforeAfter() {
   );
 }
 
+export function TestimonialIntro() {
+  return (
+    <p className="mx-auto max-w-3xl text-center text-gray-700 dark:text-gray-300 mb-4">
+      These scalable systems were first proven in a multi-industry agency environment
+      and continue to guide how Clarity Engine operates today.
+    </p>
+  );
+}
+
 export function BottomCTA() {
   return (
     <section
@@ -132,10 +143,10 @@ export function BottomCTA() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 id="bottom-cta" className="text-xl font-semibold">
-          Ready to see your version of "After"?
+          Ready to apply proven multi-industry systems to your growth?
         </h2>
         <p className="mt-2 text-gray-200 dark:text-gray-300">
-          Let's review your PPC structure and find the next 2–3 efficiency wins across your funnel.
+          Let's review your PPC structure and identify the next 2–3 efficiency wins across your funnel.
         </p>
         <div className="mt-4">
           <CTAButton>

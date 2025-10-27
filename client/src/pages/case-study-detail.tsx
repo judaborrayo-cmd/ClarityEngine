@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
-import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA } from "@/components/case-study/ConversionComponents";
+import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro } from "@/components/case-study/ConversionComponents";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -10,7 +10,7 @@ const caseStudyData = {
     title: "Growth Across Industries",
     subtitle: "Pay Per Click at Lamark Performance Marketing Agency",
     category: "PPC Management",
-    overview: "Lamark Agency, a multi-industry digital marketing agency, required a sophisticated PPC management system capable of delivering consistent results across diverse business sectors including fitness, healthcare, e-commerce, travel, and logistics. Through the development of scalable frameworks, comprehensive tracking systems, and industry-specific optimization protocols, we successfully transformed their client delivery model, achieving remarkable growth across all verticals while maintaining operational efficiency and profitability.",
+    overview: "Clarity Engine's scalable PPC framework was developed and refined within a fast-paced, multi-industry performance environment—managing significant monthly ad spend across fitness, healthcare, e-commerce, travel, and logistics. The result: repeatable systems that deliver measurable growth across verticals.",
     challenge: "Lamark Agency faced the complex challenge of managing PPC campaigns across vastly different industries, each with unique customer behaviors, acquisition costs, and conversion patterns. The agency needed a unified system that could adapt to various business models while providing accurate performance tracking, budget allocation, and ROI measurement across multiple client accounts and verticals. The solution required seamless integration with existing workflows while maintaining the flexibility to scale efficiently as the agency grew.",
     solution: [
       "Developed comprehensive multi-industry PPC framework adaptable to different business sectors and customer acquisition models",
@@ -705,7 +705,12 @@ export default function CaseStudyDetail() {
           
           {/* Mid Page CTA - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
-            <MidPageCTA />
+            <>
+              <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
+                These insights now inform how Clarity Engine helps brands scale—combining agency-tested rigor with adaptable frameworks built for modern growth.
+              </p>
+              <MidPageCTA />
+            </>
           )}
         </div>
       </section>
@@ -784,6 +789,7 @@ export default function CaseStudyDetail() {
       {/* Testimonial */}
       <section className="px-6 py-16 lg:px-8 bg-muted/30">
         <div className="mx-auto max-w-4xl text-center">
+          {slug === "lamark-agency" && <TestimonialIntro />}
           <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
             "{study.testimonial.quote}"
           </blockquote>
