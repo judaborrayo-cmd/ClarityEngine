@@ -19,8 +19,8 @@ export function CTAButton({
       aria-label={ariaLabel}
       className={[
         "inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold",
-        "shadow-sm ring-1 ring-black/10 hover:shadow-md transition",
-        "bg-black text-white hover:bg-black/90",
+        "shadow-sm hover:shadow-md transition",
+        "bg-primary text-primary-foreground hover:bg-primary/90",
         className,
       ].join(" ")}
       data-testid="cta-button"
@@ -138,7 +138,7 @@ export function BottomCTA() {
           Let's review your PPC structure and find the next 2–3 efficiency wins across your funnel.
         </p>
         <div className="mt-4">
-          <CTAButton className="bg-white text-black hover:bg-white/90">
+          <CTAButton>
             Book a Strategic Intro Call
           </CTAButton>
         </div>
