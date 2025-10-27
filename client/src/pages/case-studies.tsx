@@ -23,6 +23,9 @@ import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
 import danielaGutenkovski from "@assets/Daniela_1758572440824.jpg";
 import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
 import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
+import lisaNicholsImage from "@assets/lisa-nichols-image.png";
+import hapiArtImage from "@assets/hapi-art-image.png";
+import steelFitImage from "@assets/steel-fit-image.png";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -116,8 +119,8 @@ export default function CaseStudies() {
       slug: "/case-study/hapi-art",
       title: "Hapi Art — E-commerce",
       impact: "10× ROAS with creative testing sprints & precise attribution",
-      image: "https://images.unsplash.com/photo-1561998338-13ad7883b20f?w=800&h=600&fit=crop",
-      imageAlt: "Digital art marketplace advertising",
+      image: hapiArtImage,
+      imageAlt: "Hapi Art - Fine art by Kristi Kohut e-commerce Shopify store",
       problem: "High-visual brand needed profitable scale and clear attribution.",
       solution: "Built creative testing cadence, prospecting/retargeting structure, and SKU/category reporting.",
     },
@@ -152,8 +155,8 @@ export default function CaseStudies() {
       slug: "/case-study/steel-fit-usa",
       title: "Steel Fit USA — Paid Media",
       impact: "Exceptional growth with optimized customer acquisition",
-      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=600&fit=crop",
-      imageAlt: "Fitness equipment and training",
+      image: steelFitImage,
+      imageAlt: "Steel Fit USA strategic approach and results",
       problem: "Intense competition in saturated fitness equipment market required cost-effective acquisition.",
       solution: "Advanced audience segmentation, creative testing protocols, and strategic remarketing funnels.",
     },
@@ -161,8 +164,8 @@ export default function CaseStudies() {
       slug: "/case-study/lisa-nichols",
       title: "Lisa Nichols — Personal Brand Growth",
       impact: "Best-selling author with global platform reaching millions",
-      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=600&fit=crop",
-      imageAlt: "Motivational speaking and personal development",
+      image: lisaNicholsImage,
+      imageAlt: "Lisa Nichols - Motivating the Masses",
       problem: "Scaling personal brand beyond traditional speaking required digital transformation.",
       solution: "Comprehensive digital presence, multi-channel content distribution, and authentic audience engagement.",
     },
