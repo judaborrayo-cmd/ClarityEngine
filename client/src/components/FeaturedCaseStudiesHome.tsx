@@ -85,7 +85,7 @@ export function FeaturedCaseStudiesHome() {
         <div className="relative">
           <div
             ref={scroller}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
+            className="flex gap-4 overflow-x-hidden pb-2"
             aria-label="Featured case studies"
           >
             {items.map((c) => (
