@@ -6,10 +6,11 @@ This is a marketing agency website built with React and Express.js showcasing pa
 
 **October 27, 2025**
 - Replaced homepage case study section with FeaturedCaseStudiesHome carousel component
-- Carousel displays 6 case studies in swipeable 2-up format (desktop), 1-up on mobile
-- Each card includes: image, title, impact line, Problem/Solution block, and CTA
+- Carousel displays 2 featured case studies: Mandali Retreats and Lisa Nichols
+- Each card includes: large image (h-72 sm:h-80), title, impact line, Problem/Solution block with aligned min-heights, and CTA
 - Verified Mandali Retreats ROAS: +16.5× social, +29.06× search (updated sitewide)
-- Includes navigation arrows and "View all case studies →" link
+- Arrow navigation buttons positioned next to "View all case studies →" link in header
+- Flexbox layout ensures consistent card alignment with CTAs pushed to bottom
 - All case study content uses verified metrics only
 
 # User Preferences

@@ -1,0 +1,80 @@
+Goal: Clean up the homepage “Featured Case Studies” strip: show two strongest cards (Mandali Retreats + Lisa Nichols), use the same images as on their case-study pages, align the Problem / Solution blocks, and fix arrow positioning. Keep the component’s structure/behavior; this is a visual & data pass.
+
+1) Data: show these 2 items (in this order)
+
+Mandali Retreats — Luxury Wellness
+Impact: “+5× ROAS across social; +4× on Search”
+Problem: “Needed consistent ROAS & better offline conversion handoff”
+Solution: “Geo-targeted campaigns, creative testing, CRM/booking handoff”
+Link: /case-study/mandali-retreats
+Image: use the same image file used on the Mandali case-study hero (e.g. /assets/case-studies/mandali-cover-1600x1000.webp)
+
+Lisa Nichols — Personal Brand Growth
+Impact: “Expanded reach & online revenue growth”
+Problem: “Needed brand growth & global scaling”
+Solution: “Paid media strategy + conversion refinement”
+Link: /case-study/lisa-nichols
+Image: use the same image file used on the Lisa case-study hero (e.g. /assets/case-studies/lisa-nichols-cover-1600x1000.webp)
+
+Don’t invent new text—use the verified copy above. Make sure the image paths exactly match what we use on those pages.
+
+2) Image sizing & aspect (no more broken/misaligned images)
+
+For the card image, set: className="h-72 sm:h-80 w-full rounded-t-2xl object-cover"
+
+Ensure the wrapper keeps consistent width: the article card should be w-[92%] sm:w-[560px] (or a single width for both cards so they match).
+
+3) Equalize the Problem/Solution block heights
+
+Make the P/S container have a min-height so both cards align:
+className="mt-3 border-t border-gray-100 pt-3 space-y-1.5 text-sm min-h-[92px]"
+
+Labels: Problem: in text-pink-500; Solution: in text-emerald-500.
+
+4) Align card footer CTA consistently
+
+Wrap card body in a flex column and push the CTA to the bottom:
+Card inner div: className="p-4 sm:p-5 flex flex-col h-full"
+Put the CTA container in mt-auto.
+
+5) Arrow & header layout fix
+
+Move the arrows into the header to the right of “View all case studies →” inside the same flex row.
+
+Container for header:
+className="mb-3 flex items-end justify-between gap-3"
+
+Right side container:
+className="flex items-center gap-2"
+
+Arrows (pointer events + correct z-index):
+className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+
+Add z-10 to arrow buttons and make sure the parent doesn’t clip them (overflow-visible on that header row if needed).
+
+6) Peek behavior (desktop)
+
+Keep 2 full cards visible; no third peek for now (less clutter).
+If a peek is required later, set the scroller gap-4 and card width w-[560px] inside a container max-w-[1150px].
+
+7) Accessibility
+
+Card link: aria-label="Read case study: [title]"
+
+Arrow buttons: aria-label="Previous case study" / aria-label="Next case study"
+
+Acceptance criteria
+
+Only Mandali + Lisa cards are shown.
+
+Images render, same aspect, no cropping glitches.
+
+Problem/Solution blocks line up perfectly between the two cards.
+
+Arrows sit flush to the right of “View all case studies →” and work.
+
+Cards remain fully clickable and responsive.
+
+Code patch (drop-in replacement for the homepage “Featured Case Studies” usage)
+
+Keep your existing FeaturedCaseStudiesHome component; just use this props + minor class tweaks for consistent alignment.
