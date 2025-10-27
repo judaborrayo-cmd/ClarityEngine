@@ -9,6 +9,7 @@ import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
+import { SelectedWinsSection } from "@/components/SelectedWinsSection";
 import { Quote } from "lucide-react";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -368,45 +369,8 @@ export default function Home() {
         {/* --- SERVICES AT A GLANCE --- */}
         <ServicesAtAGlance />
 
-        {/* --- CASE STUDY PREVIEWS --- */}
-        <Section id="case-studies" className="py-16">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Selected wins</h2>
-            <p className="mt-4 text-xl text-gray-600">Problem → Approach → Result. Short and sweet.</p>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="case-study-gym">Gym chain (10+ locations)</h3>
-              <Divider />
-              <ul className="mt-4 space-y-3 text-gray-700">
-                <li><span className="font-medium text-gray-900">Problem:</span> Rising CPL, flat sign‑ups</li>
-                <li><span className="font-medium text-gray-900">Approach:</span> Tiered remarketing + search overhaul</li>
-                <li><span className="font-medium text-green-600">Result:</span> −56% CPL in 60 days</li>
-              </ul>
-              <a href="#cs-gym" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-case-study-gym">Open full case study</a>
-            </Card>
-            <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="case-study-travel">Luxury travel (Galápagos)</h3>
-              <Divider />
-              <ul className="mt-4 space-y-3 text-gray-700">
-                <li><span className="font-medium text-gray-900">Problem:</span> Wasted spend, broken tracking</li>
-                <li><span className="font-medium text-gray-900">Approach:</span> Fix tracking + rebuild search</li>
-                <li><span className="font-medium text-green-600">Result:</span> More qualified calls, better ROAS</li>
-              </ul>
-              <a href="#cs-travel" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-case-study-travel">Open full case study</a>
-            </Card>
-            <Card>
-              <h3 className="text-xl font-semibold text-gray-900" data-testid="case-study-jewelry">Fine jewelry (e‑com)</h3>
-              <Divider />
-              <ul className="mt-4 space-y-3 text-gray-700">
-                <li><span className="font-medium text-gray-900">Problem:</span> Low AOV catalog retargeting</li>
-                <li><span className="font-medium text-gray-900">Approach:</span> Dynamic sets + creative testing</li>
-                <li><span className="font-medium text-green-600">Result:</span> Higher AOV & repeat buyers</li>
-              </ul>
-              <a href="#cs-jewelry" className="mt-6 inline-block text-sm font-semibold text-green-600 hover:text-green-700 underline transition-colors" data-testid="link-case-study-jewelry">Open full case study</a>
-            </Card>
-          </div>
-        </Section>
+        {/* --- SELECTED WINS --- */}
+        <SelectedWinsSection />
 
         {/* --- COMPACT FAQ (below Selected Wins) --- */}
         <Section id="faq" className="pt-20 pb-12 scroll-mt-20">

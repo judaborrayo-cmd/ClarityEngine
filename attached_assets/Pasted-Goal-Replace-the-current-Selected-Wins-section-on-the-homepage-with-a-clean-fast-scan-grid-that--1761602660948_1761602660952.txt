@@ -1,0 +1,116 @@
+Goal: Replace the current “Selected Wins” section on the homepage with a clean, fast-scan grid that links directly to our six live case studies. Each card shows Problem → Approach → Result and a subtle “View case study →” mini-CTA. Match the Clarity Engine look (rounded corners, soft shadows, brand label colors). No sliders here—keep it lightweight.
+
+What to build
+
+Section
+
+Title: Selected Wins → Real results from recent work
+
+Subtitle (muted, small): Problem → Approach → Result — short, sweet, and measurable.
+
+Container width consistent with other homepage sections (max-w-6xl mx-auto px-4).
+
+Vertical spacing: my-20 sm:my-24.
+
+Layout
+
+Responsive grid: 3 columns on desktop, 2 on tablet, 1 on mobile.
+Tailwind: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6.
+
+Card design (entire card is a link)
+
+Wrapper: a.block rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm hover:-translate-y-[2px] hover:shadow-lg transition
+
+Headline (client): text-base font-semibold text-gray-900
+
+Rows:
+
+Problem: label colored pink (text-pink-500)
+
+Approach: label colored indigo (text-indigo-500)
+
+Result: label colored emerald (text-emerald-600) and value bold
+
+Body text: text-sm text-gray-700 (result value in text-gray-800 font-semibold)
+
+Divider above CTA: border-t border-gray-100 mt-3 pt-3
+
+Mini-CTA row: left-aligned “View case study →”, text-sm font-medium text-emerald-700 hover:underline
+
+Accessibility: aria-label="View case study: [Client]"
+
+Link targets (must exist)
+
+Hapi Art → /case-study/hapi-art
+
+Mandali Retreats → /case-study/mandali-retreats
+
+Lamark (Multi-Industry) → /case-study/lamark-agency
+
+Steel Fit USA → /case-study/steel-fit-usa
+
+Core40 Fitness → /case-study/core40-fitness
+
+Lisa Nichols → /case-study/lisa-nichols
+
+Verified copy for cards (keep concise; no invented numbers)
+
+Hapi Art — E-commerce
+
+Problem: Needed profitable scale & clear attribution
+
+Approach: Creative testing cadence + funnel optimization
+
+Result: 10× ROAS overall (Prospecting 16×; Retargeting 6.9×)
+
+Mandali Retreats — Luxury Wellness
+
+Problem: Needed consistent ROAS & stronger bookings
+
+Approach: Geo-targeted campaigns + creative testing
+
+Result: +5× ROAS across social; +4× on Search
+
+Lamark Agency — Multi-Industry
+
+Problem: Portfolio complexity across industries
+
+Approach: Unified frameworks, reporting & optimization protocols
+
+Result: Consistent CPL at scale; $70K+ monthly ad spend
+
+Steel Fit USA — Paid Media
+
+Problem: High CPL & stagnating returns
+
+Approach: Tiered remarketing + search rebuild
+
+Result: +106% lift in ROAS
+
+Core40 — Fitness Studio
+
+Problem: Needed to maximize ROI & grow memberships
+
+Approach: Multi-channel ads + landing optimization
+
+Result: Higher ROI & steady sign-ups
+
+Lisa Nichols — Personal Brand Growth
+
+Problem: Needed brand growth & global scaling
+
+Approach: Paid media strategy + conversion refinement
+
+Result: Expanded reach & online revenue growth
+
+Keep everything else on the homepage unchanged.
+
+Acceptance criteria
+
+Six cards appear in a 3×2 grid (responsive).
+
+Entire card is clickable and routes to the right case study.
+
+Labels use brand colors; hover lift & focus styles present.
+
+Copy uses only verified claims already shown in their pages.

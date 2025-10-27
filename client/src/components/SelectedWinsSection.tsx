@@ -1,0 +1,102 @@
+type Win = {
+  client: string;
+  tag?: string;
+  problem: string;
+  approach: string;
+  result: string;
+  href: string;
+};
+
+export function SelectedWinsSection() {
+  const items: Win[] = [
+    {
+      client: "Hapi Art — E-commerce",
+      problem: "Needed profitable scale & clear attribution",
+      approach: "Creative testing cadence + funnel optimization",
+      result: "10× ROAS overall (Prospecting 16×; Retargeting 6.9×)",
+      href: "/case-study/hapi-art",
+    },
+    {
+      client: "Mandali Retreats — Luxury Wellness",
+      problem: "Needed consistent ROAS & stronger bookings",
+      approach: "Geo-targeted campaigns + creative testing",
+      result: "+16.5× ROAS across social; +29.06× on Search",
+      href: "/case-study/mandali-retreats",
+    },
+    {
+      client: "Lamark Agency — Multi-Industry",
+      problem: "Portfolio complexity across industries",
+      approach: "Unified frameworks, reporting & optimization protocols",
+      result: "Consistent CPL at scale; $70K+ monthly ad spend",
+      href: "/case-study/lamark-agency",
+    },
+    {
+      client: "Steel Fit USA — Paid Media",
+      problem: "High CPL & stagnating returns",
+      approach: "Tiered remarketing + search rebuild",
+      result: "+106% lift in ROAS",
+      href: "/case-study/steel-fit-usa",
+    },
+    {
+      client: "Core40 — Fitness Studio",
+      problem: "Needed to maximize ROI & grow memberships",
+      approach: "Multi-channel ads + landing optimization",
+      result: "Higher ROI & steady sign-ups",
+      href: "/case-study/core-40",
+    },
+    {
+      client: "Lisa Nichols — Personal Brand Growth",
+      problem: "Needed brand growth & global scaling",
+      approach: "Paid media strategy + conversion refinement",
+      result: "Expanded reach & online revenue growth",
+      href: "/case-study/lisa-nichols",
+    },
+  ];
+
+  return (
+    <section className="my-20 sm:my-24">
+      <div className="mx-auto max-w-6xl px-4">
+        <header className="mb-6 sm:mb-8">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Selected Wins → Real results from recent work
+          </h2>
+          <p className="mt-1 text-sm text-gray-600">
+            Problem → Approach → Result — short, sweet, and measurable.
+          </p>
+        </header>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+          {items.map((w, i) => (
+            <a
+              key={i}
+              href={w.href}
+              aria-label={`View case study: ${w.client}`}
+              className="block rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-sm transition hover:-translate-y-[2px] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+            >
+              <h3 className="text-base font-semibold text-gray-900">{w.client}</h3>
+
+              <div className="mt-3 space-y-1.5 text-sm">
+                <p className="text-gray-700">
+                  <span className="font-semibold text-pink-500">Problem:</span>{" "}
+                  {w.problem}
+                </p>
+                <p className="text-gray-700">
+                  <span className="font-semibold text-indigo-500">Approach:</span>{" "}
+                  {w.approach}
+                </p>
+                <p className="text-gray-800">
+                  <span className="font-semibold text-emerald-600">Result:</span>{" "}
+                  <span className="font-semibold">{w.result}</span>
+                </p>
+              </div>
+
+              <div className="mt-3 border-t border-gray-100 pt-3 text-sm font-medium text-emerald-700 hover:underline">
+                View case study →
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
