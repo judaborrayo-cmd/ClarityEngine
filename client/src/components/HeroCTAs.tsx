@@ -23,7 +23,7 @@ export default function HeroCTAs() {
       </div>
 
       <div className="text-xs text-gray-600 text-center" data-testid="hero-trust-anchors">
-        $3M+ tracked client revenue • ROI-first, no fluff • Clear roadmaps
+        ROI-first, no fluff • Clear roadmaps
       </div>
     </div>
   );
