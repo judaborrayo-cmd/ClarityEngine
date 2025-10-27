@@ -1,0 +1,64 @@
+Goal: Make the Case Studies page conversion-oriented, visual, and scannable. Keep the How We Deliver and Colleague Reviews sections exactly as they are.
+
+Structural changes
+
+Move case studies up
+
+Immediately under the page H1 “Case Studies,” insert a horizontal, swipeable case-study carousel that leads with a large image and a one-line impact headline. This replaces the current “Proof & Case Studies” grid (remove that grid).
+
+Logo ticker (social proof)
+
+Under the H1 (below the new carousel or right after it on desktop), add a left-scrolling logo ticker using the existing brand logos (color, not grayscale). Include a short tagline above it:
+“Serving ambitious brands across verticals for 12+ years.”
+
+Logos continuously scroll left (infinite marquee), pause on hover, accessible for keyboard.
+
+KPI “Client Results” chips carousel
+
+Replace the current three static KPI tiles with a swipeable chip carousel of 6–10 high-level KPIs drawn from the individual case studies (no invented numbers).
+
+Use only verified metrics already on their respective case-study pages. Examples you can definitely include now:
+
+10× ROAS (Hapi Art overall)
+
+16× ROAS (Prospecting, Meta) (Hapi Art)
+
+6.9× ROAS (Retargeting, Meta) (Hapi Art)
+
+5–6% CTR (Top creatives) (Hapi Art)
+
+$70K+ monthly ad spend managed (Multi-industry portfolio—Lamark page wording)
+
+Consistent CPL at scale (Lamark page wording; keep non-numeric)
+
+If a KPI is non-numeric (e.g., “Consistent CPL at scale”), keep it, but mark it as Outcome type instead of Metric.
+
+Design & UX requirements
+
+Impact-first: Each case-study card shows (1) big image, (2) client/brand, (3) one-line result headline, and a “Read case study →” button.
+
+Optional secondary details (Problem / Solution) appear in an expand panel on click (not hover) to keep the carousel clean while preserving your preferred frame.
+
+Use scroll-snap for the carousel; include prev/next buttons and support wheel/trackpad horizontal scroll.
+
+Keep typography, radius, and shadows consistent with the site. Tailwind only, no new deps.
+
+Do not change How We Deliver or Colleague Reviews.
+
+Keep the existing Book Strategic Intro Call CTA at the bottom of the page.
+
+Acceptance criteria
+
+The new CaseStudyCarousel appears immediately below the page H1.
+
+The LogoTicker sits near the top (under H1 or under the carousel on desktop) and runs smoothly.
+
+The KPI chips carousel replaces the old three tiles with 6–10 swipeable chips sourced from verified KPIs.
+
+All interactive controls are keyboard accessible and have aria-labels.
+
+No invented numbers or quotes.
+
+Drop-in code for Replit (React + Tailwind)
+
+Add this to a shared component file, e.g. components/CaseStudiesCRO.tsx, then import into your Case Studies page. Update image paths and links to match your routes. You can safely paste the whole block.

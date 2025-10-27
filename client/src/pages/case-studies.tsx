@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Star, Quote, Target, Users, Heart, ShoppingCart, Dumbbell, Package, Plane } from "lucide-react";
+import { Quote } from "lucide-react";
 import HowWeDeliverSection from "@/components/HowWeDeliverSection";
+import { CaseStudyCarousel, LogoTicker, KPIChipsCarousel } from "@/components/CaseStudiesCRO";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logojpg-x-small_1759067902299.jpeg";
 import microsoftLogo from "@assets/Microsoft-Design_1758463290202.png";
 import denaGamesLogo from "@assets/Dena-Games-Logo_1758463419409.png";
-import estrellaGymnasticsLogo from "@assets/Estrella-Gymnastics-logo_1758464245387.png";
-import capitalGymnasticsLogo from "@assets/capital-gymnastics-logo_1758464403830.png";
-import tigarGymnasticsLogo from "@assets/Tigar Gymnastics Logo-vmake_1758554236584.png";
-import houstonGymnasticsLogo from "@assets/Houston-Gymnastics-Academy-vmake_1758554236584.png";
-import sgtMenuLogo from "@assets/SGT-MENU-LOGO-1_1758554236584.png";
-import noTypicalMomentsLogo from "@assets/No-Typical-Moments-Logo_1758554458418.png";
-import marketerHireLogo from "@assets/MarketerHire Logo_1758554458419.png";
-import rowlandBallardLogo from "@assets/Rowland-Ballard-Logo_1758554468287.png";
 import bolayLogo from "@assets/Bolay_Official_Logo_Vertical_RGB_1756749176444.png";
 import core40Logo from "@assets/Core40_Logo_1756749176445.png";
 import cuteraLogo from "@assets/Cutera-Laser-Genesis-Subpage_1756749176443.png";
@@ -54,17 +46,6 @@ function ProgressBar() {
     </div>
   );
 }
-
-const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; className?: string }) => (
-  <div className={`logo-item relative isolate shrink-0 [flex-basis:7.5rem] transition-[flex-basis,margin] duration-300 ease-out hover:[flex-basis:9rem] hover:z-10 ${className}`}>
-    <img 
-      src={src} 
-      alt={alt} 
-      className="h-8 w-auto object-contain transition-all duration-300 ease-out hover:scale-110 hover:drop-shadow-lg"
-      data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
-    />
-  </div>
-);
 
 const colleagueReviews = [
   {
@@ -130,12 +111,99 @@ const colleagueReviews = [
 ];
 
 export default function CaseStudies() {
+  const caseStudyItems = [
+    {
+      slug: "/case-study/hapi-art",
+      title: "Hapi Art — E-commerce",
+      impact: "10× ROAS with creative testing sprints & precise attribution",
+      image: "https://images.unsplash.com/photo-1561998338-13ad7883b20f?w=800&h=600&fit=crop",
+      imageAlt: "Digital art marketplace advertising",
+      problem: "High-visual brand needed profitable scale and clear attribution.",
+      solution: "Built creative testing cadence, prospecting/retargeting structure, and SKU/category reporting.",
+    },
+    {
+      slug: "/case-study/lamark-agency",
+      title: "Growth Across Industries",
+      impact: "Consistent CPL at scale across multi-account portfolios",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      imageAlt: "Multi-industry marketing dashboard",
+      problem: "Portfolio complexity across industries and accounts reduced clarity.",
+      solution: "Unified frameworks, reporting, and optimization protocols enabling scalable management.",
+    },
+    {
+      slug: "/case-study/mandali-retreats",
+      title: "Mandali Retreats — Luxury Wellness",
+      impact: "+5× ROAS while filling retreat bookings consistently",
+      image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop",
+      imageAlt: "Luxury wellness retreat in Italy",
+      problem: "Luxury wellness market needed sophisticated targeting and offline conversion tracking.",
+      solution: "Implemented tiered remarketing, offline conversion tracking, and geographic optimization.",
+    },
+    {
+      slug: "/case-study/core-40",
+      title: "Core40 — Fitness Studio",
+      impact: "$2M+ revenue, 11K new members acquired",
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop",
+      imageAlt: "High-performance fitness training",
+      problem: "Boutique studio needed to differentiate and scale member acquisition profitably.",
+      solution: "Premium brand positioning, targeted digital marketing, and community-building initiatives.",
+    },
+    {
+      slug: "/case-study/steel-fit-usa",
+      title: "Steel Fit USA — Paid Media",
+      impact: "Exceptional growth with optimized customer acquisition",
+      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=600&fit=crop",
+      imageAlt: "Fitness equipment and training",
+      problem: "Intense competition in saturated fitness equipment market required cost-effective acquisition.",
+      solution: "Advanced audience segmentation, creative testing protocols, and strategic remarketing funnels.",
+    },
+    {
+      slug: "/case-study/lisa-nichols",
+      title: "Lisa Nichols — Personal Brand Growth",
+      impact: "Best-selling author with global platform reaching millions",
+      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=600&fit=crop",
+      imageAlt: "Motivational speaking and personal development",
+      problem: "Scaling personal brand beyond traditional speaking required digital transformation.",
+      solution: "Comprehensive digital presence, multi-channel content distribution, and authentic audience engagement.",
+    },
+  ];
+
+  const logoItems = [
+    { src: mandaliLogo, alt: "Mandali" },
+    { src: popcornIndianaLogo, alt: "Popcorn Indiana" },
+    { src: bolayLogo, alt: "Bolay" },
+    { src: cuteraLogo, alt: "Cutera" },
+    { src: motivatingMassesLogo, alt: "Motivating The Masses" },
+    { src: columbusLogo, alt: "Columbus" },
+    { src: magayaLogo, alt: "Magaya" },
+    { src: mixTelematicsLogo, alt: "Mix Telematics" },
+    { src: eftUniverseLogo, alt: "EFT Universe" },
+    { src: amaWaterwaysLogo, alt: "AMA Waterways" },
+    { src: ascendLogo, alt: "Ascend" },
+    { src: microsoftLogo, alt: "Microsoft" },
+    { src: denaGamesLogo, alt: "Dena Games" },
+    { src: core40Logo, alt: "Core40" },
+  ];
+
+  const kpiItems = [
+    { label: "10× ROAS", sub: "Hapi Art (overall)", type: "Metric" as const },
+    { label: "16× ROAS", sub: "Prospecting · Meta", type: "Metric" as const },
+    { label: "6.9× ROAS", sub: "Retargeting · Meta", type: "Metric" as const },
+    { label: "5–6% CTR", sub: "Top creatives · Meta", type: "Metric" as const },
+    { label: "$70K+ monthly ad spend", sub: "Portfolio mgmt", type: "Outcome" as const },
+    { label: "Consistent CPL at scale", sub: "Multi-industry", type: "Outcome" as const },
+    { label: "+5× ROAS", sub: "Mandali Retreats", type: "Metric" as const },
+    { label: "+4× ROAS", sub: "Google Search", type: "Metric" as const },
+    { label: "$2M+ revenue", sub: "Core40 Fitness", type: "Metric" as const },
+    { label: "11K+ new members", sub: "Core40 Fitness", type: "Metric" as const },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <ProgressBar />
       <main className="relative">
         
-        {/* Hero Section with Trusted Brands */}
+        {/* Hero Section with H1 */}
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -146,277 +214,28 @@ export default function CaseStudies() {
                 Proven results and the strategic framework behind them. See how we've helped ambitious brands achieve measurable growth.
               </p>
             </div>
-            
-            {/* Brand Logos Grid */}
-            <div className="space-y-8 mt-12">
-              {/* First row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={mandaliLogo} alt="Mandali" />
-                <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
-                <LogoImage src={bolayLogo} alt="Bolay" />
-                <LogoImage src={cuteraLogo} alt="Cutera" />
-                <LogoImage src={motivatingMassesLogo} alt="Motivating The Masses" />
-              </div>
-              
-              {/* Second row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={columbusLogo} alt="Columbus" />
-                <LogoImage src={magayaLogo} alt="Magaya" />
-                <LogoImage src={columbusLogo} alt="Columbus Capital" />
-                <LogoImage src={mixTelematicsLogo} alt="Mix Telematics" />
-                <LogoImage src={eftUniverseLogo} alt="EFT Universe" />
-              </div>
-              
-              {/* Third row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
-                <LogoImage src={ascendLogo} alt="Ascend" />
-                <LogoImage src={microsoftLogo} alt="Microsoft" />
-                <LogoImage src={denaGamesLogo} alt="Dena Games" />
-                <LogoImage src={core40Logo} alt="Core40" />
-              </div>
-              
-              {/* Fourth row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
-                <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
-                <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
-                <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
-              </div>
-              
-              {/* Fifth row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
-                <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
-                <LogoImage src={marketerHireLogo} alt="MarketerHire" />
-                <LogoImage src={rowlandBallardLogo} alt="Rowland Ballard" />
-              </div>
-            </div>
+
+            {/* Case Study Carousel */}
+            <CaseStudyCarousel items={caseStudyItems} title="Featured Case Studies" />
+
+            {/* Logo Ticker */}
+            <LogoTicker logos={logoItems} />
           </div>
         </section>
 
-        {/* How We Deliver Section */}
+        {/* How We Deliver Section (Untouched) */}
         <section className="bg-white">
           <HowWeDeliverSection />
         </section>
 
-        {/* Proof & Case Studies Section */}
-        <section className="py-16 bg-rose-50">
+        {/* KPI Chips Carousel (Replaces Client Results) */}
+        <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900" data-testid="proof-case-studies-title">
-                Proof & Case Studies
-              </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Selected outcomes from recent work.
-              </p>
-              <div className="mt-4">
-                <Link 
-                  to="/case-studies" 
-                  className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center"
-                >
-                  View All Case Studies <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2">
-              {/* Lanark Agency Case Study */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-lanark">
-                      Lamark Agency — Performance Marketing
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <Badge variant="secondary" className="mr-2">Performance Marketing</Badge>
-                    </div>
-                  </div>
-                  <Target className="h-8 w-8 text-blue-600" />
-                </div>
-                
-                <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Intent:</span> Lamark wanted to scale paid programs profitably.</p>
-                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But their budget was scattered across inefficient campaigns.</p>
-                  <p><span className="font-semibold text-gray-900">Resolution:</span> We restructured, built unified campaigns, and reduced costs while scaling.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> $70,000/month budget managed across verticals, consistent CPL growth</p>
-                </div>
-                
-                <div className="mt-6">
-                  <Link 
-                    to="/case-study/lamark-agency" 
-                    className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center"
-                    data-testid="link-case-lamark"
-                  >
-                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Hapi Art Case Study */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-hapi">
-                      Hapi Art — E‑commerce
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <Badge variant="secondary" className="mr-2">E-commerce</Badge>
-                    </div>
-                  </div>
-                  <ShoppingCart className="h-8 w-8 text-green-600" />
-                </div>
-                
-                <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Intent:</span> Hapi Art needed a profitable advertising system.</p>
-                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But their campaigns lacked structure and creative testing.</p>
-                  <p><span className="font-semibold text-gray-900">Resolution:</span> We built a 10x ROAS system with systematic optimization.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> 10× ROAS System Built</p>
-                </div>
-                
-                <div className="mt-6">
-                  <Link 
-                    to="/case-study/hapi-art" 
-                    className="text-green-600 font-medium hover:text-green-700 inline-flex items-center"
-                    data-testid="link-case-hapi"
-                  >
-                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Mandali Retreats Case Study */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-mandali">
-                      Mandali Retreats — Luxury Wellness
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <Badge variant="secondary" className="mr-2">Luxury Wellness</Badge>
-                    </div>
-                  </div>
-                  <Heart className="h-8 w-8 text-purple-600" />
-                </div>
-                
-                <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Intent:</span> Mandali Retreats needed year-round bookings.</p>
-                  <p><span className="font-semibold text-gray-900">Obstacle:</span> Their ads were siloed and search traffic wasn't converting.</p>
-                  <p><span className="font-semibold text-gray-900">Resolution:</span> We built multi-channel campaigns with retargeting layers.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> +5× ROAS while filling retreat bookings consistently</p>
-                </div>
-                
-                <div className="mt-6">
-                  <Link 
-                    to="/case-study/mandali-retreats" 
-                    className="text-purple-600 font-medium hover:text-purple-700 inline-flex items-center"
-                    data-testid="link-case-mandali"
-                  >
-                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Core40 Case Study */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-core40">
-                      Core40 — Fitness Studio
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <Badge variant="secondary" className="mr-2">Fitness</Badge>
-                    </div>
-                  </div>
-                  <Dumbbell className="h-8 w-8 text-red-600" />
-                </div>
-                
-                <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Intent:</span> Core40 wanted to maximize ROI and scale member acquisition.</p>
-                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But their marketing lacked coordination and tracking was broken.</p>
-                  <p><span className="font-semibold text-gray-900">Resolution:</span> We unified their strategy and rebuilt tracking for clear ROI visibility.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> $2M+ revenue, 11K new members</p>
-                </div>
-                
-                <div className="mt-6">
-                  <Link 
-                    to="/case-study/core-40" 
-                    className="text-red-600 font-medium hover:text-red-700 inline-flex items-center"
-                    data-testid="link-case-core40"
-                  >
-                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Steel Fit USA Case Study */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-steel-fit">
-                      Steel Fit USA — Paid Media
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <Badge variant="secondary" className="mr-2">Paid Media</Badge>
-                    </div>
-                  </div>
-                  <Package className="h-8 w-8 text-orange-600" />
-                </div>
-                
-                <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Intent:</span> Steel Fit USA needed exceptional growth with paid media.</p>
-                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But they faced intense competition in the fitness equipment market.</p>
-                  <p><span className="font-semibold text-gray-900">Resolution:</span> We developed comprehensive paid media strategy with advanced audience segmentation.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> Exceptional growth with optimized customer acquisition</p>
-                </div>
-                
-                <div className="mt-6">
-                  <Link 
-                    to="/case-study/steel-fit-usa" 
-                    className="text-orange-600 font-medium hover:text-orange-700 inline-flex items-center"
-                    data-testid="link-case-steel-fit"
-                  >
-                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Lisa Nichols Case Study */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900" data-testid="case-lisa-nichols">
-                      Lisa Nichols — Personal Brand Growth
-                    </h3>
-                    <div className="mt-2 flex items-center">
-                      <Badge variant="secondary" className="mr-2">Personal Brand</Badge>
-                    </div>
-                  </div>
-                  <Plane className="h-8 w-8 text-indigo-600" />
-                </div>
-                
-                <div className="space-y-4 text-gray-600">
-                  <p><span className="font-semibold text-gray-900">Intent:</span> Lisa Nichols needed to scale her personal brand globally.</p>
-                  <p><span className="font-semibold text-gray-900">Obstacle:</span> But scaling beyond traditional speaking required digital transformation.</p>
-                  <p><span className="font-semibold text-gray-900">Resolution:</span> We built a comprehensive growth strategy maintaining authenticity at scale.</p>
-                  <p><span className="font-semibold text-gray-900">Impact:</span> Best-selling author with global speaking platform reaching millions</p>
-                </div>
-                
-                <div className="mt-6">
-                  <Link 
-                    to="/case-study/lisa-nichols" 
-                    className="text-indigo-600 font-medium hover:text-indigo-700 inline-flex items-center"
-                    data-testid="link-case-lisa-nichols"
-                  >
-                    Read full case study <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <KPIChipsCarousel items={kpiItems} title="Client Results" />
           </div>
         </section>
 
-        {/* Colleague Reviews Section */}
+        {/* Colleague Reviews Section (Untouched) */}
         <section id="colleague-reviews-cs" className="py-16 bg-gray-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -467,51 +286,7 @@ export default function CaseStudies() {
           </div>
         </section>
 
-        {/* Client Results Section */}
-        <section id="client-results-cs" className="py-16 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900">Client Results</h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Real outcomes from our partnerships
-              </p>
-            </div>
-            
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="text-center">
-                <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Star className="h-8 w-8 text-green-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Gym Chain</h3>
-                <p className="text-gray-600 mb-2">10+ locations</p>
-                <div className="text-2xl font-bold text-green-600">-56% CPL</div>
-                <p className="text-sm text-gray-500">in 60 days</p>
-              </div>
-
-              <div className="text-center">
-                <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Star className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Luxury Travel</h3>
-                <p className="text-gray-600 mb-2">Galápagos tours</p>
-                <div className="text-2xl font-bold text-blue-600">3x ROAS</div>
-                <p className="text-sm text-gray-500">improvement</p>
-              </div>
-
-              <div className="text-center">
-                <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Star className="h-8 w-8 text-purple-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">E-commerce</h3>
-                <p className="text-gray-600 mb-2">Fine jewelry</p>
-                <div className="text-2xl font-bold text-purple-600">Higher AOV</div>
-                <p className="text-sm text-gray-500">& repeat buyers</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
+        {/* CTA Section (Untouched) */}
         <section className="py-16 bg-green-50">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
