@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
-import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics } from "@/components/case-study/ConversionComponents";
+import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -176,10 +176,10 @@ const caseStudyData = {
     videoUrl: "https://www.youtube.com/watch?v=Hlea7gYuSvw"
   },
   "lisa-nichols": {
-    title: "Scaling a Best Selling Author & Speaker",
-    subtitle: "Lisa Nichols Growth Strategy",
+    title: "Motivating the Masses",
+    subtitle: "Lisa Nichols — Personal Brand Growth",
     category: "Personal Brand Growth",
-    overview: "Lisa Nichols, a renowned best-selling author, motivational speaker, and transformational leader, required a comprehensive growth strategy to scale her personal brand and expand her reach to millions of aspiring individuals worldwide. Through strategic digital marketing, audience development, and systematic brand positioning, we developed a scalable growth system that amplified her message of transformation and empowerment, resulting in massive audience expansion and revenue growth.",
+    overview: "Clarity Engine developed a global paid media system for Lisa Nichols—best-selling author, speaker, and founder of Motivating the Masses. Through creative testing, funnel optimization, and multi-channel scaling across YouTube and Google, campaigns achieved lower acquisition costs, consistent conversions, and global audience growth.",
     challenge: "Lisa Nichols faced the challenge of scaling her personal brand beyond traditional speaking engagements and book sales in an increasingly digital landscape. The challenge was to create a comprehensive digital presence that could authentically represent her transformational message while reaching millions of people seeking personal development and empowerment. She needed a system that could maintain the personal connection and authenticity that made her successful while achieving massive scale.",
     solution: [
       "Developed comprehensive personal brand strategy optimized for digital transformation and audience engagement",
@@ -191,30 +191,30 @@ const caseStudyData = {
       "Implemented advanced analytics and tracking systems to measure brand growth and audience engagement"
     ],
     results: {
-      primary: "Massive audience expansion and revenue growth through strategic brand scaling",
+      primary: "Consistent audience growth, global reach, and improved cost efficiency through systemized paid media optimization.",
       metrics: [
-        { label: "Brand Status", value: "Best-Selling", icon: TrendingUp },
-        { label: "Speaking Impact", value: "Global", icon: Users },
-        { label: "Audience Reach", value: "Millions", icon: Target },
-        { label: "Growth Type", value: "Scalable", icon: DollarSign }
+        { label: "Google CPC", value: "–42%", icon: DollarSign },
+        { label: "CPL Efficiency", value: "+52%", icon: TrendingUp },
+        { label: "YouTube Conversions", value: "+140%", icon: Target },
+        { label: "Audience Expansion", value: "+25% YoY", icon: Users }
       ]
     },
     detailedResults: [
       {
-        title: "Best-Selling Author Achievement",
-        description: "Successfully established Lisa Nichols as a best-selling author through strategic book marketing and audience development campaigns"
+        title: "Paid Media Optimization",
+        description: "Reduced Google CPC by 42% and improved overall ad efficiency"
       },
       {
-        title: "Global Speaking Platform", 
-        description: "Built a scalable speaking platform that reaches millions of individuals worldwide seeking transformation and empowerment"
+        title: "Conversion Growth", 
+        description: "Increased YouTube conversions by 140%; achieved stable CPL performance"
       },
       {
-        title: "Personal Brand Authority",
-        description: "Established Lisa Nichols as a leading authority in personal development and transformational leadership"
+        title: "Audience Expansion",
+        description: "Extended reach across multiple regions with consistent ROI improvements"
       },
       {
-        title: "Revenue Diversification Success",
-        description: "Created multiple revenue streams including books, speaking engagements, digital products, and coaching programs"
+        title: "Funnel Systemization",
+        description: "Implemented end-to-end tracking and weekly optimization cycles"
       }
     ],
     strategies: [
@@ -252,10 +252,11 @@ const caseStudyData = {
       }
     ],
     testimonial: {
-      quote: "The growth strategy transformed my ability to reach and impact millions of people seeking transformation. The systematic approach to scaling my personal brand while maintaining authenticity has been extraordinary.",
-      author: "Lisa Nichols, Best-Selling Author & Speaker"
+      quote: "",
+      author: "",
+      isResultsSummary: false
     },
-    tags: ["Best-Selling Author", "Personal Brand", "Speaker Growth", "Transformation", "Global Reach", "Revenue Diversification"],
+    tags: ["–42% CPC", "+140% YouTube Conversions", "Personal Brand", "Global Growth", "+52% CPL Efficiency", "Multi-Channel"],
     featured: true,
     videoUrl: "https://youtu.be/Mv9aaF1ISXQ"
   },
@@ -677,6 +678,20 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
+          
+          {/* StatStrip - Only for Lisa Nichols */}
+          {slug === "lisa-nichols" && (
+            <div className="mx-auto max-w-4xl">
+              <StatStrip 
+                items={[
+                  { k: "–42%", v: "Reduction in Google CPC" },
+                  { k: "+52%", v: "Improvement in CPL efficiency" },
+                  { k: "+140%", v: "Increase in YouTube conversions" },
+                  { k: "+25%", v: "Audience expansion YoY" },
+                ]}
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -771,6 +786,19 @@ export default function CaseStudyDetail() {
               />
             </>
           )}
+          
+          {/* Mid Page CTA - Only for Lisa Nichols */}
+          {slug === "lisa-nichols" && (
+            <>
+              <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
+                These learnings now guide how Clarity Engine helps personal brands and thought leaders grow their reach efficiently.
+              </p>
+              <MidPageCTA 
+                title="Curious what this could look like for your brand?"
+                body="Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins."
+              />
+            </>
+          )}
         </div>
       </section>
 
@@ -835,6 +863,20 @@ export default function CaseStudyDetail() {
               title="Before vs After (Retreats Growth System)"
             />
           )}
+          
+          {/* Before After - Only for Lisa Nichols */}
+          {slug === "lisa-nichols" && (
+            <BeforeAfter 
+              rows={[
+                { before: "Disconnected brand channels", after: "Unified Google + YouTube strategy" },
+                { before: "Rising ad costs & inconsistent conversions", after: "–42% CPC reduction and higher CTR" },
+                { before: "Limited global reach", after: "Expanded international visibility" },
+                { before: "Unclear funnel hand-offs", after: "Streamlined journey from ad to booking" },
+                { before: "Irregular campaign performance", after: "Consistent weekly optimization cycles" },
+              ]}
+              title="Before vs After (Personal Brand Growth System)"
+            />
+          )}
         </div>
       </section>
 
@@ -880,31 +922,35 @@ export default function CaseStudyDetail() {
       )}
 
       {/* Testimonial / Results Summary */}
-      <section className="px-6 py-16 lg:px-8 bg-muted/30">
-        <div className="mx-auto max-w-4xl text-center">
-          {slug === "lamark-agency" && <TestimonialIntro />}
-          {slug === "hapi-art" && <TestimonialIntroLine />}
-          {slug === "mandali-retreats" && <TestimonialIntroLine />}
-          
-          {(study.testimonial as any).isResultsSummary ? (
-            <div data-testid="results-summary">
-              <h3 className="text-lg font-semibold mb-4 text-foreground">Results Summary</h3>
-              <p className="text-lg text-foreground leading-relaxed">
-                {study.testimonial.quote}
-              </p>
-            </div>
-          ) : (
-            <>
-              <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
-                "{study.testimonial.quote}"
-              </blockquote>
-              <p className="text-muted-foreground font-medium">
-                — {study.testimonial.author}
-              </p>
-            </>
-          )}
-        </div>
-      </section>
+      {/* Testimonial / Results Summary */}
+      {study.testimonial.quote && (
+        <section className="px-6 py-16 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-4xl text-center">
+            {slug === "lamark-agency" && <TestimonialIntro />}
+            {slug === "hapi-art" && <TestimonialIntroLine />}
+            {slug === "mandali-retreats" && <TestimonialIntroLine />}
+            {slug === "lisa-nichols" && <LisaNicholsTestimonialIntroLine />}
+            
+            {(study.testimonial as any).isResultsSummary ? (
+              <div data-testid="results-summary">
+                <h3 className="text-lg font-semibold mb-4 text-foreground">Results Summary</h3>
+                <p className="text-lg text-foreground leading-relaxed">
+                  {study.testimonial.quote}
+                </p>
+              </div>
+            ) : (
+              <>
+                <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
+                  "{study.testimonial.quote}"
+                </blockquote>
+                <p className="text-muted-foreground font-medium">
+                  — {study.testimonial.author}
+                </p>
+              </>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Bottom CTA - Only for Lamark Agency */}
       {slug === "lamark-agency" && (
@@ -934,6 +980,18 @@ export default function CaseStudyDetail() {
             <BottomCTA 
               title="Ready to apply a proven growth system to your retreat?"
               body="Let's review your ads, landing flow, and tracking to find the next 2–3 booking levers."
+            />
+          </div>
+        </section>
+      )}
+      
+      {/* Bottom CTA - Only for Lisa Nichols */}
+      {slug === "lisa-nichols" && (
+        <section className="px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <BottomCTA 
+              title="Ready to scale your brand with a proven growth framework?"
+              body="Let's review your ads, funnels, and tracking to uncover the next 2–3 high-impact wins."
             />
           </div>
         </section>

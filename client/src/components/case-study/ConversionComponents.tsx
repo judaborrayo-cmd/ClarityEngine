@@ -265,3 +265,11 @@ export function VerifiedMetrics() {
     </section>
   );
 }
+
+export function LisaNicholsTestimonialIntroLine() {
+  return (
+    <p className="mx-auto max-w-3xl text-center text-gray-700 dark:text-gray-300 mb-4">
+      These learnings now guide how Clarity Engine helps personal brands and thought leaders grow their reach efficiently.
+    </p>
+  );
+}

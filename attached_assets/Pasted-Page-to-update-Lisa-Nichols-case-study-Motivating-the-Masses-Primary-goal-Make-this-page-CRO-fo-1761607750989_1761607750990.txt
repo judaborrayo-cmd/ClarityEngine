@@ -1,0 +1,93 @@
+Page to update: Lisa Nichols case study (Motivating the Masses)
+
+Primary goal: Make this page CRO-focused and consistent with the Hapi Art & Mandali layouts so more visitors Book a Strategic Intro Call.
+
+Critical rule (do NOT skip):
+👉 Do not add, edit, paraphrase, or invent any quotes or testimonials. If a quote is not already present verbatim on the page, do not add it. If one exists, leave it exactly as-is.
+
+Changes to implement
+
+Hero intro — replace paragraph with this (factual, non-testimonial):
+
+Clarity Engine developed a global paid media system for Lisa Nichols—best-selling author, speaker, and founder of Motivating the Masses. Through creative testing, funnel optimization, and multi-channel scaling across YouTube and Google, campaigns achieved lower acquisition costs, consistent conversions, and global audience growth.
+
+At-a-Glance stat strip (directly under the hero paragraph):
+
+–42% reduction in Google CPC
+
++52% improvement in CPL efficiency
+
++140% increase in YouTube conversions
+
++25% audience expansion YoY
+
+Key Results line (under icons) — replace with:
+
+Consistent audience growth, global reach, and improved cost efficiency through systemized paid media optimization.
+
+Mid-page context + CTA (insert after Key Results):
+
+Context line:
+
+These learnings now guide how Clarity Engine helps personal brands and thought leaders grow their reach efficiently.
+
+CTA block (uses same booking link as the header button):
+
+Title: Curious what this could look like for your brand?
+
+Body: Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins.
+
+Button: Book a Strategic Intro Call
+
+Before vs After snapshot (place below “The Solution”, above “Detailed Results”):
+Rows:
+
+Before: Disconnected brand channels → After: Unified Google + YouTube strategy
+
+Before: Rising ad costs & inconsistent conversions → After: –42% CPC and higher CTR
+
+Before: Limited global reach → After: Expanded international visibility
+
+Before: Unclear funnel hand-offs → After: Streamlined journey from ad to booking
+
+Before: Irregular performance reporting → After: Consistent weekly optimization cycles
+
+Detailed Results (two-column blocks; factual only, no quotes):
+
+Paid Media Optimization: Reduced Google CPC by 42% and improved overall ad efficiency.
+
+Conversion Growth: Increased YouTube conversions by 140%; achieved stable CPL performance.
+
+Audience Expansion: Extended reach across multiple regions with consistent ROI improvements.
+
+Funnel Systemization: Implemented end-to-end tracking and weekly optimization cycles.
+
+Bottom CTA (dark variant, above “Other Case Studies”):
+
+Title: Ready to scale your brand with a proven growth framework?
+
+Body: Let’s review your ads, funnels, and tracking to uncover the next 2–3 high-impact wins.
+
+Button: Book a Strategic Intro Call
+
+Styling & accessibility (Tailwind only):
+
+Buttons: text-[15px] font-semibold rounded-2xl px-5 py-3 shadow-sm ring-1 ring-black/10 hover:shadow-lg transition hover:-translate-y-[1px]
+
+Problem/Solution labels: text-pink-500 and text-emerald-500
+
+Add aria-label="Book a Strategic Intro Call" to CTA buttons.
+
+Acceptance criteria: New stat strip, mid-CTA, before/after, and bottom CTA render responsively; copy matches above; no invented/edited quotes anywhere; design aligns with Hapi Art & Mandali pages.
+
+After adding the code below, mount the sections in this order on the Lisa page:
+
+Hero paragraph → StatStrip
+
+Key Results → context line → MidPageCTA
+
+The Solution → BeforeAfter
+
+Detailed Results (edited copy)
+
+BottomCTA
