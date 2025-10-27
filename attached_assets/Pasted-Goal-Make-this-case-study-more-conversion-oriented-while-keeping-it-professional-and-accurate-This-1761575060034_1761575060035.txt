@@ -1,0 +1,67 @@
+Goal: Make this case study more conversion-oriented while keeping it professional and accurate. This page is about my multi-industry, agency-side paid media experience (not a single client). Do not invent quotes.
+
+Edits to make:
+
+Positioning + language
+
+Change headline/subhead to emphasize “Growth Across Industries” and agency-side experience (avoid wording that implies I was the agency’s vendor or that this is a single client).
+
+Where the page currently says “Lamark Agency,” replace with neutral phrasing like “a multi-industry performance marketing agency” or “agency-side portfolio” to highlight my experience across verticals.
+
+At-a-Glance strip (immediately under hero or images)
+
+Four compact stat cards:
+
+$70K+ monthly ad spend across portfolios
+
+10+ industries served
+
+Consistent CPL performance at scale
+
+Multi-account frameworks with clear attribution
+
+Mid-page CTA (after “Key Results”)
+
+Add a prominent CTA block:
+
+Title: “Curious what this could look like for you?”
+
+Copy: “Book a Strategic Intro Call — we’ll review your current setup and outline the quickest wins.”
+
+Button text: Book a Strategic Intro Call → link to the existing booking route on this site (use the same URL as the header button).
+
+Before vs After snapshot (below “The Solution” or before “Detailed Results”)
+
+A simple two-column table or card grid contrasting Before and After (no client quotes).
+
+Before: fragmented reporting, manual campaign adjustments, inconsistent CPL across verticals, unclear attribution
+
+After: unified frameworks & reporting, automated/templatized optimizations, stabilized CPL across verticals, precise attribution & budgeting
+
+End-of-page CTA
+
+Repeat the CTA with slightly different copy:
+
+Title: “Ready to see your version of ‘After’?”
+
+Copy: “Let’s review your current PPC structure and find the next 2–3 efficiency wins.”
+
+Button: Book a Strategic Intro Call (same link)
+
+UX details
+
+Make CTAs accessible (button role, aria-labels).
+
+Keep typography and spacing consistent with the site.
+
+No new dependencies. Tailwind only.
+
+Do not create any testimonials or quotes.
+
+Acceptance criteria:
+
+New At-a-Glance stats, Mid-page CTA, Before/After block, and End-of-page CTA render cleanly on mobile & desktop.
+
+Language consistently reflects agency-side, multi-industry experience (no implication that I was hired by the named agency as a vendor).
+
+Buttons use the site’s existing booking URL and styles.

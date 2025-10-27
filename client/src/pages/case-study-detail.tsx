@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
+import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA } from "@/components/case-study/ConversionComponents";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -604,38 +605,45 @@ export default function CaseStudyDetail() {
             {slug === "lamark-agency" && (
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-14 h-14 bg-violet-100 rounded-full flex items-center justify-center">
-                    <Dumbbell className="w-7 h-7 text-violet-600" />
+                  <div className="w-14 h-14 bg-violet-100 dark:bg-violet-900 rounded-full flex items-center justify-center">
+                    <Dumbbell className="w-7 h-7 text-violet-600 dark:text-violet-400" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">Fitness</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Fitness</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Heart className="w-7 h-7 text-blue-600" />
+                  <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                    <Heart className="w-7 h-7 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">Healthcare</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Healthcare</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center">
-                    <ShoppingCart className="w-7 h-7 text-green-600" />
+                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                    <ShoppingCart className="w-7 h-7 text-green-600 dark:text-green-400" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">E-commerce</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">E-commerce</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center">
-                    <Plane className="w-7 h-7 text-amber-600" />
+                  <div className="w-14 h-14 bg-amber-100 dark:bg-amber-900 rounded-full flex items-center justify-center">
+                    <Plane className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">Travel</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Travel</span>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center">
-                    <Package className="w-7 h-7 text-indigo-600" />
+                  <div className="w-14 h-14 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
+                    <Package className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">Logistics</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Logistics</span>
                 </div>
               </div>
             )}
           </div>
+          
+          {/* At A Glance - Only for Lamark Agency */}
+          {slug === "lamark-agency" && (
+            <div className="mx-auto max-w-4xl">
+              <AtAGlance />
+            </div>
+          )}
         </div>
       </section>
 
@@ -694,6 +702,11 @@ export default function CaseStudyDetail() {
           <p className="text-center text-lg font-medium text-foreground">
             {study.results.primary}
           </p>
+          
+          {/* Mid Page CTA - Only for Lamark Agency */}
+          {slug === "lamark-agency" && (
+            <MidPageCTA />
+          )}
         </div>
       </section>
 
@@ -719,6 +732,11 @@ export default function CaseStudyDetail() {
               </ul>
             </div>
           </div>
+          
+          {/* Before After - Only for Lamark Agency */}
+          {slug === "lamark-agency" && (
+            <BeforeAfter />
+          )}
         </div>
       </section>
 
@@ -774,6 +792,15 @@ export default function CaseStudyDetail() {
           </p>
         </div>
       </section>
+
+      {/* Bottom CTA - Only for Lamark Agency */}
+      {slug === "lamark-agency" && (
+        <section className="px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <BottomCTA />
+          </div>
+        </section>
+      )}
 
       {/* Tags */}
       <section className="px-6 py-12 lg:px-8">
