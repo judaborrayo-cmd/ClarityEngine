@@ -60,7 +60,7 @@ const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; cla
     <img 
       src={src} 
       alt={alt} 
-      className="h-8 w-auto object-contain grayscale transition-all duration-300 ease-out hover:grayscale-0 hover:scale-110 hover:drop-shadow-lg"
+      className="h-8 w-auto object-contain transition-all duration-300 ease-out hover:scale-110 hover:drop-shadow-lg"
       data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
     />
   </div>
@@ -149,8 +149,68 @@ export default function CaseStudies() {
           </div>
         </section>
 
+        {/* Trusted by Leading Brands Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900" data-testid="trusted-brands-title">
+                Trusted by Leading Brands Across Industries
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-4xl mx-auto">
+                From fitness and wellness to SaaS and e-commerce, we've helped ambitious brands achieve multi-million dollar growth through strategic paid media and growth marketing across Meta, Instagram, YouTube, Google Ads, and other major platforms.
+              </p>
+            </div>
+            
+            {/* Brand Logos Grid */}
+            <div className="space-y-8">
+              {/* First row */}
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
+                <LogoImage src={mandaliLogo} alt="Mandali" />
+                <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
+                <LogoImage src={bolayLogo} alt="Bolay" />
+                <LogoImage src={cuteraLogo} alt="Cutera" />
+                <LogoImage src={motivatingMassesLogo} alt="Motivating The Masses" />
+              </div>
+              
+              {/* Second row */}
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
+                <LogoImage src={columbusLogo} alt="Columbus" />
+                <LogoImage src={magayaLogo} alt="Magaya" />
+                <LogoImage src={columbusLogo} alt="Columbus Capital" />
+                <LogoImage src={mixTelematicsLogo} alt="Mix Telematics" />
+                <LogoImage src={eftUniverseLogo} alt="EFT Universe" />
+              </div>
+              
+              {/* Third row */}
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
+                <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
+                <LogoImage src={ascendLogo} alt="Ascend" />
+                <LogoImage src={microsoftLogo} alt="Microsoft" />
+                <LogoImage src={denaGamesLogo} alt="Dena Games" />
+                <LogoImage src={core40Logo} alt="Core40" />
+              </div>
+              
+              {/* Fourth row */}
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
+                <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
+                <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
+                <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
+                <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
+              </div>
+              
+              {/* Fifth row */}
+              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
+                <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
+                <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
+                <LogoImage src={marketerHireLogo} alt="MarketerHire" />
+                <LogoImage src={rowlandBallardLogo} alt="Rowland Ballard" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* How We Deliver Section */}
-        <section className="bg-gray-50">
+        <section className="bg-white">
           <HowWeDeliverSection />
         </section>
 
@@ -297,66 +357,6 @@ export default function CaseStudies() {
                     Read full case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Trusted by Leading Brands Section */}
-        <section className="py-16 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900" data-testid="trusted-brands-title">
-                Trusted by Leading Brands Across Industries
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-4xl mx-auto">
-                From fitness and wellness to SaaS and e-commerce, we've helped ambitious brands achieve multi-million dollar growth through strategic paid media and growth marketing across Meta, Instagram, YouTube, Google Ads, and other major platforms.
-              </p>
-            </div>
-            
-            {/* Brand Logos Grid */}
-            <div className="space-y-8">
-              {/* First row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={mandaliLogo} alt="Mandali" />
-                <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
-                <LogoImage src={bolayLogo} alt="Bolay" />
-                <LogoImage src={cuteraLogo} alt="Cutera" />
-                <LogoImage src={motivatingMassesLogo} alt="Motivating The Masses" />
-              </div>
-              
-              {/* Second row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={columbusLogo} alt="Columbus" />
-                <LogoImage src={magayaLogo} alt="Magaya" />
-                <LogoImage src={columbusLogo} alt="Columbus Capital" />
-                <LogoImage src={mixTelematicsLogo} alt="Mix Telematics" />
-                <LogoImage src={eftUniverseLogo} alt="EFT Universe" />
-              </div>
-              
-              {/* Third row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
-                <LogoImage src={ascendLogo} alt="Ascend" />
-                <LogoImage src={microsoftLogo} alt="Microsoft" />
-                <LogoImage src={denaGamesLogo} alt="Dena Games" />
-                <LogoImage src={core40Logo} alt="Core40" />
-              </div>
-              
-              {/* Fourth row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
-                <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
-                <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
-                <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
-              </div>
-              
-              {/* Fifth row */}
-              <div className="logo-row group flex flex-wrap items-center justify-center gap-8 transition-[gap] duration-300 overflow-visible">
-                <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
-                <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
-                <LogoImage src={marketerHireLogo} alt="MarketerHire" />
-                <LogoImage src={rowlandBallardLogo} alt="Rowland Ballard" />
               </div>
             </div>
           </div>
