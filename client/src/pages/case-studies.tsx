@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Quote } from "lucide-react";
 import HowWeDeliverSection from "@/components/HowWeDeliverSection";
-import { CaseStudyCarousel, LogoTicker, KPIChipsCarousel } from "@/components/CaseStudiesCRO";
+import { CaseStudyCarousel, LogoTicker } from "@/components/CaseStudiesCRO";
+import { KPIChipsLinks } from "@/components/KPIChipsLinks";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logojpg-x-small_1759067902299.jpeg";
@@ -191,17 +192,16 @@ export default function CaseStudies() {
     { src: core40Logo, alt: "Core40" },
   ];
 
-  const kpiItems = [
-    { label: "10× ROAS", sub: "Hapi Art (overall)", type: "Metric" as const },
-    { label: "16× ROAS", sub: "Prospecting · Meta", type: "Metric" as const },
-    { label: "6.9× ROAS", sub: "Retargeting · Meta", type: "Metric" as const },
-    { label: "5–6% CTR", sub: "Top creatives · Meta", type: "Metric" as const },
-    { label: "$70K+ monthly ad spend", sub: "Portfolio mgmt", type: "Outcome" as const },
-    { label: "Consistent CPL at scale", sub: "Multi-industry", type: "Outcome" as const },
-    { label: "+5× ROAS", sub: "Mandali Retreats", type: "Metric" as const },
-    { label: "+4× ROAS", sub: "Google Search", type: "Metric" as const },
-    { label: "$2M+ revenue", sub: "Core40 Fitness", type: "Metric" as const },
-    { label: "11K+ new members", sub: "Core40 Fitness", type: "Metric" as const },
+  const kpiLinkItems = [
+    { metric: "10× ROAS", context: "Overall campaign", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
+    { metric: "16× ROAS", context: "Prospecting · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
+    { metric: "6.9× ROAS", context: "Retargeting · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
+    { metric: "5–6% CTR", context: "Top creatives · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
+    { metric: "$70K+ monthly ad spend", context: "Portfolio mgmt", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
+    { metric: "Consistent CPL at scale", context: "Multi-industry", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
+    { metric: "+5× ROAS", context: "Retreat bookings", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
+    { metric: "$2M+ revenue", context: "Member growth", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
+    { metric: "11K+ new members", context: "Acquisition campaign", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
   ];
 
   return (
@@ -234,10 +234,10 @@ export default function CaseStudies() {
           <HowWeDeliverSection />
         </section>
 
-        {/* KPI Chips Carousel (Replaces Client Results) */}
+        {/* KPI Chips Links - Clickable Results */}
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <KPIChipsCarousel items={kpiItems} title="Client Results" />
+            <KPIChipsLinks items={kpiLinkItems} />
           </div>
         </section>
 
