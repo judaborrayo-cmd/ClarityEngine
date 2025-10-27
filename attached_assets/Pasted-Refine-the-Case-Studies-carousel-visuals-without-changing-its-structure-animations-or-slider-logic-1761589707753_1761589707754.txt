@@ -1,0 +1,85 @@
+Refine the Case Studies carousel visuals without changing its structure, animations, or slider logic.
+
+1. Fix image cropping / visibility
+
+Make featured case-study images display taller (more vertical space) so the full uploaded artwork fits.
+
+Use responsive containment rather than cropping:
+
+Replace object-cover with object-contain or object-center object-cover lg:object-contain depending on breakpoints.
+
+Increase image height from the current ~h-56 to about h-72 sm:h-80 (tweak until each uploaded image like Lisa Nichols Image.png and Steel Fit Strategic Approach.png shows completely).
+
+Maintain rounded corners and shadow styling consistent with the rest of the carousel cards.
+
+2. Make “Problem / Solution” always visible
+
+Remove the <details> / <summary> toggle entirely.
+
+Replace it with a horizontal pill or stacked mini-block that’s always visible under the impact line.
+
+Structure:
+
+Problem: [short text]
+Solution: [short text]
+
+
+Visual guidelines:
+
+“Problem” label in brand pink / fuchsia (#FF4BC0 or bg-gradient-to-r from-pink-400 to-fuchsia-500 text-white for pill).
+
+“Solution” label in brand teal / mint (#00CBA9 or bg-gradient-to-r from-teal-400 to-emerald-500 text-white).
+
+Keep the label word colored, while the accompanying text stays in neutral gray (text-gray-800).
+
+Example visual hierarchy:
+
+<p><span className="font-semibold text-pink-500">Problem:</span> Inconsistent creative testing ...</p>
+<p><span className="font-semibold text-emerald-500">Solution:</span> Built testing sprints ...</p>
+
+
+Add a faint border or divider (border-t border-gray-100 mt-3 pt-3) above the Problem / Solution block to separate it from the impact line.
+
+Keep this section short (2–3 lines each) to preserve the compact, scrollable card layout.
+
+Do not duplicate the Problem / Solution text already in the impact line—just re-use the existing props so there’s no repetition.
+
+3. Preserve carousel structure
+
+Do not change:
+
+the scroll-snap, navigation arrows, or slider JS
+
+the order of case-study cards
+
+the “Read case study →” CTA layout
+
+4. Accessibility & spacing polish
+
+Add aria-label="Case study image for [title]" to images.
+
+Ensure the Problem / Solution colored labels pass WCAG contrast (white text on brand colors).
+
+Maintain consistent padding: p-4 sm:p-5.
+
+5. Acceptance criteria
+
+✅ Images for Steel Fit and Lisa Nichols show their full composition (no cutoff).
+✅ “Problem / Solution” is always visible in color-coded, on-brand mini-block.
+✅ No repetition, no toggle interaction.
+✅ Card shadows, spacing, and responsiveness remain identical.
+
+Optional Tailwind snippet for the Problem / Solution block
+
+If Replit needs a quick reference:
+
+<div className="mt-3 border-t border-gray-100 pt-3 space-y-2 text-sm text-gray-800">
+  <p>
+    <span className="font-semibold text-pink-500">Problem:</span>{" "}
+    {c.problem}
+  </p>
+  <p>
+    <span className="font-semibold text-emerald-500">Solution:</span>{" "}
+    {c.solution}
+  </p>
+</div>

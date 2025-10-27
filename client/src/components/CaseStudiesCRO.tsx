@@ -127,35 +127,30 @@ export function CaseStudyCarousel({
               <img
                 src={c.image}
                 alt={c.imageAlt}
+                aria-label={`Case study image for ${c.title}`}
                 loading="lazy"
-                className="h-56 w-full rounded-t-2xl object-cover"
+                className="h-72 sm:h-80 w-full rounded-t-2xl object-contain bg-gradient-to-br from-gray-50 to-gray-100"
               />
             </a>
-            <div className="p-4">
+            <div className="p-4 sm:p-5">
               <h3 className="text-lg font-semibold" data-testid={`text-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
               <p className="mt-1 text-sm text-emerald-700 font-medium" data-testid={`text-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
 
               {(c.problem || c.solution) && (
-                <details 
-                  className="group mt-3 rounded-xl border border-gray-200 bg-gray-50 p-3"
-                  data-testid={`details-problem-solution-${c.slug.split('/').pop()}`}
-                >
-                  <summary className="cursor-pointer text-sm font-medium">
-                    Problem / Solution
-                  </summary>
-                  <div className="mt-2 space-y-2 text-sm text-gray-700">
-                    {c.problem && (
-                      <p>
-                        <span className="font-semibold">Problem:</span> {c.problem}
-                      </p>
-                    )}
-                    {c.solution && (
-                      <p>
-                        <span className="font-semibold">Solution:</span> {c.solution}
-                      </p>
-                    )}
-                  </div>
-                </details>
+                <div className="mt-3 border-t border-gray-100 pt-3 space-y-2 text-sm">
+                  {c.problem && (
+                    <p className="text-gray-800">
+                      <span className="font-semibold text-pink-600">Problem:</span>{" "}
+                      <span className="text-gray-800">{c.problem}</span>
+                    </p>
+                  )}
+                  {c.solution && (
+                    <p className="text-gray-800">
+                      <span className="font-semibold text-emerald-600">Solution:</span>{" "}
+                      <span className="text-gray-800">{c.solution}</span>
+                    </p>
+                  )}
+                </div>
               )}
 
               <div className="mt-4">
