@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
-import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine } from "@/components/case-study/ConversionComponents";
+import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics } from "@/components/case-study/ConversionComponents";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -94,7 +94,7 @@ const caseStudyData = {
     title: "Building a Profitable 10X ROAS",
     subtitle: "Hapi Art Advertising System",
     category: "ROI Optimization",
-    overview: "Clarity Engine's scalable e-commerce advertising framework was refined in a fast-moving multi-industry environment and applied to Hapi Art's marketplace—optimizing creative testing, funnel structure, and attribution. The result: a profitable system achieving 10× ROAS and $1M+ in tracked revenue.",
+    overview: "Clarity Engine's scalable e-commerce advertising framework was refined in a fast-moving multi-industry environment and applied to Hapi Art's marketplace—optimizing creative testing, funnel structure, and attribution. The result: a profitable system achieving 10× ROAS with systematic creative testing and precise attribution across Meta.",
     challenge: "Hapi Art faced the challenge of marketing digital art products in a highly competitive e-commerce landscape where visual appeal and audience targeting are critical. The brand needed an advertising system that could effectively showcase their artistic products, reach art enthusiasts and collectors, while achieving profitable returns on ad spend. The challenge was to create a scalable system that could consistently deliver high ROAS across multiple channels while building brand recognition in the digital art market.",
     solution: [
       "Designed comprehensive advertising system architecture optimized for visual product marketing and art e-commerce",
@@ -106,30 +106,30 @@ const caseStudyData = {
       "Implemented strategic remarketing campaigns targeting users based on art preferences and engagement behavior"
     ],
     results: {
-      primary: "10X ROAS achieved with $1M+ revenue generated through systematic optimization",
+      primary: "10× ROAS achieved with systematic creative testing, funnel structure, and precise attribution across Meta.",
       metrics: [
-        { label: "ROAS Achieved", value: "10X", icon: TrendingUp },
-        { label: "Revenue Generated", value: "$1M+", icon: DollarSign },
-        { label: "System Type", value: "Comprehensive", icon: Target },
-        { label: "Market Position", value: "Leading", icon: Users }
+        { label: "Overall ROAS", value: "10×", icon: TrendingUp },
+        { label: "Cold Prospecting", value: "16× ROAS", icon: Target },
+        { label: "Retargeting", value: "6.9× ROAS", icon: DollarSign },
+        { label: "Top Creatives", value: "5–6% CTR", icon: Users }
       ]
     },
     detailedResults: [
       {
-        title: "Exceptional ROAS Performance",
-        description: "Achieved remarkable 10X return on ad spend, significantly exceeding industry benchmarks for e-commerce advertising performance"
+        title: "Overall ROAS Performance",
+        description: "Achieved 10× return on ad spend across the entire program, demonstrating profitable efficiency in e-commerce advertising"
       },
       {
-        title: "Revenue Generation Success", 
-        description: "Generated over $1M+ in revenue through strategic advertising campaigns and optimized conversion funnels"
+        title: "Cold Prospecting Success", 
+        description: "Generated 16× ROAS on cold prospecting campaigns through Meta, effectively reaching new art enthusiasts and collectors"
       },
       {
-        title: "Market Position Establishment",
-        description: "Successfully established Hapi Art as a leading digital art e-commerce platform through strategic brand positioning and targeted marketing"
+        title: "Retargeting Optimization",
+        description: "Delivered 6.9× ROAS on retargeting campaigns, converting interested visitors into customers through strategic remarketing"
       },
       {
-        title: "Scalable System Development",
-        description: "Built a comprehensive, scalable advertising system that consistently delivers profitable results across multiple marketing channels"
+        title: "Creative Performance Excellence",
+        description: "Maintained 5–6% CTR consistently on top-performing creatives, significantly exceeding industry benchmarks through systematic testing and optimization"
       }
     ],
     strategies: [
@@ -167,10 +167,11 @@ const caseStudyData = {
       }
     ],
     testimonial: {
-      quote: "The advertising system delivered incredible results with 10X ROAS and over $1M in revenue. The strategic optimization and systematic approach transformed our entire marketing performance, establishing us as a leader in the digital art marketplace.",
-      author: "Hapi Art Marketing Team"
+      quote: "Hapi Art achieved 10× ROAS overall efficiency across the program. Cold prospecting on Meta delivered 16× ROAS, while retargeting campaigns achieved 6.9× ROAS. Top-performing creatives consistently maintained 5–6% CTR throughout the program.",
+      author: "Results Summary",
+      isResultsSummary: true
     },
-    tags: ["10X ROAS", "$1M Revenue", "E-commerce", "Digital Art", "Visual Marketing", "Conversion Optimization"],
+    tags: ["10× ROAS", "16× Cold ROAS", "Meta Ads", "E-commerce", "Digital Art", "Visual Marketing", "Conversion Optimization"],
     featured: true,
     videoUrl: "https://www.youtube.com/watch?v=Hlea7gYuSvw"
   },
@@ -650,10 +651,10 @@ export default function CaseStudyDetail() {
             <div className="mx-auto max-w-4xl">
               <StatStrip 
                 items={[
-                  { k: "10× ROAS", v: "Profitable efficiency" },
-                  { k: "$1M+ revenue", v: "Tracked from campaigns" },
-                  { k: "Full-funnel system", v: "Creative · Targeting · Attribution" },
-                  { k: "Scalable ops", v: "Automation & dashboards" },
+                  { k: "10× ROAS", v: "Overall efficiency" },
+                  { k: "16× ROAS", v: "Cold prospecting (Meta)" },
+                  { k: "6.9× ROAS", v: "Retargeting (Meta)" },
+                  { k: "5–6% CTR", v: "Top creatives" },
                 ]}
               />
             </div>
@@ -770,6 +771,14 @@ export default function CaseStudyDetail() {
             <BeforeAfter />
           )}
           
+          {/* Profitable Advertising Card & Verified Metrics - Only for Hapi Art */}
+          {slug === "hapi-art" && (
+            <>
+              <ProfitableAdvertisingCard />
+              <VerifiedMetrics />
+            </>
+          )}
+          
           {/* Before After - Only for Hapi Art */}
           {slug === "hapi-art" && (
             <BeforeAfter 
@@ -826,17 +835,29 @@ export default function CaseStudyDetail() {
         </section>
       )}
 
-      {/* Testimonial */}
+      {/* Testimonial / Results Summary */}
       <section className="px-6 py-16 lg:px-8 bg-muted/30">
         <div className="mx-auto max-w-4xl text-center">
           {slug === "lamark-agency" && <TestimonialIntro />}
           {slug === "hapi-art" && <TestimonialIntroLine />}
-          <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
-            "{study.testimonial.quote}"
-          </blockquote>
-          <p className="text-muted-foreground font-medium">
-            — {study.testimonial.author}
-          </p>
+          
+          {(study.testimonial as any).isResultsSummary ? (
+            <div data-testid="results-summary">
+              <h3 className="text-lg font-semibold mb-4 text-foreground">Results Summary</h3>
+              <p className="text-lg text-foreground leading-relaxed">
+                {study.testimonial.quote}
+              </p>
+            </div>
+          ) : (
+            <>
+              <blockquote className="text-xl md:text-2xl text-foreground font-medium mb-6 leading-relaxed">
+                "{study.testimonial.quote}"
+              </blockquote>
+              <p className="text-muted-foreground font-medium">
+                — {study.testimonial.author}
+              </p>
+            </>
+          )}
         </div>
       </section>
 

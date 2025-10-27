@@ -210,3 +210,57 @@ export function BottomCTA({
     </section>
   );
 }
+
+export function ProfitableAdvertisingCard() {
+  return (
+    <section className="my-10">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+        <figure className="p-4">
+          <img
+            src="/attached_assets/Profitable Advertising Image.webp"
+            alt="Meta Ads performance table and summary for Hapi Art"
+            loading="lazy"
+            className="w-full h-auto rounded-xl"
+            data-testid="profitable-advertising-image"
+          />
+          <figcaption className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
+            <span className="font-medium text-gray-800 dark:text-gray-200">
+              Profitable Advertising (Meta)
+            </span>
+            {" — "}
+            Cold Prospecting ROAS 16× · Retargeting ROAS 6.9× · Top-creative CTR 5–6%.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
+export function VerifiedMetrics() {
+  const items = [
+    { k: "10× ROAS", v: "Overall efficiency across the program" },
+    { k: "16× ROAS", v: "Cold prospecting on Meta" },
+    { k: "6.9× ROAS", v: "Retargeting on Meta" },
+    { k: "5–6% CTR", v: "Consistently on top creatives" },
+  ];
+  return (
+    <section className="my-12" data-testid="verified-metrics">
+      <h2 className="text-lg font-semibold text-foreground">Verified Performance Metrics (Meta)</h2>
+      <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {items.map((it) => (
+          <li
+            key={it.k}
+            className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm"
+            data-testid={`verified-metric-${it.k.toLowerCase().replace(/\s+/g, '-')}`}
+          >
+            <div className="text-base font-semibold text-foreground">{it.k}</div>
+            <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">{it.v}</div>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+        Based on platform reporting; no revenue figures are displayed here.
+      </p>
+    </section>
+  );
+}

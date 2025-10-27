@@ -1,0 +1,82 @@
+Goal: Align the Hapi Art case study with verified results only. Remove any unverified “$1M+ revenue” language and do not invent or alter quotes. Add the provided “Profitable Advertising Image” to the page with a short factual caption and a new verified-metrics block.
+
+1) Remove or revise unverified claims
+
+Delete all instances of “$1M+ revenue” on this page (hero paragraph, Key Results, stat strip, detailed results, testimonial).
+
+If the existing quote mentions “$1M+,” do not show it as a quotation. Replace the quote block with a neutral “Results Summary” paragraph (no quotation marks, no attribution) that states only verified facts (see section 2). Keep the same visual styling, but the content must not be formatted as a quote.
+
+2) Use only verified metrics (from client-provided materials)
+
+Replace or add metrics using the following exact, factual statements:
+
+10× ROAS overall (case-study headline/Key Results can keep “10× ROAS”).
+
+16× ROAS on Cold Prospecting (Meta).
+
+6.9× ROAS on Retargeting (Meta).
+
+5–6% CTR consistently on top creatives.
+
+Platform fit: Meta performed best due to the highly visual brand.
+
+Do not add revenue numbers. Do not add any superlatives not supported by these lines.
+
+3) Update the “At-a-Glance” stat strip (4 cards)
+
+Replace the current 4 items with:
+
+10× ROAS — overall efficiency
+
+16× ROAS — cold prospecting (Meta)
+
+6.9× ROAS — retargeting (Meta)
+
+5–6% CTR — top creatives
+
+4) Key Results section
+
+Under the icons, keep a single sentence using only verified language, e.g.:
+“10× ROAS achieved with systematic creative testing, funnel structure, and precise attribution across Meta.”
+
+5) Add a Verified Metrics panel (new block, below “The Solution” and above “Before vs After”)
+
+Title: Verified Performance Metrics (Meta)
+
+Bullets (same four lines as in section 2).
+
+Small footnote: “Based on platform reporting; no revenue figures are displayed here.”
+
+6) Add the Profitable Advertising Image
+
+Insert a new section above the Verified Metrics panel.
+
+Use the uploaded file named exactly: Profitable Advertising Image.webp
+
+Display it in a card with border, rounded corners, and caption:
+
+Caption title: Profitable Advertising (Meta)
+
+Caption body: “Cold Prospecting ROAS 16× · Retargeting ROAS 6.9× · Top-creative CTR 5–6%.”
+
+Accessibility: alt="Meta Ads performance table and summary for Hapi Art"; loading="lazy"; image should be responsive and max-width constrained.
+
+7) Mid-page CTA and bottom CTA
+
+Leave both CTAs intact, but ensure their copy contains no revenue references. Buttons link to the existing booking route.
+
+8) Voice & compliance
+
+Use we/Clarity Engine (no first-person singular).
+
+No fabricated quotes; no unverifiable numbers.
+
+Acceptance criteria
+
+No “$1M+” (or any revenue claim) remains anywhere.
+
+At-a-glance, Key Results, and new panels show only the four verified metrics above.
+
+Image displays responsively with correct caption and alt text.
+
+The former quote is either removed or converted to a neutral, non-quote “Results Summary” paragraph containing only the verified lines.

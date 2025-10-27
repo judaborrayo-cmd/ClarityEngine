@@ -1,0 +1,74 @@
+Drop-in React + Tailwind snippet
+
+Add this to your shared components file, import it on the Hapi Art page, and place <ProfitableAdvertisingCard /> above the Verified Metrics block, then <VerifiedMetrics /> below “The Solution” and above “Before vs After”.
+
+// Hapi Art – verified metrics blocks (Tailwind only; no deps)
+
+export function ProfitableAdvertisingCard() {
+  return (
+    <section className="my-10">
+      <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <figure className="p-4">
+          <img
+            src="/assets/Profitable Advertising Image.webp" // adjust path if needed
+            alt="Meta Ads performance table and summary for Hapi Art"
+            loading="lazy"
+            className="w-full h-auto rounded-xl"
+          />
+          <figcaption className="mt-3 text-center text-sm text-gray-600">
+            <span className="font-medium text-gray-800">
+              Profitable Advertising (Meta)
+            </span>
+            {" — "}
+            Cold Prospecting ROAS 16× · Retargeting ROAS 6.9× · Top-creative CTR 5–6%.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
+export function VerifiedMetrics() {
+  const items = [
+    { k: "10× ROAS", v: "Overall efficiency across the program" },
+    { k: "16× ROAS", v: "Cold prospecting on Meta" },
+    { k: "6.9× ROAS", v: "Retargeting on Meta" },
+    { k: "5–6% CTR", v: "Consistently on top creatives" },
+  ];
+  return (
+    <section className="my-12">
+      <h2 className="text-lg font-semibold">Verified Performance Metrics (Meta)</h2>
+      <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {items.map((it) => (
+          <li
+            key={it.k}
+            className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
+          >
+            <div className="text-base font-semibold">{it.k}</div>
+            <div className="mt-1 text-sm text-gray-600">{it.v}</div>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-xs text-gray-500">
+        Based on platform reporting; no revenue figures are displayed here.
+      </p>
+    </section>
+  );
+}
+
+
+Placement reminder on the Hapi Art page:
+
+Hero/intro → At-a-Glance (updated items) → Video
+
+Key Results (sentence updated) → Mid-page CTA
+
+<ProfitableAdvertisingCard />
+
+<VerifiedMetrics />
+
+Before vs After → Detailed Results
+
+(Replace prior quote with a Results Summary paragraph using only verified lines)
+
+Bottom CTA → Other Case Studies
