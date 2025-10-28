@@ -65,7 +65,7 @@ export function FeaturedCaseStudiesHome() {
               type="button"
               onClick={() => scrollByCard("prev")}
               aria-label="Previous case study"
-              className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
+              className="md:hidden rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
               data-testid="button-carousel-prev"
             >
               ←
@@ -74,7 +74,7 @@ export function FeaturedCaseStudiesHome() {
               type="button"
               onClick={() => scrollByCard("next")}
               aria-label="Next case study"
-              className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
+              className="md:hidden rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
               data-testid="button-carousel-next"
             >
               →
