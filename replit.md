@@ -4,6 +4,19 @@ This is a marketing agency website built with React and Express.js showcasing pa
 
 # Recent Changes
 
+**October 28, 2025**
+- Completed Core40 case study CRO transformation to match optimized structure of Mandali, Hapi Art, and Lisa Nichols
+- Updated hero intro with conversion-focused copy emphasizing partnership and measurable results
+- Added StatStrip component with 4 key metrics: $2M+ revenue, 11K+ members, -38% CPL, +26% conversion rate
+- Updated Key Results summary text to emphasize sustained growth through integrated campaigns
+- Added MidPageCTA after Key Results with fitness-specific messaging
+- Implemented Before vs After (Fitness Growth Framework) with 5-row comparison table
+- Repositioned Core40 portfolio image to appear above Detailed Results section
+- Updated Detailed Results to 4 factual blocks: Revenue Growth, Lead Quality, Member Acquisition, Brand Strength
+- Removed fabricated testimonial quote (set to empty to prevent display)
+- Added BottomCTA dark variant with fitness-focused conversion messaging
+- All CRO components use verified metrics only: $2M+ revenue, 11K+ members, -38% CPL, +26% conversion
+
 **October 27, 2025**
 - Replaced homepage case study section with FeaturedCaseStudiesHome carousel component
 - Carousel displays 2 featured case studies: Mandali Retreats and Lisa Nichols
