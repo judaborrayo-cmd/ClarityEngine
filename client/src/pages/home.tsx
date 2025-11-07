@@ -142,7 +142,7 @@ const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; cla
   <img 
     src={src} 
     alt={alt} 
-    className={`h-[60px] w-auto object-contain transition-all duration-500 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 ${className}`}
+    className={`h-[60px] w-auto object-contain transition-all duration-300 ${className}`}
     data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
   />
 );
@@ -373,70 +373,45 @@ export default function Home() {
         <ProblemsTicker />
 
         {/* --- PROOF BAR --- */}
-        <div style={{ backgroundColor: '#F9FAFB' }} className="py-16">
+        <div className="bg-gray-50 py-8">
           <Section id="proof-bar" className="">
-            <div className="text-center mb-3">
-              <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">Trusted by leading brands across industries</p>
-              <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 mb-10">Trusted by Leading Brands</h2>
+            <div className="text-center mb-6">
+              <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Trusted by Leading Brands</h2>
             </div>
             
             {/* Three rows of logos */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               {/* First row */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="flex flex-wrap items-center justify-center gap-10"
-              >
+              <div className="flex flex-wrap items-center justify-center gap-8">
                 <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
                 <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
                 <LogoImage src={ascendLogo} alt="Ascend" />
                 <LogoImage src={microsoftLogo} alt="Microsoft" />
                 <LogoImage src={denaGamesLogo} alt="Dena Games" />
-              </motion.div>
+              </div>
               
               {/* Second row */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-wrap items-center justify-center gap-10"
-              >
+              <div className="flex flex-wrap items-center justify-center gap-8">
                 <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
                 <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
                 <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
                 <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
-              </motion.div>
+              </div>
               
-              {/* Third row */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-wrap items-center justify-center gap-10"
-              >
+              {/* Third row with metrics */}
+              <div className="flex flex-wrap items-center justify-center gap-8">
                 <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
                 <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
                 <LogoImage src={marketerHireLogo} alt="MarketerHire" />
                 <LogoImage src={rowlandBallardLogo} alt="Rowland Ballard" />
-              </motion.div>
+              </div>
               
               {/* Key metrics */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-wrap items-center justify-center gap-8 pt-8 mt-6 border-t border-gray-200"
-              >
+              <div className="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-gray-200">
                 <div className="text-sm font-semibold text-green-600" data-testid="metric-cpl">Serving B2B & B2C Clients</div>
                 <div className="text-sm font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
                 <div className="text-sm font-semibold text-green-600" data-testid="metric-revenue">10M+ in Revenue Generated Across Verticals</div>
-              </motion.div>
+              </div>
             </div>
           </Section>
         </div>
