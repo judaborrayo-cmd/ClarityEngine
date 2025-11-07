@@ -1,0 +1,176 @@
+🧠 INTENT
+
+Do not rebuild the structure or logic of the page.
+Keep all the same sections, links, scroll behaviors, animations, and layout hierarchy.
+The goal is to amplify the visual tone — whitespace, typography, image quality, and polish — inspired by MarketerHire’s homepage.
+
+🎨 DESIGN REFINEMENT GOALS
+
+Maintain structure – same layout, containers, and call-to-actions.
+
+Upgrade visuals – use cinematic, professional, realistic imagery.
+
+Enhance whitespace – slightly increase vertical padding and reduce crowding between text blocks.
+
+Smooth gradients – use softer transitions, subtle motion glows on hover.
+
+Typography cleanup – improve readability hierarchy, adjust font weights.
+
+Animation polish – introduce subtle fade-ins, slide-ups, and hover microinteractions inspired by MarketerHire.
+
+⚙️ IMPLEMENTATION DETAILS
+
+Typography
+
+font-family: 'Inter', 'DM Sans', sans-serif;
+
+
+Headings: 700 weight
+
+Body: 400–500
+
+Increase line height on all paragraphs by 5–10%.
+
+Add slightly wider letter spacing on section headers for a premium look.
+
+Color Palette (Keep existing)
+
+--primary-gradient: linear-gradient(90deg, #7366FF 0%, #C471ED 100%);
+--accent-teal: #00BFA6;
+--text-dark: #111827;
+--text-muted: #6B7280;
+--bg-light: #F9FAFB;
+
+
+✅ Do not replace brand colors.
+Just enhance how gradients appear: softer transitions, light glow effect when buttons hover.
+
+Buttons
+
+.button-primary {
+  background: var(--primary-gradient);
+  border-radius: 8px;
+  color: white;
+  padding: 14px 28px;
+  transition: all 0.3s ease;
+}
+.button-primary:hover {
+  box-shadow: 0px 6px 18px rgba(115, 102, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+
+Image Treatment
+Keep all image placements exactly the same, but change image style to realistic, cinematic, and modern (not stocky).
+Example:
+
+Replace placeholder stock images with high-definition professional portraits or AI-generated realistic shots (inspired by MarketerHire).
+Natural light, office setting, confident expressions, blurred backgrounds.
+
+Section Adjustments (Keep the same sections)
+
+Hero Section
+
+Keep your hero headline/subtext/CTA layout identical.
+
+Add gentle background motion gradient (similar to MH1).
+
+Make the hero image high-resolution, cinematic lighting.
+
+Optional glow animation on button hover.
+
+Proof / Trusted Logos
+
+Maintain same logos.
+
+Use grayscale logos with 40% opacity and brighten slightly on hover (like MarketerHire).
+
+Add subtle entrance animation (fade-up on scroll).
+
+“3 Paths to More Profitable Funnels & Ads”
+
+Keep the exact structure (three cards).
+
+Increase padding inside cards.
+
+Add light drop shadow and micro-hover animation (slight scale up).
+
+Ensure each card header color or icon subtly references brand gradient tones.
+
+Case Study Previews
+
+Maintain your alternating layout (image left, text right).
+
+Slightly increase white space and line height in descriptions.
+
+Apply grayscale-to-color hover effect to images.
+
+Testimonials / Colleague Reviews
+
+Keep color-coded scheme.
+
+Introduce card hover effect — a soft vertical lift or gradient border animation.
+
+Adjust quote text to slightly larger and increase line spacing.
+
+Final CTA Section
+
+Keep structure and gradient background.
+
+Add a soft animated “light sweep” overlay that moves slowly across the gradient (for a cinematic energy).
+
+Increase top/bottom padding by 15–20px for breathing room.
+
+Framer Motion Animations Example
+
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+>
+  {/* Section Content */}
+</motion.div>
+
+
+Apply this on all major section containers for smoother scroll-in transitions.
+
+🖼️ PHOTOGRAPHY PROMPT EXAMPLES FOR YOUR IMAGES
+
+Use these to replace current stock imagery (AI-generated or professional shoot):
+
+Hero Image Prompt
+
+“Professional portrait of a confident marketing strategist sitting on a modern wooden desk in a bright office with glass walls and natural light. Cinematic lighting, editorial look, confident expression, business-casual outfit, 4K detail.”
+
+Team / Collaboration Section
+
+“A small group of marketers collaborating in a bright modern workspace, natural daylight, realistic cinematic lighting, laptops and whiteboards visible, candid expressions.”
+
+Case Study Background
+
+“Luxury creative office interior with warm sunlight through large windows, blurred depth of field, clean minimalist setup.”
+
+✅ OUTPUT GOAL
+
+When complete, the homepage should:
+
+Look and feel cleaner, more cinematic, and high-end.
+
+Feel aligned with MarketerHire’s design language: modern gradients, white space, confident photography, small movement animations.
+
+Preserve every section, layout, and clickable flow exactly as is.
+
+Replace low-quality stock photos with new visuals that match your brand and the MarketerHire style.
+
+🔧 FINAL REPLIT PROMPT (PASTE THIS EXACTLY)
+Redesign the Clarity Engine homepage inspired by MarketerHire’s clean, cinematic, professional aesthetic.
+
+Keep all existing sections, structure, and link behaviors exactly as they are. Do not change layout hierarchy or functional components.
+
+Enhance typography using Inter and DM Sans. Increase whitespace and line spacing. Maintain existing brand colors and gradients, but make them smoother with subtle hover glows.
+
+Upgrade visuals to high-quality realistic professional photography (cinematic office portraits, natural lighting). Replace current stock images with AI-style or professional ones that align with MarketerHire’s tone.
+
+Add micro-animations (Framer Motion fade-ins, hover lifts on cards, gradient motion on hero background). Maintain existing CTA and section structure—just polish, clarify, and elevate the visuals to feel premium and modern, like MarketerHire.
+
+Focus on refinement, not reconstruction.
