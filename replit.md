@@ -17,6 +17,22 @@ This is a marketing agency website built with React and Express.js showcasing pa
   - Smooth hover microinteractions: buttons lift (-translate-y-0.5) with enhanced shadows
   - Professional hero image with decorative gradient glow and shadow
   - Left-aligned text on desktop for premium editorial look
+- Enhanced "Trusted by Leading Brands" section with MarketerHire aesthetics:
+  - Increased vertical padding (py-8 → py-16) for breathing room
+  - Subtle gray background (#F9FAFB) for contrast with hero
+  - Added tagline: "Trusted by leading brands across industries" in muted gray
+  - Logo hover effects: grayscale default → full color on hover with 500ms transition
+  - Framer Motion scroll animations: staggered fade-up per row (0.1s, 0.2s, 0.3s delays)
+  - Enhanced metrics row styling with better spacing
+- Enhanced "3 Paths to More Profitable Funnels & Ads" section with premium polish:
+  - Increased section padding (py-16 → py-20) and title size (text-3xl → text-4xl)
+  - Enhanced card styling: increased padding (p-6 → p-8), stronger shadows
+  - Gradient glow overlays on hover with purple/green tints per card type
+  - Card hover effects: lift (-translate-y-1), border color shift, shadow enhancement
+  - Updated CTA buttons: gradient backgrounds matching hero style, hover lift effects
+  - Inter Bold typography for card titles, improved line heights throughout
+  - Framer Motion scroll animations: cards slide up with staggered delays (0.1s, 0.2s, 0.3s)
+  - Enhanced metrics row: larger numbers (text-2xl), better spacing
 - All existing functionality, links, and structure preserved (refinement-only approach)
 
 **October 28, 2025**
