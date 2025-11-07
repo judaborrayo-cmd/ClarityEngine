@@ -4,6 +4,21 @@ This is a marketing agency website built with React and Express.js showcasing pa
 
 # Recent Changes
 
+**November 7, 2025**
+- Installed Framer Motion for smooth scroll animations and hover effects
+- Generated professional AI hero image: marketing strategist in modern office with cinematic lighting
+- Transformed homepage hero section with MarketerHire-inspired design refinements:
+  - Enhanced typography: larger heading sizes (text-5xl/6xl), improved line heights, tighter letter spacing
+  - Increased whitespace: expanded padding (pt-20 pb-24 lg:pt-28 lg:pb-32)
+  - Two-column layout: content left, professional image right (desktop)
+  - Animated gradient background: subtle purple-to-green motion effect
+  - Framer Motion animations: progressive fade-ins, slide-ups on content, image scale-in
+  - Enhanced CTA buttons: purple-to-green gradient primary button with glow hover effect
+  - Smooth hover microinteractions: buttons lift (-translate-y-0.5) with enhanced shadows
+  - Professional hero image with decorative gradient glow and shadow
+  - Left-aligned text on desktop for premium editorial look
+- All existing functionality, links, and structure preserved (refinement-only approach)
+
 **October 28, 2025**
 - Completed Core40 case study CRO transformation to match optimized structure of Mandali, Hapi Art, and Lisa Nichols
 - Updated hero intro with conversion-focused copy emphasizing partnership and measurable results

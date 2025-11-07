@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import ProblemsTicker from "@/components/ProblemsTicker";
 import HeroCTAs from "@/components/HeroCTAs";
 import StartCards from "@/components/StartCards";
@@ -11,6 +12,7 @@ import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
+import heroImage from "@assets/generated_images/Marketing_strategist_office_portrait_4348a687.png";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
 import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
@@ -271,27 +273,88 @@ export default function Home() {
       <ProgressBar />
       <main className="relative min-h-screen overflow-x-hidden bg-white text-gray-900">
         {/* --- HERO --- */}
-        <Section id="hero" className="pt-14 pb-12 lg:pt-20 lg:pb-16">
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-gray-900" data-testid="hero-title">
-              Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent">ROI-Driven</span> Paid Media & Growth Strategy
-            </h1>
-            <p className="mt-6 text-xl leading-8 text-gray-600" data-testid="hero-description">
-              We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Bringing clarity to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
-            </p>
+        <Section id="hero" className="pt-20 pb-24 lg:pt-28 lg:pb-32 relative overflow-hidden">
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-green-50 opacity-40" />
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-green-400/10"
+            animate={{ 
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{ 
+              duration: 15,
+              ease: "linear",
+              repeat: Infinity 
+            }}
+            style={{ backgroundSize: "200% 200%" }}
+          />
+          
+          <div className="relative mx-auto max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left: Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-center lg:text-left"
+              >
+                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-6xl text-gray-900 leading-[1.15]" style={{ letterSpacing: "-0.02em" }} data-testid="hero-title">
+                  Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent">ROI-Driven</span> Paid Media & Growth Strategy
+                </h1>
+                <p className="mt-8 text-xl leading-[1.7] text-gray-600 font-normal" data-testid="hero-description">
+                  We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Bringing clarity to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
+                </p>
 
-            <HeroCTAs />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <HeroCTAs />
+                </motion.div>
 
-            {/* Microproof row */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2" data-testid="hero-badges">
-              <Badge>$3M+ in ad spend managed across growth brands</Badge>
-              <Badge>Multi-million in revenue driven through paid media</Badge>
-              <Badge>Proven results across Travel, Fitness, Luxury, and Education</Badge>
-              <Badge>12+ years in paid media & growth strategy</Badge>
-              <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>
-            </div>
-            <div className="mt-4">
-              <p className="text-xs text-gray-500">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
+                {/* Microproof row */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2" 
+                  data-testid="hero-badges"
+                >
+                  <Badge>$3M+ in ad spend managed across growth brands</Badge>
+                  <Badge>Multi-million in revenue driven through paid media</Badge>
+                  <Badge>Proven results across Travel, Fitness, Luxury, and Education</Badge>
+                  <Badge>12+ years in paid media & growth strategy</Badge>
+                  <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="mt-5"
+                >
+                  <p className="text-sm text-gray-500 leading-relaxed">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
+                </motion.div>
+              </motion.div>
+
+              {/* Right: Hero Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="relative"
+              >
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <img 
+                    src={heroImage}
+                    alt="Professional marketing strategist in modern office"
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                </div>
+                {/* Decorative gradient glow */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-purple-400/20 to-green-400/20 blur-3xl -z-10" />
+              </motion.div>
             </div>
           </div>
         </Section>
