@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import mandaliImage from "@assets/Mandali 1600 by 1000_1761604910726.jpg";
 import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761604917835.png";
 
@@ -14,6 +15,7 @@ type HomeCS = {
 
 export function FeaturedCaseStudiesHome() {
   const scroller = useRef<HTMLDivElement | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const scrollByCard = (dir: "prev" | "next") => {
     const el = scroller.current;
@@ -45,12 +47,18 @@ export function FeaturedCaseStudiesHome() {
   ];
 
   return (
-    <section className="my-16 sm:my-20">
+    <section className="my-20 sm:my-24">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="mb-3 flex items-end justify-between gap-3">
+        <motion.div 
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
+          className="mb-10 flex items-end justify-between gap-3"
+        >
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Featured Case Studies</h2>
-            <p className="text-sm text-gray-600">Proof in one glance. Swipe to explore.</p>
+            <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Featured Case Studies</h2>
+            <p className="mt-3 text-lg text-gray-600 font-normal">Proof in one glance. Swipe to explore.</p>
           </div>
           <div className="flex items-center gap-2">
             <a
@@ -80,19 +88,24 @@ export function FeaturedCaseStudiesHome() {
               →
             </button>
           </div>
-        </div>
+        </motion.div>
 
         <div className="relative">
           <div
             ref={scroller}
-            className="flex gap-4 overflow-x-hidden pb-2"
+            className="flex gap-6 overflow-x-hidden pb-2"
             aria-label="Featured case studies"
           >
-            {items.map((c) => (
-              <article
+            {items.map((c, idx) => (
+              <motion.article
                 key={c.slug}
                 data-card
-                className="snap-start shrink-0 w-[92%] sm:w-[560px] rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-[1px] hover:shadow-lg"
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : idx * 0.1 }}
+                whileHover={shouldReduceMotion ? {} : { y: -6, transition: { duration: 0.3 } }}
+                className="snap-start shrink-0 w-[92%] sm:w-[560px] rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition-shadow duration-300"
               >
                 <a href={c.slug} aria-label={`Read case study: ${c.title}`}>
                   <img
@@ -102,25 +115,25 @@ export function FeaturedCaseStudiesHome() {
                     className="h-72 sm:h-80 w-full rounded-t-2xl object-cover"
                   />
                 </a>
-                <div className="p-4 sm:p-5 flex flex-col h-full">
-                  <h3 className="text-lg font-semibold" data-testid={`case-study-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
-                  <p className="mt-1 text-sm font-medium text-emerald-700" data-testid={`case-study-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
+                <div className="p-6 sm:p-7 flex flex-col h-full">
+                  <h3 className="text-xl font-bold" data-testid={`case-study-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
+                  <p className="mt-2 text-base font-semibold text-emerald-700" data-testid={`case-study-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
 
-                  <div className="mt-3 border-t border-gray-100 pt-3 space-y-1.5 text-sm min-h-[92px]">
-                    <p className="text-gray-800">
+                  <div className="mt-5 border-t border-gray-100 pt-5 space-y-2 text-sm min-h-[92px]">
+                    <p className="text-gray-800 leading-relaxed">
                       <span className="font-semibold text-pink-500">Problem:</span>{" "}
                       {c.problem}
                     </p>
-                    <p className="text-gray-800">
+                    <p className="text-gray-800 leading-relaxed">
                       <span className="font-semibold text-emerald-500">Solution:</span>{" "}
                       {c.solution}
                     </p>
                   </div>
 
-                  <div className="mt-4 mt-auto">
+                  <div className="mt-6 mt-auto">
                     <a
                       href={c.slug}
-                      className="inline-flex items-center rounded-2xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/10 hover:bg-gray-50"
+                      className="inline-flex items-center rounded-xl border-2 border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:shadow-md hover:border-green-400 hover:bg-green-50 transition-all duration-300"
                       aria-label={`Read case study: ${c.title}`}
                       data-testid={`button-read-case-study-${c.slug.split('/').pop()}`}
                     >
@@ -128,7 +141,7 @@ export function FeaturedCaseStudiesHome() {
                     </a>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>

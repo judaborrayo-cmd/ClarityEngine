@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import ProblemsTicker from "@/components/ProblemsTicker";
 import HeroCTAs from "@/components/HeroCTAs";
 import StartCards from "@/components/StartCards";
@@ -142,7 +142,7 @@ const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; cla
   <img 
     src={src} 
     alt={alt} 
-    className={`h-[60px] w-auto object-contain transition-all duration-300 ${className}`}
+    className={`h-[60px] w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ${className}`}
     data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
   />
 );
@@ -236,25 +236,34 @@ const testimonials = [
 ];
 
 // --- TESTIMONIAL COMPONENT ---
-const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-  <div className={`${testimonial.bgColor} ${testimonial.textColor} rounded-2xl p-6 shadow-lg`}>
-    <Quote className="h-8 w-8 mb-4 opacity-80" />
-    <p className="text-lg mb-6 leading-relaxed">{testimonial.review}</p>
+const TestimonialCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
+  <motion.div 
+    initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : delay }}
+    whileHover={shouldReduceMotion ? {} : { y: -4, transition: { duration: 0.3 } }}
+    className={`${testimonial.bgColor} ${testimonial.textColor} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300`}
+  >
+    <Quote className="h-10 w-10 mb-6 opacity-80" />
+    <p className="text-lg mb-8 leading-relaxed font-normal">{testimonial.review}</p>
     <div className="flex items-center gap-4">
       <img 
         src={testimonial.avatar} 
         alt={testimonial.name}
-        className="w-12 h-12 rounded-full object-cover border-2 border-white/20"
+        className="w-14 h-14 rounded-full object-cover border-2 border-white/30 shadow-md"
       />
       <div>
-        <p className="font-semibold">{testimonial.name}</p>
-        <p className="text-sm opacity-90">{testimonial.title}</p>
+        <p className="font-semibold text-lg">{testimonial.name}</p>
+        <p className="text-sm opacity-90 mt-0.5">{testimonial.title}</p>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 export default function Home() {
+  const shouldReduceMotion = useReducedMotion();
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -276,26 +285,30 @@ export default function Home() {
         <Section id="hero" className="pt-20 pb-24 lg:pt-28 lg:pb-32 relative overflow-hidden">
           {/* Animated gradient background */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-green-50 opacity-40" />
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-green-400/10"
-            animate={{ 
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{ 
-              duration: 15,
-              ease: "linear",
-              repeat: Infinity 
-            }}
-            style={{ backgroundSize: "200% 200%" }}
-          />
+          {!shouldReduceMotion ? (
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-green-400/10"
+              animate={{ 
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ 
+                duration: 15,
+                ease: "linear",
+                repeat: Infinity 
+              }}
+              style={{ backgroundSize: "200% 200%" }}
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-green-400/10" />
+          )}
           
           <div className="relative mx-auto max-w-6xl">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left: Content */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut" }}
                 className="text-center lg:text-left"
               >
                 <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-6xl text-gray-900 leading-[1.15]" style={{ letterSpacing: "-0.02em" }} data-testid="hero-title">
@@ -306,18 +319,18 @@ export default function Home() {
                 </p>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.2 }}
                 >
                   <HeroCTAs />
                 </motion.div>
 
                 {/* Microproof row */}
                 <motion.div
-                  initial={{ opacity: 0 }}
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.4 }}
                   className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2" 
                   data-testid="hero-badges"
                 >
@@ -328,9 +341,9 @@ export default function Home() {
                   <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0 }}
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.5 }}
                   className="mt-5"
                 >
                   <p className="text-sm text-gray-500 leading-relaxed">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
@@ -339,9 +352,9 @@ export default function Home() {
 
               {/* Right: Hero Image */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.3 }}
                 className="relative"
               >
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl">
@@ -360,11 +373,25 @@ export default function Home() {
         </Section>
 
         {/* --- TESTIMONIALS AFTER HERO --- */}
-        <Section id="testimonials-hero" className="py-12 bg-gray-50">
+        <Section id="testimonials-hero" className="py-16 lg:py-20 bg-gray-50">
           <div className="mx-auto max-w-6xl">
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+                What Partners Say
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 font-normal">
+                Trusted by marketing professionals and industry leaders
+              </p>
+            </motion.div>
             <div className="grid md:grid-cols-2 gap-8">
-              <TestimonialCard testimonial={testimonials[4]} />
-              <TestimonialCard testimonial={testimonials[2]} />
+              <TestimonialCard testimonial={testimonials[4]} delay={0.1} shouldReduceMotion={shouldReduceMotion} />
+              <TestimonialCard testimonial={testimonials[2]} delay={0.2} shouldReduceMotion={shouldReduceMotion} />
             </div>
           </div>
         </Section>
@@ -373,16 +400,33 @@ export default function Home() {
         <ProblemsTicker />
 
         {/* --- PROOF BAR --- */}
-        <div className="bg-gray-50 py-8">
+        <div className="bg-gray-50 py-16 lg:py-20">
           <Section id="proof-bar" className="">
-            <div className="text-center mb-6">
-              <h2 className="text-3xl font-bold sm:text-4xl text-gray-900">Trusted by Leading Brands</h2>
-            </div>
+            <motion.div 
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+                Trusted by Leading Brands
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 font-normal">
+                Partnering with ambitious companies across industries
+              </p>
+            </motion.div>
             
             {/* Three rows of logos */}
-            <div className="space-y-6">
+            <motion.div 
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.2 }}
+              className="space-y-10"
+            >
               {/* First row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-12">
                 <LogoImage src={amaWaterwaysLogo} alt="AMA Waterways" />
                 <LogoImage src={popcornIndianaLogo} alt="Popcorn Indiana" />
                 <LogoImage src={ascendLogo} alt="Ascend" />
@@ -391,15 +435,15 @@ export default function Home() {
               </div>
               
               {/* Second row */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-12">
                 <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
                 <LogoImage src={capitalGymnasticsLogo} alt="Capital Gymnastics" />
                 <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
                 <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
               </div>
               
-              {/* Third row with metrics */}
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              {/* Third row */}
+              <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-12">
                 <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
                 <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
                 <LogoImage src={marketerHireLogo} alt="MarketerHire" />
@@ -407,22 +451,22 @@ export default function Home() {
               </div>
               
               {/* Key metrics */}
-              <div className="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-gray-200">
-                <div className="text-sm font-semibold text-green-600" data-testid="metric-cpl">Serving B2B & B2C Clients</div>
-                <div className="text-sm font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
-                <div className="text-sm font-semibold text-green-600" data-testid="metric-revenue">10M+ in Revenue Generated Across Verticals</div>
+              <div className="flex flex-wrap items-center justify-center gap-8 pt-8 mt-4 border-t border-gray-200">
+                <div className="text-base font-semibold text-green-600" data-testid="metric-cpl">Serving B2B & B2C Clients</div>
+                <div className="text-base font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
+                <div className="text-base font-semibold text-green-600" data-testid="metric-revenue">10M+ in Revenue Generated Across Verticals</div>
               </div>
-            </div>
+            </motion.div>
           </Section>
         </div>
 
         {/* --- START CARDS (CRO) --- */}
-        <Section id="value-ladder" className="py-16">
+        <Section id="value-ladder" className="py-20 lg:py-24">
           <StartCards onOpenWaitlist={openWaitlist} />
         </Section>
 
         {/* --- SCALE AND AUDIT SECTION --- */}
-        <Section id="how-we-scale" className="py-16">
+        <Section id="how-we-scale" className="py-20 lg:py-24">
           <ScaleAndAudit videoUrl={CONFIG.featuredVideo.url()} />
         </Section>
 
@@ -436,17 +480,23 @@ export default function Home() {
         <FeaturedCaseStudiesHome />
 
         {/* --- COMPACT FAQ --- */}
-        <Section id="faq" className="pt-20 pb-12 scroll-mt-20">
-          <div className="mx-auto max-w-5xl">
+        <Section id="faq" className="pt-24 pb-16 scroll-mt-20">
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
+            className="mx-auto max-w-5xl"
+          >
             <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />
-          </div>
+          </motion.div>
         </Section>
 
         {/* --- BOOKING SECTION (#book-call and #book-intro) --- */}
-        <Section id="book-call" className="py-16">
+        <Section id="book-call" className="py-20 lg:py-24">
           <Card className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold text-gray-900" data-testid="booking-title">Book a Strategic Intro Call (20–30 min)</h2>
-            <p className="mt-3 text-lg text-gray-600">Aligned goals, surface bottlenecks, set the next step. A <strong>$75 deposit</strong> is required to reserve your slot and is <strong>fully credited</strong> toward your first audit or retainer if we're a fit.</p>
+            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }} data-testid="booking-title">Book a Strategic Intro Call (20–30 min)</h2>
+            <p className="mt-5 text-lg leading-relaxed text-gray-600">Aligned goals, surface bottlenecks, set the next step. A <strong>$75 deposit</strong> is required to reserve your slot and is <strong>fully credited</strong> toward your first audit or retainer if we're a fit.</p>
             
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Qualifying questions you'll answer when booking:</h3>
@@ -473,15 +523,15 @@ export default function Home() {
           </Card>
           
           {/* Testimonial in booking section */}
-          <div className="mt-8 max-w-4xl mx-auto">
-            <TestimonialCard testimonial={testimonials[1]} />
+          <div className="mt-12 max-w-4xl mx-auto">
+            <TestimonialCard testimonial={testimonials[1]} shouldReduceMotion={shouldReduceMotion} />
           </div>
         </Section>
 
-        <Section id="audit" className="py-16">
+        <Section id="audit" className="py-20 lg:py-24">
           <Card className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold text-gray-900">Deep‑Dive Audit</h2>
-            <p className="mt-3 text-lg text-gray-600">A comprehensive assessment of your tracking, campaign structure, and funnel with a prioritized 30-day action plan.</p>
+            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Deep‑Dive Audit</h2>
+            <p className="mt-5 text-lg leading-relaxed text-gray-600">A comprehensive assessment of your tracking, campaign structure, and funnel with a prioritized 30-day action plan.</p>
             <ul className="mt-6 list-disc space-y-2 pl-6 text-gray-600">
               <li>Verify analytics & pixel setup</li>
               <li>Rebuild campaigns for efficiency</li>
@@ -496,9 +546,9 @@ export default function Home() {
         </Section>
 
         {/* --- TESTIMONIAL BEFORE RETAINER --- */}
-        <Section id="testimonial-retainer" className="py-12 bg-white">
+        <Section id="testimonial-retainer" className="py-16 lg:py-20 bg-white">
           <div className="mx-auto max-w-4xl">
-            <TestimonialCard testimonial={testimonials[0]} />
+            <TestimonialCard testimonial={testimonials[0]} shouldReduceMotion={shouldReduceMotion} />
           </div>
         </Section>
 
