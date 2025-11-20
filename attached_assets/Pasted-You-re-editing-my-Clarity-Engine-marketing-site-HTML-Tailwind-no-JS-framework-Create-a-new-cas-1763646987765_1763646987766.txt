@@ -1,0 +1,144 @@
+You’re editing my Clarity Engine marketing site (HTML + Tailwind, no JS framework).
+Create a new case study page for a client called “Powers Gymnastics” that visually matches the style and layout of my existing case studies (like Hapi Art and Growth Across Industries). Use a clean white background, soft shadows, rounded cards, and the same general structure:
+
+Top “Back to Case Studies” link
+
+Small pill category label
+
+Big title + one-sentence subhead
+
+Row of stat cards
+
+Hero image/video area
+
+“Key Results” strip with 3–4 metrics
+
+Mid-page CTA banner (“Curious what this could look like for your brand?”)
+
+2-column “The Challenge / The Solution” section
+
+“Verified Performance Metrics” before/after style cards
+
+“Before vs After” table for funnel metrics
+
+“Detailed Results” cards
+
+“Tactics & Strategies” with 3–4 subsections and bullet points
+
+Bottom CTA banner + “Other Case Studies” row.
+
+Base the content and numbers on these Powers Gymnastics performance outcomes (round where needed so they’re clean and scannable):
+
+2–3× lead growth: Monthly leads increased from about 250–300 to 650–900+, peaking at 855 in July and 924 in August.
+
+Trial attendance up 2.6×: Trials attended went from about 350 per month to 785 in August.
+
+Enrollments up ~2.3×, peaking at 555: Average enrollments grew from about 180 to 400+, with 555 enrollments in August.
+
+~50% cheaper Google CPL: Google Ads cost per lead dropped from about $52 to about $28.
+
+Higher conversion efficiency: Trial conversion rate improved from ~58–65% to 71%. New-user-to-lead rate improved from 0.6–0.8% to 2.2–2.5%.
+
+3–4× ROAS on evergreen Google campaigns in the summer. 
+
+Powers Gymnastics Marketing Per…
+
+Use copy that positions this case study as “Multi-location gymnastics & youth programs” with a focus on paid media, creative systems, and funnel optimization.
+
+Hero Content
+
+Category pill: Gyms & Youth Programs
+
+Case study title: Scaling Powers Gymnastics: 2–3× More Leads Across Locations
+
+Subhead: mention full-funnel rebuild across Google + Meta, more trials/enrollments, cheaper leads.
+
+Stat cards row (4 cards):
+
+2–3× — Monthly Lead Growth
+
+2.6× — Trial Attendance Lift
+
+~50% — Cheaper Google CPL
+
+3–4× — Evergreen ROAS (Google)
+
+Hero media: a big rounded card with a placeholder image area (you can just use a gray box with “Gym creative / dashboards” text and play button overlay).
+
+Key Results strip
+
+Simple icons (circles with emoji or letters) above each metric.
+
+Example items:
+
+“Lead volume 2–3× across locations”
+
+“Trials and enrollments at all-time highs”
+
+“Google CPL cut from ~$52 → ~$28”
+
+“Trial conversion rate up to 71%”
+
+Challenge / Solution section
+
+Challenge column: emphasize fragmented accounts, seasonal focus, inconsistent CPL, lack of visibility from click → trial → enrollment, and multi-location complexity.
+
+Solution column: describe the rebuild — new evergreen PMAX + Search, Meta lead-gen + sales-optimized campaigns, multi-format creative system, campaigns for Summer, Back-to-School & school-year camps, email nurture, and funnel reporting.
+
+Verified Metrics cards
+
+Before/After cards that summarize:
+
+Leads: 250–300 / month → 650–900+ / month
+
+Trials: ~350 / month → 785 (Aug peak)
+
+Enrollments: ~180 / month → 400–550 / month
+
+Google CPL: ~$52 → ~$28
+
+Trial Conversion Rate: 58–65% → 71%
+
+New User → Lead Rate: 0.6–0.8% → 2.2–2.5%
+
+Before vs After table
+
+2 columns labeled “Before” and “After,” 6 rows for the metrics above.
+
+Style it like my existing case study tables: subtle borders, zebra background on hover, rounded corners.
+
+Detailed Results cards
+
+4 cards summarizing:
+
+“Lead Generation at Scale” — 2–3× more leads and record months.
+
+“Trial & Enrollment Engine” — 2.6× more trials, 2.3× more enrollments, 71% trial conversion.
+
+“Acquisition Cost Efficiency” — cheaper CPL, better use of budget, higher lifetime value vs CAC.
+
+“Evergreen Revenue Systems” — 3–4× ROAS on evergreen Google, seasonal + evergreen working together.
+
+Tactics & Strategies section
+
+3–4 subsections with headings and bullets, similar visual style to Hapi Art:
+
+“Platform Restructures” — rebuilt Google Search & PMAX, evergreen structure post-summer, Meta optimized for leads & sales.
+
+“Creative System Overhaul” — multi-format Meta creative, seasonal promos, higher testing velocity, consistent brand across gyms.
+
+“Funnel & Email Improvements” — landing page recommendations, 5-email nurture sequence aligned to parent psychology & objections.
+
+“Measurement & Reporting” — consolidated dashboards for leads, trials, enrollments, and ROAS across locations.
+
+CTAs
+
+Mid-page and bottom:
+
+Headline: “Ready to apply a proven lead-growth system to your gyms?”
+
+Subcopy: invite them to book a Strategic Intro Call to review leaks, goals, and opportunities.
+
+Button: “Book a Strategic Intro Call” linking to /book-intro-call (placeholder).
+
+Make the page fully responsive, centered within a max-width container, and match the typography hierarchy (large bold hero, medium section titles, small muted labels). Use Tailwind classes directly in the HTML (no separate CSS). Use the code below as the page content or as a component I can drop into my existing case-study layout.

@@ -1,0 +1,506 @@
+**Prompt for Replit**
+
+> You’re editing my **Clarity Engine** marketing site (HTML + Tailwind, no JS framework).
+> Create a **new case study page** for a client called **“Powers Gymnastics”** that visually matches the style and layout of my existing case studies (like *Hapi Art* and *Growth Across Industries*). Use a clean white background, soft shadows, rounded cards, and the same general structure:
+>
+> * Top “Back to Case Studies” link
+> * Small pill category label
+> * Big title + one-sentence subhead
+> * Row of stat cards
+> * Hero image/video area
+> * “Key Results” strip with 3–4 metrics
+> * Mid-page CTA banner (“Curious what this could look like for your brand?”)
+> * 2-column “The Challenge / The Solution” section
+> * “Verified Performance Metrics” before/after style cards
+> * “Before vs After” table for funnel metrics
+> * “Detailed Results” cards
+> * “Tactics & Strategies” with 3–4 subsections and bullet points
+> * Bottom CTA banner + “Other Case Studies” row.
+>
+> Base the content and numbers on these Powers Gymnastics performance outcomes (round where needed so they’re clean and scannable):
+>
+> * **2–3× lead growth:** Monthly leads increased from about **250–300** to **650–900+**, peaking at **855 in July** and **924 in August**.
+> * **Trial attendance up 2.6×:** Trials attended went from about **350 per month** to **785 in August**.
+> * **Enrollments up ~2.3×, peaking at 555:** Average enrollments grew from about **180** to **400+**, with **555 enrollments in August**.
+> * **~50% cheaper Google CPL:** Google Ads cost per lead dropped from about **$52** to about **$28**.
+> * **Higher conversion efficiency:** Trial conversion rate improved from **~58–65% to 71%**. New-user-to-lead rate improved from **0.6–0.8% to 2.2–2.5%**.
+> * **3–4× ROAS on evergreen Google campaigns** in the summer. 
+>
+> Use copy that positions this case study as **“Multi-location gymnastics & youth programs”** with a focus on **paid media, creative systems, and funnel optimization**.
+>
+> **Hero Content**
+>
+> * Category pill: `Gyms & Youth Programs`
+> * Case study title: `Scaling Powers Gymnastics: 2–3× More Leads Across Locations`
+> * Subhead: mention full-funnel rebuild across Google + Meta, more trials/enrollments, cheaper leads.
+> * Stat cards row (4 cards):
+>
+>   1. `2–3×` — `Monthly Lead Growth`
+>   2. `2.6×` — `Trial Attendance Lift`
+>   3. `~50%` — `Cheaper Google CPL`
+>   4. `3–4×` — `Evergreen ROAS (Google)`
+> * Hero media: a big rounded card with a placeholder image area (you can just use a gray box with “Gym creative / dashboards” text and play button overlay).
+>
+> **Key Results strip**
+>
+> * Simple icons (circles with emoji or letters) above each metric.
+> * Example items:
+>
+>   * “Lead volume 2–3× across locations”
+>   * “Trials and enrollments at all-time highs”
+>   * “Google CPL cut from ~$52 → ~$28”
+>   * “Trial conversion rate up to 71%”
+>
+> **Challenge / Solution section**
+>
+> * Challenge column: emphasize fragmented accounts, seasonal focus, inconsistent CPL, lack of visibility from click → trial → enrollment, and multi-location complexity.
+> * Solution column: describe the rebuild — new evergreen PMAX + Search, Meta lead-gen + sales-optimized campaigns, multi-format creative system, campaigns for Summer, Back-to-School & school-year camps, email nurture, and funnel reporting.
+>
+> **Verified Metrics cards**
+>
+> * Before/After cards that summarize:
+>
+>   * Leads: `250–300 / month` → `650–900+ / month`
+>   * Trials: `~350 / month` → `785 (Aug peak)`
+>   * Enrollments: `~180 / month` → `400–550 / month`
+>   * Google CPL: `~$52` → `~$28`
+>   * Trial Conversion Rate: `58–65%` → `71%`
+>   * New User → Lead Rate: `0.6–0.8%` → `2.2–2.5%`
+>
+> **Before vs After table**
+>
+> * 2 columns labeled “Before” and “After,” 6 rows for the metrics above.
+> * Style it like my existing case study tables: subtle borders, zebra background on hover, rounded corners.
+>
+> **Detailed Results cards**
+>
+> * 4 cards summarizing:
+>
+>   1. “Lead Generation at Scale” — 2–3× more leads and record months.
+>   2. “Trial & Enrollment Engine” — 2.6× more trials, 2.3× more enrollments, 71% trial conversion.
+>   3. “Acquisition Cost Efficiency” — cheaper CPL, better use of budget, higher lifetime value vs CAC.
+>   4. “Evergreen Revenue Systems” — 3–4× ROAS on evergreen Google, seasonal + evergreen working together.
+>
+> **Tactics & Strategies section**
+>
+> * 3–4 subsections with headings and bullets, similar visual style to Hapi Art:
+>
+>   * “Platform Restructures” — rebuilt Google Search & PMAX, evergreen structure post-summer, Meta optimized for leads & sales.
+>   * “Creative System Overhaul” — multi-format Meta creative, seasonal promos, higher testing velocity, consistent brand across gyms.
+>   * “Funnel & Email Improvements” — landing page recommendations, 5-email nurture sequence aligned to parent psychology & objections.
+>   * “Measurement & Reporting” — consolidated dashboards for leads, trials, enrollments, and ROAS across locations.
+>
+> **CTAs**
+>
+> * Mid-page and bottom:
+>
+>   * Headline: “Ready to apply a proven lead-growth system to your gyms?”
+>   * Subcopy: invite them to book a **Strategic Intro Call** to review leaks, goals, and opportunities.
+>   * Button: “Book a Strategic Intro Call” linking to `/book-intro-call` (placeholder).
+>
+> Make the page fully responsive, centered within a max-width container, and match the typography hierarchy (large bold hero, medium section titles, small muted labels). Use Tailwind classes directly in the HTML (no separate CSS). Use the code below as the page content or as a component I can drop into my existing case-study layout.
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scaling Powers Gymnastics: 2–3× More Leads | Clarity Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind CDN (remove if your project already injects Tailwind) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <div class="min-h-screen">
+    <!-- Top nav spacer (optional if you already have a header) -->
+    <header class="w-full border-b border-slate-100 bg-white/80 backdrop-blur">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-violet-500 to-sky-400 flex items-center justify-center text-white text-xs font-semibold">
+            CE
+          </div>
+          <span class="font-semibold text-sm tracking-tight">Clarity Engine</span>
+        </a>
+        <a href="/book-intro-call" class="hidden sm:inline-flex items-center rounded-full bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-violet-700 transition">
+          Book Strategic Intro Call
+        </a>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 lg:px-6 py-10 lg:py-16">
+      <!-- Back link -->
+      <a href="/case-studies" class="inline-flex items-center text-xs font-medium text-slate-500 hover:text-slate-700 mb-5">
+        <span class="mr-1">&larr;</span> Back to Case Studies
+      </a>
+
+      <!-- Hero -->
+      <section class="bg-white rounded-3xl shadow-sm border border-slate-100 p-5 sm:p-7 lg:p-10">
+        <div class="flex flex-col lg:flex-row gap-10">
+          <div class="flex-1">
+            <div class="inline-flex items-center gap-2 mb-4">
+              <span class="inline-flex items-center rounded-full bg-violet-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-violet-700">
+                Gyms &amp; Youth Programs
+              </span>
+              <span class="inline-flex items-center rounded-full bg-slate-50 px-3 py-1 text-[11px] font-medium text-slate-500">
+                Paid Media &amp; Funnel Optimization
+              </span>
+            </div>
+
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight mb-3">
+              Scaling Powers Gymnastics: 2–3× More Leads Across Locations
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 max-w-xl">
+              Clarity Engine rebuilt Powers Gymnastics’ multi-location paid media and funnel systems across Google and Meta—turning fragmented, seasonal campaigns into an always-on growth engine. The result: 2–3× more leads, record trials and enrollments, and nearly 50% cheaper Google cost per lead.
+            </p>
+
+            <!-- Stat cards -->
+            <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div class="rounded-2xl border border-slate-100 bg-slate-50/60 px-4 py-3">
+                <p class="text-[10px] uppercase tracking-wide text-slate-500 mb-1">Lead Volume</p>
+                <p class="text-xl font-semibold">2–3×</p>
+                <p class="text-[11px] text-slate-500">Monthly lead growth</p>
+              </div>
+              <div class="rounded-2xl border border-slate-100 bg-slate-50/60 px-4 py-3">
+                <p class="text-[10px] uppercase tracking-wide text-slate-500 mb-1">Trial Attendance</p>
+                <p class="text-xl font-semibold">2.6×</p>
+                <p class="text-[11px] text-slate-500">Peak month vs. baseline</p>
+              </div>
+              <div class="rounded-2xl border border-slate-100 bg-slate-50/60 px-4 py-3">
+                <p class="text-[10px] uppercase tracking-wide text-slate-500 mb-1">Google CPL</p>
+                <p class="text-xl font-semibold">~50% ↓</p>
+                <p class="text-[11px] text-slate-500">$52 → ~$28 per lead</p>
+              </div>
+              <div class="rounded-2xl border border-slate-100 bg-slate-50/60 px-4 py-3">
+                <p class="text-[10px] uppercase tracking-wide text-slate-500 mb-1">Evergreen ROAS</p>
+                <p class="text-xl font-semibold">3–4×</p>
+                <p class="text-[11px] text-slate-500">Google PMAX &amp; Search</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero media placeholder -->
+          <div class="flex-1">
+            <div class="relative h-52 sm:h-64 lg:h-full min-h-[220px] rounded-3xl bg-gradient-to-br from-sky-500 via-violet-500 to-fuchsia-500 overflow-hidden shadow-md flex items-center justify-center">
+              <div class="absolute inset-0 bg-slate-900/20 mix-blend-multiply"></div>
+              <div class="relative flex flex-col items-center text-center px-6">
+                <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg">
+                  <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-violet-500 to-sky-400 flex items-center justify-center">
+                    <span class="text-xs font-semibold text-white">&#9658;</span>
+                  </div>
+                </div>
+                <p class="text-xs uppercase tracking-[0.14em] text-slate-100/80 mb-1">
+                  Performance Walkthrough
+                </p>
+                <p class="text-sm sm:text-base font-medium text-white">
+                  Placeholder for Loom / YouTube overview of Powers Gymnastics account rebuild and results.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Results -->
+      <section class="mt-10">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 text-center mb-4">
+          Key Results
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white rounded-2xl border border-slate-100 p-4 flex items-start gap-3">
+            <div class="h-9 w-9 rounded-full bg-violet-50 flex items-center justify-center text-xs">📈</div>
+            <div>
+              <p class="text-sm font-semibold">Record Lead Volume</p>
+              <p class="text-xs text-slate-600 mt-1">
+                Leads grew from ~250–300/month to 650–900+, with record months at 855 and 924.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4 flex items-start gap-3">
+            <div class="h-9 w-9 rounded-full bg-emerald-50 flex items-center justify-center text-xs">🎟️</div>
+            <div>
+              <p class="text-sm font-semibold">Trials &amp; Enrollments Surged</p>
+              <p class="text-xs text-slate-600 mt-1">
+                Trials hit 785 in August (2.6× lift), with enrollments peaking at 555 for the year.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4 flex items-start gap-3">
+            <div class="h-9 w-9 rounded-full bg-sky-50 flex items-center justify-center text-xs">💰</div>
+            <div>
+              <p class="text-sm font-semibold">Cheaper Cost Per Lead</p>
+              <p class="text-xs text-slate-600 mt-1">
+                Google CPL dropped from around $52 to about $28 while lead quality increased.
+              </p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4 flex items-start gap-3">
+            <div class="h-9 w-9 rounded-full bg-amber-50 flex items-center justify-center text-xs">⚙️</div>
+            <div>
+              <p class="text-sm font-semibold">Full-Funnel Upgrade</p>
+              <p class="text-xs text-slate-600 mt-1">
+                Higher trial conversion (71%) and stronger new-user-to-lead rate (2.2–2.5%).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mid CTA -->
+      <section class="mt-10">
+        <div class="bg-white rounded-3xl border border-slate-100 px-6 py-7 sm:px-10 sm:py-9 text-center shadow-sm">
+          <p class="text-sm font-semibold text-slate-900 mb-2">
+            Curious what this kind of lead growth could look like for your gyms?
+          </p>
+          <p class="text-xs sm:text-sm text-slate-600 mb-4 max-w-2xl mx-auto">
+            Book a Strategic Intro Call and we’ll review your current funnel, highlight quick wins, and map out a plan to increase leads, trials, and enrollments across locations.
+          </p>
+          <a href="/book-intro-call" class="inline-flex items-center rounded-full bg-violet-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-violet-700 transition">
+            Book a Strategic Intro Call
+          </a>
+        </div>
+      </section>
+
+      <!-- Challenge / Solution -->
+      <section class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">The Challenge</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Powers Gymnastics operates multiple gyms with different program mixes and seasonal promotions. Before partnering with Clarity Engine, their paid media leaned heavily on one-off seasonal pushes, fragmented account structures, and incomplete tracking from click to trial to enrollment.
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li>• Seasonal-only campaigns that went dark outside of Summer and Back-to-School.</li>
+            <li>• Inconsistent Google Search and PMAX setup, with higher-than-ideal CPL.</li>
+            <li>• Meta campaigns optimized for traffic/engagement instead of leads and sales.</li>
+            <li>• Limited visibility into which locations, campaigns, and offers drove enrollments.</li>
+            <li>• No unified system for creative testing, parent messaging, and follow-up.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-900 mb-3">The Solution</h3>
+          <p class="text-sm text-slate-600 mb-4">
+            Clarity Engine rebuilt the full acquisition system—integrating evergreen campaigns, seasonal promos, creative frameworks, and email nurture into a single growth program for all locations.
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li>• Re-architected Google Search &amp; PMAX for evergreen lead generation post-summer.</li>
+            <li>• Transitioned Meta from engagement to lead- and sales-optimized campaigns.</li>
+            <li>• Launched multi-format creative and seasonal offers (Summer, Back-to-School, school-year camps, Free Trials).</li>
+            <li>• Introduced consolidated reporting for leads, trials, enrollments, and ROAS.</li>
+            <li>• Drafted a 5-email nurture sequence aligned with parent psychology and objections.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Verified Metrics -->
+      <section class="mt-12">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-4">
+          Verified Performance Metrics
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-white rounded-2xl border border-slate-100 p-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-1">Monthly Leads</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">Before:</span> ~250–300 / month</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">After:</span> 650–900+ / month (855–924 peaks)</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-1">Trials Attended</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">Before:</span> ~350 / month</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">After:</span> 785 in peak month (2.6× lift)</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-1">Enrollments</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">Before:</span> ~180 / month</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">After:</span> 400–550 / month (555 peak)</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-1">Google Cost Per Lead</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">Before:</span> ~$52 per lead</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">After:</span> ~ $28 per lead (~50% cheaper)</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-1">Trial Conversion Rate</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">Before:</span> 58–65%</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">After:</span> 71% trial-to-enrollment</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 p-4">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-1">New User → Lead Rate</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">Before:</span> 0.6–0.8%</p>
+            <p class="text-sm text-slate-700"><span class="font-semibold">After:</span> 2.2–2.5%</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Before vs After Table -->
+      <section class="mt-10">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-3">
+          Before vs. After (Full Funnel)
+        </h2>
+        <div class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+          <table class="min-w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-50">
+              <tr>
+                <th class="px-4 sm:px-6 py-3 font-semibold text-slate-500">Metric</th>
+                <th class="px-4 sm:px-6 py-3 font-semibold text-slate-500">Before</th>
+                <th class="px-4 sm:px-6 py-3 font-semibold text-slate-500">After</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">Monthly Leads</td>
+                <td class="px-4 sm:px-6 py-3">~250–300</td>
+                <td class="px-4 sm:px-6 py-3">650–900+ (855–924 peaks)</td>
+              </tr>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">Trials Attended</td>
+                <td class="px-4 sm:px-6 py-3">~350 / month</td>
+                <td class="px-4 sm:px-6 py-3">785 peak (2.6× improvement)</td>
+              </tr>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">Enrollments</td>
+                <td class="px-4 sm:px-6 py-3">~180 / month</td>
+                <td class="px-4 sm:px-6 py-3">400–550 / month (555 peak)</td>
+              </tr>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">Google Cost Per Lead</td>
+                <td class="px-4 sm:px-6 py-3">~$52</td>
+                <td class="px-4 sm:px-6 py-3">~$28 (~50% cheaper)</td>
+              </tr>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">Trial Conversion Rate</td>
+                <td class="px-4 sm:px-6 py-3">58–65%</td>
+                <td class="px-4 sm:px-6 py-3">71%</td>
+              </tr>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">New User → Lead Rate</td>
+                <td class="px-4 sm:px-6 py-3">0.6–0.8%</td>
+                <td class="px-4 sm:px-6 py-3">2.2–2.5%</td>
+              </tr>
+              <tr class="border-t border-slate-100 hover:bg-slate-50/60">
+                <td class="px-4 sm:px-6 py-3">Evergreen ROAS (Google)</td>
+                <td class="px-4 sm:px-6 py-3">Unstable</td>
+                <td class="px-4 sm:px-6 py-3">3–4× in summer months</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Detailed Results -->
+      <section class="mt-12">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-4">
+          Detailed Results
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Lead Generation at Scale</h3>
+            <p class="text-sm text-slate-600">
+              Multi-location evergreen and seasonal campaigns combined to produce 2–3× more leads overall, with the strongest lead volume Powers Gymnastics had seen year-to-date.
+            </p>
+          </div>
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Trial &amp; Enrollment Engine</h3>
+            <p class="text-sm text-slate-600">
+              Optimized targeting, creative, and offers drove 2.6× more trials and roughly 2.3× more enrollments, while trial-to-enrollment conversion reached 71%.
+            </p>
+          </div>
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Acquisition Cost Efficiency</h3>
+            <p class="text-sm text-slate-600">
+              Google Ads CPL dropped by about half—from ~$52 to roughly $28—creating room for more aggressive, profitable scaling during peak seasons.
+            </p>
+          </div>
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Evergreen Revenue Systems</h3>
+            <p class="text-sm text-slate-600">
+              Evergreen PMAX and Search campaigns stabilized at 3–4× ROAS during summer months, providing a predictable baseline that seasonal pushes could build upon.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tactics & Strategies -->
+      <section class="mt-12">
+        <h2 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-4">
+          Tactics &amp; Strategies
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Platform Restructures</h3>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Rebuilt Google Search &amp; PMAX structure to support evergreen enrollment campaigns after summer.</li>
+              <li>• Split seasonal vs evergreen budgets to protect consistent lead flow.</li>
+              <li>• Transitioned Meta from engagement to lead &amp; purchase objectives.</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Creative System Overhaul</h3>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Launched carousel, slideshow, and single-image creatives across gyms.</li>
+              <li>• Built seasonal campaigns for Summer, Back-to-School, and school-year camps.</li>
+              <li>• Increased testing velocity and visual consistency across all locations.</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Funnel &amp; Email Improvements</h3>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Recommended landing page and post-website redesign optimizations.</li>
+              <li>• Designed a 5-email nurture sequence to warm leads and overcome parent objections.</li>
+              <li>• Focused messaging on safety, confidence-building, and community for kids.</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-3xl border border-slate-100 p-5 shadow-sm">
+            <h3 class="text-sm font-semibold mb-2">Measurement &amp; Reporting</h3>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Consolidated reporting across Google, Meta, and internal systems.</li>
+              <li>• Tracked leads, trials, enrollments, and ROAS by location and campaign.</li>
+              <li>• Created an executive-friendly view of performance trends and next steps.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <section class="mt-12">
+        <div class="bg-slate-900 rounded-3xl px-6 py-8 sm:px-10 sm:py-10 text-center text-slate-50 shadow-md">
+          <h2 class="text-base sm:text-lg font-semibold mb-2">
+            Ready to apply a proven multi-location lead-growth system to your brand?
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300 mb-5 max-w-2xl mx-auto">
+            Let’s review your paid media, funnel, and tracking to uncover the next 2–3× efficiency gains across your gyms or youth programs.
+          </p>
+          <a href="/book-intro-call" class="inline-flex items-center rounded-full bg-violet-500 px-5 py-2.5 text-xs font-semibold text-white shadow hover:bg-violet-400 transition">
+            Book a Strategic Intro Call
+          </a>
+        </div>
+      </section>
+
+      <!-- Other Case Studies -->
+      <section class="mt-10 mb-16">
+        <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-4 text-center">
+          Other Case Studies
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/case-studies/hapi-art" class="bg-white rounded-2xl border border-slate-100 p-4 text-left shadow-sm hover:shadow-md transition">
+            <p class="text-[11px] font-semibold text-violet-600 uppercase tracking-wide mb-1">E-commerce</p>
+            <p class="text-sm font-semibold text-slate-900 mb-1">Building a Profitable 10× ROAS</p>
+            <p class="text-xs text-slate-600">High ROAS art campaigns with precise testing &amp; attribution.</p>
+          </a>
+          <a href="/case-studies/lamark-agency" class="bg-white rounded-2xl border border-slate-100 p-4 text-left shadow-sm hover:shadow-md transition">
+            <p class="text-[11px] font-semibold text-violet-600 uppercase tracking-wide mb-1">PPC Management</p>
+            <p class="text-sm font-semibold text-slate-900 mb-1">Growth Across Industries</p>
+            <p class="text-xs text-slate-600">Scalable frameworks managing $70K+ monthly ad spend.</p>
+          </a>
+          <a href="/case-studies/mandali-retreats" class="bg-white rounded-2xl border border-slate-100 p-4 text-left shadow-sm hover:shadow-md transition">
+            <p class="text-[11px] font-semibold text-violet-600 uppercase tracking-wide mb-1">Wellness Marketing</p>
+            <p class="text-sm font-semibold text-slate-900 mb-1">Crafting Success: Retreat Systems</p>
+            <p class="text-xs text-slate-600">High-value bookings for destination retreats.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+```
