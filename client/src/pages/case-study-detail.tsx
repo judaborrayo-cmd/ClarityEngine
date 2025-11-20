@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarS
 import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
 import core40PortfolioImage from "@assets/Core40-Image_1761608258683.png";
 import powersGymnasticsHeroImage from "@assets/Black Yellow Modern Dynamic Copywriter Online Portfolio_1763650858659.png";
+import powersGymnasticsCreativeImage from "@assets/Graphic Designer Online Portfolio_1763651229848.png";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -634,7 +635,8 @@ const caseStudyData = {
     },
     tags: ["2–3× Leads", "50% Cheaper CPL", "Multi-Location", "Youth Programs", "Google Ads", "Meta Advertising", "Funnel Optimization"],
     featured: true,
-    heroImage: powersGymnasticsHeroImage
+    heroImage: powersGymnasticsHeroImage,
+    portfolioImage: powersGymnasticsCreativeImage
   }
 };
 
@@ -1014,22 +1016,6 @@ export default function CaseStudyDetail() {
         </div>
       </section>
 
-      {/* Portfolio Image Section - Core 40 */}
-      {(study as any).portfolioImage && (
-        <section className="px-6 py-12 lg:px-8 bg-muted/30">
-          <div className="mx-auto max-w-5xl">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={(study as any).portfolioImage}
-                alt="Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"
-                className="w-full h-auto"
-                data-testid="case-study-portfolio-image"
-              />
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Detailed Results - Only for Mandali */}
       {(study as any).detailedResults && (
         <section className="px-6 py-16 lg:px-8 bg-muted/30">
@@ -1042,6 +1028,22 @@ export default function CaseStudyDetail() {
                   <p className="text-muted-foreground leading-relaxed">{result.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Portfolio Image Section - Powers Gymnastics & Core 40 */}
+      {(study as any).portfolioImage && (
+        <section className="px-6 py-12 lg:px-8 bg-muted/30">
+          <div className="mx-auto max-w-5xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={(study as any).portfolioImage}
+                alt={slug === "powers-gymnastics" ? "Powers Gymnastics Creative - Professional Photography & Ad Formats" : "Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"}
+                className="w-full h-auto"
+                data-testid="case-study-portfolio-image"
+              />
             </div>
           </div>
         </section>
