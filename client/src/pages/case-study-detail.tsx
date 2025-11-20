@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
 import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
 import core40PortfolioImage from "@assets/Core40-Image_1761608258683.png";
+import powersGymnasticsHeroImage from "@assets/Black Yellow Modern Dynamic Copywriter Online Portfolio_1763650858659.png";
 
 // This would typically come from an API or CMS
 const caseStudyData = {
@@ -632,7 +633,8 @@ const caseStudyData = {
       author: ""
     },
     tags: ["2–3× Leads", "50% Cheaper CPL", "Multi-Location", "Youth Programs", "Google Ads", "Meta Advertising", "Funnel Optimization"],
-    featured: true
+    featured: true,
+    heroImage: powersGymnasticsHeroImage
   }
 };
 
