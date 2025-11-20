@@ -546,6 +546,93 @@ const caseStudyData = {
     },
     tags: ["$2M Revenue", "11K Members", "Fitness Marketing", "ROI Maximization"],
     featured: true
+  },
+  "powers-gymnastics": {
+    title: "Scaling Powers Gymnastics: 2–3× More Leads Across Locations",
+    subtitle: "Multi-location gymnastics & youth programs",
+    category: "Gyms & Youth Programs",
+    overview: "Clarity Engine rebuilt Powers Gymnastics' multi-location paid media and funnel systems across Google and Meta—turning fragmented, seasonal campaigns into an always-on growth engine. The result: 2–3× more leads, record trials and enrollments, and nearly 50% cheaper Google cost per lead.",
+    challenge: "Powers Gymnastics faced the complex challenge of managing fragmented advertising accounts across multiple locations with a heavy seasonal focus on summer camps. The business struggled with inconsistent cost per lead, lack of visibility from click → trial → enrollment, and the complexity of coordinating campaigns across different gym locations. Without a unified system, the brand couldn't effectively track which campaigns drove actual enrollments or optimize for the full customer journey from initial interest to paid membership.",
+    solution: [
+      "Rebuilt Google Search & Performance Max campaigns with evergreen structure post-summer season",
+      "Launched Meta lead-generation campaigns optimized for both leads and sales conversions",
+      "Created multi-format creative system with seasonal promotions and higher testing velocity",
+      "Developed targeted campaigns for Summer, Back-to-School & school-year camp programs",
+      "Implemented 5-email nurture sequence aligned to parent psychology and common objections",
+      "Built consolidated dashboards tracking leads, trials, enrollments, and ROAS across all locations",
+      "Established consistent brand messaging and creative standards across all gym locations"
+    ],
+    results: {
+      primary: "2–3× lead growth with 50% cheaper Google CPL and record trial attendance",
+      metrics: [
+        { label: "Monthly Leads", value: "2–3×", icon: TrendingUp },
+        { label: "Trial Attendance", value: "2.6×", icon: Users },
+        { label: "Google CPL", value: "~50% ↓", icon: DollarSign },
+        { label: "Evergreen ROAS", value: "3–4×", icon: Target }
+      ]
+    },
+    detailedResults: [
+      {
+        title: "Lead Generation at Scale",
+        description: "Monthly leads increased from 250–300 to 650–900+, with record months reaching 855 in July and 924 in August—a sustained 2–3× growth across all locations"
+      },
+      {
+        title: "Trial & Enrollment Engine",
+        description: "Trial attendance surged 2.6× (from ~350/month to 785 in August peak), while enrollments grew 2.3× (from ~180/month to 400–550/month, peaking at 555)"
+      },
+      {
+        title: "Acquisition Cost Efficiency",
+        description: "Google Ads cost per lead dropped nearly 50% from ~$52 to ~$28, dramatically improving budget efficiency and increasing lifetime value to CAC ratios"
+      },
+      {
+        title: "Evergreen Revenue Systems",
+        description: "Achieved 3–4× ROAS on evergreen Google campaigns during summer months, with seasonal and evergreen systems working together to maintain consistent growth year-round"
+      }
+    ],
+    strategies: [
+      {
+        category: "Platform Restructures",
+        tactics: [
+          "Rebuilt Google Search & Performance Max with evergreen structure post-summer",
+          "Optimized Meta campaigns for both lead generation and sales conversions",
+          "Created location-specific targeting while maintaining unified brand messaging",
+          "Implemented automated bid strategies aligned to cost per enrollment targets"
+        ]
+      },
+      {
+        category: "Creative System Overhaul",
+        tactics: [
+          "Developed multi-format Meta creative library for diverse ad placements",
+          "Created seasonal promotional campaigns for Summer, Back-to-School, and school-year programs",
+          "Increased creative testing velocity with systematic winner identification",
+          "Established consistent brand guidelines across all gym locations and campaigns"
+        ]
+      },
+      {
+        category: "Funnel & Email Improvements",
+        tactics: [
+          "Provided landing page optimization recommendations to improve conversion rates",
+          "Built 5-email nurture sequence addressing parent psychology and common objections",
+          "Implemented lead scoring to identify high-intent prospects for priority follow-up",
+          "Created automated workflows to streamline trial booking and enrollment processes"
+        ]
+      },
+      {
+        category: "Measurement & Reporting",
+        tactics: [
+          "Consolidated multi-location performance into unified dashboards",
+          "Established end-to-end tracking from ad click → lead → trial → enrollment",
+          "Built ROAS reporting across all locations and campaign types",
+          "Created weekly performance reviews identifying optimization opportunities"
+        ]
+      }
+    ],
+    testimonial: {
+      quote: "",
+      author: ""
+    },
+    tags: ["2–3× Leads", "50% Cheaper CPL", "Multi-Location", "Youth Programs", "Google Ads", "Meta Advertising", "Funnel Optimization"],
+    featured: true
   }
 };
 
@@ -554,7 +641,8 @@ const otherCaseStudies = [
   { id: "hapi-art", title: "Building a Profitable 10X ROAS", category: "ROI Optimization" },
   { id: "steel-fit-usa", title: "Steel Fit USA", category: "Paid Media" },
   { id: "mandali-retreats", title: "Crafting Success: Mandali Retreats", category: "Wellness Marketing" },
-  { id: "fitness-roi", title: "Maximizing ROI in Fitness", category: "Revenue Growth" }
+  { id: "fitness-roi", title: "Maximizing ROI in Fitness", category: "Revenue Growth" },
+  { id: "powers-gymnastics", title: "Scaling Powers Gymnastics: 2–3× More Leads Across Locations", category: "Gyms & Youth Programs" }
 ];
 
 // Helper function to convert YouTube URL to embed URL
