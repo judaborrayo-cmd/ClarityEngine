@@ -147,6 +147,15 @@ export default function CaseStudies() {
       solution: "Implemented tiered remarketing, offline conversion tracking, and geographic optimization.",
     },
     {
+      slug: "/case-study/powers-gymnastics",
+      title: "Powers Gymnastics — Multi-location Growth",
+      impact: "2–3× more leads, 50% cheaper Google CPL, record trials & enrollments",
+      image: core40Image,
+      imageAlt: "Powers Gymnastics multi-location growth",
+      problem: "Fragmented accounts, seasonal focus, inconsistent CPL, lack of visibility from click → trial → enrollment.",
+      solution: "Rebuilt Google Search & PMAX, Meta lead-gen campaigns, multi-format creative system, funnel reporting across locations.",
+    },
+    {
       slug: "/case-study/core-40",
       title: "Core40 — Fitness Studio",
       impact: "$2M+ revenue, 11K new members acquired",
@@ -201,6 +210,10 @@ export default function CaseStudies() {
     { metric: "Consistent CPL at scale", context: "Multi-industry", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
     { metric: "+16.5× ROAS", context: "Social · Retreat bookings", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
     { metric: "+29.06× ROAS", context: "Search · Retreat bookings", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
+    { metric: "2–3× leads", context: "Monthly growth", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
+    { metric: "~50% cheaper CPL", context: "Google Ads", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
+    { metric: "2.6× trials", context: "Attendance lift", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
+    { metric: "3–4× ROAS", context: "Evergreen Google", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
     { metric: "$2M+ revenue", context: "Member growth", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
     { metric: "11K+ new members", context: "Acquisition campaign", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
   ];
