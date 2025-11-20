@@ -30,6 +30,7 @@ import steelFitImage from "@assets/Steel Fit USA New 1600 by 1000_1761591662248.
 import core40Image from "@assets/Core40 Image 1600 by 1000_1761591215292.jpg";
 import mandaliImage from "@assets/Mandali 1600 by 1000_1761604910726.jpg";
 import lamarkImage from "@assets/Lamark Media 1600 by 1000_1761591605719.png";
+import powersGymnasticsImage from "@assets/Rowland-Ballard-Case-Study-Image_1763648189223.png";
 
 // Progress Bar Component
 function ProgressBar() {
@@ -150,7 +151,7 @@ export default function CaseStudies() {
       slug: "/case-study/powers-gymnastics",
       title: "Powers Gymnastics — Multi-location Growth",
       impact: "2–3× more leads, 50% cheaper Google CPL, record trials & enrollments",
-      image: core40Image,
+      image: powersGymnasticsImage,
       imageAlt: "Powers Gymnastics multi-location growth",
       problem: "Fragmented accounts, seasonal focus, inconsistent CPL, lack of visibility from click → trial → enrollment.",
       solution: "Rebuilt Google Search & PMAX, Meta lead-gen campaigns, multi-format creative system, funnel reporting across locations.",
