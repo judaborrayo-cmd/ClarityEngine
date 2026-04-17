@@ -20,20 +20,20 @@ import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935
 function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
-      <div className="mx-auto max-w-6xl px-6 py-4">
+      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <img
               src={Clarity_Engine_Favicon}
               alt="Clarity Engine Logo"
-              className="h-8 w-auto object-contain"
+              className="h-7 w-auto shrink-0 object-contain sm:h-8"
             />
-            <Link to="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+            <Link to="/" className="whitespace-nowrap text-base font-bold leading-none text-foreground transition-colors hover:text-primary sm:text-xl">
               Clarity Engine
             </Link>
           </div>
           
-          <div className="flex items-center space-x-8">
+          <div className="hidden items-center space-x-8 md:flex">
             <Link 
               to="/#services" 
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -59,6 +59,34 @@ function Navbar() {
               Book Strategic Intro Call
             </Link>
           </div>
+
+          <Link
+            to="/#book-intro"
+            className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 md:hidden"
+          >
+            Book Call
+          </Link>
+        </div>
+
+        <div className="mt-3 grid grid-cols-3 gap-2 border-t border-border/60 pt-3 text-center text-sm md:hidden">
+          <Link
+            to="/#services"
+            className="rounded-lg px-2 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            Services
+          </Link>
+          <Link
+            to="/case-studies"
+            className="rounded-lg px-2 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            Case Studies
+          </Link>
+          <Link
+            to="/#how-we-scale"
+            className="rounded-lg px-2 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            About
+          </Link>
         </div>
       </div>
     </nav>
@@ -121,7 +149,7 @@ function Router() {
   return (
     <>
       <Navbar />
-      <div className="pt-20">
+      <div className="pt-28 md:pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
