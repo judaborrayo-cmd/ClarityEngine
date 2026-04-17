@@ -12,6 +12,7 @@ import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import About from "@/pages/about";
 import Testimonials from "@/pages/testimonials";
 import CheckoutAudit from "@/pages/checkout-audit";
+import Steven from "@/pages/steven";
 import NotFound from "@/pages/not-found";
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
@@ -130,6 +131,7 @@ function Router() {
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/steven" element={<Steven />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
