@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Target, BarChart3, FlaskConical } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -45,6 +45,24 @@ interface ServiceLogo {
   icon?: React.ComponentType<{ className?: string }>;
 }
 
+type Service = {
+  id: string;
+  topTitle: string;
+  bottomTitle: string;
+  logo: ServiceLogo;
+  media: {
+    src: string;
+    alt: string;
+  };
+  gradient: {
+    from: string;
+    to: string;
+  };
+  paragraph: string;
+  bullets: string[];
+  tools: string[];
+};
+
 export default function ServicesAtAGlance() {
   // Tool tooltip mapping
   const toolTooltips: Record<string, string> = {
@@ -72,7 +90,7 @@ export default function ServicesAtAGlance() {
     "AB": "Test smarter. Scale faster.",
   };
 
-  const services = useMemo(
+  const services = useMemo<Service[]>(
     () => [
       {
         id: "google-ads",
@@ -187,8 +205,60 @@ export default function ServicesAtAGlance() {
   const displayedId = hoveredId || activeId;
   const active = services.find((s) => s.id === displayedId)!;
 
+  const renderServicePanel = (service: Service, variant: "mobile" | "desktop") => (
+    <div
+      id={`${variant}-service-panel-${service.id}`}
+      role="region"
+      aria-labelledby={`service-button-${service.id}`}
+      data-testid={variant === "desktop" ? "service-panel" : `mobile-service-panel-${service.id}`}
+      className={`rounded-lg bg-gradient-to-br ${service.gradient.from} ${service.gradient.to} p-5 sm:p-6 lg:p-10 shadow-[0_12px_50px_-20px_rgba(0,0,0,0.3)]`}
+    >
+      <div className="grid items-center gap-6 lg:grid-cols-2">
+        <div className="order-2 hidden aspect-video w-full overflow-hidden rounded-lg bg-white/40 ring-1 ring-black/5 md:block lg:order-1">
+          <Media src={service.media.src} alt={service.media.alt} />
+        </div>
+
+        <div className="order-1 lg:order-2">
+          <h3 className="text-xl font-semibold text-gray-900 sm:text-2xl" data-testid="panel-title">
+            {service.bottomTitle}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-gray-800/90 sm:text-base" data-testid="panel-description">
+            {service.paragraph}
+          </p>
+          <ul className="mt-4 space-y-2 text-gray-800">
+            {service.bullets.map((b, i) => (
+              <li key={i} className="flex gap-2">
+                <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-violet-600" />
+                <span className="text-sm leading-relaxed">{b}</span>
+              </li>
+            ))}
+          </ul>
+          <TooltipProvider delayDuration={200}>
+            <div className="mt-5 flex flex-wrap gap-2 sm:gap-3">
+              {service.tools.map((t, i) => (
+                <Tooltip key={i}>
+                  <TooltipTrigger asChild>
+                    <div className="ce-logo group cursor-pointer">
+                      <Pill>{t}</Pill>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent
+                    side="top"
+                    className="max-w-[200px] rounded-lg bg-gray-900 px-3 py-2 text-center text-xs text-white shadow-lg"
+                  >
+                    {toolTooltips[t] || t}
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </TooltipProvider>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <section id="services" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+    <section id="services" className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
           Services at a glance
@@ -205,97 +275,64 @@ export default function ServicesAtAGlance() {
       </div>
 
       {/* TOP: Pressable button cards (one big logo + title) */}
-      <div role="tablist" aria-label="Service tabs" className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div aria-label="Services" className="mt-8 grid gap-3 md:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-4">
         {services.map((s) => {
           const selected = s.id === activeId;
           return (
-            <button
-              key={s.id}
-              id={`tab-${s.id}`}
-              role="tab"
-              aria-selected={selected}
-              aria-controls={`service-panel-${s.id}`}
-              onClick={() => setActiveId(s.id)}
-              onMouseEnter={() => setHoveredId(s.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              data-testid={`tab-${s.id}`}
-              className={`group flex flex-col items-center justify-center gap-4 rounded-2xl border bg-white p-8 text-center shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none ${
-                selected
-                  ? "border-violet-300 ring-2 ring-violet-500/70 shadow-lg scale-[1.01]"
-                  : "border-black/10"
-              }`}
-            >
-              {/* BIG logo */}
-              {s.logo.type === 'image' && s.logo.src ? (
-                <img
-                  src={s.logo.src}
-                  alt={s.topTitle}
-                  className="h-12 w-auto sm:h-14 lg:h-16 object-contain"
-                  data-testid={`logo-${s.id}`}
-                />
-              ) : s.logo.type === 'icon' && s.logo.icon ? (
-                <div className="flex items-center justify-center h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-xl bg-gradient-to-br from-violet-50 to-indigo-50 ring-1 ring-violet-200">
-                  {(() => {
-                    const Icon = s.logo.icon;
-                    return <Icon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-violet-600" />;
-                  })()}
+            <Fragment key={s.id}>
+              <button
+                id={`service-button-${s.id}`}
+                aria-pressed={selected}
+                onClick={() => setActiveId(s.id)}
+                onMouseEnter={() => setHoveredId(s.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                data-testid={`tab-${s.id}`}
+                className={`group flex min-h-[86px] items-center justify-between gap-4 rounded-lg border bg-white p-4 text-left shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/70 lg:min-h-[132px] lg:flex-col lg:justify-center lg:gap-3 lg:p-5 lg:text-center ${
+                  selected
+                    ? "border-violet-300 ring-2 ring-violet-500/70 shadow-md"
+                    : "border-black/10"
+                }`}
+              >
+                <span className="flex min-w-0 items-center gap-4 lg:flex-col lg:gap-2">
+                  {s.logo.type === 'image' && s.logo.src ? (
+                    <img
+                      src={s.logo.src}
+                      alt={s.topTitle}
+                      className="h-9 w-12 shrink-0 object-contain sm:h-10 lg:h-12 lg:w-auto"
+                      data-testid={`logo-${s.id}`}
+                    />
+                  ) : s.logo.type === 'icon' && s.logo.icon ? (
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-violet-50 to-indigo-50 ring-1 ring-violet-200 lg:h-12 lg:w-12">
+                      {(() => {
+                        const Icon = s.logo.icon;
+                        return <Icon className="h-5 w-5 text-violet-600 lg:h-6 lg:w-6" />;
+                      })()}
+                    </span>
+                  ) : (
+                    <span className="h-10 w-10 shrink-0 rounded-lg bg-white/80 ring-1 ring-black/10 lg:h-12 lg:w-12" />
+                  )}
+                  <span className="min-w-0 text-base font-semibold leading-snug text-gray-900 sm:text-lg lg:text-lg" data-testid={`tab-title-${s.id}`}>
+                    {s.topTitle}
+                  </span>
+                </span>
+                <span className="text-xl leading-none text-gray-400 lg:hidden" aria-hidden>
+                  {selected ? "↓" : "→"}
+                </span>
+              </button>
+
+              {selected && (
+                <div className="md:col-span-2 lg:hidden">
+                  {renderServicePanel(s, "mobile")}
                 </div>
-              ) : (
-                <div className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-xl bg-white/80 ring-1 ring-black/10" />
               )}
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900" data-testid={`tab-title-${s.id}`}>{s.topTitle}</h3>
-            </button>
+            </Fragment>
           );
         })}
       </div>
 
       {/* BOTTOM: Detailed gradient panel */}
-      <div
-        id={`service-panel-${active.id}`}
-        role="tabpanel"
-        aria-labelledby={`tab-${active.id}`}
-        data-testid="service-panel"
-        className={`mt-10 rounded-3xl bg-gradient-to-br ${active.gradient.from} ${active.gradient.to} p-6 sm:p-8 lg:p-10 shadow-[0_12px_50px_-20px_rgba(0,0,0,0.3)]`}
-      >
-        <div className="grid items-center gap-8 lg:grid-cols-2">
-          {/* Media */}
-          <div className="aspect-video w-full overflow-hidden rounded-xl bg-white/40 ring-1 ring-black/5">
-            <Media src={active.media.src} alt={active.media.alt} />
-          </div>
-
-          {/* Copy */}
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900" data-testid="panel-title">{active.bottomTitle}</h3>
-            <p className="mt-3 text-gray-800/90" data-testid="panel-description">{active.paragraph}</p>
-            <ul className="mt-4 space-y-2 text-gray-800">
-              {active.bullets.map((b, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-violet-600" />
-                  <span className="text-sm leading-relaxed">{b}</span>
-                </li>
-              ))}
-            </ul>
-            <TooltipProvider delayDuration={200}>
-              <div className="mt-5 flex flex-wrap gap-3">
-                {active.tools.map((t, i) => (
-                  <Tooltip key={i}>
-                    <TooltipTrigger asChild>
-                      <div className="ce-logo group cursor-pointer">
-                        <Pill>{t}</Pill>
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent 
-                      side="top" 
-                      className="bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-lg max-w-[200px] text-center"
-                    >
-                      {toolTooltips[t] || t}
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </div>
-            </TooltipProvider>
-          </div>
-        </div>
+      <div className="mt-8 hidden lg:block">
+        {renderServicePanel(active, "desktop")}
       </div>
 
       {/* Tooltip hover effects */}
