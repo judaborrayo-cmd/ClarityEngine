@@ -95,6 +95,7 @@ function Navbar() {
 
 function Router() {
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -171,7 +172,7 @@ function Router() {
   return (
     <>
       <Navbar />
-      <div className="pt-28 md:pt-20">
+      <div className={isHome ? "pt-0" : "pt-28 md:pt-20"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />

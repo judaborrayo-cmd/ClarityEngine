@@ -282,7 +282,7 @@ export default function Home() {
       <ProgressBar />
       <main className="relative min-h-screen overflow-x-hidden bg-white text-gray-900">
         {/* --- HERO --- */}
-        <Section id="hero" className="pt-20 pb-24 lg:pt-28 lg:pb-32 relative overflow-hidden">
+        <Section id="hero" className="pt-36 pb-24 md:pt-28 lg:pt-32 lg:pb-32 relative overflow-hidden">
           {/* Animated gradient background */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-green-50 opacity-40" />
           {!shouldReduceMotion ? (
