@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, type MouseEvent, type PointerEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import mandaliImage from "@assets/Mandali 1600 by 1000_1761604910726.jpg";
 import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761604917835.png";
@@ -15,6 +15,13 @@ type HomeCS = {
 
 export function FeaturedCaseStudiesHome() {
   const scroller = useRef<HTMLDivElement | null>(null);
+  const suppressClick = useRef(false);
+  const dragState = useRef({
+    active: false,
+    startX: 0,
+    startScrollLeft: 0,
+    moved: false,
+  });
   const shouldReduceMotion = useReducedMotion();
 
   const scrollByCard = (dir: "prev" | "next") => {
@@ -23,6 +30,55 @@ export function FeaturedCaseStudiesHome() {
     const child = el.querySelector<HTMLElement>('[data-card]');
     const w = child ? child.getBoundingClientRect().width + 16 : 360;
     el.scrollBy({ left: dir === "next" ? w : -w, behavior: "smooth" });
+  };
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    const el = scroller.current;
+    if (!el) return;
+
+    dragState.current = {
+      active: true,
+      startX: event.clientX,
+      startScrollLeft: el.scrollLeft,
+      moved: false,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const el = scroller.current;
+    if (!el || !dragState.current.active) return;
+
+    const delta = event.clientX - dragState.current.startX;
+    if (Math.abs(delta) > 4) {
+      dragState.current.moved = true;
+    }
+    el.scrollLeft = dragState.current.startScrollLeft - delta;
+  };
+
+  const endDrag = (event: PointerEvent<HTMLDivElement>) => {
+    if (!dragState.current.active) return;
+
+    if (dragState.current.moved) {
+      suppressClick.current = true;
+      window.setTimeout(() => {
+        suppressClick.current = false;
+      }, 250);
+    }
+
+    dragState.current.active = false;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const handleClickCapture = (event: MouseEvent<HTMLDivElement>) => {
+    if (!suppressClick.current) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    suppressClick.current = false;
+    dragState.current.moved = false;
   };
 
   const items: HomeCS[] = [
@@ -60,7 +116,7 @@ export function FeaturedCaseStudiesHome() {
             <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Featured Case Studies</h2>
             <p className="mt-3 text-lg text-gray-600 font-normal">Proof in one glance. Swipe to explore.</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a
               href="/case-studies"
               className="text-sm font-medium text-gray-800 hover:underline"
@@ -73,7 +129,7 @@ export function FeaturedCaseStudiesHome() {
               type="button"
               onClick={() => scrollByCard("prev")}
               aria-label="Previous case study"
-              className="md:hidden rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
+              className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
               data-testid="button-carousel-prev"
             >
               ←
@@ -82,7 +138,7 @@ export function FeaturedCaseStudiesHome() {
               type="button"
               onClick={() => scrollByCard("next")}
               aria-label="Next case study"
-              className="md:hidden rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
+              className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 z-10"
               data-testid="button-carousel-next"
             >
               →
@@ -93,8 +149,16 @@ export function FeaturedCaseStudiesHome() {
         <div className="relative">
           <div
             ref={scroller}
-            className="flex gap-6 overflow-x-hidden pb-2"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-4 cursor-grab select-none active:cursor-grabbing overscroll-x-contain touch-pan-y"
             aria-label="Featured case studies"
+            role="group"
+            aria-roledescription="Horizontal case study carousel"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+            onPointerLeave={endDrag}
+            onClickCapture={handleClickCapture}
           >
             {items.map((c, idx) => (
               <motion.article
@@ -104,36 +168,35 @@ export function FeaturedCaseStudiesHome() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : idx * 0.1 }}
-                whileHover={shouldReduceMotion ? {} : { y: -6, transition: { duration: 0.3 } }}
-                className="snap-start shrink-0 w-[92%] sm:w-[560px] rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition-shadow duration-300"
+                className="snap-start shrink-0 w-[88%] sm:w-[520px] lg:w-[620px] rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
               >
                 <a href={c.slug} aria-label={`Read case study: ${c.title}`}>
                   <img
                     src={c.image}
                     alt={c.imageAlt}
                     loading="lazy"
-                    className="h-72 sm:h-80 w-full rounded-t-2xl object-cover"
+                    className="h-64 sm:h-72 w-full rounded-t-lg object-cover"
                   />
                 </a>
-                <div className="p-6 sm:p-7 flex flex-col h-full">
-                  <h3 className="text-xl font-bold" data-testid={`case-study-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
-                  <p className="mt-2 text-base font-semibold text-emerald-700" data-testid={`case-study-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
+                <div className="p-4 sm:p-5">
+                  <h3 className="text-lg font-semibold" data-testid={`case-study-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
+                  <p className="mt-1 text-sm font-medium text-emerald-700" data-testid={`case-study-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
 
-                  <div className="mt-5 border-t border-gray-100 pt-5 space-y-2 text-sm min-h-[92px]">
-                    <p className="text-gray-800 leading-relaxed">
+                  <div className="mt-3 border-t border-gray-100 pt-3 space-y-2 text-sm">
+                    <p className="text-gray-800">
                       <span className="font-semibold text-pink-500">Problem:</span>{" "}
                       {c.problem}
                     </p>
-                    <p className="text-gray-800 leading-relaxed">
+                    <p className="text-gray-800">
                       <span className="font-semibold text-emerald-500">Solution:</span>{" "}
                       {c.solution}
                     </p>
                   </div>
 
-                  <div className="mt-6 mt-auto">
+                  <div className="mt-4">
                     <a
                       href={c.slug}
-                      className="inline-flex items-center rounded-xl border-2 border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:shadow-md hover:border-green-400 hover:bg-green-50 transition-all duration-300"
+                      className="inline-flex items-center rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-black/10 transition hover:bg-black/90 hover:shadow-lg"
                       aria-label={`Read case study: ${c.title}`}
                       data-testid={`button-read-case-study-${c.slug.split('/').pop()}`}
                     >
