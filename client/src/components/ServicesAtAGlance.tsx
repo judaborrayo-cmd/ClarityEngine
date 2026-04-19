@@ -198,12 +198,12 @@ export default function ServicesAtAGlance() {
     []
   );
 
-  const [activeId, setActiveId] = useState<string>(services[0].id);
+  const [activeId, setActiveId] = useState<string | null>(services[0].id);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   
   // Show hovered service if hovering, otherwise show the locked/active selection
   const displayedId = hoveredId || activeId;
-  const active = services.find((s) => s.id === displayedId)!;
+  const active = displayedId ? services.find((s) => s.id === displayedId) : null;
 
   const renderServicePanel = (service: Service, variant: "mobile" | "desktop") => (
     <div
@@ -258,7 +258,7 @@ export default function ServicesAtAGlance() {
   );
 
   return (
-    <section id="services" className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section id="services" className="relative mx-auto max-w-7xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
           Services at a glance
@@ -283,7 +283,7 @@ export default function ServicesAtAGlance() {
               <button
                 id={`service-button-${s.id}`}
                 aria-pressed={selected}
-                onClick={() => setActiveId(s.id)}
+                onClick={() => setActiveId((current) => current === s.id ? null : s.id)}
                 onMouseEnter={() => setHoveredId(s.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 data-testid={`tab-${s.id}`}
@@ -316,7 +316,7 @@ export default function ServicesAtAGlance() {
                   </span>
                 </span>
                 <span className="text-xl leading-none text-gray-400 lg:hidden" aria-hidden>
-                  {selected ? "↓" : "→"}
+                  {selected ? "×" : "→"}
                 </span>
               </button>
 
@@ -331,9 +331,9 @@ export default function ServicesAtAGlance() {
       </div>
 
       {/* BOTTOM: Detailed gradient panel */}
-      <div className="mt-8 hidden lg:block">
+      {active && <div className="mt-8 hidden lg:block">
         {renderServicePanel(active, "desktop")}
-      </div>
+      </div>}
 
       {/* Tooltip hover effects */}
       <style>{`

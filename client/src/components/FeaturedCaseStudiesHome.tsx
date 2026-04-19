@@ -103,7 +103,7 @@ export function FeaturedCaseStudiesHome() {
   ];
 
   return (
-    <section className="my-20 sm:my-24">
+    <section className="my-8 sm:my-14">
       <div className="mx-auto max-w-6xl px-4">
         <motion.div 
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

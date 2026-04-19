@@ -480,7 +480,7 @@ export default function Home() {
         <FeaturedCaseStudiesHome />
 
         {/* --- COMPACT FAQ --- */}
-        <Section id="faq" className="pt-24 pb-16 scroll-mt-20">
+        <Section id="faq" className="pt-8 pb-12 sm:pt-12 sm:pb-14 scroll-mt-20">
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
