@@ -67,7 +67,7 @@ export default function CheckoutAudit() {
                 <div className="mt-8 p-4 bg-green-50 rounded-lg">
                   <p className="text-sm font-semibold text-gray-900">💡 Bonus</p>
                   <p className="text-sm text-gray-600 mt-1">
-                    If we end up working together, the <strong>$1,250 is fully credited</strong> toward your first month of retainer.
+                    If we end up working together, <strong>$600 is fully credited</strong> toward your first month of retainer.
                   </p>
                 </div>
               </div>
