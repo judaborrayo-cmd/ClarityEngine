@@ -2,6 +2,8 @@ import { useRef, type MouseEvent, type PointerEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import mandaliImage from "@assets/Mandali 1600 by 1000_1761604910726.jpg";
 import lisaNicholsImage from "@assets/Lisa Nichols Resized_1761604917835.png";
+import lamarkImage from "@assets/Lamark Media 1600 by 1000_1761591605719.png";
+import powersGymnasticsImage from "@assets/Rowland-Ballard-Case-Study-Image_1763648189223.png";
 
 type HomeCS = {
   slug: string;
@@ -90,6 +92,24 @@ export function FeaturedCaseStudiesHome() {
       solution: "Geo-targeted campaigns, creative testing, CRM/booking handoff",
       image: mandaliImage,
       imageAlt: "Mandali lake and retreat setting",
+    },
+    {
+      slug: "/case-study/powers-gymnastics",
+      title: "Powers Gymnastics — Multi-location Growth",
+      impact: "2–3× more leads, 50% cheaper Google CPL, record trials & enrollments",
+      problem: "Fragmented accounts, seasonal focus, inconsistent CPL, lack of visibility from click → trial → enrollment",
+      solution: "Rebuilt Google Search & PMAX, Meta lead-gen campaigns, multi-format creative system, funnel reporting across locations",
+      image: powersGymnasticsImage,
+      imageAlt: "Powers Gymnastics multi-location growth",
+    },
+    {
+      slug: "/case-study/lamark-agency",
+      title: "Growth Across Industries",
+      impact: "Consistent CPL at scale across multi-account portfolios",
+      problem: "Portfolio complexity across industries and accounts reduced clarity",
+      solution: "Unified frameworks, reporting, and optimization protocols enabling scalable management",
+      image: lamarkImage,
+      imageAlt: "Lamark Media multi-industry portfolio showcase",
     },
     {
       slug: "/case-study/lisa-nichols",
