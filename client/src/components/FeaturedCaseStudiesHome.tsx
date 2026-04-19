@@ -35,6 +35,8 @@ export function FeaturedCaseStudiesHome() {
   };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") return;
+
     const el = scroller.current;
     if (!el) return;
 
@@ -48,6 +50,8 @@ export function FeaturedCaseStudiesHome() {
   };
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") return;
+
     const el = scroller.current;
     if (!el || !dragState.current.active) return;
 
@@ -59,6 +63,7 @@ export function FeaturedCaseStudiesHome() {
   };
 
   const endDrag = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") return;
     if (!dragState.current.active) return;
 
     if (dragState.current.moved) {
@@ -169,7 +174,8 @@ export function FeaturedCaseStudiesHome() {
         <div className="relative">
           <div
             ref={scroller}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-4 cursor-grab select-none active:cursor-grabbing overscroll-x-contain touch-pan-y"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden pb-4 cursor-grab select-none active:cursor-grabbing overscroll-x-contain"
+            style={{ touchAction: "pan-x pan-y" }}
             aria-label="Featured case studies"
             role="group"
             aria-roledescription="Horizontal case study carousel"

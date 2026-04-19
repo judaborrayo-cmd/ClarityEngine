@@ -19,6 +19,7 @@ export default function ProblemsTicker() {
   const dragRef = useRef({
     active: false,
     startX: 0,
+    startY: 0,
     startOffset: 0,
   });
 
@@ -122,37 +123,75 @@ export default function ProblemsTicker() {
     };
   }, []);
 
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+  const beginDrag = (clientX: number, clientY = 0) => {
     if (!loopWidthRef.current) return;
 
     dragRef.current = {
       active: true,
-      startX: event.clientX,
+      startX: clientX,
+      startY: clientY,
       startOffset: offsetRef.current,
     };
     lastFrameRef.current = null;
-    event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+  const moveDrag = (clientX: number) => {
     if (!dragRef.current.active || !loopWidthRef.current) return;
 
     const loopWidth = loopWidthRef.current;
-    const delta = dragRef.current.startX - event.clientX;
+    const delta = dragRef.current.startX - clientX;
     const nextOffset = ((dragRef.current.startOffset + delta) % loopWidth + loopWidth) % loopWidth;
     offsetRef.current = nextOffset;
     setTranslateX(-nextOffset);
   };
 
-  const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+  const finishDrag = () => {
     if (!dragRef.current.active) return;
 
     dragRef.current.active = false;
     lastFrameRef.current = null;
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+    beginDrag(event.clientX, event.clientY);
+    if (!dragRef.current.active) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+    moveDrag(event.clientX);
+  };
+
+  const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+    finishDrag();
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
   };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    beginDrag(touch.clientX, touch.clientY);
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    if (!touch || !dragRef.current.active) return;
+
+    const deltaX = touch.clientX - dragRef.current.startX;
+    const deltaY = touch.clientY - dragRef.current.startY;
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      event.preventDefault();
+    }
+
+    moveDrag(touch.clientX);
+  };
+
+  const handleTouchEnd = () => finishDrag();
 
   const renderItems = (hidden = false) => (
     <span
@@ -218,6 +257,10 @@ export default function ProblemsTicker() {
               onPointerUp={endDrag}
               onPointerCancel={endDrag}
               onPointerLeave={endDrag}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={handleTouchEnd}
             >
               <div
                 ref={trackRef}

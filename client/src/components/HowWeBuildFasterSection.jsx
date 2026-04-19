@@ -214,13 +214,30 @@ export default function HowWeBuildFasterSection() {
     activeRef.current = active;
   }, [active]);
 
+  const scrollToStep = (index, behavior = "smooth") => {
+    const viewport = viewportRef.current;
+    const item = itemRefs.current[index];
+    if (!viewport || !item) return;
+
+    const nextLeft =
+      item.offsetLeft - (viewport.clientWidth - item.clientWidth) / 2;
+
+    viewport.scrollTo({
+      left: Math.max(0, nextLeft),
+      behavior,
+    });
+  };
+
   useEffect(() => {
-    const el = itemRefs.current[active];
-    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    scrollToStep(active);
   }, [active]);
 
   const go = (dir) =>
-    setActive((i) => Math.min(Math.max(i + dir, 0), steps.length - 1));
+    setActive((i) => {
+      const next = Math.min(Math.max(i + dir, 0), steps.length - 1);
+      scrollToStep(next);
+      return next;
+    });
 
   const syncActiveFromScroll = () => {
     const viewport = viewportRef.current;
@@ -275,6 +292,7 @@ export default function HowWeBuildFasterSection() {
 
       <div className="mt-8 flex items-center justify-between gap-6">
         <button
+          type="button"
           aria-label="Previous"
           onClick={() => go(-1)}
           data-testid="button-timeline-prev"
@@ -293,6 +311,7 @@ export default function HowWeBuildFasterSection() {
         </div>
 
         <button
+          type="button"
           aria-label="Next"
           onClick={() => go(1)}
           data-testid="button-timeline-next"
@@ -309,6 +328,7 @@ export default function HowWeBuildFasterSection() {
         ref={viewportRef}
         onScroll={syncActiveFromScroll}
         className="mt-8 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory overscroll-y-contain"
+        style={{ touchAction: "pan-x pan-y" }}
       >
         <div className="flex items-stretch gap-6 pr-6">
           {steps.map((s, i) => (
