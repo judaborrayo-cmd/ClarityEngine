@@ -46,6 +46,83 @@ function Pill({ children }: { children: React.ReactNode }) {
   );
 }
 
+function ToolTooltipChip({ label, tooltip }: { label: string; tooltip: string }) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<number | null>(null);
+  const clickHoldActive = useRef(false);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) {
+        window.clearTimeout(closeTimer.current);
+      }
+    };
+  }, []);
+
+  const showForThreeSeconds = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+    }
+
+    clickHoldActive.current = true;
+    setOpen(true);
+    closeTimer.current = window.setTimeout(() => {
+      setOpen(false);
+      clickHoldActive.current = false;
+      closeTimer.current = null;
+    }, 3000);
+  };
+
+  const clearTimedHold = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    clickHoldActive.current = false;
+  };
+
+  return (
+    <Tooltip
+      open={open}
+      onOpenChange={(nextOpen) => {
+        if (clickHoldActive.current) {
+          return;
+        }
+
+        setOpen(nextOpen);
+      }}
+    >
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          className="ce-logo group cursor-pointer appearance-none border-0 bg-transparent p-0"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => {
+            if (!clickHoldActive.current) setOpen(false);
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => {
+            if (!clickHoldActive.current) setOpen(false);
+          }}
+          onClick={() => {
+            clearTimedHold();
+            showForThreeSeconds();
+          }}
+          aria-label={`Show note for ${label}`}
+        >
+          <Pill>{label}</Pill>
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        className="max-w-[200px] rounded-lg bg-gray-900 px-3 py-2 text-center text-xs text-white shadow-lg"
+      >
+        {tooltip}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
 interface ServiceLogo {
   type: 'image' | 'icon';
   src?: string;
@@ -325,19 +402,7 @@ export default function ServicesAtAGlance({
           <TooltipProvider delayDuration={200}>
             <div className="mt-5 flex flex-wrap gap-2 sm:gap-3">
               {service.tools.map((t, i) => (
-                <Tooltip key={i}>
-                  <TooltipTrigger asChild>
-                    <div className="ce-logo group cursor-pointer">
-                      <Pill>{t}</Pill>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent
-                    side="top"
-                    className="max-w-[200px] rounded-lg bg-gray-900 px-3 py-2 text-center text-xs text-white shadow-lg"
-                  >
-                    {toolTooltips[t] || t}
-                  </TooltipContent>
-                </Tooltip>
+                <ToolTooltipChip key={i} label={t} tooltip={toolTooltips[t] || t} />
               ))}
             </div>
           </TooltipProvider>
