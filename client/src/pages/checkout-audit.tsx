@@ -15,7 +15,7 @@ export default function CheckoutAudit() {
               Order Your Deep Dive Audit
             </h1>
             <p className="mt-4 text-xl text-gray-600">
-              A comprehensive audit that uncovers exactly where you're losing revenue—and how to fix it.
+              A comprehensive audit that uncovers exactly where you're losing revenue and how to fix it.
             </p>
 
             <div className="mt-12 grid md:grid-cols-2 gap-8">
@@ -67,7 +67,7 @@ export default function CheckoutAudit() {
                 <div className="mt-8 p-4 bg-green-50 rounded-lg">
                   <p className="text-sm font-semibold text-gray-900">💡 Bonus</p>
                   <p className="text-sm text-gray-600 mt-1">
-                    If we end up working together, the <strong>$495 is fully credited</strong> toward your first month of retainer.
+                    If we end up working together, the <strong>$1,250 is fully credited</strong> toward your first month of retainer.
                   </p>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function CheckoutAudit() {
               <div>
                 <div className="rounded-2xl border border-gray-200 p-6 shadow-sm bg-gray-50">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Deep Dive Audit</h2>
-                  <div className="text-4xl font-bold text-gray-900 mb-1">$495</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-1">$1,250</div>
                   <p className="text-sm text-gray-600 mb-6">One-time payment</p>
 
                   <div className="space-y-3 mb-6 text-sm text-gray-600">
