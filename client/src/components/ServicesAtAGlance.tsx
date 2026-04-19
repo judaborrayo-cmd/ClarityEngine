@@ -156,7 +156,7 @@ export default function ServicesAtAGlance() {
         topTitle: "Strategic Reporting & KPI Optimization",
         bottomTitle: "See What's Actually Driving Growth",
         logo: { type: 'icon' as const, icon: BarChart3 },
-        media: { src: "/media/attribution.gif", alt: "Attribution dashboard" },
+        media: { src: "/images/strategic-reporting-chart.png", alt: "Strategic reporting and KPI dashboard chart", fit: "contain" },
         gradient: { from: "from-emerald-50", to: "to-violet-50" },
         paragraph:
           "We build unified dashboards that connect the dots between ad spend, funnel performance, and revenue. You'll know exactly which campaigns move the needle, so your team can focus on what's profitable—and stop wasting time on what's not.",
