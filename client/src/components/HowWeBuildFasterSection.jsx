@@ -97,6 +97,9 @@ export default function HowWeBuildFasterSection() {
   const [startX, setStartX] = useState(0);
   const [scrollOffset, setScrollOffset] = useState(0);
   const tickerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const wasInViewRef = useRef(false);
+  const [pulseNextButton, setPulseNextButton] = useState(false);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -124,6 +127,31 @@ export default function HowWeBuildFasterSection() {
       };
     }
   }, [isDragging, startX]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !wasInViewRef.current && !reduceMotion.matches) {
+          wasInViewRef.current = true;
+          setPulseNextButton(true);
+          window.setTimeout(() => setPulseNextButton(false), 950);
+          return;
+        }
+
+        if (!entry.isIntersecting) {
+          wasInViewRef.current = false;
+        }
+      },
+      { threshold: 0.45 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const steps = useMemo(
     () => [
@@ -192,6 +220,7 @@ export default function HowWeBuildFasterSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="how-we-build-faster"
       data-testid="section-how-we-build-faster"
       className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16"
@@ -232,7 +261,9 @@ export default function HowWeBuildFasterSection() {
           aria-label="Next"
           onClick={() => go(1)}
           data-testid="button-timeline-next"
-          className="rounded-full bg-violet-600 text-white p-3 shadow hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-40"
+          className={`rounded-full bg-violet-600 text-white p-3 shadow hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-40 ${
+            pulseNextButton ? "animate-[timeline-next-flash_900ms_ease-in-out_1]" : ""
+          }`}
           disabled={active === steps.length - 1}
         >
           <Arrow direction="right" />
@@ -392,6 +423,10 @@ export default function HowWeBuildFasterSection() {
           @keyframes tools-ticker-scroll {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
+          }
+          @keyframes timeline-next-flash {
+            0%, 100% { background-color: rgb(124 58 237); }
+            45% { background-color: rgb(109 40 217); }
           }
           .tools-ticker-track {
             animation: tools-ticker-scroll 30s linear infinite;
