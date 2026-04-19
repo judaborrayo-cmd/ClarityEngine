@@ -71,7 +71,29 @@ type Service = {
   tools: string[];
 };
 
-export default function ServicesAtAGlance() {
+type ServicesAtAGlanceProps = {
+  sectionId?: string;
+  eyebrow?: React.ReactNode | null;
+  heading?: React.ReactNode;
+  subheading?: React.ReactNode;
+  note?: React.ReactNode | null;
+  headingTestId?: string;
+  subheadingTestId?: string;
+};
+
+export default function ServicesAtAGlance({
+  sectionId = "services",
+  eyebrow = "Services at a glance",
+  heading = (
+    <>
+      Services Designed to Drive<br />Measurable Growth
+    </>
+  ),
+  subheading = "Choose your entry point — from fast clarity audits to ongoing growth retainers. Each service is built to maximize ROI.",
+  note = "Strategies adjusted based on business needs & audit.",
+  headingTestId = "services-heading",
+  subheadingTestId = "services-subheading",
+}: ServicesAtAGlanceProps = {}) {
   // Tool tooltip mapping
   const toolTooltips: Record<string, string> = {
     "Figma": "Prototype, share, get approval.",
@@ -325,20 +347,24 @@ export default function ServicesAtAGlance() {
   );
 
   return (
-    <section ref={sectionRef} id="services" className="relative mx-auto max-w-7xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20">
+    <section ref={sectionRef} id={sectionId} className="relative mx-auto max-w-7xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20">
       <div className="mx-auto max-w-4xl text-center">
-        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
-          Services at a glance
-        </p>
-        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl" data-testid="services-heading">
-          Services Designed to Drive<br />Measurable Growth
+        {eyebrow && (
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
+            {eyebrow}
+          </p>
+        )}
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl" data-testid={headingTestId}>
+          {heading}
         </h2>
-        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto" data-testid="services-subheading">
-          Choose your entry point — from fast clarity audits to ongoing growth retainers. Each service is built to maximize ROI.
+        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto" data-testid={subheadingTestId}>
+          {subheading}
         </p>
-        <p className="mt-3 text-sm text-gray-500 italic" data-testid="services-note">
-          Strategies adjusted based on business needs & audit.
-        </p>
+        {note && (
+          <p className="mt-3 text-sm text-gray-500 italic" data-testid="services-note">
+            {note}
+          </p>
+        )}
       </div>
 
       {/* TOP: Pressable button cards (one big logo + title) */}
