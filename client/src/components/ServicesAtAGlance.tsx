@@ -139,7 +139,7 @@ export default function ServicesAtAGlance() {
         topTitle: "Conversion Rate Optimization",
         bottomTitle: "Make Every Click Count",
         logo: { type: 'icon' as const, icon: Target },
-        media: { src: "/media/cro-demo.mp4", alt: "CRO demo" },
+        media: { src: "/images/cro-optimization-doc.png", alt: "Conversion rate optimization planning document", fit: "contain" },
         gradient: { from: "from-indigo-50", to: "to-sky-50" },
         paragraph:
           "We turn data into design decisions. Our CRO process finds friction, fixes tracking, and tests solutions that lift performance across every funnel stage. You'll know exactly where growth is hiding—and how to unlock it—without wasting months guessing.",
