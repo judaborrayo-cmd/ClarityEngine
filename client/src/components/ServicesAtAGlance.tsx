@@ -13,7 +13,7 @@ import youtubeLogo from '@assets/YouTube-logo-video-platform-social-media-transp
  * Bottom panel = detailed gradient view that swaps per selection
  */
 
-function Media({ src, alt = "" }: { src: string; alt?: string }) {
+function Media({ src, alt = "", fit = "cover" }: { src: string; alt?: string; fit?: "cover" | "contain" }) {
   const isVideo = src?.endsWith(".mp4") || src?.endsWith(".webm");
   if (isVideo) {
     return (
@@ -28,7 +28,14 @@ function Media({ src, alt = "" }: { src: string; alt?: string }) {
       />
     );
   }
-  return <img className="h-full w-full rounded-xl object-cover" src={src} alt={alt} data-testid="media-image" />;
+  return (
+    <img
+      className={`h-full w-full rounded-xl ${fit === "contain" ? "object-contain" : "object-cover"}`}
+      src={src}
+      alt={alt}
+      data-testid="media-image"
+    />
+  );
 }
 
 function Pill({ children }: { children: React.ReactNode }) {
@@ -53,6 +60,7 @@ type Service = {
   media: {
     src: string;
     alt: string;
+    fit?: "cover" | "contain";
   };
   gradient: {
     from: string;
@@ -97,7 +105,7 @@ export default function ServicesAtAGlance() {
         topTitle: "Google Ads Advertising",
         bottomTitle: "Capture Demand. Convert Faster.",
         logo: { type: 'image' as const, src: googleAdsLogo },
-        media: { src: "/media/google-ads-demo.mp4", alt: "Google Ads demo" },
+        media: { src: "/images/google-ads-chart.png", alt: "Google Ads performance chart", fit: "contain" },
         gradient: { from: "from-violet-50", to: "to-emerald-50" },
         paragraph:
           "We turn Google into your most reliable sales channel. From search to Performance Max, we refine structure, tracking, and creative so you capture the right traffic—not just clicks. You get a system that scales intelligently, cuts wasted spend, and surfaces the insights you need to make confident decisions faster.",
@@ -274,7 +282,7 @@ export default function ServicesAtAGlance() {
     >
       <div className="grid items-center gap-6 lg:grid-cols-2">
         <div className="order-2 hidden aspect-video w-full overflow-hidden rounded-lg bg-white/40 ring-1 ring-black/5 md:block lg:order-1">
-          <Media src={service.media.src} alt={service.media.alt} />
+          <Media src={service.media.src} alt={service.media.alt} fit={service.media.fit} />
         </div>
 
         <div className="order-1 lg:order-2">
