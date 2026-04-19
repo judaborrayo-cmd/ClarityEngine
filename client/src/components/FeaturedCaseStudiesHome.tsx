@@ -110,13 +110,13 @@ export function FeaturedCaseStudiesHome() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-          className="mb-10 flex items-end justify-between gap-3"
+          className="mb-8 flex flex-col items-center gap-4 text-center sm:mb-10"
         >
-          <div>
-            <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Featured Case Studies</h2>
-            <p className="mt-3 text-lg text-gray-600 font-normal">Proof in one glance. Swipe to explore.</p>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Featured Case Studies</h2>
+            <p className="mt-4 text-lg text-gray-600">Proof in one glance. Swipe to explore.</p>
           </div>
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center justify-center gap-2">
             <a
               href="/case-studies"
               className="text-sm font-medium text-gray-800 hover:underline"

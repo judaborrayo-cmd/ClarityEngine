@@ -461,12 +461,12 @@ export default function Home() {
         </div>
 
         {/* --- START CARDS (CRO) --- */}
-        <Section id="value-ladder" className="py-20 lg:py-24">
+        <Section id="value-ladder" className="py-8 lg:py-12">
           <StartCards onOpenWaitlist={openWaitlist} />
         </Section>
 
         {/* --- SCALE AND AUDIT SECTION --- */}
-        <Section id="how-we-scale" className="py-20 lg:py-24">
+        <Section id="how-we-scale" className="py-8 lg:py-12">
           <ScaleAndAudit videoUrl={CONFIG.featuredVideo.url()} />
         </Section>
 

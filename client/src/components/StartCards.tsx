@@ -6,11 +6,11 @@ interface StartCardsProps {
 
 export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
   return (
-    <section className="py-16 text-center" aria-label="Ways to Work Together">
+    <section className="py-8 text-center" aria-label="Ways to Work Together">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2" data-testid="start-cards-title">
         3 Paths to More Profitable Funnels & Ads
       </h2>
-      <p className="text-gray-600 text-sm max-w-xl mx-auto mb-10">
+      <p className="text-gray-600 text-sm max-w-xl mx-auto mb-8">
         All Intro Calls and Audits credit into monthly retainers — when there's a
         long-term fit. <span className="text-gray-900 font-medium">Different brands need different levels of support — start where you'll see ROI fastest.</span>
       </p>

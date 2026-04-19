@@ -194,7 +194,7 @@ export default function HowWeBuildFasterSection() {
     <section
       id="how-we-build-faster"
       data-testid="section-how-we-build-faster"
-      className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24"
+      className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16"
     >
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900">
@@ -209,7 +209,7 @@ export default function HowWeBuildFasterSection() {
         </p>
       </div>
 
-      <div className="mt-12 flex items-center justify-between gap-6">
+      <div className="mt-8 flex items-center justify-between gap-6">
         <button
           aria-label="Previous"
           onClick={() => go(-1)}
@@ -241,7 +241,7 @@ export default function HowWeBuildFasterSection() {
 
       <div
         ref={viewportRef}
-        className="mt-10 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+        className="mt-8 overflow-x-auto scroll-smooth snap-x snap-mandatory"
       >
         <div className="flex items-stretch gap-6 pr-6">
           {steps.map((s, i) => (

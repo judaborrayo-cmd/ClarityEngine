@@ -142,7 +142,7 @@ export default function ScaleAndAudit({
   videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ",
 }: ScaleAndAuditProps) {
   return (
-    <section className="container mx-auto px-4 py-12" aria-label="Scale in 90 Days">
+    <section className="container mx-auto px-4 py-6" aria-label="Scale in 90 Days">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Scale Paid Media in 90 Days</h2>
       <p className="text-gray-600 mb-6">
         Discovery → Diagnose → Design → Drive — applied through a month-by-month plan.
