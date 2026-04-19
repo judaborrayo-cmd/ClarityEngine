@@ -173,7 +173,7 @@ export default function ServicesAtAGlance() {
         topTitle: "YouTube Advertising",
         bottomTitle: "Turn Attention Into Demand",
         logo: { type: 'image' as const, src: youtubeLogo },
-        media: { src: "/media/youtube-demo.mp4", alt: "YouTube ads examples" },
+        media: { src: "/images/youtube-ad-placements.png", alt: "YouTube advertising placement previews", fit: "contain" },
         gradient: { from: "from-rose-50", to: "to-amber-50" },
         paragraph:
           "We design high-intent video campaigns that educate, engage, and convert. Using proven targeting and messaging frameworks, we help you build authority and capture attention at scale—so every view moves your audience closer to action.",
