@@ -190,7 +190,7 @@ export default function ServicesAtAGlance() {
         topTitle: "A/B Testing",
         bottomTitle: "Test Smarter. Scale Faster.",
         logo: { type: 'icon' as const, icon: FlaskConical },
-        media: { src: "/media/landing-pages.gif", alt: "Landing page flows" },
+        media: { src: "/images/ab-testing-placements.png", alt: "A/B testing ad placement previews", fit: "contain" },
         gradient: { from: "from-slate-50", to: "to-violet-50" },
         paragraph:
           "We use rapid, low-friction testing inside Replit to prototype messaging, UX, and funnel flow—then hand off to your team for implementation. This makes experimentation faster, cheaper, and easier to sustain, so you find winning ideas before competitors do.",
