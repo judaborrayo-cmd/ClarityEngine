@@ -122,7 +122,7 @@ export default function GrowthClarityAuditPage() {
   const faqs = [
     {
       question: "How long does the audit take?",
-      answer: "The complete audit process takes 5-7 business days from submission to delivery of your detailed report and video walkthrough."
+      answer: "The complete audit process takes up to 14 business days after proper read access to key platforms, from submission to delivery of your detailed report and video walkthrough."
     },
     {
       question: "What if I don't have tracking set up?",
@@ -371,7 +371,7 @@ export default function GrowthClarityAuditPage() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <p className="text-sm text-muted-foreground mt-4">
-                30-day money-back guarantee • Delivered within 7 business days
+                30-day money-back guarantee • Delivered within 14 business days after proper read access to key platforms
               </p>
             </div>
           </div>

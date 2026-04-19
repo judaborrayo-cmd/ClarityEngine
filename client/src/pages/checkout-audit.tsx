@@ -81,7 +81,7 @@ export default function CheckoutAudit() {
                   <div className="space-y-3 mb-6 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-green-600" />
-                      <span>Delivered within 7 business days</span>
+                      <span>Delivered within 14 business days after proper read access to key platforms.</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-green-600" />
@@ -95,7 +95,7 @@ export default function CheckoutAudit() {
 
                   <div className="bg-white rounded-xl p-4 mb-4">
                     <p className="text-xs text-gray-600 mb-3">
-                      <strong>Next Steps:</strong> After purchase, you'll receive an onboarding form to share access and context. We'll schedule your walkthrough within 7 business days.
+                      <strong>Next Steps:</strong> After purchase, you'll receive an onboarding form to share access and context. We'll schedule your walkthrough within 14 business days after proper read access to key platforms.
                     </p>
                   </div>
 
