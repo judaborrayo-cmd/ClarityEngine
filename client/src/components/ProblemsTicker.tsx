@@ -208,7 +208,7 @@ export default function ProblemsTicker() {
           </div>
 
           {/* Ticker row */}
-          <div className={`flex items-center justify-between gap-3 rounded-lg p-3 transition-colors duration-300 ${colors[cat].bg}`}>
+          <div className={`flex flex-col items-stretch justify-between gap-2 rounded-lg p-3 transition-colors duration-300 sm:flex-row sm:items-center sm:gap-3 ${colors[cat].bg}`}>
             {/* Marquee container */}
             <div
               className="relative w-full cursor-grab touch-pan-y overflow-hidden active:cursor-grabbing"
@@ -232,7 +232,7 @@ export default function ProblemsTicker() {
             {/* Quiet CTA (sticks on the right) */}
             <a
               href="#book-intro"
-              className={`shrink-0 pl-3 text-sm font-medium ${colors[cat].textLight} hover:${colors[cat].text} transition-colors duration-300`}
+              className={`shrink-0 self-end text-sm font-medium ${colors[cat].textLight} hover:${colors[cat].text} transition-colors duration-300 sm:self-auto sm:pl-3`}
             >
               Book a clarity call →
             </a>
