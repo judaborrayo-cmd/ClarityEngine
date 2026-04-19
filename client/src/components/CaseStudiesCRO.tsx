@@ -116,7 +116,7 @@ export function CaseStudyCarousel({
         {items.map((c) => (
           <article
             key={c.slug}
-            className="snap-start shrink-0 w-[88%] sm:w-[520px] rounded-2xl border border-gray-200 bg-white shadow-sm"
+            className="flex snap-start shrink-0 w-[88%] sm:w-[520px] flex-col self-stretch rounded-2xl border border-gray-200 bg-white shadow-sm"
             data-testid={`card-case-study-${c.slug.split('/').pop()}`}
           >
             <a 
@@ -132,12 +132,12 @@ export function CaseStudyCarousel({
                 className="h-72 sm:h-80 object-cover rounded-t-2xl w-full"
               />
             </a>
-            <div className="p-4 sm:p-5">
-              <h3 className="text-lg font-semibold" data-testid={`text-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
-              <p className="mt-1 text-sm text-emerald-700 font-medium" data-testid={`text-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
+            <div className="flex flex-1 flex-col p-4 sm:p-5">
+              <h3 className="min-h-[1.75rem] text-lg font-semibold leading-snug sm:min-h-[3.25rem]" data-testid={`text-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
+              <p className="mt-1 min-h-[2.5rem] text-sm font-medium leading-snug text-emerald-700 sm:min-h-[2.75rem]" data-testid={`text-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
 
               {(c.problem || c.solution) && (
-                <div className="mt-3 border-t border-gray-100 pt-3 space-y-2 text-sm">
+                <div className="mt-3 space-y-2 border-t border-gray-100 pt-3 text-sm leading-relaxed">
                   {c.problem && (
                     <p className="text-gray-800">
                       <span className="font-semibold text-pink-600">Problem:</span>{" "}
@@ -153,7 +153,7 @@ export function CaseStudyCarousel({
                 </div>
               )}
 
-              <div className="mt-4">
+              <div className="mt-auto pt-5">
                 <a
                   href={c.slug}
                   className="inline-flex items-center rounded-2xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-black/10 transition hover:-translate-y-[1px] hover:bg-black/90 hover:shadow-lg"

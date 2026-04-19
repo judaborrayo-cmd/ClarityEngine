@@ -188,7 +188,7 @@ export function FeaturedCaseStudiesHome() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : idx * 0.1 }}
-                className="snap-start shrink-0 w-[88%] sm:w-[520px] lg:w-[620px] rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
+                className="flex snap-start shrink-0 w-[88%] sm:w-[520px] lg:w-[620px] flex-col self-stretch rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md"
               >
                 <a href={c.slug} aria-label={`Read case study: ${c.title}`}>
                   <img
@@ -198,11 +198,11 @@ export function FeaturedCaseStudiesHome() {
                     className="h-64 sm:h-72 w-full rounded-t-lg object-cover"
                   />
                 </a>
-                <div className="p-4 sm:p-5">
-                  <h3 className="text-lg font-semibold" data-testid={`case-study-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
-                  <p className="mt-1 text-sm font-medium text-emerald-700" data-testid={`case-study-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
+                <div className="flex flex-1 flex-col p-4 sm:p-5">
+                  <h3 className="min-h-[1.75rem] text-lg font-semibold leading-snug sm:min-h-[3.25rem]" data-testid={`case-study-title-${c.slug.split('/').pop()}`}>{c.title}</h3>
+                  <p className="mt-1 min-h-[2.5rem] text-sm font-medium leading-snug text-emerald-700 sm:min-h-[2.75rem]" data-testid={`case-study-impact-${c.slug.split('/').pop()}`}>{c.impact}</p>
 
-                  <div className="mt-3 border-t border-gray-100 pt-3 space-y-2 text-sm">
+                  <div className="mt-3 space-y-2 border-t border-gray-100 pt-3 text-sm leading-relaxed">
                     <p className="text-gray-800">
                       <span className="font-semibold text-pink-500">Problem:</span>{" "}
                       {c.problem}
@@ -213,7 +213,7 @@ export function FeaturedCaseStudiesHome() {
                     </p>
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-auto pt-5">
                     <a
                       href={c.slug}
                       className="inline-flex items-center rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-black/10 transition hover:bg-black/90 hover:shadow-lg"
