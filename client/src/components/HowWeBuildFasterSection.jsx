@@ -62,7 +62,7 @@ const StepCard = forwardRef(({
       ref={ref}
       onClick={onSelect}
       data-testid={`step-card-${index + 1}`}
-      className={`group snap-center w-[82vw] sm:w-[420px] lg:w-[520px] shrink-0 rounded-2xl border border-black/5 bg-gradient-to-b ${gradientFrom} ${gradientTo} p-6 text-left shadow-[0_6px_24px_-8px_rgba(0,0,0,0.15)] transition transform duration-300 ease-out hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.25)] ${
+      className={`group snap-center w-[82vw] sm:w-[420px] lg:w-[520px] shrink-0 overflow-hidden rounded-2xl border border-black/5 bg-gradient-to-b ${gradientFrom} ${gradientTo} p-6 text-left shadow-[0_6px_24px_-8px_rgba(0,0,0,0.15)] transition transform duration-300 ease-out hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.25)] ${
         active ? "ring-2 ring-violet-500 scale-[1.02]" : ""
       }`}
     >
@@ -99,6 +99,8 @@ export default function HowWeBuildFasterSection() {
   const tickerRef = useRef(null);
   const sectionRef = useRef(null);
   const wasInViewRef = useRef(false);
+  const activeRef = useRef(0);
+  const scrollSyncFrameRef = useRef(null);
   const [pulseNextButton, setPulseNextButton] = useState(false);
 
   const handleMouseDown = (e) => {
@@ -138,7 +140,7 @@ export default function HowWeBuildFasterSection() {
         if (entry.isIntersecting && !wasInViewRef.current && !reduceMotion.matches) {
           wasInViewRef.current = true;
           setPulseNextButton(true);
-          window.setTimeout(() => setPulseNextButton(false), 950);
+          window.setTimeout(() => setPulseNextButton(false), 1000);
           return;
         }
 
@@ -146,7 +148,7 @@ export default function HowWeBuildFasterSection() {
           wasInViewRef.current = false;
         }
       },
-      { threshold: 0.45 }
+      { threshold: 0.25 }
     );
 
     observer.observe(section);
@@ -209,12 +211,45 @@ export default function HowWeBuildFasterSection() {
   const itemRefs = useRef([]);
 
   useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+
+  useEffect(() => {
     const el = itemRefs.current[active];
     el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, [active]);
 
   const go = (dir) =>
     setActive((i) => Math.min(Math.max(i + dir, 0), steps.length - 1));
+
+  const syncActiveFromScroll = () => {
+    const viewport = viewportRef.current;
+    if (!viewport || scrollSyncFrameRef.current !== null) return;
+
+    scrollSyncFrameRef.current = window.requestAnimationFrame(() => {
+      scrollSyncFrameRef.current = null;
+      const viewportRect = viewport.getBoundingClientRect();
+      const viewportCenter = viewportRect.left + viewportRect.width / 2;
+
+      let closestIndex = activeRef.current;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      itemRefs.current.forEach((item, index) => {
+        if (!item) return;
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter = itemRect.left + itemRect.width / 2;
+        const distance = Math.abs(itemCenter - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      if (closestIndex !== activeRef.current) {
+        setActive(closestIndex);
+      }
+    });
+  };
 
   const progress = (active / (steps.length - 1)) * 100;
 
@@ -262,7 +297,7 @@ export default function HowWeBuildFasterSection() {
           onClick={() => go(1)}
           data-testid="button-timeline-next"
           className={`rounded-full bg-violet-600 text-white p-3 shadow hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-40 ${
-            pulseNextButton ? "animate-[timeline-next-flash_900ms_ease-in-out_1]" : ""
+            pulseNextButton ? "timeline-next-flash" : ""
           }`}
           disabled={active === steps.length - 1}
         >
@@ -272,7 +307,8 @@ export default function HowWeBuildFasterSection() {
 
       <div
         ref={viewportRef}
-        className="mt-8 overflow-x-auto scroll-smooth snap-x snap-mandatory"
+        onScroll={syncActiveFromScroll}
+        className="mt-8 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory overscroll-y-contain"
       >
         <div className="flex items-stretch gap-6 pr-6">
           {steps.map((s, i) => (
@@ -426,7 +462,10 @@ export default function HowWeBuildFasterSection() {
           }
           @keyframes timeline-next-flash {
             0%, 100% { background-color: rgb(124 58 237); }
-            45% { background-color: rgb(109 40 217); }
+            50% { background-color: rgb(34 197 94); }
+          }
+          .timeline-next-flash {
+            animation: timeline-next-flash 1000ms ease-in-out 1;
           }
           .tools-ticker-track {
             animation: tools-ticker-scroll 30s linear infinite;
