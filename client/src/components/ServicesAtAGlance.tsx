@@ -122,7 +122,7 @@ export default function ServicesAtAGlance() {
         topTitle: "Meta Advertising",
         bottomTitle: "Scale What Works Across Meta's Ecosystem",
         logo: { type: 'image' as const, src: metaLogo },
-        media: { src: "/media/meta-campaigns.gif", alt: "Meta ads examples" },
+        media: { src: "/images/meta-ads-chart.png", alt: "Meta advertising campaign performance chart", fit: "contain" },
         gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
         paragraph:
           "We build creative systems and remarketing funnels that compound results. From prospecting to retargeting, every layer is designed to increase relevance, test faster, and drive profitable customer acquisition—without the chaos of constant guesswork.",
