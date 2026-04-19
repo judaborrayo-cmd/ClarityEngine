@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { Target, BarChart3, FlaskConical } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -198,12 +198,71 @@ export default function ServicesAtAGlance() {
     []
   );
 
-  const [activeId, setActiveId] = useState<string | null>(services[0].id);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const hasPlayedMobileCue = useRef(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [flashServiceArrows, setFlashServiceArrows] = useState(false);
   
   // Show hovered service if hovering, otherwise show the locked/active selection
   const displayedId = hoveredId || activeId;
   const active = displayedId ? services.find((s) => s.id === displayedId) : null;
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1023px)");
+
+    const syncDefaultPanel = () => {
+      setActiveId((current) => {
+        if (media.matches) return null;
+        return current ?? services[0].id;
+      });
+    };
+
+    syncDefaultPanel();
+    media.addEventListener("change", syncDefaultPanel);
+    return () => media.removeEventListener("change", syncDefaultPanel);
+  }, [services]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const media = window.matchMedia("(max-width: 1023px)");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const timers: number[] = [];
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (
+          !entry.isIntersecting ||
+          hasPlayedMobileCue.current ||
+          !media.matches ||
+          reduceMotion.matches
+        ) {
+          return;
+        }
+
+        hasPlayedMobileCue.current = true;
+        setActiveId(services[0].id);
+
+        timers.push(
+          window.setTimeout(() => {
+            setActiveId(null);
+            setFlashServiceArrows(true);
+            timers.push(window.setTimeout(() => setFlashServiceArrows(false), 900));
+          }, 1000)
+        );
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [services]);
 
   const renderServicePanel = (service: Service, variant: "mobile" | "desktop") => (
     <div
@@ -258,7 +317,7 @@ export default function ServicesAtAGlance() {
   );
 
   return (
-    <section id="services" className="relative mx-auto max-w-7xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20">
+    <section ref={sectionRef} id="services" className="relative mx-auto max-w-7xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
           Services at a glance
@@ -276,7 +335,7 @@ export default function ServicesAtAGlance() {
 
       {/* TOP: Pressable button cards (one big logo + title) */}
       <div aria-label="Services" className="mt-8 grid gap-3 md:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-4">
-        {services.map((s) => {
+        {services.map((s, index) => {
           const selected = s.id === activeId;
           return (
             <Fragment key={s.id}>
@@ -315,7 +374,13 @@ export default function ServicesAtAGlance() {
                     {s.topTitle}
                   </span>
                 </span>
-                <span className="text-xl leading-none text-gray-400 lg:hidden" aria-hidden>
+                <span
+                  className={`text-xl leading-none text-gray-400 lg:hidden ${
+                    flashServiceArrows ? "service-arrow-flash" : ""
+                  }`}
+                  style={flashServiceArrows ? { animationDelay: `${index * 80}ms` } : undefined}
+                  aria-hidden
+                >
                   {selected ? "×" : "→"}
                 </span>
               </button>
@@ -340,6 +405,14 @@ export default function ServicesAtAGlance() {
         .ce-logo { position: relative; display: inline-flex; align-items: center; justify-content: center; }
         .ce-logo > * { transition: transform 0.18s ease, filter 0.18s ease; }
         .ce-logo:hover > * { transform: scale(1.06); filter: saturate(1.15); }
+        @keyframes service-arrow-brand-flash {
+          0%, 100% { color: rgb(156 163 175); }
+          38% { color: rgb(124 58 237); }
+          68% { color: rgb(34 197 94); }
+        }
+        .service-arrow-flash {
+          animation: service-arrow-brand-flash 760ms ease-in-out 1;
+        }
       `}</style>
     </section>
   );
