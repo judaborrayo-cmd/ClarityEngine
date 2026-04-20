@@ -82,7 +82,7 @@ export default function About() {
                   Likelihood of Success
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Proven strategies & $3M+ campaigns managed successfully.
+                  Proven strategies & $5M+ campaigns managed successfully.
                 </p>
               </div>
 
@@ -172,7 +172,7 @@ export default function About() {
             <div className="text-center">
               <div className="flex flex-wrap items-center justify-center gap-8 text-2xl font-bold text-gray-900">
                 <div className="text-center">
-                  <div className="text-4xl font-extrabold text-blue-600 mb-2" data-testid="stat-spend">$3M+</div>
+                  <div className="text-4xl font-extrabold text-blue-600 mb-2" data-testid="stat-spend">$5M+</div>
                   <div className="text-sm text-gray-600">in ad spend managed across growth brands</div>
                 </div>
                 

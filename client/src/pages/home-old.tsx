@@ -101,8 +101,8 @@ export default function HomePage() {
   ];
 
   const achievements = [
-    "$3M+ in ad spend managed across growth brands",
-    "Multi-million in revenue driven through paid media",
+    "$5M+ in ad spend managed across growth brands",
+    "Multi-millions in revenue driven through paid media",
     "Proven results across Retreats, E-commerce, Luxury, and Education",
     "10+ years in paid media & growth strategy",
     "Recognized by Contra as a Top Specialist in 2025",

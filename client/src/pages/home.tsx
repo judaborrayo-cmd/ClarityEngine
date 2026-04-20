@@ -334,8 +334,8 @@ export default function Home() {
                   className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2" 
                   data-testid="hero-badges"
                 >
-                  <Badge>$3M+ in ad spend managed across growth brands</Badge>
-                  <Badge>Multi-million in revenue driven through paid media</Badge>
+                  <Badge>$5M+ in ad spend managed across growth brands</Badge>
+                  <Badge>Multi-millions in revenue driven through paid media</Badge>
                   <Badge>Proven results across Travel, Fitness, Luxury, and Education</Badge>
                   <Badge>12+ years in paid media & growth strategy</Badge>
                   <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>

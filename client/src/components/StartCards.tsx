@@ -109,7 +109,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
       {/* Metrics / Proof Row (unchanged) */}
       <div className="mt-10 text-sm text-gray-600 flex flex-col sm:flex-row gap-4 sm:gap-10 justify-center items-center">
         <div>
-          <span className="text-purple-700 font-bold text-base">$3M+</span>
+          <span className="text-purple-700 font-bold text-base">$5M+</span>
           <span className="block text-gray-600 text-xs">
             in ad spend managed across growth brands
           </span>
