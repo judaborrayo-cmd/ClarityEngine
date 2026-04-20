@@ -454,7 +454,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center justify-center gap-8 pt-8 mt-4 border-t border-gray-200">
                 <div className="text-base font-semibold text-green-600" data-testid="metric-cpl">Serving B2B & B2C Clients</div>
                 <div className="text-base font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
-                <div className="text-base font-semibold text-green-600" data-testid="metric-revenue">$12M+ in Revenue Generated Across Verticals</div>
+                <div className="text-base font-semibold text-green-600" data-testid="metric-revenue">$12M+ in Direct Revenue Generated Across Verticals</div>
               </div>
             </motion.div>
           </Section>
