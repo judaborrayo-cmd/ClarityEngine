@@ -130,9 +130,9 @@ export default function CheckoutAuditThankYou() {
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                     <a
                       href="/#book-intro"
-                      className="inline-flex items-center justify-center rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                      className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700"
                     >
-                      Book a Strategic Intro Call
+                      Book a Deep Dive Audit Onboarding Call
                     </a>
                     <Link
                       to="/"

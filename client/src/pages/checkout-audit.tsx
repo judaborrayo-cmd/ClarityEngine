@@ -99,14 +99,15 @@ export default function CheckoutAudit() {
                     </p>
                   </div>
 
-                  <button
-                    type="button"
-                    className="w-full inline-flex items-center justify-center rounded-xl bg-black text-white text-base font-semibold py-3 hover:opacity-90 transition"
+                  <a
+                    href="https://buy.stripe.com/fZuaEXgmG0cH8VT6Kb8IU00"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full inline-flex items-center justify-center rounded-xl bg-green-600 py-3 text-base font-semibold text-white transition hover:bg-green-700"
                     data-testid="button-proceed-checkout"
-                    onClick={() => alert('Payment integration coming soon. For now, please book a Strategic Intro Call to discuss the audit.')}
                   >
                     Proceed to Checkout
-                  </button>
+                  </a>
 
                   <p className="text-xs text-gray-500 mt-3 text-center">
                     Secure payment processing via Stripe
