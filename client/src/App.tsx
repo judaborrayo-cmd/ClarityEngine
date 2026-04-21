@@ -12,6 +12,7 @@ import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import About from "@/pages/about";
 import Testimonials from "@/pages/testimonials";
 import CheckoutAudit from "@/pages/checkout-audit";
+import CheckoutAuditThankYou from "@/pages/checkout-audit-thank-you";
 import Steven from "@/pages/steven";
 import NotFound from "@/pages/not-found";
 
@@ -178,6 +179,7 @@ function Router() {
           <Route path="/services" element={<Services />} />
           <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />
           <Route path="/checkout/audit" element={<CheckoutAudit />} />
+          <Route path="/checkout/audit/thank-you" element={<CheckoutAuditThankYou />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="/about" element={<About />} />
