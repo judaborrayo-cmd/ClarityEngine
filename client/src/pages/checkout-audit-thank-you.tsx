@@ -32,9 +32,11 @@ export default function CheckoutAuditThankYou() {
                     Thank you. Your audit order is in.
                   </h1>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                    We’ve got your request and the next step is simple: once proper read access
-                    to key platforms is in place, we’ll begin your Deep Dive Audit and move
-                    toward your walkthrough delivery window.
+                    We’ve got your request, and the best next step is to book your onboarding
+                    call and open the prep document below. If you review the requested items or
+                    share platform access ahead of time, we can spend more of the call on
+                    strategy, goals, and challenges instead of using the full session just to
+                    collect access.
                   </p>
                 </div>
 
@@ -72,7 +74,8 @@ export default function CheckoutAuditThankYou() {
                       <h3 className="font-semibold text-gray-900">1. Onboarding + access review</h3>
                       <p className="mt-1 text-sm leading-relaxed text-gray-600">
                         You’ll share the core context, goals, and proper read access to the ad,
-                        analytics, and tracking platforms we need to review.
+                        analytics, and tracking platforms we need to review. The prep document
+                        below shows exactly what to gather in advance.
                       </p>
                     </div>
                   </div>
@@ -110,9 +113,9 @@ export default function CheckoutAuditThankYou() {
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
                   <h2 className="text-xl font-bold text-gray-900">Helpful while you wait</h2>
                   <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                    If you want to speed things up, have these ready: platform access, your main
-                    revenue goal, recent performance notes, and any questions you definitely want
-                    covered in the walkthrough.
+                    If you want to make the onboarding call as productive as possible, use the
+                    prep document to see exactly what access and context will be requested. That
+                    way, we can move faster into strategy, goals, bottlenecks, and opportunities.
                   </p>
 
                   <div className="mt-6 space-y-3 text-sm text-gray-700">
@@ -134,12 +137,14 @@ export default function CheckoutAuditThankYou() {
                     >
                       Book a Deep Dive Audit Onboarding Call
                     </a>
-                    <Link
-                      to="/"
+                    <a
+                      href="https://docs.google.com/document/d/1CTqY208yMGIIgDKz3fmxDtIVZeCZT_Lh/edit?usp=sharing&ouid=107174069229096384110&rtpof=true&sd=true"
+                      target="_blank"
+                      rel="noreferrer"
                       className="inline-flex items-center justify-center rounded-xl border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-900 transition hover:bg-gray-50"
                     >
-                      Return to Homepage
-                    </Link>
+                      Review the Audit Prep Document
+                    </a>
                   </div>
                 </div>
               </div>
