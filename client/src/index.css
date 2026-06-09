@@ -208,6 +208,72 @@ html {
   transform: scale(1.02);
 }
 
+/* Hero proof-point pill enhancement */
+.hero-proof-pill {
+  position: relative;
+  overflow: hidden;
+  transform: translateX(0) scale(1);
+  transform-origin: left center;
+  box-shadow: 0 0 0 rgb(34 197 94 / 0);
+  transition:
+    transform 360ms ease,
+    background-color 360ms ease,
+    border-color 360ms ease,
+    box-shadow 360ms ease,
+    color 360ms ease,
+    opacity 360ms ease;
+}
+
+.hero-proof-pill::after {
+  content: "";
+  position: absolute;
+  inset: -60% auto -60% -35%;
+  width: 42%;
+  transform: translateX(-120%) rotate(18deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.65),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-proof-pill-active {
+  transform: translateX(5px) scale(1.035);
+  border-color: rgb(134 239 172);
+  background-color: rgb(240 253 244);
+  box-shadow:
+    0 0 0 1px rgb(34 197 94 / 0.16),
+    0 10px 26px rgb(34 197 94 / 0.16);
+}
+
+.hero-proof-pill-active::after {
+  animation: hero-proof-shine 1200ms ease-out;
+  opacity: 1;
+}
+
+@keyframes hero-proof-shine {
+  0% {
+    transform: translateX(-120%) rotate(18deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(360%) rotate(18deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-proof-pill-active {
+    transform: translateX(3px) scale(1.025);
+  }
+}
+
 /* Universal readable logo hover */
 :root {
   --ce-logo-hover-scale: 1.65;
@@ -231,6 +297,20 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-proof-pill,
+  .hero-proof-pill::after {
+    animation: none !important;
+    transition:
+      background-color 120ms ease,
+      border-color 120ms ease,
+      box-shadow 120ms ease,
+      color 120ms ease;
+  }
+
+  .hero-proof-pill-active {
+    transform: none;
+  }
+
   .ce-readable-logo {
     transition:
       filter 120ms ease,

@@ -130,8 +130,14 @@ const SecondaryButton = ({ href = "#", children, testId }: { href?: string; chil
   </a>
 );
 
-const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50/60 px-3 py-1 text-xs font-medium text-green-700 backdrop-blur">
+const Badge = ({ children, isActive = false }: { children: React.ReactNode; isActive?: boolean }) => (
+  <span
+    className={`hero-proof-pill inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium backdrop-blur ${
+      isActive
+        ? "hero-proof-pill-active border-green-300 bg-green-50 text-green-800"
+        : "border-green-200 bg-green-50/60 text-green-700"
+    }`}
+  >
     {children}
   </span>
 );
@@ -241,6 +247,14 @@ const testimonials = [
   }
 ];
 
+const heroProofPoints = [
+  "$5M+ in ad spend managed across growth brands",
+  "Multi-millions in revenue driven through paid media",
+  "Proven results across Travel, Fitness, Luxury, and Education",
+  "12+ years in paid media & growth strategy",
+  "Recognized by Contra as a Top Specialist in 2025",
+];
+
 // --- TESTIMONIAL COMPONENT ---
 const TestimonialCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
   <motion.div 
@@ -268,7 +282,18 @@ const TestimonialCard = ({ testimonial, delay = 0, shouldReduceMotion = false }:
 );
 
 export default function Home() {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const [activeProofIndex, setActiveProofIndex] = useState(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const interval = window.setInterval(() => {
+      setActiveProofIndex((current) => (current + 1) % heroProofPoints.length);
+    }, 2500);
+
+    return () => window.clearInterval(interval);
+  }, [shouldReduceMotion]);
   
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -340,11 +365,11 @@ export default function Home() {
                   className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2" 
                   data-testid="hero-badges"
                 >
-                  <Badge>$5M+ in ad spend managed across growth brands</Badge>
-                  <Badge>Multi-millions in revenue driven through paid media</Badge>
-                  <Badge>Proven results across Travel, Fitness, Luxury, and Education</Badge>
-                  <Badge>12+ years in paid media & growth strategy</Badge>
-                  <Badge>Recognized by Contra as a Top Specialist in 2025</Badge>
+                  {heroProofPoints.map((proofPoint, index) => (
+                    <Badge key={proofPoint} isActive={index === activeProofIndex}>
+                      {proofPoint}
+                    </Badge>
+                  ))}
                 </motion.div>
                 <motion.div
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
