@@ -12,7 +12,7 @@ import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
-import heroImage from "@assets/clarity-growth-dashboard-hero.png";
+import heroImage from "@assets/clarity-growth-verticals-dashboard-hero.png";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
 import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
@@ -386,13 +386,13 @@ export default function Home() {
                 initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.3 }}
-                className="relative"
+                className="relative lg:-mx-6 xl:-mx-10"
               >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative rounded-3xl overflow-hidden shadow-xl ring-1 ring-gray-900/5">
                   <img 
                     src={heroImage}
-                    alt="Growth dashboard showing paid media results across travel, fitness, luxury, and education"
-                    className="w-full h-auto object-cover"
+                    alt="Clarity Engine growth dashboard showing results across travel, fitness, luxury, and education brands"
+                    className="w-full h-auto object-contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                 </div>
