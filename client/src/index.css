@@ -208,18 +208,39 @@ html {
   transform: scale(1.02);
 }
 
-/* Logo hover effects - specific for carousel logos */
-.animate-scroll img,
-.animate-scroll svg {
-  transition: transform 300ms ease-in-out;
-  transform-origin: center;
+/* Universal readable logo hover */
+:root {
+  --ce-logo-hover-scale: 1.65;
 }
 
-.animate-scroll img:hover,
-.animate-scroll svg:hover {
-  transform: scale(2.5) !important;
-  z-index: 10;
+.ce-readable-logo {
   position: relative;
+  z-index: 1;
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    transform 220ms ease,
+    filter 220ms ease,
+    opacity 220ms ease;
+}
+
+.ce-readable-logo:hover {
+  z-index: 20;
+  transform: scale(var(--ce-logo-hover-scale));
+  filter: saturate(1.08) drop-shadow(0 12px 24px rgb(15 23 42 / 0.14));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ce-readable-logo {
+    transition:
+      filter 120ms ease,
+      opacity 120ms ease;
+  }
+
+  .ce-readable-logo:hover {
+    transform: none;
+    filter: saturate(1.08);
+  }
 }
 
 /* Transformation row group hover effects */
@@ -686,4 +707,3 @@ article:hover .service-cta {
     transform: none !important;
   }
 }
-

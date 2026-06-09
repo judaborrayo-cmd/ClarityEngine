@@ -456,7 +456,7 @@ export default function ServicesAtAGlance({
                     <img
                       src={s.logo.src}
                       alt={s.topTitle}
-                      className="h-9 w-12 shrink-0 object-contain sm:h-10 lg:h-12 lg:w-auto"
+                      className="ce-readable-logo h-9 w-12 shrink-0 object-contain sm:h-10 lg:h-12 lg:w-auto"
                       data-testid={`logo-${s.id}`}
                     />
                   ) : s.logo.type === 'icon' && s.logo.icon ? (
@@ -503,7 +503,7 @@ export default function ServicesAtAGlance({
       <style>{`
         .ce-logo { position: relative; display: inline-flex; align-items: center; justify-content: center; }
         .ce-logo > * { transition: transform 0.18s ease, filter 0.18s ease; }
-        .ce-logo:hover > * { transform: scale(1.06); filter: saturate(1.15); }
+        .ce-logo:hover > * { transform: scale(var(--ce-logo-hover-scale, 1.65)); filter: saturate(1.15) drop-shadow(0 12px 24px rgb(15 23 42 / 0.14)); }
         @keyframes service-arrow-brand-flash {
           0%, 100% { color: rgb(156 163 175); }
           38% { color: rgb(124 58 237); }

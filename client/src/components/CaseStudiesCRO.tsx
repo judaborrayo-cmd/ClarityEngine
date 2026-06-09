@@ -27,11 +27,11 @@ export function LogoTicker({
           }}
         >
           {[...logos, ...logos].map((logo, i) => (
-            <div key={i} className="shrink-0 p-4">
+            <div key={i} className="shrink-0 p-6">
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="h-8 w-auto opacity-90 hover:opacity-100 transition"
+                className="ce-readable-logo h-8 w-auto opacity-90 hover:opacity-100"
                 loading="lazy"
               />
             </div>

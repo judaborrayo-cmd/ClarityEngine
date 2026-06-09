@@ -426,7 +426,7 @@ export default function HowWeBuildFasterSection() {
                               <img
                                 src={tool.logo}
                                 alt={tool.name}
-                                className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                                className="ce-readable-logo h-8 w-auto object-contain opacity-70 hover:opacity-100"
                               />
                             ) : (
                               <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200 hover:border-violet-400 transition-colors">
@@ -451,7 +451,7 @@ export default function HowWeBuildFasterSection() {
                               <img
                                 src={tool.logo}
                                 alt={tool.name}
-                                className="h-8 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                                className="ce-readable-logo h-8 w-auto object-contain opacity-70 hover:opacity-100"
                               />
                             ) : (
                               <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200 hover:border-violet-400 transition-colors">
