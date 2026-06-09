@@ -12,7 +12,7 @@ import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
-import heroImage from "@assets/generated_images/Marketing_strategist_office_portrait_4348a687.png";
+import heroImage from "@assets/clarity-growth-dashboard-hero.png";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
 import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
@@ -391,7 +391,7 @@ export default function Home() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                   <img 
                     src={heroImage}
-                    alt="Professional marketing strategist in modern office"
+                    alt="Growth dashboard showing paid media results across travel, fitness, luxury, and education"
                     className="w-full h-auto object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
