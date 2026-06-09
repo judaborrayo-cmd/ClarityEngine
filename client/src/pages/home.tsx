@@ -31,7 +31,13 @@ import houstonGymnasticsLogo from "@assets/Houston-Gymnastics-Academy-vmake_1758
 import sgtMenuLogo from "@assets/SGT-MENU-LOGO-1_1758554236584.png";
 import noTypicalMomentsLogo from "@assets/No-Typical-Moments-Logo_1758554458418.png";
 import marketerHireLogo from "@assets/MarketerHire Logo_1758554458419.png";
-import rowlandBallardLogo from "@assets/Rowland-Ballard-Logo_1758554468287.png";
+import rowlandBallardLogo from "@assets/client-rowland-ballard-school.png";
+import oasisGymnasticsLogo from "@assets/client-oasis-gymnastics.png";
+import goldenGalapagosLogo from "@assets/client-golden-galapagos.png";
+import columbusTravelLogo from "@assets/client-columbus-travel.webp";
+import luxuryCruisesGalapagosLogo from "@assets/client-luxury-cruises-galapagos.png";
+import goldenExperiencesTravelLogo from "@assets/client-golden-experiences-travel.png";
+import artOfLivingRetreatCenterLogo from "@assets/client-art-of-living-retreat-center.png";
 
 /**
  * Homepage Light Renovation — Credibility Hub + Faster Paths
@@ -417,7 +423,7 @@ export default function Home() {
               </p>
             </motion.div>
             
-            {/* Three rows of logos */}
+            {/* Client logo rows */}
             <motion.div 
               initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -448,6 +454,16 @@ export default function Home() {
                 <LogoImage src={noTypicalMomentsLogo} alt="No Typical Moments" />
                 <LogoImage src={marketerHireLogo} alt="MarketerHire" />
                 <LogoImage src={rowlandBallardLogo} alt="Rowland Ballard" />
+              </div>
+
+              {/* Fourth row */}
+              <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-12">
+                <LogoImage src={oasisGymnasticsLogo} alt="Oasis Gymnastics" />
+                <LogoImage src={goldenGalapagosLogo} alt="Golden Galapagos" />
+                <LogoImage src={columbusTravelLogo} alt="Columbus Travel" />
+                <LogoImage src={luxuryCruisesGalapagosLogo} alt="Luxury Cruises Galapagos" />
+                <LogoImage src={goldenExperiencesTravelLogo} alt="Golden Experiences and Travel" />
+                <LogoImage src={artOfLivingRetreatCenterLogo} alt="The Art of Living Retreat Center" />
               </div>
               
               {/* Key metrics */}

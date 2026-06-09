@@ -18,6 +18,13 @@ import mandaliLogo from "@assets/mandali_logo-actual_1756749176444.png";
 import mixTelematicsLogo from "@assets/mix-telematics-logo-actual_1756749176445.png";
 import motivatingMassesLogo from "@assets/Motivating_The_Masses_Logo_Transparent_1756749176445.png";
 import columbusLogo from "@assets/2LOGO-NEW-COLUMBUS-01-(1)_1756749176442.png";
+import rowlandBallardLogo from "@assets/client-rowland-ballard-school.png";
+import oasisGymnasticsLogo from "@assets/client-oasis-gymnastics.png";
+import goldenGalapagosLogo from "@assets/client-golden-galapagos.png";
+import columbusTravelLogo from "@assets/client-columbus-travel.webp";
+import luxuryCruisesGalapagosLogo from "@assets/client-luxury-cruises-galapagos.png";
+import goldenExperiencesTravelLogo from "@assets/client-golden-experiences-travel.png";
+import artOfLivingRetreatCenterLogo from "@assets/client-art-of-living-retreat-center.png";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
 import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
@@ -200,6 +207,13 @@ export default function CaseStudies() {
     { src: microsoftLogo, alt: "Microsoft" },
     { src: denaGamesLogo, alt: "Dena Games" },
     { src: core40Logo, alt: "Core40" },
+    { src: rowlandBallardLogo, alt: "Rowland Ballard" },
+    { src: oasisGymnasticsLogo, alt: "Oasis Gymnastics" },
+    { src: goldenGalapagosLogo, alt: "Golden Galapagos" },
+    { src: columbusTravelLogo, alt: "Columbus Travel" },
+    { src: luxuryCruisesGalapagosLogo, alt: "Luxury Cruises Galapagos" },
+    { src: goldenExperiencesTravelLogo, alt: "Golden Experiences and Travel" },
+    { src: artOfLivingRetreatCenterLogo, alt: "The Art of Living Retreat Center" },
   ];
 
   const kpiLinkItems = [
