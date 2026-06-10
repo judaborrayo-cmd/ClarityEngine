@@ -13,6 +13,7 @@ import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
 import heroImage from "@assets/clarity-growth-verticals-dashboard-hero.png";
+import scaleRoadmapImage from "@assets/from-insight-to-scale-roadmap.png";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
 import alyssaArmandRoyPhoto from "@assets/Alyssa_1758572440823.jpg";
@@ -508,7 +509,7 @@ export default function Home() {
 
         {/* --- SCALE AND AUDIT SECTION --- */}
         <Section id="how-we-scale" className="py-8 lg:py-12">
-          <ScaleAndAudit videoUrl={CONFIG.featuredVideo.url()} />
+          <ScaleAndAudit imageSrc={scaleRoadmapImage} />
         </Section>
 
         {/* --- HOW WE BUILD FASTER SECTION --- */}

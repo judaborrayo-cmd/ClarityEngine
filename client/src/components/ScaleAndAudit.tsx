@@ -135,11 +135,13 @@ function TeardownGrid() {
 }
 
 interface ScaleAndAuditProps {
-  videoUrl?: string;
+  imageSrc: string;
+  imageAlt?: string;
 }
 
 export default function ScaleAndAudit({
-  videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  imageSrc,
+  imageAlt = "Clarity Engine roadmap from insight to scale with growth performance metrics",
 }: ScaleAndAuditProps) {
   return (
     <section className="container mx-auto px-4 py-6" aria-label="Scale in 90 Days">
@@ -148,19 +150,17 @@ export default function ScaleAndAudit({
         Discovery → Diagnose → Design → Drive — applied through a month-by-month plan.
       </p>
 
-      {/* Top row: video + roadmap (balanced) */}
+      {/* Top row: visual + roadmap (balanced) */}
       <div className="grid lg:grid-cols-3 gap-6 items-start">
-        {/* Video (2 columns) */}
+        {/* Image (2 columns) */}
         <div className="lg:col-span-2">
           <div className="relative w-full overflow-hidden rounded-2xl shadow-sm border border-gray-200">
-            <div className="w-full h-0 pb-[56.25%] relative">
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src={videoUrl}
-                title="How We Scale in 90 Days"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+            <div className="relative aspect-[16/9] w-full bg-white">
+              <img
+                src={imageSrc}
+                alt={imageAlt}
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
