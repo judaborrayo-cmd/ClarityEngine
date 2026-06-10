@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import profitableAdvertisingImage from "@assets/Profitable-Advertising-Image_1761579620763.png";
 
-const bookUrl = "/book-a-strategic-intro-call";
+const bookUrl = "https://www.clarity-engine.org/#book-intro";
 
 export function CTAButton({
   children,
@@ -14,22 +14,42 @@ export function CTAButton({
   ariaLabel?: string;
   className?: string;
 }) {
+  const buttonClassName = [
+    "inline-flex items-center justify-center",
+    "text-[15px] font-semibold rounded-2xl px-5 py-3",
+    "shadow-sm ring-1 ring-black/10 hover:shadow-lg",
+    "transition hover:-translate-y-[1px]",
+    "bg-primary text-primary-foreground hover:bg-primary/90",
+    className,
+  ].join(" ");
+  const content = (
+    <>
+      {children}
+      <span className="ml-2" aria-hidden="true">→</span>
+    </>
+  );
+
+  if (href.startsWith("http")) {
+    return (
+      <a
+        href={href}
+        aria-label={ariaLabel}
+        className={buttonClassName}
+        data-testid="cta-button"
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
     <Link
       to={href}
       aria-label={ariaLabel}
-      className={[
-        "inline-flex items-center justify-center",
-        "text-[15px] font-semibold rounded-2xl px-5 py-3",
-        "shadow-sm ring-1 ring-black/10 hover:shadow-lg",
-        "transition hover:-translate-y-[1px]",
-        "bg-primary text-primary-foreground hover:bg-primary/90",
-        className,
-      ].join(" ")}
+      className={buttonClassName}
       data-testid="cta-button"
     >
-      {children}
-      <span className="ml-2" aria-hidden="true">→</span>
+      {content}
     </Link>
   );
 }
