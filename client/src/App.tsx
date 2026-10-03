@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect, useLayoutEffect } from "react";
+import { useStrategySprintMetadata } from "@/hooks/use-strategy-sprint-metadata";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import CaseStudies from "@/pages/case-studies";
@@ -99,6 +100,7 @@ function Navbar() {
 
 function Router() {
   const location = useLocation();
+  useStrategySprintMetadata(location.pathname);
   const isHome = location.pathname === "/";
 
   useEffect(() => {

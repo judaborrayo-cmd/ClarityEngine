@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/checkout/strategy-sprint",
+      "destination": "/strategy-sprint.html"
+    },
+    {
+      "source": "/checkout/strategy-sprint/thank-you",
+      "destination": "/strategy-sprint-thank-you.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
