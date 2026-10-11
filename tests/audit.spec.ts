@@ -33,7 +33,7 @@ canonical.questions.forEach((q) => {
 test("paid audit, validation, teaching insight, save retry, Back/edit, resume, frozen result and downloads", async ({
   page,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await expect(
     page.getByRole("heading", { name: "Know what to focus on next." }),
   ).toBeVisible();
@@ -261,7 +261,7 @@ test("private-link error, keyboard focus, and existing checkout regression", asy
 }, testInfo) => {
   await page.goto("/audit/resume/invalid");
   await expect(page.getByRole("alert")).toContainText("invalid");
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .focus();
@@ -285,7 +285,7 @@ test("private-link error, keyboard focus, and existing checkout regression", asy
 test("purchase initialization, report generation and report retrieval recover without losing saved data", async ({
   page,
 }) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   let initializationFailed = false;
   await page.route("**/api/audit/exchange", async (route) => {
     if (!initializationFailed) {
@@ -468,7 +468,7 @@ test("website field is required, gray, and accepts all supported address formats
     ["http://example.com", "http://example.com"],
     ["https://example.com", "https://example.com"],
   ]) {
-    await page.goto("/marketing-clarity-audit");
+    await page.goto("/marketing-clarity-assesment");
     await page
       .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
       .click();
@@ -522,7 +522,7 @@ test("website field is required, gray, and accepts all supported address formats
 test("included retake preserves Report 1, resumes Run 2, locks identity and stops at two reports", async ({
   page,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
@@ -737,7 +737,7 @@ test("included retake preserves Report 1, resumes Run 2, locks identity and stop
 test("personalized report presentation and focused Work Session autosave, retry and secure return", async ({
   page,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
@@ -896,7 +896,7 @@ test("private workspace restores notes without cookies, reviews frozen answers a
   page,
   browser,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
@@ -1105,7 +1105,7 @@ test("action checklist persists per frozen report, clear teaching content and re
   page,
   browser,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
@@ -1313,7 +1313,7 @@ test("action checklist persists per frozen report, clear teaching content and re
 test("Message snapshot orients a strong upstream profile without changing the frozen diagnosis", async ({
   page,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
@@ -1366,7 +1366,7 @@ test("Message snapshot orients a strong upstream profile without changing the fr
 test("Traffic P13 actions and decision prompts save separately from legacy notes without forcing a supporting constraint", async ({
   page,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
@@ -1522,7 +1522,7 @@ test("Traffic P13 actions and decision prompts save separately from legacy notes
 test("Measurement report teaches the category and observable progress with explained KPI hierarchy", async ({
   page,
 }, testInfo) => {
-  await page.goto("/marketing-clarity-audit");
+  await page.goto("/marketing-clarity-assesment");
   await page
     .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();

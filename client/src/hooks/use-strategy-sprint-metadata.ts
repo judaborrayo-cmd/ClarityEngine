@@ -4,13 +4,14 @@ import { defaultMetadata, getStrategySprintMetadata } from "@shared/strategy-spr
 // Also reset the static Sprint metadata when navigating to another route in the SPA.
 export function useStrategySprintMetadata(pathname: string) {
   useLayoutEffect(() => {
-    const salesPage = pathname === '/marketing-clarity-audit';
+    const salesPage = pathname === '/marketing-clarity-assesment';
     const salesTitle = 'Get Clarity Assessment — $27 | Clarity Engine';
     const salesDescription = 'Examine six marketing areas and identify where to focus next with Get Clarity Assessment by Clarity Engine. $27, one-time payment.';
     const metadata = salesPage ? {
       ...defaultMetadata,
       title: salesTitle,
-      tags: { ...defaultMetadata.tags, description: salesDescription, 'og:title': salesTitle, 'og:description': salesDescription, 'twitter:title': salesTitle, 'twitter:description': salesDescription, 'og:url': 'https://www.clarity-engine.org/marketing-clarity-audit' },
+      canonical: 'https://www.clarity-engine.org/marketing-clarity-assesment',
+      tags: { ...defaultMetadata.tags, description: salesDescription, 'og:title': salesTitle, 'og:description': salesDescription, 'twitter:title': salesTitle, 'twitter:description': salesDescription, 'og:url': 'https://www.clarity-engine.org/marketing-clarity-assesment' },
     } : getStrategySprintMetadata(pathname) ?? defaultMetadata;
     const privateAudit = pathname.startsWith('/audit/');
     let robots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');

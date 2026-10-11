@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -25,80 +25,40 @@ import AuditResults from '@/pages/audit-results';
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
 
+const navigationLinks = [
+  { to: "/#services", label: "Services" },
+  { to: "/case-studies", label: "Case Studies" },
+  { to: "/#how-we-scale", label: "About" },
+  { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
+  { to: "/checkout/strategy-sprint", label: "Strategy Sprints" },
+];
+
 function Navbar() {
   return (
-    <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
+    <nav aria-label="Main navigation" className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-            <img
-              src={Clarity_Engine_Favicon}
-              alt="Clarity Engine Logo"
-              className="h-7 w-auto shrink-0 object-contain sm:h-8"
-            />
-            <Link to="/" className="whitespace-nowrap text-base font-bold leading-none text-foreground transition-colors hover:text-primary sm:text-xl">
-              Clarity Engine
-            </Link>
+            <img src={Clarity_Engine_Favicon} alt="Clarity Engine Logo" className="h-7 w-auto shrink-0 object-contain sm:h-8" />
+            <Link to="/" className="whitespace-nowrap text-base font-bold leading-none text-foreground transition-colors hover:text-primary sm:text-xl">Clarity Engine</Link>
           </div>
-          
-          <div className="hidden items-center space-x-8 md:flex">
-            <Link 
-              to="/#services" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Services
-            </Link>
-            <Link 
-              to="/case-studies" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Case Studies
-            </Link>
-            <Link 
-              to="/#how-we-scale" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About
-            </Link>
-            <Link 
-              to="/#book-intro" 
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors"
-            >
-              Book Strategic Intro Call
-            </Link>
+          <div className="hidden items-center gap-4 text-sm lg:flex">
+            {navigationLinks.map(link => <Link key={link.to} to={link.to} className="whitespace-nowrap text-muted-foreground hover:text-foreground transition-colors">{link.label}</Link>)}
+            <Link to="/#book-intro" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Book Strategic Intro Call</Link>
           </div>
-
-          <Link
-            to="/#book-intro"
-            className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 md:hidden"
-          >
-            Book Call
-          </Link>
+          <Link to="/#book-intro" className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 lg:hidden">Book Call</Link>
         </div>
-
-        <div className="mt-3 grid grid-cols-3 gap-2 border-t border-border/60 pt-3 text-center text-sm md:hidden">
-          <Link
-            to="/#services"
-            className="rounded-lg px-2 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
-            Services
-          </Link>
-          <Link
-            to="/case-studies"
-            className="rounded-lg px-2 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
-            Case Studies
-          </Link>
-          <Link
-            to="/#how-we-scale"
-            className="rounded-lg px-2 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
-            About
-          </Link>
+        <div className="mt-3 grid grid-cols-5 gap-1 border-t border-border/60 pt-3 text-center text-[11px] leading-tight sm:text-sm lg:hidden">
+          {navigationLinks.map(link => <Link key={link.to} to={link.to} className="flex min-h-8 items-center justify-center rounded-lg px-1 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">{link.label}</Link>)}
         </div>
       </div>
     </nav>
   );
+}
+
+function LegacyAssessmentRedirect() {
+  const location = useLocation();
+  return <Navigate replace to={`/marketing-clarity-assesment${location.search}${location.hash}`} />;
 }
 
 function Router() {
@@ -181,9 +141,10 @@ function Router() {
   return (
     <>
       <Navbar />
-      <div className={isHome ? "pt-0" : "pt-28 md:pt-20"}>
+      <div className={isHome ? "pt-0" : "pt-32 lg:pt-20"}>
         <Routes>
-          <Route path="/marketing-clarity-audit" element={<MarketingClarityAudit />} />
+          <Route path="/marketing-clarity-assesment" element={<MarketingClarityAudit />} />
+          <Route path="/marketing-clarity-audit" element={<LegacyAssessmentRedirect />} />
           <Route path="/audit/start" element={<AuditAssessment />} />
           <Route path="/audit/resume/:token" element={<AuditAssessment />} />
           <Route path="/audit/results/:token" element={<AuditResults />} />

@@ -24,7 +24,7 @@ export class StripeAuditPayment implements AuditPayment {
       custom_text: { submit: { message: "Get Clarity Assessment by Clarity Engine examines six marketing areas to help you identify where to focus next." } },
       metadata: { product: "marketing-clarity-audit", claimHash },
       success_url: `${origin}/audit/start?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/marketing-clarity-audit`,
+      cancel_url: `${origin}/marketing-clarity-assesment`,
     });
     if (!session.url) throw new Error("Checkout unavailable");
     return { id: session.id, url: session.url };

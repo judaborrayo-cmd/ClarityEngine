@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('sales draft is responsive, respects reduced motion, and hands off to isolated checkout', async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/marketing-clarity-audit');
+  await page.goto('/marketing-clarity-assesment');
   await expect(page).toHaveTitle('Get Clarity Assessment — $27 | Clarity Engine');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Know what to focus on next.');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
@@ -36,7 +36,7 @@ test('sales draft is responsive, respects reduced motion, and hands off to isola
 
 test('animation starts automatically and the video itself pauses and resumes playback', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/marketing-clarity-audit');
+  await page.goto('/marketing-clarity-assesment');
   await expect.poll(() => page.locator('video').evaluate((v: HTMLVideoElement) => !v.paused && v.currentTime > 0)).toBe(true);
   await expect(page.locator('.gca-video-panel button')).toHaveCount(0);
   await page.getByRole('button', { name: 'Pause assessment animation' }).click();

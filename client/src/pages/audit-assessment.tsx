@@ -254,7 +254,7 @@ export default function AuditAssessment() {
         </div>
       )}
       {!session && error && (
-        <Link to="/marketing-clarity-audit" className="underline">
+        <Link to="/marketing-clarity-assesment" className="underline">
           Return to Get Clarity Assessment
         </Link>
       )}

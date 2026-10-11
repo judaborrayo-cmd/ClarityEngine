@@ -46,5 +46,12 @@
       "includeFiles": "{server/audit/pdf-assets/**,node_modules/pdfkit/js/standard-fonts/**}",
       "maxDuration": 60
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/marketing-clarity-audit",
+      "destination": "/marketing-clarity-assesment",
+      "permanent": true
+    }
+  ]
 }
