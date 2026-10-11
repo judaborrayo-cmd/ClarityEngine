@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import FounderHeroVideo from "./founder-hero-video";
 
 /** Compact month-by-month roadmap with color accents */
 function MonthRoadmap() {
@@ -134,15 +135,7 @@ function TeardownGrid() {
   );
 }
 
-interface ScaleAndAuditProps {
-  imageSrc: string;
-  imageAlt?: string;
-}
-
-export default function ScaleAndAudit({
-  imageSrc,
-  imageAlt = "Clarity Engine roadmap from insight to scale with growth performance metrics",
-}: ScaleAndAuditProps) {
+export default function ScaleAndAudit() {
   return (
     <section className="container mx-auto px-4 py-6" aria-label="Scale in 90 Days">
       <h2 className="text-2xl sm:text-3xl font-bold mb-2">How We Scale Paid Media in 90 Days</h2>
@@ -156,11 +149,14 @@ export default function ScaleAndAudit({
         <div className="lg:col-span-2">
           <div className="relative w-full overflow-hidden rounded-2xl shadow-sm border border-gray-200">
             <div className="relative aspect-[16/9] w-full bg-white">
-              <img
-                src={imageSrc}
-                alt={imageAlt}
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
+              <FounderHeroVideo
+                variant="roadmap"
+                src="/videos/from-insight-to-scale-chart-motion.mp4"
+                poster="/videos/from-insight-to-scale-chart-motion-poster.webp"
+                width={1916}
+                height={1080}
+                description="From Insight to Scale: illustrative growth chart and dashboard. Illustrative growth, not a promised result."
+                controlLabel="illustrative growth roadmap"
               />
             </div>
           </div>
