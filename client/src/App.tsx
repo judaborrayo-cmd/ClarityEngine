@@ -30,7 +30,7 @@ import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935
 const navigationLinks = [
   { to: "/#services", label: "Services" },
   { to: "/case-studies", label: "Case Studies" },
-  { to: "/#how-we-scale", label: "About" },
+  { to: "/#how-we-scale", label: "How We Scale" },
   { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
   { to: "/strategy-sprint", label: "Strategy Sprints" },
 ];
@@ -114,7 +114,7 @@ function Router() {
       const target = document.getElementById(id);
       
       if (target) {
-        const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - (document.querySelector('nav[aria-label="Main navigation"]')?.getBoundingClientRect().height ?? 80) - 12;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     };
@@ -130,7 +130,7 @@ function Router() {
       setTimeout(() => {
         const target = document.getElementById(id);
         if (target) {
-          const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+          const y = target.getBoundingClientRect().top + window.pageYOffset - (document.querySelector('nav[aria-label="Main navigation"]')?.getBoundingClientRect().height ?? 80) - 12;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 100);

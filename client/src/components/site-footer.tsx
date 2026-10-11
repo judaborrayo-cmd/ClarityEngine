@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./site-footer.css";
 
 const exploreLinks = [
-  ["Services", "/services"], ["Case Studies", "/case-studies"], ["About", "/about"],
+  ["Services", "/services"], ["Case Studies", "/case-studies"], ["How We Scale", "/#how-we-scale"],
 ];
 const productLinks = [
   ["Get Clarity Assessment", "/marketing-clarity-assesment"],
