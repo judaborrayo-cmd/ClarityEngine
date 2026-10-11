@@ -15,6 +15,7 @@ import Testimonials from "@/pages/testimonials";
 import CheckoutAudit from "@/pages/checkout-audit";
 import CheckoutAuditOnboardingConfirmed from "@/pages/checkout-audit-onboarding-confirmed";
 import CheckoutAuditThankYou from "@/pages/checkout-audit-thank-you";
+import StrategySprint from "@/pages/strategy-sprint";
 import CheckoutStrategySprint from "@/pages/checkout-strategy-sprint";
 import CheckoutStrategySprintThankYou from "@/pages/checkout-strategy-sprint-thank-you";
 import Steven from "@/pages/steven";
@@ -154,6 +155,7 @@ function Router() {
           <Route path="/checkout/audit" element={<CheckoutAudit />} />
           <Route path="/checkout/audit/onboarding-confirmed" element={<CheckoutAuditOnboardingConfirmed />} />
           <Route path="/checkout/audit/thank-you" element={<CheckoutAuditThankYou />} />
+          <Route path="/strategy-sprint" element={<StrategySprint />} />
           <Route path="/checkout/strategy-sprint" element={<CheckoutStrategySprint />} />
           <Route path="/checkout/strategy-sprint/thank-you" element={<CheckoutStrategySprintThankYou />} />
           <Route path="/case-studies" element={<CaseStudies />} />

@@ -1,30 +1,8 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
+import { strategySprintBenefits as benefits } from "@shared/strategy-sprint-offer";
 
 const strategySprintCheckoutUrl = "https://buy.stripe.com/dRmcN5eeygbFfkh8Sj8IU01";
-
-const benefits = [
-  {
-    title: "Three Live Strategy Sessions",
-    copy: "Three focused sessions over 30 days, typically 60–120 minutes depending on the topic, availability, and what we are working through.",
-  },
-  {
-    title: "Live Business & Growth Diagnosis",
-    copy: "We can review your offer, messaging, funnel, website, customer journey, lead generation, Google Ads or Meta Ads readiness, and analytics to identify opportunities and drop-off points.",
-  },
-  {
-    title: "Hands-On Problem Solving",
-    copy: "Bring current roadblocks, decisions, drafts, campaigns, pages, or ideas. Juda works through them alongside you during the session, including implementation issues, AI workflows, or researching options when helpful.",
-  },
-  {
-    title: "Flexible Strategic Focus",
-    copy: "There is no rigid curriculum. Each session centers on the highest-value issue for your business at that point, adapting as you make progress.",
-  },
-  {
-    title: "Recordings + Action Notes",
-    copy: "Live video sessions can be recorded for you, with AI-assisted summaries and action items to make follow-through easier.",
-  },
-];
 
 const purchaseHighlights = [
   "3 live strategy sessions over 30 days",
