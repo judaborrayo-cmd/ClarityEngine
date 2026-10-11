@@ -56,6 +56,11 @@ export const strategySprintMetadata = {
 
 export function getStrategySprintMetadata(pathname: string) {
   const path = pathname.replace(/\/$/, "");
+  if (path === "/about") {
+    const title = "Juda Borrayo · Founder of Clarity Engine";
+    const description = "Growth marketing strategy, paid media management, conversion optimization, and analytics consulting for founders and teams.";
+    return { ...defaultMetadata, title, canonical: "https://www.clarity-engine.org/about", tags: { ...defaultMetadata.tags, description, "og:title": title, "og:description": description, "og:url": "https://www.clarity-engine.org/about", "twitter:title": title, "twitter:description": description } };
+  }
   if (path === "/strategy-sprint") return { ...strategySprintMetadata, canonical: "https://www.clarity-engine.org/strategy-sprint", tags: { ...strategySprintMetadata.tags, "og:url": "https://www.clarity-engine.org/strategy-sprint" } };
   if (path === "/checkout/strategy-sprint") return strategySprintMetadata;
   if (path === "/checkout/strategy-sprint/thank-you") {

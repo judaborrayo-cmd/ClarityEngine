@@ -40,12 +40,6 @@ function OfferPreview({ index, title }: { index: number; title: string }) {
 }
 
 export default function About() {
-  useEffect(() => {
-    document.title = "Juda Borrayo · Founder of Clarity Engine — Draft";
-    const robots = document.createElement("meta"); robots.name = "robots"; robots.content = "noindex, nofollow";
-    document.head.appendChild(robots);
-    return () => robots.remove();
-  }, []);
   return <main className="founder-page">
     <section className="founder-wrap founder-hero">
       <div><p className="founder-eyebrow">Juda Borrayo</p><p className="founder-relationship">Founder of Clarity Engine</p><p className="founder-title">Senior Growth Marketing Strategist | Paid Media, CRO &amp; Full-Funnel Growth</p><h1>Clearer decisions.<br /><em>More focused growth.</em></h1><p className="founder-lead">I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that direction into practical work.</p><div className="founder-actions"><a className="founder-button" href="#ways-to-work">Explore ways to work together <span aria-hidden="true">↓</span></a><Link className="founder-link" to="/case-studies">View case studies →</Link></div><div className="founder-contact"><a href="mailto:Juda.Borrayo@gmail.com">Email Juda</a><a href="https://www.linkedin.com/in/judaborrayo" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div>

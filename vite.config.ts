@@ -23,6 +23,7 @@ export default defineConfig({
         }
         this.emitFile({ type: 'asset', fileName: 'audit-private.html', source: privateAuditHtml(String(index.source)) });
         for (const [pathname, fileName] of [
+          ["/about", "about.html"],
           ["/checkout/strategy-sprint", "strategy-sprint.html"],
           ["/checkout/strategy-sprint/thank-you", "strategy-sprint-thank-you.html"],
         ]) {

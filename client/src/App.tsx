@@ -31,6 +31,7 @@ const navigationLinks = [
   { to: "/#services", label: "Services" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/#how-we-scale", label: "How We Scale" },
+  { to: "/about", label: "About" },
   { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
   { to: "/strategy-sprint", label: "Strategy Sprints" },
 ];
@@ -44,13 +45,13 @@ function Navbar() {
             <img src={Clarity_Engine_Favicon} alt="Clarity Engine Logo" className="h-7 w-auto shrink-0 object-contain sm:h-8" />
             <Link to="/" className="whitespace-nowrap text-base font-bold leading-none text-foreground transition-colors hover:text-primary sm:text-xl">Clarity Engine</Link>
           </div>
-          <div className="hidden items-center gap-4 text-sm lg:flex">
+          <div className="hidden items-center gap-2 text-xs lg:flex xl:gap-4 xl:text-sm">
             {navigationLinks.map(link => <Link key={link.to} to={link.to} className="whitespace-nowrap text-muted-foreground hover:text-foreground transition-colors">{link.label}</Link>)}
             <Link to="/#book-intro" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Book Strategic Intro Call</Link>
           </div>
           <Link to="/#book-intro" className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 lg:hidden">Book Call</Link>
         </div>
-        <div className="mt-3 grid grid-cols-5 gap-1 border-t border-border/60 pt-3 text-center text-[11px] leading-tight sm:text-sm lg:hidden">
+        <div className="mt-3 grid grid-cols-6 gap-1 border-t border-border/60 pt-3 text-center text-[11px] leading-tight sm:text-sm lg:hidden">
           {navigationLinks.map(link => <Link key={link.to} to={link.to} className="flex min-h-8 items-center justify-center rounded-lg px-1 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">{link.label}</Link>)}
         </div>
       </div>
