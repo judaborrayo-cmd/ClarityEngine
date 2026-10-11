@@ -14,11 +14,13 @@ const descriptions = ["Is your offer clear enough to choose?", "Are you reaching
 function AssessmentVideo() {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
-  const [reduced, setReduced] = useState(true);
+  const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const manuallyPaused = useRef(false);
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => {
       setReduced(preference.matches);
+      manuallyPaused.current = false;
       if (preference.matches) video.current?.pause();
       else void video.current?.play().catch(() => setPlaying(false));
     };
@@ -27,6 +29,7 @@ function AssessmentVideo() {
     return () => preference.removeEventListener("change", sync);
   }, []);
   async function toggle() {
+    manuallyPaused.current = playing;
     if (playing) video.current?.pause();
     else {
       if (video.current?.ended) video.current.currentTime = 0;
@@ -34,10 +37,9 @@ function AssessmentVideo() {
     }
   }
   return <div className="gca-video-panel">
-    <video ref={video} muted playsInline loop preload={reduced ? "none" : "metadata"} poster="/videos/get-clarity-assessment-poster.webp" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} aria-label="A miniature track connecting six marketing areas">
+    <video ref={video} autoPlay={!reduced} muted playsInline loop role="button" tabIndex={0} onClick={toggle} onKeyDown={(event) => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); void toggle(); } }} onCanPlay={() => { if (!reduced && !manuallyPaused.current) void video.current?.play().catch(() => setPlaying(false)); }} preload={reduced ? "none" : "metadata"} poster="/videos/get-clarity-assessment-poster.webp" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} aria-label={playing ? "Pause assessment animation" : "Play assessment animation"}>
       <source src="/videos/get-clarity-assessment-ping-pong.mp4" type="video/mp4" />
     </video>
-    <button type="button" onClick={toggle} aria-label={playing ? "Pause assessment animation" : "Play assessment animation"} className="gca-video-control">{playing ? "Pause animation" : "Play animation"}</button>
   </div>;
 }
 

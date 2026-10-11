@@ -15,6 +15,7 @@ test('sales draft is responsive, respects reduced motion, and hands off to isola
   await page.getByRole('link', { name: 'See what you get' }).click();
   await expect(page).toHaveURL(/#what-you-get$/);
   await expect(page.getByRole('heading', { name: 'A report you can use to make a decision.' })).toBeInViewport();
+  await expect(page.locator('.gca-video-panel button')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play assessment animation' }).click();
   await expect(page.getByRole('button', { name: 'Pause assessment animation' })).toBeVisible();
   await page.getByRole('button', { name: 'Pause assessment animation' }).click();
@@ -30,4 +31,17 @@ test('sales draft is responsive, respects reduced motion, and hands off to isola
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Get Clarity Assessment');
   await page.goto('/checkout/audit');
   await expect(page.getByRole('heading', { name: 'Deep Dive Audit', exact: true })).toBeVisible();
+});
+
+
+test('animation starts automatically and the video itself pauses and resumes playback', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/marketing-clarity-audit');
+  await expect.poll(() => page.locator('video').evaluate((v: HTMLVideoElement) => !v.paused && v.currentTime > 0)).toBe(true);
+  await expect(page.locator('.gca-video-panel button')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Pause assessment animation' }).click();
+  await expect.poll(() => page.locator('video').evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
+  await page.getByRole('button', { name: 'Play assessment animation' }).focus();
+  await page.keyboard.press('Enter');
+  await expect.poll(() => page.locator('video').evaluate((v: HTMLVideoElement) => !v.paused)).toBe(true);
 });
