@@ -69,7 +69,7 @@ export default function ProblemsTicker() {
   const [expanded, setExpanded] = useState(false);
   const [paused, setPaused] = useState(false);
   const contentId = useId();
-  return <section aria-label="Problems We Eliminate" className="relative isolate border-t border-slate-100/70">
+  return <section aria-label="Problems We Eliminate" data-expanded={expanded} className="problems-section relative isolate border-t border-slate-100/70">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 min-w-0">
       <div className="text-center pt-2 sm:pt-3"><p className="text-sm font-medium text-gray-600 mb-2">We find Solutions to Difficult problems for Growth-Minded Founders and Teams:</p></div>
       <div className="flex flex-col gap-2 pb-2 sm:pb-3">
@@ -88,6 +88,6 @@ export default function ProblemsTicker() {
         </div>
       </div>
     </div>
-    <style>{`.problems-track{will-change:transform}.problems-expansion{display:grid;transition:grid-template-rows 220ms ease}.problems-static{display:none}@media(prefers-reduced-motion:reduce){.problems-motion,.problems-pause{display:none}.problems-static{display:flex}.problems-expansion{transition:none}}`}</style>
+    <style>{`.problems-track{will-change:transform}.problems-expansion{display:grid;transition:grid-template-rows 220ms ease}.problems-static{display:none}@media(max-width:767px){.problems-section[data-expanded="true"] .problems-motion,.problems-section[data-expanded="true"] .problems-pause{display:none}.problems-section[data-expanded="true"] .problems-static{display:grid;gap:0}.problems-section[data-expanded="true"] .problems-static li{padding:8px 0;border-bottom:1px solid rgb(148 163 184 / .18)}.problems-section[data-expanded="true"] .problems-static li:last-child{border-bottom:0}}@media(prefers-reduced-motion:reduce){.problems-motion,.problems-pause{display:none}.problems-static{display:flex}.problems-expansion{transition:none}}`}</style>
   </section>;
 }
