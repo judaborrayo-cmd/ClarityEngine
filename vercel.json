@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/api/audit/:path*",
+      "destination": "/api/audit"
+    },
+    {
+      "source": "/audit/:path*",
+      "destination": "/audit-private.html"
+    },
+    {
       "source": "/checkout/strategy-sprint",
       "destination": "/strategy-sprint.html"
     },
@@ -13,5 +21,30 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "headers": [
+    {
+      "source": "/audit/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/audit.ts": {
+      "includeFiles": "server/audit/pdf-assets/**",
+      "maxDuration": 60
+    }
+  }
 }

@@ -1,0 +1,983 @@
+{
+  "version": "1.0.0",
+  "product": {
+    "productId": "marketing-clarity-audit",
+    "name": "Get Clarity Assessment",
+    "subtitle": "by Clarity Engine",
+    "tagline": "See what's working. Find what's holding you back. Know what to do next.",
+    "priceCents": 2700,
+    "estimatedMinutes": [
+      12,
+      18
+    ]
+  },
+  "patterns": [
+    {
+      "id": "P01",
+      "title": "Foundational Offer Clarity",
+      "triggerDescription": "Offer <50 and/or O1/O2 critical",
+      "primaryConstraint": "Offer",
+      "recommendationIds": [
+        "OFF_01",
+        "OFF_02",
+        "OFF_03"
+      ],
+      "deprioritizedActions": [
+        "More ad spend",
+        "New acquisition channels",
+        "Large creative production"
+      ],
+      "kpiGuidance": "Primary: sales/offer acceptance; Supporting: qualified lead rate; Diagnostic: objection frequency",
+      "caseFormat": "Business Model → Constraint → Priority",
+      "workSession": "What have people repeatedly paid for? What problem are they hiring you to solve? Which offer would you keep if only one survived?",
+      "aiAccelerator": "Synthesize services, testimonials, and sales language into 3–5 possible offer formulations.",
+      "planPhases": [
+        "Understand: review buyers and conversations",
+        "Decide: select offer + outcome",
+        "Implement: update core explanation",
+        "Learn: validate with real prospects"
+      ]
+    },
+    {
+      "id": "P02",
+      "title": "Market Validation Warning",
+      "triggerDescription": "O5 D/E regardless of average Offer score",
+      "primaryConstraint": "Offer / Validation",
+      "recommendationIds": [
+        "OFF_05",
+        "OFF_06",
+        "OFF_04"
+      ],
+      "deprioritizedActions": [
+        "Large ad budgets",
+        "Funnel automation",
+        "Sophisticated attribution work"
+      ],
+      "kpiGuidance": "Primary: sales/offer acceptance; Supporting: qualified interest; Diagnostic: objections/rejection themes",
+      "caseFormat": "Problem → Diagnosis → Fix",
+      "workSession": "What direct evidence proves demand? What behavior supports assumptions? What are prospects actually rejecting?",
+      "aiAccelerator": "Analyze interview transcripts for repeated motivations, objections, unmet needs, and language.",
+      "planPhases": [
+        "Understand: recruit interview pool",
+        "Decide: identify repeated patterns",
+        "Implement: revise offer",
+        "Learn: retest"
+      ]
+    },
+    {
+      "id": "P03",
+      "title": "Audience Definition Constraint",
+      "triggerDescription": "Audience <55 and/or A1/A2 D/E",
+      "primaryConstraint": "Audience",
+      "recommendationIds": [
+        "AUD_01",
+        "AUD_03",
+        "AUD_04"
+      ],
+      "deprioritizedActions": [
+        "Broad scaling",
+        "Adding offers",
+        "Generic acquisition"
+      ],
+      "kpiGuidance": "Primary: qualified customer/lead rate; Supporting: conversion by segment; Diagnostic: fit patterns",
+      "caseFormat": "Business Model → Constraint → Priority",
+      "workSession": "Who gets the most value? What changes right before they seek help? Who should not be targeted?",
+      "aiAccelerator": "Cluster CRM or transcript data into meaningful customer groups and buying triggers.",
+      "planPhases": [
+        "Understand: categorize recent leads",
+        "Decide: identify high-value patterns",
+        "Implement: map triggers and channels",
+        "Learn: adjust targeting/message and review"
+      ]
+    },
+    {
+      "id": "P04",
+      "title": "Lead Quality Problem",
+      "triggerDescription": "A3 D/E while traffic/lead volume is not clearly deficient",
+      "primaryConstraint": "Audience / Qualification",
+      "recommendationIds": [
+        "AUD_06",
+        "AUD_01",
+        "TRAF_02"
+      ],
+      "deprioritizedActions": [
+        "Increasing lead volume",
+        "Broadening targeting",
+        "Scaling low-quality sources"
+      ],
+      "kpiGuidance": "Primary: qualified lead rate; Supporting: close rate; Diagnostic: CPL by source/segment",
+      "caseFormat": "Problem → Diagnosis → Fix",
+      "workSession": "What separates strong from weak leads? Which sources create customers rather than forms?",
+      "aiAccelerator": "Categorize recent leads into quality tiers and identify common traits/source patterns.",
+      "planPhases": [
+        "Understand: define quality",
+        "Decide: review and segment leads",
+        "Implement: tighten weak sources/messages",
+        "Learn: compare quality after changes"
+      ]
+    },
+    {
+      "id": "P05",
+      "title": "Strong Offer, Weak Message",
+      "triggerDescription": "Offer ≥75, Audience ≥70, Message <60",
+      "primaryConstraint": "Message",
+      "recommendationIds": [
+        "MSG_01",
+        "MSG_03",
+        "MSG_05"
+      ],
+      "deprioritizedActions": [
+        "Creating another offer",
+        "Full rebrand",
+        "Major traffic increase"
+      ],
+      "kpiGuidance": "Primary: conversion rate; Supporting: CTA click rate; Diagnostic: CTR/engagement",
+      "caseFormat": "Before → After",
+      "workSession": "What does the customer actually want? What phrases do they use? What would a stranger understand in five seconds?",
+      "aiAccelerator": "Use current hero, offer, testimonials, and customer language to generate distinct messaging territories and hero options.",
+      "planPhases": [
+        "Understand: extract customer language",
+        "Decide: choose core message",
+        "Implement: rewrite + add proof",
+        "Learn: measure"
+      ]
+    },
+    {
+      "id": "P06",
+      "title": "Differentiation / Positioning Gap",
+      "triggerDescription": "M4 D/E while Offer/Audience are reasonably strong",
+      "primaryConstraint": "Message / Positioning",
+      "recommendationIds": [
+        "MSG_04",
+        "MSG_08",
+        "MSG_07"
+      ],
+      "deprioritizedActions": [
+        "Generic content expansion",
+        "Additional offers",
+        "Larger ad budgets"
+      ],
+      "kpiGuidance": "Primary: sales conversion; Supporting: CTA rate; Diagnostic: objection themes",
+      "caseFormat": "Before → After",
+      "workSession": "Why choose you? What do customers get here they cannot easily get elsewhere? What alternative are they really comparing you to?",
+      "aiAccelerator": "Compare company messaging with competitor pages and identify interchangeable claims and differentiation territories.",
+      "planPhases": [
+        "Understand: map alternatives",
+        "Decide: define differentiation",
+        "Implement: update messaging",
+        "Learn: test reactions/performance"
+      ]
+    },
+    {
+      "id": "P07",
+      "title": "Trust / Credibility Constraint",
+      "triggerDescription": "M6 and/or C5 D/E, especially with meaningful commitment/high-ticket offer",
+      "primaryConstraint": "Message / Conversion Trust",
+      "recommendationIds": [
+        "MSG_05",
+        "CONV_05",
+        "MSG_04"
+      ],
+      "deprioritizedActions": [
+        "More persuasion without evidence",
+        "Major traffic increase",
+        "Cosmetic redesign"
+      ],
+      "kpiGuidance": "Primary: conversion rate; Supporting: CTA→conversion rate; Diagnostic: engagement around proof/decision areas",
+      "caseFormat": "Before → After",
+      "workSession": "What claims need proof? What evidence already exists? Where does hesitation occur?",
+      "aiAccelerator": "Turn reviews, testimonials, results, and project notes into concise proof modules or case-card drafts.",
+      "planPhases": [
+        "Understand: gather evidence",
+        "Decide: select strongest proof",
+        "Implement: create/place proof",
+        "Learn: compare conversion"
+      ]
+    },
+    {
+      "id": "P08",
+      "title": "Conversion Experience Constraint",
+      "triggerDescription": "Conversion <55 while upstream Offer/Message are reasonably functional",
+      "primaryConstraint": "Conversion Experience",
+      "recommendationIds": [
+        "CONV_01",
+        "CONV_02",
+        "CONV_03"
+      ],
+      "deprioritizedActions": [
+        "More traffic",
+        "More ads",
+        "Another channel"
+      ],
+      "kpiGuidance": "Primary: page/funnel conversion rate; Supporting: CTA click rate; Diagnostic: drop-off by step",
+      "caseFormat": "Before → After; youth-sports/free-trial style where applicable",
+      "workSession": "Map every click/page/field. What can be removed? Where does trust drop?",
+      "aiAccelerator": "Audit a page section-by-section against one conversion goal and identify ambiguity, redundancy, and friction.",
+      "planPhases": [
+        "Understand: map + baseline",
+        "Decide: identify highest-friction issue",
+        "Implement: simplify + strengthen value/CTA",
+        "Learn: measure"
+      ]
+    },
+    {
+      "id": "P09",
+      "title": "Commitment Mismatch",
+      "triggerDescription": "C6 D/E plus contextual evidence that ask and journey are misaligned",
+      "primaryConstraint": "Conversion Experience",
+      "recommendationIds": [
+        "CONV_04",
+        "CONV_05",
+        "CONV_03"
+      ],
+      "deprioritizedActions": [
+        "Cosmetic redesign",
+        "Scaling traffic before fixing mismatch"
+      ],
+      "kpiGuidance": "Primary: completion/conversion rate; Supporting: CTA rate; Diagnostic: abandonment point",
+      "caseFormat": "Problem → Diagnosis → Fix",
+      "workSession": "What are you asking the visitor to risk—time, money, data, commitment—and does the surrounding experience justify it?",
+      "aiAccelerator": "Compare the size of the ask to the current process and generate simplification or trust-building options.",
+      "planPhases": [
+        "Understand: identify mismatch",
+        "Decide: redesign decision path",
+        "Implement: change trust/friction",
+        "Learn: compare completion"
+      ]
+    },
+    {
+      "id": "P10",
+      "title": "More-Traffic Trap",
+      "triggerDescription": "Meaningful upstream weakness in Offer/Message/Conversion plus scale intent or O6 D/E",
+      "primaryConstraint": "Highest upstream constraint",
+      "recommendationIds": [
+        "DYNAMIC_UPSTREAM_1",
+        "DYNAMIC_UPSTREAM_2",
+        "DYNAMIC_UPSTREAM_3"
+      ],
+      "deprioritizedActions": [
+        "Budget increases",
+        "Additional paid channels",
+        "Aggressive prospecting"
+      ],
+      "kpiGuidance": "Primary: KPI associated with upstream constraint; Supporting: current CVR; Diagnostic: traffic quality",
+      "caseFormat": "Business Model → Constraint → Priority",
+      "workSession": "Why do you believe more traffic is the answer? What would happen if traffic doubled tomorrow?",
+      "aiAccelerator": "Use AI to accelerate diagnosis/ideation of the upstream issue rather than create more campaign volume.",
+      "planPhases": [
+        "Understand: baseline upstream issue",
+        "Decide: select one fix",
+        "Implement: make change",
+        "Learn: validate and reassess scale readiness"
+      ]
+    },
+    {
+      "id": "P11",
+      "title": "True Traffic Constraint",
+      "triggerDescription": "Offer ≥75, Audience ≥75, Message ≥70, Conversion ≥70, Traffic <60, Measurement sufficiently trustworthy",
+      "primaryConstraint": "Traffic",
+      "recommendationIds": [
+        "TRAF_01",
+        "TRAF_06",
+        "TRAF_05"
+      ],
+      "deprioritizedActions": [
+        "Rebuilding strong pages",
+        "Changing the offer",
+        "Unnecessary brand work"
+      ],
+      "kpiGuidance": "Primary: CAC/CPA/qualified customer volume; Supporting: conversion rate; Diagnostic: CTR/CPC/reach/impression share as relevant",
+      "caseFormat": "Business Model → Constraint → Priority",
+      "workSession": "Where does existing demand come from? Which channel gives the clearest next test? What can you afford to acquire?",
+      "aiAccelerator": "Research and brainstorm channel hypotheses, messaging angles, and creative concepts before choosing the subset worth funding.",
+      "planPhases": [
+        "Understand: channel + economics",
+        "Decide: choose test",
+        "Implement: launch",
+        "Learn: review signal quality"
+      ]
+    },
+    {
+      "id": "P12",
+      "title": "Channel-Role Mismatch",
+      "triggerDescription": "T1 + T4 weak and multiple acquisition channels exist",
+      "primaryConstraint": "Traffic Strategy",
+      "recommendationIds": [
+        "TRAF_01",
+        "TRAF_03",
+        "ML_05"
+      ],
+      "deprioritizedActions": [
+        "Declaring channels failures from last-click results",
+        "Forcing every channel into prospecting"
+      ],
+      "kpiGuidance": "Primary: revenue/qualified acquisition; Supporting: assisted/return conversion behavior; Diagnostic: role-specific channel metrics",
+      "caseFormat": "Before → After funnel map",
+      "workSession": "What job is each channel actually performing? Where is discovery occurring? Where is conversion occurring?",
+      "aiAccelerator": "Summarize multi-touch journeys/reporting exports into role hypotheses and flag where attribution may be misleading.",
+      "planPhases": [
+        "Understand: map roles",
+        "Decide: define role-specific KPIs",
+        "Implement: rebuild reporting by role",
+        "Learn: make role-adjusted allocation decision"
+      ]
+    },
+    {
+      "id": "P13",
+      "title": "Underpowered Testing",
+      "triggerDescription": "T5 D/E and/or testing fragmentation plus limited budget/conversion volume",
+      "primaryConstraint": "Traffic / Experimentation",
+      "recommendationIds": [
+        "TRAF_04",
+        "TRAF_05",
+        "ML_06"
+      ],
+      "deprioritizedActions": [
+        "Numerous simultaneous audiences/campaigns",
+        "Constant edits",
+        "Large structural changes"
+      ],
+      "kpiGuidance": "Primary: target outcome of the test; Supporting: conversion volume; Diagnostic: spend/data per variant",
+      "caseFormat": "Problem → Diagnosis → Fix",
+      "workSession": "What single question is most valuable to answer? What baseline are you protecting? What evidence would cause you to keep/reject the change?",
+      "aiAccelerator": "Generate many hypotheses cheaply, score them for expected impact/ease/evidence, then select the best 1–3 for real-world testing.",
+      "planPhases": [
+        "Understand: define hypothesis + baseline",
+        "Decide: choose one test",
+        "Implement: run without unnecessary interference",
+        "Learn: evaluate + log"
+      ]
+    },
+    {
+      "id": "P14",
+      "title": "Attribution / Data Trust Constraint",
+      "triggerDescription": "ML4 D/E and/or ML5 D/E with active acquisition",
+      "primaryConstraint": "Measurement & Learning",
+      "recommendationIds": [
+        "ML_01",
+        "ML_04",
+        "ML_05"
+      ],
+      "deprioritizedActions": [
+        "Large budget shifts from platform-only attribution",
+        "Aggressive optimization on questionable data"
+      ],
+      "kpiGuidance": "Primary: authoritative business-source outcome; Supporting: qualified lead/purchase volume; Diagnostic: platform-vs-source discrepancies",
+      "caseFormat": "Business Model → Constraint → Priority; travel attribution where applicable",
+      "workSession": "Which numbers decide whether marketing is actually working? Where does each come from? Where does visibility disappear?",
+      "aiAccelerator": "Reconcile exports from ad platforms, CRM, ecommerce, or sales systems and identify mismatches/gaps.",
+      "planPhases": [
+        "Understand: KPI hierarchy",
+        "Decide: source-of-truth map",
+        "Implement: build recurring view/feedback loop",
+        "Learn: make one evidence-backed decision"
+      ]
+    },
+    {
+      "id": "P15",
+      "title": "Follow-Up Leakage",
+      "triggerDescription": "Traffic exists, consideration is non-trivial, follow-up/nurture is missing or weak based on context and responses",
+      "primaryConstraint": "Lifecycle / Conversion",
+      "recommendationIds": [
+        "ML_07",
+        "TRAF_03",
+        "ML_05"
+      ],
+      "deprioritizedActions": [
+        "More cold traffic",
+        "More acquisition complexity"
+      ],
+      "kpiGuidance": "Primary: lead/visitor-to-sale rate over time; Supporting: return/nurture conversion; Diagnostic: email/retargeting engagement",
+      "caseFormat": "Before → After",
+      "workSession": "What happens to the people who do not convert immediately? What useful next touchpoint should they receive?",
+      "aiAccelerator": "Turn offer/customer context into nurture sequences, retargeting angles, and segmented follow-up ideas.",
+      "planPhases": [
+        "Understand: map leakage",
+        "Decide: choose missing follow-up",
+        "Implement: launch nurture/retargeting",
+        "Learn: measure delayed conversions"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "OFF_01",
+      "category": "Offer",
+      "title": "Write your primary offer in one sentence.",
+      "whatToDo": "Explain who it is for, what they get, and what changes for them.",
+      "whyCritical": "If a potential customer cannot quickly understand what you sell, every ad, landing page, sales conversation, and referral has to work harder just to establish basic clarity."
+    },
+    {
+      "id": "OFF_02",
+      "category": "Offer",
+      "title": "Identify the single most important customer outcome.",
+      "whatToDo": "Decide what one result the customer should remember above everything else.",
+      "whyCritical": "Without a clear outcome, buyers are more likely to evaluate your features, deliverables, or price instead of understanding the larger value they are buying."
+    },
+    {
+      "id": "OFF_03",
+      "category": "Offer",
+      "title": "Simplify competing offers.",
+      "whatToDo": "Choose one primary offer and make secondary offers clearly secondary.",
+      "whyCritical": "When several offers compete for attention, customers have to decide what matters before they can decide whether to buy. One clear primary offer reduces that decision burden."
+    },
+    {
+      "id": "OFF_04",
+      "category": "Offer",
+      "title": "Review the last 10 sales conversations.",
+      "whatToDo": "Identify why people bought, hesitated, said no, and what they expected to receive."
+    },
+    {
+      "id": "OFF_05",
+      "category": "Offer",
+      "title": "Interview five recent customers.",
+      "whatToDo": "Ask what problem they were trying to solve, what triggered action, and why they chose you."
+    },
+    {
+      "id": "OFF_06",
+      "category": "Offer",
+      "title": "Validate demand before scaling.",
+      "whatToDo": "Put the offer in front of real prospects before investing heavily in traffic."
+    },
+    {
+      "id": "OFF_07",
+      "category": "Offer",
+      "title": "Strengthen the reason to act now.",
+      "whatToDo": "Clarify why the problem, opportunity, or timing deserves attention without fake scarcity."
+    },
+    {
+      "id": "OFF_08",
+      "category": "Offer",
+      "title": "Review pricing against perceived value.",
+      "whatToDo": "Assess price relative to outcome, alternatives, proof, and commitment."
+    },
+    {
+      "id": "AUD_01",
+      "category": "Audience",
+      "title": "Categorize your last 20–50 leads.",
+      "whatToDo": "Group them by fit, quality, revenue potential, source, and outcome."
+    },
+    {
+      "id": "AUD_02",
+      "category": "Audience",
+      "title": "Identify your highest-value customer segment.",
+      "whatToDo": "Determine which group combines the strongest revenue, retention, margin, referrals, or ease of sale."
+    },
+    {
+      "id": "AUD_03",
+      "category": "Audience",
+      "title": "Document top purchase triggers.",
+      "whatToDo": "Identify what tends to happen immediately before someone looks for what you sell."
+    },
+    {
+      "id": "AUD_04",
+      "category": "Audience",
+      "title": "Map audience → problem → trigger → channel.",
+      "whatToDo": "For each meaningful segment, document who they are, what they feel, what makes them act, and where to reach them."
+    },
+    {
+      "id": "AUD_05",
+      "category": "Audience",
+      "title": "Interview three ideal customers.",
+      "whatToDo": "Focus on language, frustrations, alternatives considered, and what made the decision worthwhile."
+    },
+    {
+      "id": "AUD_06",
+      "category": "Audience",
+      "title": "Separate poor-fit leads from poor marketing.",
+      "whatToDo": "If inquiries are bad fits, refine targeting or qualification before increasing volume."
+    },
+    {
+      "id": "AUD_07",
+      "category": "Audience",
+      "title": "Identify who is not a fit.",
+      "whatToDo": "Define exclusion criteria as clearly as inclusion criteria."
+    },
+    {
+      "id": "AUD_08",
+      "category": "Audience",
+      "title": "Match customer segment to message.",
+      "whatToDo": "If groups buy for different reasons, stop showing every audience the same message."
+    },
+    {
+      "id": "MSG_01",
+      "category": "Message",
+      "title": "Rewrite the hero section around the customer outcome.",
+      "whatToDo": "Rewrite the hero section of your homepage or primary landing page(s) so it is centered around the customer’s primary outcome, not just your company, service, or process."
+    },
+    {
+      "id": "MSG_02",
+      "category": "Message",
+      "title": "Replace feature language with benefit language.",
+      "whatToDo": "For every major feature, state what it allows the customer to do, avoid, gain, or feel."
+    },
+    {
+      "id": "MSG_03",
+      "category": "Message",
+      "title": "Extract customer language from real conversations.",
+      "whatToDo": "Review sales calls, testimonials, reviews, emails, and support questions for repeated language."
+    },
+    {
+      "id": "MSG_04",
+      "category": "Message",
+      "title": "Clarify why someone should choose you.",
+      "whatToDo": "Identify 2–3 meaningful differentiators that matter to the customer."
+    },
+    {
+      "id": "MSG_05",
+      "category": "Message",
+      "title": "Add proof immediately after major claims.",
+      "whatToDo": "Support claims with results, reviews, testimonials, examples, credentials, or demonstrations."
+    },
+    {
+      "id": "MSG_06",
+      "category": "Message",
+      "title": "Create one emotional hook and one rational hook.",
+      "whatToDo": "Develop both an emotional reason to care and a rational reason to believe."
+    },
+    {
+      "id": "MSG_07",
+      "category": "Message",
+      "title": "Audit message consistency across the journey.",
+      "whatToDo": "Compare ad → landing page → form → sales call → checkout for continuity."
+    },
+    {
+      "id": "MSG_08",
+      "category": "Message",
+      "title": "Remove internal jargon.",
+      "whatToDo": "Rewrite language that makes sense internally but forces a new customer to translate it."
+    },
+    {
+      "id": "CONV_01",
+      "category": "Conversion",
+      "title": "Choose one primary conversion action.",
+      "whatToDo": "Make one next step visually and conceptually dominant."
+    },
+    {
+      "id": "CONV_02",
+      "category": "Conversion",
+      "title": "Put the value proposition and CTA earlier.",
+      "whatToDo": "Do not make visitors search for what they get or what to do next."
+    },
+    {
+      "id": "CONV_03",
+      "category": "Conversion",
+      "title": "Reduce unnecessary conversion steps.",
+      "whatToDo": "Map every click, page, field, form, and confirmation; remove what does not materially help."
+    },
+    {
+      "id": "CONV_04",
+      "category": "Conversion",
+      "title": "Match the experience to the size of the ask.",
+      "whatToDo": "Low-risk actions should feel easy; high-commitment actions need more trust and context."
+    },
+    {
+      "id": "CONV_05",
+      "category": "Conversion",
+      "title": "Move proof closer to the decision point.",
+      "whatToDo": "Place the strongest reassurance near high-friction actions."
+    },
+    {
+      "id": "CONV_06",
+      "category": "Conversion",
+      "title": "Establish your baseline conversion rate.",
+      "whatToDo": "Know the current conversion rate before redesigning everything."
+    },
+    {
+      "id": "CONV_07",
+      "category": "Conversion",
+      "title": "Test the first screen before redesigning the whole page.",
+      "whatToDo": "Start with headline, subheadline, CTA, proof, and offer clarity."
+    },
+    {
+      "id": "CONV_08",
+      "category": "Conversion",
+      "title": "Review the experience on mobile.",
+      "whatToDo": "Confirm CTA visibility, form usability, readability, load time, and low distraction."
+    },
+    {
+      "id": "TRAF_01",
+      "category": "Traffic",
+      "title": "Map each channel to its role in the funnel.",
+      "whatToDo": "Define whether each channel contributes to discovery, intent capture, retargeting, nurture, conversion, or reactivation."
+    },
+    {
+      "id": "TRAF_02",
+      "category": "Traffic",
+      "title": "Separate traffic volume from traffic quality.",
+      "whatToDo": "Measure which sources create qualified business outcomes, not just clicks or forms."
+    },
+    {
+      "id": "TRAF_03",
+      "category": "Traffic",
+      "title": "Build a prospecting + retargeting structure.",
+      "whatToDo": "Where appropriate, separate new audience acquisition from bringing interested people back."
+    },
+    {
+      "id": "TRAF_04",
+      "category": "Traffic",
+      "title": "Keep your proven traffic baseline intact",
+      "whatToDo": "Identify the campaigns, audiences, channels, or offers currently producing acceptable results. Keep those stable while you test one meaningful change separately.",
+      "doneWhen": "You have a clearly defined control/baseline that continues running unchanged while the new test runs alongside it.",
+      "whyCritical": "If you change the baseline and the test at the same time, you lose the comparison. You may also disrupt traffic that was already profitable. A stable control lets you protect current performance and learn whether the new idea is genuinely better."
+    },
+    {
+      "id": "TRAF_05",
+      "category": "Traffic",
+      "title": "Run fewer tests with enough budget to learn",
+      "whatToDo": "Choose the highest-value unanswered question and concentrate enough budget and traffic around it to produce a useful result.",
+      "doneWhen": "One clearly defined test has enough budget, traffic, and time to produce a meaningful comparison.",
+      "whyCritical": "Spreading budget across too many audiences, ads, or campaigns can make every test underpowered. Fewer, better-funded tests create cleaner evidence and faster learning."
+    },
+    {
+      "id": "TRAF_06",
+      "category": "Traffic",
+      "title": "Define an acceptable acquisition-cost range.",
+      "whatToDo": "Use customer value, margins, close rate, retention, and repeat purchase behavior."
+    },
+    {
+      "id": "TRAF_07",
+      "category": "Traffic",
+      "title": "Investigate the whole funnel before blaming the channel.",
+      "whatToDo": "Review offer, product mix, merchandising, website, pricing, tracking, promotions, and conversion behavior."
+    },
+    {
+      "id": "TRAF_08",
+      "category": "Traffic",
+      "title": "Reduce dangerous channel concentration.",
+      "whatToDo": "Build a second dependable source without unnecessarily disrupting the first."
+    },
+    {
+      "id": "ML_01",
+      "category": "Measurement",
+      "title": "Define your North Star KPIs.",
+      "whatToDo": "Choose the smallest set of metrics that tell you whether marketing is creating meaningful business outcomes."
+    },
+    {
+      "id": "ML_02",
+      "category": "Measurement",
+      "title": "Separate outcome KPIs from diagnostic KPIs.",
+      "whatToDo": "Build a hierarchy from business outcome to conversion and supporting diagnostic signals."
+    },
+    {
+      "id": "ML_03",
+      "category": "Measurement",
+      "title": "Create a weekly KPI document.",
+      "whatToDo": "Track the same important numbers on a consistent cadence so patterns become visible."
+    },
+    {
+      "id": "ML_04",
+      "category": "Measurement",
+      "title": "Define the source of truth for each KPI.",
+      "whatToDo": "Document whether each authoritative number comes from Shopify, CRM, sales, GA4, ad platforms, or another source."
+    },
+    {
+      "id": "ML_05",
+      "category": "Measurement",
+      "title": "Connect marketing source to downstream outcomes.",
+      "whatToDo": "Where possible, track source → lead → qualified lead → sale → revenue."
+    },
+    {
+      "id": "ML_06",
+      "category": "Measurement",
+      "title": "Keep a simple marketing change log",
+      "whatToDo": "Record the date, what changed, why you changed it, what metric you expected to move, and what actually happened.",
+      "doneWhen": "Each meaningful marketing change has a dated record with the hypothesis, expected impact, and observed result.",
+      "whyCritical": "Without a change log, performance shifts become hard to explain. A simple record helps you connect changes to results and prevents the same failed ideas from being repeated."
+    },
+    {
+      "id": "ML_07",
+      "category": "Measurement",
+      "title": "Build a consistent follow-up system.",
+      "whatToDo": "Use email, SMS, retargeting, sales follow-up, abandoned-cart, or nurture where appropriate."
+    },
+    {
+      "id": "ML_08",
+      "category": "Measurement",
+      "title": "Review performance across multiple time horizons.",
+      "whatToDo": "Do not let one bad day or week override longer-term trends without investigation."
+    }
+  ],
+  "workSessions": [
+    {
+      "section": "Offer",
+      "prompts": [
+        "Describe what you sell in one sentence without using industry jargon.",
+        "What is the single most important result a customer hopes to get from this offer?",
+        "Who is most likely to get exceptional value from this offer—and who is not a fit?",
+        "What objections come up most often, and what do they reveal about value perception?",
+        "What direct evidence—not assumptions—shows that people want this offer?",
+        "If traffic doubled tomorrow, what weakness would you be most worried about exposing?",
+        "What creates a genuine reason to act now without manufactured scarcity?",
+        "Which offer would you keep if you could only sell one for the next 12 months?",
+        "Why did recent buyers choose you, and why did recent prospects say no?"
+      ]
+    },
+    {
+      "section": "Audience",
+      "prompts": [
+        "What do your best customers have in common beyond demographics?",
+        "What tends to happen right before a strong prospect starts looking for help?",
+        "Define a qualified lead in one sentence. Then compare your last 20 leads against it.",
+        "What larger life or business outcome sits behind the immediate product need?",
+        "Where do ideal prospects already spend attention or actively search for solutions?",
+        "Which customer group creates the most economic value?",
+        "Who should you actively exclude?",
+        "How should different segments receive different messages?"
+      ]
+    },
+    {
+      "section": "Message",
+      "prompts": [
+        "What should a relevant stranger understand within five seconds?",
+        "For each major feature, ask: “So what does this let the customer do, avoid, gain, or feel?”",
+        "Review sales calls, emails, testimonials, and reviews. What phrases appear repeatedly?",
+        "Why should a qualified buyer choose you instead of a competitor, DIY, or doing nothing?",
+        "What meaningful frustration, ambition, risk, relief, or identity change sits underneath the rational purchase?",
+        "Which major claims on your page need stronger proof, and what evidence already exists?",
+        "What proof supports each major claim?",
+        "Which emotional outcome sits underneath the rational outcome?"
+      ]
+    },
+    {
+      "section": "Conversion Experience",
+      "prompts": [
+        "What is the one primary action you want a visitor to take?",
+        "What are the first three things a visitor sees, and do they justify taking the next step?",
+        "Compare the promise before the click with the headline, offer, and CTA after the click. Where does continuity break?",
+        "Map every click, page, field, and step between interest and conversion. Which ones are unnecessary?",
+        "What reassurance would a skeptical but qualified buyer need immediately before taking action?",
+        "What are you asking the visitor to risk—time, money, data, or commitment—and does the experience justify that ask?",
+        "Where do visitors drop off?",
+        "What proof belongs closer to action?",
+        "Is the ask appropriate for the visitor’s current level of trust?"
+      ]
+    },
+    {
+      "section": "Traffic",
+      "prompts": [
+        "For every meaningful channel, label its primary job: discovery, intent capture, retargeting, nurture, conversion, or reactivation.",
+        "What volume enters the top of the funnel, and what proportion becomes the outcomes you care about?",
+        "When performance last changed meaningfully, what else changed around the same time?",
+        "Where does discovery happen? Where does intent get captured? Where does retargeting or nurture happen?",
+        "What single unanswered question would be most valuable to test next, and what baseline would you protect?",
+        "What is a new customer economically worth, and what lead/customer acquisition cost can the business sustain?",
+        "How concentrated is acquisition in one channel?",
+        "Which test would teach you the most without risking the working baseline?"
+      ]
+    },
+    {
+      "section": "Measurement & Learning",
+      "prompts": [
+        "If you could watch only three numbers every week, which would tell you whether marketing is creating real business value?",
+        "List your primary outcome KPI, one supporting KPI, and one diagnostic KPI.",
+        "What recurring weekly or monthly KPI view would make changes in the business easier to interpret?",
+        "For every primary KPI, define one authoritative source and document known attribution differences.",
+        "Where does visibility disappear between acquisition, lead quality, sales, and revenue?",
+        "What sequence should your team follow before making a major change when performance shifts?",
+        "What changed during meaningful performance shifts?",
+        "What does sales/customer data say that advertising platforms do not?",
+        "What happens to leads after the initial conversion?"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "CASE_YOUTH_SPORTS_FREE_TRIAL",
+      "title": "Making an Existing Introductory Offer Easier to See and Act On",
+      "industry": "Multi-location youth sports / gymnastics",
+      "businessModel": "Recurring classes, camps, trials, and other programs across multiple locations.",
+      "format": "before_after",
+      "goal": "Turn paid traffic into more trial participation and downstream paying families.",
+      "situation": "A free-trial concept already existed, but acquisition experiences could be broader and less directly focused on that entry offer.",
+      "diagnosis": "The opportunity was not necessarily to invent a new offer. It was to make the existing offer easier to notice, understand, and act on across ads and landing pages.",
+      "intervention": "Use clearer free-trial messaging, location-specific landing experiences, stronger CTA visibility, and tighter ad-to-page alignment.",
+      "lesson": "Sometimes growth comes from reducing the distance between an existing strong offer and the action you want the customer to take.",
+      "evidence": "B_observed",
+      "applicability": [
+        "local_business",
+        "multi_location",
+        "lead_gen",
+        "paid_media",
+        "conversion"
+      ]
+    },
+    {
+      "id": "CASE_PRO_ENGLISH_OUTCOME",
+      "title": "Selling the Outcome Behind the Service",
+      "industry": "Professional English coaching / education",
+      "businessModel": "Group and 1:1 coaching for professionals, executives, founders, and ambitious learners; historically referral-heavy.",
+      "format": "business_constraint_priority",
+      "goal": "Translate a technically clear service into stronger positioning and acquisition messaging.",
+      "situation": "The service could easily be interpreted as simply “better English instruction.”",
+      "diagnosis": "The deeper value included professional confidence, leadership, self-expression, career advancement, and operating effectively in English-speaking environments.",
+      "intervention": "Center positioning, hooks, landing-page messaging, and customer journeys on those deeper outcomes rather than only the instructional mechanism.",
+      "lesson": "Customers often buy the life or business outcome created by the service, not merely the mechanism being delivered.",
+      "evidence": "C_strategic",
+      "applicability": [
+        "consulting",
+        "education",
+        "high_ticket",
+        "message",
+        "audience"
+      ]
+    },
+    {
+      "id": "CASE_BUSINESS_SYSTEMS_POSITIONING",
+      "title": "Communicating the Integrated Outcome, Not Just the Pieces",
+      "industry": "Business systems / branding / web infrastructure",
+      "businessModel": "Done-for-you or assisted branding, websites, CRM, booking, automation, and related business infrastructure.",
+      "format": "before_after",
+      "goal": "Make a multi-component service understandable at first glance.",
+      "situation": "The initial presentation could make the service look disproportionately like website development even though the offer provided much more.",
+      "diagnosis": "The integrated value was closer to a complete client-acquisition and follow-up system than an isolated website build.",
+      "intervention": "Shift the hero and supporting messaging toward the end-to-end outcome: look professional, capture leads, book clients, and follow up automatically.",
+      "lesson": "When a product does several things, communicate the integrated outcome rather than forcing customers to assemble the value themselves.",
+      "evidence": "C_strategic",
+      "applicability": [
+        "professional_services",
+        "consulting",
+        "message",
+        "offer"
+      ]
+    },
+    {
+      "id": "CASE_EDU_LANDING_ALIGNMENT",
+      "title": "When the Campaign Is Not the Only Problem",
+      "industry": "Education / personal development",
+      "businessModel": "Programs and educational resources supported by a Google Ad Grant and lead-generation pages.",
+      "format": "problem_diagnosis_fix",
+      "goal": "Improve conversion from search traffic into community/program engagement.",
+      "situation": "Traffic was being sent to pages where value, forms, and next actions were not always immediately clear.",
+      "diagnosis": "There was a message and conversion alignment issue between search intent, ad copy, landing-page promise, and conversion action.",
+      "intervention": "Use benefit-led copy, clearer forms/CTAs, credibility indicators, and tighter page-to-search alignment.",
+      "lesson": "A traffic source can be functioning while the experience receiving that traffic suppresses results.",
+      "evidence": "B_observed",
+      "applicability": [
+        "nonprofit",
+        "education",
+        "google_ads",
+        "lead_gen",
+        "conversion",
+        "message"
+      ]
+    },
+    {
+      "id": "CASE_TRACKING_URL_BREAK",
+      "title": "When Performance “Breaks” Because Measurement Broke",
+      "industry": "Education / personal development",
+      "businessModel": "Lead-generation campaigns using Google Ads and Google Tag Manager.",
+      "format": "problem_diagnosis_fix",
+      "goal": "Restore accurate conversion measurement.",
+      "situation": "A conversion began showing “Needs Attention.”",
+      "diagnosis": "A thank-you-page URL change broke the Google Tag Manager trigger.",
+      "intervention": "Test the form, identify the mismatched URL, update the trigger, republish, and verify the event fires again.",
+      "lesson": "Sometimes the campaign did not change. Your measurement did.",
+      "evidence": "A_quantified",
+      "applicability": [
+        "google_ads",
+        "measurement",
+        "lead_gen",
+        "tracking"
+      ]
+    },
+    {
+      "id": "CASE_TRAVEL_CLOSED_LOOP",
+      "title": "Connecting Paid Media to Downstream Lead Value",
+      "industry": "High-ticket travel / cruises",
+      "businessModel": "High-value travel bookings generated from paid and non-paid acquisition sources.",
+      "format": "business_constraint_priority",
+      "goal": "Allocate media based on real lead and sales quality rather than surface conversion volume.",
+      "situation": "A lead may enter through paid media but later appear as direct, organic, social, or referral depending on the reporting touchpoint.",
+      "diagnosis": "Platform-level acquisition data alone was insufficient to understand which campaigns ultimately created valuable opportunities.",
+      "intervention": "Improve the feedback loop between marketing source data and downstream lead/sales outcomes.",
+      "lesson": "The cheapest lead is not necessarily the most valuable lead; closed-loop reporting helps steer toward real business value.",
+      "evidence": "B_observed",
+      "applicability": [
+        "travel",
+        "high_ticket",
+        "paid_media",
+        "complex_attribution",
+        "measurement"
+      ]
+    },
+    {
+      "id": "CASE_RETREAT_KPI_BREADTH",
+      "title": "Why One Conversion Column Can Miss the Bigger Picture",
+      "industry": "Retreats / hospitality / education",
+      "businessModel": "Multiple retreat and program offerings with cross-pollination between conversion types.",
+      "format": "problem_diagnosis_fix",
+      "goal": "Interpret campaign impact using a broader, more trustworthy measurement view.",
+      "situation": "A narrow conversion column could make campaign performance appear weaker or more uncertain than broader customer behavior suggested.",
+      "diagnosis": "Customers converted across multiple programs and conversion types, so one platform column did not capture the full commercial story.",
+      "intervention": "Review outcome KPIs alongside all-conversion behavior, conversion timing, cross-device and supporting diagnostic metrics.",
+      "lesson": "Diagnostic metrics provide context to the North Star result; a single platform column rarely tells the entire business story.",
+      "evidence": "B_observed",
+      "applicability": [
+        "travel_hospitality",
+        "google_ads",
+        "measurement",
+        "complex_attribution"
+      ]
+    },
+    {
+      "id": "CASE_ECOM_SYSTEM_CAUSE",
+      "title": "When “The Ads” May Not Be the Root Cause",
+      "industry": "Premium ecommerce / jewelry",
+      "businessModel": "Direct-to-consumer ecommerce with paid acquisition, merchandising, promotions, and repeat-customer behavior.",
+      "format": "problem_diagnosis_fix",
+      "goal": "Diagnose softer performance without jumping immediately to a channel-level conclusion.",
+      "situation": "Paid-media performance appeared weaker while product assortment, merchandising, promotions, first-touch customer experience, and traffic mix were also changing.",
+      "diagnosis": "The issue could be system-level rather than simply “Meta stopped working.”",
+      "intervention": "Compare business sales, new-customer behavior, merchandising changes, traffic mix, site changes, and platform performance before restructuring the account.",
+      "lesson": "Marketing channels operate inside a commercial system. When the system changes, ad performance can change even if campaign mechanics are not the root cause.",
+      "evidence": "C_strategic",
+      "applicability": [
+        "ecommerce",
+        "meta_ads",
+        "paid_media",
+        "measurement",
+        "traffic"
+      ]
+    },
+    {
+      "id": "CASE_UNDERPOWERED_TESTING",
+      "title": "Testing More Things Does Not Always Create More Learning",
+      "industry": "Small service business / paid acquisition",
+      "businessModel": "Limited-budget service business testing paid acquisition and creative.",
+      "format": "problem_diagnosis_fix",
+      "goal": "Learn faster without spreading limited budget across too many variables.",
+      "situation": "Budget is split across multiple campaigns, audiences, creatives, or objectives.",
+      "diagnosis": "The tests are too underfunded to create meaningful signal, and the working baseline may be destabilized.",
+      "intervention": "Concentrate budget around fewer hypotheses, preserve the strongest baseline, and document the result.",
+      "lesson": "Testing more things does not necessarily mean learning more things.",
+      "evidence": "C_strategic",
+      "applicability": [
+        "professional_services",
+        "paid_media",
+        "testing",
+        "traffic"
+      ]
+    },
+    {
+      "id": "CASE_CHANNEL_ROLES",
+      "title": "When Google and Meta Are Doing Different Jobs",
+      "industry": "Multi-channel acquisition",
+      "businessModel": "A business using intent-based acquisition plus social retargeting.",
+      "format": "before_after",
+      "goal": "Evaluate channels based on their contribution to the journey rather than forcing identical expectations.",
+      "situation": "Channels may be compared independently on immediate sales even though they contribute at different stages.",
+      "diagnosis": "Google can capture existing intent while Meta reinforces the offer through retargeting and return visits.",
+      "intervention": "Map channel roles and evaluate the combined journey: intent capture → site visit → retargeting → return → conversion.",
+      "lesson": "A channel does not have to receive final-touch credit to contribute materially to acquisition.",
+      "evidence": "B_observed",
+      "applicability": [
+        "google_ads",
+        "meta_ads",
+        "retargeting",
+        "complex_attribution",
+        "traffic"
+      ]
+    }
+  ]
+}

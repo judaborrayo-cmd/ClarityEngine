@@ -19,6 +19,9 @@ import CheckoutStrategySprint from "@/pages/checkout-strategy-sprint";
 import CheckoutStrategySprintThankYou from "@/pages/checkout-strategy-sprint-thank-you";
 import Steven from "@/pages/steven";
 import NotFound from "@/pages/not-found";
+import MarketingClarityAudit from '@/pages/marketing-clarity-audit';
+import AuditAssessment from '@/pages/audit-assessment';
+import AuditResults from '@/pages/audit-results';
 
 import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
 
@@ -180,6 +183,10 @@ function Router() {
       <Navbar />
       <div className={isHome ? "pt-0" : "pt-28 md:pt-20"}>
         <Routes>
+          <Route path="/marketing-clarity-audit" element={<MarketingClarityAudit />} />
+          <Route path="/audit/start" element={<AuditAssessment />} />
+          <Route path="/audit/resume/:token" element={<AuditAssessment />} />
+          <Route path="/audit/results/:token" element={<AuditResults />} />
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />

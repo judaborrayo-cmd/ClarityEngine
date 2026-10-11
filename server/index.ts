@@ -1,8 +1,11 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { createAuditRouter } from './audit/routes';
 
 const app = express();
+app.use('/api/audit', createAuditRouter());
+app.use('/audit', (_req, res, next) => { res.set({ 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer', 'Cache-Control': 'no-store' }); next(); });
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -44,7 +47,6 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
   });
 
   // importantly only setup vite in development and after

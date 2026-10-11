@@ -6,3 +6,7 @@ vite.config.ts.*
 *.tar.gz
 .vercel
 .env*.local
+server-dist
+test-results
+playwright-report
+tmp/pdfs

@@ -1,0 +1,21 @@
+{
+  "summary": "Your strongest constraint appears to be Message.",
+  "confidence": "high",
+  "recommendations": [
+    {
+      "title": "Rewrite the hero section around the customer outcome.",
+      "whatToDo": "Rewrite the hero section of your homepage or primary landing page(s) so it is centered around the customer’s primary outcome, not just your company, service, or process.",
+      "doneWhen": "The primary hero communicates the customer outcome."
+    },
+    {
+      "title": "Extract customer language from real conversations.",
+      "whatToDo": "Review sales calls, testimonials, reviews, emails, and support questions for repeated language.",
+      "doneWhen": "Repeated customer phrases are extracted from direct evidence."
+    },
+    {
+      "title": "Add proof immediately after major claims.",
+      "whatToDo": "Support claims with results, reviews, testimonials, examples, credentials, or demonstrations.",
+      "doneWhen": "Major claims have relevant proof immediately after them."
+    }
+  ]
+}

@@ -1,0 +1,1721 @@
+{
+  "version": "1.0.0",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Offer",
+      "title": "What are you actually asking customers to buy?",
+      "description": "We’ll start by looking at how clearly your offer is defined, whether customers understand the value, and how much evidence you have that the market wants it.",
+      "timeCue": "6 questions · ~2–3 minutes"
+    },
+    {
+      "id": 2,
+      "name": "Audience",
+      "title": "Do you understand who buys, why they act, and how to reach more people like them?",
+      "description": "This section evaluates customer fit, buying triggers, lead quality, deeper motivations, and audience access.",
+      "timeCue": "5 questions · ~2 minutes"
+    },
+    {
+      "id": 3,
+      "name": "Message",
+      "title": "Does a stranger understand, believe, and care about the value you provide?",
+      "description": "This section evaluates message clarity, outcomes, customer language, differentiation, emotional relevance, and credibility.",
+      "timeCue": "6 questions · ~2–3 minutes"
+    },
+    {
+      "id": 4,
+      "name": "Conversion Experience",
+      "title": "What happens after someone becomes interested?",
+      "description": "This section evaluates next-step clarity, value communication, message continuity, friction, trust, and whether the journey matches the size of the ask.",
+      "timeCue": "6 questions · ~2–3 minutes"
+    },
+    {
+      "id": 5,
+      "name": "Traffic",
+      "title": "Do you understand the role traffic plays inside the entire customer-acquisition system?",
+      "description": "This section evaluates demand flow, channel roles, root-cause diagnosis, testing discipline, and acquisition economics.",
+      "timeCue": "6 questions · ~2–3 minutes"
+    },
+    {
+      "id": 6,
+      "name": "Measurement & Learning",
+      "title": "Can you trust the feedback you’re using to make marketing decisions?",
+      "description": "This section evaluates KPI hierarchy, reporting cadence, data trust, closed-loop measurement, and diagnostic discipline.",
+      "timeCue": "6 questions · ~2–3 minutes"
+    }
+  ],
+  "questions": [
+    {
+      "id": "O1",
+      "sectionId": 1,
+      "order": 0,
+      "label": "Offer clarity",
+      "prompt": "Can a new potential customer understand what you sell within a few seconds of hearing or reading your explanation?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. I can explain our primary offer clearly in one simple sentence.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. People generally understand it, although it usually needs a little additional explanation.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Sometimes. The basic idea is understandable, but different people may explain it differently.",
+          "score": 3,
+          "flag": {
+            "id": "OFFER_CLARITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. Our offer includes several services, products, or ideas and can be difficult to explain simply.",
+          "score": 2,
+          "flag": {
+            "id": "OFFER_CLARITY",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We’re still figuring out exactly what our primary offer should be.",
+          "score": 1,
+          "flag": {
+            "id": "OFFER_DEFINITION",
+            "severity": "critical"
+          }
+        }
+      ],
+      "teachingNote": "If explaining the offer requires a long conversation, marketing usually has to work harder everywhere downstream."
+    },
+    {
+      "id": "O2",
+      "sectionId": 1,
+      "order": 1,
+      "label": "Outcome clarity",
+      "prompt": "Does your primary offer promise a clear outcome or improvement for the customer?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. The desired customer outcome is specific and central to the offer.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. The outcome is there, but we could communicate it more clearly.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We tend to explain what we provide more than what changes for the customer.",
+          "score": 3,
+          "flag": {
+            "id": "OUTCOME_CLARITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. Our offer is mostly described through services, features, deliverables, or process.",
+          "score": 2,
+          "flag": {
+            "id": "FEATURE_HEAVY_OFFER",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m not sure what primary outcome we should promise.",
+          "score": 1,
+          "flag": {
+            "id": "UNDEFINED_OUTCOME",
+            "severity": "critical"
+          }
+        }
+      ],
+      "teachingNote": "A service describes what you do. An outcome describes why the customer cares. “Weekly executive English coaching” describes a service; “Lead meetings confidently in English without second-guessing yourself” describes an outcome."
+    },
+    {
+      "id": "O3",
+      "sectionId": 1,
+      "order": 2,
+      "label": "Customer fit",
+      "prompt": "How clearly defined is the customer your primary offer is intended for?",
+      "weight": 0.75,
+      "options": [
+        {
+          "value": "A",
+          "text": "Extremely clear. We know who benefits most and who generally isn’t a good fit.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Fairly clear. We know our strongest customer types, although several types of people can benefit.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Broad. We have a general target customer, but the definition could be more specific.",
+          "score": 3,
+          "flag": {
+            "id": "OFFER_CUSTOMER_FIT",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Very broad. Many different types of people or businesses could theoretically use what we sell.",
+          "score": 2,
+          "flag": {
+            "id": "BROAD_OFFER_FIT",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We’re still figuring out who the offer is really for.",
+          "score": 1,
+          "flag": {
+            "id": "UNDEFINED_CUSTOMER",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "O4",
+      "sectionId": 1,
+      "order": 3,
+      "label": "Value resistance",
+      "prompt": "How frequently do qualified prospects question the value, price, or reason they should choose your offer?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Rarely. Qualified prospects generally understand why the offer is valuable.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Occasionally. We encounter predictable objections, but they usually make sense.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Fairly often. We frequently need to explain or reinforce the value.",
+          "score": 3,
+          "flag": {
+            "id": "VALUE_PERCEPTION",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Very often. Price resistance, value confusion, or extensive explanation is a major part of the sales process.",
+          "score": 2,
+          "flag": {
+            "id": "VALUE_RESISTANCE",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We don’t have enough sales conversations or customer data to know yet.",
+          "score": 1,
+          "flag": {
+            "id": "OFFER_EVIDENCE_UNKNOWN",
+            "severity": "opportunity"
+          },
+          "confidenceModifier": -5
+        }
+      ]
+    },
+    {
+      "id": "O5",
+      "sectionId": 1,
+      "order": 4,
+      "label": "Market validation",
+      "prompt": "How much evidence do you have that people actually want this offer?",
+      "weight": 1.25,
+      "options": [
+        {
+          "value": "A",
+          "text": "Strong evidence. We consistently sell it and/or customers repeatedly seek it out.",
+          "score": 5,
+          "flag": {
+            "id": "STRONG_VALIDATION",
+            "severity": "none"
+          }
+        },
+        {
+          "value": "B",
+          "text": "Good evidence. We’ve sold it successfully, although demand isn’t completely predictable.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Limited evidence. We’ve had some sales or interest, but not enough to establish a strong pattern.",
+          "score": 3,
+          "flag": {
+            "id": "LIMITED_VALIDATION",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Very little evidence. We’re relying substantially on what we believe people should want.",
+          "score": 2,
+          "flag": {
+            "id": "MARKET_VALIDATION_WARNING",
+            "severity": "critical"
+          }
+        },
+        {
+          "value": "E",
+          "text": "None yet. The offer is new or has not meaningfully been tested.",
+          "score": 1,
+          "flag": {
+            "id": "UNVALIDATED_OFFER",
+            "severity": "critical"
+          }
+        }
+      ],
+      "teachingNote": "Better copy cannot fully compensate for an offer the market doesn’t want. Before aggressively scaling an unproven offer, learn why real prospects say yes, no, or not yet."
+    },
+    {
+      "id": "O6",
+      "sectionId": 1,
+      "order": 5,
+      "label": "Scale readiness",
+      "prompt": "If qualified traffic to your offer doubled tomorrow, how confident would you feel sending those people into the current sales experience?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very confident. More qualified traffic would be welcome.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Fairly confident. There are improvements we’d make, but the offer is ready.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Unsure. More traffic would probably expose some weaknesses.",
+          "score": 3,
+          "flag": {
+            "id": "SCALE_READINESS",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not very confident. There are important things I would want to fix first.",
+          "score": 2,
+          "flag": {
+            "id": "DO_NOT_SCALE_YET",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "Not confident at all. We’re still working out what we’re selling or how we’re selling it.",
+          "score": 1,
+          "flag": {
+            "id": "DO_NOT_SCALE_YET",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A1",
+      "sectionId": 2,
+      "order": 6,
+      "label": "Best-customer clarity",
+      "prompt": "How clearly can you identify the type of customer who gets the most value from your primary offer?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very clearly. Our best customers share identifiable characteristics, problems, circumstances, or goals.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Fairly clearly. We know our strongest customer types, although there is some variation.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We have a general sense of who they are, but our definition is broad.",
+          "score": 3,
+          "flag": {
+            "id": "AUDIENCE_DEFINITION",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not clearly. Many different types of people could theoretically use what we sell.",
+          "score": 2,
+          "flag": {
+            "id": "AUDIENCE_DEFINITION",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t identified this yet.",
+          "score": 1,
+          "flag": {
+            "id": "AUDIENCE_DEFINITION",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "sectionId": 2,
+      "order": 7,
+      "label": "Buying triggers",
+      "prompt": "Do your best customers tend to share a specific problem, trigger, or situation that causes them to start looking for a solution like yours?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We understand the specific situations or problems that typically create demand.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We’ve identified several common triggers.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We understand the broad problem, but not necessarily what causes someone to act.",
+          "score": 3,
+          "flag": {
+            "id": "TRIGGER_CLARITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. We know who they are more than we know what creates buying intent.",
+          "score": 2,
+          "flag": {
+            "id": "DEMAND_TRIGGER_BLIND_SPOT",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t investigated this.",
+          "score": 1,
+          "flag": {
+            "id": "DEMAND_TRIGGER_BLIND_SPOT",
+            "severity": "major"
+          },
+          "confidenceModifier": -5
+        }
+      ],
+      "teachingNote": "Knowing that your customer is a “business owner” or “professional” is useful. Knowing what happened yesterday that made them start searching for help today is often much more actionable."
+    },
+    {
+      "id": "A3",
+      "sectionId": 2,
+      "order": 8,
+      "label": "Lead quality",
+      "prompt": "How often are the leads or prospects reaching you actually a good fit for what you sell?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Most are reasonably well qualified.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "A majority are good fits, although we still receive some poor-fit leads.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "It’s mixed. We spend meaningful time separating strong prospects from weak ones.",
+          "score": 3,
+          "flag": {
+            "id": "LEAD_QUALITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Many are the wrong fit, can’t afford the offer, or need something substantially different.",
+          "score": 2,
+          "flag": {
+            "id": "LEAD_QUALITY_PROBLEM",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We don’t consistently qualify or categorize leads, so we don’t really know.",
+          "score": 1,
+          "flag": {
+            "id": "QUALIFICATION_BLIND_SPOT",
+            "severity": "major"
+          },
+          "confidenceModifier": -5
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "sectionId": 2,
+      "order": 9,
+      "label": "Deeper outcome understanding",
+      "prompt": "How well do you understand what your customer is ultimately trying to accomplish beyond simply buying your product or service?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very well. We understand the larger business, professional, practical, or personal outcome they want.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Fairly well. We understand the main goals, although we could probably go deeper.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We primarily understand the immediate problem we solve.",
+          "score": 3,
+          "flag": {
+            "id": "SURFACE_CUSTOMER_INSIGHT",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not very well. Our understanding is mostly based on the product or service itself.",
+          "score": 2,
+          "flag": {
+            "id": "CUSTOMER_OUTCOME_BLIND_SPOT",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m not sure.",
+          "score": 1,
+          "flag": {
+            "id": "CUSTOMER_OUTCOME_BLIND_SPOT",
+            "severity": "major"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "sectionId": 2,
+      "order": 10,
+      "label": "Audience access",
+      "prompt": "If you needed to put your offer in front of 1,000 ideal prospects, do you know who those people would be and where you could realistically reach them?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We know who they are and have several realistic ways to reach them.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We know who they are, although reaching them predictably could improve.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "We understand the customer but aren’t sure which channels or targeting approaches would reach them efficiently.",
+          "score": 3,
+          "flag": {
+            "id": "DISTRIBUTION_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "We’re not specific enough about the audience to answer confidently.",
+          "score": 2,
+          "flag": {
+            "id": "AUDIENCE_ACCESS_CONSTRAINT",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "Both the audience and the path for reaching them are still unclear.",
+          "score": 1,
+          "flag": {
+            "id": "AUDIENCE_DISTRIBUTION_UNCLEAR",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "M1",
+      "sectionId": 3,
+      "order": 11,
+      "label": "First-impression clarity",
+      "prompt": "Can a new visitor understand the main value you provide within the first few seconds of seeing your website, landing page, ad, or profile?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. The main outcome and value are immediately clear.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. The value becomes clear quickly, although the message could be sharper.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. People generally need to read or explore before fully understanding it.",
+          "score": 3,
+          "flag": {
+            "id": "MESSAGE_CLARITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. Our marketing explains what we do, but the value isn’t immediately obvious.",
+          "score": 2,
+          "flag": {
+            "id": "MESSAGE_CLARITY",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "No. Different pages, campaigns, or people explain the business differently.",
+          "score": 1,
+          "flag": {
+            "id": "MESSAGE_INCONSISTENCY",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "sectionId": 3,
+      "order": 12,
+      "label": "Benefits vs. features",
+      "prompt": "Does your marketing emphasize what changes for the customer, or mostly describe what you provide?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "We strongly emphasize customer outcomes and transformation.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly outcomes, supported by relevant information about features and deliverables.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Roughly equal. We discuss outcomes, but much of the message still focuses on what we do.",
+          "score": 3,
+          "flag": {
+            "id": "FEATURE_HEAVY_MESSAGING",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Mostly features, services, deliverables, credentials, or process.",
+          "score": 2,
+          "flag": {
+            "id": "FEATURE_HEAVY_MESSAGING",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m not sure how to distinguish the two.",
+          "score": 1,
+          "flag": {
+            "id": "BENEFIT_LANGUAGE_BLIND_SPOT",
+            "severity": "major"
+          }
+        }
+      ],
+      "teachingNote": "Features help explain the solution. Benefits help people understand what the solution does for them. Strong marketing usually needs both, but the customer shouldn’t have to translate every feature into personal value."
+    },
+    {
+      "id": "M3",
+      "sectionId": 3,
+      "order": 13,
+      "label": "Customer language",
+      "prompt": "How closely does your marketing language reflect the actual problems, goals, and words your customers use?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very closely. Our messaging is informed by sales conversations, reviews, research, search behavior, or other direct evidence.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Fairly closely. We know the language customers tend to use.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. Our messaging is based partly on customer insight and partly on our assumptions.",
+          "score": 3,
+          "flag": {
+            "id": "CUSTOMER_LANGUAGE_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not much. Most of our copy is written primarily from the company’s perspective.",
+          "score": 2,
+          "flag": {
+            "id": "CUSTOMER_LANGUAGE_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t intentionally researched customer language.",
+          "score": 1,
+          "flag": {
+            "id": "CUSTOMER_LANGUAGE_GAP",
+            "severity": "major"
+          },
+          "confidenceModifier": -5
+        }
+      ],
+      "teachingNote": "Customer conversations can be one of your best copywriting resources. The words customers naturally use to describe problems, ambitions, frustrations, and objections can often communicate more clearly than polished internal terminology."
+    },
+    {
+      "id": "M4",
+      "sectionId": 3,
+      "order": 14,
+      "label": "Differentiation",
+      "prompt": "Can a potential customer quickly understand why they should choose you instead of another reasonable alternative?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. Our differentiation is clear, relevant, and meaningful to the customer.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We have real differentiators, but could communicate them more strongly.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We know we’re different, but explaining exactly why can be difficult.",
+          "score": 3,
+          "flag": {
+            "id": "POSITIONING_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. Our marketing could easily sound similar to competitors.",
+          "score": 2,
+          "flag": {
+            "id": "POSITIONING_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We’re not sure what genuinely differentiates us.",
+          "score": 1,
+          "flag": {
+            "id": "UNDIFFERENTIATED_POSITIONING",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "M5",
+      "sectionId": 3,
+      "order": 15,
+      "label": "Emotional relevance",
+      "prompt": "Does your marketing create a meaningful emotional reason for the customer to care?",
+      "weight": 0.75,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. Our messaging connects clearly to meaningful ambitions, frustrations, fears, desires, identity, or relief.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Somewhat. We use emotional relevance where appropriate, although we could go deeper.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Occasionally. Most of our messaging is practical or informational.",
+          "score": 3,
+          "flag": {
+            "id": "LOW_EMOTIONAL_RELEVANCE",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Rarely. Our marketing primarily explains the product or service.",
+          "score": 2,
+          "flag": {
+            "id": "LOW_EMOTIONAL_RELEVANCE",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m uncomfortable or unsure about how emotion should fit into our marketing.",
+          "score": 1,
+          "flag": {
+            "id": "EMOTIONAL_MESSAGING_UNCERTAINTY",
+            "severity": "opportunity"
+          }
+        }
+      ],
+      "helperText": "Emotion does not mean manipulation. Saving time, reducing frustration, feeling confident, protecting money, creating freedom, avoiding risk, or accomplishing something meaningful are all emotional reasons people care."
+    },
+    {
+      "id": "M6",
+      "sectionId": 3,
+      "order": 16,
+      "label": "Credibility",
+      "prompt": "How much credible evidence supports the important claims you make in your marketing?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "A lot. We regularly use relevant testimonials, reviews, results, case studies, demonstrations, data, associations, or other proof.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Some. We have strong proof but could use it more consistently.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Limited. We have some credibility indicators, but significant claims remain unsupported.",
+          "score": 3,
+          "flag": {
+            "id": "CREDIBILITY_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Very little. Most of our marketing asks people to take our claims at face value.",
+          "score": 2,
+          "flag": {
+            "id": "CREDIBILITY_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We’re new and haven’t built meaningful proof yet.",
+          "score": 1,
+          "flag": {
+            "id": "PROOF_DEFICIT",
+            "severity": "major"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C1",
+      "sectionId": 4,
+      "order": 17,
+      "label": "Next-step clarity",
+      "prompt": "When someone reaches your main conversion page or experience, is the primary action you want them to take immediately clear?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. There is one obvious primary action.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. The primary action is clear, although some competing options exist.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. Visitors can figure it out, but they have to look around.",
+          "score": 3,
+          "flag": {
+            "id": "CTA_CLARITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. There are several possible paths or unclear calls to action.",
+          "score": 2,
+          "flag": {
+            "id": "CTA_CLARITY",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t intentionally designed the experience around one primary action.",
+          "score": 1,
+          "flag": {
+            "id": "CONVERSION_PATH_AMBIGUITY",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "sectionId": 4,
+      "order": 18,
+      "label": "Value timing",
+      "prompt": "How much work does a visitor have to do before they understand why taking the next step is worthwhile?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very little. The value and next step are clear near the beginning.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "A little. The experience provides enough context fairly quickly.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "A moderate amount. Visitors need to read or scroll significantly before understanding the value.",
+          "score": 3,
+          "flag": {
+            "id": "DELAYED_VALUE",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "A lot. Important benefits, proof, or offer details appear relatively late.",
+          "score": 2,
+          "flag": {
+            "id": "DELAYED_VALUE",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m not sure.",
+          "score": 1,
+          "flag": {
+            "id": "VALUE_TIMING_UNKNOWN",
+            "severity": "opportunity"
+          },
+          "confidenceModifier": -5
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "sectionId": 4,
+      "order": 19,
+      "label": "Message continuity",
+      "prompt": "How well does the promise that gets someone to your website or landing page match what they encounter once they arrive?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very closely. The promise, language, offer, and next step feel consistent.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. There are small differences, but the journey remains coherent.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. Different parts of the journey emphasize different things.",
+          "score": 3,
+          "flag": {
+            "id": "MESSAGE_MATCH",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Poorly. Someone can click because of one promise and encounter a noticeably different message afterward.",
+          "score": 2,
+          "flag": {
+            "id": "MESSAGE_MATCH_FAILURE",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t intentionally reviewed the journey this way.",
+          "score": 1,
+          "flag": {
+            "id": "JOURNEY_NOT_AUDITED",
+            "severity": "major"
+          }
+        }
+      ],
+      "teachingNote": "An ad can perform well and still produce poor business results if the experience after the click fails to continue the same promise. Think: Search / Ad / Post → Landing Page → Conversion."
+    },
+    {
+      "id": "C4",
+      "sectionId": 4,
+      "order": 20,
+      "label": "Friction",
+      "prompt": "How much unnecessary friction exists between interest and conversion?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very little. The process is simple and intentional.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Some, but nothing that appears significant.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Moderate. There are several steps we could probably remove or simplify.",
+          "score": 3,
+          "flag": {
+            "id": "CONVERSION_FRICTION",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "A lot. The process is longer or more complicated than it needs to be.",
+          "score": 2,
+          "flag": {
+            "id": "CONVERSION_FRICTION",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t systematically reviewed it.",
+          "score": 1,
+          "flag": {
+            "id": "FUNNEL_NOT_REVIEWED",
+            "severity": "major"
+          }
+        }
+      ],
+      "helperText": "Think about extra clicks, long forms, confusing navigation, account creation, too many fields, unclear pricing, unexpected steps, or unnecessary pages."
+    },
+    {
+      "id": "C5",
+      "sectionId": 4,
+      "order": 21,
+      "label": "Decision-point trust",
+      "prompt": "How strong is the proof or reassurance around the point where you’re asking someone to take action?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Strong. Relevant proof and reassurance are located close to the decision.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Good. We have credible proof, although the placement or strength could improve.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Limited. Proof exists but not necessarily where hesitation happens.",
+          "score": 3,
+          "flag": {
+            "id": "DECISION_TRUST_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Very little.",
+          "score": 2,
+          "flag": {
+            "id": "DECISION_TRUST_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "None yet.",
+          "score": 1,
+          "flag": {
+            "id": "DECISION_TRUST_GAP",
+            "severity": "major"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C6",
+      "sectionId": 4,
+      "order": 22,
+      "label": "Commitment match",
+      "prompt": "How well does your conversion experience match the level of commitment you’re asking from the visitor?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very well. The amount of information, proof, and friction fits the decision.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. The experience is appropriate, with some room for improvement.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We may be asking for too much too quickly or overcomplicating a relatively simple decision.",
+          "score": 3,
+          "flag": {
+            "id": "COMMITMENT_MISMATCH",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Poorly. There is a substantial mismatch between the commitment and the experience.",
+          "score": 2,
+          "flag": {
+            "id": "COMMITMENT_MISMATCH",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m not sure.",
+          "score": 1,
+          "flag": {
+            "id": "COMMITMENT_MATCH_UNKNOWN",
+            "severity": "opportunity"
+          },
+          "confidenceModifier": -5
+        }
+      ]
+    },
+    {
+      "id": "T1",
+      "sectionId": 5,
+      "order": 23,
+      "label": "Funnel-role understanding",
+      "prompt": "Do you know which traffic sources primarily introduce new people to your business versus bringing back people who already know you?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We clearly understand which channels play prospecting, retargeting, branded, referral, organic, or similar roles.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We understand the broad roles, although there is some overlap.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We know where traffic comes from, but not always what role each source plays in the funnel.",
+          "score": 3,
+          "flag": {
+            "id": "FUNNEL_ROLE_BLINDNESS",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. We mostly evaluate individual channels based on their direct conversions.",
+          "score": 2,
+          "flag": {
+            "id": "FUNNEL_ROLE_BLINDNESS",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We don’t currently think about traffic this way.",
+          "score": 1,
+          "flag": {
+            "id": "FUNNEL_ROLE_BLINDNESS",
+            "severity": "major"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T2",
+      "sectionId": 5,
+      "order": 24,
+      "label": "Demand visibility",
+      "prompt": "Do you know whether enough new demand is entering the system to support the conversions and growth you want?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We understand how much new traffic or lead volume enters the funnel and approximately what happens afterward.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We understand the broad flow, although measurement could improve.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We know traffic volumes but not clearly how they translate downstream.",
+          "score": 3,
+          "flag": {
+            "id": "DEMAND_VISIBILITY_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. We mainly focus on final sales or leads.",
+          "score": 2,
+          "flag": {
+            "id": "DEMAND_VISIBILITY_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We don’t currently understand our funnel well enough to answer.",
+          "score": 1,
+          "flag": {
+            "id": "DEMAND_VISIBILITY_GAP",
+            "severity": "major"
+          },
+          "confidenceModifier": -5
+        }
+      ]
+    },
+    {
+      "id": "T3",
+      "sectionId": 5,
+      "order": 25,
+      "label": "Root-cause discipline",
+      "prompt": "When performance changes, how confidently can you determine whether the cause is traffic, the offer, the website, product or merchandising changes, pricing, tracking, follow-up, or something else?",
+      "weight": 1.25,
+      "options": [
+        {
+          "value": "A",
+          "text": "Very confidently. We have enough data and process to investigate across the customer journey.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Fairly confidently. We can usually narrow the cause down.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Sometimes. We identify obvious issues but still rely on assumptions.",
+          "score": 3,
+          "flag": {
+            "id": "ROOT_CAUSE_WEAKNESS",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Poorly. We often blame the channel or campaign because it is the most visible thing.",
+          "score": 2,
+          "flag": {
+            "id": "ROOT_CAUSE_WEAKNESS",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We mostly guess.",
+          "score": 1,
+          "flag": {
+            "id": "REACTIVE_OPTIMIZATION_RISK",
+            "severity": "critical"
+          }
+        }
+      ],
+      "teachingNote": "“The ads are performing worse” describes an observation. It does not automatically identify the cause. Advertising performance can change because of campaigns, pricing, merchandising, website changes, offer changes, tracking, seasonality, customer behavior, or other parts of the system."
+    },
+    {
+      "id": "T4",
+      "sectionId": 5,
+      "order": 26,
+      "label": "Channel strategy",
+      "prompt": "Are your acquisition channels intentionally assigned different roles, or are you expecting every channel to do everything?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. Different channels have clear strategic roles.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We understand that channels contribute differently.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We still compare channels too directly at times.",
+          "score": 3,
+          "flag": {
+            "id": "CHANNEL_ROLE_MISMATCH",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "No. We generally expect each channel to independently generate conversions.",
+          "score": 2,
+          "flag": {
+            "id": "CHANNEL_ROLE_MISMATCH",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We haven’t intentionally designed a channel strategy.",
+          "score": 1,
+          "flag": {
+            "id": "CHANNEL_ROLE_MISMATCH",
+            "severity": "major"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T5",
+      "sectionId": 5,
+      "order": 27,
+      "label": "Testing discipline",
+      "prompt": "When testing campaigns, audiences, creative, offers, or channels, do you usually have enough budget and conversion volume to learn something meaningful without unnecessarily disrupting what already works?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We design tests around realistic budgets, sufficient time, and an existing baseline.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Usually. Most tests are reasonably funded and controlled.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Sometimes. We occasionally spread budget too thin or change too many things.",
+          "score": 3,
+          "flag": {
+            "id": "UNDERPOWERED_TESTING",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Often not. We test many ideas simultaneously with limited budget or make major changes directly to working campaigns.",
+          "score": 2,
+          "flag": {
+            "id": "UNDERPOWERED_TESTING",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "We don’t currently have a structured testing approach.",
+          "score": 1,
+          "flag": {
+            "id": "TESTING_DISCIPLINE_MISSING",
+            "severity": "major"
+          }
+        }
+      ],
+      "teachingNote": "Testing more things does not necessarily mean learning more things. AI and brainstorming tools can help generate many hypotheses cheaply; budget should usually be reserved for the ideas most worth validating in the real world."
+    },
+    {
+      "id": "T6",
+      "sectionId": 5,
+      "order": 28,
+      "label": "Acquisition economics",
+      "prompt": "Do you understand the economics that determine how much you can reasonably afford to spend to acquire a lead or customer?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We understand customer value, margins, close rates, and acceptable acquisition costs.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We have reasonable CPA/CPL targets based on business economics.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Roughly. We rely more on historical averages or benchmarks than a clear economic model.",
+          "score": 3,
+          "flag": {
+            "id": "ACQUISITION_ECONOMICS_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. We mostly judge whether acquisition costs “feel high” or “feel low.”",
+          "score": 2,
+          "flag": {
+            "id": "ACQUISITION_ECONOMICS_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "No. We haven’t calculated this.",
+          "score": 1,
+          "flag": {
+            "id": "ACQUISITION_ECONOMICS_GAP",
+            "severity": "critical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ML1",
+      "sectionId": 6,
+      "order": 29,
+      "label": "North Star KPI clarity",
+      "prompt": "Have you clearly defined the small number of business outcomes that matter most for judging whether marketing is working?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We have a small, clearly defined set of primary business KPIs.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We know the main outcomes, but could formalize them better.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. We track many metrics but don’t always agree on which matter most.",
+          "score": 3,
+          "flag": {
+            "id": "KPI_CLARITY",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. Different people tend to judge performance using different metrics.",
+          "score": 2,
+          "flag": {
+            "id": "KPI_CLARITY",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "No. We mostly look at whichever metrics the platforms show us.",
+          "score": 1,
+          "flag": {
+            "id": "NO_NORTH_STAR",
+            "severity": "critical"
+          }
+        }
+      ],
+      "helperText": "Examples might include revenue, purchases, qualified leads, booked calls, registrations, customer acquisition cost, profit, or lifetime value."
+    },
+    {
+      "id": "ML2",
+      "sectionId": 6,
+      "order": 30,
+      "label": "KPI hierarchy",
+      "prompt": "Do you distinguish between outcome KPIs and diagnostic KPIs?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We intentionally use both and understand their different purposes.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We make this distinction informally.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Sometimes. We tend to mix them together.",
+          "score": 3,
+          "flag": {
+            "id": "METRIC_HIERARCHY_PROBLEM",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Rarely. We often optimize toward whichever metric appears strongest or weakest.",
+          "score": 2,
+          "flag": {
+            "id": "METRIC_HIERARCHY_PROBLEM",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "I’m not sure which metrics belong in each category.",
+          "score": 1,
+          "flag": {
+            "id": "METRIC_HIERARCHY_PROBLEM",
+            "severity": "major"
+          }
+        }
+      ],
+      "teachingNote": "An outcome KPI tells you whether the business got the result that matters. A diagnostic KPI can help explain why that result changed. For example: Revenue → Purchases → Conversion Rate → CTR/CPC."
+    },
+    {
+      "id": "ML3",
+      "sectionId": 6,
+      "order": 31,
+      "label": "KPI operating cadence",
+      "prompt": "Do you maintain a KPI report or dashboard that lets you compare the same important metrics over time?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. It is consistently updated and actively used for decisions.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Yes, although updates or reviews are occasionally inconsistent.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "We have reporting, but it changes frequently or is spread across several tools.",
+          "score": 3,
+          "flag": {
+            "id": "NO_KPI_CADENCE",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. We mostly log into individual platforms when we want to check performance.",
+          "score": 2,
+          "flag": {
+            "id": "NO_KPI_CADENCE",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "No formal KPI reporting exists.",
+          "score": 1,
+          "flag": {
+            "id": "NO_KPI_CADENCE",
+            "severity": "major"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ML4",
+      "sectionId": 6,
+      "order": 32,
+      "label": "Data trust and sources",
+      "prompt": "Does your team agree on where important KPIs come from, which sources should be treated as authoritative, and whether the data is reliable enough to make decisions?",
+      "weight": 1.25,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We have clear sources of truth and regularly validate important tracking.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. There are a few known gaps or areas of ambiguity.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Somewhat. Different platforms frequently show different numbers and we reconcile them manually.",
+          "score": 3,
+          "flag": {
+            "id": "DATA_TRUST_PROBLEM",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Not really. Conflicting numbers or tracking questions regularly create uncertainty.",
+          "score": 2,
+          "flag": {
+            "id": "DATA_TRUST_PROBLEM",
+            "severity": "major"
+          },
+          "confidenceModifier": -5
+        },
+        {
+          "value": "E",
+          "text": "No. We don’t currently trust the data enough to make confident marketing decisions.",
+          "score": 1,
+          "flag": {
+            "id": "DATA_TRUST_CONSTRAINT",
+            "severity": "critical"
+          },
+          "confidenceModifier": -15
+        }
+      ]
+    },
+    {
+      "id": "ML5",
+      "sectionId": 6,
+      "order": 33,
+      "label": "Closed-loop measurement",
+      "prompt": "Can you connect marketing activity to meaningful downstream business outcomes?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We can connect acquisition to meaningful downstream outcomes.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Mostly. We can do this for our most important channels or offers.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Partially. We capture the initial conversion but lose visibility later in the journey.",
+          "score": 3,
+          "flag": {
+            "id": "CLOSED_LOOP_GAP",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Poorly. Marketing data and sales/customer data are mostly separate.",
+          "score": 2,
+          "flag": {
+            "id": "CLOSED_LOOP_GAP",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "Not at all.",
+          "score": 1,
+          "flag": {
+            "id": "CLOSED_LOOP_GAP",
+            "severity": "critical"
+          }
+        }
+      ],
+      "helperText": "For example: Did the lead become qualified? Did the booked call close? Did the free trial become a customer? Did the customer purchase again?"
+    },
+    {
+      "id": "ML6",
+      "sectionId": 6,
+      "order": 34,
+      "label": "Learning process",
+      "prompt": "When performance changes, do you have a consistent process for reviewing the data, recent changes, and customer journey before making major marketing decisions?",
+      "weight": 1.0,
+      "options": [
+        {
+          "value": "A",
+          "text": "Yes. We review business outcomes, diagnostic KPIs, tracking, recent changes, and the broader funnel before acting.",
+          "score": 5
+        },
+        {
+          "value": "B",
+          "text": "Usually. We have a general troubleshooting process.",
+          "score": 4
+        },
+        {
+          "value": "C",
+          "text": "Sometimes. The depth of analysis depends on the situation.",
+          "score": 3,
+          "flag": {
+            "id": "REACTIVE_OPTIMIZATION",
+            "severity": "opportunity"
+          }
+        },
+        {
+          "value": "D",
+          "text": "Rarely. We often react to the most visible metric first.",
+          "score": 2,
+          "flag": {
+            "id": "REACTIVE_OPTIMIZATION",
+            "severity": "major"
+          }
+        },
+        {
+          "value": "E",
+          "text": "No. Performance changes usually trigger immediate tactical changes without a consistent diagnostic process.",
+          "score": 1,
+          "flag": {
+            "id": "NO_LEARNING_PROCESS",
+            "severity": "major"
+          }
+        }
+      ]
+    }
+  ]
+}
