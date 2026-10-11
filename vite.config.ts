@@ -13,8 +13,9 @@ export default defineConfig({
       name: "strategy-sprint-metadata",
       enforce: "post",
       transformIndexHtml(html, context) {
-        const result = pageMetadataHtml(html, context.path.split('?')[0]);
-        return context.path.startsWith('/audit/') ? privateAuditHtml(result) : result;
+        const pathname = (context.originalUrl ?? context.path).split('?')[0];
+        const result = pageMetadataHtml(html, pathname);
+        return pathname.startsWith('/audit/') ? privateAuditHtml(result) : result;
       },
       generateBundle(_options, bundle) {
         const index = bundle["index.html"];
