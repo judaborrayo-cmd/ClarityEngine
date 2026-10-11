@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { OfferPreview } from "./about";
 import { strategySprintOffer as sprint } from "@shared/strategy-sprint-offer";
@@ -12,7 +11,7 @@ const options = [
   { id: "retainer", title: "Growth Retainer", summary: "Continuing help with paid media, conversion optimization, measurement, and growth strategy." },
 ];
 export default function WaysToWorkTogether() {
-  useEffect(() => { document.title = "Ways to Work Together — Draft | Clarity Engine"; const robots=document.createElement("meta"); robots.name="robots"; robots.content="noindex, nofollow"; document.head.appendChild(robots); return () => robots.remove(); }, []);
+
   return <main className="founder-page ways-page">
     <section className="founder-wrap ways-hero"><p className="ways-draft">Draft preview · page in development</p><p className="founder-eyebrow">Ways to work together</p><h1>Choose the support that fits <em>where you are.</em></h1><p className="founder-lead">Start with a clearer picture of your marketing, work through a specific challenge together, or explore ongoing support for your growth.</p><div className="founder-actions"><a href="#options" className="founder-button">Explore your options ↓</a><span className="ways-note">Choose one useful next step.</span></div></section>
     <section id="options" className="founder-wrap founder-section"><p className="founder-eyebrow">Find your starting point</p><h2>Different needs. <em>Different ways forward.</em></h2><div className="ways-options">{options.map((option,i)=><a className="ways-option" key={option.id} href={`#${option.id}`}><span className="founder-eyebrow">0{i+1} · {i<2?'Available':'Draft'}</span><h3>{option.title}</h3><p>{option.summary}</p><span className="founder-link">See this option ↓</span></a>)}</div></section>

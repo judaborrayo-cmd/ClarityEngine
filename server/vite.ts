@@ -5,6 +5,7 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
+import { publicPagePaths, pageHtmlFile } from "../shared/page-metadata";
 
 const viteLogger = createLogger();
 
@@ -78,6 +79,10 @@ export function serveStatic(app: Express) {
 
   app.use(express.static(distPath));
   app.get('/audit/*', (_req, res) => { res.sendFile(path.resolve(distPath, 'audit-private.html')); });
+
+  for (const route of publicPagePaths.filter(p => p !== '/')) {
+    app.get(route, (_req, res) => res.sendFile(path.resolve(distPath, pageHtmlFile(route))));
+  }
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
