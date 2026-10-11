@@ -26,7 +26,7 @@ test('sales draft is responsive, respects reduced motion, and hands off to isola
   await page.locator('video').evaluate((v: HTMLVideoElement) => new Promise<void>(resolve => { v.addEventListener('seeked', () => resolve(), { once: true }); v.currentTime = Math.max(0, v.duration - 0.1); }));
   await page.locator('video').scrollIntoViewIfNeeded();
   await page.screenshot({ path: testInfo.outputPath('video-ending.png') });
-  await page.getByRole('button', { name: 'Get Clarity Assessment — $27' }).first().click();
+  await page.getByRole('button', { name: 'Get My Clarity Assessment — $27' }).first().click();
   await expect(page.getByRole('heading', { name: 'Tell us about your business' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Get Clarity Assessment');
   await page.goto('/checkout/audit');

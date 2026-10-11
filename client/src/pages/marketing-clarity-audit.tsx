@@ -54,7 +54,7 @@ export default function MarketingClarityAudit() {
       window.location.assign(checkout.url);
     } catch (e) { setError((e as Error).message); setBusy(false); }
   }
-  const cta = <Button onClick={purchase} disabled={busy} className="gca-cta">{busy ? "Opening checkout…" : "Get Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
+  const cta = <Button onClick={purchase} disabled={busy} className="gca-cta">{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
   return <main className="gca-page">
     <section className="gca-hero gca-wrap">
       <div>

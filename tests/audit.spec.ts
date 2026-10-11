@@ -42,7 +42,7 @@ test("paid audit, validation, teaching insight, save retry, Back/edit, resume, f
     fullPage: true,
   });
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -263,10 +263,10 @@ test("private-link error, keyboard focus, and existing checkout regression", asy
   await expect(page.getByRole("alert")).toContainText("invalid");
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .focus();
   await expect(
-    page.getByRole("button", { name: "Get Clarity Assessment — $27" }).first(),
+    page.getByRole("button", { name: "Get My Clarity Assessment — $27" }).first(),
   ).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(
@@ -298,7 +298,7 @@ test("purchase initialization, report generation and report retrieval recover wi
     } else await route.continue();
   });
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(page.getByRole("alert")).toContainText("initialization");
   await page.getByRole("button", { name: "Retry", exact: true }).click();
@@ -470,7 +470,7 @@ test("website field is required, gray, and accepts all supported address formats
   ]) {
     await page.goto("/marketing-clarity-audit");
     await page
-      .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+      .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
       .click();
     await expect(
       page.getByRole("heading", { name: "Tell us about your business" }),
@@ -524,7 +524,7 @@ test("included retake preserves Report 1, resumes Run 2, locks identity and stop
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -739,7 +739,7 @@ test("personalized report presentation and focused Work Session autosave, retry 
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -898,7 +898,7 @@ test("private workspace restores notes without cookies, reviews frozen answers a
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -1107,7 +1107,7 @@ test("action checklist persists per frozen report, clear teaching content and re
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -1315,7 +1315,7 @@ test("Message snapshot orients a strong upstream profile without changing the fr
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -1368,7 +1368,7 @@ test("Traffic P13 actions and decision prompts save separately from legacy notes
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
@@ -1524,7 +1524,7 @@ test("Measurement report teaches the category and observable progress with expla
 }, testInfo) => {
   await page.goto("/marketing-clarity-audit");
   await page
-    .getByRole("button", { name: "Get Clarity Assessment — $27" }).first()
+    .getByRole("button", { name: "Get My Clarity Assessment — $27" }).first()
     .click();
   await expect(
     page.getByRole("heading", { name: "Tell us about your business" }),
