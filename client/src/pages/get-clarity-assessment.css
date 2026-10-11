@@ -12,3 +12,17 @@
 @media (prefers-reduced-motion: reduce) {
   .gca-cta { animation: none; }
 }
+
+@media (max-width: 767px) {
+  .gca-hero { padding-top: 22px; padding-bottom: 30px; gap: 16px; }
+  .gca-hero > div:first-child, .gca-hero .gca-actions { display: contents; }
+  .gca-hero .gca-eyebrow { order: 1; margin: 0; font-size: 11px; }
+  .gca-hero .gca-eyebrow span { display: none; }
+  .gca-hero h1 { order: 2; font-size: 40px; }
+  .gca-hero .gca-lead { order: 3; margin: 0; font-size: 16px; line-height: 1.5; }
+  .gca-hero .gca-cta { order: 4; width: 100%; }
+  .gca-hero .gca-video-panel { order: 5; }
+  .gca-hero .gca-small { order: 6; margin: 0; text-align: center; font-size: 12px; }
+  .gca-hero .gca-secondary { order: 7; width: auto; justify-self: center; border: 0; background: none; padding: 0; text-decoration: underline; text-underline-offset: 4px; }
+  .gca-hero [role="alert"] { order: 8; }
+}
