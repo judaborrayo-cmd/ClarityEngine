@@ -42,7 +42,7 @@
     }
   ],
   "functions": {
-    "api/audit.ts": {
+    "api/audit.js": {
       "includeFiles": "server/audit/pdf-assets/**",
       "maxDuration": 60
     }

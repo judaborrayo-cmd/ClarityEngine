@@ -10,3 +10,5 @@ server-dist
 test-results
 playwright-report
 tmp/pdfs
+
+server/audit/runtime.mjs
