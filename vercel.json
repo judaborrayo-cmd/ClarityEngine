@@ -43,7 +43,7 @@
   ],
   "functions": {
     "api/audit.js": {
-      "includeFiles": "server/audit/pdf-assets/**",
+      "includeFiles": "{server/audit/pdf-assets/**,node_modules/pdfkit/js/standard-fonts/**}",
       "maxDuration": 60
     }
   }
