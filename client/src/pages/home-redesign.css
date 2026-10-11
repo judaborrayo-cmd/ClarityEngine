@@ -13,7 +13,7 @@
 .home-booking-note { margin-top: 18px; color: #586679; font-size: 12px; line-height: 1.6; }
 .home-hero-visual { min-width: 0; padding-left: 12px; }
 .home-hero-media { aspect-ratio: 16/9; position: relative; overflow: hidden; border-radius: 27px; background: #eafaf1; box-shadow: 0 18px 50px #264d4423; border: 1px solid #e0eee7; }
-.home-hero-media img, .home-hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.home-hero-media img, .home-hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .home-hero-media video { opacity: 0; transition: opacity .35s; }
 .home-hero-media[data-playing="true"] video { opacity: 1; }
 .home-motion-toggle { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px; align-items: center; background: #ffffffed; color: #263b34; border: 1px solid #d6e7dd; border-radius: 8px; padding: 8px 10px; font-size: 11px; }
