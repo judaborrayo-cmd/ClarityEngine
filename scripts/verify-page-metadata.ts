@@ -17,6 +17,7 @@ for(const path of publicPagePaths){
  assert.equal((html.match(/<title\b/g)??[]).length,1);
  if(!m.noindex)assert.equal(tags.has('robots'),false);
  const image=await resource(new URL(m.image).pathname);if(base)assert.match(image.type,/image\/jpeg/);const info=await sharp(image.bytes).metadata();assert.equal(info.format,'jpeg');assert.equal(info.width,1200);assert.equal(info.height,630);
+ if(base && path!=='/'){const trailing=await resource(path+'/');assert.ok(trailing.bytes.toString().includes(`<title>${m.title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}</title>`),'Trailing slash '+path);}
  console.log('PASS',path);
 }
 for(const path of ['/images/clarity-engine-favicon.png','/images/apple-touch-icon.png']){const r=await resource(path);assert.equal((await sharp(r.bytes).metadata()).format,'png');if(base)assert.match(r.type,/image\/png/);}

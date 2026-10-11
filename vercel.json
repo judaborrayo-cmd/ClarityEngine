@@ -14,7 +14,15 @@
       "destination": "/pages/about.html"
     },
     {
+      "source": "/about/",
+      "destination": "/pages/about.html"
+    },
+    {
       "source": "/marketing-clarity-assesment",
+      "destination": "/pages/marketing-clarity-assesment.html"
+    },
+    {
+      "source": "/marketing-clarity-assesment/",
       "destination": "/pages/marketing-clarity-assesment.html"
     },
     {
@@ -22,7 +30,15 @@
       "destination": "/pages/strategy-sprint.html"
     },
     {
+      "source": "/strategy-sprint/",
+      "destination": "/pages/strategy-sprint.html"
+    },
+    {
       "source": "/checkout/strategy-sprint",
+      "destination": "/pages/checkout/strategy-sprint.html"
+    },
+    {
+      "source": "/checkout/strategy-sprint/",
       "destination": "/pages/checkout/strategy-sprint.html"
     },
     {
@@ -30,7 +46,15 @@
       "destination": "/pages/services.html"
     },
     {
+      "source": "/services/",
+      "destination": "/pages/services.html"
+    },
+    {
       "source": "/case-studies",
+      "destination": "/pages/case-studies.html"
+    },
+    {
+      "source": "/case-studies/",
       "destination": "/pages/case-studies.html"
     },
     {
@@ -38,7 +62,15 @@
       "destination": "/pages/testimonials.html"
     },
     {
+      "source": "/testimonials/",
+      "destination": "/pages/testimonials.html"
+    },
+    {
       "source": "/growth-clarity-audit",
+      "destination": "/pages/growth-clarity-audit.html"
+    },
+    {
+      "source": "/growth-clarity-audit/",
       "destination": "/pages/growth-clarity-audit.html"
     },
     {
@@ -46,7 +78,15 @@
       "destination": "/pages/checkout/audit.html"
     },
     {
+      "source": "/checkout/audit/",
+      "destination": "/pages/checkout/audit.html"
+    },
+    {
       "source": "/steven",
+      "destination": "/pages/steven.html"
+    },
+    {
+      "source": "/steven/",
       "destination": "/pages/steven.html"
     },
     {
@@ -54,7 +94,15 @@
       "destination": "/pages/case-study/hapi-art.html"
     },
     {
+      "source": "/case-study/hapi-art/",
+      "destination": "/pages/case-study/hapi-art.html"
+    },
+    {
       "source": "/case-study/lamark-agency",
+      "destination": "/pages/case-study/lamark-agency.html"
+    },
+    {
+      "source": "/case-study/lamark-agency/",
       "destination": "/pages/case-study/lamark-agency.html"
     },
     {
@@ -62,7 +110,15 @@
       "destination": "/pages/case-study/mandali-retreats.html"
     },
     {
+      "source": "/case-study/mandali-retreats/",
+      "destination": "/pages/case-study/mandali-retreats.html"
+    },
+    {
       "source": "/case-study/powers-gymnastics",
+      "destination": "/pages/case-study/powers-gymnastics.html"
+    },
+    {
+      "source": "/case-study/powers-gymnastics/",
       "destination": "/pages/case-study/powers-gymnastics.html"
     },
     {
@@ -70,7 +126,15 @@
       "destination": "/pages/case-study/core-40.html"
     },
     {
+      "source": "/case-study/core-40/",
+      "destination": "/pages/case-study/core-40.html"
+    },
+    {
       "source": "/case-study/fitness-roi",
+      "destination": "/pages/case-study/fitness-roi.html"
+    },
+    {
+      "source": "/case-study/fitness-roi/",
       "destination": "/pages/case-study/fitness-roi.html"
     },
     {
@@ -78,7 +142,15 @@
       "destination": "/pages/case-study/steel-fit-usa.html"
     },
     {
+      "source": "/case-study/steel-fit-usa/",
+      "destination": "/pages/case-study/steel-fit-usa.html"
+    },
+    {
       "source": "/case-study/lisa-nichols",
+      "destination": "/pages/case-study/lisa-nichols.html"
+    },
+    {
+      "source": "/case-study/lisa-nichols/",
       "destination": "/pages/case-study/lisa-nichols.html"
     },
     {
@@ -86,7 +158,15 @@
       "destination": "/pages/checkout/strategy-sprint/thank-you.html"
     },
     {
+      "source": "/checkout/strategy-sprint/thank-you/",
+      "destination": "/pages/checkout/strategy-sprint/thank-you.html"
+    },
+    {
       "source": "/checkout/audit/thank-you",
+      "destination": "/pages/checkout/audit/thank-you.html"
+    },
+    {
+      "source": "/checkout/audit/thank-you/",
       "destination": "/pages/checkout/audit/thank-you.html"
     },
     {
@@ -94,7 +174,15 @@
       "destination": "/pages/checkout/audit/onboarding-confirmed.html"
     },
     {
+      "source": "/checkout/audit/onboarding-confirmed/",
+      "destination": "/pages/checkout/audit/onboarding-confirmed.html"
+    },
+    {
       "source": "/ways-to-work-together",
+      "destination": "/not-found.html"
+    },
+    {
+      "source": "/ways-to-work-together/",
       "destination": "/not-found.html"
     },
     {
