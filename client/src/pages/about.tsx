@@ -1,6 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./about-founder.css";
+
+
+const offerMedia = [
+  { src: "/videos/get-clarity-assessment-ping-pong.mp4", poster: "/videos/get-clarity-assessment-poster.webp", loop: true },
+  { src: "/videos/strategy-sprint-hero.mp4", poster: "/videos/strategy-sprint-hero-poster.webp", loop: false },
+  { src: "/videos/clarity-engine-hero-new.mp4", poster: "/videos/clarity-hero-poster.jpg", loop: true },
+];
+function OfferPreview({ index, title }: { index: number; title: string }) {
+  const video = useRef<HTMLVideoElement>(null);
+  const manuallyPaused = useRef(false);
+  const [playing, setPlaying] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const media = offerMedia[index];
+  useEffect(() => {
+    const element = video.current;
+    if (!element) return;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let visible = false;
+    const sync = () => {
+      if (!visible || preference.matches || manuallyPaused.current || element.ended) element.pause();
+      else void element.play().catch(() => setPlaying(false));
+    };
+    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }, { threshold: 0.25 });
+    observer.observe(element); preference.addEventListener("change", sync);
+    return () => { observer.disconnect(); preference.removeEventListener("change", sync); element.pause(); };
+  }, []);
+  async function toggle() {
+    const element = video.current;
+    if (!element) return;
+    if (!element.paused) { manuallyPaused.current = true; element.pause(); }
+    else { manuallyPaused.current = false; if (element.ended) element.currentTime = 0; try { await element.play(); } catch { setPlaying(false); } }
+  }
+  return <div className="founder-offer-preview">
+    {failed ? <img src={media.poster} alt={`${title} preview`} loading="lazy" width="1280" height="720" /> : <video ref={video} muted playsInline loop={media.loop} preload="none" poster={media.poster} aria-label={`${title} animation preview`} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setFailed(true)}><source src={media.src} type="video/mp4" /></video>}
+    {!failed && <button type="button" onClick={toggle} aria-label={`${playing ? "Pause" : "Play"} ${title} preview`}>{playing ? "Pause" : "Play"}<span aria-hidden="true"> {playing ? "Ⅱ" : "▷"}</span></button>}
+  </div>;
+}
 
 export default function About() {
   useEffect(() => {
@@ -27,6 +64,6 @@ export default function About() {
       ["Get Clarity Assessment", "A self-guided starting point to examine six essential marketing areas and identify where to focus next.", "Explore the assessment", "/marketing-clarity-assesment"],
       ["30-Day Growth Strategy Sprint", "Three live sessions to work through your priorities, solve practical problems, and leave with clearer next actions.", "Explore the Strategy Sprint", "/strategy-sprint"],
       ["Ongoing growth support", "For businesses looking for continuing help with paid media, CRO, measurement, and growth strategy.", "Explore services", "/services"],
-    ].map(([title,body,label,to],i) => <article key={to}><span className="founder-eyebrow">0{i+1}</span><h3>{title}</h3><p>{body}</p><Link to={to} className="founder-link">{label} →</Link></article>)}</div></section>
+    ].map(([title,body,label,to],i) => <article key={to}><span className="founder-eyebrow">0{i+1}</span><h3>{title}</h3><OfferPreview index={i} title={title} /><p>{body}</p><Link to={to} className="founder-link">{label} →</Link></article>)}</div></section>
   </main>;
 }
