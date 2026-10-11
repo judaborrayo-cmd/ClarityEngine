@@ -12,6 +12,7 @@ import CaseStudies from "@/pages/case-studies";
 import CaseStudyDetail from "@/pages/case-study-detail";
 import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import About from "@/pages/about";
+import WaysToWorkTogether from "@/pages/ways-to-work-together";
 import Testimonials from "@/pages/testimonials";
 import CheckoutAudit from "@/pages/checkout-audit";
 import CheckoutAuditOnboardingConfirmed from "@/pages/checkout-audit-onboarding-confirmed";
@@ -69,7 +70,7 @@ function Router() {
   useStrategySprintMetadata(location.pathname);
   const isHome = location.pathname === "/";
   // Public marketing layout only; checkout, embedded, and private flows stay focused.
-  const footerPages = ["/", "/services", "/case-studies", "/about", "/marketing-clarity-assesment", "/strategy-sprint", "/growth-clarity-audit", "/testimonials"];
+  const footerPages = ["/", "/services", "/case-studies", "/about", "/marketing-clarity-assesment", "/strategy-sprint", "/growth-clarity-audit", "/testimonials", "/ways-to-work-together"];
   const showFooter = footerPages.includes(location.pathname) || location.pathname.startsWith("/case-study/");
 
   useEffect(() => {
@@ -166,6 +167,7 @@ function Router() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="/about" element={<About />} />
+          {import.meta.env.DEV && <Route path="/ways-to-work-together" element={<WaysToWorkTogether />} />}
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/steven" element={<Steven />} />
           <Route path="*" element={<NotFound />} />

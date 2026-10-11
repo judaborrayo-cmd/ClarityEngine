@@ -9,7 +9,7 @@ const offerMedia = [
   { src: "/videos/strategy-sprint-hero.mp4", poster: "/videos/strategy-sprint-hero-poster.webp", loop: false },
   { src: "/videos/clarity-engine-hero-new.mp4", poster: "/videos/clarity-hero-poster.jpg", loop: true },
 ];
-function OfferPreview({ index, title }: { index: number; title: string }) {
+export function OfferPreview({ index, title }: { index: number; title: string }) {
   const video = useRef<HTMLVideoElement>(null);
   const manuallyPaused = useRef(false);
   const [playing, setPlaying] = useState(false);
