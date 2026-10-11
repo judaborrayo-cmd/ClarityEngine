@@ -12,7 +12,8 @@ import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
-import heroImage from "@assets/clarity-growth-verticals-dashboard-hero.png";
+import HeroMotion from "@/components/HeroMotion";
+import "./home-redesign.css";
 import scaleRoadmapImage from "@assets/from-insight-to-scale-roadmap.png";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -78,33 +79,6 @@ function ProgressBar() {
   );
 }
 
-// Rotating Word Component
-function RotatingWord({ words }: { words: string[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsVisible(false);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % words.length);
-        setIsVisible(true);
-      }, 300);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [words.length]);
-
-  return (
-    <span 
-      className={`inline-block font-semibold text-green-600 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-      data-testid="rotating-word"
-    >
-      {words[currentIndex]}
-    </span>
-  );
-}
-
 const Section = ({ id, className = "", children }: { id: string; className?: string; children: React.ReactNode }) => (
   <section id={id} className={`w-full px-4 sm:px-6 lg:px-8 ${className}`}>
     {children}
@@ -129,18 +103,6 @@ const SecondaryButton = ({ href = "#", children, testId }: { href?: string; chil
   >
     {children}
   </a>
-);
-
-const Badge = ({ children, isActive = false }: { children: React.ReactNode; isActive?: boolean }) => (
-  <span
-    className={`hero-proof-pill inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium backdrop-blur ${
-      isActive
-        ? "hero-proof-pill-active border-green-300 bg-green-50 text-green-800"
-        : "border-green-200 bg-green-50/60 text-green-700"
-    }`}
-  >
-    {children}
-  </span>
 );
 
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -257,6 +219,32 @@ const heroProofPoints = [
 ];
 
 // --- TESTIMONIAL COMPONENT ---
+const PartnerCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
+  <motion.div
+    initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : delay }}
+    whileHover={shouldReduceMotion ? {} : { y: -4, transition: { duration: 0.3 } }}
+    className="home-partner-card"
+  >
+    <Quote className="home-partner-quote" aria-hidden="true" />
+    <blockquote className="home-partner-review">{testimonial.review}</blockquote>
+    <div className="home-partner-attribution">
+      <img
+        src={testimonial.avatar}
+        alt={testimonial.name}
+        className="w-12 h-12 rounded-full object-cover" loading="lazy" width="48" height="48"
+      />
+      <div>
+        <p className="font-semibold text-base">{testimonial.name}</p>
+        <p className="text-sm text-gray-600 mt-0.5">{testimonial.title}</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+// --- TESTIMONIAL COMPONENT ---
 const TestimonialCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
   <motion.div 
     initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -284,18 +272,6 @@ const TestimonialCard = ({ testimonial, delay = 0, shouldReduceMotion = false }:
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion() ?? false;
-  const [activeProofIndex, setActiveProofIndex] = useState(0);
-
-  useEffect(() => {
-    if (shouldReduceMotion) return;
-
-    const interval = window.setInterval(() => {
-      setActiveProofIndex((current) => (current + 1) % heroProofPoints.length);
-    }, 2500);
-
-    return () => window.clearInterval(interval);
-  }, [shouldReduceMotion]);
-  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -314,98 +290,39 @@ export default function Home() {
       <ProgressBar />
       <main className="relative min-h-screen overflow-x-hidden bg-white text-gray-900">
         {/* --- HERO --- */}
-        <Section id="hero" className="pt-36 pb-24 md:pt-28 lg:pt-32 lg:pb-32 relative overflow-hidden">
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-green-50 opacity-40" />
-          {!shouldReduceMotion ? (
-            <motion.div 
-              className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-green-400/10"
-              animate={{ 
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{ 
-                duration: 15,
-                ease: "linear",
-                repeat: Infinity 
-              }}
-              style={{ backgroundSize: "200% 200%" }}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-green-400/10" />
-          )}
-          
-          <div className="relative mx-auto max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Left: Content */}
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut" }}
-                className="text-center lg:text-left"
-              >
-                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-6xl text-gray-900 leading-[1.15]" style={{ letterSpacing: "-0.02em" }} data-testid="hero-title">
-                  Scaling Ambitious Brands with <span className="bg-gradient-to-r from-green-500 via-green-600 to-green-500 bg-clip-text text-transparent">ROI-Driven</span> Paid Media & Growth Strategy
+        <Section id="hero" className="home-redesign-hero">
+          <div className="home-hero-shell">
+            <div className="home-hero-grid">
+              <div className="home-hero-copy">
+                <p className="home-eyebrow">Grow smarter. Go further.</p>
+                <h1 data-testid="hero-title">
+                  Scaling Ambitious Brands with <span>Paid Media</span> &amp; Growth Strategy
                 </h1>
-                <p className="mt-8 text-xl leading-[1.7] text-gray-600 font-normal" data-testid="hero-description">
-                  We help founders and teams grow without wasting money on vanity metrics, cookie-cutter campaigns, or broken tracking. Bringing clarity to every <RotatingWord words={["Campaign", "Account", "Region", "Vertical", "Challenge", "Paid Media Channel", "Agency", "Client", "Team", "Partnership"]} />.
+                <p className="home-hero-description" data-testid="hero-description">
+                  We help founders and teams grow with clarity, better tracking, and smarter growth strategy, so you can scale what works and stop guessing.
                 </p>
-
-                <motion.div
-                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.2 }}
-                >
-                  <HeroCTAs />
-                </motion.div>
-
-                {/* Microproof row */}
-                <motion.div
-                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.4 }}
-                  className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2" 
-                  data-testid="hero-badges"
-                >
-                  {heroProofPoints.map((proofPoint, index) => (
-                    <Badge key={proofPoint} isActive={index === activeProofIndex}>
-                      {proofPoint}
-                    </Badge>
-                  ))}
-                </motion.div>
-                <motion.div
-                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.5 }}
-                  className="mt-5"
-                >
-                  <p className="text-sm text-gray-500 leading-relaxed">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
-                </motion.div>
-              </motion.div>
-
-              {/* Right: Hero Image */}
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.3 }}
-                className="relative lg:-mx-6 xl:-mx-10"
-              >
-                <div className="relative rounded-3xl overflow-hidden shadow-xl ring-1 ring-gray-900/5">
-                  <img 
-                    src={heroImage}
-                    alt="Clarity Engine growth dashboard showing results across travel, fitness, luxury, and education brands"
-                    className="w-full h-auto object-contain"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-                </div>
-                {/* Decorative gradient glow */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-purple-400/20 to-green-400/20 blur-3xl -z-10" />
-              </motion.div>
+                <HeroCTAs />
+                <p className="home-booking-note">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
+              </div>
+              <HeroMotion />
+            </div>
+            <div className="home-credibility" data-testid="hero-badges" aria-label="Experience and credibility">
+              <div className="home-proof-metrics">
+                {[0, 1, 3].map((index) => (
+                  <p key={heroProofPoints[index]}>{heroProofPoints[index]}</p>
+                ))}
+              </div>
+              <div className="home-proof-details">
+                {[2, 4].map((index) => (
+                  <p key={heroProofPoints[index]}>{heroProofPoints[index]}</p>
+                ))}
+              </div>
             </div>
           </div>
         </Section>
 
         {/* --- TESTIMONIALS AFTER HERO --- */}
-        <Section id="testimonials-hero" className="py-16 lg:py-20 bg-gray-50">
+        <Section id="testimonials-hero" className="home-partners">
           <div className="mx-auto max-w-6xl">
             <motion.div
               initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -421,9 +338,10 @@ export default function Home() {
                 Trusted by marketing professionals and industry leaders
               </p>
             </motion.div>
-            <div className="grid md:grid-cols-2 gap-8">
-              <TestimonialCard testimonial={testimonials[4]} delay={0.1} shouldReduceMotion={shouldReduceMotion} />
-              <TestimonialCard testimonial={testimonials[2]} delay={0.2} shouldReduceMotion={shouldReduceMotion} />
+            <div className="home-partner-grid">
+              {testimonials.map((testimonial) => (
+                <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />
+              ))}
             </div>
           </div>
         </Section>
