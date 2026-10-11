@@ -82,7 +82,7 @@ export default function ProblemsTicker() {
             <ul className="problems-static flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={`${cat} problems`}>{data[cat].map(text=><li key={text} className={`font-medium ${colors[cat].text}`}>{text}</li>)}</ul>
           </div>
           <div className="flex shrink-0 items-center justify-end gap-3 self-end sm:self-center">
-            <button type="button" className={`problems-pause text-xs underline underline-offset-4 rounded ${colors[cat].light} ${focus}`} onClick={()=>setPaused(!paused)} aria-label={paused ? 'Resume problems ticker' : 'Pause problems ticker'}>{paused ? 'Resume' : 'Pause'}</button>
+            <button type="button" className={`problems-pause px-1 py-1 text-xs underline underline-offset-4 rounded ${colors[cat].light} ${focus}`} onClick={()=>setPaused(!paused)} aria-label={paused ? 'Resume problems ticker' : 'Pause problems ticker'}>{paused ? 'Resume' : 'Pause'}</button>
             <button type="button" aria-expanded={expanded} aria-controls={contentId} onClick={()=>setExpanded(!expanded)} className={`text-sm font-medium rounded px-1 py-1 ${colors[cat].light} ${focus}`}>{expanded ? 'Ignore problems' : 'We help with…'}</button>
           </div>
         </div>
