@@ -12,7 +12,7 @@ Homepage credentials reused: 12+ years in paid media/growth strategy and $5M+ ma
 
 ## Media and open needs
 
-Temporary approved homepage asset: /videos/clarity-engine-hero-new.mp4 with /videos/clarity-hero-poster.jpg. This illustrates broader Clarity Engine strategy, not Sprint deliverables. Replace the sprintMedia configuration at the top of client/src/pages/strategy-sprint.tsx with the final local MP4/poster. Loop is false pending verification of a clean loop. Playback is muted inline, with an explicit keyboard-accessible pause button, reduced-motion support, and poster fallback.
+Approved sorting animation saved durably as /videos/strategy-sprint-hero.mp4 (an exact copy of the supplied MP4), with /videos/strategy-sprint-hero-poster.webp extracted from its first frame. Playback remains muted inline with the existing pause/play control, reduced-motion support, and poster fallback. Loop is false: after one playback it stops; pressing Play restarts it. Homepage and assessment media are unchanged. Desktop, tablet, and mobile playback/replay checks pass. No deployment.
 
 Existing thank-you scheduling URL remains a placeholder. The new page accurately says times are arranged together; no instant booking promise or new scheduling link was added. No between-session support promised.
 

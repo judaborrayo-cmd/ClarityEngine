@@ -4,8 +4,8 @@ import { ArrowRight, Check, Pause, Play, ShieldCheck } from "lucide-react";
 import { strategySprintOffer as offer, strategySprintBenefits } from "@shared/strategy-sprint-offer";
 import "./strategy-sprint.css";
 
-// Temporary approved homepage media. Replace with the Sprint MP4/poster when ready.
-const sprintMedia = { src: "/videos/clarity-engine-hero-new.mp4", poster: "/videos/clarity-hero-poster.jpg", loop: false };
+// Approved Sprint sorting animation: play once, with optional replay.
+const sprintMedia = { src: "/videos/strategy-sprint-hero.mp4", poster: "/videos/strategy-sprint-hero-poster.webp", loop: false };
 function SprintMedia() {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
