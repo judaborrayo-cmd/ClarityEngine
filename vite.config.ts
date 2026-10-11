@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-import { strategySprintHtml } from "./shared/strategy-sprint-metadata";
+import { pageMetadataHtml, publicPagePaths, pageHtmlFile } from "./shared/page-metadata";
 import { privateAuditHtml } from './shared/marketing-clarity-audit/private-html';
 
 export default defineConfig({
@@ -13,25 +13,18 @@ export default defineConfig({
       name: "strategy-sprint-metadata",
       enforce: "post",
       transformIndexHtml(html, context) {
-        if (context.path.startsWith('/audit/')) return privateAuditHtml(html);
-        return strategySprintHtml(html, context.path.split("?")[0]);
+        const result = pageMetadataHtml(html, context.path.split('?')[0]);
+        return context.path.startsWith('/audit/') ? privateAuditHtml(result) : result;
       },
       generateBundle(_options, bundle) {
         const index = bundle["index.html"];
         if (!index || index.type !== "asset") {
           this.error("Strategy Sprint metadata requires the built index.html asset.");
         }
-        this.emitFile({ type: 'asset', fileName: 'audit-private.html', source: privateAuditHtml(String(index.source)) });
-        for (const [pathname, fileName] of [
-          ["/about", "about.html"],
-          ["/checkout/strategy-sprint", "strategy-sprint.html"],
-          ["/checkout/strategy-sprint/thank-you", "strategy-sprint-thank-you.html"],
-        ]) {
-          this.emitFile({
-            type: "asset",
-            fileName,
-            source: strategySprintHtml(String(index.source), pathname),
-          });
+        this.emitFile({ type:'asset', fileName:'not-found.html',source:pageMetadataHtml(String(index.source),'/not-found') });
+        this.emitFile({ type: 'asset', fileName: 'audit-private.html', source: privateAuditHtml(pageMetadataHtml(String(index.source), '/audit/start')) });
+        for (const pathname of publicPagePaths.filter(p => p !== '/')) {
+          this.emitFile({type:'asset',fileName:pageHtmlFile(pathname),source:pageMetadataHtml(String(index.source),pathname)});
         }
       },
     },
