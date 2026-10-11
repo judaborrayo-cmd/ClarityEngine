@@ -1,299 +1,93 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
-/**
- * ProblemsTicker – Ultra-minimal, category-toggle ticker
- * - React + Tailwind only (no external libs)
- * - One-line, subdued ticker with a tiny segmented toggle
- * - Uses CSS keyframes (injected <style>) for smooth, continuous scrolling
- */
-export default function ProblemsTicker() {
-  type Cat = "revenue" | "growth" | "conversion";
-  const [cat, setCat] = useState<Cat>("revenue");
-  const [translateX, setTranslateX] = useState(0);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const loopRef = useRef<HTMLSpanElement | null>(null);
-  const offsetRef = useRef(0);
-  const loopWidthRef = useRef(0);
-  const frameRef = useRef<number | null>(null);
-  const lastFrameRef = useRef<number | null>(null);
-  const dragRef = useRef({
-    active: false,
-    startX: 0,
-    startY: 0,
-    startOffset: 0,
-  });
+type Cat = "revenue" | "growth" | "conversion";
+const data: Record<Cat, string[]> = {
+  revenue: ["Wasted ad spend", "Poor attribution", "Platform scattered", "Unclear ROAS", "Budget guesswork"],
+  growth: ["Revenue plateaus", "Limited reach", "Creative fatigue", "High CAC", "Scaling bottlenecks"],
+  conversion: ["Low conversion rates", "Leaky funnels", "Poor UX", "Slow pages", "Weak offer clarity"],
+};
+const colors = {
+  revenue: { bg: "bg-blue-50", active: "bg-blue-500", text: "text-blue-900", light: "text-blue-700", arrow: "text-blue-300" },
+  growth: { bg: "bg-green-50", active: "bg-green-500", text: "text-green-900", light: "text-green-700", arrow: "text-green-300" },
+  conversion: { bg: "bg-purple-50", active: "bg-purple-500", text: "text-purple-900", light: "text-purple-700", arrow: "text-purple-300" },
+};
+const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600";
 
-  // Short, scannable problem phrases (keep to ~2–4 words each)
-  const data: Record<Cat, string[]> = {
-    revenue: [
-      "Wasted ad spend",
-      "Poor attribution",
-      "Platform scattered",
-      "Unclear ROAS",
-      "Budget guesswork",
-    ],
-    growth: [
-      "Revenue plateaus",
-      "Limited reach",
-      "Creative fatigue",
-      "High CAC",
-      "Scaling bottlenecks",
-    ],
-    conversion: [
-      "Low conversion rates",
-      "Leaky funnels",
-      "Poor UX",
-      "Slow pages",
-      "Weak offer clarity",
-    ],
-  };
-
-  // Color schemes for each category
-  const colors: Record<Cat, { bg: string; bgActive: string; text: string; textLight: string; arrow: string }> = {
-    revenue: {
-      bg: "bg-blue-50",
-      bgActive: "bg-blue-500",
-      text: "text-blue-900",
-      textLight: "text-blue-700",
-      arrow: "text-blue-300"
-    },
-    growth: {
-      bg: "bg-green-50",
-      bgActive: "bg-green-500",
-      text: "text-green-900",
-      textLight: "text-green-700",
-      arrow: "text-green-300"
-    },
-    conversion: {
-      bg: "bg-purple-50",
-      bgActive: "bg-purple-500",
-      text: "text-purple-900",
-      textLight: "text-purple-700",
-      arrow: "text-purple-300"
-    }
-  };
-
-  const items = useMemo(() => data[cat], [cat]);
-
+function TickerRow({ cat, paused, second = false }: { cat: Cat; paused: boolean; second?: boolean }) {
+  const viewport = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const group = useRef<HTMLSpanElement>(null);
+  const [copies, setCopies] = useState(3);
+  const pausedRef = useRef(paused); pausedRef.current = paused;
   useEffect(() => {
-    offsetRef.current = 0;
-    setTranslateX(0);
-
+    const area = viewport.current!, moving = track.current!, first = group.current!;
+    let width = 0, offset = 0, last = 0, frame = 0;
+    let drag: { x: number; y: number; offset: number; horizontal: boolean } | null = null;
+    const normalize = (n: number) => width ? ((n % width) + width) % width : 0;
+    const paint = () => { moving.style.transform = `translate3d(${-offset}px,0,0)`; };
     const measure = () => {
-      loopWidthRef.current = loopRef.current?.scrollWidth ?? 0;
+      const measuredBefore = width > 0;
+      width = first.getBoundingClientRect().width;
+      setCopies(width ? Math.max(3, Math.ceil(area.clientWidth / width) + 2) : 3);
+      offset = normalize(measuredBefore ? offset : second ? width * .47 : 0); paint();
     };
-
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [cat]);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const speed = 32; // px per second
-
-    const normalize = (value: number) => {
-      const loopWidth = loopWidthRef.current;
-      if (!loopWidth) return 0;
-      return ((value % loopWidth) + loopWidth) % loopWidth;
-    };
-
+    const observer = new ResizeObserver(measure); observer.observe(area); observer.observe(first);
+    measure(); void document.fonts.ready.then(() => { if (area.isConnected) measure(); });
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const animate = (time: number) => {
-      if (lastFrameRef.current === null) {
-        lastFrameRef.current = time;
-      }
-
-      const deltaSeconds = (time - lastFrameRef.current) / 1000;
-      lastFrameRef.current = time;
-
-      if (!dragRef.current.active && !reduceMotion.matches) {
-        offsetRef.current = normalize(offsetRef.current + speed * deltaSeconds);
-        setTranslateX(-offsetRef.current);
-      }
-
-      frameRef.current = window.requestAnimationFrame(animate);
+      const delta = last ? Math.min((time-last)/1000, .1) : 0; last=time;
+      if (!pausedRef.current && !drag && !reduced.matches && !document.hidden) { offset=normalize(offset+delta*(second ? -23 : 32)); paint(); }
+      frame=requestAnimationFrame(animate);
     };
-
-    frameRef.current = window.requestAnimationFrame(animate);
-
-    return () => {
-      if (frameRef.current !== null) {
-        window.cancelAnimationFrame(frameRef.current);
-      }
+    frame=requestAnimationFrame(animate);
+    const down = (event: PointerEvent) => {
+      if (reduced.matches || !width || event.button !== 0) return;
+      drag={x:event.clientX,y:event.clientY,offset,horizontal:event.pointerType!=='touch'};
+      area.setPointerCapture(event.pointerId);
     };
-  }, []);
-
-  const beginDrag = (clientX: number, clientY = 0) => {
-    if (!loopWidthRef.current) return;
-
-    dragRef.current = {
-      active: true,
-      startX: clientX,
-      startY: clientY,
-      startOffset: offsetRef.current,
+    const move = (event: PointerEvent) => {
+      if (!drag) return;
+      const dx=event.clientX-drag.x, dy=event.clientY-drag.y;
+      if (!drag.horizontal) { if (Math.abs(dy)>Math.abs(dx)+5) { drag=null; return; } if (Math.abs(dx)<6) return; drag.horizontal=true; }
+      offset=normalize(drag.offset-dx); paint();
     };
-    lastFrameRef.current = null;
-  };
+    const up = (event: PointerEvent) => { drag=null; last=0; if(area.hasPointerCapture(event.pointerId))area.releasePointerCapture(event.pointerId); };
+    area.addEventListener('pointerdown',down); area.addEventListener('pointermove',move); area.addEventListener('pointerup',up); area.addEventListener('pointercancel',up);
+    return () => { cancelAnimationFrame(frame);observer.disconnect();area.removeEventListener('pointerdown',down);area.removeEventListener('pointermove',move);area.removeEventListener('pointerup',up);area.removeEventListener('pointercancel',up); };
+  }, [cat, second]);
+  return <div ref={viewport} className="problems-viewport relative min-w-0 w-full overflow-hidden cursor-grab touch-pan-y active:cursor-grabbing" aria-hidden={second || undefined}>
+    <div ref={track} className="problems-track flex whitespace-nowrap text-sm sm:text-[0.95rem] select-none">
+      {Array.from({ length: copies }, (_, copy) => <span key={copy} ref={copy===0 ? group : undefined} aria-hidden={copy>0 || second || undefined} className="problems-group inline-flex shrink-0 items-center pr-8">
+        {data[cat].map(text => <span key={text} className="inline-flex items-center mx-3"><span className={`font-medium ${colors[cat].text}`}>{text}</span><span aria-hidden="true" className={`mx-3 ${colors[cat].arrow}`}>→</span></span>)}
+      </span>)}
+    </div>
+  </div>;
+}
 
-  const moveDrag = (clientX: number) => {
-    if (!dragRef.current.active || !loopWidthRef.current) return;
-
-    const loopWidth = loopWidthRef.current;
-    const delta = dragRef.current.startX - clientX;
-    const nextOffset = ((dragRef.current.startOffset + delta) % loopWidth + loopWidth) % loopWidth;
-    offsetRef.current = nextOffset;
-    setTranslateX(-nextOffset);
-  };
-
-  const finishDrag = () => {
-    if (!dragRef.current.active) return;
-
-    dragRef.current.active = false;
-    lastFrameRef.current = null;
-  };
-
-  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch") return;
-    beginDrag(event.clientX, event.clientY);
-    if (!dragRef.current.active) return;
-    event.currentTarget.setPointerCapture(event.pointerId);
-  };
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch") return;
-    moveDrag(event.clientX);
-  };
-
-  const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch") return;
-    finishDrag();
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-  };
-
-  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0];
-    if (!touch) return;
-    beginDrag(touch.clientX, touch.clientY);
-  };
-
-  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0];
-    if (!touch || !dragRef.current.active) return;
-
-    const deltaX = touch.clientX - dragRef.current.startX;
-    const deltaY = touch.clientY - dragRef.current.startY;
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      event.preventDefault();
-    }
-
-    moveDrag(touch.clientX);
-  };
-
-  const handleTouchEnd = () => finishDrag();
-
-  const renderItems = (hidden = false) => (
-    <span
-      ref={hidden ? undefined : loopRef}
-      aria-hidden={hidden}
-      className="inline-flex shrink-0 items-center pr-8"
-    >
-      {items.map((text, i) => (
-        <span key={i} className="inline-flex items-center">
-          <span className="mx-3">
-            <span className={`font-medium ${colors[cat].text} transition-colors duration-300`}>{text}</span>
-            <span className={`mx-3 ${colors[cat].arrow} transition-colors duration-300`}>→</span>
-          </span>
-        </span>
-      ))}
-    </span>
-  );
-
-  return (
-    <section
-      aria-label="Problems We Eliminate"
-      className="relative isolate border-t border-slate-100/70"
-    >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center pt-2 sm:pt-3">
-          <p className="text-sm font-medium text-gray-600 mb-2">
-            We find Solutions to Difficult problems for Growth-Minded Founders and Teams:
-          </p>
+export default function ProblemsTicker() {
+  const [cat, setCat] = useState<Cat>("revenue");
+  const [expanded, setExpanded] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const contentId = useId();
+  return <section aria-label="Problems We Eliminate" className="relative isolate border-t border-slate-100/70">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 min-w-0">
+      <div className="text-center pt-2 sm:pt-3"><p className="text-sm font-medium text-gray-600 mb-2">We find Solutions to Difficult problems for Growth-Minded Founders and Teams:</p></div>
+      <div className="flex flex-col gap-2 pb-2 sm:pb-3">
+        <div role="group" aria-label="Problem category" className="inline-flex self-start rounded-xl border border-slate-200 bg-white p-1 shadow-sm">
+          {(["revenue", "growth", "conversion"] as Cat[]).map(key => <button type="button" key={key} onClick={()=>setCat(key)} aria-pressed={cat===key} className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-lg transition-colors duration-300 ${focus} ${cat===key ? `${colors[key].active} text-white font-semibold shadow-sm` : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}>{key[0].toUpperCase()+key.slice(1)}</button>)}
         </div>
-        <div className="flex flex-col gap-2 pb-2 sm:pb-3">
-          {/* Tiny segmented toggle */}
-          <div className="inline-flex self-start rounded-xl border border-slate-200 bg-white p-1 shadow-sm">
-            {(["revenue", "growth", "conversion"] as Cat[]).map((key) => {
-              const label =
-                key === "revenue" ? "Revenue" : key === "growth" ? "Growth" : "Conversion";
-              const active = cat === key;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setCat(key)}
-                  aria-pressed={active}
-                  className={[
-                    "px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-lg transition-all duration-300",
-                    active 
-                      ? `${colors[key].bgActive} text-white font-semibold shadow-sm` 
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50",
-                  ].join(" ")}
-                >
-                  {label}
-                </button>
-              );
-            })}
+        <div className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 rounded-lg p-3 transition-colors duration-300 ${colors[cat].bg}`}>
+          <div id={contentId} className="min-w-0 flex-1" data-expanded={expanded}>
+            <div className="problems-motion"><TickerRow cat={cat} paused={paused} /><div className="problems-expansion" style={{gridTemplateRows: expanded ? '1fr' : '0fr'}}><div className="min-h-0 overflow-hidden"><div className="pt-3"><TickerRow cat={cat} paused={paused || !expanded} second /></div></div></div></div>
+            <ul className="problems-static flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={`${cat} problems`}>{data[cat].map(text=><li key={text} className={`font-medium ${colors[cat].text}`}>{text}</li>)}</ul>
           </div>
-
-          {/* Ticker row */}
-          <div className={`flex flex-col items-stretch justify-between gap-2 rounded-lg p-3 transition-colors duration-300 sm:flex-row sm:items-center sm:gap-3 ${colors[cat].bg}`}>
-            {/* Marquee container */}
-            <div
-              className="relative w-full cursor-grab touch-pan-y overflow-hidden active:cursor-grabbing"
-              aria-label={`${cat} problems ticker. Drag horizontally to browse faster.`}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={endDrag}
-              onPointerCancel={endDrag}
-              onPointerLeave={endDrag}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              onTouchCancel={handleTouchEnd}
-            >
-              <div
-                ref={trackRef}
-                className="ticker-track flex whitespace-nowrap text-sm transition-colors duration-300 sm:text-[0.95rem]"
-                style={{ transform: `translate3d(${translateX}px, 0, 0)` }}
-              >
-                {renderItems()}
-                {renderItems(true)}
-              </div>
-            </div>
-
-            {/* Quiet CTA (sticks on the right) */}
-            <a
-              href="#book-intro"
-              className={`shrink-0 self-end text-sm font-medium ${colors[cat].textLight} hover:${colors[cat].text} transition-colors duration-300 sm:self-auto sm:pl-3`}
-            >
-              Book a clarity call →
-            </a>
+          <div className="flex shrink-0 items-center justify-end gap-3 self-end sm:self-center">
+            <button type="button" className={`problems-pause text-xs underline underline-offset-4 rounded ${colors[cat].light} ${focus}`} onClick={()=>setPaused(!paused)} aria-label={paused ? 'Resume problems ticker' : 'Pause problems ticker'}>{paused ? 'Resume' : 'Pause'}</button>
+            <button type="button" aria-expanded={expanded} aria-controls={contentId} onClick={()=>setExpanded(!expanded)} className={`text-sm font-medium rounded px-1 py-1 ${colors[cat].light} ${focus}`}>{expanded ? 'Ignore problems' : 'We help with…'}</button>
           </div>
         </div>
       </div>
-
-      {/* Inline styles for ticker interaction */}
-      <style>{`
-        .ticker-track {
-          will-change: transform;
-          user-select: none;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .ticker-track { transform: translate3d(0, 0, 0) !important; }
-        }
-      `}</style>
-    </section>
-  );
+    </div>
+    <style>{`.problems-track{will-change:transform}.problems-expansion{display:grid;transition:grid-template-rows 220ms ease}.problems-static{display:none}@media(prefers-reduced-motion:reduce){.problems-motion,.problems-pause{display:none}.problems-static{display:flex}.problems-expansion{transition:none}}`}</style>
+  </section>;
 }
