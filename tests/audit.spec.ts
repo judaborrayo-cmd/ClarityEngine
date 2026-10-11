@@ -275,7 +275,7 @@ test("private-link error, keyboard focus, and existing checkout regression", asy
   await page.goto("/checkout/strategy-sprint");
   await expect(
     page.getByRole("link", { name: "Proceed to Checkout" }),
-  ).toHaveAttribute("href", "https://buy.stripe.com/dRmcN5eeygbFfkh8Sj8IU01");
+  ).toHaveAttribute("href", "https://buy.stripe.com/fZuaEXfiCbVpc859Wn8IU03");
   await page.screenshot({
     path: testInfo.outputPath("existing-checkout.png"),
     fullPage: true,

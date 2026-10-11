@@ -49,7 +49,7 @@ export default function CheckoutStrategySprint() {
                     <h3 className="text-sm font-semibold text-gray-900">First-Session Guarantee</h3>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                    If you decide within 24 hours after your first session that the engagement is not useful for your business, let me know and I’ll refund the full $497.
+                    {strategySprintOffer.guarantee}
                   </p>
                   <p className="mt-2 text-xs text-gray-500">The guarantee expires after that 24-hour window.</p>
                 </div>
@@ -62,7 +62,7 @@ export default function CheckoutStrategySprint() {
               <div className="min-w-0">
                 <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5 shadow-sm sm:p-6">
                   <h2 className="mb-2 text-2xl font-bold text-gray-900">30-Day Growth Strategy Sprint</h2>
-                  <div className="mb-1 text-4xl font-bold text-gray-900">$497</div>
+                  <div className="mb-1 text-4xl font-bold text-gray-900">${strategySprintOffer.price}</div>
                   <p className="mb-6 text-sm text-gray-600">One-time payment</p>
                   <ul className="mb-6 space-y-3 text-sm text-gray-600">
                     {purchaseHighlights.map((item) => (

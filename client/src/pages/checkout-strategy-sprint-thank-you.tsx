@@ -1,3 +1,4 @@
+import { strategySprintOffer as offer } from "@shared/strategy-sprint-offer";
 import { Link } from "react-router-dom";
 import { CalendarDays, CheckCircle2 } from "lucide-react";
 
@@ -47,7 +48,7 @@ export default function CheckoutStrategySprintThankYou() {
 
             <div className="mt-8 rounded-2xl border border-gray-200 bg-gray-50 p-5 shadow-sm sm:p-6">
               <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">30-Day Growth Strategy Sprint</h2>
-              <p className="mt-2 font-semibold text-gray-900">$497 <span className="font-normal text-gray-600">one-time payment</span></p>
+              <p className="mt-2 font-semibold text-gray-900">${offer.price} <span className="font-normal text-gray-600">one-time payment</span></p>
               <ul className="mt-4 flex flex-col gap-3 text-sm text-gray-600 sm:flex-row sm:flex-wrap sm:gap-x-6">
                 {purchaseSummary.map((item) => (
                   <li key={item} className="flex items-start gap-2">
@@ -94,7 +95,7 @@ export default function CheckoutStrategySprintThankYou() {
               I'm excited to work with you. Bring the messy questions, half-finished ideas, and current roadblocks. The point of these sessions is to turn them into clearer decisions and practical next steps.
             </p>
             <p className="mt-8 border-t border-gray-200 pt-6 text-sm leading-relaxed text-gray-500">
-              <strong className="font-semibold text-gray-600">First-Session Guarantee:</strong> If you decide within 24 hours after your first session that the engagement is not useful for your business, let me know and I’ll refund the full $497. The guarantee expires after that 24-hour window.
+              <strong className="font-semibold text-gray-600">First-Session Guarantee:</strong> {offer.guarantee} {offer.guaranteeExpiry}
             </p>
           </div>
         </section>

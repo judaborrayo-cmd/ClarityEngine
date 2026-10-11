@@ -1,3 +1,5 @@
+import { strategySprintOffer } from "./strategy-sprint-offer";
+
 const defaultTitle = "Clarity Engine — Performance Marketing & Growth Strategy";
 const defaultDescription = "Drive measurable growth with expert performance marketing. From growth audits to full-funnel optimization. Based on $3M+ in managed ad spend.";
 const defaultImage = "https://www.clarity-engine.org/og-image.png";
@@ -26,9 +28,9 @@ export const defaultMetadata = {
 };
 
 const sprintTitle = "30-Day Growth Strategy Sprint | Clarity Engine";
-const sprintDescription = "Three live strategy sessions over 30 days to help founders and business owners solve growth problems, sharpen priorities, and move faster.";
+const sprintDescription = `Three live strategy sessions over 30 days to help founders and business owners solve growth problems, sharpen priorities, and move faster. $${strategySprintOffer.price} one-time payment, no subscription.`;
 const sprintUrl = "https://www.clarity-engine.org/checkout/strategy-sprint";
-const sprintImage = "https://www.clarity-engine.org/social/strategy-sprint-preview.png";
+const sprintImage = "https://www.clarity-engine.org/videos/strategy-sprint-hero-poster.webp";
 const sprintImageAlt = "30-Day Growth Strategy Sprint by Clarity Engine";
 
 export const strategySprintMetadata = {
@@ -41,8 +43,8 @@ export const strategySprintMetadata = {
     "og:url": sprintUrl,
     "og:image": sprintImage,
     "og:image:secure_url": sprintImage,
-    "og:image:width": "1731",
-    "og:image:height": "909",
+    "og:image:width": "1280",
+    "og:image:height": "720",
     "og:image:alt": sprintImageAlt,
     "twitter:title": sprintTitle,
     "twitter:description": sprintDescription,
