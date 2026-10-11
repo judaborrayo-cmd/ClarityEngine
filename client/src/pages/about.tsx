@@ -34,8 +34,7 @@ function OfferPreview({ index, title }: { index: number; title: string }) {
     else { manuallyPaused.current = false; if (element.ended) element.currentTime = 0; try { await element.play(); } catch { setPlaying(false); } }
   }
   return <div className="founder-offer-preview">
-    {failed ? <img src={media.poster} alt={`${title} preview`} loading="lazy" width="1280" height="720" /> : <video ref={video} muted playsInline loop={media.loop} preload="none" poster={media.poster} aria-label={`${title} animation preview`} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setFailed(true)}><source src={media.src} type="video/mp4" /></video>}
-    {!failed && <button type="button" onClick={toggle} aria-label={`${playing ? "Pause" : "Play"} ${title} preview`}>{playing ? "Pause" : "Play"}<span aria-hidden="true"> {playing ? "Ⅱ" : "▷"}</span></button>}
+    {failed ? <img src={media.poster} alt={`${title} preview`} loading="lazy" width="1280" height="720" /> : <video ref={video} muted playsInline loop={media.loop} preload="none" poster={media.poster} role="button" tabIndex={0} aria-label={`${playing ? "Pause" : "Play"} ${title} preview`} onClick={toggle} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); void toggle(); } }} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setFailed(true)}><source src={media.src} type="video/mp4" /></video>}
   </div>;
 }
 
