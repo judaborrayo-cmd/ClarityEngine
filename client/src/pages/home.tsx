@@ -296,7 +296,7 @@ export default function Home() {
               <div className="home-hero-copy">
                 <p className="home-eyebrow">Grow smarter. Go further.</p>
                 <h1 data-testid="hero-title">
-                  Scaling Ambitious Brands with <span>Paid Media</span> &amp; Growth Strategy
+                  Scaling Ambitious Brands with <span>Paid Media</span> &amp; <span className="home-desktop-growth">Growth </span>Strategy
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
                   We help founders and teams grow with clarity, better tracking, and smarter growth strategy, so you can scale what works and stop guessing.

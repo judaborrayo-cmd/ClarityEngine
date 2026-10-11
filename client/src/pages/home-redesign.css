@@ -35,3 +35,18 @@
 @media(max-width: 900px) { .home-hero-grid { grid-template-columns: 1fr; gap: 32px; } .home-hero-copy { padding: 0; } .home-hero-copy h1 { max-width: 690px; font-size: clamp(39px, 7vw, 61px); } .home-hero-description { max-width: 650px; } .home-hero-visual { padding: 0; } .home-hero-copy > div { align-items: flex-start; } .home-partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media(max-width: 600px) { .home-redesign-hero { padding-top: 145px; padding-bottom: 28px; } .home-hero-grid { padding-top: 20px; padding-bottom: 32px; gap: 29px; } .home-hero-copy h1 { font-size: clamp(38px, 10.8vw, 52px); } .home-hero-description { font-size: 15px; } .home-hero-copy [data-testid^="hero-cta-"] { width: 100%; font-size: 13px; } .home-hero-media { border-radius: 17px; } .home-proof-metrics { grid-template-columns: 1fr; gap: 15px; } .home-proof-metrics p { font-size: 15px; } .home-proof-details { flex-direction: column; text-align: center; } .home-partners { padding-top: 46px; padding-bottom: 46px; } .home-partner-grid { grid-template-columns: 1fr; gap: 16px; } .home-partner-card { padding: 24px; } }
 @media(prefers-reduced-motion: reduce) { .home-hero-media video { display: none; } .home-hero-media video, .home-motion-toggle { transition: none; } }
+
+/* Mobile hero: show the illustration directly after the unchanged introduction. */
+.home-hero-copy h1 .home-desktop-growth { color: inherit; white-space: normal; }
+@media (max-width: 600px) {
+  .home-redesign-hero { padding-top: 140px; }
+  .home-hero-grid { padding-top: 0; gap: 16px; }
+  .home-hero-copy { display: contents; }
+  .home-hero-copy .home-eyebrow { order: 1; margin: 0; }
+  .home-hero-copy h1 { order: 2; font-size: clamp(34px, 9.5vw, 40px); margin: 0; }
+  .home-hero-copy h1 .home-desktop-growth { display: none; }
+  .home-hero-description { order: 3; line-height: 1.6; }
+  .home-hero-visual { order: 4; }
+  .home-hero-copy > div { order: 5; margin-top: 0; }
+  .home-booking-note { order: 6; margin-top: 0; }
+}
