@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect, useLayoutEffect } from "react";
 import { useStrategySprintMetadata } from "@/hooks/use-strategy-sprint-metadata";
+import SiteFooter from "@/components/site-footer";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import CaseStudies from "@/pages/case-studies";
@@ -66,6 +67,9 @@ function Router() {
   const location = useLocation();
   useStrategySprintMetadata(location.pathname);
   const isHome = location.pathname === "/";
+  // Public marketing layout only; checkout, embedded, and private flows stay focused.
+  const footerPages = ["/", "/services", "/case-studies", "/about", "/marketing-clarity-assesment", "/strategy-sprint", "/growth-clarity-audit", "/testimonials"];
+  const showFooter = footerPages.includes(location.pathname) || location.pathname.startsWith("/case-study/");
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -165,6 +169,7 @@ function Router() {
           <Route path="/steven" element={<Steven />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        {showFooter && <SiteFooter />}
       </div>
     </>
   );
