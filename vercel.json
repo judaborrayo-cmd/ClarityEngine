@@ -90,6 +90,14 @@
       "destination": "/pages/steven.html"
     },
     {
+      "source": "/ways-to-work-together",
+      "destination": "/pages/ways-to-work-together.html"
+    },
+    {
+      "source": "/ways-to-work-together/",
+      "destination": "/pages/ways-to-work-together.html"
+    },
+    {
       "source": "/case-study/hapi-art",
       "destination": "/pages/case-study/hapi-art.html"
     },
@@ -176,14 +184,6 @@
     {
       "source": "/checkout/audit/onboarding-confirmed/",
       "destination": "/pages/checkout/audit/onboarding-confirmed.html"
-    },
-    {
-      "source": "/ways-to-work-together",
-      "destination": "/not-found.html"
-    },
-    {
-      "source": "/ways-to-work-together/",
-      "destination": "/not-found.html"
     },
     {
       "source": "/(.*)",

@@ -302,7 +302,7 @@ export default function Home() {
                   We help founders and teams grow with clarity, better tracking, and smarter growth strategy, so you can scale what works and stop guessing.
                 </p>
                 <HeroCTAs />
-                <p className="home-booking-note">Paid booking filters for seriousness; deposit credited if we're a fit.</p>
+                <p className="home-booking-note">Choose the support that fits where you are.</p>
               </div>
               <HeroMotion />
             </div>

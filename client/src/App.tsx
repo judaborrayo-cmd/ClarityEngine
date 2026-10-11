@@ -48,9 +48,9 @@ function Navbar() {
           </div>
           <div className="hidden items-center gap-2 text-xs lg:flex xl:gap-4 xl:text-sm">
             {navigationLinks.map(link => <Link key={link.to} to={link.to} className="whitespace-nowrap text-muted-foreground hover:text-foreground transition-colors">{link.label}</Link>)}
-            <Link to="/#book-intro" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Book Strategic Intro Call</Link>
+            <Link to="/ways-to-work-together" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Work Together</Link>
           </div>
-          <Link to="/#book-intro" className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 lg:hidden">Book Call</Link>
+          <Link to="/ways-to-work-together" className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 lg:hidden">Work Together</Link>
         </div>
         <div className="mt-3 grid grid-cols-6 gap-1 border-t border-border/60 pt-3 text-center text-[11px] leading-tight sm:text-sm lg:hidden">
           {navigationLinks.map(link => <Link key={link.to} to={link.to} className="flex min-h-8 items-center justify-center rounded-lg px-1 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">{link.label}</Link>)}
@@ -167,7 +167,7 @@ function Router() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
           <Route path="/about" element={<About />} />
-          {import.meta.env.DEV && <Route path="/ways-to-work-together" element={<WaysToWorkTogether />} />}
+          <Route path="/ways-to-work-together" element={<WaysToWorkTogether />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/steven" element={<Steven />} />
           <Route path="*" element={<NotFound />} />

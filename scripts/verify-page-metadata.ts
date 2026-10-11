@@ -23,5 +23,5 @@ for(const path of publicPagePaths){
 for(const path of ['/images/clarity-engine-favicon.png','/images/apple-touch-icon.png']){const r=await resource(path);assert.equal((await sharp(r.bytes).metadata()).format,'png');if(base)assert.match(r.type,/image\/png/);}
 const privateHtml=(await resource(base?'/audit/results/metadata-test':'/audit-private.html')).bytes.toString();assert.match(privateHtml,/Private Get Clarity Assessment/);assert.equal((privateHtml.match(/name="robots"/g)??[]).length,1);assert.ok(!privateHtml.includes('metadata-test'));assert.ok(!privateHtml.includes('rel="canonical"'));
 if(base){const r=await fetch(base+'/audit/results/metadata-test');assert.match(r.headers.get('x-robots-tag')??'',/noindex/);assert.match(r.headers.get('cache-control')??'',/no-store/);}
-assert.equal(pageMetadataRegistry['/ways-to-work-together'].draft,true);assert.ok(!publicPagePaths.includes('/ways-to-work-together'));await assert.rejects(fs.access('dist/'+pageHtmlFile('/ways-to-work-together')));
-console.log('PASS icons, generic private HTML, draft exclusion');
+assert.ok(publicPagePaths.includes('/ways-to-work-together'));
+console.log('PASS icons, generic private HTML, published offer hub');

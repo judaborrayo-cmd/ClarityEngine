@@ -27,7 +27,7 @@ export const pageMetadataRegistry: Record<string,PageMetadata> = {
  '/growth-clarity-audit':page('/growth-clarity-audit','Deep-Dive Growth Clarity Audit','Explore a full-funnel audit of ads, tracking, offers, and conversion opportunities.'),
  '/checkout/audit':page('/checkout/audit','Deep-Dive Audit Checkout','Review the Deep-Dive Growth Audit offer and purchase details.'),
  '/steven':page('/steven','Steven is Awesome','Steven is Awesome.'),
- '/ways-to-work-together':{...page('/ways-to-work-together','Ways to Work Together — Draft','Explore starting points for working with Clarity Engine. This offer hub is an unpublished draft.','ways'),draft:true,noindex:true},
+ '/ways-to-work-together':page('/ways-to-work-together','Ways to Work Together','Find your starting point with Get Clarity Assessment, a Strategy Sprint, an intro call, a Deep Dive Audit, or ongoing growth support.','ways'),
 };
 for(const [slug,title,description] of [
  ['hapi-art','Hapi Art','Explore the Hapi Art advertising system and e-commerce case study.'],
