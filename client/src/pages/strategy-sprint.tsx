@@ -33,7 +33,7 @@ function SprintMedia() {
     <figcaption>Clarity Engine · Growth strategy, brought into focus.</figcaption>
   </figure>;
 }
-function PurchaseLink() { return <Link className="ss-cta" to={offer.checkoutPath}>Start My Strategy Sprint <ArrowRight aria-hidden="true" size={19} /></Link>; }
+function PurchaseLink() { return <a className="ss-cta" href={offer.checkoutUrl} target="_blank" rel="noopener noreferrer">Start My Strategy Sprint <ArrowRight aria-hidden="true" size={19} /></a>; }
 const questions = [
   ["How do we schedule the sessions?", "After purchase, we’ll choose three session times that work for both of us over the next 30 days, and identify the highest-priority topics for the first call."],
   ["What should I prepare?", "Share relevant links, questions, pages, campaigns, offers, analytics, or other context before the first call. Bring your current roadblocks and half-finished ideas; you don’t need a polished presentation."],

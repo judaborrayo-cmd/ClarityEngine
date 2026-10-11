@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
-import { strategySprintBenefits as benefits } from "@shared/strategy-sprint-offer";
+import { strategySprintOffer, strategySprintBenefits as benefits } from "@shared/strategy-sprint-offer";
 
-const strategySprintCheckoutUrl = "https://buy.stripe.com/dRmcN5eeygbFfkh8Sj8IU01";
+const strategySprintCheckoutUrl = strategySprintOffer.checkoutUrl;
 
 const purchaseHighlights = [
   "3 live strategy sessions over 30 days",

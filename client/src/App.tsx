@@ -31,7 +31,7 @@ const navigationLinks = [
   { to: "/case-studies", label: "Case Studies" },
   { to: "/#how-we-scale", label: "About" },
   { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
-  { to: "/checkout/strategy-sprint", label: "Strategy Sprints" },
+  { to: "/strategy-sprint", label: "Strategy Sprints" },
 ];
 
 function Navbar() {

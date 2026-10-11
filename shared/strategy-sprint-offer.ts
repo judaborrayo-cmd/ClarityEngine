@@ -1,7 +1,8 @@
-// Offer facts shared with the existing checkout; payment configuration stays in checkout.
+// Shared offer facts and the existing Stripe Payment Link; no Stripe configuration changes.
 export const strategySprintOffer = {
   name: "30-Day Growth Strategy Sprint",
   price: 497,
+  checkoutUrl: "https://buy.stripe.com/dRmcN5eeygbFfkh8Sj8IU01",
   checkoutPath: "/checkout/strategy-sprint",
   guarantee: "If you decide within 24 hours after your first session that the engagement is not useful for your business, let me know and I’ll refund the full $497.",
   guaranteeExpiry: "The guarantee expires after that 24-hour window.",

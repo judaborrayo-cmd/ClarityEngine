@@ -2,7 +2,7 @@
 
 Local review: http://127.0.0.1:4311/strategy-sprint
 
-New standalone sales page on the draft branch. Navigation still links to /checkout/strategy-sprint. All new purchase links go to that checkout; its Stripe URL and payment behavior are unchanged. No production deployment or payment changes.
+New standalone sales page on the draft branch. Navigation now links to /strategy-sprint on desktop and mobile. Both sales-page purchase links go directly to the existing Stripe Payment Link, using the same new-tab behavior as the original checkout. /checkout/strategy-sprint remains accessible; its Stripe URL and payment behavior are unchanged. No production deployment or payment changes.
 
 ## Verified offer
 
@@ -18,6 +18,13 @@ Existing thank-you scheduling URL remains a placeholder. The new page accurately
 
 ## Verification
 
-TypeScript and production build pass. Browser checks at 320, 360, 390, 768, 1024, 1440 pixels: no horizontal overflow; both purchase CTAs route to unchanged checkout; inclusion anchor and keyboard FAQ opening work. Reduced motion starts paused; keyboard playback and failed-video poster fallback pass. Desktop and mobile screenshots in tmp/strategy-sprint-hero-1440.png and tmp/strategy-sprint-hero-390.png; full-page screenshots also available.
+TypeScript and production build pass. Browser checks at 320, 360, 390, 768, 1024, 1440 pixels: no horizontal overflow; both purchase CTAs open the configured Stripe Payment Link; inclusion anchor and keyboard FAQ opening work. Reduced motion starts paused; keyboard playback and failed-video poster fallback pass. Desktop and mobile screenshots in tmp/strategy-sprint-hero-1440.png and tmp/strategy-sprint-hero-390.png; full-page screenshots also available.
 
 The pre-existing app shell references absent /ux-enhancements.js, causing an unrelated script parse error in the local static preview. That request was stubbed during isolated page QA; the shell was not edited.
+
+
+## Direct purchase flow verification
+
+Existing checkout destination verified in project source: https://buy.stripe.com/dRmcN5eeygbFfkh8Sj8IU01. Moved this exact URL into shared/strategy-sprint-offer.ts and reused it in both pages. No Sprint-specific tracking handlers existed; none removed. No Stripe settings, payment product identifiers, or thank-you behavior changed.
+
+Opened Stripe read-only: merchant Invision Group Inc; product 30-Day Growth Strategy Sprint; $497.00, single Pay form without recurring billing period. No customer or payment information entered, and no purchase completed. Confirmation screenshot: tmp/sprint-stripe-confirmation.png. Navigation and each of the two purchase links verified by clicking at desktop, tablet, and mobile sizes. Local preview only; no production deployment.
