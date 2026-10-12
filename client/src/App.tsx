@@ -26,39 +26,7 @@ import MarketingClarityAudit from '@/pages/marketing-clarity-audit';
 import AuditAssessment from '@/pages/audit-assessment';
 import AuditResults from '@/pages/audit-results';
 
-import Clarity_Engine_Favicon from "@assets/Clarity-Engine-Favicon_1758553782935.png";
-
-const navigationLinks = [
-  { to: "/#services", label: "Services" },
-  { to: "/case-studies", label: "Case Studies" },
-  { to: "/#how-we-scale", label: "How We Scale" },
-  { to: "/about", label: "About" },
-  { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
-  { to: "/strategy-sprint", label: "Strategy Sprints" },
-];
-
-function Navbar() {
-  return (
-    <nav aria-label="Main navigation" className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
-      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-            <img src={Clarity_Engine_Favicon} alt="Clarity Engine Logo" className="h-7 w-auto shrink-0 object-contain sm:h-8" />
-            <Link to="/" className="whitespace-nowrap text-base font-bold leading-none text-foreground transition-colors hover:text-primary sm:text-xl">Clarity Engine</Link>
-          </div>
-          <div className="hidden items-center gap-2 text-xs lg:flex xl:gap-4 xl:text-sm">
-            {navigationLinks.map(link => <Link key={link.to} to={link.to} className="whitespace-nowrap text-muted-foreground hover:text-foreground transition-colors">{link.label}</Link>)}
-            <Link to="/ways-to-work-together" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Work Together</Link>
-          </div>
-          <Link to="/ways-to-work-together" className="inline-flex shrink-0 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 lg:hidden">Work Together</Link>
-        </div>
-        <div className="mt-3 grid grid-cols-6 gap-1 border-t border-border/60 pt-3 text-center text-[11px] leading-tight sm:text-sm lg:hidden">
-          {navigationLinks.map(link => <Link key={link.to} to={link.to} className="flex min-h-8 items-center justify-center rounded-lg px-1 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">{link.label}</Link>)}
-        </div>
-      </div>
-    </nav>
-  );
-}
+import Navbar from "@/components/site-navigation";
 
 function LegacyAssessmentRedirect() {
   const location = useLocation();
@@ -117,7 +85,7 @@ function Router() {
       
       if (target) {
         const y = target.getBoundingClientRect().top + window.pageYOffset - (document.querySelector('nav[aria-label="Main navigation"]')?.getBoundingClientRect().height ?? 80) - 12;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        window.scrollTo({ top: y, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
       }
     };
 
@@ -133,7 +101,7 @@ function Router() {
         const target = document.getElementById(id);
         if (target) {
           const y = target.getBoundingClientRect().top + window.pageYOffset - (document.querySelector('nav[aria-label="Main navigation"]')?.getBoundingClientRect().height ?? 80) - 12;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          window.scrollTo({ top: y, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
         }
       }, 100);
     } else if (!location.hash) {
@@ -148,7 +116,7 @@ function Router() {
   return (
     <>
       <Navbar />
-      <div className={isHome ? "pt-0" : "pt-32 lg:pt-20"}>
+      <div className={isHome ? "-mt-14 lg:mt-0" : "pt-20"}>
         <Routes>
           <Route path="/marketing-clarity-assesment" element={<MarketingClarityAudit />} />
           <Route path="/marketing-clarity-audit" element={<LegacyAssessmentRedirect />} />
