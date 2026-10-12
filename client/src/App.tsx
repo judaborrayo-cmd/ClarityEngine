@@ -116,7 +116,7 @@ function Router() {
   return (
     <>
       <Navbar />
-      <div className={isHome ? "-mt-14 lg:mt-0" : "pt-20"}>
+      <div className={isHome ? "-mt-6 lg:mt-0" : "pt-28 lg:pt-20"}>
         <Routes>
           <Route path="/marketing-clarity-assesment" element={<MarketingClarityAudit />} />
           <Route path="/marketing-clarity-audit" element={<LegacyAssessmentRedirect />} />

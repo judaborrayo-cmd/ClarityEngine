@@ -10,45 +10,52 @@ const desktopLinks = [
   { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
   { to: "/strategy-sprint", label: "Strategy Sprints" },
 ];
+const offerLinks = [
+  { to: "/marketing-clarity-assesment", label: "Clarity Assessment", description: "Find where to focus next." },
+  { to: "/strategy-sprint", label: "Strategy Sprint", description: "Work through priorities directly with Juda." },
+  { to: "/growth-clarity-audit", label: "Deep Dive Audit", description: "Get a detailed review and practical roadmap." },
+  { to: "/#book-intro", label: "Strategic Intro Call", description: "Discuss your goals and potential fit." },
+  { to: "/services", label: "Growth Retainer", description: "Explore ongoing strategy and execution support." },
+];
 const groups = [
-  { title: "Find your next step", links: [
-    { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
-    { to: "/strategy-sprint", label: "Strategy Sprint" },
-    { to: "/ways-to-work-together", label: "Work Together" },
-  ] },
+  { title: "Find your next step", links: [{ to: "/ways-to-work-together", label: "Work Together" }, ...offerLinks] },
   { title: "Explore Clarity Engine", links: desktopLinks.slice(0, 4) },
 ];
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600";
 
 export default function SiteNavigation() {
   const location = useLocation();
-  const [open, setOpen] = useState(false);
-  const menuId = useId();
+  const [open, setOpen] = useState<"menu" | "offers" | null>(null);
+  const id = useId();
+  const menuId = `${id}-menu`;
+  const offersId = `${id}-offers`;
   const menuButton = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
+  const offersPanel = useRef<HTMLDivElement>(null);
+  const offersButton = useRef<HTMLButtonElement>(null);
   const pathname = location.pathname.replace(/\/$/, "") || "/";
 
-  useEffect(() => { setOpen(false); }, [location.key]);
+  useEffect(() => { setOpen(null); }, [location.key]);
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 1024px)");
-    const sync = () => { if (desktop.matches) setOpen(false); };
+    const sync = (event: MediaQueryListEvent) => { if (event.matches) setOpen(null); };
     desktop.addEventListener("change", sync);
     return () => desktop.removeEventListener("change", sync);
   }, []);
   useEffect(() => {
     if (!open) return;
-    panel.current?.scrollTo(0, 0);
+    (open === "menu" ? panel : offersPanel).current?.scrollTo(0, 0);
     const escape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       event.preventDefault();
-      setOpen(false);
-      menuButton.current?.focus();
+      setOpen(null);
+      (open === "offers" ? offersButton : menuButton).current?.focus();
     };
     document.addEventListener("keydown", escape);
     return () => document.removeEventListener("keydown", escape);
   }, [open]);
 
-  const closeAfterSelection = () => { setOpen(false); menuButton.current?.focus(); };
+  const closeAfterSelection = () => { setOpen(null); (open === "offers" ? offersButton : menuButton).current?.focus(); };
   const active = (to: string) => {
     if (to.includes("#")) return (pathname === "/" && location.hash === to.slice(1)) || (to === "/#services" && pathname === "/services");
     return pathname === to || (to === "/case-studies" && pathname.startsWith("/case-study/"));
@@ -69,23 +76,30 @@ export default function SiteNavigation() {
       </div>
     </div>
 
-    <div className="lg:hidden mx-auto max-w-6xl flex h-16 items-center justify-between gap-2 px-4 sm:px-6">
-      <Link to="/" aria-label="Clarity Engine home" onClick={() => setOpen(false)} className={`flex min-h-11 min-w-11 shrink-0 items-center gap-2 rounded-lg text-base font-bold text-foreground min-[480px]:gap-3 ${focus}`}>
+    <div className="lg:hidden mx-auto max-w-6xl flex h-14 items-center justify-between gap-2 px-4 sm:px-6">
+      <Link to="/" aria-label="Clarity Engine home" onClick={() => setOpen(null)} className={`flex min-h-11 min-w-11 shrink-0 items-center gap-2 rounded-lg text-base font-bold text-foreground min-[480px]:gap-3 ${focus}`}>
         <img src={ClarityEngineLogo} alt="" width="28" height="28" className="h-7 w-7 shrink-0 object-contain" />
         <span className="hidden min-[360px]:inline min-[430px]:hidden whitespace-nowrap">Clarity</span>
         <span className="hidden min-[430px]:inline whitespace-nowrap">Clarity Engine</span>
       </Link>
       <div className="flex shrink-0 items-center gap-2">
-        <Link to="/ways-to-work-together" onClick={() => setOpen(false)} className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-xl bg-primary px-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 motion-safe:transition-colors ${focus}`}>Work Together</Link>
-        <button ref={menuButton} type="button" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen(!open)} className={`inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 text-sm font-semibold text-foreground hover:bg-emerald-50 motion-safe:transition-colors ${focus}`}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" focusable="false">{open ? <path d="m6 6 12 12M6 18 18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}</svg>
-          {open ? "Close" : "Menu"}
+        <Link to="/ways-to-work-together" onClick={() => setOpen(null)} className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-xl bg-primary px-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 motion-safe:transition-colors ${focus}`}>Work Together</Link>
+        <button ref={menuButton} type="button" aria-expanded={open === "menu"} aria-controls={menuId} onClick={() => setOpen(open === "menu" ? null : "menu")} className={`inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 text-sm font-semibold text-foreground hover:bg-emerald-50 motion-safe:transition-colors ${focus}`}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" focusable="false">{open === "menu" ? <path d="m6 6 12 12M6 18 18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}</svg>
+          {open === "menu" ? "Close" : "Menu"}
         </button>
       </div>
     </div>
 
-    {/* This disclosure is outside the header's measured height, so anchor offsets stay correct. */}
-    <div id={menuId} ref={panel} hidden={!open} className="absolute left-0 right-0 top-full lg:hidden overflow-y-auto overscroll-contain border-b border-emerald-100 bg-[#f4faf7] shadow-lg" style={{ maxHeight: "calc(100dvh - 65px)" }}>
+    <div className="lg:hidden mx-auto max-w-6xl grid grid-cols-[.8fr_1fr_1.4fr] gap-1 border-t border-border/50 px-3 sm:px-6">
+      {desktopLinks.slice(0, 2).map(link => <Link key={link.to} to={link.to} onClick={() => setOpen(null)} aria-current={active(link.to) ? "page" : undefined} className={`flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-1 text-sm font-medium ${focus} ${active(link.to) ? "text-emerald-800 bg-emerald-50" : "text-foreground hover:bg-emerald-50"}`}>{link.label}</Link>)}
+      <button ref={offersButton} type="button" aria-expanded={open === "offers"} aria-controls={offersId} onClick={() => setOpen(open === "offers" ? null : "offers")} className={`flex min-h-11 items-center justify-center gap-1 whitespace-nowrap rounded-lg px-1 text-sm font-medium text-foreground hover:bg-emerald-50 ${focus}`}>
+        Explore Offers <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className={`shrink-0 motion-safe:transition-transform ${open === "offers" ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
+      </button>
+    </div>
+
+    {/* Overlaid panels leave the measured header height stable for anchor offsets. */}
+    <div id={menuId} ref={panel} hidden={open !== "menu"} className="absolute left-0 right-0 top-full lg:hidden overflow-y-auto overscroll-contain border-b border-emerald-100 bg-[#f4faf7] shadow-lg" style={{ maxHeight: "calc(100dvh - 102px)" }}>
       <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 space-y-3">
         {groups.map((group, index) => <div key={group.title} role="group" aria-labelledby={`${menuId}-${index}`}>
           <h2 id={`${menuId}-${index}`} className="px-3 pb-1 text-xs font-semibold tracking-wide text-emerald-800">{group.title}</h2>
@@ -93,6 +107,20 @@ export default function SiteNavigation() {
             {group.links.map(link => <Link key={link.to} to={link.to} onClick={closeAfterSelection} aria-current={active(link.to) ? "page" : undefined} className={`flex min-h-11 w-full items-center rounded-xl px-3 py-2 text-base font-medium ${focus} ${active(link.to) ? "bg-white text-emerald-800 shadow-sm ring-1 ring-emerald-200" : "text-foreground hover:bg-white/80"}`}>{link.label}</Link>)}
           </div>
         </div>)}
+      </div>
+    </div>
+    <div id={offersId} ref={offersPanel} hidden={open !== "offers"} className="absolute left-0 right-0 top-full lg:hidden overflow-y-auto overscroll-contain border-b border-emerald-100 bg-[#f4faf7] shadow-lg" style={{ maxHeight: "calc(100dvh - 102px)" }}>
+      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
+        <div className="flex items-center justify-between gap-3 pb-2 px-3">
+          <h2 className="text-sm font-semibold text-emerald-800">Explore Offers</h2>
+          <button type="button" onClick={closeAfterSelection} className={`min-h-11 rounded-lg px-2 text-sm font-medium text-foreground hover:bg-white ${focus}`}>Close offers <span aria-hidden="true">×</span></button>
+        </div>
+        <div className="space-y-1">
+          {offerLinks.map(link => <Link key={link.to} to={link.to} onClick={closeAfterSelection} aria-current={active(link.to) ? "page" : undefined} className={`flex min-h-16 w-full flex-col justify-center rounded-xl px-3 py-2 ${focus} ${active(link.to) ? "bg-white text-emerald-800 shadow-sm ring-1 ring-emerald-200" : "text-foreground hover:bg-white/80"}`}>
+            <span className="text-base font-medium">{link.label}</span>
+            <span className="mt-0.5 text-sm leading-snug text-slate-600">{link.description}</span>
+          </Link>)}
+        </div>
       </div>
     </div>
   </nav>;
