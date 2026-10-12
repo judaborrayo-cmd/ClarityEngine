@@ -51,7 +51,7 @@ function Router() {
     if (location.hash) return;
 
     const scrollToTop = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      window.scrollTo({ top: 0, left: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "auto" });
     };
 
     scrollToTop();
@@ -108,7 +108,7 @@ function Router() {
       // Scroll to top when navigating to a new page without a hash
       // Use setTimeout to ensure it runs after route content renders
       setTimeout(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "auto" });
       }, 0);
     }
   }, [location]);
