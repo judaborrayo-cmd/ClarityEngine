@@ -3,27 +3,27 @@ export const assessmentSections: Record<number, { title: string; description: st
   1: {
     title: "Is your offer clear—and worth buying?",
     description: "Look at what customers get, why it matters, and what real buying decisions tell you about demand.",
-    completion: "You’ve taken a closer look at what customers are buying and why it matters. Next: Audience—who sees the most value, and what gets them looking for help.",
+    completion: "Your offer is where it all begins. You've looked at what you're selling and why someone would want it. Next, let's look at who's most likely to buy and what gets them searching in the first place.",
   },
   2: {
     title: "Who is most likely to buy, and what gets them moving?",
     description: "Look at your best-fit customers, the situations that prompt them to act, and where you can reach more people like them.",
-    completion: "Now we have your perspective on who buys and what prompts them to act. Next: Message—how clearly your value comes across to those people.",
+    completion: "Knowing who your customers are is useful. Understanding what makes them act is where things get interesting. Next, let's see whether your message speaks to what those customers actually care about.",
   },
   3: {
     title: "Will the right people understand, care, and believe?",
     description: "Look at how clearly your message explains the value, reflects customer language, and gives people a reason to trust you.",
-    completion: "Halfway there. Your answers give us a view of how you explain your value. Next: Conversion Experience—what happens when someone wants to take the next step.",
+    completion: "Halfway there. You've examined how your business communicates its value. But getting someone's attention is only half the battle. Next, let's see how easy you make it for interested customers to take action.",
   },
   4: {
     title: "How easy is it to take the next step?",
     description: "Look at what happens after interest: the promise people see, the trust they need, and anything that makes the next step harder.",
-    completion: "You’ve walked through the journey from interest to action. Next: Traffic—how people arrive, and whether your channels bring the right potential customers.",
+    completion: "Getting people interested is one thing. Making it easy for them to become customers is another. You've now reviewed that experience. Next, let's look at how people find your business in the first place.",
   },
   5: {
     title: "Are you bringing the right people into the picture?",
     description: "Look at how people find you, what each channel contributes, and how you decide which traffic tests deserve time and money.",
-    completion: "That gives us your view of how people find you and how you choose your tests. One lever left: Measurement & Learning—how your numbers help you decide what to do next.",
+    completion: "More traffic isn't always better traffic. You've looked at how people find you and how you test what's working. One last piece of the puzzle: can you trust your numbers enough to know what to do next?",
   },
   6: {
     title: "Do your numbers help you decide what to do next?",

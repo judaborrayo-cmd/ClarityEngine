@@ -172,14 +172,14 @@ test("paid audit, validation, teaching insight, save retry, Back/edit, resume, f
       if (q.sectionId === 1)
         await expect(
           page.getByText(
-            "You’ve taken a closer look at what customers are buying and why it matters. Next: Audience—who sees the most value, and what gets them looking for help.",
+            "Your offer is where it all begins. You've looked at what you're selling and why someone would want it. Next, let's look at who's most likely to buy and what gets them searching in the first place.",
             { exact: true },
           ),
         ).toBeVisible();
       if (q.sectionId === 3)
         await expect(
           page.getByText(
-            "Halfway there. Your answers give us a view of how you explain your value. Next: Conversion Experience—what happens when someone wants to take the next step.",
+            "Halfway there. You've examined how your business communicates its value. But getting someone's attention is only half the battle. Next, let's see how easy you make it for interested customers to take action.",
             { exact: true },
           ),
         ).toBeVisible();
@@ -336,7 +336,7 @@ test("purchase initialization, report generation and report retrieval recover wi
   await page.reload();
   await expect(
     page.getByRole("heading", {
-      name: "Your Clarity Stack is complete. Let’s turn it into a plan.",
+      name: "Your Clarity Stack is complete. Let's turn it into a plan.",
     }),
   ).toBeVisible();
   let completionFailed = false;
@@ -427,7 +427,7 @@ test("assessment gracefully handles missing and blank stored company names", asy
       .check();
     await expect(
       page.getByText(
-        "You’ve taken a closer look at what customers are buying and why it matters. Next: Audience—who sees the most value, and what gets them looking for help.",
+        "Your offer is where it all begins. You've looked at what you're selling and why someone would want it. Next, let's look at who's most likely to buy and what gets them searching in the first place.",
         { exact: true },
       ),
     ).toBeVisible();
@@ -443,7 +443,7 @@ test("assessment gracefully handles missing and blank stored company names", asy
       .check();
     await expect(
       page.getByText(
-        "Halfway there. Your answers give us a view of how you explain your value. Next: Conversion Experience—what happens when someone wants to take the next step.",
+        "Halfway there. You've examined how your business communicates its value. But getting someone's attention is only half the battle. Next, let's see how easy you make it for interested customers to take action.",
         { exact: true },
       ),
     ).toBeVisible();
@@ -560,7 +560,7 @@ test("included retake preserves Report 1, resumes Run 2, locks identity and stop
   await page.reload();
   await expect(
     page.getByRole("heading", {
-      name: "Your Clarity Stack is complete. Let’s turn it into a plan.",
+      name: "Your Clarity Stack is complete. Let's turn it into a plan.",
     }),
   ).toBeVisible();
   await expect(

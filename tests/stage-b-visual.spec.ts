@@ -7,7 +7,7 @@ const questionnaire = JSON.parse(readFileSync(new URL("../shared/marketing-clari
 // Fictional browser-only review state. All real API calls are intercepted.
 test("Stage B approved copy, all insight points, navigation, resume and completions", async ({ page }, info) => {
   test.setTimeout(120000);
-  const root = "stage-b-review/final/screenshots";
+  const root = "stage-b-review/approved-final/screenshots";
   mkdirSync(root, { recursive: true });
   let context: any = null;
   const answers: Record<string, string> = {};
@@ -71,6 +71,10 @@ test("Stage B approved copy, all insight points, navigation, resume and completi
     }
   }
   await expect(page.locator(".assessment-ready")).toBeVisible();
+  await expect(page.locator(".assessment-ready h2")).toHaveText("Your Clarity Stack is complete. Let's turn it into a plan.");
+  await expect(page.locator(".assessment-ready > p").nth(1)).toHaveText("You've just looked at six of the most important drivers of marketing growth. Now comes the interesting part: connecting the dots.");
+  await expect(page.locator(".assessment-ready > p").nth(2)).toHaveText("Let's see what's working in your favor, where your biggest opportunities may be hiding, and which three moves deserve your attention first.");
+  await expect(page.locator(".assessment-ready > .clarity-stack li")).toHaveCount(4);
   expect(shown.size).toBe(10);
   expect(Object.keys(answers).length).toBe(35);
   await expect(page.locator(".assessment-ready")).not.toContainText(assessmentSections[6].completion);

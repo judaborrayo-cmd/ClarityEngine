@@ -582,10 +582,13 @@ export default function AuditAssessment() {
                   tabIndex={-1}
                   className="max-w-xl text-3xl font-bold leading-tight outline-none sm:text-4xl"
                 >
-                  Your Clarity Stack is complete. Let’s turn it into a plan.
+                  Your Clarity Stack is complete. Let's turn it into a plan.
                 </h2>
                 <p className="mt-5 leading-relaxed text-muted-foreground">
-                  You’ve examined what you sell, who buys, how you communicate, the path to action, how people find you, and how you learn. We’ll now look at those answers together to build Your High Growth Opportunities report.
+                  You've just looked at six of the most important drivers of marketing growth. Now comes the interesting part: connecting the dots.
+                </p>
+                <p className="mt-3 leading-relaxed text-muted-foreground">
+                  Let's see what's working in your favor, where your biggest opportunities may be hiding, and which three moves deserve your attention first.
                 </p>
                 <p className="break-words text-sm text-muted-foreground">
                   Prepared specifically for {companyName || "your business"}
