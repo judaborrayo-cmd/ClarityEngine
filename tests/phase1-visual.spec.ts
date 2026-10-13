@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./local-fonts";
 import { readFileSync } from "node:fs";
 const questionnaire = JSON.parse(readFileSync(new URL("../shared/marketing-clarity-audit/questionnaire.json", import.meta.url), "utf8")) as { sections: { id: number }[]; questions: { id: string; sectionId: number }[] };
 

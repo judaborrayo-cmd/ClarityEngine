@@ -134,7 +134,7 @@ test("customer-centered example and AI guidance preserve selected frozen content
   );
   const reasons = report.recommendations.map(recommendationWhyCritical);
   assert.equal(new Set(reasons).size, 3);
-  assert.match(reasons[0], /every ad, landing page/);
+  assert.match(reasons[0], /piece together the value/);
   const historicalMove = { ...report.recommendations[0] };
   delete (historicalMove as { whyCritical?: string }).whyCritical;
   assert.equal(recommendationWhyCritical(historicalMove), reasons[0]);

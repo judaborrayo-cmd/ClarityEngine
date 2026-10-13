@@ -58,7 +58,7 @@ test("all six categories have concrete teaching and distinct observable progress
     const progress = renderToStaticMarkup(
       React.createElement(ImprovementEvidence, { report }),
     );
-    assert.match(progress, /How You’ll Know This Is Improving/);
+    assert.match(progress, /Signs You&#x27;re Moving in the Right Direction/);
     assert.match(progress, /How to Measure Your Progress/);
     assert.equal(
       (progress.match(/data-progress-icon=/g) ?? []).length,

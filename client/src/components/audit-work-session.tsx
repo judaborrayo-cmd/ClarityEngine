@@ -1,5 +1,7 @@
-import { NotebookPen, Timer } from "lucide-react";
 import { onlineWorkSessionIntro } from "@/lib/assessment-copy";
+import { workOpportunityTransition } from "@shared/marketing-clarity-audit/editorial-narrative";
+import { reportLanguage, growthRoadmap } from "@shared/marketing-clarity-audit/customer-language";
+import { NotebookPen, Timer } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { auditRequest } from "@/lib/audit-api";
@@ -35,6 +37,7 @@ export default function AuditWorkSession({
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
   const prompts = workPrompts(report);
+  const road = growthRoadmap(report);
   const endpoint = `/${token}/work-session?run=${run}`;
 
   const ready = !loading && !error;
@@ -149,7 +152,7 @@ export default function AuditWorkSession({
           <div>
             <p className="report-eyebrow">Your private Clarity workspace</p>
             <h2>Your Clarity Work Session</h2>
-            <h3>Turn your diagnosis into action.</h3>
+            <h3>Turn your opportunities into action.</h3>
             <p>{onlineWorkSessionIntro}</p>
           </div>
           <aside
@@ -235,7 +238,7 @@ export default function AuditWorkSession({
                   )}
                   {prompt.group === "secondary" && (
                     <p className="section-label text-xs font-semibold">
-                      Supporting constraint
+                      Your Next Opportunity
                     </p>
                   )}
                   <span className="prompt-number" aria-hidden="true">
@@ -303,11 +306,12 @@ export default function AuditWorkSession({
             >
               <h3 className="section-label font-semibold">
                 {group === "primary"
-                  ? "Work Through Your Primary Constraint"
+                  ? "Work Through Your First Opportunity"
                   : group === "secondary"
-                    ? "Supporting constraint"
+                    ? `${reportLanguage.secondary}: ${road.nextTitle}`
                     : "Your decision"}
               </h3>
+              {group === "secondary" && <p>{workOpportunityTransition(report)}</p>}
               {content}
             </section>
           );

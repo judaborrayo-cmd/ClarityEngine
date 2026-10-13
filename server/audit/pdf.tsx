@@ -1,23 +1,23 @@
+import { pdfSafeText } from "./pdf-text";
+import { opportunityDepth, supportingDepth, closingTransition, workOpportunityTransition } from "../../shared/marketing-clarity-audit/editorial-narrative";
 import React from "react";
+import { reportLanguage, growthRoadmap, growthLeverCopy, customerSummary, customerConfidence, customerCaseStory, growthDefinitions } from "../../shared/marketing-clarity-audit/customer-language";
+import { rankedSnapshotLayers } from "../../shared/marketing-clarity-audit/snapshot-stack";
 import { precedenceExplanation } from "../../shared/marketing-clarity-audit/precedence-explanation";
 import { PdfProgressIcon } from "./pdf-progress-icon";
 import { progressIconName } from "../../shared/marketing-clarity-audit/progress-icons";
 import { measuresFor } from "../../shared/marketing-clarity-audit/progress-measures";
 import { teachingFor } from "../../shared/marketing-clarity-audit/constraint-teaching";
-import { workSessionIntro } from "../../shared/marketing-clarity-audit/work-session-content";
-import {
-  marketingSnapshot,
-  scoreBandGuide,
-  howToReadResults,
-} from "../../shared/marketing-clarity-audit/snapshot";
+import { scoreBandGuide } from "../../shared/marketing-clarity-audit/snapshot";
 import { normalizeCompanyLogo } from "./company-logo";
 import {
   Svg,
   Path,
+  Circle,
   Document,
   Page,
   View,
-  Text,
+  Text as PdfText,
   Image,
   Link,
   Font,
@@ -32,7 +32,6 @@ import { sectionBand } from "../../shared/marketing-clarity-audit/scoring";
 import {
   aiPresentation,
   caseRelevance,
-  caseTeaching,
   recommendationWhyCritical,
   confidencePresentation,
   reportPlan,
@@ -54,9 +53,9 @@ Font.registerHyphenationCallback((word) => [word]);
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Inter",
-    fontSize: 9,
-    lineHeight: 1.35,
-    color: "#18232B",
+    fontSize: 9.5,
+    lineHeight: 1.4,
+    color: "#273346",
     paddingTop: 72,
     paddingBottom: 55,
     paddingHorizontal: 40,
@@ -69,16 +68,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "#DFD8F1",
+    borderBottomColor: "#DCE7E2",
     paddingBottom: 9,
   },
   logo: { width: 24, height: 24, marginRight: 8 },
   wordmark: { fontSize: 12, fontWeight: 700 },
   headerTag: { marginLeft: "auto", fontSize: 7, color: "#5541BF" },
   hero: {
-    padding: 20,
-    backgroundColor: "#F2EFFF",
-    borderRadius: 12,
+    padding: 22,
+    backgroundColor: "#F7F4FF",
+    borderWidth: 1,
+    borderColor: "#E5DEF8",
+    borderTopWidth: 3,
+    borderTopColor: "#5541BF",
+    borderRadius: 14,
     marginBottom: 16,
   },
   eyebrow: {
@@ -88,13 +91,19 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     marginBottom: 5,
   },
-  h1: { fontSize: 25, fontWeight: 700, lineHeight: 1.2, marginBottom: 10 },
+  h1: {
+    fontSize: 27,
+    fontWeight: 700,
+    lineHeight: 1.16,
+    letterSpacing: -0.7,
+    marginBottom: 12,
+  },
   h2: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 700,
     lineHeight: 1.25,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 14,
+    marginBottom: 12,
   },
   h3: { fontSize: 11, fontWeight: 700, lineHeight: 1.3, marginBottom: 6 },
   label: {
@@ -105,19 +114,20 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   p: { marginBottom: 5 },
-  small: { fontSize: 8, color: "#606873", marginBottom: 5 },
+  small: { fontSize: 8, color: "#536078", lineHeight: 1.45, marginBottom: 5 },
   card: {
     borderWidth: 1,
     borderColor: "#E3E6EC",
-    borderRadius: 9,
-    padding: 10,
+    borderRadius: 12,
+    padding: 12,
     marginBottom: 8,
   },
   row: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 8 },
   score: {
     width: "31.9%",
-    padding: 11,
-    borderRadius: 8,
+    padding: 16,
+    minHeight: 132,
+    borderRadius: 11,
     borderTopWidth: 3,
     marginBottom: 2,
   },
@@ -137,26 +147,33 @@ const styles = StyleSheet.create({
   },
   lesson: {
     padding: 12,
-    backgroundColor: "#F2EFFF",
-    borderRadius: 8,
+    backgroundColor: "#F4FAF7",
+    borderLeftWidth: 3,
+    borderLeftColor: "#145C43",
+    borderRadius: 10,
     marginTop: 10,
     marginBottom: 10,
   },
   bullet: { marginBottom: 5, paddingLeft: 8 },
   prompt: {
-    padding: 6,
+    padding: 8,
     borderWidth: 1,
     borderColor: "#DFE5ED",
-    borderRadius: 8,
-    marginBottom: 6,
+    borderRadius: 10,
+    marginBottom: 8,
   },
-  promptText: { fontSize: 9, marginBottom: 5 },
+  promptText: { fontSize: 9, fontWeight: 700, lineHeight: 1.45, marginBottom: 7 },
   line: { height: 10, borderBottomWidth: 0.6, borderBottomColor: "#CDD6E2" },
 });
 const labelName = (id?: number) =>
   id
     ? sectionColors[id as keyof typeof sectionColors].name
     : "No clear constraint indicated";
+function Text(props: React.ComponentProps<typeof PdfText> & { children?: React.ReactNode }) {
+  return <PdfText {...props}>{React.Children.map(props.children, child =>
+    typeof child === "string" ? pdfSafeText(child) : child
+  )}</PdfText>;
+}
 function Heading({ children }: { children: React.ReactNode }) {
   return (
     <Text style={styles.h2} minPresenceAhead={90}>
@@ -171,15 +188,23 @@ function BrandedPage({
   report,
   title,
   size,
+  compact = false,
+  editorial = false,
   children,
 }: {
   report: FrozenAuditReport;
   title: string;
+  compact?: boolean;
+  editorial?: boolean;
   size: "LETTER" | "A4";
   children: React.ReactNode;
 }) {
   return (
-    <Page size={size} style={styles.page} wrap>
+    <Page
+      size={size}
+      style={[styles.page, editorial ? { fontSize: 10.5, lineHeight: 1.5 } : {}, compact ? { fontSize: 9, lineHeight: 1.35 } : {}]}
+      wrap
+    >
       <View style={styles.header} fixed>
         <Image src={asset("logo.png")} style={styles.logo} />
         <Text style={styles.wordmark}>Clarity Engine</Text>
@@ -294,15 +319,23 @@ function Workbook({
   return (
     <>
       <BrandedPage report={report} title="Clarity Work Session" size={size}>
-        <View style={{ ...styles.hero, padding: 14 }}>
+        <View
+          style={{
+            ...styles.hero,
+            padding: 14,
+            backgroundColor: sectionColors[report.diagnosis.primary?.sectionId ?? 1].tint,
+            borderColor: sectionColors[report.diagnosis.primary?.sectionId ?? 1].border,
+            borderTopColor: sectionColors[report.diagnosis.primary?.sectionId ?? 1].color,
+          }}
+        >
           <Text style={styles.eyebrow}>
             {notes
               ? "YOUR CLARITY TOOLKIT · SAVED RESPONSES"
               : "YOUR CLARITY TOOLKIT · COMPANION WORKBOOK"}
           </Text>
           <Text style={styles.h1}>Your Clarity Work Session</Text>
-          <Text style={styles.h3}>Turn your diagnosis into action.</Text>
-          <Paragraph>{workSessionIntro}</Paragraph>
+          <Text style={styles.h3}>Turn your opportunities into action.</Text>
+          <Paragraph>{reportLanguage.pdfWorkIntro}</Paragraph>
           <Prepared report={report} companyLogo={companyLogo} />
           <Text style={styles.small}>
             {notes
@@ -312,7 +345,7 @@ function Workbook({
         </View>
         {hasThinking && (
           <>
-            <Heading>Work Through Your Primary Constraint</Heading>
+            <Heading>Work Through Your First Opportunity</Heading>
             <Text
               style={{
                 ...styles.h3,
@@ -339,7 +372,7 @@ function Workbook({
       </BrandedPage>
       {needsContinuation && (
         <BrandedPage report={report} title="Clarity Work Session" size={size}>
-          <Heading>Work Through Your Primary Constraint · Continued</Heading>
+          <Heading>Work Through Your First Opportunity · Continued</Heading>
           {prompts
             .filter((p) => p.group === "primary")
             .slice(3)
@@ -347,9 +380,9 @@ function Workbook({
           {prompts.some((p) => p.group === "secondary") && (
             <>
               <Heading>
-                Supporting constraint:{" "}
-                {labelName(report.diagnosis.secondary?.sectionId)}
+                {reportLanguage.secondary}: {growthRoadmap(report).nextTitle}
               </Heading>
+              <Paragraph>{workOpportunityTransition(report)}</Paragraph>
               {prompts.filter((p) => p.group === "secondary").map(promptBlock)}
             </>
           )}
@@ -384,140 +417,69 @@ function ReportDocument({
 }) {
   const d = report.diagnosis;
   const confidence = confidencePresentation(report);
-  const snapshot = marketingSnapshot(report);
+  const road = growthRoadmap(report);
   const card = report.caseCard;
-  const teaching = caseTeaching(report);
+  const teaching = customerCaseStory(report);
   const lesson = teachingFor(report);
   const precedence = precedenceExplanation(report);
-  const deferred = (
-    <View wrap={false}>
-      <Text
-        style={{
-          ...styles.h2,
-          marginTop: 8,
-          marginBottom: 8,
-          color: "#843E34",
-        }}
-        minPresenceAhead={70}
-      >
-        What Not to Prioritize Yet · NOT YET
-      </Text>
-      <View style={styles.row}>
-        {report.deprioritized.map((p) => (
-          <View
-            style={{
-              ...styles.card,
-              width: "31.9%",
-              backgroundColor: "#FFF7F5",
-              borderColor: "#EACFC8",
-              padding: 8,
-            }}
-            key={p.action}
-            wrap={false}
-          >
-            <Text style={{ ...styles.h3, fontSize: 9, marginBottom: 5 }}>
-              {p.action}
-            </Text>
-            <Text style={{ fontSize: 8, lineHeight: 1.3 }}>{p.reason}</Text>
-          </View>
-        ))}
-      </View>
-    </View>
-  );
   return (
     <>
-      <BrandedPage report={report} title="Get Clarity Assessment Report" size={size}>
-        <View style={styles.hero}>
-          <Text style={styles.eyebrow}>
-            SEE WHAT'S WORKING · KNOW WHAT TO DO NEXT
-          </Text>
-          <Text style={styles.h1}>Get Clarity Assessment Report</Text>
-          <Prepared report={report} companyLogo={companyLogo} />
-        </View>
-        <Heading>Your Get Clarity Assessment Snapshot</Heading>
-        <Text
-          style={{
-            ...styles.h3,
-            fontSize: 13,
-            color: sectionColors[d.primary?.sectionId ?? 1].color,
-          }}
-        >
-          {snapshot.title}
-        </Text>
-        <Paragraph>{snapshot.working}</Paragraph>
-        <Paragraph>{snapshot.profile}</Paragraph>
-        <Paragraph>{snapshot.matters}</Paragraph>
-        <Text style={styles.h3}>What your results suggest</Text>
-        {[
-          ["Build on", snapshot.buildOn],
-          ["Focus first", snapshot.focus],
-          ["Protect", snapshot.protect],
-          ["Do not rush into", snapshot.avoid],
-          ["Your opportunity", snapshot.opportunity],
-        ].map(([label, text]) => (
-          <View
-            key={label}
-            style={{ flexDirection: "row", marginBottom: 7 }}
-            wrap={false}
-          >
-            <Text style={{ fontWeight: 700, width: 95, fontSize: 8 }}>
-              {label}
-            </Text>
-            <Text style={{ flex: 1, fontSize: 9 }}>{text}</Text>
+      <BrandedPage report={report} title={reportLanguage.title} size={size}>
+        <View style={{ ...styles.hero, padding: 16, marginBottom: 12 }}>
+          <Text style={styles.eyebrow}>{reportLanguage.branding}</Text>
+          <Text style={styles.h1}>{reportLanguage.title}</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
+            <View style={{ flex: 1 }}><Prepared report={report} companyLogo={companyLogo} /></View>
+            <Svg width={150} height={62} viewBox="0 0 320 130">
+              <Path d="M35 103 C95 105 95 64 153 67 S239 31 282 28" stroke="#5541BF" strokeWidth={4} fill="none" />
+              {[[35,103],[89,84],[153,67],[214,47],[282,28]].map(([x,y],i) => <Circle key={i} cx={x} cy={y} r={7} fill={i === 4 ? "#145C43" : "#5541BF"} />)}
+              <Path d="m271 21 13 7-8 13" stroke="#145C43" strokeWidth={3} fill="none" />
+            </Svg>
           </View>
-        ))}
-        {snapshot.relativeStrength && (
-          <Text style={styles.small}>{snapshot.relativeStrength}</Text>
-        )}
-        {snapshot.secondary && (
-          <Text style={styles.small}>{snapshot.secondary}</Text>
-        )}
-        <Text style={styles.h3}>How to read your results</Text>
-        <Paragraph>{howToReadResults}</Paragraph>
-        <Text style={styles.small}>
-          Overall score: {Math.round(d.overallScore)} / 100. A strong overall
-          score can still contain a meaningful bottleneck.
-        </Text>
-      </BrandedPage>
-      <BrandedPage report={report} title="Get Clarity Assessment Report" size={size}>
-        <Heading>Six-part scorecard</Heading>
-        <View style={styles.row}>
-          {Object.entries(sectionColors).map(([key, color]) => (
-            <View
-              key={key}
-              style={{
-                ...styles.score,
-                backgroundColor: color.tint,
-                borderTopColor: color.color,
-              }}
-              wrap={false}
-            >
-              <Text style={{ ...styles.h3, color: color.color }}>
-                {color.name}
-              </Text>
-              <Text style={{ ...styles.scoreNum, color: color.color }}>
-                {Math.round(d.sectionScores[Number(key)])} / 100
-              </Text>
-              <Text style={{ ...styles.small, lineHeight: 1.4, marginTop: 3 }}>
-                {sectionBand(d.sectionScores[Number(key)])}
-              </Text>
-            </View>
-          ))}
+          <Text style={styles.small}>Based on your 35 assessment responses.</Text>
         </View>
+        <Text style={styles.h3}>{reportLanguage.primary}</Text>
+        <Text style={{ ...styles.h2, marginTop: 2, color: sectionColors[d.primary?.sectionId ?? 1].color }}>{road.primaryName}</Text>
+        <Paragraph>{road.explanation}</Paragraph>
+        <Paragraph>{road.why}</Paragraph>
+        <Text style={styles.label}>Start here</Text><Paragraph>{road.startTitle ?? "Use the Work Session to check the evidence."}</Paragraph>
+        <View style={{ ...styles.lesson, marginTop: 8 }} wrap={false}>
+          <Text style={styles.h3}>{reportLanguage.strength}</Text><Paragraph>{road.strength}</Paragraph>
+          {road.nextName && <><Text style={styles.h3}>{reportLanguage.secondary}: {road.nextTitle}</Text><Paragraph>{road.next}</Paragraph></>}
+        </View>
+        {road.precedence && <View style={styles.card} wrap={false}><Text style={styles.h3}>{road.precedence.title}</Text><Paragraph>{road.precedence.copy}</Paragraph></View>}
+        <Text style={styles.h3}>{reportLanguage.use}</Text><Paragraph>{reportLanguage.guide}</Paragraph>
+      </BrandedPage>
+      <BrandedPage report={report} title={reportLanguage.title} size={size}>
+        <Heading>{reportLanguage.snapshot}</Heading>
+        <Paragraph>{reportLanguage.introduction}</Paragraph>
+        <Text style={styles.h3}>{reportLanguage.stack}</Text>
+        {rankedSnapshotLayers(report).map(layer => <View key={layer.id} wrap={false} style={{
+          ...styles.card, padding: 10,
+          backgroundColor: layer.state === "primary" ? layer.color : layer.tint,
+          borderColor: layer.color,
+          color: layer.state === "primary" ? "white" : layer.color,
+        }}>
+          <View style={{ flexDirection: "row", justifyContent: "space-between" }}><Text style={styles.h3}>{layer.name} · {layer.score} / 100</Text><Text style={{ fontSize: 8, fontWeight: 700 }}>{layer.label}</Text></View>
+          <Text>{layer.description}</Text>
+        </View>)}
+        <Text style={styles.small}>Overall score: {Math.round(d.overallScore)} / 100</Text>
+      </BrandedPage>
+      <BrandedPage editorial report={report} title={reportLanguage.title} size={size}>
+        <Heading>What These Scores Can Tell You</Heading>
         <Text style={styles.h3}>How to interpret your scores</Text>
         <Text style={styles.small}>
           {scoreBandGuide.map((b) => `${b.range}: ${b.label}`).join(" · ")}
         </Text>
         <Paragraph>
-          Your goal is not necessarily to score 100 everywhere. Your goal is to
-          remove the constraint most likely to limit the rest of the system.
+          {reportLanguage.methodology}
         </Paragraph>
         <Heading>Diagnostic Confidence</Heading>
-        <View style={styles.card} wrap={false}>
-          <Text style={styles.h3}>
+        <View style={{ ...styles.card, backgroundColor: "#F4FAF7", borderColor: "#DCE7E2" }} wrap={false}>
+          <Text style={{ ...styles.h3, color: "#145C43" }}>
             {d.confidence.level.toUpperCase()} · {d.confidence.score} / 100
           </Text>
-          <Paragraph>{confidence.explanation}</Paragraph>
+          <Paragraph>{customerConfidence(report)}</Paragraph>
           {confidence.caveats.map((note) => (
             <Text key={note} style={styles.small}>
               {note}
@@ -526,26 +488,32 @@ function ReportDocument({
         </View>
       </BrandedPage>
       {lesson && d.primary && (
-        <BrandedPage
+        <BrandedPage editorial
+          compact={Boolean(precedence || d.secondary)}
           report={report}
-          title="Get Clarity Assessment Report"
+          title={reportLanguage.title}
           size={size}
         >
-          <Text style={styles.eyebrow}>YOUR BIGGEST CONSTRAINT</Text>
-          <Heading>{labelName(d.primary.sectionId)}</Heading>
+          <Text style={styles.eyebrow}>{reportLanguage.primary}</Text>
+          <Text
+            style={{
+              ...styles.h2,
+              fontSize: 22,
+              marginTop: 8,
+              marginBottom: 8,
+              color: sectionColors[d.primary.sectionId].color,
+            }}
+            minPresenceAhead={90}
+          >
+            {labelName(d.primary.sectionId)}
+          </Text>
           <Text style={styles.h3}>
             {Math.round(d.sectionScores[d.primary.sectionId])} / 100 ·{" "}
             {sectionBand(d.sectionScores[d.primary.sectionId])}
           </Text>
-          <Paragraph>{report.summary}</Paragraph>
-          {precedence && (
-            <View style={styles.lesson} wrap={false}>
-              <Text style={styles.h3}>{precedence.title}</Text>
-              <Paragraph>{precedence.copy}</Paragraph>
-            </View>
-          )}
+          <Paragraph>{opportunityDepth(report)}</Paragraph>
           <Text style={styles.h3}>What this means</Text>
-          {lesson.meaning.map((copy) => (
+          {growthDefinitions[d.primary.sectionId].map((copy) => (
             <Paragraph key={copy}>{copy.replace(/→/g, "->")}</Paragraph>
           ))}
           <View style={styles.row} wrap={false}>
@@ -567,6 +535,7 @@ function ReportDocument({
                 key={column.title}
                 style={{
                   ...styles.card,
+                  padding: 10,
                   width: "48%",
                   backgroundColor: column.tint,
                 }}
@@ -586,43 +555,42 @@ function ReportDocument({
               </View>
             ))}
           </View>
-          <Text style={styles.h3}>Why this can hold back growth</Text>
+          <Text style={styles.h3}>{reportLanguage.setback}</Text>
           <Paragraph>{lesson.consequence}</Paragraph>
           {d.secondary && (
-            <View style={styles.card} wrap={false}>
+            <View style={{ ...styles.card, padding: 10, backgroundColor: sectionColors[d.secondary.sectionId].tint, borderColor: sectionColors[d.secondary.sectionId].border }} wrap={false}>
               <Text style={styles.eyebrow}>
-                SUPPORTING CONSTRAINT · {labelName(d.secondary.sectionId)}
+                {reportLanguage.secondary} · {road.nextTitle}
               </Text>
-              <Paragraph>{supportingSequence(report)?.intro}</Paragraph>
+              <Paragraph>{supportingDepth(report)}</Paragraph>
             </View>
           )}
           {d.relativeStrength && (
             <Text style={styles.small}>
-              Relative strength: {labelName(d.relativeStrength)}
+              {reportLanguage.strength}: {labelName(d.relativeStrength)}
             </Text>
           )}
         </BrandedPage>
       )}
-      <BrandedPage report={report} title="Get Clarity Assessment Report" size={size}>
+      <BrandedPage editorial report={report} title={reportLanguage.title} size={size}>
         {!d.primary && (
           <>
-            <Heading>Constraint profile</Heading>
-            <Paragraph>{report.summary}</Paragraph>
+            <Heading>Choose your next decision with evidence</Heading>
+            <Paragraph>{customerSummary(report)}</Paragraph>
           </>
         )}
         <Text style={{ ...styles.h2, marginBottom: 3 }} minPresenceAhead={90}>
-          Your Next 3 Moves
+          {reportLanguage.moves}
         </Text>
         {report.recommendations.length > 0 && (
           <Text style={{ ...styles.small, marginBottom: 2 }}>
-            These are the three actions most likely to improve your primary
-            constraint.
+            <Text style={{ fontFamily: "Inter", fontWeight: 700 }}>{reportLanguage.movesLead}</Text>{" "}{reportLanguage.movesIntro}
           </Text>
         )}
         <View style={styles.row}>
           {recommendationsPresentation(report).map((r, i) => (
             <View
-              style={{ ...styles.card, width: "31.9%" }}
+              style={{ ...styles.card, width: "31.9%", padding: 10, borderTopWidth: 3, borderTopColor: "#145C43", backgroundColor: "#FBFDFC" }}
               key={r.id}
               wrap={false}
             >
@@ -638,53 +606,46 @@ function ReportDocument({
               <Text style={styles.eyebrow}>MOVE {i + 1}</Text>
               <Text style={styles.h3}>{r.title}</Text>
               <Text style={styles.label}>What to do</Text>
-              <Paragraph>{r.whatToDo}</Paragraph>
+              <Text style={{ fontSize: 10, lineHeight: 1.5, marginBottom: 10 }}>{r.whatToDo}</Text>
               <Text style={styles.label}>Why this is critical</Text>
-              <Text style={{ fontSize: 8, lineHeight: 1.3, marginBottom: 6 }}>
+              <Text style={{ fontSize: 9.5, lineHeight: 1.5, marginBottom: 10 }}>
                 {recommendationWhyCritical(r)}
               </Text>
               <Text style={styles.label}>Done when</Text>
-              <Paragraph>{r.doneWhen}</Paragraph>
+              <Text style={{ fontSize: 10, lineHeight: 1.5, marginBottom: 6 }}>{r.doneWhen}</Text>
             </View>
           ))}
         </View>
         {!report.recommendations.length && (
           <Paragraph>
-            Your answers do not establish a priority fix. Use the Work Session
-            to define the next decision.
+            Your answers don’t establish a clear first opportunity yet. Use the Work Session to check the evidence and choose one useful next decision.
           </Paragraph>
         )}
-        {d.primary?.pattern?.id !== "P13" && deferred}
       </BrandedPage>
-      <BrandedPage report={report} title="Get Clarity Assessment Report" size={size}>
-        {d.primary?.pattern?.id === "P13" && deferred}
+      <BrandedPage report={report} title={reportLanguage.title} size={size}>
         {card && (
-          <View wrap={false}>
+          <View>
             <Heading>What This Looks Like in the Real World</Heading>
             <Text style={styles.eyebrow}>REAL-WORLD EXAMPLE</Text>
             <Text style={styles.h3}>{teaching?.title}</Text>
             {teaching?.stages.map(([title, text]) => (
-              <View key={title} style={{ marginBottom: 8 }}>
+              <View key={title} style={{ marginBottom: 8 }} wrap={false}>
                 <Text style={styles.label}>{title}</Text>
-                <Text>{text}</Text>
+                <View style={title === "What customers were shown" ? {
+                  minHeight: 70, padding: 12, borderWidth: 1, borderStyle: "dashed",
+                  borderColor: sectionColors[d.primary?.sectionId ?? 1].border,
+                  backgroundColor: "#FAFBFC", borderRadius: 10,
+                } : {}}>
+                  <Text>{text}</Text>
+                </View>
               </View>
             ))}
-            {card.id === "CASE_BUSINESS_SYSTEMS_POSITIONING" && (
-              <View style={{ marginBottom: 8 }}>
-                <Text style={styles.label}>
-                  Why the improved direction is stronger
-                </Text>
-                <Text>
-                  • Makes the customer outcome clear before listing tools.
-                </Text>
-                <Text>• Connects the components to one business purpose.</Text>
-                <Text>
-                  • Gives buyers a simpler way to understand the value.
-                </Text>
-              </View>
-            )}
+            {card.id === "CASE_BUSINESS_SYSTEMS_POSITIONING" && <View style={{ ...styles.card, minHeight: 70, borderStyle: "dashed", backgroundColor: "#FAFBFC" }} wrap={false}>
+              <Text style={styles.label}>What customers were shown</Text>
+              <Text>Visual before/after example coming soon. The original offer presentation is not shown here.</Text>
+            </View>}
             <View style={styles.lesson} wrap={false}>
-              <Text style={styles.h3}>What to take from this</Text>
+              <Text style={styles.h3}>What can you learn from this?</Text>
               <Paragraph>{teaching?.lesson}</Paragraph>
             </View>
             <Text style={styles.h3}>Why this matters for your business</Text>
@@ -699,10 +660,10 @@ function ReportDocument({
           </View>
         )}
       </BrandedPage>
-      <BrandedPage report={report} title="Get Clarity Assessment Report" size={size}>
+      <BrandedPage report={report} title={reportLanguage.title} size={size}>
         {lesson && (
           <View>
-            <Heading>How You’ll Know This Is Improving</Heading>
+            <Heading>{reportLanguage.progress}</Heading>
             {lesson.progress.map((signal, index) => (
               <View
                 key={signal.title}
@@ -751,7 +712,7 @@ function ReportDocument({
           </View>
         )}
       </BrandedPage>
-      <BrandedPage report={report} title="Get Clarity Assessment Report" size={size}>
+      <BrandedPage editorial report={report} title={reportLanguage.title} size={size}>
         {report.aiAccelerators.length > 0 && (
           <>
             <Heading>Leverage AI More Effectively</Heading>
@@ -760,7 +721,7 @@ function ReportDocument({
               judgment.
             </Paragraph>
             {aiPresentation(report).map((ai) => (
-              <View style={styles.card} key={ai.patternId} wrap={false}>
+              <View style={{ ...styles.card, backgroundColor: "#F7F4FF", borderColor: "#E5DEF8" }} key={ai.patternId} wrap={false}>
                 <Text style={styles.label}>Gather Fuel for Your AI Tools</Text>
                 {ai.gather.map((g) => (
                   <Text style={styles.bullet} key={g}>
@@ -794,7 +755,7 @@ function ReportDocument({
         <BrandedPage
           key={start}
           report={report}
-          title="Get Clarity Assessment Report"
+          title={reportLanguage.title}
           size={size}
         >
           <Heading>Your 30-Day Clarity Plan</Heading>
@@ -802,7 +763,7 @@ function ReportDocument({
             <View style={{ marginBottom: 12 }} wrap={false}>
               <Text style={styles.h3}>Put your plan where you can see it</Text>
               <Paragraph>
-                Pro tip: Download your Get Clarity Assessment Report and cut out
+                Pro tip: Download Your High Growth Opportunities and cut out
                 these four weekly focus cards. Keep one on your desk each week
                 so the priorities most likely to move your business forward stay
                 visible while you work.
@@ -818,8 +779,9 @@ function ReportDocument({
                     ...styles.card,
                     width: "48%",
                     borderStyle: "dashed",
-                    borderColor: "#8B80B7",
-                    padding: 14,
+                    borderColor: sectionColors[d.primary?.sectionId ?? 1].color,
+                    backgroundColor: "#FCFCFE",
+                    padding: 16,
                   }}
                   key={week.week}
                   wrap={false}
@@ -853,10 +815,10 @@ function ReportDocument({
                 </View>
               ))}
           </View>
-          {start === 2 && supportingSequence(report) && (
+          {start === 2 && d.primary && (
             <View style={styles.lesson} wrap={false}>
               <Text style={styles.h3}>What comes next</Text>
-              <Paragraph>{supportingSequence(report)?.next}</Paragraph>
+              <Paragraph>{closingTransition(report)}</Paragraph>
             </View>
           )}
         </BrandedPage>
@@ -886,7 +848,7 @@ export async function renderAuditPdf(
           ? notes
             ? "My Completed Clarity Work Session"
             : "Clarity Work Session"
-          : "Get Clarity Assessment Report"
+          : reportLanguage.title
       }
       author="Clarity Engine"
       subject={`Prepared for ${report.context.companyName}`}

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, useLocalFonts } from "./local-fonts";
 import { readFileSync } from "node:fs";
 const displayQuestions: Record<string, string> = JSON.parse(
   readFileSync(
@@ -203,7 +203,7 @@ test("paid audit, validation, teaching insight, save retry, Back/edit, resume, f
     .click();
   await expect(
     page.getByRole("heading", {
-      name: "Get Clarity Assessment Report",
+      name: "Your High Growth Opportunities",
       exact: true,
       level: 1,
     }),
@@ -212,10 +212,10 @@ test("paid audit, validation, teaching insight, save retry, Back/edit, resume, f
     page.getByRole("heading", { name: "Your Clarity Work Session" }),
   ).toBeVisible();
   await expect(page.locator(".constraint-grid")).toContainText(
-    "The commitment you're asking from the visitor and the experience surrounding that decision appear to be out of alignment.",
+    "The right journey depends on the size of the decision.",
   );
-  await expect(page.locator(".clarity-snapshot")).toContainText(
-    "does not establish which direction the mismatch takes",
+  await expect(page.locator(".growth-report-hero")).toContainText(
+    "Your answers don't yet tell us whether to remove friction or add reassurance",
   );
   expect(
     await page.evaluate(
@@ -236,14 +236,14 @@ test("paid audit, validation, teaching insight, save retry, Back/edit, resume, f
     route.fulfill({ status: 503, body: "Temporary failure" }),
   );
   await page
-    .getByRole("button", { name: "Download Get Clarity Assessment Report PDF" })
+    .getByRole("button", { name: "Download Your High Growth Opportunities PDF" })
     .click();
   await expect(page.getByRole("alert")).toContainText(
     "web report is still available",
   );
   await page.unroute("**/api/audit/*/download/report*");
   for (const name of [
-    "Download Get Clarity Assessment Report PDF",
+    "Download Your High Growth Opportunities PDF",
     "Download Blank Work Session PDF",
   ]) {
     const pending = page.waitForEvent("download");
@@ -373,7 +373,7 @@ test("purchase initialization, report generation and report retrieval recover wi
   await page.getByRole("button", { name: "Retry", exact: true }).click();
   await expect(
     page.getByRole("heading", {
-      name: "Get Clarity Assessment Report",
+      name: "Your High Growth Opportunities",
       exact: true,
       level: 1,
     }),
@@ -381,7 +381,7 @@ test("purchase initialization, report generation and report retrieval recover wi
   await expect(
     page
       .locator("#marketing-clarity-report")
-      .getByText("Recovery Company", { exact: true }),
+      .getByText("For Recovery Company", { exact: true }),
   ).toBeVisible();
 });
 
@@ -778,7 +778,7 @@ test("personalized report presentation and focused Work Session autosave, retry 
     await (await page.request.get(`/api/audit/${token}/report`)).json()
   ).report;
   await expect(
-    page.getByText(/Multiple Offer responses consistently point/),
+    page.getByText(/Your answers consistently point toward Offer/),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Your Clarity Toolkit" }),
@@ -933,7 +933,7 @@ test("private workspace restores notes without cookies, reviews frozen answers a
   const privateUrl = `http://127.0.0.1:4307/audit/results/${token}`;
   await page.goto(privateUrl);
   await expect(
-    page.getByRole("heading", { name: "Save your private results link" }),
+    page.getByRole("button", { name: "Copy Private Link" }),
   ).toBeVisible();
   await expect(
     page.getByText("1 retake remaining", { exact: true }),
@@ -946,7 +946,7 @@ test("private workspace restores notes without cookies, reviews frozen answers a
   });
   await expect(completedDownload).toBeDisabled();
   await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.getByRole("button", { name: "Copy private link" }).click();
+  await page.getByRole("button", { name: "Copy Private Link" }).click();
   await expect(
     page.getByRole("status").filter({ hasText: "Private link copied" }),
   ).toBeVisible();
@@ -1052,6 +1052,7 @@ test("private workspace restores notes without cookies, reviews frozen answers a
   ).toEqual(original.frozenAnswers);
   // A fresh browser context has no purchase cookie, local state, or prior note values.
   const fresh = await browser.newContext({ viewport: page.viewportSize()! });
+  await useLocalFonts(fresh);
   try {
     const returned = await fresh.newPage();
     await returned.goto(privateUrl);
@@ -1156,13 +1157,14 @@ test("action checklist persists per frozen report, clear teaching content and re
     .screenshot({ path: testInfo.outputPath("case-semantic-cards.png") });
   await expect(
     page.getByRole("heading", {
-      name: "Your Get Clarity Assessment Snapshot",
+      name: "What Your 35 Answers Tell Us",
       exact: true,
     }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Executive summary", exact: true }),
   ).toHaveCount(0);
+  await page.locator(".score-band-guide summary").click();
   await expect(page.locator(".score-band-guide")).toContainText("80-100");
   await expect(page.locator(".company-logo-asset")).toBeHidden();
   await page
@@ -1202,7 +1204,7 @@ test("action checklist persists per frozen report, clear teaching content and re
     .locator("summary")
     .click();
   await expect(page.locator(".checklist-move").first()).toContainText(
-    "every ad, landing page, sales conversation",
+    "piece together the value from several explanations",
   );
   const first = page.getByRole("checkbox").first();
   await expect(first).toBeEnabled();
@@ -1220,6 +1222,7 @@ test("action checklist persists per frozen report, clear teaching content and re
     }),
   );
   await page.reload();
+  await page.locator(".growth-prepared summary").click();
   await expect(page.locator(".company-logo-asset")).toBeVisible();
   await page.unroute("**/api/audit/*/company-logo");
   await expect(first).toBeChecked();
@@ -1253,7 +1256,7 @@ test("action checklist persists per frozen report, clear teaching content and re
 
   await expect(
     page.getByRole("heading", {
-      name: "Help customers see the business outcome, not just a website",
+      name: "Making a bundled service easier to understand",
     }),
   ).toBeVisible();
   for (const name of [
@@ -1266,7 +1269,7 @@ test("action checklist persists per frozen report, clear teaching content and re
     ).toBeVisible();
   await expect(
     page.getByRole("heading", {
-      name: "How You’ll Know This Is Improving",
+      name: "Signs You're Moving in the Right Direction",
       exact: true,
     }),
   ).toBeVisible();
@@ -1304,6 +1307,7 @@ test("action checklist persists per frozen report, clear teaching content and re
     page.getByText("Checklist saved automatically", { exact: true }),
   ).toBeVisible();
   const privateContext = await browser.newContext();
+  await useLocalFonts(privateContext);
   const returned = await privateContext.newPage();
   await returned.goto(`http://127.0.0.1:4307${url}`);
   await expect(returned.getByRole("checkbox").first()).not.toBeChecked();
@@ -1347,13 +1351,12 @@ test("Message snapshot orients a strong upstream profile without changing the fr
   ).report;
   await page.goto(`/audit/results/${token}`);
   const snapshot = page.locator(".clarity-snapshot");
-  await expect(snapshot).toContainText(
-    "Your marketing system is stronger than your Message score makes it feel.",
-  );
-  await expect(snapshot).toContainText("Offer and Audience");
+  await expect(snapshot.locator('[data-state="primary"]')).toContainText("Message");
+  await expect(snapshot).toContainText("Offer");
+  await expect(snapshot).toContainText("Audience");
   await expect(snapshot).toContainText("Conversion Experience");
-  await expect(snapshot).toContainText(
-    "weak messaging can make a good offer look average",
+  await expect(page.locator(".growth-report-hero")).toContainText(
+    "A good offer can look ordinary",
     { ignoreCase: true },
   );
   await snapshot.screenshot({
@@ -1438,7 +1441,7 @@ test("Traffic P13 actions and decision prompts save separately from legacy notes
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "What comes next", exact: true }),
-  ).toHaveCount(0);
+  ).toHaveCount(1);
   const work = page.locator("#clarity-work-session");
   await work.getByText("Previously saved responses", { exact: true }).click();
   await expect(work.getByRole("tab")).toHaveCount(0);
@@ -1510,7 +1513,7 @@ test("Traffic P13 actions and decision prompts save separately from legacy notes
     page.getByRole("heading", { name: "What comes next", exact: true }),
   ).toBeVisible();
   await expect(page.locator(".constraint-grid")).toContainText(
-    "Focus first on Traffic. Measurement & Learning is also limiting performance",
+    "A metric is useful only when people agree on what it counts",
   );
   await expect(input).toHaveValue("");
   const originalNotes = (
@@ -1578,17 +1581,12 @@ test("Measurement report teaches the category and observable progress with expla
   ).report;
   expect(frozen.diagnosis.primary.sectionId).toBe(6);
   await page.goto(`/audit/results/${token}`);
-  await expect(page.locator(".precedence-explanation")).toContainText(
-    "Traffic scored lower numerically",
-  );
-  await expect(
-    page.getByRole("heading", {
-      name: "Why this comes first even though another section scored lower",
-      exact: true,
-    }),
-  ).toBeVisible();
+  const precedence=page.locator('.growth-precedence');
+  await expect(precedence.locator('summary')).toBeVisible();
+  await precedence.locator('summary').click();
+  await expect(precedence).toContainText('Traffic scored lower numerically');
   await expect(page.locator(".constraint-lesson")).toContainText(
-    "It is not simply having analytics",
+    "Connect the numbers to leads, sales, or other business outcomes",
   );
   await expect(page.locator(".constraint-strong li")).toHaveCount(6);
   await expect(page.locator(".constraint-limited li")).toHaveCount(6);

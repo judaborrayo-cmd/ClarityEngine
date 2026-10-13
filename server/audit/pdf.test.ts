@@ -37,11 +37,11 @@ test("report and companion workbook generate branded, paginated PDF documents wi
       const document = await PDFDocument.load(buffer);
       assert.equal(
         document.getTitle(),
-        workbook ? "Clarity Work Session" : "Get Clarity Assessment Report",
+        workbook ? "Clarity Work Session" : "Your High Growth Opportunities",
       );
       assert.equal(document.getAuthor(), "Clarity Engine");
       assert.equal(document.getSubject(), "Prepared for Apex & Co.");
-      assert.equal(document.getPageCount(), workbook ? 2 : 9);
+      assert.equal(document.getPageCount(), workbook ? 2 : 10);
       assert.equal(
         Math.round(document.getPage(0).getWidth()),
         size === "LETTER" ? 612 : 595,

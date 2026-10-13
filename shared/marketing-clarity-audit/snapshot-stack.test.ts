@@ -31,7 +31,7 @@ test("Snapshot layers distinguish existing primary/supporting selections and qua
   );
   assert.match(html, /Snapshot Clarity Stack/);
   assert.doesNotMatch(html, /self-reported strengths include/);
-  assert.match(html, /Parts of the downstream system appear functional/);
+  assert.match(html, /First opportunity/);
   assert.equal(JSON.stringify(report), before);
   const display = structuredClone(report);
   display.diagnosis.secondary = {

@@ -1,3 +1,5 @@
+import { recommendationEditorial } from "./recommendation-editorial";
+import { editorialPlan } from "./editorial-plan";
 import {
   finalDecisionPrompts,
   patternWorkSessions,
@@ -8,27 +10,7 @@ import { buildClarityPlan } from "./plan";
 import { sectionColors } from "./sections";
 
 export function reportPlan(report: FrozenAuditReport) {
-  const rich = report.thirtyDayPlan.every(
-    (w) =>
-      w.actions[0] !== w.objective &&
-      !w.completionCriteria.startsWith("Document the result of this phase:"),
-  );
-  if (rich) return report.thirtyDayPlan;
-  const defaults: Record<number, string> = {
-    1: "P01",
-    2: "P03",
-    3: "P05",
-    4: "P08",
-    5: "P13",
-    6: "P14",
-  };
-  const id =
-    report.diagnosis.primary?.pattern?.id ??
-    defaults[report.diagnosis.primary?.sectionId ?? 0];
-  return buildClarityPlan(
-    content.patterns.find((p) => p.id === id),
-    report.recommendations,
-  );
+  return editorialPlan(report);
 }
 export function confidencePresentation(report: FrozenAuditReport) {
   const primary = report.diagnosis.primary;
@@ -204,10 +186,11 @@ export function recommendationsPresentation(report: FrozenAuditReport) {
     const authored = content.recommendations.find(
       (item) => item.id === move.id,
     );
-    // Only the three explicitly approved actions receive a presentation upgrade.
-    return ["TRAF_04", "TRAF_05", "ML_06"].includes(move.id) && authored
+    // Retain the previously approved core-action projections; editorial fields below do not change selection.
+    const base = ["TRAF_04", "TRAF_05", "ML_06"].includes(move.id) && authored
       ? { ...move, ...authored, doneWhen: authored.doneWhen ?? move.doneWhen }
       : move;
+    return { ...base, ...recommendationEditorial[move.id] };
   });
 }
 export function supportingSequence(report: FrozenAuditReport) {
@@ -270,6 +253,7 @@ export function recommendationWhyCritical(
   move: FrozenAuditReport["recommendations"][number],
 ) {
   return (
+    recommendationEditorial[move.id]?.whyCritical ??
     move.whyCritical ??
     content.recommendations.find((r) => r.id === move.id)?.whyCritical ??
     move.why

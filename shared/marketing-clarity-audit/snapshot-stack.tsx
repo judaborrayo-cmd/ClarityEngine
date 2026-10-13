@@ -1,4 +1,5 @@
 import React from "react";
+import { reportLanguage, growthLeverCopy } from "./customer-language";
 import type { FrozenAuditReport } from "./report";
 import { sectionColors } from "./sections";
 import { sectionBand } from "./scoring";
@@ -32,6 +33,14 @@ export function snapshotLayers(report: FrozenAuditReport) {
     };
   });
 }
+export function rankedSnapshotLayers(report: FrozenAuditReport) {
+  return snapshotLayers(report).map(layer => ({
+    ...layer,
+    label: layer.state === "primary" ? "First opportunity" : layer.state === "supporting" ? "Next opportunity" : layer.state === "strength" ? "Strength" : "Review",
+    score: Math.round(report.diagnosis.sectionScores[layer.id]),
+    description: growthLeverCopy(layer.id, report.diagnosis.sectionScores[layer.id]),
+  })).sort((a, b) => report.diagnosis.sectionScores[b.id] - report.diagnosis.sectionScores[a.id] || a.id - b.id);
+}
 export function SnapshotClarityStack({
   report,
 }: {
@@ -39,9 +48,9 @@ export function SnapshotClarityStack({
 }) {
   return (
     <figure className="snapshot-clarity-stack">
-      <figcaption>Your marketing system at a glance</figcaption>
+      <figcaption>{reportLanguage.stack}</figcaption>
       <ol aria-label="Snapshot Clarity Stack">
-        {snapshotLayers(report).map((layer) => (
+        {rankedSnapshotLayers(report).map((layer) => (
           <li
             key={layer.id}
             data-layer-id={layer.id}
@@ -50,24 +59,18 @@ export function SnapshotClarityStack({
               background:
                 layer.state === "primary"
                   ? layer.color
-                  : layer.state === "muted"
-                    ? "#F7F8FA"
-                    : layer.tint,
+                  : layer.tint,
               color:
                 layer.state === "primary"
                   ? "white"
-                  : layer.state === "muted"
-                    ? "#667085"
-                    : layer.color,
+                  : layer.color,
               borderColor:
-                layer.state === "muted"
-                  ? "#E5E7EB"
-                  : layer.state === "strength"
+                layer.state === "muted" || layer.state === "strength"
                     ? layer.border
                     : layer.color,
             }}
           >
-            <span>{layer.name}</span>
+            <span><strong>{layer.name} · {layer.score} / 100</strong><small className="snapshot-layer-description">{layer.description}</small></span>
             {layer.label && (
               <span className="snapshot-layer-state">{layer.label}</span>
             )}
