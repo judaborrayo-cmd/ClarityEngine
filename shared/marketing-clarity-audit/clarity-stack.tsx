@@ -25,13 +25,15 @@ export function DiagnosticClarityStack({
   answers: Answers;
   currentSection?: number;
 }) {
+  const layers = diagnosticLayers(answers, currentSection);
+  const complete = layers.every((layer) => layer.completed);
   return (
     <div className="diagnostic-clarity-stack">
       <ol
         aria-label="Marketing system Clarity Stack"
         className="flex flex-col gap-1"
       >
-        {diagnosticLayers(answers, currentSection).map((layer) => {
+        {layers.map((layer) => {
           const theme = sectionColors[layer.id as keyof typeof sectionColors];
           return (
             <li
@@ -72,7 +74,9 @@ export function DiagnosticClarityStack({
         })}
       </ol>
       <p className="mt-2 text-[11px] leading-snug text-gray-600">
-        You’re building a clearer picture of your marketing system.
+        {complete
+          ? "All six growth levers complete. Your report is ready to generate."
+          : "You’re building a clearer picture of your marketing system."}
       </p>
     </div>
   );

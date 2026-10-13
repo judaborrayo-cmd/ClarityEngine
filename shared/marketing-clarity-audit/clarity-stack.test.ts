@@ -50,7 +50,13 @@ test("six layers progress from current/future to completed, restore from saved a
     React.createElement(DiagnosticClarityStack, { answers: all }),
   );
   assert.equal((html.match(/data-state="complete"/g) ?? []).length, 6);
-  assert.match(html, /You’re building a clearer picture/);
+  assert.match(html, /All six growth levers complete\. Your report is ready to generate\./);
+  assert.doesNotMatch(html, /You’re building a clearer picture/);
+  const partial = renderToStaticMarkup(
+    React.createElement(DiagnosticClarityStack, { answers }),
+  );
+  assert.match(partial, /You’re building a clearer picture of your marketing system\./);
+  assert.doesNotMatch(partial, /Your report is ready to generate/);
 });
 test("future system interaction hook is empty by default and renders authored section connections only", () => {
   assert.equal(
