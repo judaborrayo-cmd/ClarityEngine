@@ -1,3 +1,4 @@
+import { assessmentSections, assessmentInsights } from "@/lib/assessment-copy";
 import "./audit-assessment.css";
 import { questionDisplay } from "@shared/marketing-clarity-audit/question-display";
 import { DiagnosticClarityStack } from "@shared/marketing-clarity-audit/clarity-stack";
@@ -163,7 +164,7 @@ export default function AuditAssessment() {
       trackAudit("question_answered", token, question.id);
       if (position === 34) trackAudit("section_complete", token, question.id);
       if (saved.teachingNote) {
-        setNote(saved.teachingNote);
+        setNote(assessmentInsights[question.id] ?? saved.teachingNote);
         setBusy(false);
       } else
         timer.current = setTimeout(() => {
@@ -262,11 +263,13 @@ export default function AuditAssessment() {
       {session && !session.context && (
         <section className="rounded-2xl border border-gray-200 p-5 sm:p-8">
           <h2 className="text-2xl font-semibold">
-            Tell us about your business
+            Start with your business. Find your next growth opportunity.
           </h2>
           <p className="mt-3">
-            Six sections · 35 questions · approximately 12–18 minutes. Your
-            answers save automatically. Scores stay hidden until completion.
+            35 questions look at six growth levers: what you sell, who buys, how you explain it, the path to taking action, how people find you, and how you learn from results. Together, your answers help identify where to focus next—with three practical moves and a 30-day plan.
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Allow 12–18 minutes. Answer for how your business works today. Your answers save automatically; use your secure resume link to return. Scores appear after you finish.
           </p>
           <form onSubmit={saveContext} className="mt-6 space-y-5">
             {[
@@ -323,7 +326,7 @@ export default function AuditAssessment() {
               </select>
             </label>
             <Button disabled={busy} type="submit">
-              {busy ? "Saving…" : "Start Get Clarity Assessment"}
+              {busy ? "Saving…" : "Start My Assessment"}
             </Button>
           </form>
         </section>
@@ -414,7 +417,7 @@ export default function AuditAssessment() {
               </details>
             </div>
           )}
-          <div className="assessment-workspace">
+          <div className={`assessment-workspace${!question ? " assessment-workspace-complete" : ""}`}>
             <div
               style={sectionStyle(section?.id)}
               className="assessment-companion sticky top-28 z-20 mb-6 rounded-xl border border-gray-200 bg-white/95 p-4 backdrop-blur md:top-20"
@@ -461,22 +464,8 @@ export default function AuditAssessment() {
                     {section?.name} complete
                   </span>
                 </h2>
-                <p className="my-4">
-                  Your answers are saved. Next:{" "}
-                  {
-                    questionnaire.sections.find(
-                      (s) => s.id === (section?.id ?? 0) + 1,
-                    )?.name
-                  }
-                  .
-                </p>
-                {(section?.id === 1 || section?.id === 3) && (
-                  <p className="mb-4 break-words text-sm text-muted-foreground">
-                    {section.id === 3
-                      ? `Halfway there. You’re narrowing down the highest-leverage next moves${companyName ? ` for ${companyName}` : " for your business"}.`
-                      : `You’re building a clearer picture of what deserves attention next${companyName ? ` at ${companyName}` : " in your business"}.`}
-                  </p>
-                )}
+                <p className="my-4">{section && assessmentSections[section.id]?.completion}</p>
+                <p className="mb-4 text-sm text-muted-foreground">Your answers are saved.</p>
                 <Button
                   onClick={() => {
                     setTransition(false);
@@ -495,7 +484,10 @@ export default function AuditAssessment() {
                 className="assessment-question rounded-2xl border border-gray-200 p-5 sm:p-8"
               >
                 <p className="text-sm" style={{ color: "var(--section-color)" }}>
-                  {section?.title}
+                  {section ? assessmentSections[section.id]?.title ?? section.title : undefined}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {section && assessmentSections[section.id]?.description}
                 </p>
                 <h2
                   ref={titleRef}
@@ -583,25 +575,22 @@ export default function AuditAssessment() {
                   </svg>
                 </div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-800">
-                  Six sections explored · All 35 answers saved
+                  Six growth levers explored · All 35 answers saved
                 </p>
                 <h2
                   ref={titleRef}
                   tabIndex={-1}
                   className="max-w-xl text-3xl font-bold leading-tight outline-none sm:text-4xl"
                 >
-                  You’ve completed the climb. Now let’s find the clearest path
-                  forward.
+                  Your Clarity Stack is complete. Let’s turn it into a plan.
                 </h2>
                 <p className="mt-5 leading-relaxed text-muted-foreground">
-                  You’ve examined six interconnected parts of your marketing
-                  system and given us the context needed to look for the patterns
-                  between them.
+                  You’ve examined what you sell, who buys, how you communicate, the path to action, how people find you, and how you learn. We’ll now look at those answers together to build Your High Growth Opportunities report.
                 </p>
                 <p className="break-words text-sm text-muted-foreground">
                   Prepared specifically for {companyName || "your business"}
                 </p>
-                <div className="my-6 rounded-xl border border-violet-100 bg-white/80 p-4">
+                <div className="assessment-ready-review my-6 rounded-xl border border-violet-100 bg-white/80 p-4">
                   <h3 className="font-semibold">
                     Review before generating your report
                   </h3>
@@ -611,39 +600,32 @@ export default function AuditAssessment() {
                       : "You can still edit any answer before continuing. Your purchase also includes one complete retake in case you want to reassess your business after reviewing your first results."}
                   </p>
                 </div>
-                <p className="mb-4 text-lg font-semibold text-primary">
-                  Your clarity is one step away.
-                </p>
-                <p className="mb-5 text-sm leading-relaxed text-gray-600">
-                  We examined the six layers of your marketing system. Now we can
-                  show you where to focus and what to do next.
-                </p>
                 <ol
                   aria-label="Your Clarity Stack"
                   className="clarity-stack mb-6 flex flex-col gap-3"
                 >
                   {[
                     [
-                      "Your Primary Constraint",
-                      "The issue most likely holding progress back.",
+                      "Your First Growth Opportunity",
+                      "Where to focus first, based on the patterns across your answers.",
                       "#5541BF",
                       "#F7F4FF",
                     ],
                     [
-                      "Your 3 Highest-Leverage Next Moves",
-                      "Where your attention is most likely to matter.",
+                      "Your First 3 Moves",
+                      "Three practical actions, why they matter, and how to know when each is done.",
                       "#145C43",
                       "#F2FAF5",
                     ],
                     [
-                      "What Not to Prioritize Yet",
-                      "What you can stop spending attention on for now.",
+                      "Your Marketing Clarity Snapshot",
+                      "How the six levers compare, including strengths you can build on.",
                       "#14636B",
                       "#F1F9FA",
                     ],
                     [
                       "Your 30-Day Clarity Plan",
-                      "How to turn the diagnosis into action.",
+                      "A weekly sequence for turning your first opportunity into progress.",
                       "#5541BF",
                       "#F7F4FF",
                     ],
@@ -676,7 +658,7 @@ export default function AuditAssessment() {
                     </li>
                   ))}
                 </ol>
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className="assessment-ready-actions flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Button
                     className="h-auto min-h-12 whitespace-normal px-5 py-3"
                     disabled={busy}
@@ -684,7 +666,7 @@ export default function AuditAssessment() {
                   >
                     {busy
                       ? "Generating your report…"
-                      : "Generate My Get Clarity Assessment Report"}
+                      : "Generate My High Growth Opportunities Report"}
                   </Button>
                   <Button variant="ghost" disabled={busy} onClick={back}>
                     Back

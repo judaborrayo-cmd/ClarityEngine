@@ -90,3 +90,13 @@ body:has(.assessment-shell) nav[aria-label="Main navigation"] {
 @media (max-width: 1023px) {
   html:has(.assessment-shell) { scroll-padding-top: 118px; }
 }
+
+/* Final-screen priority only; question, tablet and desktop layouts stay intact. */
+@media (max-width: 639px) {
+  .assessment-shell .assessment-workspace-complete > .assessment-ready { order: 1; }
+  .assessment-shell .assessment-workspace-complete > .assessment-companion { order: 2; }
+  .assessment-shell .assessment-workspace-complete .assessment-ready { display: flex; flex-direction: column; }
+  .assessment-shell .assessment-workspace-complete .assessment-ready-review { order: 1; margin-bottom: 16px; }
+  .assessment-shell .assessment-workspace-complete .assessment-ready-actions { order: 2; margin-bottom: 24px; }
+  .assessment-shell .assessment-workspace-complete .assessment-ready > .clarity-stack { order: 3; margin-bottom: 0; }
+}
