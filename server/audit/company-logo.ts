@@ -142,6 +142,8 @@ async function boundedFetch(
     request.on("error", reject);
   });
 }
+// Exclude non-brand assets even when a page calls their CSS class "logo".
+const unrelatedLogo = /valid(?:ator|ation|[-_ ]?html)|w3c|w3\.org|badge|powered[-_ ]?by|powered_|thttpd|tracking|pixel|advert(?:isement)?|doubleclick|social|share[-_ ]?(?:icon|button)|facebook|twitter|linkedin|instagram|decorat|spacer|spinner|partner|sponsor|certif|affiliate/i;
 export function logoCandidates(html: string, base: string) {
   const candidates: { src: string; rank: number }[] = [];
   let visited = 0;
@@ -149,18 +151,25 @@ export function logoCandidates(html: string, base: string) {
     if (!value || depth > 5 || visited++ > 100) return;
     if (typeof value === "object") {
       const logo = value.logo;
-      if (typeof logo === "string") candidates.push({ src: logo, rank: 0 });
-      else if (logo?.url) candidates.push({ src: logo.url, rank: 0 });
-      else if (logo?.contentUrl)
+      const types = Array.isArray(value["@type"]) ? value["@type"] : [value["@type"]];
+      const organization = types.some((type: unknown) => typeof type === "string" && /^(Organization|LocalBusiness|Corporation|ProfessionalService|Store|Restaurant)$/.test(type));
+      const ownOrganization = organization && (!value.url || (() => { try { return logoUrl(value.url, base).origin === logoUrl(base).origin; } catch { return false; } })());
+      if (ownOrganization && typeof logo === "string") candidates.push({ src: logo, rank: 0 });
+      else if (ownOrganization && logo?.url) candidates.push({ src: logo.url, rank: 0 });
+      else if (ownOrganization && logo?.contentUrl)
         candidates.push({ src: logo.contentUrl, rank: 0 });
       Object.values(value).forEach((child) => walk(child, depth + 1));
     }
   };
+  const anchors: string[] = [];
   let jsonText = "",
     inJson = false;
   const parser = new Parser(
     {
       onopentag(name, a) {
+        if (name === "a") anchors.push(a.href ?? "");
+        const unrelated = unrelatedLogo.test([a.src, a.href, a.alt, a.id, a.class, ...anchors].join(" "));
+
         if (name === "script") {
           inJson = a.type === "application/ld+json";
           jsonText = "";
@@ -169,7 +178,7 @@ export function logoCandidates(html: string, base: string) {
         if (
           name === "img" &&
           /logo/i.test([a.alt, a.id, a.class].join(" ")) &&
-          a.src
+          a.src && !unrelated
         )
           candidates.push({ src: a.src, rank: 1 });
         if (
@@ -193,6 +202,7 @@ export function logoCandidates(html: string, base: string) {
         if (inJson) jsonText = (jsonText + text).slice(0, 80000);
       },
       onclosetag(name) {
+        if (name === "a") anchors.pop();
         if (name === "script" && inJson) {
           try {
             walk(JSON.parse(jsonText));
@@ -212,7 +222,8 @@ export function logoCandidates(html: string, base: string) {
         .sort((a, b) => a.rank - b.rank)
         .map((c) => {
           try {
-            return logoUrl(c.src, base).href;
+            const url = logoUrl(c.src, base);
+            return unrelatedLogo.test(url.href) ? "" : url.href;
           } catch {
             return "";
           }
@@ -267,10 +278,11 @@ export async function normalizeCompanyLogo(body: Buffer, mime: string) {
 }
 export async function discoverCompanyLogo(
   website: string,
+  fetchResource: typeof boundedFetch = boundedFetch,
 ): Promise<Buffer | null> {
   const signal = AbortSignal.timeout(4500);
   try {
-    const page = await boundedFetch(logoUrl(website).href, signal, 262144);
+    const page = await fetchResource(logoUrl(website).href, signal, 262144);
     if (!["text/html", "application/xhtml+xml"].includes(page.mime))
       return null;
     for (const candidate of logoCandidates(
@@ -279,10 +291,29 @@ export async function discoverCompanyLogo(
     ).slice(0, 5)) {
       if (signal.aborted) break;
       try {
-        const resource = await boundedFetch(candidate, signal, 524288);
-        return await normalizeCompanyLogo(resource.body, resource.mime);
+        const resource = await fetchResource(candidate, signal, 524288);
+        if (unrelatedLogo.test(logoUrl(resource.url).href)) continue;
+        const normalized = await normalizeCompanyLogo(resource.body, resource.mime);
+        return await sharp(normalized).withXmp(`<x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description xmlns:ce="https://www.clarity-engine.org/logo-policy" ce:policy="2" ce:website="${Buffer.from(logoUrl(website).href).toString('base64url')}" ce:source="${Buffer.from(candidate).toString('base64url')}"/></rdf:RDF></x:xmpmeta>`).png().toBuffer();
       } catch {}
     }
   } catch {}
   return null;
+}
+
+// Legacy cache bytes have no discovery provenance. Recheck that individual entry,
+// rather than trusting its dimensions or deleting unrelated cache/customer records.
+export async function validatedCachedCompanyLogo(body: Buffer | null, website: string) {
+  if (!body || body.length > 524288) return null;
+  try {
+    const metadata = await sharp(body, { limitInputPixels: 4000000, failOn: "warning" }).metadata();
+    const xmp = metadata.xmp?.toString() ?? "";
+    if (!xmp.includes('ce:policy="2"')) return null;
+    const site = xmp.match(/ce:website="([A-Za-z0-9_-]+)"/)?.[1];
+    const source = xmp.match(/ce:source="([A-Za-z0-9_-]+)"/)?.[1];
+    if (!site || !source || Buffer.from(site, 'base64url').toString() !== logoUrl(website).href) return null;
+    if (unrelatedLogo.test(logoUrl(Buffer.from(source, 'base64url').toString()).href)) return null;
+    await normalizeCompanyLogo(body, "image/png");
+    return body;
+  } catch { return null; }
 }

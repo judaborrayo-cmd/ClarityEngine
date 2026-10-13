@@ -9,7 +9,7 @@ import { progressIconName } from "../../shared/marketing-clarity-audit/progress-
 import { measuresFor } from "../../shared/marketing-clarity-audit/progress-measures";
 import { teachingFor } from "../../shared/marketing-clarity-audit/constraint-teaching";
 import { scoreBandGuide } from "../../shared/marketing-clarity-audit/snapshot";
-import { normalizeCompanyLogo } from "./company-logo";
+import { normalizeCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
 import {
   Svg,
   Path,
@@ -230,9 +230,11 @@ function BrandedPage({
 function Prepared({
   report,
   companyLogo,
+  preserveLogoSpace = false,
 }: {
   report: FrozenAuditReport;
   companyLogo?: Buffer;
+  preserveLogoSpace?: boolean;
 }) {
   return (
     <View>
@@ -249,6 +251,8 @@ function Prepared({
           }}
         />
       )}
+      {/* Keep the workbook's existing logo-band geometry when an image is rejected. */}
+      {!companyLogo && preserveLogoSpace && <View style={{ height: 50 }} />}
       <Text style={styles.h3}>{report.context.companyName}</Text>
       <Text style={styles.small}>{report.context.websiteUrl}</Text>
       <Text style={styles.small}>
@@ -336,7 +340,7 @@ function Workbook({
           <Text style={styles.h1}>Your Clarity Work Session</Text>
           <Text style={styles.h3}>Turn your opportunities into action.</Text>
           <Paragraph>{reportLanguage.pdfWorkIntro}</Paragraph>
-          <Prepared report={report} companyLogo={companyLogo} />
+          <Prepared report={report} companyLogo={companyLogo} preserveLogoSpace />
           <Text style={styles.small}>
             {notes
               ? "These are your saved responses at the time of download. Unanswered prompts retain writing space. Your notes never change the frozen diagnosis."
@@ -836,7 +840,8 @@ export async function renderAuditPdf(
 ) {
   if (companyLogo) {
     try {
-      companyLogo = await normalizeCompanyLogo(companyLogo, "image/png");
+      const validated = await validatedCachedCompanyLogo(companyLogo, report.context.websiteUrl);
+      companyLogo = validated ? await normalizeCompanyLogo(validated, "image/png") : undefined;
     } catch {
       companyLogo = undefined;
     }

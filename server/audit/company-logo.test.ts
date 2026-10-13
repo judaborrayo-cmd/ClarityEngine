@@ -7,6 +7,8 @@ import {
   logoCandidates,
   normalizeCompanyLogo,
   resolveLogoHost,
+  discoverCompanyLogo,
+  validatedCachedCompanyLogo,
 } from "./company-logo";
 
 test("logo requests reject non-public addresses, credentials, unsafe schemes and ports", async () => {
@@ -107,4 +109,30 @@ test("logo decoding rejects unsafe, oversized, blank and malformed images and no
     .png()
     .toBuffer();
   await assert.rejects(normalizeCompanyLogo(blank, "image/png"), /Unreadable/);
+});
+
+const brandFixture = async () => sharp({create:{width:120,height:50,channels:3,background:"white"}}).composite([{input:Buffer.from('<svg width="120" height="50"><rect x="10" y="10" width="70" height="30" fill="#5541BF"/></svg>')}]).png().toBuffer();
+test("discovery rejects validation badges, tracking/decorative/social assets and third-party organization logos", () => {
+  const html = `<a href="https://validator.w3.org/check?uri=referer"><img class="logo" src="/resources/images/valid-html401-gold.png" alt="valid HTML"></a><img class="logo" src="/tracking-pixel.png"><img alt="logo" src="/share-icon.png"><img alt="decorative logo" src="/graphic.png"><script type="application/ld+json">{"@type":"Organization","url":"https://other.example","logo":"/thirdparty.png"}</script><script type="application/ld+json">{"@type":"Person","logo":"/person.png"}</script><img alt="Company logo" src="/brand.png">`;
+  assert.deepEqual(logoCandidates(html,"https://example.com"),["https://example.com/brand.png","https://example.com/favicon.png"]);
+});
+test("confident logo discovery records validation provenance; legacy, corrupt and different-website cache bytes fail closed", async () => {
+ const body=await brandFixture();const requests:string[]=[];
+ const found=await discoverCompanyLogo("https://example.com",async(url)=>{requests.push(url);return url==="https://example.com/"?{body:Buffer.from('<script type="application/ld+json">{"@type":"Organization","logo":"/brand.png"}</script>'),mime:"text/html",url}:{body,mime:"image/png",url};});
+ assert.ok(found);assert.equal(requests[1],"https://example.com/brand.png");
+ assert.deepEqual(await validatedCachedCompanyLogo(found,"https://example.com"),found);
+ assert.equal(await validatedCachedCompanyLogo(found,"https://different.example"),null);
+ assert.equal(await validatedCachedCompanyLogo(body,"https://example.com"),null);
+ const badgeCache=await sharp(body).withXmp(`<x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description xmlns:ce="https://www.clarity-engine.org/logo-policy" ce:policy="2" ce:website="${Buffer.from('https://example.com/').toString('base64url')}" ce:source="${Buffer.from('https://example.com/valid-html401-gold.png').toString('base64url')}"/></rdf:RDF></x:xmpmeta>`).png().toBuffer();
+ assert.equal(await validatedCachedCompanyLogo(badgeCache,"https://example.com"),null);
+ assert.equal(await validatedCachedCompanyLogo(Buffer.from('invalid'),"https://example.com"),null);
+});
+test("missing logo and a website offering only a validation badge return text-only fallback without fetching the badge", async () => {
+ for(const html of ['<p>No logo</p>','<a href="https://validator.w3.org/check"><img class="logo" alt="valid HTML" src="/valid-html401-gold.png"></a>']){
+  const requested:string[]=[];
+  const found=await discoverCompanyLogo("https://example.com",async(url)=>{requested.push(url);if(url==="https://example.com/")return {body:Buffer.from(html),mime:"text/html",url};throw Error('No supported logo');});
+  assert.equal(found,null);assert.ok(!requested.some(u=>u.includes('valid-html')));
+ }
+ const body=await brandFixture();
+ assert.equal(await discoverCompanyLogo("https://example.com",async(url)=>url==="https://example.com/"?{body:Buffer.from('<meta property="og:logo" content="/brand.png">'),mime:"text/html",url}:{body,mime:"text/html",url}),null);
 });
