@@ -489,17 +489,17 @@ export default function Home() {
 
         <Section id="audit" className="py-20 lg:py-24">
           <Card className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Deep‑Dive Audit</h2>
-            <p className="mt-5 text-lg leading-relaxed text-gray-600">A comprehensive assessment of your tracking, campaign structure, and funnel with a prioritized 30-day action plan.</p>
+            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Deep Dive Growth Audit</h2>
+            <p className="mt-5 text-lg leading-relaxed text-gray-600">An expert-led investigation of business context, campaigns, creative, customer journey and measurement, with prioritized recommendations and a 90-day growth roadmap.</p>
             <ul className="mt-6 list-disc space-y-2 pl-6 text-gray-600">
-              <li>Verify analytics & pixel setup</li>
-              <li>Rebuild campaigns for efficiency</li>
+              <li>Investigate tracking and measurement limitations</li>
+              <li>Evaluate campaign structure and acquisition opportunities</li>
               <li>Identify CRO opportunities</li>
-              <li>Provide a roadmap with quick wins</li>
+              <li>Prioritize a practical 90-day strategy</li>
             </ul>
-            <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Risk-free entry:</strong> If you choose a Growth Retainer within 14 days of receiving your audit, your $900 fee is fully credited toward your first month.</p>
+            <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>$3,725 USD one-time.</strong> A strategy you can execute independently. Implementation requires a separate agreement.</p>
             <div className="mt-8">
-              <Link to="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Growth Clarity Audit</Link>
+              <Link to="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Deep Dive Growth Audit</Link>
             </div>
           </Card>
         </Section>

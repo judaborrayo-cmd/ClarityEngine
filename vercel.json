@@ -186,6 +186,14 @@
       "destination": "/pages/checkout/audit/onboarding-confirmed.html"
     },
     {
+      "source": "/checkout/audit/new-next-steps",
+      "destination": "/pages/checkout/audit/new-next-steps.html"
+    },
+    {
+      "source": "/checkout/audit/new-next-steps/",
+      "destination": "/pages/checkout/audit/new-next-steps.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

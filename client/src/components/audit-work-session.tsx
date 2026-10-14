@@ -1,5 +1,7 @@
+import { onlineWorkSessionIntro } from "@/lib/assessment-copy";
+import { workOpportunityTransition } from "@shared/marketing-clarity-audit/editorial-narrative";
+import { reportLanguage, growthRoadmap } from "@shared/marketing-clarity-audit/customer-language";
 import { NotebookPen, Timer } from "lucide-react";
-import { workSessionIntro } from "@shared/marketing-clarity-audit/work-session-content";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { auditRequest } from "@/lib/audit-api";
@@ -35,6 +37,7 @@ export default function AuditWorkSession({
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
   const prompts = workPrompts(report);
+  const road = growthRoadmap(report);
   const endpoint = `/${token}/work-session?run=${run}`;
 
   const ready = !loading && !error;
@@ -149,8 +152,8 @@ export default function AuditWorkSession({
           <div>
             <p className="report-eyebrow">Your private Clarity workspace</p>
             <h2>Your Clarity Work Session</h2>
-            <h3>Turn your diagnosis into action.</h3>
-            <p>{workSessionIntro}</p>
+            <h3>Turn your opportunities into action.</h3>
+            <p>{onlineWorkSessionIntro}</p>
           </div>
           <aside
             className="work-session-time-cue"
@@ -164,7 +167,7 @@ export default function AuditWorkSession({
           </aside>
         </div>
         <p className="work-session-time-guidance">
-          Set a 20-minute timer and work through one question at a time.
+          Set aside about 20 minutes. Start with what you know; note what you still need to find out.
         </p>
       </div>
       <p className="report-prose">
@@ -179,7 +182,8 @@ export default function AuditWorkSession({
         Prefer to work offline?{" "}
         <a href="#clarity-toolkit" className="underline">
           Download or print your Clarity Work Session PDF.
-        </a>
+        </a>{" "}
+        Notes in a downloaded or printed PDF do not autosave.
       </p>
       <p role="status" aria-live="polite" className="work-save-status">
         {status}
@@ -234,7 +238,7 @@ export default function AuditWorkSession({
                   )}
                   {prompt.group === "secondary" && (
                     <p className="section-label text-xs font-semibold">
-                      Supporting constraint
+                      Your Next Opportunity
                     </p>
                   )}
                   <span className="prompt-number" aria-hidden="true">
@@ -272,7 +276,7 @@ export default function AuditWorkSession({
                       void save(prompt.id);
                     }}
                     className={`mt-3 block ${group === "decision" ? "min-h-20" : "min-h-28"} w-full resize-y rounded-lg border border-gray-300 bg-white p-3 text-base text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary`}
-                    placeholder="Capture your evidence, thinking, and next decision…"
+                    placeholder="Write your answer and any supporting evidence..."
                   />
                 </div>
               ))}
@@ -302,11 +306,12 @@ export default function AuditWorkSession({
             >
               <h3 className="section-label font-semibold">
                 {group === "primary"
-                  ? "Work Through Your Primary Constraint"
+                  ? "Work Through Your First Opportunity"
                   : group === "secondary"
-                    ? "Supporting constraint"
+                    ? `${reportLanguage.secondary}: ${road.nextTitle}`
                     : "Your decision"}
               </h3>
+              {group === "secondary" && <p>{workOpportunityTransition(report)}</p>}
               {content}
             </section>
           );

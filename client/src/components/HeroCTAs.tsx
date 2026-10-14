@@ -14,12 +14,12 @@ export default function HeroCTAs() {
           <span className="mr-2">💬</span> Work Together
         </a>
         <Link
-          to="/checkout/audit"
+          to="/growth-clarity-audit"
           className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 text-base font-semibold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:border-green-400 hover:bg-green-50"
-          aria-label="Order Your Deep Dive Audit"
+          aria-label="Explore the Deep Dive Growth Audit"
           data-testid="hero-cta-order-audit"
         >
-          <span className="mr-2">🔍</span> Order Your Deep Dive Audit
+          <span className="mr-2">🔍</span> Explore the Deep Dive Growth Audit
         </Link>
       </div>
 

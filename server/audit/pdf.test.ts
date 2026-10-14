@@ -1,7 +1,8 @@
+import { discoverCompanyLogo } from "./company-logo";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { PDFDocument } from "pdf-lib";
+import { PDFDocument, PDFName, PDFRawStream } from "pdf-lib";
 import {
   questionnaire,
   type Answers,
@@ -37,11 +38,11 @@ test("report and companion workbook generate branded, paginated PDF documents wi
       const document = await PDFDocument.load(buffer);
       assert.equal(
         document.getTitle(),
-        workbook ? "Clarity Work Session" : "Get Clarity Assessment Report",
+        workbook ? "Clarity Work Session" : "Your High Growth Opportunities",
       );
       assert.equal(document.getAuthor(), "Clarity Engine");
       assert.equal(document.getSubject(), "Prepared for Apex & Co.");
-      assert.equal(document.getPageCount(), workbook ? 2 : 9);
+      assert.equal(document.getPageCount(), workbook ? 2 : 10);
       assert.equal(
         Math.round(document.getPage(0).getWidth()),
         size === "LETTER" ? 612 : 595,
@@ -118,4 +119,20 @@ test("company logo is optional on report/workbook covers and malformed logo cann
     }
   }
   assert.equal(JSON.stringify(report), before);
+});
+
+test("web-approved logo provenance is required at the PDF boundary; unverified cached image falls back without changing workbook pagination", async () => {
+  const report = createFrozenReport(Object.fromEntries(questionnaire.questions.map(q=>[q.id,"A"])), {name:"PDF QA",email:"qa@example.com",companyName:"Fixture Brand",websiteUrl:"https://example.com",businessType:"professional_services",primaryMarketingGoal:"leads"});
+  const image = readFileSync(new URL("./pdf-assets/logo.png", import.meta.url));
+  const verified = (await discoverCompanyLogo(report.context.websiteUrl, async(url)=>url==="https://example.com/"?{body:Buffer.from('<meta property="og:logo" content="/brand.png">'),mime:"text/html",url}:{body:image,mime:"image/png",url}))!;
+  const countImages = (d:PDFDocument)=>d.context.enumerateIndirectObjects().filter(([,o])=>o instanceof PDFRawStream && o.dict.get(PDFName.of("Subtype"))?.toString()==="/Image").length;
+  for(const size of ["LETTER","A4"] as const) for(const work of [false,true]) {
+    const clean = await PDFDocument.load(await renderAuditPdf(report,work,"http://localhost:3001",size));
+    const invalid = await PDFDocument.load(await renderAuditPdf(report,work,"http://localhost:3001",size,undefined,image));
+    const valid = await PDFDocument.load(await renderAuditPdf(report,work,"http://localhost:3001",size,undefined,verified));
+    assert.equal(countImages(clean),countImages(invalid));
+    assert.ok(countImages(valid)>countImages(clean));
+    assert.equal(clean.getPageCount(),invalid.getPageCount());
+    if(work) assert.equal(clean.getPageCount(),valid.getPageCount());
+  }
 });

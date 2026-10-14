@@ -1,4 +1,4 @@
-import { normalizeCompanyLogo } from "./company-logo";
+import { normalizeCompanyLogo, discoverCompanyLogo } from "./company-logo";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -23,6 +23,7 @@ test("paid ownership, autosave/resume, two frozen reports, retake enforcement, n
       payment,
       origin,
       tokenSecret: "isolated-test-secret-that-is-long-enough",
+      discoverLogo: async () => null,
     }),
   );
   let cookie = "";
@@ -426,10 +427,11 @@ test("paid ownership, autosave/resume, two frozen reports, retake enforcement, n
   );
   assert.equal((await request(`/${token}/company-logo`)).status, 204);
   assert.equal((await request(`/${opaqueToken()}/company-logo`)).status, 404);
-  const cachedLogo = await normalizeCompanyLogo(
-    readFileSync(new URL("./pdf-assets/logo.png", import.meta.url)),
-    "image/png",
-  );
+  const cachedLogo = (await discoverCompanyLogo("https://example.com", async (url) =>
+    url === "https://example.com/"
+      ? { body: Buffer.from('<meta property="og:logo" content="/brand.png">'), mime: "text/html", url }
+      : { body: readFileSync(new URL("./pdf-assets/logo.png", import.meta.url)), mime: "image/png", url }
+  ))!;
   store.companyLogo = async () => ({ png: cachedLogo, checkedAt: new Date() });
   store.saveCompanyLogo = async () => {
     throw Error("Should use cache");
@@ -439,4 +441,19 @@ test("paid ownership, autosave/resume, two frozen reports, retake enforcement, n
   assert.equal(branded.headers.get("content-type"), "image/png");
   assert.match(branded.headers.get("cache-control")!, /no-store/);
   assert.deepEqual(Buffer.from(await branded.arrayBuffer()), cachedLogo);
+  // A legacy cached image is never trusted simply because it decodes as PNG.
+  let refreshes = 0;
+  let cache: Buffer | null = await normalizeCompanyLogo(cachedLogo, "image/png");
+  store.companyLogo = async () => ({ png: cache, checkedAt: new Date() });
+  store.saveCompanyLogo = async (_hash, _website, value) => { cache = value; refreshes++; };
+  assert.equal((await request(`/${token}/company-logo`)).status, 204);
+  assert.equal(refreshes, 1);
+  assert.equal(cache, null);
+  assert.equal((await request(`/${token}/company-logo`)).status, 204);
+  assert.equal(refreshes, 1); // negative cache is reused
+  const noLogoPdf = await request(`/${token}/download/report`);
+  assert.equal(noLogoPdf.status, 200);
+  assert.equal(noLogoPdf.headers.get("content-type"), "application/pdf");
+  assert.equal(refreshes, 1); // same validated cache path in web and PDF
+
 });

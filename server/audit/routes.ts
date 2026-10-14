@@ -1,4 +1,4 @@
-import { discoverCompanyLogo } from "./company-logo";
+import { discoverCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
 import express, { type Request } from "express";
 import { ZodError, z } from "zod";
@@ -21,6 +21,7 @@ export interface AuditDependencies {
   payment: AuditPayment;
   origin: string;
   tokenSecret: string;
+  discoverLogo?: (website: string) => Promise<Buffer | null>;
 }
 const cookieName = "clarity_audit_purchase";
 function claimCookie(req: Request) {
@@ -496,6 +497,22 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     }),
   );
   const logoJobs = new Map<string, Promise<Buffer | null>>();
+  async function currentCompanyLogo(store: AuditStore, hash: string, website: string) {
+    if (!store.companyLogo || !store.saveCompanyLogo) return null;
+    const cached = await store.companyLogo(hash);
+    const verified = cached?.png ? await validatedCachedCompanyLogo(cached.png, website) : null;
+    if (cached && Date.now() - cached.checkedAt.getTime() <= 86400000 && (!cached.png || verified)) return verified;
+    const jobKey = `${hash}:${website}`;
+    let job = logoJobs.get(jobKey);
+    if (!job && logoJobs.size < 4) {
+      job = (dependencies?.discoverLogo ?? discoverCompanyLogo)(website).then(async (logo) => {
+        await store.saveCompanyLogo!(hash, website, logo);
+        return logo;
+      }).finally(() => logoJobs.delete(jobKey));
+      logoJobs.set(jobKey, job);
+    }
+    return job ? await job : null;
+  }
   router.get(
     "/:token/company-logo",
     handle(async (_req, res, { store }) => {
@@ -510,22 +527,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         }
         const hash = res.locals.auditHash,
           website = res.locals.audit.context.websiteUrl;
-        const cached = await store.companyLogo(hash);
-        let png = cached?.png;
-        if (!cached || Date.now() - cached.checkedAt.getTime() > 86400000) {
-          const jobKey = `${hash}:${website}`;
-          let job = logoJobs.get(jobKey);
-          if (!job && logoJobs.size < 4) {
-            job = discoverCompanyLogo(website)
-              .then(async (logo) => {
-                await store.saveCompanyLogo!(hash, website, logo);
-                return logo;
-              })
-              .finally(() => logoJobs.delete(jobKey));
-            logoJobs.set(jobKey, job);
-          }
-          png = job ? await job : null;
-        }
+        const png = await currentCompanyLogo(store, hash, website);
         if (!png) {
           res.status(204).end();
           return;
@@ -587,7 +589,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       let companyLogo: Buffer | undefined;
       try {
         companyLogo =
-          (await store.companyLogo?.(res.locals.auditHash))?.png ?? undefined;
+          (await currentCompanyLogo(store, res.locals.auditHash, res.locals.audit.context.websiteUrl)) ?? undefined;
       } catch {}
       const pdf = await renderAuditPdf(
         selected.report,

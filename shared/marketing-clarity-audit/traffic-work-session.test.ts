@@ -54,7 +54,7 @@ test("Scenario 5 keeps Traffic/P13 as the primary without forcing Measurement in
     ],
   );
   assert.match(moves[0].doneWhen, /control\/baseline/);
-  assert.match(moves[1].whyCritical, /underpowered/);
+  assert.match(moves[1].whyCritical, /every answer uncertain/);
   assert.match(moves[2].doneWhen, /dated record/);
   const prompts = workPrompts(report).filter(
     (p) => p.group === "decision" && !p.legacy,

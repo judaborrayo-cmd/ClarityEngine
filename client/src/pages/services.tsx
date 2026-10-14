@@ -10,7 +10,7 @@ export default function Services() {
             Services Built to Drive Measurable Growth — with Strategy That Scales
           </h1>
           <p className="mt-4 text-gray-600 max-w-3xl mx-auto" data-testid="text-services-hero-subhead">
-            Choose your starting point — from a Deep-Dive Growth Audit to long-term partnerships. 
+            Choose your starting point — from a Deep Dive Growth Audit to long-term partnerships.
             Everything is designed for brands that live on leads and bookings: retreats, travel, fitness, 
             and multi-location companies.
           </p>
@@ -28,12 +28,12 @@ export default function Services() {
               className="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm border border-gray-300 bg-white text-gray-900 hover:bg-gray-50 transition-colors"
               data-testid="button-explore-audit-hero"
             >
-              Explore Deep-Dive Audit
+              Explore Deep Dive Growth Audit
             </a>
           </div>
 
           <p className="text-sm text-gray-500 mt-2">
-            New clients are accepted by application or completion of a Deep-Dive Audit.
+            The Audit is available as a standalone engagement. Ongoing partnerships are accepted by application.
           </p>
         </div>
       </section>
@@ -41,7 +41,7 @@ export default function Services() {
       {/* ===== 2) MAIN SERVICE OPTIONS (AUDIT + RETAINER) ===== */}
       <section className="py-6">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
-          {/* Deep-Dive Growth Audit */}
+          {/* Deep Dive Growth Audit */}
           <article
             id="audit"
             className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition"
@@ -56,10 +56,10 @@ export default function Services() {
               </svg>
               <div>
                 <h3 className="text-xl font-semibold text-gray-900" data-testid="text-audit-title">
-                  Deep-Dive Growth Audit (Full-Funnel)
+                  Deep Dive Growth Audit
                 </h3>
                 <p className="text-gray-600" data-testid="text-audit-description">
-                  Pinpoint what's working, what's not, and what to fix first across ads, tracking, offers, and funnel.
+                  Investigate your business and marketing evidence, then prioritize a practical 90-day strategy. $3,725 USD one-time.
                 </p>
               </div>
             </div>
@@ -68,33 +68,33 @@ export default function Services() {
             <ul className="mt-4 space-y-2">
               <li className="flex items-start gap-3" data-testid="text-audit-bullet-1">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
-                <span className="text-gray-700">Full-funnel audit with PDF + video walkthrough</span>
+                <span className="text-gray-700">Written strategic findings and prioritized recommendations</span>
               </li>
               <li className="flex items-start gap-3" data-testid="text-audit-bullet-2">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
-                <span className="text-gray-700">30–60-minute strategy call to review findings</span>
+                <span className="text-gray-700">Personal findings walkthrough</span>
               </li>
               <li className="flex items-start gap-3" data-testid="text-audit-bullet-3">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
-                <span className="text-gray-700">Priority actions: quick wins, CRO tests, tiered remarketing</span>
+                <span className="text-gray-700">A structured 90-day growth roadmap</span>
               </li>
               <li className="flex items-start gap-3" data-testid="text-audit-bullet-4">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full ring-2 ring-green-500 text-green-600 text-xs font-bold mt-0.5">✓</span>
-                <span className="text-gray-700">2 weeks of post-audit support via email</span>
+                <span className="text-gray-700">Scope grounded in agreed priorities and available evidence</span>
               </li>
             </ul>
 
             {/* Buttons (unchanged labels) */}
             <div className="mt-5 flex flex-wrap gap-3">
               <a
-                href="#calendly"
+                href="/growth-clarity-audit"
                 className="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
                 data-testid="button-audit-book-call"
               >
-                Book a 30-min Strategy Call — $75
+                Explore the Deep Dive Growth Audit
               </a>
               <a
-                href="#audit-details"
+                href="/growth-clarity-audit"
                 className="inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold shadow-sm border border-gray-300 bg-white text-gray-900 hover:bg-gray-50 transition-colors"
                 data-testid="button-audit-details"
               >
@@ -103,7 +103,7 @@ export default function Services() {
             </div>
 
             <p className="text-xs text-gray-400 mt-3">
-              Most partners start here — the audit becomes your 90-day roadmap.
+              Choose this engagement when you need evidence-led investigation. No prior purchase required.
             </p>
           </article>
 
@@ -192,9 +192,9 @@ export default function Services() {
               </thead>
               <tbody>
                 <tr className="border-t" data-testid="row-audit">
-                  <td className="py-3 px-4 text-gray-600">Quick clarity &amp; prioritized roadmap</td>
+                  <td className="py-3 px-4 text-gray-600">Evidence-led investigation &amp; 90-day roadmap</td>
                   <td className="py-3 px-4 text-gray-600">One-time</td>
-                  <td className="py-3 px-4 text-gray-600">Deep-Dive Audit</td>
+                  <td className="py-3 px-4 text-gray-600">Deep Dive Growth Audit</td>
                 </tr>
                 <tr className="border-t bg-gray-50" data-testid="row-retainer">
                   <td className="py-3 px-4 text-gray-600">Scale &amp; compound growth across channels/locations</td>

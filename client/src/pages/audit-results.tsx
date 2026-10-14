@@ -1,3 +1,4 @@
+import "./audit-results.css";
 import { useEffect, useState } from "react";
 import {
   Link,
@@ -124,7 +125,7 @@ export default function AuditResults() {
     }
   }
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <main className="report-workspace mx-auto max-w-6xl px-4 py-8 sm:px-6">
       {runInfo?.localQa && (
         <p className="mb-5 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold">
           LOCAL QA TEST REPORT — this workspace does not consume the original
@@ -195,38 +196,11 @@ export default function AuditResults() {
               <div className="report-utilities grid gap-4 md:grid-cols-2">
                 {" "}
                 {report && (
-                  <section
-                    className="rounded-xl border border-gray-200 bg-gray-50 p-5 print:hidden"
-                    aria-labelledby="private-results-link-title"
-                  >
-                    <h2
-                      id="private-results-link-title"
-                      className="font-semibold"
-                    >
-                      Save your private results link
-                    </h2>
-                    <p className="mt-2 text-sm leading-relaxed">
-                      This private link gives you continued access to your
-                      Get Clarity Assessment Report, saved Work Session notes, and
-                      included retake. Keep it somewhere safe.
-                    </p>
-                    <Button
-                      variant="outline"
-                      className="mt-3 border-violet-200 bg-white text-primary hover:bg-violet-50 hover:text-primary"
-                      onClick={copyPrivateLink}
-                    >
-                      Copy private link
-                    </Button>
-                    <p className="mt-2 text-xs text-gray-600">
-                      You can also bookmark this page in your browser. No login
-                      is required.
-                    </p>
-                    {copyStatus && (
-                      <p role="status" className="mt-2 text-sm">
-                        {copyStatus}
-                      </p>
-                    )}
-                  </section>
+                  <div className="private-link-control print:hidden">
+                    <Button variant="outline" onClick={copyPrivateLink}>Copy Private Link</Button>
+                    <span className="text-xs text-gray-600">Keep this link private so you can return to your report and saved notes.</span>
+                    {copyStatus && <p role="status" aria-live="polite" className="text-sm">{copyStatus}</p>}
+                  </div>
                 )}
                 {report && runInfo && !runInfo.localQa && (
                   <section className="rounded-xl border border-gray-200 bg-gray-50 p-5 print:hidden">
@@ -337,14 +311,13 @@ export default function AuditResults() {
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <div className="rounded-xl border border-gray-200 bg-white p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-                Your diagnosis
+                Your growth roadmap
               </p>
               <h3 className="mt-2 text-xl font-semibold">
-                Get Clarity Assessment Report
+                Your High Growth Opportunities
               </h3>
               <p className="my-4 text-sm leading-relaxed">
-                Your diagnosis, scorecard, next three moves, priorities to
-                avoid, real-world example, KPI guidance, and 30-day plan.
+                Your opportunities, six growth levers, first three moves, real-world example, progress signals, and 30-day plan.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a
@@ -354,7 +327,7 @@ export default function AuditResults() {
                   Open Report
                 </a>
                 <Button disabled={busy} onClick={() => download("report")}>
-                  Download Get Clarity Assessment Report PDF
+                  Download Your High Growth Opportunities PDF
                 </Button>
               </div>
             </div>
@@ -367,7 +340,7 @@ export default function AuditResults() {
               </h3>
               <p className="my-4 text-sm leading-relaxed">
                 Guided strategic questions and a decision worksheet for working
-                through your primary constraint.
+                through your first opportunity.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a

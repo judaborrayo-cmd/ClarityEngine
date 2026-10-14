@@ -1,3 +1,5 @@
+import { assessmentSections, assessmentInsights } from "@/lib/assessment-copy";
+import "./audit-assessment.css";
 import { questionDisplay } from "@shared/marketing-clarity-audit/question-display";
 import { DiagnosticClarityStack } from "@shared/marketing-clarity-audit/clarity-stack";
 import { useEffect, useRef, useState } from "react";
@@ -162,7 +164,7 @@ export default function AuditAssessment() {
       trackAudit("question_answered", token, question.id);
       if (position === 34) trackAudit("section_complete", token, question.id);
       if (saved.teachingNote) {
-        setNote(saved.teachingNote);
+        setNote(assessmentInsights[question.id] ?? saved.teachingNote);
         setBusy(false);
       } else
         timer.current = setTimeout(() => {
@@ -222,14 +224,14 @@ export default function AuditAssessment() {
   };
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+    <main className="assessment-shell mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
       {session?.localQa && (
         <p className="mb-5 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold">
           LOCAL QA TEST RUN — separate from the purchased assessment. Original
           reports and included retake are untouched.
         </p>
       )}
-      <h1 className="mb-4 text-2xl font-bold">Get Clarity Assessment</h1>
+      <h1 className="assessment-heading mb-4 text-2xl font-bold">Get Clarity Assessment</h1>
       {!session && !error && (
         <p role="status">Verifying purchase and loading your assessment…</p>
       )}
@@ -261,11 +263,13 @@ export default function AuditAssessment() {
       {session && !session.context && (
         <section className="rounded-2xl border border-gray-200 p-5 sm:p-8">
           <h2 className="text-2xl font-semibold">
-            Tell us about your business
+            Start with your business. Find your next growth opportunity.
           </h2>
           <p className="mt-3">
-            Six sections · 35 questions · approximately 12–18 minutes. Your
-            answers save automatically. Scores stay hidden until completion.
+            35 questions look at six growth levers: what you sell, who buys, how you explain it, the path to taking action, how people find you, and how you learn from results. Together, your answers help identify where to focus next—with three practical moves and a 30-day plan.
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Allow 12–18 minutes. Answer for how your business works today. Your answers save automatically; use your secure resume link to return. Scores appear after you finish.
           </p>
           <form onSubmit={saveContext} className="mt-6 space-y-5">
             {[
@@ -322,7 +326,7 @@ export default function AuditAssessment() {
               </select>
             </label>
             <Button disabled={busy} type="submit">
-              {busy ? "Saving…" : "Start Get Clarity Assessment"}
+              {busy ? "Saving…" : "Start My Assessment"}
             </Button>
           </form>
         </section>
@@ -413,283 +417,267 @@ export default function AuditAssessment() {
               </details>
             </div>
           )}
-          <div
-            style={sectionStyle(section?.id)}
-            className="sticky top-28 z-20 mb-6 rounded-xl border border-gray-200 bg-white/95 p-4 backdrop-blur md:top-20"
-          >
-            <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3 sm:grid-cols-[1fr_280px] sm:gap-6">
-              <div>
-                {companyName && (
-                  <p className="mb-1 break-words text-xs text-muted-foreground">
-                    Get Clarity Assessment for {companyName}
+          <div className={`assessment-workspace${!question ? " assessment-workspace-complete" : ""}`}>
+            <div
+              style={sectionStyle(section?.id)}
+              className="assessment-companion sticky top-28 z-20 mb-6 rounded-xl border border-gray-200 bg-white/95 p-4 backdrop-blur md:top-20"
+            >
+              <div className="assessment-progress-layout grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-start gap-3 sm:grid-cols-[1fr_280px] sm:gap-6">
+                <div>
+                  {companyName && (
+                    <p className="mb-1 break-words text-xs text-muted-foreground">
+                      Get Clarity Assessment for {companyName}
+                    </p>
+                  )}
+                  <p className="text-sm font-semibold">
+                    {section?.name ?? "Review"} · Section {section?.id ?? 6} of 6
                   </p>
-                )}
-                <p className="text-sm font-semibold">
-                  {section?.name ?? "Review"} · Section {section?.id ?? 6} of 6
-                </p>
-                <p className="mt-1 text-sm">
-                  {question
-                    ? `Question ${localQuestions.findIndex((q) => q.id === question.id) + 1} of ${localQuestions.length} · `
-                    : ""}
-                  {progress.percent}% complete · {progress.remainingTime}
-                </p>
-                <progress
-                  className="audit-progress mt-2 h-2 w-full accent-violet-600"
-                  value={progress.answered}
-                  max={35}
-                  aria-label="Assessment progress"
+                  <p className="mt-1 text-sm">
+                    {question
+                      ? `Question ${localQuestions.findIndex((q) => q.id === question.id) + 1} of ${localQuestions.length} · `
+                      : ""}
+                    {progress.percent}% complete · {progress.remainingTime}
+                  </p>
+                  <progress
+                    className="audit-progress mt-2 h-2 w-full accent-violet-600"
+                    value={progress.answered}
+                    max={35}
+                    aria-label="Assessment progress"
+                  />
+                  <p role="status" aria-live="polite" className="mt-1 text-xs">
+                    {status}
+                  </p>
+                </div>
+                <DiagnosticClarityStack
+                  answers={session.answers}
+                  currentSection={transition ? undefined : section?.id}
                 />
-                <p role="status" aria-live="polite" className="mt-1 text-xs">
-                  {status}
-                </p>
               </div>
-              <DiagnosticClarityStack
-                answers={session.answers}
-                currentSection={transition ? undefined : section?.id}
-              />
             </div>
-          </div>
-          {transition ? (
-            <section
-              style={sectionStyle(section?.id)}
-              className="rounded-2xl border border-gray-200 p-8"
-            >
-              <h2 ref={titleRef} tabIndex={-1} className="text-2xl font-bold">
-                <span style={{ color: "var(--section-color)" }}>
-                  {section?.name} complete
-                </span>
-              </h2>
-              <p className="my-4">
-                Your answers are saved. Next:{" "}
-                {
-                  questionnaire.sections.find(
-                    (s) => s.id === (section?.id ?? 0) + 1,
-                  )?.name
-                }
-                .
-              </p>
-              {(section?.id === 1 || section?.id === 3) && (
-                <p className="mb-4 break-words text-sm text-muted-foreground">
-                  {section.id === 3
-                    ? `Halfway there. You’re narrowing down the highest-leverage next moves${companyName ? ` for ${companyName}` : " for your business"}.`
-                    : `You’re building a clearer picture of what deserves attention next${companyName ? ` at ${companyName}` : " in your business"}.`}
-                </p>
-              )}
-              <Button
-                onClick={() => {
-                  setTransition(false);
-                  setPosition((p) => p + 1);
-                }}
+            {transition ? (
+              <section
+                style={sectionStyle(section?.id)}
+                className="assessment-transition rounded-2xl border border-gray-200 p-8"
               >
-                Continue to next section
-              </Button>
-              <Button variant="ghost" onClick={() => setTransition(false)}>
-                Review last answer
-              </Button>
-            </section>
-          ) : question ? (
-            <section
-              style={sectionStyle(section?.id)}
-              className="rounded-2xl border border-gray-200 p-5 sm:p-8"
-            >
-              <p className="text-sm" style={{ color: "var(--section-color)" }}>
-                {section?.title}
-              </p>
-              <h2
-                ref={titleRef}
-                tabIndex={-1}
-                className="mt-4 max-w-3xl text-xl font-semibold outline-none sm:text-2xl"
-              >
-                {questionDisplay(question)}
-              </h2>
-              {"helperText" in question && (
-                <p className="mt-3 text-sm">{question.helperText}</p>
-              )}
-              <fieldset className="mt-6 space-y-3" disabled={busy}>
-                <legend className="sr-only">Choose your answer</legend>
-                {question.options.map((option) => (
-                  <label
-                    key={option.value}
-                    className={`flex min-h-12 cursor-pointer gap-3 rounded-xl border p-4 focus-within:ring-2 focus-within:ring-primary ${option.value === (selectedForQuestion ?? session.answers[question.id]) ? "border-primary bg-violet-50" : "border-gray-200"}`}
-                  >
-                    <input
-                      type="radio"
-                      name={question.id}
-                      value={option.value}
-                      checked={
-                        option.value ===
-                        (selectedForQuestion ?? session.answers[question.id])
-                      }
-                      onChange={() => saveAnswer(option.value as AnswerValue)}
-                      className="mt-1 shrink-0 accent-violet-600"
-                    />
-                    <span className="max-w-3xl">{option.text}</span>
-                  </label>
-                ))}
-              </fieldset>
-              {note && (
-                <aside
-                  role="status"
-                  className="mt-5 rounded-xl bg-green-50 p-4"
-                >
-                  <h3 className="font-semibold">Clarity Insight</h3>
-                  <p className="mt-2">{note}</p>
-                  <Button className="mt-3" onClick={advance}>
-                    Continue
-                  </Button>
-                </aside>
-              )}
-              <div className="mt-6 flex justify-between">
+                <h2 ref={titleRef} tabIndex={-1} className="text-2xl font-bold">
+                  <span style={{ color: "var(--section-color)" }}>
+                    {section?.name} complete
+                  </span>
+                </h2>
+                <p className="my-4">{section && assessmentSections[section.id]?.completion}</p>
+                <p className="mb-4 text-sm text-muted-foreground">Your answers are saved.</p>
                 <Button
-                  variant="outline"
-                  disabled={position === 0 || busy}
-                  onClick={back}
+                  onClick={() => {
+                    setTransition(false);
+                    setPosition((p) => p + 1);
+                  }}
                 >
-                  Back
+                  Continue to next section
                 </Button>
-                {session.answers[question.id] && !note && !error && (
-                  <Button disabled={busy} onClick={advance}>
-                    Continue
-                  </Button>
+                <Button variant="ghost" onClick={() => setTransition(false)}>
+                  Review last answer
+                </Button>
+              </section>
+            ) : question ? (
+              <section
+                style={sectionStyle(section?.id)}
+                className="assessment-question rounded-2xl border border-gray-200 p-5 sm:p-8"
+              >
+                <p className="text-sm" style={{ color: "var(--section-color)" }}>
+                  {section ? assessmentSections[section.id]?.title ?? section.title : undefined}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {section && assessmentSections[section.id]?.description}
+                </p>
+                <h2
+                  ref={titleRef}
+                  tabIndex={-1}
+                  className="mt-4 max-w-3xl text-xl font-semibold outline-none sm:text-2xl"
+                >
+                  {questionDisplay(question)}
+                </h2>
+                {"helperText" in question && (
+                  <p className="mt-3 text-sm">{question.helperText}</p>
                 )}
-              </div>
-            </section>
-          ) : (
-            <section className="relative overflow-hidden rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 via-white to-emerald-50 p-6 shadow-sm sm:p-10">
-              <div
-                aria-hidden="true"
-                className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-violet-100"
-              >
-                <svg width="42" height="42" viewBox="0 0 48 48" fill="none">
-                  <path
-                    d="M5 40L24 7L43 40H5Z"
-                    stroke="#6d4ce8"
-                    strokeWidth="2.5"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M16 40L29 21L24 7"
-                    stroke="#16734b"
-                    strokeWidth="2.5"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M20 15L24 20L28 15"
-                    stroke="#6d4ce8"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-800">
-                Six sections explored · All 35 answers saved
-              </p>
-              <h2
-                ref={titleRef}
-                tabIndex={-1}
-                className="max-w-xl text-3xl font-bold leading-tight outline-none sm:text-4xl"
-              >
-                You’ve completed the climb. Now let’s find the clearest path
-                forward.
-              </h2>
-              <p className="mt-5 leading-relaxed text-muted-foreground">
-                You’ve examined six interconnected parts of your marketing
-                system and given us the context needed to look for the patterns
-                between them.
-              </p>
-              <p className="break-words text-sm text-muted-foreground">
-                Prepared specifically for {companyName || "your business"}
-              </p>
-              <div className="my-6 rounded-xl border border-violet-100 bg-white/80 p-4">
-                <h3 className="font-semibold">
-                  Review before generating your report
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed">
-                  {isRetake
-                    ? "You can still edit any answer before continuing. This is your included retake. Generating your report freezes Report 2; your original report will remain available."
-                    : "You can still edit any answer before continuing. Your purchase also includes one complete retake in case you want to reassess your business after reviewing your first results."}
-                </p>
-              </div>
-              <p className="mb-4 text-lg font-semibold text-primary">
-                Your clarity is one step away.
-              </p>
-              <p className="mb-5 text-sm leading-relaxed text-gray-600">
-                We examined the six layers of your marketing system. Now we can
-                show you where to focus and what to do next.
-              </p>
-              <ol
-                aria-label="Your Clarity Stack"
-                className="clarity-stack mb-6 flex flex-col gap-3"
-              >
-                {[
-                  [
-                    "Your Primary Constraint",
-                    "The issue most likely holding progress back.",
-                    "#5541BF",
-                    "#F7F4FF",
-                  ],
-                  [
-                    "Your 3 Highest-Leverage Next Moves",
-                    "Where your attention is most likely to matter.",
-                    "#145C43",
-                    "#F2FAF5",
-                  ],
-                  [
-                    "What Not to Prioritize Yet",
-                    "What you can stop spending attention on for now.",
-                    "#14636B",
-                    "#F1F9FA",
-                  ],
-                  [
-                    "Your 30-Day Clarity Plan",
-                    "How to turn the diagnosis into action.",
-                    "#5541BF",
-                    "#F7F4FF",
-                  ],
-                ].map(([title, description, color, tint], index) => (
-                  <li
-                    key={title}
-                    className="flex w-full items-start gap-4 rounded-xl border border-white p-5 shadow-sm sm:items-center sm:p-6"
-                    style={{
-                      backgroundColor: tint,
-                      borderLeft: `4px solid ${color}`,
-                      boxShadow:
-                        "0 3px 0 rgba(37, 28, 69, 0.05), 0 8px 20px rgba(37, 28, 69, 0.025)",
-                    }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border bg-white text-sm font-semibold tracking-wide"
-                      style={{ color, borderColor: `${color}30` }}
+                <fieldset className="mt-6 space-y-3" disabled={busy}>
+                  <legend className="sr-only">Choose your answer</legend>
+                  {question.options.map((option) => (
+                    <label
+                      key={option.value}
+                      className={`assessment-answer flex min-h-12 cursor-pointer gap-3 rounded-xl border p-4 focus-within:ring-2 focus-within:ring-primary ${option.value === (selectedForQuestion ?? session.answers[question.id]) ? "border-primary bg-violet-50" : "border-gray-200"}`}
                     >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold leading-snug text-gray-900">
-                        {title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-gray-600">
-                        {description}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button
-                  className="h-auto min-h-12 whitespace-normal px-5 py-3"
-                  disabled={busy}
-                  onClick={complete}
+                      <input
+                        type="radio"
+                        name={question.id}
+                        value={option.value}
+                        checked={
+                          option.value ===
+                          (selectedForQuestion ?? session.answers[question.id])
+                        }
+                        onChange={() => saveAnswer(option.value as AnswerValue)}
+                        className="mt-1 shrink-0 accent-violet-600"
+                      />
+                      <span className="max-w-3xl">{option.text}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                {note && (
+                  <aside
+                    role="status"
+                    className="assessment-insight mt-5 rounded-xl bg-green-50 p-4"
+                  >
+                    <h3 className="font-semibold">Clarity Insight</h3>
+                    <p className="mt-2">{note}</p>
+                    <Button className="mt-3" onClick={advance}>
+                      Continue
+                    </Button>
+                  </aside>
+                )}
+                <div className="assessment-navigation mt-6 flex justify-between">
+                  <Button
+                    variant="outline"
+                    disabled={position === 0 || busy}
+                    onClick={back}
+                  >
+                    Back
+                  </Button>
+                  {session.answers[question.id] && !note && !error && (
+                    <Button disabled={busy} onClick={advance}>
+                      Continue
+                    </Button>
+                  )}
+                </div>
+              </section>
+            ) : (
+              <section className="assessment-ready relative overflow-hidden rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 via-white to-emerald-50 p-6 shadow-sm sm:p-10">
+                <div
+                  aria-hidden="true"
+                  className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-violet-100"
                 >
-                  {busy
-                    ? "Generating your report…"
-                    : "Generate My Get Clarity Assessment Report"}
-                </Button>
-                <Button variant="ghost" disabled={busy} onClick={back}>
-                  Back
-                </Button>
-              </div>
-            </section>
-          )}
+                  <svg width="42" height="42" viewBox="0 0 48 48" fill="none">
+                    <path
+                      d="M5 40L24 7L43 40H5Z"
+                      stroke="#6d4ce8"
+                      strokeWidth="2.5"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M16 40L29 21L24 7"
+                      stroke="#16734b"
+                      strokeWidth="2.5"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M20 15L24 20L28 15"
+                      stroke="#6d4ce8"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-800">
+                  Six growth levers explored · All 35 answers saved
+                </p>
+                <h2
+                  ref={titleRef}
+                  tabIndex={-1}
+                  className="max-w-xl text-3xl font-bold leading-tight outline-none sm:text-4xl"
+                >
+                  Your Clarity Stack is complete. Let's turn it into a plan.
+                </h2>
+                <p className="mt-5 leading-relaxed text-muted-foreground">
+                  You've just looked at six of the most important drivers of marketing growth. Now comes the interesting part: connecting the dots.
+                </p>
+                <p className="mt-3 leading-relaxed text-muted-foreground">
+                  Let's see what's working in your favor, where your biggest opportunities may be hiding, and which three moves deserve your attention first.
+                </p>
+                <p className="break-words text-sm text-muted-foreground">
+                  Prepared specifically for {companyName || "your business"}
+                </p>
+                <div className="assessment-ready-review my-6 rounded-xl border border-violet-100 bg-white/80 p-4">
+                  <h3 className="font-semibold">
+                    Review before generating your report
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed">
+                    {isRetake
+                      ? "You can still edit any answer before continuing. This is your included retake. Generating your report freezes Report 2; your original report will remain available."
+                      : "You can still edit any answer before continuing. Your purchase also includes one complete retake in case you want to reassess your business after reviewing your first results."}
+                  </p>
+                </div>
+                <ol
+                  aria-label="Your Clarity Stack"
+                  className="clarity-stack mb-6 flex flex-col gap-3"
+                >
+                  {[
+                    [
+                      "Your First Growth Opportunity",
+                      "Where to focus first, based on the patterns across your answers.",
+                      "#5541BF",
+                      "#F7F4FF",
+                    ],
+                    [
+                      "Your First 3 Moves",
+                      "Three practical actions, why they matter, and how to know when each is done.",
+                      "#145C43",
+                      "#F2FAF5",
+                    ],
+                    [
+                      "Your Marketing Clarity Snapshot",
+                      "How the six levers compare, including strengths you can build on.",
+                      "#14636B",
+                      "#F1F9FA",
+                    ],
+                    [
+                      "Your 30-Day Clarity Plan",
+                      "A weekly sequence for turning your first opportunity into progress.",
+                      "#5541BF",
+                      "#F7F4FF",
+                    ],
+                  ].map(([title, description, color, tint], index) => (
+                    <li
+                      key={title}
+                      className="flex w-full items-start gap-4 rounded-xl border border-white p-5 shadow-sm sm:items-center sm:p-6"
+                      style={{
+                        backgroundColor: tint,
+                        borderLeft: `4px solid ${color}`,
+                        boxShadow:
+                          "0 3px 0 rgba(37, 28, 69, 0.05), 0 8px 20px rgba(37, 28, 69, 0.025)",
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border bg-white text-sm font-semibold tracking-wide"
+                        style={{ color, borderColor: `${color}30` }}
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="font-semibold leading-snug text-gray-900">
+                          {title}
+                        </h3>
+                        <p className="mt-1.5 text-sm leading-relaxed text-gray-600">
+                          {description}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <div className="assessment-ready-actions flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Button
+                    className="h-auto min-h-12 whitespace-normal px-5 py-3"
+                    disabled={busy}
+                    onClick={complete}
+                  >
+                    {busy
+                      ? "Generating your report…"
+                      : "Generate My High Growth Opportunities Report"}
+                  </Button>
+                  <Button variant="ghost" disabled={busy} onClick={back}>
+                    Back
+                  </Button>
+                </div>
+              </section>
+            )}
+          </div>
         </>
       )}
     </main>

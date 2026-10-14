@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './local-fonts';
 
 test('sales draft is responsive, respects reduced motion, and hands off to isolated checkout', async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -27,10 +27,10 @@ test('sales draft is responsive, respects reduced motion, and hands off to isola
   await page.locator('video').scrollIntoViewIfNeeded();
   await page.screenshot({ path: testInfo.outputPath('video-ending.png') });
   await page.getByRole('button', { name: 'Get My Clarity Assessment — $27' }).first().click();
-  await expect(page.getByRole('heading', { name: 'Tell us about your business' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Start with your business. Find your next growth opportunity.' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Get Clarity Assessment');
   await page.goto('/checkout/audit');
-  await expect(page.getByRole('heading', { name: 'Deep Dive Audit', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Deep Dive Growth Audit', exact: true })).toBeVisible();
 });
 
 

@@ -1,10 +1,12 @@
+import { supportingDepth, closingTransition, workOpportunityTransition } from "./editorial-narrative";
 import React from "react";
+import { GrowthReportHero } from "./growth-hero";
+import { reportLanguage, growthRoadmap, growthLeverCopy, customerConfidence, customerCaseStory } from "./customer-language";
 import {
   ConstraintTeaching,
   ImprovementEvidence,
 } from "./constraint-teaching-view";
-import { workSessionIntro } from "./work-session-content";
-import { CompanyLogo, type CompanyLogoAsset } from "./company-logo-view";
+import { type CompanyLogoAsset } from "./company-logo-view";
 import { MarketingSnapshot, ScoreBandGuide } from "./snapshot-view";
 import {
   MarketingSystemInteractions,
@@ -23,7 +25,6 @@ import { sectionColors, sectionStyle } from "./sections";
 import {
   aiPresentation,
   caseRelevance,
-  caseTeaching,
   recommendationWhyCritical,
   confidencePresentation,
   reportPlan,
@@ -33,11 +34,12 @@ import {
 } from "./presentation";
 
 export function WorkSessionView({ report }: { report: FrozenAuditReport }) {
+  const road = growthRoadmap(report);
   return (
     <section className="audit-block">
       <h2>Your Clarity Work Session</h2>
-      <h3>Turn your diagnosis into action.</h3>
-      <p>{workSessionIntro}</p>
+      <h3>Turn your opportunities into action.</h3>
+      <p>{reportLanguage.workIntro}</p>
       {(["primary", "secondary", "decision"] as const).map((group) => {
         const prompts = workPrompts(report).filter(
           (p) => p.group === group && !p.legacy,
@@ -47,11 +49,12 @@ export function WorkSessionView({ report }: { report: FrozenAuditReport }) {
           <div key={group} style={sectionStyle(prompts[0].sectionId)}>
             <h3 className="section-label">
               {group === "primary"
-                ? "Work Through Your Primary Constraint"
+                ? "Work Through Your First Opportunity"
                 : group === "secondary"
-                  ? "Supporting constraint"
+                  ? `${reportLanguage.secondary}: ${road.nextTitle}`
                   : "Your decision"}
             </h3>
+            {group === "secondary" && <p>{workOpportunityTransition(report)}</p>}
             {prompts.map((prompt) => (
               <div className="work-prompt" key={prompt.id}>
                 <p>{prompt.label}</p>
@@ -77,6 +80,7 @@ export function AuditReportView({
   workTogetherHref = "/services",
   workSession,
   nextMoves,
+  constraintImagery,
   metricsImagery,
   aiImagery,
   caseVisuals,
@@ -89,6 +93,7 @@ export function AuditReportView({
   workTogetherHref?: string;
   workSession?: React.ReactNode;
   nextMoves?: React.ReactNode;
+  constraintImagery?: React.ReactNode;
   metricsImagery?: React.ReactNode;
   aiImagery?: React.ReactNode;
   caseVisuals?: CaseVisualAssets;
@@ -97,57 +102,16 @@ export function AuditReportView({
   companyLogo?: CompanyLogoAsset;
 }) {
   const d = report.diagnosis;
-  const teaching = caseTeaching(report);
-  const confidence = confidencePresentation(report);
+  const teaching = customerCaseStory(report);
+  const confidence = { ...confidencePresentation(report), explanation: customerConfidence(report) };
+  const road = growthRoadmap(report);
   const sectionName = (id?: number) =>
     id ? sectionColors[id as keyof typeof sectionColors].name : undefined;
   return (
     <article className="audit-report" id="marketing-clarity-report">
-      <header className="report-cover audit-block concise">
-        <p className="report-eyebrow">A Clarity Engine™ Diagnostic</p>
-        <h1>Get Clarity Assessment Report</h1>
-        <p className="report-intro">
-          See what's working. Find what's holding you back. Know what to do
-          next.
-        </p>
-        <div className="prepared-for">
-          {companyLogo && (
-            <CompanyLogo key={companyLogo.src} asset={companyLogo} />
-          )}
-          <h2>{report.context.companyName}</h2>
-          <p>{report.context.websiteUrl}</p>
-          <p>
-            Prepared for {report.context.name} ·{" "}
-            {new Date(report.createdAt).toLocaleDateString("en-US", {
-              timeZone: "America/New_York",
-            })}
-          </p>
-        </div>
-      </header>
+      <GrowthReportHero report={report} companyLogo={companyLogo} />
       {afterHero}
       <MarketingSnapshot report={report} />
-      <section className="audit-block concise">
-        <h2>Six-part scorecard</h2>
-        <div className="score-grid">
-          {questionnaire.sections.map((s) => (
-            <div
-              className="score-card section-card"
-              style={sectionStyle(s.id)}
-              key={s.id}
-            >
-              <h3>{s.name}</h3>
-              <p className="score-number">
-                {Math.round(d.sectionScores[s.id])}
-                <span> / 100</span>
-              </p>
-              <p className="score-band">{sectionBand(d.sectionScores[s.id])}</p>
-              <div className="score-track" aria-hidden="true">
-                <div style={{ width: `${d.sectionScores[s.id]}%` }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
       <ScoreBandGuide />
       <section className="audit-block concise report-prose">
         <h2>Diagnostic Confidence</h2>
@@ -168,41 +132,28 @@ export function AuditReportView({
         className="constraint-grid"
         style={{ gridTemplateColumns: "minmax(0,1fr)" }}
       >
-        <ConstraintTeaching report={report} />
+        <ConstraintTeaching report={report} imagery={constraintImagery} />
         {d.secondary && (
           <section
             className="audit-block concise section-card"
             style={sectionStyle(d.secondary?.sectionId)}
           >
-            <p className="report-eyebrow">Supporting constraint</p>
-            <h2>
-              {sectionName(d.secondary?.sectionId) ??
-                "No meaningful secondary constraint indicated"}
-            </h2>
-            {d.secondary && <p>{supportingSequence(report)?.intro}</p>}
+            <p className="report-eyebrow">{reportLanguage.secondary}</p>
+            <h2>{road.nextTitle}</h2>
+            {d.secondary && <p>{supportingDepth(report)}</p>}
           </section>
         )}
       </div>
-      {d.relativeStrength && (
-        <section
-          className="audit-block concise section-card"
-          style={sectionStyle(d.relativeStrength)}
-        >
-          <p className="report-eyebrow">Relative Strength</p>
-          <h2>{sectionName(d.relativeStrength)}</h2>
-          <p>Build on this strength while addressing the constraint.</p>
-        </section>
-      )}
       <MarketingSystemInteractions items={systemInteractions} />
       <section
+        id="first-growth-moves"
         className="audit-block"
         style={sectionStyle(d.primary?.sectionId)}
       >
-        <h2 className="positive-action-heading">Your Next 3 Moves</h2>
+        <h2 className="positive-action-heading">{reportLanguage.moves}</h2>
         {report.recommendations.length > 0 && (
           <p className="report-prose">
-            These are the three actions most likely to improve your primary
-            constraint.
+            <strong>{reportLanguage.movesLead}</strong>{" "}{reportLanguage.movesIntro}
           </p>
         )}
         {nextMoves ?? (
@@ -225,22 +176,9 @@ export function AuditReportView({
         )}
         {!report.recommendations.length && (
           <p>
-            Your answers do not establish a priority fix. Use the Work Session
-            to define the next decision.
+            Your answers don’t establish a clear first opportunity yet. Use the Work Session to check the evidence and choose one useful next decision.
           </p>
         )}
-      </section>
-      <section className="audit-block concise not-yet-module">
-        <p className="not-yet-badge">Ⅱ · NOT YET</p>
-        <h2>What Not to Prioritize Yet</h2>
-        <div className="avoid-grid">
-          {report.deprioritized.map((item) => (
-            <div className="avoid-card" key={item.action}>
-              <h3>{item.action}</h3>
-              <p>{item.reason}</p>
-            </div>
-          ))}
-        </div>
       </section>
       {report.caseCard && (
         <section
@@ -251,54 +189,12 @@ export function AuditReportView({
           <div className="case-module">
             <p className="report-eyebrow">Real-world example</p>
             <h3>{teaching?.title}</h3>
-            {teaching?.stages
-              .filter(([title]) => title === "How the business makes money")
-              .map(([title, copy]) => (
-                <div className="case-stage" key={title}>
-                  <h4>{title}</h4>
-                  <p>{copy}</p>
-                </div>
-              ))}
-            {(d.primary?.sectionId === 1 || caseVisuals) && (
-              <CaseVisualComparison
-                {...caseVisuals}
-                sectionId={d.primary?.sectionId}
-              />
-            )}
-            <div className="case-teaching">
-              {teaching?.stages
-                .filter(
-                  ([title]) =>
-                    title !== "What customers were shown" &&
-                    title !== "How the business makes money",
-                )
-                .map(([title, copy]) => (
-                  <CaseTeachingCard
-                    key={title}
-                    title={title}
-                    copy={copy}
-                    assets={caseVisuals?.assets}
-                  />
-                ))}
+            <div className="case-story">
+              {teaching?.stages.map(([title, copy]) => <CaseTeachingCard key={title} title={title} copy={copy} assets={caseVisuals?.assets} />)}
             </div>
-            {report.caseCard.id === "CASE_BUSINESS_SYSTEMS_POSITIONING" && (
-              <div>
-                <h4>Why the improved direction is stronger</h4>
-                <ul>
-                  <li>
-                    It makes the customer outcome clear before listing the
-                    tools.
-                  </li>
-                  <li>It connects the components to one business purpose.</li>
-                  <li>
-                    It gives buyers a simpler way to understand the offer’s
-                    value.
-                  </li>
-                </ul>
-              </div>
-            )}
+            {(d.primary?.sectionId === 1 || caseVisuals) && <CaseVisualComparison {...caseVisuals} sectionId={d.primary?.sectionId} />}
             <div className="strategic-lesson">
-              <h4>What to take from this</h4>
+              <h4>What can you learn from this?</h4>
               <p>{teaching?.lesson}</p>
             </div>
             <h4>Why this matters for your business</h4>
@@ -381,10 +277,10 @@ export function AuditReportView({
           ))}
         </div>
       </section>
-      {supportingSequence(report) && (
+      {d.primary && (
         <section className="audit-block concise">
           <h2>What comes next</h2>
-          <p>{supportingSequence(report)?.next}</p>
+          <p>{closingTransition(report)}</p>
         </section>
       )}
       {workSession ?? <WorkSessionView report={report} />}
@@ -534,8 +430,8 @@ export function CaseTeachingCard({
   copy: string;
   assets?: CaseAssetMap;
 }) {
-  const problem = title === "The problem";
-  const value = title === "What customers actually cared about";
+  const problem = title === "The problem" || title === "What was happening?";
+  const value = title === "What customers actually cared about" || title === "What were customers actually looking for?" || title === "What was the business trying to improve?";
   const assetId = problem
     ? caseAssetIds.offer.problem
     : value

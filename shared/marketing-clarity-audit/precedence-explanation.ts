@@ -12,11 +12,11 @@ const explanations: Record<
   (lower: string, primary: string) => string
 > = {
   DATA_TRUST_BLOCKER: (lower) =>
-    `${lower} scored lower numerically, but your answers indicate uncertainty about which numbers can be trusted. Until that is resolved, decisions about increasing, cutting, or reallocating traffic may be based on incomplete evidence. For that reason, Measurement & Learning is the more foundational constraint to address first.`,
+    `${lower} scored lower numerically, but your answers indicate uncertainty about which numbers can be trusted. Until that is resolved, decisions about increasing, cutting, or reallocating traffic may be based on incomplete evidence. That makes trustworthy measurement the first opportunity to work on.`,
   FOUNDATIONAL_OFFER: (lower) =>
     `${lower} scored lower numerically, but your answers indicate a foundational issue with defining the offer, its outcome, or evidence that people want it. Clarifying or validating that foundation gives later marketing work a clearer purpose. For that reason, Offer comes first.`,
   SEVERE_UPSTREAM_DEPENDENCY: (lower, primary) =>
-    `${lower} scored lower numerically, but ${primary} is a severely constrained earlier layer of the marketing system. The explicit dependency rule puts that upstream foundation first so later improvements can build on it. Address ${primary} before spreading attention across downstream changes.`,
+    `${lower} scored lower numerically, but ${primary} needs attention earlier in the customer journey. Working on that foundation first gives later improvements a better chance to matter. Address ${primary} before spreading your attention across later changes.`,
 };
 export function precedenceExplanation(report: FrozenAuditReport) {
   const d = report.diagnosis;

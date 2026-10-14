@@ -52,8 +52,8 @@ const CATEGORIES: Category[] = [
       },
       {
         id: "after-audit",
-        q: "What happens after the initial audit?",
-        a: "You get a roadmap with quick wins, longer-term plays, and a measurement plan. Implement in-house or keep us on to execute and optimize with you.",
+        q: "What happens after the Deep Dive Growth Audit?",
+        a: "Use your prioritized 90-day roadmap internally or with another provider. Implementation and ongoing Clarity Engine support are optional, separately agreed engagements.",
       },
       {
         id: "collab-agencies",
@@ -69,7 +69,7 @@ const CATEGORIES: Category[] = [
       {
         id: "speed",
         q: "How fast can I see results?",
-        a: "Audits deliver clarity in days or weeks—not months. Most clients see meaningful movement in 30–60 days once tracking and structure are fixed.",
+        a: "The Deep Dive Growth Audit provides an evidence-led 90-day strategy. Timing is agreed around scope and access; outcomes depend on implementation and market conditions.",
         popular: true,
       },
       {

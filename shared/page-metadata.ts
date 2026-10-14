@@ -1,3 +1,4 @@
+import { deepDiveGrowthAuditOffer as auditOffer } from './deep-dive-growth-audit-offer';
 import { strategySprintOffer } from './strategy-sprint-offer';
 export const publicOrigin = 'https://www.clarity-engine.org';
 export interface PageMetadata { title: string; description: string; canonical?: string; image: string; imageWidth: number; imageHeight: number; imageAlt: string; imageType: string; draft?: boolean; noindex?: boolean; }
@@ -24,10 +25,11 @@ export const pageMetadataRegistry: Record<string,PageMetadata> = {
  '/services':page('/services','Growth Marketing Services','Explore full-funnel growth audits and ongoing partnerships for paid media, conversion optimization, measurement, and growth strategy.'),
  '/case-studies':page('/case-studies','Selected Growth Marketing Case Studies','Explore the challenges, decisions, and work behind selected paid media and growth marketing engagements.','case-studies'),
  '/testimonials':page('/testimonials','Professional Recommendations','Read existing colleague recommendations about working with Juda Borrayo.'),
- '/growth-clarity-audit':page('/growth-clarity-audit','Deep-Dive Growth Clarity Audit','Explore a full-funnel audit of ads, tracking, offers, and conversion opportunities.'),
- '/checkout/audit':page('/checkout/audit','Deep-Dive Audit Checkout','Review the Deep-Dive Growth Audit offer and purchase details.'),
+ '/growth-clarity-audit':{...page('/growth-clarity-audit',`${auditOffer.name} — ${auditOffer.priceLabel}`, 'Expert-led investigation, tangible strategic development, a tailored Strategic Growth Blueprint and a prioritized 90-day roadmap. $3,725 USD one-time; contact us about fit.')},
+ '/checkout/audit':{...page('/checkout/audit',`${auditOffer.name} — Checkout Preview`,`${auditOffer.priceLabel} USD one-time. Review the proposed engagement. Purchasing is not yet available.`),noindex:true},
+ '/checkout/audit/new-next-steps':{...page('/checkout/audit/new-next-steps',`${auditOffer.name} — Next Steps Preview`,'Preview onboarding context and investigation priorities. This page does not verify payment or confirm a booking.'),noindex:true},
  '/steven':page('/steven','Steven is Awesome','Steven is Awesome.'),
- '/ways-to-work-together':page('/ways-to-work-together','Ways to Work Together','Find your starting point with Get Clarity Assessment, a Strategy Sprint, an intro call, a Deep Dive Audit, or ongoing growth support.','ways'),
+ '/ways-to-work-together':page('/ways-to-work-together','Ways to Work Together','Find your starting point with Get Clarity Assessment, a Strategy Sprint, an intro call, the Deep Dive Growth Audit, or ongoing growth support.','ways'),
 };
 for(const [slug,title,description] of [
  ['hapi-art','Hapi Art','Explore the Hapi Art advertising system and e-commerce case study.'],

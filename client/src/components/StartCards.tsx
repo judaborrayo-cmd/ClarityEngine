@@ -11,7 +11,7 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
         3 Paths to More Profitable Funnels & Ads
       </h2>
       <p className="text-gray-600 text-sm max-w-xl mx-auto mb-8">
-        All Intro Calls and Audits credit into monthly retainers — when there's a
+        Intro Calls credit into audits or monthly retainers — when there's a
         long-term fit. <span className="text-gray-900 font-medium">Different brands need different levels of support — start where you'll see ROI fastest.</span>
       </p>
 
@@ -40,35 +40,35 @@ export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
           </a>
         </div>
 
-        {/* 2) Deep Dive Audit (highlighted) */}
+        {/* 2) Deep Dive Growth Audit (highlighted) */}
         <div className="h-full flex flex-col justify-between rounded-2xl border-2 border-green-500 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 bg-white p-6 relative text-left" data-testid="card-deep-dive">
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
             3 Month Roadmap
           </div>
           <div>
-            <div className="text-lg font-semibold mb-1 text-gray-900">Deep Dive Audit</div>
+            <div className="text-lg font-semibold mb-1 text-gray-900">Deep Dive Growth Audit</div>
             <p className="text-sm text-gray-600 mb-4">
-              A full-scale analysis of your advertising, funnel &amp; tracking with a 90-day roadmap.
+              Evidence-led investigation of your business, marketing systems and competitive landscape with a 90-day roadmap.
             </p>
             <ul className="text-sm text-gray-700 divide-y divide-gray-200 rounded-lg border border-green-100">
-              <li className="py-2 px-3">Audit of Google, Meta, YouTube &amp; tracking setup</li>
-              <li className="py-2 px-3">Actionable performance report &amp; action plan</li>
-              <li className="py-2 px-3">Creative &amp; CRO feedback with performance benchmarks</li>
+              <li className="py-2 px-3">Relevant advertising, follow-up and measurement systems</li>
+              <li className="py-2 px-3">Written strategic findings and prioritized recommendations</li>
+              <li className="py-2 px-3">Creative, messaging and conversion opportunities</li>
               <li className="py-2 px-3">Competitor insights + prioritized growth roadmap</li>
-              <li className="py-2 px-3">Live 60-min walkthrough + Q&amp;A (2-3 week turnaround)</li>
+              <li className="py-2 px-3">Personal findings walkthrough and next-step priorities</li>
             </ul>
           </div>
           <div>
-            <div className="text-lg font-bold mt-5 mb-1">$1,250 one-time</div>
+            <div className="text-lg font-bold mt-5 mb-1">$3,725 USD one-time</div>
             <p className="text-xs text-gray-600 mb-4">
-              Includes a $600 credit toward your Growth Retainer if there's a fit.
+              Independent strategy. Further services are optional.
             </p>
             <Link
-              to="/checkout/audit"
+              to="/growth-clarity-audit"
               className="inline-flex items-center justify-center w-full rounded-xl bg-green-500 text-white hover:bg-green-600 text-sm py-2 font-medium transition"
               data-testid="button-start-order-audit"
             >
-              Order Your Deep Dive Audit
+              Explore the Deep Dive Growth Audit
             </Link>
           </div>
         </div>
