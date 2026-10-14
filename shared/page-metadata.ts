@@ -21,6 +21,7 @@ export const pageMetadataRegistry: Record<string,PageMetadata> = {
  '/marketing-clarity-assesment':page('/marketing-clarity-assesment','Get Clarity Assessment — $27','Examine six essential marketing areas and identify where to focus next with Get Clarity Assessment by Clarity Engine. $27, one-time payment.','assessment'),
  '/strategy-sprint':page('/strategy-sprint','30-Day Growth Strategy Sprint',sprintDescription,'sprint'),
  '/checkout/strategy-sprint':page('/checkout/strategy-sprint',`Strategy Sprint Checkout — $${strategySprintOffer.price}`,`Review the 30-Day Growth Strategy Sprint offer and proceed to secure checkout. ${sprintDescription}`,'sprint-checkout'),
+ '/privacy-policy':page('/privacy-policy','Privacy Policy','How Invision Group Inc., operating as Clarity Engine, handles website, assessment, booking and payment information, privacy requests and service providers.'),
  '/terms-of-service':page('/terms-of-service','Terms of Service — Deep Dive Growth Audit','Service terms for the $3,725 Deep Dive Growth Audit by Invision Group Inc., operating as Clarity Engine. Scope, timing, cancellation and refunds.'),
  '/checkout/deep-dive-growth-audit':{...page('/checkout/deep-dive-growth-audit','Deep Dive Growth Audit — Purchase Review','$3,725 USD one-time. Review scope, delivery and cancellation terms. Purchasing is not yet available.'),noindex:true},
  '/services':page('/services','Growth Marketing Services','Explore full-funnel growth audits and ongoing partnerships for paid media, conversion optimization, measurement, and growth strategy.'),

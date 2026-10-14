@@ -99,6 +99,7 @@ export default function CheckoutAudit() {
                     </p>
                   </div>
 
+                  <p className="mb-3 text-sm leading-relaxed text-gray-600">Read our <Link to="/privacy-policy" className="text-green-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Privacy Policy</Link> for information about payments and service delivery.</p>
                   <a
                     href="https://buy.stripe.com/fZuaEXgmG0cH8VT6Kb8IU00"
                     target="_blank"

@@ -99,6 +99,7 @@ export default function CheckoutStrategySprintThankYou() {
             </p>
           </div>
         </section>
+      <p className="mx-auto max-w-4xl px-4 py-6 text-sm text-gray-600">How we handle your information: <Link to="/privacy-policy" className="text-green-700 underline underline-offset-4">Privacy Policy</Link></p>
       </main>
     </div>
   );

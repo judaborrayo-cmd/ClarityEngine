@@ -63,6 +63,7 @@ export default function MarketingClarityAudit() {
         <p className="gca-lead">See where your marketing may be getting stuck. Examine six essential areas and identify where to focus next.</p>
         <div className="gca-actions">{cta}<a href="#what-you-get" className="gca-secondary">See what you get</a></div>
         <p className="gca-small">$27 · One-time payment · A focused starting point</p>
+        <p className="gca-small">How your information is handled: <Link to="/privacy-policy" className="underline underline-offset-4">Privacy Policy</Link></p>
         {error && <p role="alert" className="text-red-700 mt-4">{error}</p>}
       </div>
       <AssessmentVideo />

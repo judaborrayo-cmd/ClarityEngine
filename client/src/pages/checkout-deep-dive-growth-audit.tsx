@@ -50,6 +50,7 @@ export default function CheckoutAudit() {
               <p>Review the <Link className="dda-text-link" to="/terms-of-service">Terms of Service</Link> and <Link className="dda-text-link" to="/terms-of-service#cancellation">cancellation terms</Link>. Before substantive work begins, cancellation is refundable less actual nonrecoverable processing fees only where legally permitted and disclosed before purchase. After work begins, there is no satisfaction-based money-back guarantee; completed work and unperformed services are accounted for fairly. Non-delivery refunds and applicable legal rights remain protected.</p>
               <p>When purchasing opens, mandatory acceptance will be collected in Stripe checkout.</p>
             </div>
+            <p className="dda-note">Read our <Link className="dda-text-link" to="/privacy-policy">Privacy Policy</Link> for information about payments, onboarding and service delivery.</p>
             <button
               className="dda-button"
               disabled

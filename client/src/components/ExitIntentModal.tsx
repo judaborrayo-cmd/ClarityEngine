@@ -75,6 +75,7 @@ export default function ExitIntentModal() {
           We're currently almost at capacity — join the waitlist to get notified when spots open.
         </div>
 
+        <p className="mb-3 text-sm text-gray-600">How we handle your information: <a href="/privacy-policy" target="_blank" rel="noreferrer" className="underline underline-offset-4">Privacy Policy (opens in a new tab)</a></p>
         <form onSubmit={onSubmit} className="space-y-3 mb-5">
           <input
             required

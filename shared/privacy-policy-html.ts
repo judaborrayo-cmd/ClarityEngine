@@ -1,0 +1,7 @@
+import { privacyPolicy } from './privacy-policy';
+const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+export function privacyPolicyHtml(html: string, pathname: string) {
+  if (pathname.replace(/\/$/, '') !== '/privacy-policy') return html;
+  const content = `<main class="ce-terms"><header><p class="ce-terms-label">Invision Group Inc. · Operating as Clarity Engine</p><h1>Privacy Policy</h1><p class="ce-terms-intro">How information is handled when you contact us, use our website or work with us.</p><p>Effective ${escape(privacyPolicy.effectiveDate)}</p><p>Privacy contact: <a href="mailto:${privacyPolicy.email}">${privacyPolicy.email}</a></p></header><nav aria-label="Privacy contents"><p><strong>On this page</strong></p><ul>${privacyPolicy.sections.map(s => `<li><a href="#${s.id}">${escape(s.title)}</a></li>`).join('')}</ul></nav>${privacyPolicy.sections.map(s => `<section id="${s.id}" aria-labelledby="${s.id}-title"><h2 id="${s.id}-title">${escape(s.title)}</h2>${s.paragraphs.map(p => `<p>${escape(p)}</p>`).join('')}${s.links ? `<ul>${s.links.map(l => `<li><a href="${escape(l.href)}" rel="noreferrer">${escape(l.label)}</a></li>`).join('')}</ul>` : ''}</section>`).join('')}<p class="ce-terms-return"><a href="/terms-of-service">Terms of Service →</a></p></main>`;
+  return html.replace('<div id="root"></div>', `<div id="root">${content}</div>`);
+}

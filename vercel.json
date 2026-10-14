@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/privacy-policy",
+      "destination": "/pages/privacy-policy.html"
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/pages/privacy-policy.html"
+    },
+    {
       "source": "/terms-of-service",
       "destination": "/pages/terms-of-service.html"
     },

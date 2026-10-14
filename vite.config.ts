@@ -1,3 +1,4 @@
+import { privacyPolicyHtml } from "./shared/privacy-policy-html";
 import { auditTermsHtml } from "./shared/audit-terms-html";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -15,7 +16,7 @@ export default defineConfig({
       enforce: "post",
       transformIndexHtml(html, context) {
         const pathname = (context.originalUrl ?? context.path).split('?')[0];
-        const result = auditTermsHtml(pageMetadataHtml(html, pathname), pathname);
+        const result = privacyPolicyHtml(auditTermsHtml(pageMetadataHtml(html, pathname), pathname), pathname);
         return pathname.startsWith('/audit/') ? privateAuditHtml(result) : result;
       },
       generateBundle(_options, bundle) {
@@ -26,7 +27,7 @@ export default defineConfig({
         this.emitFile({ type:'asset', fileName:'not-found.html',source:pageMetadataHtml(String(index.source),'/not-found') });
         this.emitFile({ type: 'asset', fileName: 'audit-private.html', source: privateAuditHtml(pageMetadataHtml(String(index.source), '/audit/start')) });
         for (const pathname of publicPagePaths.filter(p => p !== '/')) {
-          this.emitFile({type:'asset',fileName:pageHtmlFile(pathname),source:auditTermsHtml(pageMetadataHtml(String(index.source),pathname),pathname)});
+          this.emitFile({type:'asset',fileName:pageHtmlFile(pathname),source:privacyPolicyHtml(auditTermsHtml(pageMetadataHtml(String(index.source),pathname),pathname),pathname)});
         }
       },
     },

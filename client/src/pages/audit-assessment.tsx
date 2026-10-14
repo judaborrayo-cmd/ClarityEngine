@@ -267,6 +267,7 @@ export default function AuditAssessment() {
             Six sections · 35 questions · approximately 12–18 minutes. Your
             answers save automatically. Scores stay hidden until completion.
           </p>
+          <p className="mt-4 text-sm leading-relaxed text-slate-600">Read our <Link to="/privacy-policy" target="_blank" rel="noreferrer" className="underline underline-offset-4">Privacy Policy (opens in a new tab)</Link> before sharing your details.</p>
           <form onSubmit={saveContext} className="mt-6 space-y-5">
             {[
               ["name", "Name", "text"],
