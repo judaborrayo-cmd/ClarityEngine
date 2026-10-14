@@ -1,6 +1,8 @@
 # Client Recording & Content Release
 
-**Draft for review · Invision Group Inc., operating as Clarity Engine**
+**Optional internal template · Draft for review · Invision Group Inc., operating as Clarity Engine**
+
+Use the separate routine meeting-consent notice for ordinary Sprints, consultations and Audits. This detailed template is available for more specific internal permissions and final-material marketing approval; it is not automatically sent to every client or attached to checkout.
 
 Client/participant: ____________________  Business: ____________________
 Engagement and meeting dates covered: ____________________
