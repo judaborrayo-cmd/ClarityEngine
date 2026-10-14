@@ -80,8 +80,8 @@ export default function CalendlyInline({ height = 720 }) {
   return (
     <div
       ref={containerRef}
-      className="calendly-inline-widget rounded-2xl border border-gray-200"
-      style={{ minWidth: 320, height }}
+      className="rounded-2xl border border-gray-200"
+      style={{ minWidth: 0, width: "100%", height }}
       aria-label="Calendly inline scheduler"
       data-testid="calendly-inline-widget"
     />
