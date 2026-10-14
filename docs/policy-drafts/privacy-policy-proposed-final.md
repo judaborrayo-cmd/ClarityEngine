@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Proposed final public notice · Not published
+Final public notice · Approved for production publication October 14, 2026
 
 Invision Group Inc., operating as Clarity Engine
 

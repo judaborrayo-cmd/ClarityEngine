@@ -123,7 +123,7 @@ The accompanying owner-clarification draft identifies Zoom calls and optional Zo
 
 Still confirm the recording/transcription notification and consent procedure; precise cloud accounts/locations and sharing access; any AI tools beyond those named, account/provider processing and training settings; retention/deletion/backups; database host/region; CRM and waitlist workflow; customer jurisdictions, transfer requirements and sale/sharing practices. No standard retention period has been established. No claim is made that every meeting is recorded, that training is categorically excluded, or that a consent procedure is already verified.
 
-Review status: draft only. The deployed policy remains the October 14 release until the revised text is reviewed and publication is authorized. No new advertising or analytics technology was installed.
+Review status: the owner subsequently approved the finalized public policy for production publication. The audit findings remain evidence of the observed technologies, and the separate consent/operational documents do not become checkout requirements. No new advertising or analytics technology was installed.
 
 ## Evidence artifacts
 
