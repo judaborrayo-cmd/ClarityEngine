@@ -16,7 +16,7 @@ export default function SiteFooter() {
         <nav aria-label="Footer explore"><h2>Explore</h2><ul>{exploreLinks.map(([label,to]) => <li key={to}><Link to={to}>{label}</Link></li>)}</ul></nav>
         <nav aria-label="Footer offers"><h2>Find your next step</h2><ul>{productLinks.map(([label,to]) => <li key={to}><Link to={to}>{label}</Link></li>)}<li><Link to="/ways-to-work-together" className="ce-footer-contact">Work Together <span aria-hidden="true">↗</span></Link></li></ul></nav>
       </div>
-      <div className="ce-footer-bottom"><small>© {new Date().getFullYear()} Clarity Engine</small><Link to="/">Back to home <span aria-hidden="true">↑</span></Link></div>
+      <div className="ce-footer-bottom"><small>© {new Date().getFullYear()} Clarity Engine</small><Link to="/terms-of-service">Terms of Service</Link><Link to="/">Back to home <span aria-hidden="true">↑</span></Link></div>
     </div>
   </footer>;
 }

@@ -2,6 +2,22 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/terms-of-service",
+      "destination": "/pages/terms-of-service.html"
+    },
+    {
+      "source": "/terms-of-service/",
+      "destination": "/pages/terms-of-service.html"
+    },
+    {
+      "source": "/checkout/deep-dive-growth-audit",
+      "destination": "/pages/checkout/deep-dive-growth-audit.html"
+    },
+    {
+      "source": "/checkout/deep-dive-growth-audit/",
+      "destination": "/pages/checkout/deep-dive-growth-audit.html"
+    },
+    {
       "source": "/api/audit/:path*",
       "destination": "/api/audit"
     },

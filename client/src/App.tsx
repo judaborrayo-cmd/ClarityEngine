@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect, useLayoutEffect } from "react";
 import { useStrategySprintMetadata } from "@/hooks/use-strategy-sprint-metadata";
+import TermsOfService from "@/pages/terms-of-service";
+import CheckoutDeepDiveGrowthAudit from "@/pages/checkout-deep-dive-growth-audit";
 import SiteFooter from "@/components/site-footer";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
@@ -38,7 +40,7 @@ function Router() {
   useStrategySprintMetadata(location.pathname);
   const isHome = location.pathname === "/";
   // Public marketing layout only; checkout, embedded, and private flows stay focused.
-  const footerPages = ["/", "/services", "/case-studies", "/about", "/marketing-clarity-assesment", "/strategy-sprint", "/growth-clarity-audit", "/testimonials", "/ways-to-work-together"];
+  const footerPages = ["/terms-of-service","/", "/services", "/case-studies", "/about", "/marketing-clarity-assesment", "/strategy-sprint", "/growth-clarity-audit", "/testimonials", "/ways-to-work-together"];
   const showFooter = footerPages.includes(location.pathname) || location.pathname.startsWith("/case-study/");
 
   useEffect(() => {
@@ -126,6 +128,8 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/checkout/deep-dive-growth-audit" element={<CheckoutDeepDiveGrowthAudit />} />
           <Route path="/checkout/audit" element={<CheckoutAudit />} />
           <Route path="/checkout/audit/onboarding-confirmed" element={<CheckoutAuditOnboardingConfirmed />} />
           <Route path="/checkout/audit/thank-you" element={<CheckoutAuditThankYou />} />

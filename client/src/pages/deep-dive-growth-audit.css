@@ -1,0 +1,548 @@
+.dda-page {
+  color: #202d2a;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.dda-page * {
+  box-sizing: border-box;
+}
+.dda-wrap {
+  width: min(1160px, calc(100% - 64px));
+  margin: auto;
+}
+.dda-page h1,
+.dda-page h2,
+.dda-page h3,
+.dda-page p {
+  margin: 0;
+}
+.dda-page h1 {
+  font-size: clamp(38px, 4.3vw, 62px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 750;
+}
+.dda-page h2 {
+  font-size: clamp(30px, 3vw, 43px);
+  line-height: 1.17;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+.dda-page h3 {
+  font-size: 21px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 650;
+  margin-bottom: 12px;
+}
+.dda-page em {
+  font-style: normal;
+  color: #5c3aad;
+}
+.dda-page p + p {
+  margin-top: 18px;
+}
+.dda-page .dda-eyebrow {
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #276d53;
+  margin: 0 0 20px;
+}
+.dda-page .dda-lead {
+  font-size: 19px;
+  margin-top: 27px;
+  line-height: 1.6;
+}
+.dda-page .dda-promise {
+  font-size: 14px;
+  font-weight: 650;
+  color: #35584a;
+}
+.dda-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 64px;
+  padding-block: 70px 82px;
+}
+.dda-page .dda-price {
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  margin: 27px 0 22px;
+}
+.dda-price span {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #66766e;
+  margin-top: 9px;
+}
+.dda-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.dda-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 20px;
+  min-height: 48px;
+  border-radius: 10px;
+  background: #52329b;
+  color: white;
+  font-weight: 650;
+  font-size: 14px;
+  text-decoration: none;
+}
+.dda-button:hover {
+  background: #42267e;
+}
+.dda-page a:focus-visible,
+.dda-page summary:focus-visible {
+  outline: 3px solid #754acb;
+  outline-offset: 5px;
+}
+.dda-text-link {
+  color: #386850;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.dda-page .dda-note {
+  font-size: 12px;
+  color: #64756d;
+  line-height: 1.65;
+  margin-top: 20px;
+}
+.dda-system {
+  padding: 28px;
+  background: #f2f6f3;
+  border: 1px solid #dce7df;
+  border-radius: 20px;
+  box-shadow: 0 20px 65px -45px #35584a;
+}
+.dda-system-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.dda-system-grid div {
+  min-height: 116px;
+  background: white;
+  border: 1px solid #dce6e0;
+  border-radius: 12px;
+  padding: 18px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.dda-system-grid span {
+  display: block;
+  color: #6d48ae;
+  font-size: 11px;
+  margin-bottom: 16px;
+}
+.dda-system-result {
+  border-top: 1px solid #cad8d0;
+  margin-top: 24px;
+  padding-top: 22px;
+  text-align: center;
+}
+.dda-system-result span {
+  display: block;
+  font-size: 11px;
+  color: #66766e;
+  margin-bottom: 12px;
+}
+.dda-system-result strong {
+  display: block;
+  color: #4f3492;
+  font-size: 24px;
+  line-height: 1.25;
+}
+.dda-section {
+  padding-block: 70px;
+}
+.dda-section[id] {
+  scroll-margin-top: 125px;
+}
+.dda-band {
+  background: #f4f7f4;
+  border-block: 1px solid #e5ebe5;
+}
+.dda-split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 55px;
+  padding-block: 55px;
+}
+.dda-section-intro {
+  max-width: 700px;
+  margin-bottom: 35px !important;
+}
+.dda-investigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.dda-card {
+  border: 1px solid #dfe5df;
+  padding: 30px;
+  border-radius: 14px;
+}
+.dda-number {
+  display: block;
+  font-size: 12px;
+  color: #6b45ae;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.dda-page ul {
+  padding-left: 18px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.dda-page li + li {
+  margin-top: 12px;
+}
+.dda-card ul {
+  font-size: 14px;
+  color: #53655b;
+}
+.dda-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 35px;
+}
+.dda-three article {
+  padding: 22px 0;
+}
+.dda-three article + article {
+  border-left: 1px solid #d7e0d9;
+  padding-left: 28px;
+}
+.dda-three .dda-eyebrow {
+  margin-top: 20px;
+}
+.dda-three p {
+  font-size: 15px;
+  color: #52655a;
+}
+.dda-three a.dda-text-link {
+  display: inline-block;
+  margin-top: 18px;
+}
+.dda-deliverables {
+  border-top: 1px solid #dce4dd;
+}
+.dda-deliverables article {
+  display: grid;
+  grid-template-columns: 60px 1fr 30px;
+  gap: 20px;
+  padding: 27px 0;
+  border-bottom: 1px solid #dce4dd;
+  align-items: start;
+}
+.dda-deliverables .dda-number {
+  margin: 3px 0;
+}
+.dda-deliverables svg {
+  color: #3c7c58;
+}
+.dda-fit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  border-top: 1px solid #dce4dd;
+}
+.dda-process {
+  padding: 0;
+  margin: 35px 0 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 45px;
+}
+.dda-process li {
+  display: flex;
+  gap: 18px;
+  margin: 0 !important;
+}
+.dda-process li > span {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6945a8;
+  padding-top: 4px;
+}
+.dda-process p {
+  font-size: 15px;
+}
+.dda-proof > a {
+  display: block;
+  padding: 26px;
+  background: #f4f7f4;
+  border: 1px solid #dce4dd;
+  border-radius: 12px;
+  text-decoration: none;
+}
+.dda-proof > a:hover {
+  border-color: #8eb59d;
+}
+.dda-proof .dda-text-link {
+  display: block;
+  margin-top: 22px;
+}
+.dda-faq details {
+  padding: 22px 0;
+  border-bottom: 1px solid #dce4dd;
+}
+.dda-faq summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+.dda-faq p {
+  max-width: 840px;
+  padding-top: 16px;
+  color: #52655a;
+}
+.dda-pricing {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 60px;
+  background: #f2f6f3;
+  border: 1px solid #d8e4da;
+  padding: 45px;
+  border-radius: 20px;
+}
+.dda-pricing .dda-price {
+  margin-top: 0;
+}
+.dda-checkout {
+  max-width: 980px;
+  padding-block: 55px 85px;
+}
+.dda-checkout-header {
+  max-width: 760px;
+  margin: 30px 0 40px;
+}
+.dda-checkout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+}
+.dda-order {
+  border: 1px solid #d9e4dc;
+  background: #f4f7f4;
+  padding: 30px;
+  border-radius: 15px;
+  align-self: start;
+}
+.dda-order .dda-price {
+  margin-top: 20px;
+}
+.dda-order button {
+  width: 100%;
+  color: #fff;
+  background: #6f6a7d;
+  cursor: not-allowed;
+}
+.dda-review-notice {
+  font-size: 14px;
+  padding: 18px;
+  border: 1px solid #c8d6ce;
+  border-radius: 10px;
+  background: white;
+  margin-top: 22px;
+}
+.dda-next {
+  max-width: 880px;
+  padding-block: 60px 90px;
+}
+.dda-next .dda-process {
+  margin-bottom: 35px;
+}
+@media (max-width: 1023px) {
+  .dda-hero {
+    gap: 30px;
+    grid-template-columns: 1.1fr 1fr;
+    padding-block: 45px 60px;
+  }
+  .dda-system {
+    padding: 20px;
+  }
+  .dda-system-grid div {
+    padding: 13px;
+    font-size: 14px;
+  }
+  .dda-three {
+    gap: 18px;
+  }
+  .dda-three article + article {
+    padding-left: 18px;
+  }
+}
+@media (max-width: 639px) {
+  .dda-wrap {
+    width: calc(100% - 36px);
+  }
+  .dda-hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-block: 25px 45px;
+  }
+  .dda-page h1 {
+    font-size: 40px;
+  }
+  .dda-page .dda-lead {
+    font-size: 17px;
+    margin-top: 22px;
+  }
+  .dda-actions {
+    gap: 18px;
+  }
+  .dda-button {
+    width: 100%;
+  }
+  .dda-system {
+    padding: 20px;
+  }
+  .dda-system-grid div {
+    min-height: 95px;
+  }
+  .dda-split,
+  .dda-fit,
+  .dda-pricing,
+  .dda-checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .dda-section {
+    padding-block: 45px;
+  }
+  .dda-split {
+    padding-block: 35px;
+  }
+  .dda-investigation,
+  .dda-three,
+  .dda-process {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .dda-card {
+    padding: 24px;
+  }
+  .dda-three article + article {
+    border-left: 0;
+    border-top: 1px solid #d7e0d9;
+    padding-left: 0;
+  }
+  .dda-deliverables article {
+    grid-template-columns: 30px 1fr 20px;
+    gap: 12px;
+  }
+  .dda-pricing {
+    padding: 26px;
+  }
+  .dda-checkout,
+  .dda-next {
+    padding-block: 30px 55px;
+  }
+  .dda-order {
+    padding: 25px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dda-button,
+  .dda-proof > a {
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+}
+/* Put the explanatory visual within the short mobile hero, before supporting detail. */
+@media (max-width: 639px) {
+  .dda-hero {
+    gap: 20px;
+  }
+  .dda-hero > div:first-child {
+    display: contents;
+  }
+  .dda-hero > div:first-child > .dda-eyebrow {
+    order: 0;
+    margin-bottom: 0;
+  }
+  .dda-hero h1 {
+    order: 1;
+  }
+  .dda-hero > .dda-system {
+    order: 2;
+  }
+  .dda-hero .dda-lead {
+    order: 3;
+    margin-top: 0;
+  }
+  .dda-hero > div:first-child > p {
+    order: 4;
+    margin-top: 0;
+  }
+  .dda-hero > div:first-child > .dda-eyebrow {
+    order: 0;
+  }
+  .dda-hero > div:first-child > .dda-lead {
+    order: 3;
+  }
+  .dda-hero > div:first-child > .dda-price {
+    order: 5;
+    margin: 0;
+  }
+  .dda-hero .dda-actions {
+    order: 6;
+  }
+  .dda-hero > div:first-child > .dda-note {
+    order: 7;
+  }
+  .dda-system > .dda-eyebrow {
+    margin-bottom: 14px;
+  }
+  .dda-system-result {
+    padding-top: 14px;
+    margin-top: 14px;
+  }
+  .dda-system-result strong {
+    font-size: 21px;
+  }
+  .dda-system .dda-note {
+    margin-top: 12px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 639px) {
+  .dda-checkout-grid > .dda-order {
+    order: -1;
+  }
+}
+
+/* Tangible strategic development; scoped to the Audit presentation. */
+.dda-development article { border-top: 2px solid #d9cbea; }
+.dda-development-note { margin-top: 28px; padding: 28px; border: 1px solid #e0d5ee; border-radius: 14px; background: #f7f3fc; }
+.dda-development-note strong { color: #4f3492; font-size: 19px; }
+.dda-development-note p { margin-top: 12px; max-width: 880px; }
+.dda-fit-link { display: inline-block; margin-top: 22px; }
+
+/* Audit-only navigation clearance: keep anchors and focused content below the
+   measured two-row mobile header, without changing other routes. */
+html.audit-sales-view { scroll-padding-top: var(--audit-navigation-offset, 118px); }
+html.audit-sales-view nav[aria-label="Main navigation"] { background: #fff; backdrop-filter: none; }
+html.audit-sales-view .dda-section[id] { scroll-margin-top: 0; }
+html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
