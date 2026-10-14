@@ -30,7 +30,7 @@ test('sales draft is responsive, respects reduced motion, and hands off to isola
   await expect(page.getByRole('heading', { name: 'Start with your business. Find your next growth opportunity.' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Get Clarity Assessment');
   await page.goto('/checkout/audit');
-  await expect(page.getByRole('heading', { name: 'Deep Dive Audit', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Deep Dive Growth Audit', exact: true })).toBeVisible();
 });
 
 

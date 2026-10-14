@@ -111,13 +111,13 @@ export default function ExitIntentModal() {
           <p className="text-sm font-medium text-gray-900 mb-3">Need answers faster?</p>
           
           <a
-            href="/checkout/audit"
+            href="/growth-clarity-audit"
             onClick={close}
             className="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors text-center"
             data-testid="button-quick-audit"
           >
-            <div className="font-semibold">Deep Dive Audit</div>
-            <div className="text-xs text-gray-600 mt-0.5">Get answers in weeks, not months</div>
+            <div className="font-semibold">Deep Dive Growth Audit</div>
+            <div className="text-xs text-gray-600 mt-0.5">$3,725 USD · evidence-led 90-day strategy</div>
           </a>
 
           <a

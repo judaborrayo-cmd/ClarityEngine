@@ -14,6 +14,7 @@ import GrowthClarityAudit from "@/pages/growth-clarity-audit";
 import About from "@/pages/about";
 import WaysToWorkTogether from "@/pages/ways-to-work-together";
 import Testimonials from "@/pages/testimonials";
+import CheckoutAuditNewNextSteps from "@/pages/checkout-audit-new-next-steps";
 import CheckoutAudit from "@/pages/checkout-audit";
 import CheckoutAuditOnboardingConfirmed from "@/pages/checkout-audit-onboarding-confirmed";
 import CheckoutAuditThankYou from "@/pages/checkout-audit-thank-you";
@@ -126,6 +127,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/growth-clarity-audit" element={<GrowthClarityAudit />} />
+          <Route path="/checkout/audit/new-next-steps" element={<CheckoutAuditNewNextSteps />} />
           <Route path="/checkout/audit" element={<CheckoutAudit />} />
           <Route path="/checkout/audit/onboarding-confirmed" element={<CheckoutAuditOnboardingConfirmed />} />
           <Route path="/checkout/audit/thank-you" element={<CheckoutAuditThankYou />} />

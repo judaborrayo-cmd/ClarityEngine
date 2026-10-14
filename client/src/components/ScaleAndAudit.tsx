@@ -165,18 +165,18 @@ export default function ScaleAndAudit() {
           <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-4 sm:flex sm:items-center sm:justify-between">
             <div className="text-sm">
               <div className="font-semibold text-gray-900">
-                Get an Actionable Roadmap in 2–3 Weeks
+                See the Evidence. Set Your 90-Day Direction.
               </div>
               <div className="text-gray-600 text-xs">
-                Written 20–30 page audit + 90-day plan, then a live walkthrough.
+                $3,725 USD one-time · strategic findings, a 90-day roadmap and personal walkthrough.
               </div>
             </div>
             <Link
-              to="/checkout/audit"
+              to="/growth-clarity-audit"
               className="mt-3 sm:mt-0 inline-flex items-center justify-center rounded-xl bg-green-500 text-white hover:bg-green-600 text-sm py-2 px-4 font-medium"
               data-testid="button-scale-audit-order"
             >
-              Order Your Deep Dive Audit
+              Explore the Deep Dive Growth Audit
             </Link>
           </div>
         </div>

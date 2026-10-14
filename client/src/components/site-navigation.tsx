@@ -13,7 +13,7 @@ const desktopLinks = [
 const offerLinks = [
   { to: "/marketing-clarity-assesment", label: "Clarity Assessment", description: "Find where to focus next." },
   { to: "/strategy-sprint", label: "Strategy Sprint", description: "Work through priorities directly with Juda." },
-  { to: "/growth-clarity-audit", label: "Deep Dive Audit", description: "Get a detailed review and practical roadmap." },
+  { to: "/growth-clarity-audit", label: "Deep Dive Growth Audit", description: "Evidence-led investigation and a 90-day roadmap. $3,725 one-time." },
   { to: "/#book-intro", label: "Strategic Intro Call", description: "Discuss your goals and potential fit." },
   { to: "/services", label: "Growth Retainer", description: "Explore ongoing strategy and execution support." },
 ];
