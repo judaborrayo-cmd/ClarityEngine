@@ -34,11 +34,11 @@ export default function HeroMotion() {
   return (
     <div className="home-hero-visual">
       <div className="home-hero-media" data-playing={playing}>
-        <img src="/videos/clarity-hero-poster.jpg" width="1280" height="720"
+        <img src="/videos/clarity-hero-lively-poster.jpg" width="1280" height="720"
           fetchPriority="high" alt="Illustrative green and violet marketing growth visualization" />
         {allowed && !failed && (
-          <video ref={videoRef} src="/videos/clarity-engine-hero-new.mp4" muted autoPlay loop playsInline
-            preload="metadata" poster="/videos/clarity-hero-poster.jpg" aria-hidden="true"
+          <video ref={videoRef} src="/videos/clarity-engine-hero-lively.mp4" muted autoPlay loop playsInline
+            preload="metadata" poster="/videos/clarity-hero-lively-poster.jpg" aria-hidden="true"
             onPlaying={() => setPlaying(true)} onPause={() => setPlaying(false)}
             onWaiting={() => setPlaying(false)} onError={() => { setFailed(true); setPlaying(false); }} />
         )}
