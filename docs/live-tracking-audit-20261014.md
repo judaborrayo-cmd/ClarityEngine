@@ -1,6 +1,6 @@
 # Live Clarity Engine tracking audit and implementation plan
 
-The live website does not show a functioning Clarity Engine GA4, GTM, Google Ads or Meta Pixel installation in the tested first-party pages. Google/Meta libraries do load inside the Calendly booking iframe, and YouTube embeds make advertising-related requests. These are confirmed provider activities, not proof that conversions are being measured in Clarity Engine's advertising accounts. No site-wide cookie-consent control was observed; a Calendly fallback explicitly hides its provider banner.
+The live website does not show a functioning Clarity Engine GA4, GTM, Google Ads or Meta Pixel installation in the tested first-party pages. Google/Meta libraries do load inside the Calendly booking iframe, and YouTube embeds make advertising-related requests. These are confirmed provider activities, not proof that conversions are being measured in Clarity Engine's advertising accounts. No site-wide cookie-consent control was observed; the Calendly fallback is an embedded iframe whose URL explicitly hides its provider banner, not merely an external booking link.
 
 No tags, IDs, advertising accounts, payment links or production settings were changed during this audit. The revised Privacy Policy is drafted for review and has not been published.
 
@@ -47,6 +47,26 @@ The fallback source and the live focused frame both use hide_gdpr_banner=1. Cale
 
 The existing /ux-enhancements.js request still returns HTML and causes a script parse warning. No tracking installation was attributed to that failed script. Current Assessment API 503 responses and the unverified waitlist endpoint are prior operational issues, not introduced by this audit.
 
+## Calendly fallback verification and recommended correction
+
+Owner clarification: keep Calendly's own cookie banner enabled for embedded scheduling; verify whether the hiding flag affects an actual embed or only an external fallback link. No new consent-management system is requested within the SEO/audit scope.
+
+**Confirmed: it affects an actual embedded fallback iframe.** `client/src/components/CalendlyInline.jsx` waits two seconds for widget initialization. If that fails, it returns an `<iframe title="Calendly" data-testid="calendly-iframe-fallback">`, not an external anchor. Its `src` is the existing booking URL with `embed_domain`, `embed_type=Inline` and `hide_gdpr_banner=1`. The normal `Calendly.initInlineWidget` path uses the booking URL without the hiding parameter. The earlier live trace also captured the fallback as a frame on the homepage.
+
+Fresh live verification tested normal desktop loading and forced fallback on desktop/phone, achieved by blocking the widget JavaScript only in the test browser. The normal widget rendered an iframe without the hiding parameter. Both forced fallback DOMs rendered an actual iframe with the hiding parameter; no external Calendly anchor appeared in the scheduling section. In a browser-only correction preview, removing the parameter retained the same booking destination and rendered the existing event/calendar plus visible Calendly Cookie settings, Decline and I understand controls on both desktop and phone after loading. No booking was submitted. No production files or account settings changed. The DOM/frame records are saved as `calendly-fallback-verification.json` and `calendly-fallback-desktop-verification.json`, with screenshots in the audit evidence folder.
+
+**Recommended one-line correction:**
+
+```jsx
+const src = `${CALENDLY_URL}?embed_domain=${embedDomain}&embed_type=Inline`;
+```
+
+Remove the hiding parameter only. Preserve the existing booking event URL, normal widget initialization, two-second fallback, configured height (including page-specific overrides), full width, classes and frame title. Do not replace the embed with a mandatory new consent gate or add a consent-management platform as part of this audit. Keep any ordinary external booking links unchanged.
+
+Validation for the eventual implementation: check normal and blocked/delayed-widget paths on desktop and phones; confirm the fallback source no longer contains the hiding parameter, that one usable booking frame renders and the event/date/time controls remain usable; inspect Calendly's cookie-settings/banner behavior with fresh storage and applicable regional conditions. The provider's UI may depend on its region/preferences/loading logic, so absence of a visible banner in a particular run must not be interpreted as proof that suppression remains enabled. Leaving its banner enabled is not a claim that it handles all website cookies or guarantees site-wide compliance.
+
+Status: verification and recommendation only. The website scheduler source and live deployment were not changed in this follow-up. No booking, new tracking or new consent-management system was created.
+
 ## Recommended implementation order
 
 ### 1. Confirm ownership and fix measurement prerequisites
@@ -63,7 +83,7 @@ Recommend blocking optional Google/Meta tags until opt-in as the initial conserv
 
 Review UK/EU and other served regions before activation; targeted advertising and storage/access technologies can require prior consent, and any analytics exception must be assessed rather than assumed. Honor sale/sharing opt-outs and Global Privacy Control where applicable to the business and processing. [ICO advertising guidance](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/how-do-the-rules-apply-to-online-advertising/), [California privacy guidance](https://www.oag.ca.gov/privacy/ccpa).
 
-Reconcile Calendly's normal/fallback paths so a hidden provider banner does not bypass the approved site choice. Prefer an unloaded booking placeholder plus a direct booking link until the relevant choice, or another verified consent-compatible embed arrangement. Similarly review YouTube loading; a privacy-enhanced embed URL alone is not proof of no collection. Preserve video/scheduler layout and verify the declined-consent alternatives on phones. These are proposed changes, not changes made during this audit.
+For the current SEO/audit scope, follow the owner's preference to keep Calendly's own cookie banner enabled: remove only hide_gdpr_banner=1 from the embedded fallback iframe URL. The normal widget URL already omits it. Keep the event destination, embed_domain, embed_type=Inline, dimensions, styling and existing fallback behavior. No new site-wide consent-management system or tracking installation is part of this correction. A future site-wide system for new advertising/analytics remains a separate project requiring approval. Similarly, any future YouTube consent changes must be separately scoped; a privacy-enhanced embed URL alone is not proof of no collection. These are documented recommendations, not deployed changes.
 
 ### 3. Use one installation and one event source
 
