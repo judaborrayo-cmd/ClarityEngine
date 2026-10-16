@@ -1,127 +1,184 @@
-import { useEffect, useId, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import ClarityEngineLogo from "@assets/Clarity-Engine-Favicon_1758553782935.png";
-
-const desktopLinks = [
-  { to: "/#services", label: "Services" },
-  { to: "/case-studies", label: "Case Studies" },
-  { to: "/#how-we-scale", label: "How We Scale" },
-  { to: "/about", label: "About" },
-  { to: "/marketing-clarity-assesment", label: "Clarity Assessment" },
-  { to: "/strategy-sprint", label: "Strategy Sprints" },
-];
-const offerLinks = [
-  { to: "/marketing-clarity-assesment", label: "Clarity Assessment", description: "Find where to focus next." },
-  { to: "/strategy-sprint", label: "Strategy Sprint", description: "Work through priorities directly with Juda." },
-  { to: "/growth-clarity-audit", label: "Deep Dive Growth Audit", description: "Evidence-led investigation and a 90-day roadmap. $3,725 one-time." },
-  { to: "/#book-intro", label: "Strategic Intro Call", description: "Discuss your goals and potential fit." },
-  { to: "/services", label: "Growth Retainer", description: "Explore ongoing strategy and execution support." },
-];
-const groups = [
-  { title: "Find your next step", links: [{ to: "/ways-to-work-together", label: "Work Together" }, ...offerLinks] },
-  { title: "Explore Clarity Engine", links: desktopLinks.slice(0, 4) },
-];
-const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600";
-
+import { useEffect, useId, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import * as Dialog from '@radix-ui/react-dialog';
+import { ArrowUpRight, BookOpen, ChartNoAxesCombined, ChevronDown, Compass, FileText, Globe, Layers, LayoutTemplate, Menu, MessageCircle, MousePointer2, Newspaper, Repeat2, Search, Video, X } from 'lucide-react';
+import ClarityEngineLogo from '@assets/Clarity-Engine-Favicon_1758553782935.png';
+import LegacyFlowNavigation from './legacy-flow-navigation';
+import { assessmentItem, assessmentPriceLabel, categories, navigationGroups, type NavigationCategory, type NavigationItem } from './navigation-config';
+import './site-navigation.css';
+function focusDestination() {
+    const target = document.getElementById(window.location.hash.slice(1)) || document.querySelector('main h1, h1') || document.querySelector('main');
+    if (!(target instanceof HTMLElement))
+        return;
+    const previous = target.getAttribute('tabindex');
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    target.addEventListener('blur', () => { if (previous === null)
+        target.removeAttribute('tabindex');
+    else
+        target.setAttribute('tabindex', previous); }, { once: true });
+}
+const icons = { compass: Compass, chart: ChartNoAxesCombined, cursor: MousePointer2, layout: LayoutTemplate, plan: FileText, conversation: MessageCircle, search: Search, repeat: Repeat2, book: BookOpen, video: Video, news: Newspaper, layers: Layers, globe: Globe };
+function NavigationRow({ item, onNavigate }: {
+    item: NavigationItem;
+    onNavigate: () => void;
+}) {
+    const Icon = icons[item.icon];
+    return <li>
+<Link to={item.to} onClick={onNavigate} className={`ce-nav-row ce-tone-${item.icon}`} data-destination-status={item.destinationStatus}>
+    <span className="ce-nav-icon">
+<Icon size={20} strokeWidth={1.7} aria-hidden="true"/>
+</span>
+    <span className="ce-nav-copy">
+<span className="ce-nav-label">{item.label}{item.availability === 'coming-soon' && <span className="ce-nav-badge">Coming soon</span>}{item.availability === 'launch-pending' && <span className="ce-nav-badge">Launch pending</span>}</span>
+<span className="ce-nav-description">{item.description}</span>
+</span>
+  </Link>
+</li>;
+}
+function MenuContent({ category, onNavigate }: {
+    category: NavigationCategory;
+    onNavigate: () => void;
+}) {
+    return <>
+<div className={`ce-nav-groups ce-nav-groups-${category}`}>
+   {navigationGroups[category].map(group => <section key={group.title}>
+<h2 className="ce-nav-group-title">{group.title}</h2>
+<ul>{group.items.map(item => <NavigationRow key={item.id} item={item} onNavigate={onNavigate}/>)}</ul>
+</section>)}
+   {category === 'solutions' && <aside className="ce-nav-feature">
+<span className="ce-nav-feature-mark">
+<Compass size={32} strokeWidth={1.4} aria-hidden="true"/>
+</span>
+<p className="ce-nav-eyebrow">Not sure where to start?</p>
+<h2>{assessmentItem.label}</h2>
+<p>Review six areas of your marketing and identify your next priorities.</p>
+<p className="ce-nav-feature-meta">Self-guided assessment · {assessmentPriceLabel}</p>
+<span className="ce-nav-badge">Launch pending</span>
+<Link to={assessmentItem.to} onClick={onNavigate}>Explore the Assessment <ArrowUpRight size={16} aria-hidden="true"/>
+</Link>
+</aside>}
+ </div>{category === 'solutions' && <div className="ce-nav-footer">
+<Link to="/ways-to-work-together" onClick={onNavigate}>Compare ways to work together <span aria-hidden="true">→</span>
+</Link>
+<Link to="/services" onClick={onNavigate}>Explore all services</Link>
+<Link to="/#how-we-scale" onClick={onNavigate}>How We Scale</Link>
+</div>}</>;
+}
 export default function SiteNavigation() {
-  const location = useLocation();
-  const [open, setOpen] = useState<"menu" | "offers" | null>(null);
-  const id = useId();
-  const menuId = `${id}-menu`;
-  const offersId = `${id}-offers`;
-  const menuButton = useRef<HTMLButtonElement>(null);
-  const panel = useRef<HTMLDivElement>(null);
-  const offersPanel = useRef<HTMLDivElement>(null);
-  const offersButton = useRef<HTMLButtonElement>(null);
-  const pathname = location.pathname.replace(/\/$/, "") || "/";
-
-  useEffect(() => { setOpen(null); }, [location.key]);
-  useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    const sync = (event: MediaQueryListEvent) => { if (event.matches) setOpen(null); };
-    desktop.addEventListener("change", sync);
-    return () => desktop.removeEventListener("change", sync);
-  }, []);
-  useEffect(() => {
-    if (!open) return;
-    (open === "menu" ? panel : offersPanel).current?.scrollTo(0, 0);
-    const escape = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      event.preventDefault();
-      setOpen(null);
-      (open === "offers" ? offersButton : menuButton).current?.focus();
-    };
-    document.addEventListener("keydown", escape);
-    return () => document.removeEventListener("keydown", escape);
-  }, [open]);
-
-  const closeAfterSelection = () => { setOpen(null); (open === "offers" ? offersButton : menuButton).current?.focus(); };
-  const active = (to: string) => {
-    if (to.includes("#")) return (pathname === "/" && location.hash === to.slice(1)) || (to === "/#services" && pathname === "/services");
-    return pathname === to || (to === "/case-studies" && pathname.startsWith("/case-study/"));
-  };
-
-  return <nav aria-label="Main navigation" className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
-    {/* Preserve the existing desktop navigation and dimensions. */}
-    <div className="hidden lg:block mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <img src={ClarityEngineLogo} alt="Clarity Engine Logo" className="h-7 w-auto shrink-0 object-contain sm:h-8" />
-          <Link to="/" className="whitespace-nowrap text-base font-bold leading-none text-foreground transition-colors hover:text-primary sm:text-xl">Clarity Engine</Link>
-        </div>
-        <div className="hidden items-center gap-2 text-xs lg:flex xl:gap-4 xl:text-sm">
-          {desktopLinks.map(link => <Link key={link.to} to={link.to} className="whitespace-nowrap text-muted-foreground hover:text-foreground transition-colors">{link.label}</Link>)}
-          <Link to="/ways-to-work-together" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Work Together</Link>
-        </div>
-      </div>
-    </div>
-
-    <div className="lg:hidden mx-auto max-w-6xl flex h-14 items-center justify-between gap-2 px-4 sm:px-6">
-      <Link to="/" aria-label="Clarity Engine home" onClick={() => setOpen(null)} className={`flex min-h-11 min-w-11 shrink-0 items-center gap-2 rounded-lg text-base font-bold text-foreground min-[480px]:gap-3 ${focus}`}>
-        <img src={ClarityEngineLogo} alt="" width="28" height="28" className="h-7 w-7 shrink-0 object-contain" />
-        <span className="hidden min-[360px]:inline min-[430px]:hidden whitespace-nowrap">Clarity</span>
-        <span className="hidden min-[430px]:inline whitespace-nowrap">Clarity Engine</span>
-      </Link>
-      <div className="flex shrink-0 items-center gap-2">
-        <Link to="/ways-to-work-together" onClick={() => setOpen(null)} className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-xl bg-primary px-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 motion-safe:transition-colors ${focus}`}>Work Together</Link>
-        <button ref={menuButton} type="button" aria-expanded={open === "menu"} aria-controls={menuId} onClick={() => setOpen(open === "menu" ? null : "menu")} className={`inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 text-sm font-semibold text-foreground hover:bg-emerald-50 motion-safe:transition-colors ${focus}`}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" focusable="false">{open === "menu" ? <path d="m6 6 12 12M6 18 18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}</svg>
-          {open === "menu" ? "Close" : "Menu"}
-        </button>
-      </div>
-    </div>
-
-    <div className="lg:hidden mx-auto max-w-6xl grid grid-cols-[.8fr_1fr_1.4fr] gap-1 border-t border-border/50 px-3 sm:px-6">
-      {desktopLinks.slice(0, 2).map(link => <Link key={link.to} to={link.to} onClick={() => setOpen(null)} aria-current={active(link.to) ? "page" : undefined} className={`flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg px-1 text-sm font-medium ${focus} ${active(link.to) ? "text-emerald-800 bg-emerald-50" : "text-foreground hover:bg-emerald-50"}`}>{link.label}</Link>)}
-      <button ref={offersButton} type="button" aria-expanded={open === "offers"} aria-controls={offersId} onClick={() => setOpen(open === "offers" ? null : "offers")} className={`flex min-h-11 items-center justify-center gap-1 whitespace-nowrap rounded-lg px-1 text-sm font-medium text-foreground hover:bg-emerald-50 ${focus}`}>
-        Explore Offers <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className={`shrink-0 motion-safe:transition-transform ${open === "offers" ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
-      </button>
-    </div>
-
-    {/* Overlaid panels leave the measured header height stable for anchor offsets. */}
-    <div id={menuId} ref={panel} hidden={open !== "menu"} className="absolute left-0 right-0 top-full lg:hidden overflow-y-auto overscroll-contain border-b border-emerald-100 bg-[#f4faf7] shadow-lg" style={{ maxHeight: "calc(100dvh - 102px)" }}>
-      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 space-y-3">
-        {groups.map((group, index) => <div key={group.title} role="group" aria-labelledby={`${menuId}-${index}`}>
-          <h2 id={`${menuId}-${index}`} className="px-3 pb-1 text-xs font-semibold tracking-wide text-emerald-800">{group.title}</h2>
-          <div className="space-y-1">
-            {group.links.map(link => <Link key={link.to} to={link.to} onClick={closeAfterSelection} aria-current={active(link.to) ? "page" : undefined} className={`flex min-h-11 w-full items-center rounded-xl px-3 py-2 text-base font-medium ${focus} ${active(link.to) ? "bg-white text-emerald-800 shadow-sm ring-1 ring-emerald-200" : "text-foreground hover:bg-white/80"}`}>{link.label}</Link>)}
-          </div>
-        </div>)}
-      </div>
-    </div>
-    <div id={offersId} ref={offersPanel} hidden={open !== "offers"} className="absolute left-0 right-0 top-full lg:hidden overflow-y-auto overscroll-contain border-b border-emerald-100 bg-[#f4faf7] shadow-lg" style={{ maxHeight: "calc(100dvh - 102px)" }}>
-      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
-        <div className="flex items-center justify-between gap-3 pb-2 px-3">
-          <h2 className="text-sm font-semibold text-emerald-800">Explore Offers</h2>
-          <button type="button" onClick={closeAfterSelection} className={`min-h-11 rounded-lg px-2 text-sm font-medium text-foreground hover:bg-white ${focus}`}>Close offers <span aria-hidden="true">×</span></button>
-        </div>
-        <div className="space-y-1">
-          {offerLinks.map(link => <Link key={link.to} to={link.to} onClick={closeAfterSelection} aria-current={active(link.to) ? "page" : undefined} className={`flex min-h-16 w-full flex-col justify-center rounded-xl px-3 py-2 ${focus} ${active(link.to) ? "bg-white text-emerald-800 shadow-sm ring-1 ring-emerald-200" : "text-foreground hover:bg-white/80"}`}>
-            <span className="text-base font-medium">{link.label}</span>
-            <span className="mt-0.5 text-sm leading-snug text-slate-600">{link.description}</span>
-          </Link>)}
-        </div>
-      </div>
-    </div>
-  </nav>;
+    const location = useLocation();
+    // Preserve the existing header byte-for-byte in focused flows; no new catalog there.
+    return /^\/(checkout|audit)(\/|$)/.test(location.pathname) ? <LegacyFlowNavigation /> : <MarketingNavigation />;
+}
+function MarketingNavigation() {
+    const location = useLocation(), id = useId();
+    const [open, setOpen] = useState<NavigationCategory | null>(null), [mobile, setMobile] = useState(false);
+    const [accordion, setAccordion] = useState<NavigationCategory | null>(null);
+    const nav = useRef<HTMLElement>(null), triggers = useRef<Partial<Record<NavigationCategory, HTMLButtonElement | null>>>({});
+    const routeSelected = useRef(false), popupTookFocus = useRef(false);
+    const mobileButton = useRef<HTMLButtonElement>(null);
+    const resizeFocus = useRef<HTMLElement | null>(null);
+    const close = () => { setOpen(null); routeSelected.current = true; setMobile(false); };
+    useEffect(() => { setOpen(null); setMobile(false); setAccordion(null); }, [location.key]);
+    useEffect(() => { if (!location.hash || location.pathname === '/')
+        return; const frame = requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' })); return () => cancelAnimationFrame(frame); }, [location.key, location.hash, location.pathname]);
+    useEffect(() => { const query = window.matchMedia('(min-width: 900px)'); const changed = () => {
+        const active = document.activeElement;
+        const insideNavigation = active instanceof HTMLElement && (nav.current?.contains(active) || active.closest('.ce-nav-mobile-panel'));
+        resizeFocus.current = insideNavigation ? (query.matches ? triggers.current.solutions ?? null : mobileButton.current) : null;
+        setOpen(null); setMobile(false); setAccordion(null);
+        if (resizeFocus.current) requestAnimationFrame(() => resizeFocus.current?.focus({preventScroll:true}));
+    }; query.addEventListener('change', changed); return () => query.removeEventListener('change', changed); }, []);
+    useEffect(() => { if (!mobile && !open)
+        return; const yieldToPopup = () => { const popup = document.querySelector('[data-testid="exit-intent-modal"]'); if (popup instanceof HTMLElement) {
+        popupTookFocus.current = true;
+        setMobile(false);
+        setOpen(null);
+        requestAnimationFrame(() => popup.querySelector<HTMLElement>('input,button,a')?.focus());
+    } }; const observer = new MutationObserver(yieldToPopup); observer.observe(document.body, { childList: true, subtree: true }); yieldToPopup(); return () => observer.disconnect(); }, [mobile, open]);
+    useEffect(() => { if (!open)
+        return; const outside = (e: PointerEvent) => { if (!nav.current?.contains(e.target as Node))
+        setOpen(null); }; document.addEventListener('pointerdown', outside); return () => document.removeEventListener('pointerdown', outside); }, [open]);
+    return <nav ref={nav} aria-label="Main navigation" className="ce-navigation" onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node))
+        setOpen(null); }} onKeyDown={e => { if (e.key === 'Escape' && open) {
+        e.preventDefault();
+        triggers.current[open]?.focus();
+        setOpen(null);
+    } }}>
+   <div className="ce-nav-bar">
+<Link to="/" className="ce-nav-brand" aria-label="Clarity Engine home" onClick={close}>
+<img src={ClarityEngineLogo} alt="" width="32" height="32"/>
+<span>Clarity Engine</span>
+</Link>
+   <div className="ce-nav-desktop">
+<ul className="ce-nav-toplinks">{categories.slice(0, 2).map(c => <li key={c.id}>
+<button ref={el => { triggers.current[c.id] = el; }} aria-expanded={open === c.id} aria-controls={`${id}-${c.id}`} onClick={() => setOpen(open === c.id ? null : c.id)}>{c.label}<ChevronDown size={14} aria-hidden="true"/>
+</button>
+</li>)}<li>
+<Link to="/case-studies" onClick={close}>Case Studies</Link>
+</li>
+<li>
+<button ref={el => { triggers.current.resources = el; }} aria-expanded={open === 'resources'} aria-controls={`${id}-resources`} onClick={() => setOpen(open === 'resources' ? null : 'resources')}>Resources<ChevronDown size={14} aria-hidden="true"/>
+</button>
+</li>
+<li>
+<Link to="/about" onClick={close}>About</Link>
+</li>
+</ul>
+</div>
+   <Link to="/ways-to-work-together" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
+<span className="ce-nav-desktop-label">Find Your Next Step</span>
+<span className="ce-nav-mobile-label">Start Here</span>
+<ArrowUpRight size={16} aria-hidden="true"/>
+</Link>
+   <Dialog.Root open={mobile} onOpenChange={value => { routeSelected.current = false; popupTookFocus.current = false; resizeFocus.current = null; setMobile(value); setOpen(null); }}>
+<Dialog.Trigger asChild>
+<button ref={mobileButton} className="ce-nav-mobile-toggle" aria-label="Open navigation">
+<Menu size={23} aria-hidden="true"/>
+</button>
+</Dialog.Trigger>
+<Dialog.Portal>
+<Dialog.Overlay className="ce-nav-overlay"/>
+<Dialog.Content className="ce-nav-mobile-panel" aria-describedby={undefined} onCloseAutoFocus={e => { if (routeSelected.current || popupTookFocus.current || resizeFocus.current)
+        e.preventDefault(); if (resizeFocus.current) requestAnimationFrame(() => resizeFocus.current?.focus({preventScroll:true})); if (routeSelected.current)
+        requestAnimationFrame(focusDestination); if (popupTookFocus.current)
+        requestAnimationFrame(() => document.querySelector<HTMLElement>('[data-testid="exit-intent-modal"] input, [data-testid="exit-intent-modal"] button, [data-testid="exit-intent-modal"] a')?.focus()); }}>
+<div className="ce-nav-mobile-heading">
+<Dialog.Title>Navigation</Dialog.Title>
+<Dialog.Close className="ce-nav-mobile-toggle" aria-label="Close navigation">
+<X size={24} aria-hidden="true"/>
+</Dialog.Close>
+</div>
+<div className="ce-nav-mobile-scroll">
+<ul className="ce-nav-mobile-list">{categories.slice(0, 2).map(c => <li key={c.id}>
+<button aria-expanded={accordion === c.id} aria-controls={`${id}-mobile-${c.id}`} onClick={() => setAccordion(accordion === c.id ? null : c.id)}>{c.label}<ChevronDown size={19} aria-hidden="true"/>
+</button>
+<div id={`${id}-mobile-${c.id}`} hidden={accordion !== c.id}>
+<MenuContent category={c.id} onNavigate={close}/>
+</div>
+</li>)}<li>
+<Link to="/case-studies" onClick={close}>Case Studies</Link>
+</li>
+<li>
+<button aria-expanded={accordion === 'resources'} aria-controls={`${id}-mobile-resources`} onClick={() => setAccordion(accordion === 'resources' ? null : 'resources')}>Resources<ChevronDown size={19} aria-hidden="true"/>
+</button>
+<div id={`${id}-mobile-resources`} hidden={accordion !== 'resources'}>
+<MenuContent category="resources" onNavigate={close}/>
+</div>
+</li>
+<li>
+<Link to="/about" onClick={close}>About</Link>
+</li>
+</ul>
+<Link to="/ways-to-work-together" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>Find Your Next Step <ArrowUpRight size={18} aria-hidden="true"/>
+</Link>
+</div>
+</Dialog.Content>
+</Dialog.Portal>
+</Dialog.Root>
+   </div>
+   <div className="ce-nav-desktop">{categories.map(c => <div key={c.id} id={`${id}-${c.id}`} hidden={open !== c.id} className={`ce-nav-dropdown ce-nav-dropdown-${c.id}`}>
+<MenuContent category={c.id} onNavigate={close}/>
+</div>)}</div>
+ </nav>;
 }
