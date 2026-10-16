@@ -117,7 +117,7 @@ const LogoImage = ({ src, alt, className = "" }: { src: string; alt: string; cla
   <img 
     src={src} 
     alt={alt} 
-    className={`ce-readable-logo h-[60px] w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 ${className}`}
+    className={`ce-readable-logo h-[60px] w-auto object-contain ${className}`}
     data-testid={`logo-${alt.toLowerCase().replace(/\s+/g, '-')}`}
   />
 );
