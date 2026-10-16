@@ -25,6 +25,14 @@
 .home-proof-details p { border: 1px solid #dce9e1; border-radius: 20px; padding: 8px 14px; background: #ffffffa6; color: #446355; font-size: 12px; line-height: 1.5; margin: 0; }
 .home-partners { scroll-margin-top: 135px; padding-top: 58px; padding-bottom: 82px; background: linear-gradient(#fff, #fbfcfe); }
 .home-partners h2 { font-size: clamp(32px, 3vw, 46px); letter-spacing: -.043em; }
+.testimonial-smoke { display: none; }
+@media (min-width: 1024px) {
+  .home-partners { position: relative; isolation: isolate; overflow: hidden; background: #fff; }
+  .home-partners > .mx-auto { position: relative; z-index: 1; }
+  .testimonial-smoke { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .testimonial-smoke video { width: 100%; height: 100%; object-fit: cover; opacity: .24; }
+  .testimonial-smoke::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#fff 0%, #ffffff66 18%, #ffffff00 45%, #fff 100%); }
+}
 .home-partner-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
 .home-partner-card { border: 1px solid #ebeff2; border-radius: 16px; background: white; box-shadow: 0 12px 32px #2a3a4b09; padding: 28px; display: flex; flex-direction: column; color: #273346; }
 .home-partner-quote { color: #946cc5; width: 28px; height: 28px; margin-bottom: 20px; }

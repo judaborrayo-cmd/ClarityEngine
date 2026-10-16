@@ -13,6 +13,7 @@ import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
 import HeroMotion from "@/components/HeroMotion";
+import TestimonialSmoke from "@/components/TestimonialSmoke";
 import "./home-redesign.css";
 import mariSmithPhoto from "@assets/Mari_1758572440824.jpg";
 import lindseyBassPhoto from "@assets/Lindsey_Bast_1758572440824.jpg";
@@ -322,6 +323,7 @@ export default function Home() {
 
         {/* --- TESTIMONIALS AFTER HERO --- */}
         <Section id="testimonials-hero" className="home-partners">
+          <TestimonialSmoke />
           <div className="mx-auto max-w-6xl">
             <motion.div
               initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
