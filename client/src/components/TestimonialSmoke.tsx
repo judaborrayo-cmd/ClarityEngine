@@ -17,7 +17,14 @@ export default function TestimonialSmoke() {
     const media = video.current;
     const section = container.current?.closest("section");
     if (!desktop || !media || !section) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const layer = container.current!;
+    let primed = false;
+    const prime = () => {
+      if (primed) return;
+      primed = true;
+      // Initialize decoding so Safari replaces its initial still frame.
+      media.play()?.then(() => { media.pause(); update(); }).catch(() => { primed = false; });
+    };
     let frame = 0;
     let target = 0;
     const seek = () => {
@@ -26,21 +33,19 @@ export default function TestimonialSmoke() {
       if (Math.abs(media.currentTime - target) > 1 / 30) media.currentTime = target;
     };
     const update = () => {
-      if (reduced.matches || !Number.isFinite(media.duration)) return;
+      if (!Number.isFinite(media.duration)) return;
       const bounds = section.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
+      const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.9 - bounds.top) / Math.max(bounds.height, window.innerHeight * 0.8)));
+      layer.style.setProperty("--smoke-offset", `${-8 + progress * 16}%`);
       target = progress * Math.max(0, media.duration - 0.05);
       if (!frame) frame = requestAnimationFrame(seek);
     };
     media.addEventListener("loadedmetadata", update);
+    media.addEventListener("loadeddata", prime);
+    window.addEventListener("scroll", prime, { passive: true });
     media.addEventListener("seeked", update);
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
-    const motionChanged = () => {
-      if (reduced.matches) { target = 0; media.currentTime = 0; }
-      else update();
-    };
-    reduced.addEventListener("change", motionChanged);
     update();
     return () => {
       cancelAnimationFrame(frame);
@@ -48,11 +53,13 @@ export default function TestimonialSmoke() {
       media.removeEventListener("seeked", update);
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
-      reduced.removeEventListener("change", motionChanged);
+      media.removeEventListener("loadeddata", prime);
+      window.removeEventListener("scroll", prime);
+      media.pause();
     };
   }, [desktop]);
 
   return <div ref={container} className="testimonial-smoke" aria-hidden="true">
-    {desktop && <video ref={video} muted playsInline preload="auto" poster="/videos/testimonials-smoke-desktop.jpg" src="/videos/testimonials-smoke-desktop.mp4" />}
+    {desktop && <video ref={video} muted playsInline preload="auto" src="/videos/testimonials-smoke-desktop.mp4" />}
   </div>;
 }
