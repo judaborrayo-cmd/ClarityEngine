@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 export default function TestimonialSmoke() {
   const container = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const [desktop, setDesktop] = useState(false);
+  const [desktop, setDesktop] = useState<boolean | null>(null);
 
   useEffect(() => {
     const query = window.matchMedia("(min-width: 1024px)");
@@ -16,7 +16,7 @@ export default function TestimonialSmoke() {
   useEffect(() => {
     const media = video.current;
     const section = container.current?.closest("section");
-    if (!desktop || !media || !section) return;
+    if (desktop === null || !media || !section) return;
     const layer = container.current!;
     let primed = false;
     const prime = () => {
@@ -35,6 +35,11 @@ export default function TestimonialSmoke() {
     const update = () => {
       if (!Number.isFinite(media.duration)) return;
       const bounds = section.getBoundingClientRect();
+      if (!desktop) {
+        const visibleHeight = window.innerHeight - 102;
+        const pinnedTop = Math.max(0, Math.min(102 - bounds.top, bounds.height - visibleHeight));
+        layer.style.setProperty("--smoke-pin", `${pinnedTop}px`);
+      }
       const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.9 - bounds.top) / Math.max(bounds.height, window.innerHeight * 0.8)));
       layer.style.setProperty("--smoke-offset", `${-8 + progress * 16}%`);
       target = progress * Math.max(0, media.duration - 0.05);
@@ -60,6 +65,8 @@ export default function TestimonialSmoke() {
   }, [desktop]);
 
   return <div ref={container} className="testimonial-smoke" aria-hidden="true">
-    {desktop && <video ref={video} muted playsInline preload="auto" src="/videos/testimonials-smoke-desktop.mp4" />}
+    <div className="testimonial-smoke-frame">
+      {desktop !== null && <video key={desktop ? "desktop" : "mobile"} ref={video} muted playsInline preload="auto" src={`/videos/testimonials-smoke-${desktop ? "desktop" : "mobile"}.mp4`} />}
+    </div>
   </div>;
 }

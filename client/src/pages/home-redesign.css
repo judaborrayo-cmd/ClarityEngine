@@ -26,6 +26,14 @@
 .home-partners { scroll-margin-top: 135px; padding-top: 58px; padding-bottom: 82px; background: linear-gradient(#fff, #fbfcfe); }
 .home-partners h2 { font-size: clamp(32px, 3vw, 46px); letter-spacing: -.043em; }
 .testimonial-smoke { display: none; }
+@media (max-width: 1023px) {
+  .home-partners { position: relative; isolation: isolate; overflow: clip; background: #fff; }
+  .home-partners > .mx-auto { position: relative; z-index: 1; }
+  .testimonial-smoke { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .testimonial-smoke-frame { position: absolute; top: 0; width: 100%; height: calc(100dvh - 102px); overflow: hidden; transform: translateY(var(--smoke-pin, 0px)); will-change: transform; }
+  .testimonial-smoke video { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; object-fit: cover; opacity: .34; transform: translateY(var(--smoke-offset, -8%)); will-change: transform; }
+  .testimonial-smoke-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#fff 0%, #ffffff33 16%, #ffffff00 42%, #fff 100%); }
+}
 @media (min-width: 1024px) {
   .home-partners { position: relative; isolation: isolate; overflow: hidden; background: #fff; }
   .home-partners > .mx-auto { position: relative; z-index: 1; }
