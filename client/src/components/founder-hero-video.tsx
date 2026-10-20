@@ -52,11 +52,11 @@ export default function FounderHeroVideo({
   const mediaClass = roadmap ? "absolute inset-0 h-full w-full object-contain" : undefined;
   return <figure className={roadmap ? "absolute inset-0 m-0" : "founder-photo founder-hero-video"} data-testid={roadmap ? "scale-roadmap-video" : undefined}>
     <div className={roadmap ? "absolute inset-0" : "founder-hero-video-frame"}>
-      {failed ? <img src={poster} width={width} height={height} className={mediaClass} alt={roadmap ? description : "Juda Borrayo in his workspace beside a hanging Clarity Engine logo switch"} /> : <video ref={video} muted playsInline loop preload="none" poster={poster} width={width} height={height} className={mediaClass} role="button" tabIndex={0} aria-label={label} onClick={toggle} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); void toggle(); } }} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => { setPlaying(false); setEnded(true); }} onError={() => setFailed(true)}><source src={src} type="video/mp4" /></video>}
+      {failed ? <img src={poster} width={width} height={height} className={mediaClass} alt={roadmap ? description : "Juda Borrayo in his workspace beside a hanging Clarity Engine logo switch"} /> : <video ref={video} muted playsInline loop preload="none" poster={poster} width={width} height={height} className={mediaClass} aria-label={description} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => { setPlaying(false); setEnded(true); }} onError={() => setFailed(true)}><source src={src} type="video/mp4" /></video>}
     </div>
     <div className={roadmap ? "absolute right-2 top-2" : "founder-hero-video-meta"}>
       {!roadmap && <figcaption>Juda Borrayo · Founder of Clarity Engine</figcaption>}
-
+      {!failed && <button type="button" onClick={toggle} aria-label={label} title={roadmap ? label : undefined} className={roadmap ? "rounded-full border border-gray-200 bg-white/95 flex h-7 w-7 items-center justify-center text-xs font-medium text-gray-900 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600" : undefined}>{!roadmap && (ended ? "Replay" : playing ? "Pause" : "Play")}<span aria-hidden="true"> {ended ? "↻" : playing ? "Ⅱ" : "▷"}</span></button>}
     </div>
   </figure>;
 }
