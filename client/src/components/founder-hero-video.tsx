@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface FounderHeroVideoProps {
   src?: string;
+  startAt?: number;
   poster?: string;
   description?: string;
   controlLabel?: string;
@@ -11,6 +12,7 @@ interface FounderHeroVideoProps {
 }
 export default function FounderHeroVideo({
   src = "/videos/juda-founder-transformation.mp4",
+  startAt = 0,
   poster = "/videos/juda-founder-transformation-poster.webp",
   description = "Juda Borrayo’s workspace transforms into a Clarity Engine illustration",
   controlLabel = "founder transformation",
@@ -43,7 +45,7 @@ export default function FounderHeroVideo({
     if (!element.paused) { manuallyPaused.current = true; element.pause(); }
     else {
       manuallyPaused.current = false;
-      if (element.ended) { element.currentTime = 0; setEnded(false); }
+      if (element.ended) { element.currentTime = startAt; setEnded(false); }
       try { await element.play(); } catch { setFailed(true); }
     }
   }
@@ -52,7 +54,7 @@ export default function FounderHeroVideo({
   const mediaClass = roadmap ? "absolute inset-0 h-full w-full object-contain" : undefined;
   return <figure className={roadmap ? "absolute inset-0 m-0" : "founder-photo founder-hero-video"} data-testid={roadmap ? "scale-roadmap-video" : undefined}>
     <div className={roadmap ? "absolute inset-0" : "founder-hero-video-frame"}>
-      {failed ? <img src={poster} width={width} height={height} className={mediaClass} alt={roadmap ? description : "Juda Borrayo in his workspace beside a hanging Clarity Engine logo switch"} /> : <video ref={video} muted playsInline loop preload="none" poster={poster} width={width} height={height} className={mediaClass} aria-label={description} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => { setPlaying(false); setEnded(true); }} onError={() => setFailed(true)}><source src={src} type="video/mp4" /></video>}
+      {failed ? <img src={poster} width={width} height={height} className={mediaClass} alt={roadmap ? description : "Juda Borrayo in his workspace beside a hanging Clarity Engine logo switch"} /> : <video ref={video} muted playsInline loop preload="none" poster={poster} width={width} height={height} className={mediaClass} aria-label={description} onLoadedMetadata={() => { if (video.current && startAt > 0 && startAt < video.current.duration) video.current.currentTime = startAt; }} onTimeUpdate={() => { const media = video.current; if (media && startAt > 0 && startAt < media.duration && media.currentTime < startAt) media.currentTime = startAt; }} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => { setPlaying(false); setEnded(true); }} onError={() => setFailed(true)}><source src={src} type="video/mp4" /></video>}
     </div>
     <div className={roadmap ? "absolute right-2 top-2" : "founder-hero-video-meta"}>
       {!roadmap && <figcaption>Juda Borrayo · Founder of Clarity Engine</figcaption>}
