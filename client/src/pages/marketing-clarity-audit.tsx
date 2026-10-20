@@ -29,8 +29,8 @@ export default function MarketingClarityAudit() {
       <AmbientFlame />
       <div className="gca-wrap"><div className="gca-hero-copy">
         <p className="gca-eyebrow">Get Clarity Assessment <span>by Clarity Engine</span></p>
-        <h1>Know which ROI producing opportunities <em>to focus on next.</em></h1>
-        <p className="gca-lead">See where your marketing may be getting stuck. Examine six essential areas and identify where to focus next.</p>
+        <h1>Know what to <em>focus on next.</em></h1>
+        <p className="gca-lead">Examine 6 essential areas to find the highest ROI low hanging fruit activities to focus on.</p>
         <div className="gca-actions">{cta}<a href="#what-you-get" className="gca-secondary">See what you get</a></div>
         <p className="gca-small">$27 · One-time payment · A focused starting point</p>
         {error && <p role="alert" className="text-red-700 mt-4">{error}</p>}
