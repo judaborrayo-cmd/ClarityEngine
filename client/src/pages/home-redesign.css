@@ -66,3 +66,6 @@
   .home-hero-copy > div { order: 5; margin-top: 0; }
   .home-booking-note { order: 6; margin-top: 0; }
 }
+
+/* One section-heading scale beneath the homepage hero. */
+.home-page h2{font-size:clamp(26px,2.65vw,34px);font-weight:700;line-height:1.2;letter-spacing:-.03em;text-wrap:balance}

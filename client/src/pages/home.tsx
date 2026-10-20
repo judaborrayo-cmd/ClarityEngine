@@ -287,7 +287,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <ProgressBar />
-      <main className="relative min-h-screen overflow-x-hidden bg-white text-gray-900">
+      <main className="home-page relative min-h-screen overflow-x-hidden bg-white text-gray-900">
         {/* --- HERO --- */}
         <Section id="hero" className="home-redesign-hero">
           <div className="home-hero-shell">
