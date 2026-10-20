@@ -5,9 +5,12 @@ import assessment from "@shared/marketing-clarity-audit/report-content.json";
 export default function StartCards() {
   return (
     <section className="py-12 text-center" aria-label="Ways to Work Together">
+      <div className="relative isolate py-10 mb-4 overflow-hidden rounded-3xl">
+      <img src="/images/clarity-archer.webp" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-contain object-bottom opacity-[0.13] -z-10 pointer-events-none" />
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-purple-700 mb-3">A clearer next move</p>
       <h2 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="start-cards-title">Less guesswork. A practical way forward.</h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-8">Understand where your marketing needs attention, or work through the decisions with Juda. Choose the support that fits where you are.</p>
+      </div>
       <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto text-left">
         <article className="rounded-2xl border border-purple-200 bg-white p-6 sm:p-8 flex flex-col" data-testid="card-assessment">
           <p className="text-xs font-semibold tracking-widest uppercase text-purple-700 mb-3">Explore on your own</p>
