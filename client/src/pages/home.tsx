@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import ProblemsTicker from "@/components/ProblemsTicker";
 import HeroCTAs from "@/components/HeroCTAs";
@@ -7,7 +7,6 @@ import StartCards from "@/components/StartCards";
 import ScaleAndAudit from "@/components/ScaleAndAudit";
 import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
 import ServicesAtAGlance from "@/components/ServicesAtAGlance";
-import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
 import { Quote } from "lucide-react";
@@ -217,7 +216,6 @@ const heroProofPoints = [
   "Recognized by Contra as a Top Specialist in 2025",
 ];
 
-// --- TESTIMONIAL COMPONENT ---
 const PartnerCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
   <motion.div
     initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -243,33 +241,8 @@ const PartnerCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { t
   </motion.div>
 );
 
-// --- TESTIMONIAL COMPONENT ---
-const TestimonialCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
-  <motion.div 
-    initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : delay }}
-    whileHover={shouldReduceMotion ? {} : { y: -4, transition: { duration: 0.3 } }}
-    className={`${testimonial.bgColor} ${testimonial.textColor} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300`}
-  >
-    <Quote className="h-10 w-10 mb-6 opacity-80" />
-    <p className="text-lg mb-8 leading-relaxed font-normal">{testimonial.review}</p>
-    <div className="flex items-center gap-4">
-      <img 
-        src={testimonial.avatar} 
-        alt={testimonial.name}
-        className="w-14 h-14 rounded-full object-cover border-2 border-white/30 shadow-md"
-      />
-      <div>
-        <p className="font-semibold text-lg">{testimonial.name}</p>
-        <p className="text-sm opacity-90 mt-0.5">{testimonial.title}</p>
-      </div>
-    </div>
-  </motion.div>
-);
-
 export default function Home() {
+  const { hash } = useLocation();
   const shouldReduceMotion = useReducedMotion() ?? false;
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -283,6 +256,9 @@ export default function Home() {
     const evt = new MouseEvent("mouseout", { clientY: -1, relatedTarget: null, bubbles: true });
     document.dispatchEvent(evt);
   };
+
+  if (["#book-intro", "#book-call", "#retainer"].includes(hash)) return <Navigate replace to="/about" />;
+  if (hash === "#audit") return <Navigate replace to="/growth-clarity-audit" />;
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -450,83 +426,6 @@ export default function Home() {
           >
             <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />
           </motion.div>
-        </Section>
-
-        {/* --- BOOKING SECTION (#book-call and #book-intro) --- */}
-        <Section id="book-call" className="py-20 lg:py-24">
-          <Card className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }} data-testid="booking-title">Book a Strategic Intro Call (20–30 min)</h2>
-            <p className="mt-5 text-lg leading-relaxed text-gray-600">Aligned goals, surface bottlenecks, set the next step. A <strong>$75 deposit</strong> is required to reserve your slot and is <strong>fully credited</strong> toward your first audit or retainer if we're a fit.</p>
-            
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">Qualifying questions you'll answer when booking:</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Current monthly ad spend (range)</li>
-                <li>• Primary growth goal for next 3–6 months</li>
-                <li>• Biggest challenge right now (tracking, ROI, CAC, scaling, etc.)</li>
-                <li>• Timeline to start (immediately, 30–60 days, 90+ days)</li>
-              </ul>
-            </div>
-            
-            <p className="mt-6 text-center text-base font-medium text-gray-700" data-testid="calendly-reminder">
-              You'll get clarity on what's working, what's missing, and where to focus next — no fluff.
-            </p>
-            
-            {/* Calendly inline widget */}
-            <div className="mt-6" id="book-intro">
-              <CalendlyInline height={700} />
-            </div>
-            <p className="mt-4 text-center text-sm text-gray-500">Serious inquiries only. Limited availability each week.</p>
-            <p className="mt-3 text-center text-sm text-gray-600" data-testid="calendly-testimonial">
-              ⭐⭐⭐⭐⭐ "Best 30 minutes I spent all quarter." - CEO
-            </p>
-          </Card>
-          
-          {/* Testimonial in booking section */}
-          <div className="mt-12 max-w-4xl mx-auto">
-            <TestimonialCard testimonial={testimonials[1]} shouldReduceMotion={shouldReduceMotion} />
-          </div>
-        </Section>
-
-        <Section id="audit" className="py-20 lg:py-24">
-          <Card className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold sm:text-4xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>Deep Dive Growth Audit</h2>
-            <p className="mt-5 text-lg leading-relaxed text-gray-600">An expert-led investigation of business context, campaigns, creative, customer journey and measurement, with prioritized recommendations and a 90-day growth roadmap.</p>
-            <ul className="mt-6 list-disc space-y-2 pl-6 text-gray-600">
-              <li>Investigate tracking and measurement limitations</li>
-              <li>Evaluate campaign structure and acquisition opportunities</li>
-              <li>Identify CRO opportunities</li>
-              <li>Prioritize a practical 90-day strategy</li>
-            </ul>
-            <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>$3,725 USD one-time.</strong> A strategy you can execute independently. Implementation requires a separate agreement.</p>
-            <div className="mt-8">
-              <Link to="/growth-clarity-audit" className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-base font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors duration-200" data-testid="button-audit">Get Deep Dive Growth Audit</Link>
-            </div>
-          </Card>
-        </Section>
-
-        {/* --- TESTIMONIAL BEFORE RETAINER --- */}
-        <Section id="testimonial-retainer" className="py-16 lg:py-20 bg-white">
-          <div className="mx-auto max-w-4xl">
-            <TestimonialCard testimonial={testimonials[0]} shouldReduceMotion={shouldReduceMotion} />
-          </div>
-        </Section>
-
-        <Section id="retainer" className="py-16">
-          <Card className="mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold text-gray-900">Growth Retainer</h2>
-            <p className="mt-3 text-lg text-gray-600">Hands‑on management and strategy to drive compounding results.</p>
-            <ul className="mt-6 list-disc space-y-2 pl-6 text-gray-600">
-              <li>Omni‑channel ads (Google, Meta, YouTube)</li>
-              <li>Tiered remarketing & CRO</li>
-              <li>Weekly optimization & reporting</li>
-              <li>Fractional CMO leadership</li>
-            </ul>
-            <p className="mt-6 text-sm text-gray-600 bg-green-50 p-4 rounded-lg"><strong>Commitment terms:</strong> We start with an initial 90-day plan (enough time to implement, test, and prove results). After that, we move to a month-to-month partnership with just 30 days' notice. It gives us the runway to win together, while keeping things flexible for you.</p>
-            <div className="mt-8">
-              <PrimaryButton href="#book-intro" testId="button-retainer">Book Strategic Intro Call</PrimaryButton>
-            </div>
-          </Card>
         </Section>
 
       </main>
