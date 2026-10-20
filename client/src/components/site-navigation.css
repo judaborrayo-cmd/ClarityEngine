@@ -63,3 +63,4 @@
 .ce-nav-founder-control{position:absolute;right:-24px;bottom:-65px;width:170px;height:255px;background:transparent;border:0;pointer-events:auto;cursor:pointer}.ce-nav-founder-control:focus-visible{outline:2px solid #7341db}
 @media(prefers-reduced-motion:reduce){.ce-nav-founder-control{display:none}}
 .ce-nav-founder video{mix-blend-mode:multiply}
+.ce-nav-founder video{mix-blend-mode:normal;mask-image:linear-gradient(to right,transparent,#000 10%,#000 90%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 93%,transparent);mask-composite:intersect}
