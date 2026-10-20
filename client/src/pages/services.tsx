@@ -37,7 +37,7 @@ export default function Services() {
       </div><ServicesJourneyVideo />
     </section>
 
-    <ServicesAtAGlance />
+    <ServicesAtAGlance heading="Leverage People and People + Ai in Your Business" subheading="Shortcut your growth through 12+ years of experience and the power of Ai." note={null} />
 
     <section className="services-wrap services-final">
       <p className="services-eyebrow">Make the next move useful</p><h2>What would help<br /><em>your business move forward?</em></h2>

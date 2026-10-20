@@ -40,3 +40,9 @@
 @media(max-width:767px){.services-offer>p.services-price{font-size:44px}}
 /* Keep the overview heading subordinate to the page hero. */
 .services-page #services h2{font-size:clamp(26px,2.6vw,34px);font-weight:700;line-height:1.2;letter-spacing:-.03em}
+
+/* Full-width Services hero with a larger illustration. */
+.services-hero.services-wrap{max-width:none;width:100%;margin:0;padding-left:clamp(24px,4vw,80px);padding-right:clamp(24px,4vw,80px);grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,3vw,64px);padding-top:64px;padding-bottom:64px}
+.services-hero .services-journey-video{max-width:none;width:100%}
+.services-hero h1{max-width:720px}
+@media(max-width:767px){.services-hero.services-wrap{grid-template-columns:1fr;padding:26px 22px 34px;gap:16px}.services-hero .services-journey-video{width:calc(100% + 44px);max-width:none;margin-left:-22px;margin-right:-22px}}
