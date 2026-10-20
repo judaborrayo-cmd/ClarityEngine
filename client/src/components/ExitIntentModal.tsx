@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import assessment from "@shared/marketing-clarity-audit/report-content.json";
 
 const STORAGE_KEY = "ce_waitlist_modal_suppressed_until";
@@ -76,7 +76,13 @@ export default function ExitIntentModal() {
               <p className="text-xs uppercase tracking-[0.16em] text-purple-700 font-semibold mb-4">Your next move, clearer.</p>
               <Dialog.Title className="text-3xl font-bold tracking-tight text-gray-950 mb-4">Where does your marketing need attention?</Dialog.Title>
               <Dialog.Description className="text-base text-gray-600 leading-relaxed mb-5">Step back from the daily decisions. The Get Clarity Assessment helps you examine six essential marketing areas and identify where to focus next.</Dialog.Description>
-              <p className="text-sm text-gray-700 mb-6">35 questions. A personalized report. Practical next moves when your answers reveal a clear constraint.</p>
+              <ul className="space-y-3 text-sm text-gray-700 mb-6" aria-label="What you get">
+                {[
+                  { text: "35 questions across six marketing areas", color: "bg-purple-100 text-purple-700" },
+                  { text: "A personalized report", color: "bg-emerald-100 text-emerald-700" },
+                  { text: "Practical next moves when your answers reveal a clear constraint", color: "bg-cyan-100 text-cyan-700" },
+                ].map(({ text, color }) => <li key={text} className="flex items-start gap-3 leading-relaxed"><span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${color}`}><Check size={16} strokeWidth={3} aria-hidden="true" /></span><span>{text}</span></li>)}
+              </ul>
               <Link ref={primaryLink} to="/marketing-clarity-assesment" onClick={close} className="flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 px-4 py-3 text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-700" data-testid="button-popup-assessment">Explore the assessment →</Link>
               <p className="text-center text-xs text-gray-500 mt-3">${assessment.product.priceCents / 100} one-time · based on your answers</p>
               <button type="button" onClick={close} className="block mx-auto mt-5 text-sm text-gray-600 underline underline-offset-4">Keep exploring</button>

@@ -27,4 +27,8 @@
   .gca-hero [role="alert"] { order: 8; }
 }
 
-.gca-hero{position:relative;isolation:isolate;display:block;overflow:hidden;min-height:500px}.gca-hero>div:not(.ambient-flame){max-width:660px}.gca-hero .gca-actions{display:flex}.gca-hero .gca-cta{animation:none}@media(max-width:767px){.gca-hero{min-height:0;padding-bottom:100px}.gca-hero>div:first-child{display:block}.gca-hero .gca-eyebrow{margin-bottom:16px}.gca-hero .gca-lead{margin-top:20px}.gca-hero .gca-small{margin-top:18px}.gca-hero .gca-secondary{padding:12px}.gca-hero .ambient-flame video{object-position:right bottom}}
+.gca-hero{position:relative;isolation:isolate;display:block;overflow:hidden;min-height:500px}.gca-hero-copy{max-width:660px}.gca-hero .gca-actions{display:flex}.gca-hero .gca-cta{animation:none}@media(max-width:767px){.gca-hero{min-height:0;padding-bottom:100px}.gca-hero>div:first-child{display:block}.gca-hero .gca-eyebrow{margin-bottom:16px}.gca-hero .gca-lead{margin-top:20px}.gca-hero .gca-small{margin-top:18px}.gca-hero .gca-secondary{padding:12px}.gca-hero .ambient-flame video{object-position:right bottom}}
+
+/* Full-width atmosphere with a wider plume; copy keeps its reading width. */
+.gca-hero .ambient-flame video{object-fit:fill;transform:scaleX(1.35);transform-origin:65% center}
+@media(max-width:767px){.gca-hero .ambient-flame video{object-fit:cover;object-position:65% center!important;transform:none;opacity:.18}}
