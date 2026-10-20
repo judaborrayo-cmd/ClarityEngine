@@ -1,3 +1,4 @@
+import ExitIntentModal from "@/components/ExitIntentModal";
 import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -117,6 +118,7 @@ function Router() {
   return (
     <>
       <Navbar />
+      <ExitIntentModal />
       <div className={isHome ? "-mt-6 lg:mt-0" : "pt-28 lg:pt-20"}>
         <Routes>
           <Route path="/marketing-clarity-assesment" element={<MarketingClarityAudit />} />

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Check, X } from "lucide-react";
 import assessment from "@shared/marketing-clarity-audit/report-content.json";
@@ -7,6 +7,9 @@ import assessment from "@shared/marketing-clarity-audit/report-content.json";
 const STORAGE_KEY = "ce_waitlist_modal_suppressed_until";
 
 export default function ExitIntentModal() {
+  const { pathname } = useLocation();
+  const currentPath = useRef(pathname);
+  currentPath.current = pathname;
   const [open, setOpen] = useState(() => import.meta.env.DEV && new URLSearchParams(window.location.search).get("preview") === "assessment-popup");
   const [reduceMotion, setReduceMotion] = useState(true);
   const [playing, setPlaying] = useState(false);
@@ -25,9 +28,9 @@ export default function ExitIntentModal() {
   useEffect(() => {
     const eligibleAfter = Date.now() + 25_000;
     let shown = false;
-    function handleExit(event: MouseEvent) {
-      if (shown || Date.now() < eligibleAfter || event.relatedTarget !== null || event.clientY > 0) return;
-      if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    function showInvitation() {
+      // Keep purchase and private assessment flows free of marketing interruptions.
+      if (shown || document.hidden || /^\/(checkout|audit)(\/|$)/.test(currentPath.current)) return;
       if (document.querySelector('[role="dialog"][data-state="open"], [aria-modal="true"]')) return;
       try {
         const until = localStorage.getItem(STORAGE_KEY);
@@ -37,8 +40,20 @@ export default function ExitIntentModal() {
       previousFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       setOpen(true);
     }
+    function handleExit(event: MouseEvent) {
+      const path = currentPath.current.replace(/\/$/, "") || "/";
+      if (!["/", "/marketing-clarity-assesment", "/strategy-sprint"].includes(path)) return;
+      if (event.relatedTarget !== null || event.clientY > 0) return;
+      if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      showInvitation();
+    }
+    // Mounted above the routes: navigation does not restart the 25-second timer.
+    // Retry if another dialog or hidden tab temporarily prevents the invitation.
+    const timer = window.setInterval(() => {
+      if (Date.now() >= eligibleAfter) showInvitation();
+    }, 1000);
     document.addEventListener("mouseout", handleExit);
-    return () => document.removeEventListener("mouseout", handleExit);
+    return () => { window.clearInterval(timer); document.removeEventListener("mouseout", handleExit); };
   }, []);
 
   useEffect(() => {

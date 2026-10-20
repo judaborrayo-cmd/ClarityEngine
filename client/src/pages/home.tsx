@@ -7,7 +7,6 @@ import StartCards from "@/components/StartCards";
 import ScaleAndAudit from "@/components/ScaleAndAudit";
 import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
 import ServicesAtAGlance from "@/components/ServicesAtAGlance";
-import ExitIntentModal from "@/components/ExitIntentModal";
 import CalendlyInline from "@/components/CalendlyInline";
 import FaqHybrid from "@/components/FaqHybrid";
 import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
@@ -530,7 +529,6 @@ export default function Home() {
           </Card>
         </Section>
 
-        <ExitIntentModal />
       </main>
     </div>
   );
