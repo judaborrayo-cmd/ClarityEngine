@@ -32,8 +32,8 @@ export default function Services() {
     <section className="services-hero services-wrap">
       <div className="services-hero-copy"><p className="services-eyebrow">Strategy, creative & growth</p>
       <h1>Growth Marketing Services to <em>Build &amp; Scale Faster</em></h1>
-      <p className="services-lead">Find your focus, work through a challenge, and build the next campaign. Choose the depth of support that fits your business.</p>
-      <div className="services-actions"><a href="#services" className="services-button">Explore the services ↓</a><a href="#campaign-concepts" className="services-text-link">See our landing-page work ↗</a></div>
+      <p className="services-lead">Whether you’re working with a team, using AI, or building on your own, reach your goals faster with 12+ years of growth marketing experience, over $5 million in paid media managed, and the latest AI tools.</p>
+      <div className="services-actions"><a href="#services" className="services-button">How we help you ↓</a></div>
       </div><ServicesJourneyVideo />
     </section>
 
