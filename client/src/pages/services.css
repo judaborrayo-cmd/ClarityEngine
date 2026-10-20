@@ -38,3 +38,5 @@
 @media(max-width:767px){.services-offers{grid-template-columns:1fr}.services-plan-heading{min-height:0}.services-offer h3{min-height:0}.services-offer{padding:28px}.services-ongoing{grid-template-columns:1fr;gap:26px;padding-top:50px;padding-bottom:55px}.services-ongoing-action{padding-left:0;border-left:0}.services-offer .services-price{font-size:44px}}
 .services-offer>p.services-price{font-size:48px;color:#14212d;line-height:1.1}
 @media(max-width:767px){.services-offer>p.services-price{font-size:44px}}
+/* Keep the overview heading subordinate to the page hero. */
+.services-page #services h2{font-size:clamp(26px,2.6vw,34px);font-weight:700;line-height:1.2;letter-spacing:-.03em}
