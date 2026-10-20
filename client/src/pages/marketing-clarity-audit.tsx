@@ -38,7 +38,7 @@ export default function MarketingClarityAudit() {
 
     </section>
     <section className="gca-wrap gca-domains" aria-labelledby="areas-title">
-      <h2 id="areas-title">Six areas. A clearer direction.</h2>
+      <h2 id="areas-title">Six areas. A clearer path.</h2>
       <div className="gca-strip">{Object.values(sectionColors).map((theme, i) => { const Icon = icons[i]; return <a key={theme.name} href="#six-areas" style={{color: theme.color, background: theme.tint}}><Icon aria-hidden="true" size={23}/><span>{theme.name}</span></a>; })}</div>
     </section>
     <section className="gca-wrap gca-section gca-split">
