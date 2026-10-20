@@ -70,7 +70,7 @@ export default function ExitIntentModal() {
           <div className="grid md:grid-cols-[0.85fr_1.15fr]">
             <div className="relative h-36 md:h-auto md:min-h-[420px] bg-purple-100 overflow-hidden md:rounded-l-3xl">
               <video ref={video} src="/videos/clarity-popup-smoke.mp4" poster="/videos/clarity-popup-smoke-poster.png" muted playsInline loop autoPlay={!reduceMotion} preload="metadata" className="h-full w-full object-cover" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} />
-              <button type="button" className="absolute bottom-3 left-3 rounded-full bg-white/95 px-3 py-2 text-xs font-medium text-purple-950 shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-700" onClick={() => { const media = video.current; if (!media) return; if (media.paused) media.play().catch(() => setPlaying(false)); else media.pause(); }} aria-label={playing ? "Pause smoke animation" : "Play smoke animation"}>{playing ? "Pause animation" : "Play animation"}</button>
+              <button type="button" className="absolute inset-0 h-full w-full bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-700" onClick={() => { const media = video.current; if (!media) return; if (media.paused) media.play().catch(() => setPlaying(false)); else media.pause(); }} aria-label={playing ? "Pause smoke animation" : "Play smoke animation"}><span className="sr-only">Toggle smoke animation</span></button>
             </div>
             <div className="p-6 sm:p-9 md:py-12">
               <p className="text-xs uppercase tracking-[0.16em] text-purple-700 font-semibold mb-4">Your next move, clearer.</p>

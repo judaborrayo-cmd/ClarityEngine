@@ -46,12 +46,9 @@ export default function HeroMotion() {
             onWaiting={() => setPlaying(false)} onError={() => { setFailed(true); setReady(false); setPlaying(false); }} />
         )}
         {allowed && !failed && (playing || userPaused) && (
-          <button type="button" className="home-motion-toggle"
+          <button type="button" className="absolute inset-0 z-10 h-full w-full bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-600"
             aria-label={userPaused ? "Resume homepage animation" : "Pause homepage animation"}
-            onClick={() => setUserPaused(paused => !paused)}>
-            {!userPaused && <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1" /><rect x="9" y="3" width="3" height="10" rx="1" /></svg>}
-            <span className={userPaused ? undefined : "sr-only"}>{userPaused ? "Resume" : "Pause"}</span>
-          </button>
+            onClick={() => setUserPaused(paused => !paused)}><span className="sr-only">Toggle homepage animation</span></button>
         )}
       </div>
     </div>

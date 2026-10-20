@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Pause, Play, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { strategySprintOffer as offer, strategySprintBenefits } from "@shared/strategy-sprint-offer";
 import { SprintTestimonials } from "@/components/sprint-testimonials";
 import "./strategy-sprint.css";
@@ -28,8 +28,8 @@ function SprintMedia() {
   }
   return <figure className="ss-media">
     <div className="ss-media-frame">
-      {failed ? <img src={sprintMedia.poster} alt="Clarity Engine growth strategy visual" /> : <video ref={video} autoPlay={!reduced} muted playsInline loop={sprintMedia.loop} poster={sprintMedia.poster} preload={reduced ? "none" : "metadata"} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setFailed(true)} aria-label="Clarity Engine growth strategy animation"><source src={sprintMedia.src} type="video/mp4" /></video>}
-      {!failed && <button type="button" onClick={toggle} className="ss-media-control" aria-label={playing ? "Pause animation" : "Play animation"}>{playing ? <Pause size={16} /> : <Play size={16} />}<span>{playing ? "Pause" : "Play"}</span></button>}
+      {failed ? <img src={sprintMedia.poster} alt="Clarity Engine growth strategy visual" /> : <video ref={video} autoPlay={!reduced} muted playsInline loop={sprintMedia.loop} poster={sprintMedia.poster} preload={reduced ? "none" : "metadata"} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setFailed(true)} role="button" tabIndex={0} aria-label={playing ? "Pause growth strategy animation" : "Play growth strategy animation"} onClick={toggle} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); void toggle(); } }}><source src={sprintMedia.src} type="video/mp4" /></video>}
+
     </div>
     <figcaption>Clarity Engine · Growth strategy, brought into focus.</figcaption>
   </figure>;

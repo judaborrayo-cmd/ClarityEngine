@@ -24,6 +24,11 @@ function Media({ src, alt = "", fit = "cover" }: { src: string; alt?: string; fi
         muted
         loop
         playsInline
+        role="button"
+        tabIndex={0}
+        aria-label={`Play or pause ${alt || "service animation"}`}
+        onClick={event => { const video = event.currentTarget; if (video.paused) void video.play().catch(() => {}); else video.pause(); }}
+        onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); const video = event.currentTarget; if (video.paused) void video.play().catch(() => {}); else video.pause(); } }}
         data-testid="media-video"
       />
     );
