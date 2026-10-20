@@ -32,3 +32,11 @@
 /* Full-width atmosphere with a wider plume; copy keeps its reading width. */
 .gca-hero .ambient-flame video{object-fit:fill;transform:scaleX(1.35);transform-origin:65% center}
 @media(max-width:767px){.gca-hero .ambient-flame video{object-fit:cover;object-position:65% center!important;transform:none;opacity:.18}}
+
+/* Spark-led growth animation: keep its color visible and copy quiet. */
+.gca-hero .ambient-flame video{object-fit:fill;transform:none;opacity:.68;mask-image:linear-gradient(to right,transparent 8%,#0003 40%,#000 68%)}
+@media(max-width:767px){.gca-hero .ambient-flame video{object-fit:cover;object-position:70% center!important;opacity:.38;mask-image:linear-gradient(to bottom,#0002 15%,#0005 55%,#000 85%)}}
+
+.gca-hero h1{text-wrap:balance;font-size:clamp(40px,4.2vw,58px)}
+.gca-hero .ambient-flame video{opacity:.9}
+@media(max-width:767px){.gca-hero h1{font-size:38px}.gca-hero .ambient-flame video{opacity:.48}}

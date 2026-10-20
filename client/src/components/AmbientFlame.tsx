@@ -19,8 +19,8 @@ export default function AmbientFlame() {
     return () => { observer.disconnect(); preference.removeEventListener("change", sync); document.removeEventListener("visibilitychange", sync); };
   }, []);
   return <div className="ambient-flame">
-    <video ref={video} muted playsInline loop preload="none" poster="/videos/assessment-flame-poster.webp" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-      <source src="/videos/assessment-flame.mp4" type="video/mp4" />
+    <video ref={video} muted playsInline loop preload="none" poster="/videos/assessment-ignition-poster.webp" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+      <source src="/videos/assessment-ignition.mp4" type="video/mp4" />
     </video>
     <button type="button" aria-label={playing ? "Pause background animation" : "Play background animation"} onClick={() => { if (playing) { manuallyPaused.current = true; video.current?.pause(); } else { manuallyPaused.current = false; void video.current?.play().catch(() => setPlaying(false)); } }}><span className="sr-only">{playing ? "Pause animation" : "Play animation"}</span></button>
   </div>;

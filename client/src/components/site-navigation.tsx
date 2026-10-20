@@ -1,10 +1,11 @@
+import FounderNavMotion from "./FounderNavMotion";
 import { useEffect, useId, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowUpRight, BookOpen, ChartNoAxesCombined, ChevronDown, Compass, FileText, Globe, Layers, LayoutTemplate, Menu, MessageCircle, MousePointer2, Newspaper, Repeat2, Search, Video, X } from 'lucide-react';
 import ClarityEngineLogo from '@assets/Clarity-Engine-Favicon_1758553782935.png';
 import LegacyFlowNavigation from './legacy-flow-navigation';
-import { assessmentItem, assessmentPriceLabel, categories, navigationGroups, type NavigationCategory, type NavigationItem } from './navigation-config';
+import { categories, navigationGroups, type NavigationCategory, type NavigationItem } from './navigation-config';
 import './site-navigation.css';
 function focusDestination() {
     const target = document.getElementById(window.location.hash.slice(1)) || document.querySelector('main h1, h1') || document.querySelector('main');
@@ -47,16 +48,11 @@ function MenuContent({ category, onNavigate }: {
 <ul>{group.items.map(item => <NavigationRow key={item.id} item={item} onNavigate={onNavigate}/>)}</ul>
 </section>)}
    {category === 'solutions' && <aside className="ce-nav-feature">
-<span className="ce-nav-feature-mark">
-<Compass size={32} strokeWidth={1.4} aria-hidden="true"/>
-</span>
-<p className="ce-nav-eyebrow">Not sure where to start?</p>
-<h2>{assessmentItem.label}</h2>
-<p>Review six areas of your marketing and identify your next priorities.</p>
-<p className="ce-nav-feature-meta">Self-guided assessment · {assessmentPriceLabel}</p>
-<span className="ce-nav-badge">Launch pending</span>
-<Link to={assessmentItem.to} onClick={onNavigate}>Explore the Assessment <ArrowUpRight size={16} aria-hidden="true"/>
-</Link>
+<p className="ce-nav-eyebrow">A useful next move</p>
+<h2>Let’s put your next idea to work.</h2>
+<p>Strategy, campaigns, and creative support shaped around your business.</p>
+<FounderNavMotion />
+<Link to="/services" onClick={onNavigate}>Explore Services <ArrowUpRight size={16} aria-hidden="true"/></Link>
 </aside>}
  </div>{category === 'solutions' && <div className="ce-nav-footer">
 <Link to="/ways-to-work-together" onClick={onNavigate}>Compare ways to work together <span aria-hidden="true">→</span>
