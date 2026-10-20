@@ -9,7 +9,7 @@ export default function StartCards() {
       <div className="relative isolate pt-8 pb-0 overflow-hidden rounded-3xl">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-purple-700 mb-3">A clearer next move</p>
       <h2 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="start-cards-title">Less guesswork. A practical way forward.</h2>
-      <p className="text-gray-600 max-w-2xl mx-auto mb-8">Understand where your marketing needs attention, or work through the decisions with Juda. Choose the support that fits where you are.</p>
+      <p className="text-gray-600 max-w-2xl mx-auto mb-8">Understand where your marketing needs attention, or work through the decisions with Clarity Engine. Choose the support that fits where you are.</p>
       </div>
       <ArcherVideo />
       <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto text-left">
