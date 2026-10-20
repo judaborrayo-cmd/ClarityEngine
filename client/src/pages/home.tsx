@@ -295,10 +295,10 @@ export default function Home() {
               <div className="home-hero-copy">
                 <p className="home-eyebrow">Grow smarter. Go further.</p>
                 <h1 data-testid="hero-title">
-                  Scaling Ambitious Brands with <span>Paid Media</span> &amp; <span className="home-desktop-growth">Growth </span>Strategy
+                  Scaling Ambitions Brands with <span>People + AI</span> &amp; Growth Strategy
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
-                  We help founders and teams grow with clarity, better tracking, and smarter growth strategy, so you can scale what works and stop guessing.
+                  Combine 12+ years of growth marketing experience with AI-powered strategy, campaign ideas, and conversion-focused landing pages—so you can find your next opportunity and move it forward.
                 </p>
                 <HeroCTAs />
                 <p className="home-booking-note">Choose the support that fits where you are.</p>
