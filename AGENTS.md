@@ -1,5 +1,9 @@
 # Clarity Engine project rules
 
+## Marketing motion preference
+
+Hero and highlight animations should autoplay silently when visible, subject to reduced-motion preferences. Do not show play/pause badges or labels over the artwork. Let visitors click/tap the video area to pause or resume, and provide the same interaction through keyboard focus and an accessible label. Keep motion subtle and avoid adding unnecessary simultaneous videos. The supplied `clarity-popup-smoke.mp4` is exclusive to the assessment popup. Preserve the approved What Partners Say treatment.
+
 ## Standing mobile hero standard
 
 For public marketing-page hero work, prioritize visible media on phones while preserving desktop layout unless explicitly asked otherwise. Account for the fixed navigation and reduced available viewport height from browser controls; verify at common phone widths and shorter usable heights with screenshots.

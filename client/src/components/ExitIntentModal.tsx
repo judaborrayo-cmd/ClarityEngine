@@ -1,145 +1,96 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import * as Dialog from "@radix-ui/react-dialog";
+import { Check, X } from "lucide-react";
+import assessment from "@shared/marketing-clarity-audit/report-content.json";
 
 const STORAGE_KEY = "ce_waitlist_modal_suppressed_until";
 
-function sevenDaysFromNow() {
-  const d = new Date();
-  d.setDate(d.getDate() + 7);
-  return d.toISOString();
-}
-
 export default function ExitIntentModal() {
-  const [open, setOpen] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "" });
+  const [open, setOpen] = useState(() => import.meta.env.DEV && new URLSearchParams(window.location.search).get("preview") === "assessment-popup");
+  const [reduceMotion, setReduceMotion] = useState(true);
+  const [playing, setPlaying] = useState(false);
+  const video = useRef<HTMLVideoElement>(null);
+  const primaryLink = useRef<HTMLAnchorElement>(null);
+  const previousFocus = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    function shouldShow() {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(preference.matches);
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    const eligibleAfter = Date.now() + 25_000;
+    let shown = false;
+    function handleExit(event: MouseEvent) {
+      if (shown || Date.now() < eligibleAfter || event.relatedTarget !== null || event.clientY > 0) return;
+      if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      if (document.querySelector('[role="dialog"][data-state="open"], [aria-modal="true"]')) return;
       try {
         const until = localStorage.getItem(STORAGE_KEY);
-        if (!until) return true;
-        return new Date(until) < new Date();
-      } catch {
-        return true;
-      }
+        if (until && Date.parse(until) > Date.now()) return;
+      } catch { /* Still allow dismissal when storage is unavailable. */ }
+      shown = true;
+      previousFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      setOpen(true);
     }
-
-    function handleExit(e: MouseEvent) {
-      if (!shouldShow()) return;
-      if (e.clientY <= 0 || e.relatedTarget === null) {
-        setOpen(true);
-      }
-    }
-
     document.addEventListener("mouseout", handleExit);
     return () => document.removeEventListener("mouseout", handleExit);
   }, []);
 
-  function suppressFor7Days() {
-    try {
-      localStorage.setItem(STORAGE_KEY, sevenDaysFromNow());
-    } catch {}
-  }
+  useEffect(() => {
+    if (!open) return;
+    const media = video.current;
+    if (!media) return;
+    if (reduceMotion) media.pause();
+    else media.play().catch(() => setPlaying(false));
+    return () => media.pause();
+  }, [open, reduceMotion]);
 
   function close() {
-    suppressFor7Days();
+    try {
+      localStorage.setItem(STORAGE_KEY, new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString());
+    } catch { /* Dismissal must work even when storage is unavailable. */ }
     setOpen(false);
   }
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error("Network error");
-      suppressFor7Days();
-      setOpen(false);
-      alert("Thanks! You'll be notified when a spot opens.");
-    } catch {
-      alert("Could not submit right now—please try again later.");
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-4" data-testid="exit-intent-modal">
-      <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
-        <div className="text-base font-semibold mb-2 text-gray-900">
-          We're currently almost at capacity — join the waitlist to get notified when spots open.
-        </div>
-
-        <form onSubmit={onSubmit} className="space-y-3 mb-5">
-          <input
-            required
-            type="text"
-            name="name"
-            placeholder="Your name"
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/20"
-            value={form.name}
-            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-            data-testid="input-waitlist-name"
-          />
-          <input
-            required
-            type="email"
-            name="email"
-            placeholder="you@example.com"
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/20"
-            value={form.email}
-            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-            data-testid="input-waitlist-email"
-          />
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="w-full inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium bg-black text-white hover:opacity-90 disabled:opacity-60"
-            data-testid="button-waitlist-submit"
-          >
-            {submitting ? "Submitting..." : "Apply to Wait List"}
-          </button>
-        </form>
-
-        <div className="border-t border-gray-200 pt-4 space-y-3">
-          <p className="text-sm font-medium text-gray-900 mb-3">Need answers faster?</p>
-          
-          <a
-            href="/growth-clarity-audit"
-            onClick={close}
-            className="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors text-center"
-            data-testid="button-quick-audit"
-          >
-            <div className="font-semibold">Deep Dive Growth Audit</div>
-            <div className="text-xs text-gray-600 mt-0.5">$3,725 USD · evidence-led 90-day strategy</div>
-          </a>
-
-          <a
-            href="#book-call"
-            onClick={close}
-            className="block w-full rounded-xl px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-center"
-            data-testid="button-quick-call"
-          >
-            <div className="font-semibold">Book Strategic Intro Call</div>
-            <div className="text-xs opacity-90 mt-0.5">Want answers in days? Start here (20-30 min)</div>
-          </a>
-        </div>
-
-        <button
-          type="button"
-          onClick={close}
-          className="w-full mt-4 px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
-          data-testid="button-waitlist-close"
+    <Dialog.Root open={open} onOpenChange={(next) => { if (!next) close(); }}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-[998] bg-slate-950/60 backdrop-blur-sm" />
+        <Dialog.Content
+          className="fixed left-1/2 top-1/2 z-[999] w-[calc(100%_-_2rem)] max-w-5xl max-h-[calc(100dvh_-_2rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl bg-white shadow-2xl outline-none"
+          data-testid="exit-intent-modal"
+          onOpenAutoFocus={(event) => { event.preventDefault(); primaryLink.current?.focus(); }}
+          onCloseAutoFocus={(event) => { event.preventDefault(); previousFocus.current?.focus(); }}
         >
-          Not now
-        </button>
-      </div>
-    </div>
+          <div className="grid md:grid-cols-[1.15fr_1fr]">
+            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[420px] bg-white overflow-hidden md:rounded-l-3xl flex items-center">
+              <video ref={video} src="/videos/clarity-popup-astronaut.mp4" poster="/videos/clarity-popup-astronaut-poster.webp" muted playsInline loop autoPlay={!reduceMotion} preload="metadata" className="h-full w-full object-contain" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} />
+              <button type="button" className="absolute inset-0 h-full w-full bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-700" onClick={() => { const media = video.current; if (!media) return; if (media.paused) media.play().catch(() => setPlaying(false)); else media.pause(); }} aria-label={playing ? "Pause astronaut animation" : "Play astronaut animation"}><span className="sr-only">Toggle astronaut animation</span></button>
+            </div>
+            <div className="p-6 sm:p-9 md:py-12">
+              <p className="text-xs uppercase tracking-[0.16em] text-purple-700 font-semibold mb-4">Your next move, clearer.</p>
+              <Dialog.Title className="text-3xl font-bold tracking-tight text-gray-950 mb-4">Where does your marketing need attention?</Dialog.Title>
+              <Dialog.Description className="text-base text-gray-600 leading-relaxed mb-5">Step back from the daily decisions. The Get Clarity Assessment helps you examine six essential marketing areas and identify where to focus next.</Dialog.Description>
+              <ul className="space-y-3 text-sm text-gray-700 mb-6" aria-label="What you get">
+                {[
+                  { text: "35 questions across six marketing areas", color: "bg-purple-100 text-purple-700" },
+                  { text: "A personalized report", color: "bg-emerald-100 text-emerald-700" },
+                  { text: "Practical next moves when your answers reveal a clear constraint", color: "bg-cyan-100 text-cyan-700" },
+                ].map(({ text, color }) => <li key={text} className="flex items-start gap-3 leading-relaxed"><span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${color}`}><Check size={16} strokeWidth={3} aria-hidden="true" /></span><span>{text}</span></li>)}
+              </ul>
+              <Link ref={primaryLink} to="/marketing-clarity-assesment" onClick={close} className="flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 px-4 py-3 text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-700" data-testid="button-popup-assessment">Explore the assessment →</Link>
+              <p className="text-center text-xs text-gray-500 mt-3">${assessment.product.priceCents / 100} one-time · based on your answers</p>
+              <button type="button" onClick={close} className="block mx-auto mt-5 text-sm text-gray-600 underline underline-offset-4">Keep exploring</button>
+            </div>
+          </div>
+          <Dialog.Close className="absolute right-3 top-3 rounded-full bg-white p-2 text-gray-900 shadow hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-700" aria-label="Close assessment invitation"><X className="w-5 h-5" /></Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

@@ -1,111 +1,44 @@
+import ArcherVideo from "./ArcherVideo";
 import { Link } from "react-router-dom";
+import { strategySprintOffer as sprint } from "@shared/strategy-sprint-offer";
+import assessment from "@shared/marketing-clarity-audit/report-content.json";
 
-interface StartCardsProps {
-  onOpenWaitlist: () => void;
-}
-
-export default function StartCards({ onOpenWaitlist }: StartCardsProps) {
+export default function StartCards() {
   return (
-    <section className="py-8 text-center" aria-label="Ways to Work Together">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-2" data-testid="start-cards-title">
-        3 Paths to More Profitable Funnels & Ads
-      </h2>
-      <p className="text-gray-600 text-sm max-w-xl mx-auto mb-8">
-        Intro Calls credit into audits or monthly retainers — when there's a
-        long-term fit. <span className="text-gray-900 font-medium">Different brands need different levels of support — start where you'll see ROI fastest.</span>
-      </p>
-
-      <div className="grid sm:grid-cols-3 items-stretch gap-6 max-w-6xl mx-auto">
-        {/* 1) Strategic Intro Call */}
-        <div className="h-full flex flex-col justify-between rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition transform hover:-translate-y-1 bg-white p-6 text-left" data-testid="card-intro-call">
-          <div>
-            <div className="text-lg font-semibold mb-1 text-gray-900">Strategic Intro Call</div>
-            <p className="text-sm text-gray-600 mb-4">
-              30-minute diagnostic session to uncover growth gaps and new opportunities.
-            </p>
-            <ul className="text-sm text-gray-700 divide-y divide-gray-200 rounded-lg border border-gray-100">
-              <li className="py-2 px-3">Pre-call competitor &amp; market research</li>
-              <li className="py-2 px-3">Identify ad &amp; funnel blind spots</li>
-              <li className="py-2 px-3">1–2 actionable growth ideas</li>
-              <li className="py-2 px-3">Professional outside perspective</li>
-              <li className="py-2 px-3">$75 deposit credited toward Audit or Retainer</li>
-            </ul>
-          </div>
-          <a
-            href="#book-call"
-            className="mt-5 inline-flex items-center justify-center rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-sm py-2 px-4 font-medium"
-            data-testid="button-start-book-call"
-          >
-            Book a Call — $75
-          </a>
-        </div>
-
-        {/* 2) Deep Dive Growth Audit (highlighted) */}
-        <div className="h-full flex flex-col justify-between rounded-2xl border-2 border-green-500 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 bg-white p-6 relative text-left" data-testid="card-deep-dive">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-            3 Month Roadmap
-          </div>
-          <div>
-            <div className="text-lg font-semibold mb-1 text-gray-900">Deep Dive Growth Audit</div>
-            <p className="text-sm text-gray-600 mb-4">
-              Evidence-led investigation of your business, marketing systems and competitive landscape with a 90-day roadmap.
-            </p>
-            <ul className="text-sm text-gray-700 divide-y divide-gray-200 rounded-lg border border-green-100">
-              <li className="py-2 px-3">Relevant advertising, follow-up and measurement systems</li>
-              <li className="py-2 px-3">Written strategic findings and prioritized recommendations</li>
-              <li className="py-2 px-3">Creative, messaging and conversion opportunities</li>
-              <li className="py-2 px-3">Competitor insights + prioritized growth roadmap</li>
-              <li className="py-2 px-3">Personal findings walkthrough and next-step priorities</li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-lg font-bold mt-5 mb-1">$3,725 USD one-time</div>
-            <p className="text-xs text-gray-600 mb-4">
-              Independent strategy. Further services are optional.
-            </p>
-            <Link
-              to="/growth-clarity-audit"
-              className="inline-flex items-center justify-center w-full rounded-xl bg-green-500 text-white hover:bg-green-600 text-sm py-2 font-medium transition"
-              data-testid="button-start-order-audit"
-            >
-              Explore the Deep Dive Growth Audit
-            </Link>
-          </div>
-        </div>
-
-        {/* 3) Growth Retainer */}
-        <div className="h-full flex flex-col justify-between rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition transform hover:-translate-y-1 bg-white p-6 relative text-left" data-testid="card-retainer-waitlist">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-            Strategy & Execution
-          </div>
-          <div>
-            <div className="text-lg font-semibold mb-1 text-gray-900">Growth Retainer</div>
-            <p className="text-sm text-gray-600 mb-4">
-              Ongoing partnership combining strategy, execution &amp; optimization across channels.
-            </p>
-            <ul className="text-sm text-gray-700 divide-y divide-gray-200 rounded-lg border border-gray-100">
-              <li className="py-2 px-3">3 Month Paid Media &amp; CRO Roadmap</li>
-              <li className="py-2 px-3">Omni-channel ads: Google, Meta, YouTube (+ new channels as needed)</li>
-              <li className="py-2 px-3">Creative testing system, offers/ad-angle development &amp; CRO roadmap</li>
-              <li className="py-2 px-3">Tracking &amp; attribution upgrades, KPI dashboards, weekly reporting</li>
-              <li className="py-2 px-3">Weekly strategy/optimization calls + Slack/async support</li>
-              <li className="py-2 px-3">New funnel builds &amp; experiment backlog with clear milestones</li>
-            </ul>
-            <p className="text-xs text-gray-500 mt-3">
-              Currently at capacity — audit clients receive priority when a slot opens.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onOpenWaitlist}
-            className="mt-5 inline-flex items-center justify-center rounded-xl border border-gray-300 text-gray-900 text-sm py-2 px-4 hover:shadow"
-            data-testid="button-start-join-waitlist"
-          >
-            Apply to Wait List
-          </button>
-        </div>
+    <section className="py-12 text-center" aria-label="Ways to Work Together">
+      <div className="relative isolate pt-8 pb-0 overflow-hidden rounded-3xl">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-purple-700 mb-3">A clearer next move</p>
+      <h2 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="start-cards-title">Less guesswork. A practical way forward.</h2>
+      <p className="text-gray-600 max-w-2xl mx-auto mb-8">Understand where your marketing needs attention, or work through the decisions with Juda. Choose the support that fits where you are.</p>
       </div>
-
+      <ArcherVideo />
+      <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto text-left">
+        <article className="rounded-2xl border border-purple-200 bg-white p-6 sm:p-8 flex flex-col" data-testid="card-assessment">
+          <p className="text-xs font-semibold tracking-widest uppercase text-purple-700 mb-3">Explore on your own</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">Get Clarity Assessment</h3>
+          <p className="text-gray-600 mb-5">See how your offer, audience, message, conversion experience, traffic, and measurement fit together—and where to focus next.</p>
+          <ul className="space-y-3 text-sm text-gray-700 mb-6 list-disc pl-5">
+            <li>35 questions across six essential marketing areas</li>
+            <li>A personalized report with findings and diagnostic confidence</li>
+            <li>Recommended next moves when your answers establish a clear constraint</li>
+          </ul>
+          <p className="text-xs text-gray-500 mb-6">Based on your answers; does not inspect your ad accounts or replace an expert review.</p>
+          <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${assessment.product.priceCents / 100} <span className="text-sm font-normal text-gray-500">one-time payment</span></p><Link to="/marketing-clarity-assesment" className="inline-flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 text-white px-5 py-3 font-medium w-full" data-testid="button-start-assessment">Explore the assessment →</Link></div>
+        </article>
+        <article className="rounded-2xl border border-gray-200 bg-purple-50/50 p-6 sm:p-8 flex flex-col" data-testid="card-strategy-sprint">
+          <p className="text-xs font-semibold tracking-widest uppercase text-purple-700 mb-3">Work through it together</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">30-Day Growth Strategy Sprint</h3>
+          <p className="text-gray-600 mb-5">Bring the marketing problem you’re trying to solve. Work directly with Juda to untangle priorities and decide what to do next.</p>
+          <ul className="space-y-3 text-sm text-gray-700 mb-6 list-disc pl-5">
+            <li>Three live sessions over 30 days</li>
+            <li>Flexible focus on offers, messaging, funnels, campaigns, or measurement</li>
+            <li>Practical decisions and next actions you can work from</li>
+          </ul>
+          <p className="text-xs text-gray-500 mb-6">Ongoing execution and account management outside sessions require a separate agreement.</p>
+          <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${sprint.price} <span className="text-sm font-normal text-gray-500">one-time payment · no subscription</span></p><Link to="/strategy-sprint" className="inline-flex justify-center rounded-xl border border-purple-700 text-purple-800 hover:bg-purple-100 px-5 py-3 font-medium w-full" data-testid="button-start-sprint">Explore the Strategy Sprint →</Link></div>
+        </article>
+      </div>
+      <p className="text-sm text-gray-600 mt-7">Need a deeper review or ongoing support? <Link to="/ways-to-work-together#options" className="text-purple-700 underline underline-offset-4">See all ways to work together →</Link></p>
       {/* Metrics / Proof Row (unchanged) */}
       <div className="mt-10 text-sm text-gray-600 flex flex-col sm:flex-row gap-4 sm:gap-10 justify-center items-center">
         <div>

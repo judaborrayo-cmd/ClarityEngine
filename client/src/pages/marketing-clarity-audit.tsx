@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { auditRequest } from "@/lib/audit-api";
@@ -7,41 +7,10 @@ import { sectionColors } from "@shared/marketing-clarity-audit/sections";
 import { progressIcons } from "@shared/marketing-clarity-audit/progress-icons";
 import example from "@/lib/assessment-sales-example.json";
 import "./get-clarity-assessment.css";
+import AmbientFlame from "@/components/AmbientFlame";
 
 const icons = [progressIcons.target, progressIcons.users, progressIcons.message, progressIcons.route, progressIcons.test, progressIcons.reporting];
 const descriptions = ["Is your offer clear enough to choose?", "Are you reaching the people most likely to benefit?", "Does your message communicate what matters to buyers?", "Can interested people take the next step with confidence?", "Does your traffic strategy match your goals?", "Can you trust the numbers you use to make decisions?"];
-
-function AssessmentVideo() {
-  const video = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-  const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  const manuallyPaused = useRef(false);
-  useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => {
-      setReduced(preference.matches);
-      manuallyPaused.current = false;
-      if (preference.matches) video.current?.pause();
-      else void video.current?.play().catch(() => setPlaying(false));
-    };
-    sync();
-    preference.addEventListener("change", sync);
-    return () => preference.removeEventListener("change", sync);
-  }, []);
-  async function toggle() {
-    manuallyPaused.current = playing;
-    if (playing) video.current?.pause();
-    else {
-      if (video.current?.ended) video.current.currentTime = 0;
-      try { await video.current?.play(); } catch { setPlaying(false); }
-    }
-  }
-  return <div className="gca-video-panel">
-    <video ref={video} autoPlay={!reduced} muted playsInline loop role="button" tabIndex={0} onClick={toggle} onKeyDown={(event) => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); void toggle(); } }} onCanPlay={() => { if (!reduced && !manuallyPaused.current) void video.current?.play().catch(() => setPlaying(false)); }} preload={reduced ? "none" : "metadata"} poster="/videos/get-clarity-assessment-poster.webp" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} aria-label={playing ? "Pause assessment animation" : "Play assessment animation"}>
-      <source src="/videos/get-clarity-assessment-ping-pong.mp4" type="video/mp4" />
-    </video>
-  </div>;
-}
 
 export default function MarketingClarityAudit() {
   const [busy, setBusy] = useState(false);
@@ -56,16 +25,17 @@ export default function MarketingClarityAudit() {
   }
   const cta = <Button onClick={purchase} disabled={busy} className="gca-cta">{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
   return <main className="gca-page">
-    <section className="gca-hero gca-wrap">
-      <div>
+    <section className="gca-hero">
+      <AmbientFlame />
+      <div className="gca-wrap"><div className="gca-hero-copy">
         <p className="gca-eyebrow">Get Clarity Assessment <span>by Clarity Engine</span></p>
         <h1>Know what to <em>focus on next.</em></h1>
         <p className="gca-lead">See where your marketing may be getting stuck. Examine six essential areas and identify where to focus next.</p>
         <div className="gca-actions">{cta}<a href="#what-you-get" className="gca-secondary">See what you get</a></div>
         <p className="gca-small">$27 · One-time payment · A focused starting point</p>
         {error && <p role="alert" className="text-red-700 mt-4">{error}</p>}
-      </div>
-      <AssessmentVideo />
+      </div></div>
+
     </section>
     <section className="gca-wrap gca-domains" aria-labelledby="areas-title">
       <h2 id="areas-title">Six areas. A clearer direction.</h2>

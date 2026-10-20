@@ -423,7 +423,7 @@ export default function Home() {
 
         {/* --- START CARDS (CRO) --- */}
         <Section id="value-ladder" className="py-8 lg:py-12">
-          <StartCards onOpenWaitlist={openWaitlist} />
+          <StartCards />
         </Section>
 
         {/* --- SCALE AND AUDIT SECTION --- */}
