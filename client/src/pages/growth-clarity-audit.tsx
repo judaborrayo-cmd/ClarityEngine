@@ -193,7 +193,11 @@ export default function GrowthClarityAudit() {
           </div>
         </div>
       </section>
-      <section className="dda-wrap dda-section" id="investigation">
+      <section className="dda-map-section" id="investigation">
+        <div className="dda-map-motion">
+          <ServiceOptionVideo name="audit-treasure-map" label="treasure map journey" />
+        </div>
+        <div className="dda-wrap dda-section dda-map-content">
         <p className="dda-eyebrow">What we investigate</p>
         <h2>
           Real business context.
@@ -222,6 +226,7 @@ export default function GrowthClarityAudit() {
           Exact scope depends on your business, available evidence, agreed
           priorities and authorized read-level access.
         </p>
+        </div>
       </section>
       <section className="dda-band">
         <div className="dda-wrap dda-section">

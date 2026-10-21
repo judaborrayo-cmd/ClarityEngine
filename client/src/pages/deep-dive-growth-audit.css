@@ -546,3 +546,12 @@ html.audit-sales-view { scroll-padding-top: var(--audit-navigation-offset, 118px
 html.audit-sales-view nav[aria-label="Main navigation"] { background: #fff; backdrop-filter: none; }
 html.audit-sales-view .dda-section[id] { scroll-margin-top: 0; }
 html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
+
+/* Full-bleed map remains a quiet backdrop to the investigation. */
+.dda-map-section { position: relative; isolation: isolate; overflow: hidden; background: #f3e6c9; scroll-margin-top: 125px; }
+.dda-map-motion { position: absolute; inset: 0; z-index: -2; }
+.dda-map-motion .archer-video { width: 100%; height: 100%; max-width: none; margin: 0; border-radius: 0; }
+.dda-map-motion .archer-video video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; mix-blend-mode: normal; }
+.dda-map-section::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255, 253, 247, .76); pointer-events: none; }
+.dda-map-content { position: relative; }
+.dda-map-content .dda-card { background: rgba(255, 255, 255, .86); border-color: rgba(127, 107, 67, .18); }
