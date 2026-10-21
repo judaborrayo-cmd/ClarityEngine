@@ -42,7 +42,7 @@
 @media(max-width:767px){.gca-hero h1{font-size:38px}.gca-hero .ambient-flame video{opacity:.48}}
 
 .gca-system-section{position:relative;isolation:isolate;background:#fff;overflow:hidden;scroll-margin-top:90px}
-.gca-system-section::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#ffffffdd 0%,#ffffffbf 42%,#ffffff99 100%),url('/images/assessment-cube-tapestry.webp') center bottom/cover no-repeat}
+.gca-system-section::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#ffffff18,#ffffff28),url('/images/assessment-system-chart.webp') center bottom/100% auto no-repeat}
 .gca-system-heading{display:grid;grid-template-columns:.65fr 1fr;gap:64px;align-items:center}
 .gca-system-heading .gca-intro{max-width:600px;margin-top:18px}
 .gca-system-lens{position:relative;width:100%;max-width:380px;margin:auto;opacity:.85}
@@ -58,3 +58,10 @@
 .gca-area-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px}
 @media(max-width:767px){.gca-system-heading{grid-template-columns:1fr;gap:12px}.gca-system-lens{max-width:230px}.gca-question-heading{font-size:17px}.gca-question-heading strong{font-size:23px}.gca-system-section::before{background-size:auto 100%;background-position:center bottom}.gca-system-section .gca-area-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.gca-lens-eye{animation:none}}
+
+.gca-system-section .gca-system-heading{grid-template-columns:.42fr 1fr;gap:32px}
+.gca-system-heading>div:last-child{background:rgba(255,255,255,.94);border-radius:22px;padding:28px 32px}
+.gca-system-lens{margin-left:0;transform:translateX(-85px) perspective(800px) rotateY(-38deg) rotateZ(-12deg);opacity:.82}
+.gca-system-section .gca-area-grid article{background:rgba(255,255,255,.97)}
+@media(min-width:1440px){.gca-system-lens{transform:translateX(-145px) perspective(800px) rotateY(-38deg) rotateZ(-12deg)}}
+@media(max-width:767px){.gca-system-section .gca-system-heading{grid-template-columns:1fr;gap:0}.gca-system-heading>div:last-child{padding:22px 0;background:rgba(255,255,255,.94)}.gca-system-lens{margin-left:0;max-width:200px;transform:translateX(-20px) perspective(800px) rotateY(-38deg) rotateZ(-12deg)}.gca-system-section::before{background-size:auto 100%;opacity:.8}}

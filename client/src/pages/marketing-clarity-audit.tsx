@@ -91,11 +91,11 @@ function SystemLens() {
   return <div ref={host} className={`gca-system-lens ${paused || !visible ? "is-paused" : ""}`}>
     <svg viewBox="0 0 420 380" aria-hidden="true">
       <defs><linearGradient id="system-lens-rim" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#7660cd"/><stop offset="1" stopColor="#119783"/></linearGradient><radialGradient id="system-lens-glass"><stop stopColor="#fff" stopOpacity=".95"/><stop offset="1" stopColor="#edf8f5" stopOpacity=".75"/></radialGradient></defs>
-      <path d="M260 252 L345 338" stroke="url(#system-lens-rim)" strokeWidth="32" strokeLinecap="round"/>
+      <path d="M105 252 L36 338" stroke="url(#system-lens-rim)" strokeWidth="32" strokeLinecap="round"/>
       <circle cx="184" cy="170" r="121" fill="url(#system-lens-glass)" stroke="url(#system-lens-rim)" strokeWidth="13"/>
       <circle cx="184" cy="170" r="108" fill="none" stroke="#fff" strokeWidth="3"/>
       <path d="M105 127 Q124 89 168 84" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round"/>
-      <g className="gca-lens-eye"><path d="M110 170 Q184 100 258 170 Q184 240 110 170Z" fill="#fff" stroke="#6c8490" strokeWidth="4"/><circle cx="184" cy="170" r="29" fill="#83b5af"/><circle cx="184" cy="170" r="15" fill="#394958"/><circle cx="192" cy="161" r="6" fill="#fff"/></g>
+      <g className="gca-lens-eye"><path d="M110 170 Q184 100 258 170 Q184 240 110 170Z" fill="#fff" stroke="#6c8490" strokeWidth="4"/><circle cx="204" cy="170" r="29" fill="#83b5af"/><circle cx="204" cy="170" r="15" fill="#394958"/><circle cx="212" cy="161" r="6" fill="#fff"/></g>
     </svg>
     <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? "Play subtle eye animation" : "Pause subtle eye animation"}><span className="sr-only">{paused ? "Play" : "Pause"} eye animation</span></button>
   </div>;
