@@ -39,3 +39,12 @@ body .ss-hero-copy>.ss-anchor{margin-left:12px}
  body .gca-hero .gca-actions{grid-row:5;margin:0}
  body .gca-hero .gca-small{grid-row:6;margin:0}
 }
+
+/* Let the assessment atmosphere reach the screen edge on wide displays. */
+@media(min-width:901px){
+ body .gca-hero{width:100%;min-height:clamp(560px,31.5vw,960px);display:flex;align-items:center}
+ body .gca-hero>.gca-wrap{max-width:none;padding-inline:clamp(32px,8vw,240px);grid-template-columns:minmax(0,44%) minmax(0,56%);gap:0}
+ body .gca-hero .gca-hero-copy{max-width:620px;position:relative;z-index:2}
+ body .gca-hero .ambient-flame{left:44%;right:0;top:0;bottom:0}
+ body .gca-hero .ambient-flame video{object-fit:cover;object-position:center;mask-image:linear-gradient(to right,transparent,#000 22%)}
+}
