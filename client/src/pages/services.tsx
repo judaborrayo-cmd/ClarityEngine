@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Check, ArrowUpRight, X } from "lucide-react";
 import ServicesAtAGlance from "@/components/ServicesAtAGlance";
 import ServicesJourneyVideo from "@/components/ServicesJourneyVideo";
+import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { strategySprintOffer } from "@shared/strategy-sprint-offer";
 import assessment from "@shared/marketing-clarity-audit/report-content.json";
 import "./services.css";
@@ -39,9 +40,13 @@ export default function Services() {
 
     <ServicesAtAGlance heading="Leverage People and People + Ai in Your Business" subheading="Shortcut your growth through 12+ years of experience and the power of Ai." note={null} />
 
-    <section className="services-wrap services-final">
+    <section id="next-move" className="services-wrap services-final">
       <p className="services-eyebrow">Make the next move useful</p><h2>What would help<br /><em>your business move forward?</em></h2>
-      <div className="services-next"><Link to="/strategy-sprint"><span>I want to work through a challenge.</span><strong>Explore the Strategy Sprint ↗</strong></Link><Link to="/growth-clarity-audit"><span>I need a deeper investigation.</span><strong>Explore the Deep Dive Audit ↗</strong></Link><Link to="/marketing-clarity-assesment"><span>I want a self-guided starting point.</span><strong>Explore the assessment ↗</strong></Link></div>
+      <div className="services-next">
+        <article><ServiceOptionVideo name="services-sprint-bridge" label="runner jumping a bridge" /><Link to="/strategy-sprint"><span>I want to work through a challenge.</span><strong>Explore the Strategy Sprint ↗</strong></Link></article>
+        <article><ServiceOptionVideo name="services-audit-mechanic" label="mechanic fine-tuning a sports car" /><Link to="/growth-clarity-audit"><span>I need a deeper investigation.</span><strong>Explore the Deep Dive Audit ↗</strong></Link></article>
+        <article><ServiceOptionVideo name="services-assessment-dragon" label="dragon igniting a giant match" /><Link to="/marketing-clarity-assesment"><span>I want a self-guided starting point.</span><strong>Explore the assessment ↗</strong></Link></article>
+      </div>
       <p className="services-intro">Looking for a custom project or continuing support? <Link to="/#book-intro" className="services-text-link">Let’s discuss what you need →</Link></p>
     </section>
 

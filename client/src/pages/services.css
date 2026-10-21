@@ -46,3 +46,12 @@
 .services-hero .services-journey-video{max-width:none;width:100%}
 .services-hero h1{max-width:720px}
 @media(max-width:767px){.services-hero.services-wrap{grid-template-columns:1fr;padding:26px 22px 34px;gap:16px}.services-hero .services-journey-video{width:calc(100% + 44px);max-width:none;margin-left:-22px;margin-right:-22px}}
+
+/* Coordinated motion previews for the three next-step options. */
+.services-next article{min-width:0}
+.services-next article>a{display:block}
+.services-next .services-option-video{width:100%;margin:0 0 22px;border-radius:16px;background:#fafbfa;isolation:isolate}
+.services-next .services-option-video video{width:100%;aspect-ratio:16/9;object-fit:contain}
+.services-next .services-option-video button{border-radius:16px}
+
+.services-final{scroll-margin-top:110px}
