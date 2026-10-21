@@ -58,3 +58,5 @@
 .gca-deliverables .services-option-video{position:relative;width:100%;max-width:none;margin:0 0 24px;border-radius:18px;background:#fff;overflow:hidden;isolation:isolate}
 .gca-deliverables .services-option-video video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain}
 .gca-deliverables .services-option-video button{border-radius:18px}
+
+.gca-queen-motion{margin-top:20px;max-width:280px;mix-blend-mode:multiply}.gca-queen-motion .services-option-video{width:100%;margin:0;border-radius:0;background:transparent;overflow:hidden}.gca-queen-motion video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;mix-blend-mode:normal;filter:brightness(1.4);mask-image:radial-gradient(ellipse 30% 70% at center,#000 55%,transparent 100%)}.gca-queen-motion button{border-radius:0}
