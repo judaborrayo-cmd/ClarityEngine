@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { auditRequest } from "@/lib/audit-api";
@@ -45,7 +45,15 @@ export default function MarketingClarityAudit() {
       <div><p className="gca-eyebrow">When everything feels important</p><h2>More activity isn’t always the next move.</h2></div>
       <div className="gca-prose"><p>You have ideas, channels, and advice competing for attention. The harder decision is which problem deserves your time first.</p><ul><li>You’re preparing for growth, but aren’t sure what needs to be ready.</li><li>You have numbers, but aren’t sure which ones to trust.</li><li>Your team sees different problems and needs a shared starting point.</li></ul><p>Get Clarity Assessment helps you turn what you know about your marketing into a more focused decision.</p></div>
     </section>
-    <section id="six-areas" className="gca-tinted"><div className="gca-wrap gca-section"><p className="gca-eyebrow">What it examines</p><h2>Your marketing works as a system.</h2><p className="gca-intro">35 questions look across these six areas, so an apparent traffic problem can be considered alongside your offer, message, and customer experience.</p><div className="gca-area-grid">{Object.values(sectionColors).map((theme,i) => { const Icon = icons[i]; return <article key={theme.name}><Icon aria-hidden="true" style={{color:theme.color}}/><h3>{theme.name}</h3><p>{descriptions[i]}</p></article>; })}</div></div></section>
+    <section id="six-areas" className="gca-system-section"><div className="gca-wrap gca-section">
+      <div className="gca-system-heading">
+        <SystemLens />
+        <div><p className="gca-eyebrow">What it examines</p><h2>Your marketing works as a system.</h2>
+        <p className="gca-question-heading"><strong>35 questions</strong><span>Look across these six areas.</span></p>
+        <p className="gca-intro">An apparent traffic problem can be considered alongside your offer, message, and customer experience.</p></div>
+      </div>
+      <div className="gca-area-grid">{Object.values(sectionColors).map((theme,i) => { const Icon = icons[i]; return <article key={theme.name} style={{borderColor:theme.border, borderTopColor:theme.color}}><span className="gca-area-icon" style={{background:theme.tint,color:theme.color}}><Icon aria-hidden="true"/></span><h3>{theme.name}</h3><p>{descriptions[i]}</p></article>; })}</div>
+    </div></section>
     <section id="what-you-get" className="gca-wrap gca-section"><p className="gca-eyebrow">What you get</p><h2>A report you can use to make a decision.</h2><div className="gca-deliverables">
       <article><span>01</span><h3>A clearer diagnosis</h3><p>Six area scores, the primary constraint indicated by your answers, supporting findings, and diagnostic confidence. The report explains the reasoning and where evidence is missing.</p></article>
       <article><span>02</span><h3>Focused next moves</h3><p>When a constraint is identified, receive three recommended moves with completion criteria, plus what to deprioritize. A 30-day plan helps organize the work.</p></article>
@@ -69,4 +77,26 @@ export default function MarketingClarityAudit() {
     ].map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section>
     <section className="gca-final"><div className="gca-wrap"><p className="gca-eyebrow">Get Clarity Assessment by Clarity Engine</p><h2>Give your next decision<br/>a clearer starting point.</h2><p>Six marketing areas. Practical findings. A more focused next move.</p>{cta}<p className="gca-small">$27 · One-time payment</p>{error && <p role="alert" className="text-red-700">{error}</p>}</div></section>
   </main>;
+}
+
+function SystemLens() {
+  const host = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {threshold: .1});
+    if (host.current) observer.observe(host.current);
+    return () => observer.disconnect();
+  }, []);
+  return <div ref={host} className={`gca-system-lens ${paused || !visible ? "is-paused" : ""}`}>
+    <svg viewBox="0 0 420 380" aria-hidden="true">
+      <defs><linearGradient id="system-lens-rim" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#7660cd"/><stop offset="1" stopColor="#119783"/></linearGradient><radialGradient id="system-lens-glass"><stop stopColor="#fff" stopOpacity=".95"/><stop offset="1" stopColor="#edf8f5" stopOpacity=".75"/></radialGradient></defs>
+      <path d="M260 252 L345 338" stroke="url(#system-lens-rim)" strokeWidth="32" strokeLinecap="round"/>
+      <circle cx="184" cy="170" r="121" fill="url(#system-lens-glass)" stroke="url(#system-lens-rim)" strokeWidth="13"/>
+      <circle cx="184" cy="170" r="108" fill="none" stroke="#fff" strokeWidth="3"/>
+      <path d="M105 127 Q124 89 168 84" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round"/>
+      <g className="gca-lens-eye"><path d="M110 170 Q184 100 258 170 Q184 240 110 170Z" fill="#fff" stroke="#6c8490" strokeWidth="4"/><circle cx="184" cy="170" r="29" fill="#83b5af"/><circle cx="184" cy="170" r="15" fill="#394958"/><circle cx="192" cy="161" r="6" fill="#fff"/></g>
+    </svg>
+    <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? "Play subtle eye animation" : "Pause subtle eye animation"}><span className="sr-only">{paused ? "Play" : "Pause"} eye animation</span></button>
+  </div>;
 }
