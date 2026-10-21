@@ -48,3 +48,9 @@ body .ss-hero-copy>.ss-anchor{margin-left:12px}
  body .gca-hero .ambient-flame{left:44%;right:0;top:0;bottom:0}
  body .gca-hero .ambient-flame video{object-fit:cover;object-position:center;mask-image:linear-gradient(to right,transparent,#000 22%)}
 }
+
+@media(min-width:1800px){
+ body .gca-hero .ambient-flame{left:32%;background:#ececec}
+ body .gca-hero .ambient-flame video{width:82.35%;object-fit:cover;mask-image:linear-gradient(to right,transparent,#000 22%,#000 94%,transparent)}
+ body .gca-hero .ambient-flame{mask-image:linear-gradient(to right,transparent,#000 22%)}
+}
