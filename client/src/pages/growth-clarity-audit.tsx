@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Check, Search, Compass, Layers } from "lucide-react";
 import {
@@ -145,15 +146,12 @@ export default function GrowthClarityAudit() {
             <em>Know your next move.</em>
           </h1>
           <p className="dda-lead">
-            An expert-led strategic investigation for established, ambitious
-            businesses with meaningful growth opportunities and the resources
-            to act on them.
+            For established or ambitious businesses ready to move forward.
           </p>
           <p>
-            Understand what is working, what is underperforming and what may be
-            broken. Then turn the most important opportunities into tangible
-            strategic development, a tailored Strategic Growth Blueprint and a
-            prioritized 90-day implementation roadmap.
+            Understand what is working, what is underperforming, and what may be
+            broken. Turn your most important opportunities into tangible
+            strategies and a prioritized 90-day implementation roadmap.
           </p>
           <p className="dda-promise">
             Don't just recommend what's possible. Make it tangible.
@@ -174,32 +172,8 @@ export default function GrowthClarityAudit() {
             Online purchasing is not yet available. Contact us to discuss fit and scope.
           </p>
         </div>
-        <div
-          className="dda-system"
-          role="img"
-          aria-label="Illustrative investigation connects business, acquisition, conversion and measurement to a 90-day strategy"
-        >
-          <p className="dda-eyebrow">The connected view</p>
-          <div className="dda-system-grid">
-            {[
-              "Business & market",
-              "Advertising & acquisition",
-              "Creative & conversion",
-              "Follow-up & measurement",
-            ].map((text, i) => (
-              <div key={text}>
-                <span>0{i + 1}</span>
-                {text}
-              </div>
-            ))}
-          </div>
-          <div className="dda-system-result">
-            <span>Investigate → develop → prioritize</span>
-            <strong>Your Strategic Growth Blueprint</strong>
-          </div>
-          <p className="dda-note">
-            Illustrative methodology · not a client deliverable preview
-          </p>
+        <div className="dda-system dda-artwork">
+          <ServiceOptionVideo name="audit-painter-action" label="artist painting the Colosseum then riding into action" />
         </div>
       </section>
       <section className="dda-band">

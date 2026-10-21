@@ -54,3 +54,10 @@ body .ss-hero-copy>.ss-anchor{margin-left:12px}
  body .gca-hero .ambient-flame video{width:82.35%;object-fit:cover;mask-image:linear-gradient(to right,transparent,#000 22%,#000 94%,transparent)}
  body .gca-hero .ambient-flame{mask-image:linear-gradient(to right,transparent,#000 22%)}
 }
+
+/* The audit's large workshop illustration follows the shared hero proportions. */
+body .dda-hero .dda-artwork{padding:0;border:0;background:transparent;box-shadow:none;min-width:0}
+body .dda-artwork .archer-video{max-width:none;width:100%;margin:0;border-radius:22px;overflow:hidden}
+body .dda-artwork .archer-video video{aspect-ratio:16/9;object-fit:contain}
+@media(min-width:1440px){body .dda-hero.dda-wrap{max-width:1800px;padding-inline:64px;grid-template-columns:minmax(0,.4fr) minmax(0,.6fr);gap:48px}}
+@media(min-width:901px){body .dda-hero .dda-artwork{align-self:start;margin-top:48px}}
