@@ -195,7 +195,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section className="dda-map-section" id="investigation">
         <div className="dda-map-motion">
-          <ServiceOptionVideo name="audit-treasure-map" label="treasure map journey" />
+          <ServiceOptionVideo name="audit-mountain-team" label="team mountain expedition" />
         </div>
         <div className="dda-wrap dda-section dda-map-content">
         <p className="dda-eyebrow">What we investigate</p>

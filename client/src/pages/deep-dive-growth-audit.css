@@ -547,11 +547,17 @@ html.audit-sales-view nav[aria-label="Main navigation"] { background: #fff; back
 html.audit-sales-view .dda-section[id] { scroll-margin-top: 0; }
 html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 
-/* Full-bleed map remains a quiet backdrop to the investigation. */
-.dda-map-section { position: relative; isolation: isolate; overflow: hidden; background: #f3e6c9; scroll-margin-top: 125px; }
+/* Full-bleed expedition remains a quiet backdrop to the investigation. */
+.dda-map-section { position: relative; isolation: isolate; overflow: hidden; background: #fff; scroll-margin-top: 125px; }
 .dda-map-motion { position: absolute; inset: 0; z-index: -2; }
 .dda-map-motion .archer-video { width: 100%; height: 100%; max-width: none; margin: 0; border-radius: 0; }
 .dda-map-motion .archer-video video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; mix-blend-mode: normal; }
-.dda-map-section::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255, 253, 247, .76); pointer-events: none; }
+.dda-map-section::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255, 255, 255, .70); pointer-events: none; }
 .dda-map-content { position: relative; }
-.dda-map-content .dda-card { background: rgba(255, 255, 255, .86); border-color: rgba(127, 107, 67, .18); }
+.dda-map-content .dda-card { background: rgba(255, 255, 255, .86); border-color: rgba(107, 69, 174, .20); }
+
+.dda-map-content .dda-card { --card-accent: #7045c7; --card-tint: #f1ebff; border-top: 3px solid var(--card-accent); box-shadow: 0 8px 28px rgba(33, 44, 55, .035); }
+.dda-map-content .dda-card:nth-child(2) { --card-accent: #07866e; --card-tint: #e4f7ef; }
+.dda-map-content .dda-card:nth-child(3) { --card-accent: #b33c77; --card-tint: #fcebf3; }
+.dda-map-content .dda-card:nth-child(4) { --card-accent: #167b96; --card-tint: #e5f5fa; }
+.dda-map-content .dda-number { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--card-tint); color: var(--card-accent); font-size: 14px; }
