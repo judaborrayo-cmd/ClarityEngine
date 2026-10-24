@@ -31,7 +31,7 @@ export default function ExitIntentModal() {
     function showInvitation() {
       // Keep purchase and private assessment flows free of marketing interruptions.
       if (shown || document.hidden || /^\/(checkout|audit)(\/|$)/.test(currentPath.current)) return;
-      if (document.querySelector('[role="dialog"][data-state="open"], [aria-modal="true"]')) return;
+      if (document.querySelector('[role="dialog"][data-state="open"], [aria-modal="true"], [data-assessment-preview-active="true"]')) return;
       try {
         const until = localStorage.getItem(STORAGE_KEY);
         if (until && Date.parse(until) > Date.now()) return;
