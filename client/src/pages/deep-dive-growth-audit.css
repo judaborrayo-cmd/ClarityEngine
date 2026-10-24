@@ -595,3 +595,18 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 .dda-orchestra img{display:block;width:100%;height:auto;border-radius:20px;mix-blend-mode:multiply}
 @media(max-width:1000px){.dda-alignment{grid-template-columns:1fr;gap:28px}.dda-alignment>div:last-child{grid-row:1}.dda-orchestra{max-width:800px;width:100%;margin:auto}}
 @media(max-width:639px){.dda-alignment{padding-block:34px;gap:24px}}
+
+.dda-audience{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:center}
+.dda-audience-art{margin-top:26px}
+.dda-audience-art .archer-video{margin:0}
+.dda-audience-art .archer-video video{aspect-ratio:4/3;object-fit:contain;mix-blend-mode:normal}
+.dda-page .dda-audience-intro{margin-top:18px;color:#66766e}
+.dda-audience-copy h3{margin-bottom:10px}
+.dda-audience-copy p+h3{margin-top:26px}
+.dda-audience-copy .dda-actions{margin-top:28px}
+.dda-audit-outputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:30px 0}
+.dda-audit-outputs article{padding:24px;border:1px solid #dfe5df;border-radius:16px;background:#f5f8f6}
+.dda-audit-outputs h3{margin-bottom:12px}
+.dda-inline-purchase{padding-bottom:36px}
+@media(max-width:767px){.dda-audience{grid-template-columns:1fr;gap:30px}.dda-audit-outputs{grid-template-columns:1fr}.dda-audience-art{max-width:520px;margin-inline:auto}.dda-audience-copy .dda-button{white-space:normal}}
+.dda-audience .dda-button,.dda-inline-purchase .dda-button,#your-audit-plan .dda-button{background:linear-gradient(110deg,#8040ef,#029e63)}

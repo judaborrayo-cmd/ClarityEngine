@@ -114,7 +114,7 @@ const faqs = [
   ],
   [
     "Do I need a consultation before purchasing?",
-    "No. Request a conversation about your Audit or choose a complimentary fit conversation. No Assessment, paid consultation or Sprint purchase is required. Online purchasing remains unavailable until payment verification, onboarding and commercial terms are finalized.",
+    "No. No Assessment, paid consultation or Sprint purchase is required. You can review the Audit engagement directly, or request a complimentary fit conversation if you have questions.",
   ],
   [
     "Will this guarantee more revenue or a higher ROAS?",
@@ -123,9 +123,9 @@ const faqs = [
 ];
 function StartLink() {
   return (
-    <a className="dda-button" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20enquiry">
-      Discuss Your Deep Dive Audit <ArrowUpRight size={18} aria-hidden="true" />
-    </a>
+    <Link className="dda-button" to={offer.checkoutPath}>
+      Get My Deep Dive Growth Audit <ArrowUpRight size={18} aria-hidden="true" />
+    </Link>
   );
 }
 
@@ -180,7 +180,7 @@ export default function GrowthClarityAudit() {
             </a>
           </div>
           <p className="dda-note">
-            Online purchasing is not yet available. Contact us to discuss fit and scope.
+            Review your Deep Dive Growth Audit engagement and next steps before checkout.
           </p>
         </div>
         <div className="dda-system dda-artwork">
@@ -256,6 +256,15 @@ export default function GrowthClarityAudit() {
           </div>
         </div>
       </section>
+      <section id="who-its-for" className="dda-wrap dda-section dda-audience">
+        <div><p className="dda-eyebrow">Expert-led clarity</p><h2>For people making marketing decisions.</h2>
+          <div className="dda-audience-art"><ServiceOptionVideo name="assessment-audience" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the audit" /></div>
+          <p className="dda-audience-intro">Built for founders, executives, business owners, marketing specialists, operations managers, and anyone responsible for marketing and operations.</p>
+        </div>
+        <div className="dda-audience-copy"><h3>Receive a surgical audit.</h3><p>A structured, strategic analysis of your marketing channels, technology, messaging, and funnels. We directly inspect your relevant ad accounts, tracking, and customer journeys using authorized access, grounding recommendations in your real-world performance.</p>
+          <h3>Get a plan built on experience.</h3><p>Bring 12+ years of account management and business experience, including more than $5 million in managed paid media spend, to the decisions ahead. Receive a personalized plan your team can execute, with optional collaboration or implementation support agreed separately.</p><div className="dda-actions"><StartLink /></div>
+        </div>
+      </section>
       <section className="dda-wrap dda-section" id="development">
         <p className="dda-eyebrow">Strategic thinking, made tangible</p>
         <h2>More than a list of ideas.<br /><em>Something you can work with.</em></h2>
@@ -294,6 +303,7 @@ export default function GrowthClarityAudit() {
           through separately agreed implementation or ongoing Growth Retainer services. The Audit stands on its own; further services are optional.
         </p>
       </section>
+      <div className="dda-wrap dda-inline-purchase"><StartLink /></div>
       <section className="dda-wrap dda-section dda-fit">
         <div>
           <p className="dda-eyebrow">Who it's for</p>
@@ -334,26 +344,15 @@ export default function GrowthClarityAudit() {
         <div className="dda-wrap dda-section">
           <p className="dda-eyebrow">How the engagement works</p>
           <h2>
-            Agree the focus. <em>Follow the evidence.</em>
+            From your investment <em>to an actionable plan.</em>
           </h2>
           <ol className="dda-process">
             {[
-              [
-                "Context & priorities",
-                "Share your business goals, acquisition context and the decisions you need help making.",
-              ],
-              [
-                "Access & investigation",
-                "Confirm the brands, locations, markets, channels, journeys, competitor set and work products. Agree appropriate read-level access and sufficient evidence before investigation.",
-              ],
-              [
-                "Findings & roadmap",
-                "Connect observations, develop the agreed tangible work products and organize the Blueprint and 90-day direction around your dependencies.",
-              ],
-              [
-                "Personal walkthrough",
-                "Work through the reasoning and next steps, including what your team can own and where additional expertise may help.",
-              ],
+              ["Invest & receive your welcome package", "Start with your Deep Dive Growth Audit investment. Your welcome package brings together onboarding next steps, preparation guidance, and instructions for booking your initial call."],
+              ["Start with an onboarding conversation", "Discuss your goals, what you have tried, the problems you are working through, and early opportunities. Ask questions and confirm the focus and scope before the deep investigation begins."],
+              ["Connect your real-world evidence", "Work through appropriate access to relevant paid media, analytics, tracking, and funnel systems. We help clarify what is needed, using read-level permissions wherever possible rather than shared passwords."],
+              ["Investigate & develop your direction", "We examine your performance, competitors, customers, messaging, and agreed channels. Findings guide highly personalized recommendations and selected strategic work products."],
+              ["Receive your Blueprint & walkthrough", "Receive your detailed analysis and prioritized 90-day plan. Work through the findings together so your team can act, or discuss optional collaboration and implementation support under a separate agreement."],
             ].map(([title, copy], i) => (
               <li key={title}>
                 <span>0{i + 1}</span>
@@ -369,37 +368,17 @@ export default function GrowthClarityAudit() {
           </p>
         </div>
       </section>
-      <section className="dda-wrap dda-section">
-        <p className="dda-eyebrow">The 90-day strategy</p>
-        <h2>
-          A sequence that fits <em>your business.</em>
-        </h2>
-        <p className="dda-section-intro">
-          Your roadmap connects recommendations to one another. Near-term,
-          mid-term and later priorities follow your evidence and
-          dependencies—not a fixed monthly recipe.
-        </p>
-        <div className="dda-three dda-roadmap">
-          {[
-            [
-              "Establish the foundations",
-              "Identify prerequisites, evidence gaps and the actions that make later work useful.",
-            ],
-            [
-              "Test & improve",
-              "Choose practical experiments, clarify responsibilities and define KPIs that indicate progress.",
-            ],
-            [
-              "Build on what you learn",
-              "Decide what deserves more attention, what can wait and which activities need specialist support.",
-            ],
-          ].map(([title, copy]) => (
-            <article key={title}>
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </article>
-          ))}
-        </div>
+      <section id="your-audit-plan" className="dda-wrap dda-section">
+        <p className="dda-eyebrow">What you leave with</p><h2>A detailed audit.<br /><em>A plan your team can use.</em></h2>
+        <p className="dda-section-intro">Your findings connect the people you serve, the channels you use, and the next actions worth taking. The detail and selected work products follow your business, the evidence, and the agreed scope.</p>
+        <div className="dda-audit-outputs">{[
+          ["Competitive analysis & customer insight", "A detailed review of your competitive landscape, positioning, customer personas, and the people you serve—so your strategy reflects how buyers actually choose."],
+          ["Messaging & copy refinements", "Recommendations and selected refinements to your copy, offer, message hierarchy, and conversion experience, focused on the gaps the investigation reveals."],
+          ["Technical & channel audit", "Direct review of relevant Google Ads, Meta Ads, YouTube Ads, Google Analytics, Google Tag Manager, and other agreed growth systems, including performance and tracking limitations."],
+          ["Campaign & creative direction", "Highly personalized campaign ideas, creative recommendations, and testing priorities based on the opportunities and constraints found during the Audit."],
+          ["Prioritized 90-day roadmap", "A practical sequence of actions, dependencies, responsibilities, and useful KPIs. Give it to your team or chosen partner and start executing with shared context."],
+          ["Personal findings walkthrough", "Review the reasoning, ask questions, and agree where to focus. Execute independently or explore separately scoped support with someone who already understands your business."],
+        ].map(([title,copy])=><article key={title}><h3>{title}</h3><p>{copy}</p></article>)}</div><div className="dda-actions"><StartLink /></div>
       </section>
       <section className="dda-wrap dda-section">
         <p className="dda-eyebrow">Experience behind the investigation</p>
@@ -511,8 +490,7 @@ export default function GrowthClarityAudit() {
             <StartLink />
             <a className="dda-text-link dda-fit-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20fit%20conversation">Request a Complimentary Fit Conversation ↗</a>
             <p className="dda-note">
-              Online purchasing is not yet available. No prior Assessment, paid
-              consultation or Sprint purchase required.
+              No prior Assessment, paid consultation or Sprint purchase required.
             </p>
           </div>
         </div>
