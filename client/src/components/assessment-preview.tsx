@@ -5,7 +5,6 @@ import { AssessmentQuestion } from "@/components/assessment-question";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { questionDisplay } from "@shared/marketing-clarity-audit/question-display";
-import { assessmentInsights } from "@/lib/assessment-copy";
 import { questionnaire, type Answers, type AnswerValue } from "@shared/marketing-clarity-audit/scoring";
 import { sectionStyle } from "@shared/marketing-clarity-audit/sections";
 import { DiagnosticClarityStack } from "@shared/marketing-clarity-audit/clarity-stack";
@@ -63,14 +62,13 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
   const titleRef = useRef<HTMLHeadingElement>(null);
   const teaserTitleRef = useRef<HTMLHeadingElement>(null);
   const interacted = useRef(false);
-  const shownInsights = useRef(new Set<string>());
   const question = questions[position];
   const complete = position === questions.length;
   const answered = Object.keys(answers).length;
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
   useEffect(() => {
     if (!interacted.current) return;
-    const heading = window.matchMedia("(min-width: 1024px)").matches ? teaserTitleRef.current : titleRef.current;
+    const heading = teaserTitleRef.current;
     heading?.focus({ preventScroll: true });
   }, [position]);
   function advance() {
@@ -80,12 +78,9 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
     if (!question || pending) return;
     interacted.current = true;
     setAnswers(current => ({ ...current, [question.id]: value }));
-    // Keep the real assessment's relevant Clarity Insights and auto-advance timing.
-    const insight = !window.matchMedia("(min-width: 1024px)").matches && ["D", "E"].includes(value) && !shownInsights.current.has(question.id) ? assessmentInsights[question.id] : undefined;
-    if (position === questions.length - 1) {
-      setPending(true); timer.current = setTimeout(advance, 350);
-    } else if (insight) { shownInsights.current.add(question.id); setNote(insight); }
-    else { setPending(true); timer.current = setTimeout(advance, 350); }
+    // Keep the teaser light: every answer advances without an insight interruption.
+    setPending(true);
+    timer.current = setTimeout(advance, 350);
   }
   function back() {
     if (timer.current) clearTimeout(timer.current);
