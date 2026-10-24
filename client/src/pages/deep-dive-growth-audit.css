@@ -587,3 +587,11 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
   .dda-hero>div:first-child>.dda-actions{order:6}
   .dda-hero>div:first-child>.dda-note{order:7}
 }
+
+.dda-alignment{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:50px}
+.dda-alignment .dda-eyebrow{margin-bottom:18px}
+.dda-page .dda-alignment-copy{margin-top:24px}
+.dda-orchestra{min-width:0}
+.dda-orchestra img{display:block;width:100%;height:auto;border-radius:20px;mix-blend-mode:multiply}
+@media(max-width:1000px){.dda-alignment{grid-template-columns:1fr;gap:28px}.dda-alignment>div:last-child{grid-row:1}.dda-orchestra{max-width:800px;width:100%;margin:auto}}
+@media(max-width:639px){.dda-alignment{padding-block:34px;gap:24px}}

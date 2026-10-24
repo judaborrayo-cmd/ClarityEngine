@@ -193,20 +193,13 @@ export default function GrowthClarityAudit() {
           <ul className="dda-highlight-grid">{auditHighlights.map(({ label, Icon, color, tint }) => <li key={label} style={{ color, background: tint }}><Icon size={23} aria-hidden="true" /><span>{label}</span></li>)}</ul>
         </div>
       </section>
-      <section className="dda-band">
-        <div className="dda-wrap dda-split">
-          <p className="dda-eyebrow">A wider lens</p>
+      <section id="marketing-alignment" className="dda-band">
+        <div className="dda-wrap dda-alignment">
+          <div className="dda-orchestra"><img src="/videos/audit-orchestra-poster.webp" alt="A conductor coordinating a chamber orchestra, illustrating marketing, strategy, and sales working in harmony." width="1672" height="941" loading="lazy" decoding="async" /></div>
           <div>
-            <h2>
-              The opportunity may be <em>between the channels.</em>
-            </h2>
-            <p>
-              An ad can attract the right person while a landing page leaves
-              their question unanswered. A campaign can look successful while
-              follow-up or measurement tells a different story. Investigating
-              the connections helps you choose the next move with better
-              context.
-            </p>
+            <p className="dda-eyebrow">Working in harmony</p>
+            <h2>Align your <em>marketing, strategy, and sales.</em></h2>
+            <p className="dda-alignment-copy">Your ads, website, tracking, and sales follow-up should support the same direction. The Deep Dive Growth Audit examines how they work together, then turns the findings into coordinated priorities and a practical 90-day roadmap.</p>
           </div>
         </div>
       </section>
