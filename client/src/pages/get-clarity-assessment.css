@@ -66,3 +66,8 @@
 .gca-preview-band .gca-domains{border-top:0;padding-top:36px}
 .gca-preview-band .preview-desktop-teaser{background:#fff;box-shadow:0 6px 24px #244b4205}
 @media(max-width:767px){.gca-preview-band{padding-bottom:28px}.gca-preview-band .gca-domains{padding-top:28px;padding-bottom:28px}}
+
+.gca-audience-collage{display:block;width:100%;height:auto;margin:26px 0 0;object-fit:contain}
+.gca-fit .gca-prose{align-self:center}
+.gca-fit .gca-audience-collage+.gca-intro{margin-top:18px}
+@media(max-width:767px){.gca-audience-collage{max-width:520px;margin:22px auto 0}}
