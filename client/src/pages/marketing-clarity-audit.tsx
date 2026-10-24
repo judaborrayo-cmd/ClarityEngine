@@ -28,7 +28,6 @@ export default function MarketingClarityAudit() {
   const cta = <Button onClick={purchase} disabled={busy} className="gca-cta">{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
   return <main className="gca-page">
     <section className="gca-hero">
-      <AmbientFlame />
       <div className="gca-wrap"><div className="gca-hero-copy">
         <p className="gca-eyebrow">Get Clarity Assessment <span>by Clarity Engine</span></p>
         <h1>Know what to <em>focus on next.</em></h1>
@@ -36,7 +35,7 @@ export default function MarketingClarityAudit() {
         <div className="gca-actions">{cta}<a href="#what-you-get" className="gca-secondary">See what you get</a></div>
         <p className="gca-small">$27 · One-time payment · A focused starting point</p>
         {error && <p role="alert" className="text-red-700 mt-4">{error}</p>}
-      </div></div>
+      </div><AmbientFlame /></div>
 
     </section>
     <section className="gca-wrap gca-domains" aria-labelledby="areas-title">
