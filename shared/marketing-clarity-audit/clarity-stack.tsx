@@ -21,9 +21,11 @@ export function diagnosticLayers(answers: Answers, currentSection?: number) {
 export function DiagnosticClarityStack({
   answers,
   currentSection,
+  sectionProgress,
 }: {
   answers: Answers;
   currentSection?: number;
+  sectionProgress?: { sectionId: number; answered: number; total: number };
 }) {
   const layers = diagnosticLayers(answers, currentSection);
   const complete = layers.every((layer) => layer.completed);
@@ -35,23 +37,30 @@ export function DiagnosticClarityStack({
       >
         {layers.map((layer) => {
           const theme = sectionColors[layer.id as keyof typeof sectionColors];
+          const sampleFill = sectionProgress?.sectionId === layer.id
+            ? Math.max(0, Math.min(1, sectionProgress.answered / sectionProgress.total))
+            : undefined;
           return (
             <li
               key={layer.id}
               data-layer-id={layer.id}
               data-state={layer.state}
               aria-current={layer.state === "current" ? "step" : undefined}
-              aria-label={`${layer.name}: ${layer.state === "current" ? "current section" : layer.completed ? "complete" : "upcoming"}`}
+              aria-label={`${layer.name}${sampleFill !== undefined ? `: ${sectionProgress!.answered} of ${sectionProgress!.total} sample questions answered` : ""}: ${layer.state === "current" ? "current section" : layer.completed ? "complete" : "upcoming"}`}
               className="flex min-h-5 items-center justify-between gap-1 rounded border px-2 py-0.5 text-[10px] leading-tight"
               style={{
                 background:
-                  layer.state === "complete"
+                  sampleFill !== undefined
+                    ? `color-mix(in srgb, ${theme.color} ${Math.round(sampleFill * 100)}%, ${theme.tint})`
+                    : layer.state === "complete"
                     ? theme.color
                     : layer.state === "current"
                       ? theme.tint
                       : "#F7F8FA",
                 color:
-                  layer.state === "complete"
+                  sampleFill !== undefined && sampleFill > 0
+                    ? sampleFill >= .75 ? "white" : "#273346"
+                    : layer.state === "complete"
                     ? "white"
                     : layer.state === "current"
                       ? theme.color

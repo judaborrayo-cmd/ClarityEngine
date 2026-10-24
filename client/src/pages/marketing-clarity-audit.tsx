@@ -9,6 +9,7 @@ import example from "@/lib/assessment-sales-example.json";
 import "./get-clarity-assessment.css";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import AmbientFlame from "@/components/AmbientFlame";
+import { AssessmentPreview } from "@/components/assessment-preview";
 
 const icons = [progressIcons.target, progressIcons.users, progressIcons.message, progressIcons.route, progressIcons.test, progressIcons.reporting];
 const descriptions = ["Is your offer clear enough to choose?", "Are you reaching the people most likely to benefit?", "Does your message communicate what matters to buyers?", "Can interested people take the next step with confidence?", "Does your traffic strategy match your goals?", "Can you trust the numbers you use to make decisions?"];
@@ -27,7 +28,6 @@ export default function MarketingClarityAudit() {
   const cta = <Button onClick={purchase} disabled={busy} className="gca-cta">{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
   return <main className="gca-page">
     <section className="gca-hero">
-      <AmbientFlame />
       <div className="gca-wrap"><div className="gca-hero-copy">
         <p className="gca-eyebrow">Get Clarity Assessment <span>by Clarity Engine</span></p>
         <h1>Know what to <em>focus on next.</em></h1>
@@ -35,13 +35,16 @@ export default function MarketingClarityAudit() {
         <div className="gca-actions">{cta}<a href="#what-you-get" className="gca-secondary">See what you get</a></div>
         <p className="gca-small">$27 · One-time payment · A focused starting point</p>
         {error && <p role="alert" className="text-red-700 mt-4">{error}</p>}
-      </div></div>
+      </div><AmbientFlame /></div>
 
     </section>
+    <div className="gca-preview-band">
     <section className="gca-wrap gca-domains" aria-labelledby="areas-title">
       <h2 id="areas-title">Six areas. A clearer path.</h2>
       <div className="gca-strip">{Object.values(sectionColors).map((theme, i) => { const Icon = icons[i]; return <a key={theme.name} href="#six-areas" style={{color: theme.color, background: theme.tint}}><Icon aria-hidden="true" size={23}/><span>{theme.name}</span></a>; })}</div>
     </section>
+    <AssessmentPreview onPurchase={purchase} busy={busy} error={error} />
+    </div>
     <section className="gca-wrap gca-section gca-split">
       <div><p className="gca-eyebrow">When everything feels important</p><h2>More activity isn’t always the next move.</h2></div>
       <div className="gca-prose"><p>You have ideas, channels, and advice competing for attention. The harder decision is which problem deserves your time first.</p><ul><li>You’re preparing for growth, but aren’t sure what needs to be ready.</li><li>You have numbers, but aren’t sure which ones to trust.</li><li>Your team sees different problems and needs a shared starting point.</li></ul><p>Get Clarity Assessment helps you turn what you know about your marketing into a more focused decision.</p></div>

@@ -80,15 +80,15 @@
 }
 
 /* Keep the shared marketing/report header unchanged outside the assessment. */
-html:has(.assessment-shell) { scroll-padding-top: 84px; }
-body:has(.assessment-shell) nav[aria-label="Main navigation"] {
+html:has(.assessment-shell:not(.assessment-preview)) { scroll-padding-top: 84px; }
+body:has(.assessment-shell:not(.assessment-preview)) nav[aria-label="Main navigation"] {
   background: #fff;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   isolation: isolate;
 }
 @media (max-width: 1023px) {
-  html:has(.assessment-shell) { scroll-padding-top: 118px; }
+  html:has(.assessment-shell:not(.assessment-preview)) { scroll-padding-top: 118px; }
 }
 
 /* Final-screen priority only; question, tablet and desktop layouts stay intact. */

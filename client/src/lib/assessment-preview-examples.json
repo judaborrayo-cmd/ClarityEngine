@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Traffic",
+    "summary": "Your strongest constraint appears to be Traffic.",
+    "confidence": "high",
+    "layers": [
+      {
+        "id": 1,
+        "name": "Offer",
+        "color": "#5541BF",
+        "tint": "#F2EFFF",
+        "border": "#DAD2F6",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "Your offer gives people a reason to buy."
+      },
+      {
+        "id": 2,
+        "name": "Audience",
+        "color": "#145C43",
+        "tint": "#EDF8F1",
+        "border": "#BCE2CC",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "You know who your best customers are and why they buy."
+      },
+      {
+        "id": 3,
+        "name": "Message",
+        "color": "#913B65",
+        "tint": "#FFF0F6",
+        "border": "#EDC9D9",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "Your message makes the value obvious."
+      },
+      {
+        "id": 4,
+        "name": "Conversion Experience",
+        "color": "#14636B",
+        "tint": "#EDF8FA",
+        "border": "#BDE0E4",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "You make it easy for interested people to take action."
+      },
+      {
+        "id": 6,
+        "name": "Measurement & Learning",
+        "color": "#3348A1",
+        "tint": "#EEF2FF",
+        "border": "#CBD4F5",
+        "state": "muted",
+        "label": "Review",
+        "score": 66,
+        "description": "You have numbers, but the story isn't always clear."
+      },
+      {
+        "id": 5,
+        "name": "Traffic",
+        "color": "#80520E",
+        "tint": "#FFF7E8",
+        "border": "#EDD8B0",
+        "state": "primary",
+        "label": "First opportunity",
+        "score": 50,
+        "description": "Your traffic needs a clearer job and a useful way to evaluate it."
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Keep your proven traffic baseline intact",
+        "whatToDo": "Identify the campaigns, audiences, channels, or offers currently producing acceptable results. Keep those stable while you test one meaningful change separately.",
+        "doneWhen": "You have a clearly defined control/baseline that continues running unchanged while the new test runs alongside it."
+      },
+      {
+        "title": "Run fewer tests with enough budget to learn",
+        "whatToDo": "Choose the highest-value unanswered question and concentrate enough budget and traffic around it to produce a useful result.",
+        "doneWhen": "One clearly defined test has enough budget, traffic, and time to produce a meaningful comparison."
+      },
+      {
+        "title": "Keep a simple marketing change log",
+        "whatToDo": "Record the date, what changed, why you changed it, what metric you expected to move, and what actually happened.",
+        "doneWhen": "Each meaningful marketing change has a dated record with the hypothesis, expected impact, and observed result."
+      }
+    ]
+  },
+  {
+    "name": "Message",
+    "summary": "Your strongest constraint appears to be Message.",
+    "confidence": "high",
+    "layers": [
+      {
+        "id": 1,
+        "name": "Offer",
+        "color": "#5541BF",
+        "tint": "#F2EFFF",
+        "border": "#DAD2F6",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "Your offer gives people a reason to buy."
+      },
+      {
+        "id": 2,
+        "name": "Audience",
+        "color": "#145C43",
+        "tint": "#EDF8F1",
+        "border": "#BCE2CC",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "You know who your best customers are and why they buy."
+      },
+      {
+        "id": 4,
+        "name": "Conversion Experience",
+        "color": "#14636B",
+        "tint": "#EDF8FA",
+        "border": "#BDE0E4",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "You make it easy for interested people to take action."
+      },
+      {
+        "id": 5,
+        "name": "Traffic",
+        "color": "#80520E",
+        "tint": "#FFF7E8",
+        "border": "#EDD8B0",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "You've built a traffic engine you can learn from."
+      },
+      {
+        "id": 6,
+        "name": "Measurement & Learning",
+        "color": "#3348A1",
+        "tint": "#EEF2FF",
+        "border": "#CBD4F5",
+        "state": "strength",
+        "label": "Strength",
+        "score": 100,
+        "description": "You know which numbers deserve your trust."
+      },
+      {
+        "id": 3,
+        "name": "Message",
+        "color": "#913B65",
+        "tint": "#FFF0F6",
+        "border": "#EDC9D9",
+        "state": "primary",
+        "label": "First opportunity",
+        "score": 40,
+        "description": "Make the promise, reason to choose you, and supporting proof easier to grasp."
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Rewrite the hero section around the customer outcome.",
+        "whatToDo": "Rewrite the hero section of your homepage or primary landing page(s) so it is centered around the customer’s primary outcome, not just your company, service, or process.",
+        "doneWhen": "The hero leads with the customer's primary outcome and supports it with a clear offer, next step, and available proof."
+      },
+      {
+        "title": "Extract customer language from real conversations.",
+        "whatToDo": "Review sales calls, testimonials, reviews, emails, and support questions for repeated language.",
+        "doneWhen": "A source-backed collection of recurring customer phrases is organized by desired outcome, concern, and buying reason."
+      },
+      {
+        "title": "Add proof immediately after major claims.",
+        "whatToDo": "Support claims with results, reviews, testimonials, examples, credentials, or demonstrations.",
+        "doneWhen": "Major claims have relevant proof nearby, or are qualified where suitable evidence is unavailable."
+      }
+    ]
+  }
+]
