@@ -71,3 +71,6 @@
 .gca-fit .gca-prose{align-self:center}
 .gca-fit .gca-audience-collage+.gca-intro{margin-top:18px}
 @media(max-width:767px){.gca-audience-collage{max-width:520px;margin:22px auto 0}}
+
+.gca-audience-collage .archer-video{margin:0;overflow:visible}
+.gca-audience-collage .archer-video video{aspect-ratio:4/3;object-fit:contain;mix-blend-mode:normal}
