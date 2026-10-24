@@ -55,7 +55,7 @@ function MenuContent({ category, onNavigate }: {
 <Link to="/services" onClick={onNavigate}>Explore Services <ArrowUpRight size={16} aria-hidden="true"/></Link>
 </aside>}
  </div>{category === 'solutions' && <div className="ce-nav-footer">
-<Link to="/ways-to-work-together" onClick={onNavigate}>Compare ways to work together <span aria-hidden="true">→</span>
+<Link to="/services" onClick={onNavigate}>Compare ways to work together <span aria-hidden="true">→</span>
 </Link>
 <Link to="/services" onClick={onNavigate}>Explore all services</Link>
 <Link to="/#how-we-scale" onClick={onNavigate}>How We Scale</Link>
@@ -122,7 +122,7 @@ function MarketingNavigation() {
 </li>
 </ul>
 </div>
-   <Link to="/ways-to-work-together" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
+   <Link to="/services" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
 <span className="ce-nav-desktop-label">Find Your Next Step</span>
 <span className="ce-nav-mobile-label">Start Here</span>
 <ArrowUpRight size={16} aria-hidden="true"/>
@@ -166,7 +166,7 @@ function MarketingNavigation() {
 <Link to="/about" onClick={close}>About</Link>
 </li>
 </ul>
-<Link to="/ways-to-work-together" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>Find Your Next Step <ArrowUpRight size={18} aria-hidden="true"/>
+<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>Find Your Next Step <ArrowUpRight size={18} aria-hidden="true"/>
 </Link>
 </div>
 </Dialog.Content>

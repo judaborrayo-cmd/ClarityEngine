@@ -18,7 +18,7 @@ const offerLinks = [
   { to: "/services", label: "Growth Retainer", description: "Explore ongoing strategy and execution support." },
 ];
 const groups = [
-  { title: "Find your next step", links: [{ to: "/ways-to-work-together", label: "Work Together" }, ...offerLinks] },
+  { title: "Find your next step", links: [{ to: "/services", label: "Work Together" }, ...offerLinks] },
   { title: "Explore Clarity Engine", links: desktopLinks.slice(0, 4) },
 ];
 const focus = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600";
@@ -71,7 +71,7 @@ export default function SiteNavigation() {
         </div>
         <div className="hidden items-center gap-2 text-xs lg:flex xl:gap-4 xl:text-sm">
           {desktopLinks.map(link => <Link key={link.to} to={link.to} className="whitespace-nowrap text-muted-foreground hover:text-foreground transition-colors">{link.label}</Link>)}
-          <Link to="/ways-to-work-together" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Work Together</Link>
+          <Link to="/services" className="whitespace-nowrap bg-primary text-primary-foreground px-4 py-2 rounded-2xl font-semibold hover:bg-primary/90 transition-colors">Work Together</Link>
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@ export default function SiteNavigation() {
         <span className="hidden min-[430px]:inline whitespace-nowrap">Clarity Engine</span>
       </Link>
       <div className="flex shrink-0 items-center gap-2">
-        <Link to="/ways-to-work-together" onClick={() => setOpen(null)} className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-xl bg-primary px-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 motion-safe:transition-colors ${focus}`}>Work Together</Link>
+        <Link to="/services" onClick={() => setOpen(null)} className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-xl bg-primary px-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 motion-safe:transition-colors ${focus}`}>Work Together</Link>
         <button ref={menuButton} type="button" aria-expanded={open === "menu"} aria-controls={menuId} onClick={() => setOpen(open === "menu" ? null : "menu")} className={`inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 text-sm font-semibold text-foreground hover:bg-emerald-50 motion-safe:transition-colors ${focus}`}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" focusable="false">{open === "menu" ? <path d="m6 6 12 12M6 18 18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}</svg>
           {open === "menu" ? "Close" : "Menu"}

@@ -5,7 +5,7 @@ export default function HeroCTAs() {
     <div className="mt-8 flex flex-col items-center lg:items-start gap-4">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
         <a
-          href="/ways-to-work-together"
+          href="/services"
           className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-green-600 text-white text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-purple-500/40"
           style={{ boxShadow: "0px 6px 18px rgba(115, 102, 255, 0.3)" }}
           aria-label="Work Together"

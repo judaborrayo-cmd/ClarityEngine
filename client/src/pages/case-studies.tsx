@@ -332,7 +332,7 @@ export default function CaseStudies() {
             </p>
             <div className="flex justify-center">
               <Link 
-                to="/ways-to-work-together"
+                to="/services"
                 className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary/90 shadow-lg ring-2 ring-primary/20 hover:-translate-y-0.5 transition-all duration-200"
                 data-testid="cta-book-strategic-call"
               >

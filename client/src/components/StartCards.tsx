@@ -38,7 +38,7 @@ export default function StartCards() {
           <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${sprint.price} <span className="text-sm font-normal text-gray-500">one-time payment · no subscription</span></p><Link to="/strategy-sprint" className="inline-flex justify-center rounded-xl border border-purple-700 text-purple-800 hover:bg-purple-100 px-5 py-3 font-medium w-full" data-testid="button-start-sprint">Explore the Strategy Sprint →</Link></div>
         </article>
       </div>
-      <p className="text-sm text-gray-600 mt-7">Need a deeper review or ongoing support? <Link to="/ways-to-work-together#options" className="text-purple-700 underline underline-offset-4">See all ways to work together →</Link></p>
+      <p className="text-sm text-gray-600 mt-7">Need a deeper review or ongoing support? <Link to="/services" className="text-purple-700 underline underline-offset-4">See all ways to work together →</Link></p>
       {/* Metrics / Proof Row (unchanged) */}
       <div className="mt-10 text-sm text-gray-600 flex flex-col sm:flex-row gap-4 sm:gap-10 justify-center items-center">
         <div>
