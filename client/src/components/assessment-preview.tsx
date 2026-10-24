@@ -57,34 +57,29 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
   const [answers, setAnswers] = useState<Answers>({});
   const [position, setPosition] = useState(0);
   const [note, setNote] = useState("");
-  const [pending, setPending] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
   const titleRef = useRef<HTMLHeadingElement>(null);
   const teaserTitleRef = useRef<HTMLHeadingElement>(null);
   const interacted = useRef(false);
   const question = questions[position];
   const complete = position === questions.length;
   const answered = Object.keys(answers).length;
-  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
   useEffect(() => {
     if (!interacted.current) return;
     const heading = teaserTitleRef.current;
     heading?.focus({ preventScroll: true });
   }, [position]);
   function advance() {
-    setNote(""); setPending(false); setPosition(p => Math.min(p + 1, questions.length));
+    setNote(""); setPosition(p => Math.min(p + 1, questions.length));
   }
   function answer(value: AnswerValue) {
-    if (!question || pending) return;
+    if (!question) return;
     interacted.current = true;
     setAnswers(current => ({ ...current, [question.id]: value }));
     // Keep the teaser light: every answer advances without an insight interruption.
-    setPending(true);
-    timer.current = setTimeout(advance, 350);
+    advance();
   }
   function back() {
-    if (timer.current) clearTimeout(timer.current);
-    setPending(false); setNote(""); setPosition(p => Math.max(0, p - 1));
+    setNote(""); setPosition(p => Math.max(0, p - 1));
   }
   const purchaseButton = <Button className="gca-cta" disabled={busy} onClick={onPurchase}>{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
   return <section id="assessment-preview" className="gca-wrap gca-section gca-preview-section" aria-label="Clarity Assessment sample">
@@ -98,10 +93,10 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
           <button type="button" onClick={back}>← Review sample answers</button>
         </div> : <>
           <h3 ref={teaserTitleRef} tabIndex={-1} className="teaser-question-title">{questionDisplay(question)}</h3>
-          <fieldset disabled={pending} className="teaser-answers"><legend className="sr-only">Choose your sample answer</legend>
+          <fieldset className="teaser-answers"><legend className="sr-only">Choose your sample answer</legend>
             {question.options.map(option => <label key={option.value}><input type="radio" name={`teaser-${question.id}`} value={option.value} checked={answers[question.id] === option.value} onChange={() => answer(option.value as AnswerValue)} /><span>{option.text}</span></label>)}
           </fieldset>
-          <div className="teaser-navigation"><button type="button" disabled={position === 0 || pending} onClick={back}>← Back</button><span>Preview answers aren’t saved.</span>{answers[question.id] && <button type="button" disabled={pending} onClick={advance}>Next →</button>}</div>
+          <div className="teaser-navigation"><button type="button" disabled={position === 0} onClick={back}>← Back</button><span>Preview answers aren’t saved.</span>{answers[question.id] && <button type="button" onClick={advance}>Next →</button>}</div>
         </>}
       </div>
       <aside className="teaser-progress-pane" aria-label="Sample progress and full assessment">
@@ -125,7 +120,7 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
         {complete ? <div className="preview-locked">
           <div className="preview-locked-background" aria-hidden="true"><p>Offer · Question 5 of 35</p><div className="preview-skeleton-title" />{[1, 2, 3, 4, 5].map(i => <div className="preview-skeleton-answer" key={i}><i /><span /></div>)}</div>
           <div className="preview-unlock-card"><span className="preview-lock-icon"><LockKeyhole aria-hidden="true" /></span><p className="gca-eyebrow">You’ve completed the preview</p><h3 ref={titleRef} tabIndex={-1}>Ready for the full picture?</h3><p>Unlock all 35 questions and discover what your answers suggest about your business’s biggest marketing opportunities.</p><ul><li>Personalized findings across all six areas</li><li>Focused next moves and a 30-day plan</li><li>Your report and Clarity Work Session</li></ul>{purchaseButton}<p className="preview-price-note">$27 · One-time payment</p><p className="preview-restart-note">Your sample answers aren’t saved. After purchase, you’ll start the full assessment with your business details.</p><Button variant="ghost" onClick={back}>← Review my sample answers</Button></div>
-        </div> : <AssessmentQuestion question={question} selected={answers[question.id]} position={position} busy={pending} note={note} canContinue={Boolean(answers[question.id])} titleRef={titleRef} onAnswer={answer} onContinue={advance} onBack={back} />}
+        </div> : <AssessmentQuestion question={question} selected={answers[question.id]} position={position} note={note} canContinue={Boolean(answers[question.id])} titleRef={titleRef} onAnswer={answer} onContinue={advance} onBack={back} />}
       </div>
       <aside className="preview-sidebar" aria-label="Assessment areas and example results"><DiagnosticClarityStack answers={answers} currentSection={1} /><div className="preview-examples"><p className="preview-sidebar-label">A glimpse of your results</p><p className="preview-sidebar-copy">Two examples. Different challenges.<br />A focused next move for each.</p>{examples.map(example => <ExampleCard key={example.name} example={example} />)}<p className="preview-examples-note">Read-only examples from fictional businesses. Your report is based on your full assessment.</p></div></aside>
     </div>
