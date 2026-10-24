@@ -195,7 +195,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section id="marketing-alignment" className="dda-band">
         <div className="dda-wrap dda-alignment">
-          <div className="dda-orchestra"><img src="/videos/audit-orchestra-poster.webp" alt="A conductor coordinating a chamber orchestra, illustrating marketing, strategy, and sales working in harmony." width="1672" height="941" loading="lazy" decoding="async" /></div>
+          <div className="dda-orchestra"><img src="/images/audit-team-alignment.webp" alt="A leader presenting a shared growth plan to Marketing, Sales, and Strategy & Analytics teams in a modern office." width="1672" height="941" loading="lazy" decoding="async" /></div>
           <div>
             <p className="dda-eyebrow">Working in harmony</p>
             <h2>Align your <em>marketing, strategy, and sales.</em></h2>
