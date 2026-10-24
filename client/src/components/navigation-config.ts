@@ -22,7 +22,7 @@ export const navigationGroups = {
                 item('growth-plan', 'Create a focused growth plan', 'Work through priorities and next steps with an experienced strategist.', '/strategy-sprint', 'plan'),
             ] },
         { title: 'Work with a strategist', items: [
-                item('consultation', 'Growth Strategy Consultation', 'Get an expert perspective on a specific growth decision.', '/ways-to-work-together#intro', 'conversation', 'coming-soon'),
+                item('consultation', 'Growth Strategy Sprints', 'Get an expert perspective on a specific growth decision.', '/strategy-sprint', 'conversation'),
                 item('sprint', strategySprintOffer.name, 'Work through priorities and practical next steps together.', '/strategy-sprint', 'plan'),
                 item('audit', 'Deep Dive Growth Audit', 'Investigate your marketing and identify the changes that matter.', '/growth-clarity-audit', 'search', 'inquiry'),
                 item('retainer', 'Growth Retainer', 'Explore ongoing strategic support and growth execution.', '/ways-to-work-together#retainer', 'repeat', 'inquiry'),
