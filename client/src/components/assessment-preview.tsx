@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { AssessmentQuestion } from "@/components/assessment-question";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { questionDisplay } from "@shared/marketing-clarity-audit/question-display";
 import { assessmentInsights } from "@/lib/assessment-copy";
 import { questionnaire, type Answers, type AnswerValue } from "@shared/marketing-clarity-audit/scoring";
 import { sectionStyle } from "@shared/marketing-clarity-audit/sections";
@@ -60,13 +61,18 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
   const [pending, setPending] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>();
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const teaserTitleRef = useRef<HTMLHeadingElement>(null);
   const interacted = useRef(false);
   const shownInsights = useRef(new Set<string>());
   const question = questions[position];
   const complete = position === questions.length;
   const answered = Object.keys(answers).length;
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
-  useEffect(() => { if (interacted.current) titleRef.current?.focus({ preventScroll: true }); }, [position]);
+  useEffect(() => {
+    if (!interacted.current) return;
+    const heading = window.matchMedia("(min-width: 1024px)").matches ? teaserTitleRef.current : titleRef.current;
+    heading?.focus({ preventScroll: true });
+  }, [position]);
   function advance() {
     setNote(""); setPending(false); setPosition(p => Math.min(p + 1, questions.length));
   }
@@ -75,7 +81,7 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
     interacted.current = true;
     setAnswers(current => ({ ...current, [question.id]: value }));
     // Keep the real assessment's relevant Clarity Insights and auto-advance timing.
-    const insight = ["D", "E"].includes(value) && !shownInsights.current.has(question.id) ? assessmentInsights[question.id] : undefined;
+    const insight = !window.matchMedia("(min-width: 1024px)").matches && ["D", "E"].includes(value) && !shownInsights.current.has(question.id) ? assessmentInsights[question.id] : undefined;
     if (position === questions.length - 1) {
       setPending(true); timer.current = setTimeout(advance, 350);
     } else if (insight) { shownInsights.current.add(question.id); setNote(insight); }
@@ -86,7 +92,30 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
     setPending(false); setNote(""); setPosition(p => Math.max(0, p - 1));
   }
   const purchaseButton = <Button className="gca-cta" disabled={busy} onClick={onPurchase}>{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
-  return <section id="assessment-preview" className="gca-wrap gca-section gca-preview-section" aria-labelledby="assessment-preview-title">
+  return <section id="assessment-preview" className="gca-wrap gca-section gca-preview-section" aria-label="Clarity Assessment sample">
+    <div className="preview-desktop-teaser" data-assessment-preview-active={answered > 0 ? "true" : undefined} style={sectionStyle(1)}>
+      <div className="teaser-question-pane">
+        <div className="teaser-meta"><span>Try the assessment · Free sample</span><span role="status">{complete ? "Preview complete" : `Question ${position + 1} of 4`}</span></div>
+        {complete ? <div className="teaser-complete">
+          <LockKeyhole size={22} aria-hidden="true" />
+          <h3 ref={teaserTitleRef} tabIndex={-1}>Ready for the full picture?</h3>
+          <p>Unlock all 35 questions and your personalized findings for $27.</p>
+          <button type="button" onClick={back}>← Review sample answers</button>
+        </div> : <>
+          <h3 ref={teaserTitleRef} tabIndex={-1} className="teaser-question-title">{questionDisplay(question)}</h3>
+          <fieldset disabled={pending} className="teaser-answers"><legend className="sr-only">Choose your sample answer</legend>
+            {question.options.map(option => <label key={option.value}><input type="radio" name={`teaser-${question.id}`} value={option.value} checked={answers[question.id] === option.value} onChange={() => answer(option.value as AnswerValue)} /><span>{option.text}</span></label>)}
+          </fieldset>
+          <div className="teaser-navigation"><button type="button" disabled={position === 0 || pending} onClick={back}>← Back</button><span>Preview answers aren’t saved.</span>{answers[question.id] && <button type="button" disabled={pending} onClick={advance}>Next →</button>}</div>
+        </>}
+      </div>
+      <aside className="teaser-progress-pane" aria-label="Sample progress and full assessment">
+        <DiagnosticClarityStack answers={answers} currentSection={1} sectionProgress={{ sectionId: 1, answered, total: questions.length }} />
+        <progress value={answered} max={questions.length} aria-label="Sample question progress" />
+        {purchaseButton}
+        <p className="teaser-price">Full assessment · $27 one-time</p>
+      </aside>
+    </div>
     <div className="preview-intro"><p className="gca-eyebrow">Try the first four questions</p><h2 id="assessment-preview-title">A little preview. A clearer starting point.</h2>
       <p className="gca-intro">Experience the first four questions of the Clarity Assessment. The full assessment connects your answers across six marketing areas to provide personalized findings and help you focus your time and money where they can make the greatest difference.</p>
       <p className="preview-sample-notice"><LockKeyhole size={16} aria-hidden="true" /><span><strong>Free sample · 4 of 35 questions.</strong> Preview answers aren’t saved. The full assessment and your personalized results are $27.</span></p>

@@ -15,3 +15,36 @@
 @media(max-width:899px){.assessment-shell.assessment-preview{grid-template-columns:1fr}.preview-sidebar{display:grid;grid-template-columns:1fr 1.4fr;gap:26px;padding-top:8px}.preview-examples{margin:0;padding:0 0 0 22px;border-top:0;border-left:1px solid #dde5e5}.preview-report-thumbnail{height:125px}.preview-report-thumbnail .preview-report{transform:scale(.5)}.preview-example-popover.preview-example-popover{display:none}}
 @media(max-width:639px){.gca-preview-section{padding-top:14px}.preview-intro .gca-intro{font-size:15px}.assessment-shell.assessment-preview{border-radius:20px;padding:14px;gap:22px}.assessment-preview .preview-progress{padding:18px}.assessment-preview .assessment-question{padding:22px 18px}.preview-sidebar{display:block}.preview-sidebar>.diagnostic-clarity-stack{display:none}.preview-examples{border-left:0;border-top:1px solid #dde5e5;padding:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}.preview-sidebar-label,.preview-sidebar-copy,.preview-examples-note{grid-column:1/-1}.preview-sidebar-copy{margin:0}.preview-example-card{margin:0;min-width:0}.preview-example-trigger{padding:10px}.preview-example-heading{font-size:11px;gap:4px}.preview-example-heading svg{width:13px}.preview-report-thumbnail{height:125px}.preview-report-thumbnail .preview-report{transform:scale(.27)}.preview-example-hint{font-size:9px}.preview-examples-note{margin-top:0}.preview-locked{padding:22px 12px;min-height:570px}.preview-unlock-card{padding:24px 18px}.gca-page .preview-unlock-card h3{font-size:26px}.preview-bottom-cta{flex-direction:column;text-align:center;gap:18px}.preview-bottom-cta .gca-cta{width:100%}.preview-result-dialog.preview-result-dialog{padding:22px}.preview-report{padding:22px}.preview-report-stack li{font-size:10px;padding:8px}.preview-report h4{font-size:21px}}
 @media(prefers-reduced-motion:reduce){.preview-example-trigger{transition:none}}
+
+/* Compact desktop teaser; retain the expanded experience for smaller screens. */
+.preview-desktop-teaser{display:none}
+@media(min-width:1024px){
+  .gca-preview-section{padding-top:10px;padding-bottom:0}
+  .gca-preview-section>.preview-intro,.gca-preview-section>.assessment-preview,.gca-preview-section>.preview-bottom-cta{display:none}
+  .preview-desktop-teaser{display:grid;grid-template-columns:minmax(0,1fr) 275px;gap:28px;padding:18px 24px;background:linear-gradient(115deg,#f5f2ffb3,#f1fbf5b3);border:1px solid #e1e6e9;border-radius:18px}
+  .teaser-question-pane{min-width:0}
+  .teaser-meta{display:flex;justify-content:space-between;gap:20px;font-size:10px;line-height:1.4;letter-spacing:.06em;color:#5541bf;margin-bottom:10px}
+  .teaser-meta>span:first-child{font-weight:700;text-transform:uppercase}
+  .teaser-meta>span:last-child{color:#586679;white-space:nowrap}
+  .gca-page .teaser-question-title{font-size:18px;line-height:1.35;font-weight:650;letter-spacing:-.025em;margin:0 0 13px;min-height:25px;outline:none}
+  .teaser-answers{display:grid;gap:6px}
+  .teaser-answers label{display:flex;gap:10px;align-items:flex-start;border:1px solid #dfe3ea;background:#fff;border-radius:8px;padding:7px 11px;font-size:12px;line-height:1.35;color:#344154;cursor:pointer;transition:background-color .2s,border-color .2s}
+  .teaser-answers input{width:14px;height:14px;flex-shrink:0;margin-top:1px;accent-color:#5541bf}
+  .teaser-answers label:has(input:checked){background:#eee8ff;border-color:#5541bf}
+  .teaser-answers label:has(input:focus-visible){outline:2px solid #5541bf;outline-offset:2px}
+  .teaser-answers label:hover{border-color:#b4a6dd}
+  .teaser-navigation{display:flex;align-items:center;gap:16px;margin-top:10px;min-height:20px;font-size:10px;color:#667085}
+  .teaser-navigation>span{margin-left:auto}.teaser-navigation button{color:#5541bf;font-size:11px;padding:2px 0}.teaser-navigation button:disabled{color:#9ca3af;cursor:default}
+  .teaser-progress-pane{border-left:1px solid #dfe5e7;padding-left:24px;align-self:center;min-width:0}
+  .teaser-progress-pane .diagnostic-clarity-stack ol{gap:4px}
+  .teaser-progress-pane .diagnostic-clarity-stack li{min-height:24px;padding:4px 10px;border-radius:7px;font-size:10px;transition:background-color .3s,color .3s}
+  .teaser-progress-pane .diagnostic-clarity-stack p{font-size:10px;line-height:1.5;margin-top:9px;color:#586679}
+  .teaser-progress-pane>progress{display:block;width:100%;height:4px;margin:8px 0;accent-color:#5541bf;border-radius:5px;overflow:hidden}
+  .teaser-progress-pane>progress::-webkit-progress-bar{background:#e5e7eb}.teaser-progress-pane>progress::-webkit-progress-value{background:#5541bf}
+  .teaser-progress-pane .gca-cta{width:100%;min-height:38px;padding:10px 8px;border-radius:8px;font-size:11px;line-height:1.4;animation:none;box-shadow:none}
+  .teaser-price{text-align:center;font-size:10px;color:#667085;margin-top:7px}
+  .teaser-complete{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:240px;padding:22px 30px;background:#ffffffc9;border:1px solid #e5e0f2;border-radius:12px;color:#5541bf}
+  .gca-page .teaser-complete h3{font-size:24px;letter-spacing:-.035em;margin:14px 0 10px;outline:none;color:#273346}
+  .teaser-complete p{font-size:14px;line-height:1.6;color:#586679;max-width:400px}.teaser-complete button{font-size:11px;margin-top:22px;color:#5541bf}
+}
+@media(prefers-reduced-motion:reduce){.teaser-answers label,.teaser-progress-pane .diagnostic-clarity-stack li{transition:none}}
