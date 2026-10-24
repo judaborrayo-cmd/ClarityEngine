@@ -7,3 +7,4 @@
 .ss-consultation .archer-video video{aspect-ratio:16/9;object-fit:contain;mix-blend-mode:normal}
 .ss-consultation>p{font-size:14px;line-height:1.7;color:#536078;margin:16px 0 0}
 .ss-consultation>p strong{color:#087b55}
+@media(min-width:768px){.ss-collaboration>.ss-consultation{grid-column:1;grid-row:1}.ss-collaboration>div:first-child{grid-column:2;grid-row:1}}
