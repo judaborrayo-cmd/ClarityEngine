@@ -38,11 +38,13 @@ export default function MarketingClarityAudit() {
       </div><AmbientFlame /></div>
 
     </section>
+    <div className="gca-preview-band">
     <section className="gca-wrap gca-domains" aria-labelledby="areas-title">
       <h2 id="areas-title">Six areas. A clearer path.</h2>
       <div className="gca-strip">{Object.values(sectionColors).map((theme, i) => { const Icon = icons[i]; return <a key={theme.name} href="#six-areas" style={{color: theme.color, background: theme.tint}}><Icon aria-hidden="true" size={23}/><span>{theme.name}</span></a>; })}</div>
     </section>
     <AssessmentPreview onPurchase={purchase} busy={busy} error={error} />
+    </div>
     <section className="gca-wrap gca-section gca-split">
       <div><p className="gca-eyebrow">When everything feels important</p><h2>More activity isn’t always the next move.</h2></div>
       <div className="gca-prose"><p>You have ideas, channels, and advice competing for attention. The harder decision is which problem deserves your time first.</p><ul><li>You’re preparing for growth, but aren’t sure what needs to be ready.</li><li>You have numbers, but aren’t sure which ones to trust.</li><li>Your team sees different problems and needs a shared starting point.</li></ul><p>Get Clarity Assessment helps you turn what you know about your marketing into a more focused decision.</p></div>
