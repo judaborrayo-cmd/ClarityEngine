@@ -1,11 +1,22 @@
 import { useEffect } from "react";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Check, Search, Compass, Layers } from "lucide-react";
+import { ArrowUpRight, Check, Search, Compass, Layers, Megaphone, ScanLine, TextSearch, MousePointerClick, Swords, ChartLine, Network, Map } from "lucide-react";
 import {
   deepDiveGrowthAuditOffer as offer,
 } from "@shared/deep-dive-growth-audit-offer";
 import "./deep-dive-growth-audit.css";
+
+const auditHighlights = [
+  { label: "Paid Media Audit", Icon: Megaphone, color: "#6844d9", tint: "#f2edff" },
+  { label: "Tracking Audit", Icon: ScanLine, color: "#28775c", tint: "#eaf7f0" },
+  { label: "Message Audit", Icon: TextSearch, color: "#ad477c", tint: "#fff0f7" },
+  { label: "Conversion Experience Audit", Icon: MousePointerClick, color: "#287888", tint: "#edf8fb" },
+  { label: "Competitive Strategy", Icon: Swords, color: "#a46922", tint: "#fff7e9" },
+  { label: "Measurement & Learning", Icon: ChartLine, color: "#4c59c3", tint: "#eef0ff" },
+  { label: "Marketing Channel Analysis", Icon: Network, color: "#28775c", tint: "#eaf7f0" },
+  { label: "90-day roadmap", Icon: Map, color: "#6844d9", tint: "#f2edff" },
+];
 
 const deliverables = [
   { title: "Your Strategic Growth Blueprint", copy: "A tailored written investigation connecting evidence, business implications, prioritized recommendations and the decisions ahead." },
@@ -174,6 +185,12 @@ export default function GrowthClarityAudit() {
         </div>
         <div className="dda-system dda-artwork">
           <ServiceOptionVideo name="audit-painter-action" label="artist painting the Colosseum then riding into action" />
+        </div>
+      </section>
+      <section className="dda-highlights" aria-labelledby="audit-highlights-title">
+        <div className="dda-wrap">
+          <h2 id="audit-highlights-title">A complete view. A focused <span className="dda-nowrap">90-day plan.</span></h2>
+          <ul className="dda-highlight-grid">{auditHighlights.map(({ label, Icon, color, tint }) => <li key={label} style={{ color, background: tint }}><Icon size={23} aria-hidden="true" /><span>{label}</span></li>)}</ul>
         </div>
       </section>
       <section className="dda-band">
