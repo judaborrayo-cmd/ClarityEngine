@@ -1,3 +1,6 @@
+import ExperienceBadges from "@/components/ExperienceBadges";
+import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
+import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
 import { useEffect } from "react";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { Link } from "react-router-dom";
@@ -156,6 +159,7 @@ export default function GrowthClarityAudit() {
             <br />
             <em>Know your next move.</em>
           </h1>
+          <p className="dda-hero-proof">12+ years of experience · $5M+ in paid media managed</p>
           <p className="dda-lead">
             For established or ambitious businesses ready to move forward.
           </p>
@@ -187,6 +191,7 @@ export default function GrowthClarityAudit() {
           <ServiceOptionVideo name="audit-painter-action" label="artist painting the Colosseum then riding into action" />
         </div>
       </section>
+      <section className="dda-proof-strip"><div className="dda-wrap"><ExperienceBadges /></div></section>
       <section className="dda-highlights" aria-labelledby="audit-highlights-title">
         <div className="dda-wrap">
           <h2 id="audit-highlights-title">A complete view. A focused <span className="dda-nowrap">90-day plan.</span></h2>
@@ -304,6 +309,16 @@ export default function GrowthClarityAudit() {
         </p>
       </section>
       <div className="dda-wrap dda-inline-purchase"><StartLink /></div>
+      <section id="audit-partners" className="dda-wrap dda-section audit-partner-proof" aria-labelledby="audit-partner-proof-title">
+        <p className="dda-eyebrow">What partners say</p>
+        <h2 id="audit-partner-proof-title">Experience people <em>can speak to.</em></h2>
+        <div className="audit-partner-grid">
+          <figure><blockquote>“Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way.”</blockquote><figcaption><img src={billBowmanPhoto} alt="" width="44" height="44" loading="lazy"/><div><strong>Bill Bowman</strong><span>Vice President of Marketing</span></div></figcaption></figure>
+          <figure><blockquote>“During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.”</blockquote><figcaption><img src={mikeBerkmanPhoto} alt="" width="44" height="44" loading="lazy"/><div><strong>Mike Berkman</strong><span>VP of Performance</span></div></figcaption></figure>
+        </div>
+        <p className="audit-proof-context">From previous professional engagements with Juda.</p>
+        <Link className="dda-text-link" to="/testimonials">More from our partners →</Link>
+      </section>
       <section className="dda-wrap dda-section dda-fit">
         <div>
           <p className="dda-eyebrow">Who it's for</p>

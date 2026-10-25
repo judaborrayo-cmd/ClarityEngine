@@ -1,3 +1,4 @@
+import ExperienceBadges from "@/components/ExperienceBadges";
 import { useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
@@ -208,14 +209,6 @@ const testimonials = [
   }
 ];
 
-const heroProofPoints = [
-  "$5M+ in ad spend managed across growth brands",
-  "Multi-millions in revenue driven through paid media",
-  "Proven results across Travel, Fitness, Luxury, and Education",
-  "12+ years in paid media & growth strategy",
-  "Recognized by Contra as a Top Specialist in 2025",
-];
-
 const PartnerCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { testimonial: typeof testimonials[0]; delay?: number; shouldReduceMotion?: boolean }) => (
   <motion.div
     initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -281,18 +274,7 @@ export default function Home() {
               </div>
               <HeroMotion />
             </div>
-            <div className="home-credibility" data-testid="hero-badges" aria-label="Experience and credibility">
-              <div className="home-proof-metrics">
-                {[0, 1, 3].map((index) => (
-                  <p key={heroProofPoints[index]}>{heroProofPoints[index]}</p>
-                ))}
-              </div>
-              <div className="home-proof-details">
-                {[2, 4].map((index) => (
-                  <p key={heroProofPoints[index]}>{heroProofPoints[index]}</p>
-                ))}
-              </div>
-            </div>
+            <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges /></div>
           </div>
         </Section>
 
@@ -390,7 +372,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center justify-center gap-8 pt-8 mt-4 border-t border-gray-200">
                 <div className="text-base font-semibold text-green-600" data-testid="metric-cpl">Serving B2B & B2C Clients</div>
                 <div className="text-base font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
-                <div className="text-base font-semibold text-green-600" data-testid="metric-revenue">$12M+ in Direct Revenue Generated Across Verticals</div>
+                <div className="text-base font-semibold text-green-600" data-testid="metric-revenue">Multi-million revenue driven through paid media</div>
               </div>
             </motion.div>
           </Section>
