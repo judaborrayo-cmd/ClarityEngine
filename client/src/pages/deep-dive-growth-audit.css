@@ -610,3 +610,6 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 .dda-inline-purchase{padding-bottom:36px}
 @media(max-width:767px){.dda-audience{grid-template-columns:1fr;gap:30px}.dda-audit-outputs{grid-template-columns:1fr}.dda-audience-art{max-width:520px;margin-inline:auto}.dda-audience-copy .dda-button{white-space:normal}}
 .dda-audience .dda-button,.dda-inline-purchase .dda-button,#your-audit-plan .dda-button{background:linear-gradient(110deg,#8040ef,#029e63)}
+
+.dda-orchestra .archer-video{margin:0;border-radius:20px;overflow:hidden}
+.dda-orchestra .archer-video video{aspect-ratio:16/9;object-fit:contain;mix-blend-mode:normal}
