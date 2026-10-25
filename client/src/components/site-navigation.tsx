@@ -118,8 +118,8 @@ function MarketingNavigation() {
 </ul>
 </div>
    <Link to="/services" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
-<span className="ce-nav-desktop-label">How We Help You</span>
-<span className="ce-nav-mobile-label">How We Help You</span>
+<span className="ce-nav-desktop-label">How We Help</span>
+<span className="ce-nav-mobile-label">How We Help</span>
 <ArrowUpRight size={16} aria-hidden="true"/>
 </Link>
    <Dialog.Root open={mobile} onOpenChange={value => { routeSelected.current = false; popupTookFocus.current = false; resizeFocus.current = null; setMobile(value); setOpen(null); }}>
@@ -161,7 +161,7 @@ function MarketingNavigation() {
 <Link to="/about" onClick={close}>About</Link>
 </li>
 </ul>
-<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>How We Help You <ArrowUpRight size={18} aria-hidden="true"/>
+<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>How We Help <ArrowUpRight size={18} aria-hidden="true"/>
 </Link>
 </div>
 </Dialog.Content>
