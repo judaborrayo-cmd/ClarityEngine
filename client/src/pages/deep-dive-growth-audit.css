@@ -613,3 +613,13 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 
 .dda-orchestra .archer-video{margin:0;border-radius:20px;overflow:hidden}
 .dda-orchestra .archer-video video{aspect-ratio:16/9;object-fit:contain;mix-blend-mode:normal}
+
+/* Four related drafting plates make each Audit deliverable tangible. */
+.dda-deliverables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;border:0;margin-top:30px}
+.dda-deliverables article{display:flex;flex-direction:column;gap:0;padding:0;border:1px solid #dce8ed;border-radius:18px;overflow:hidden;background:#fff}
+.dda-blueprint-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#f4f9fc}
+.dda-blueprint-copy{padding:26px 28px 30px}
+.dda-deliverables .dda-number{display:block;color:#5d59a6;margin:0 0 12px}
+.dda-blueprint-copy h3{margin:0 0 12px}
+.dda-blueprint-copy p{margin:0}
+@media(max-width:680px){.dda-deliverables{grid-template-columns:1fr;gap:24px}.dda-blueprint-copy{padding:22px 24px 26px}}

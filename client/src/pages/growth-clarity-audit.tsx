@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Check, Search, Compass, Layers, Megaphone, ScanLine, TextSearch, MousePointerClick, Swords, ChartLine, Network, Map } from "lucide-react";
+import { ArrowUpRight, Search, Compass, Layers, Megaphone, ScanLine, TextSearch, MousePointerClick, Swords, ChartLine, Network, Map } from "lucide-react";
 import {
   deepDiveGrowthAuditOffer as offer,
 } from "@shared/deep-dive-growth-audit-offer";
@@ -289,12 +289,12 @@ export default function GrowthClarityAudit() {
         <div className="dda-deliverables">
           {deliverables.map((item, i) => (
             <article key={item.title}>
-              <span className="dda-number">0{i + 1}</span>
-              <div>
+              <img className="dda-blueprint-art" src={`/images/audit-blueprint-${["blueprint", "development", "roadmap", "walkthrough"][i]}.webp`} alt="" width="1536" height="1024" loading="lazy" decoding="async" />
+              <div className="dda-blueprint-copy">
+                <span className="dda-number">0{i + 1}</span>
                 <h3>{item.title}</h3>
                 <p>{item.copy}</p>
               </div>
-              <Check size={22} aria-hidden="true" />
             </article>
           ))}
         </div>
