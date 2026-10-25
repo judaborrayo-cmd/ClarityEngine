@@ -8,10 +8,10 @@ export default function HeroCTAs() {
           href="/services"
           className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-green-600 text-white text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-purple-500/40"
           style={{ boxShadow: "0px 6px 18px rgba(115, 102, 255, 0.3)" }}
-          aria-label="Work Together"
+          aria-label="How We Help You"
           data-testid="hero-cta-book-call"
         >
-          <span className="mr-2">💬</span> Work Together
+          <span className="mr-2">💬</span> How We Help You
         </a>
         <Link
           to="/growth-clarity-audit"

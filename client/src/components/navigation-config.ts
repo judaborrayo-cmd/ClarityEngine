@@ -6,30 +6,28 @@ export type NavigationItem = {
     description: string;
     to: string;
     icon: 'compass' | 'chart' | 'cursor' | 'layout' | 'plan' | 'conversation' | 'search' | 'repeat' | 'book' | 'video' | 'news' | 'layers' | 'globe';
-    availability: 'information' | 'launch-pending' | 'coming-soon' | 'inquiry';
+    availability: 'information' | 'personalized-insights' | 'coming-soon' | 'inquiry';
     destinationStatus: 'implemented' | 'planned';
 };
 const item = (id: string, label: string, description: string, to: string, icon: NavigationItem['icon'], availability: NavigationItem['availability'] = 'information', destinationStatus: NavigationItem['destinationStatus'] = 'implemented'): NavigationItem => ({ id, label, description, to, icon, availability, destinationStatus });
-export const assessmentItem = item('assessment', assessment.product.name, 'A guided review to help you identify what to improve next.', '/marketing-clarity-assesment', 'compass', 'launch-pending');
+export const assessmentItem = item('assessment', assessment.product.name, 'A guided review to help you identify what to improve next.', '/marketing-clarity-assesment', 'compass', 'personalized-insights');
 const websiteKit = item('website-kit', 'The Anti-AI Slop Website Kit', 'Build clearer, more distinctive websites with AI.', '/tools/anti-ai-slop-website-kit', 'layout', 'coming-soon', 'planned');
 export const navigationGroups = {
     solutions: [
         { title: 'What do you need help with?', items: [
                 { ...assessmentItem, id: 'growth-block', label: "Find what's holding growth back", description: "Understand what's working and what deserves attention next." },
                 item('advertising', 'Improve advertising performance', 'Get a clearer strategy for your campaigns, creative, and spend.', '/services', 'chart'),
-                item('conversion', 'Turn more visitors into customers', 'Improve your messaging, landing pages, and conversion experience.', '/services', 'cursor'),
                 { ...websiteKit, id: 'better-website', label: 'Build a better website with AI', description: 'Create clearer, more distinctive pages without generic AI output.' },
-                item('growth-plan', 'Create a focused growth plan', 'Work through priorities and next steps with an experienced strategist.', '/strategy-sprint', 'plan'),
             ] },
         { title: 'Work with a strategist', items: [
                 item('sprint', strategySprintOffer.name, 'Work through priorities and practical next steps together.', '/strategy-sprint', 'plan'),
-                item('audit', 'Deep Dive Growth Audit', 'Investigate your marketing and identify the changes that matter.', '/growth-clarity-audit', 'search', 'inquiry'),
-                item('retainer', 'Growth Retainer', 'Explore ongoing strategic support and growth execution.', '/ways-to-work-together#retainer', 'repeat', 'inquiry'),
+                item('growth-plan', 'Create a focused growth plan', 'Work through priorities and next steps with an experienced strategist.', '/growth-clarity-audit', 'search', 'inquiry'),
+                item('retainer', 'Growth Retainer', 'Find out if a long-term retainer is right for your business.', '/ways-to-work-together#retainer', 'repeat', 'inquiry'),
             ] },
     ],
     tools: [
         { title: 'A self-guided starting point', items: [assessmentItem] },
-        { title: 'In development', items: [websiteKit,
+        { title: 'Cooking in the oven', items: [websiteKit,
                 item('landing-kit', 'Anti-AI Slop Landing Page Kit', 'Create landing pages with sharper messaging and a clearer next step.', '/tools/anti-ai-slop-landing-page-kit', 'cursor', 'coming-soon', 'planned'),
                 item('visibility', 'AI Visibility & SEO', 'Practical checks for making your website easier to find and understand.', '/tools/ai-visibility-seo', 'globe', 'coming-soon', 'planned'),
                 item('ads-builder', 'Google Search Ads Builder', 'Plan and structure Google Search campaigns with fewer repetitive steps.', '/tools/google-search-ads-builder', 'chart', 'coming-soon', 'planned'),

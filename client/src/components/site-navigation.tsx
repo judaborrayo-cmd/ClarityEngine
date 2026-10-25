@@ -31,7 +31,7 @@ function NavigationRow({ item, onNavigate }: {
 <Icon size={20} strokeWidth={1.7} aria-hidden="true"/>
 </span>
     <span className="ce-nav-copy">
-<span className="ce-nav-label">{item.label}{item.availability === 'coming-soon' && <span className="ce-nav-badge">Coming soon</span>}{item.availability === 'launch-pending' && <span className="ce-nav-badge">Launch pending</span>}</span>
+<span className="ce-nav-label">{item.label}{item.availability === 'coming-soon' && <span className="ce-nav-badge">Coming soon</span>}{item.availability === 'personalized-insights' && <span className="ce-nav-badge ce-nav-badge-insights"><span aria-hidden="true">✦</span> Personalized Insights</span>}</span>
 <span className="ce-nav-description">{item.description}</span>
 </span>
   </Link>
@@ -54,12 +54,7 @@ function MenuContent({ category, onNavigate }: {
 <FounderNavMotion />
 <Link to="/services" onClick={onNavigate}>Explore Services <ArrowUpRight size={16} aria-hidden="true"/></Link>
 </aside>}
- </div>{category === 'solutions' && <div className="ce-nav-footer">
-<Link to="/services" onClick={onNavigate}>Compare ways to work together <span aria-hidden="true">→</span>
-</Link>
-<Link to="/services" onClick={onNavigate}>Explore all services</Link>
-<Link to="/#how-we-scale" onClick={onNavigate}>How We Scale</Link>
-</div>}</>;
+ </div></>;
 }
 export default function SiteNavigation() {
     const location = useLocation();
@@ -123,8 +118,8 @@ function MarketingNavigation() {
 </ul>
 </div>
    <Link to="/services" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
-<span className="ce-nav-desktop-label">Find Your Next Step</span>
-<span className="ce-nav-mobile-label">Start Here</span>
+<span className="ce-nav-desktop-label">How We Help You</span>
+<span className="ce-nav-mobile-label">How We Help You</span>
 <ArrowUpRight size={16} aria-hidden="true"/>
 </Link>
    <Dialog.Root open={mobile} onOpenChange={value => { routeSelected.current = false; popupTookFocus.current = false; resizeFocus.current = null; setMobile(value); setOpen(null); }}>
@@ -166,7 +161,7 @@ function MarketingNavigation() {
 <Link to="/about" onClick={close}>About</Link>
 </li>
 </ul>
-<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>Find Your Next Step <ArrowUpRight size={18} aria-hidden="true"/>
+<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>How We Help You <ArrowUpRight size={18} aria-hidden="true"/>
 </Link>
 </div>
 </Dialog.Content>
