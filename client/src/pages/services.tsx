@@ -1,3 +1,4 @@
+import CampaignWorkGallery from "@/components/CampaignWorkGallery";
 import { useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Link } from "react-router-dom";
@@ -50,17 +51,7 @@ export default function Services() {
       <p className="services-intro">Looking for a custom project or continuing support? <Link to="/#book-intro" className="services-text-link">Let’s discuss what you need →</Link></p>
     </section>
 
-    <section id="campaign-concepts" className="services-wrap services-concepts">
-      <div><p className="services-eyebrow">Campaign ideas → tangible concepts</p><h2>Give your next campaign<br /><em>something you can see.</em></h2></div>
-      <div><p className="services-lead">Campaign ideation and conversion-focused landing-page concepts, built with AI and shaped by marketing experience.</p><p className="services-intro">For teams, designers, and entrepreneurs who need to move from a promising idea to a page they can discuss, refine, and test.</p></div>
-      <div className="services-process">
-        <article><span>01 / THE IDEA</span><h3>Find the campaign angle.</h3><p>Explore the audience, offer, message, and reasons someone would take the next step.</p></article>
-        <article><span>02 / THE EXPERIENCE</span><h3>Make the idea tangible.</h3><p>Develop page structure, copy, visual direction, and AI-built concepts around a clear conversion goal.</p></article>
-        <article><span>03 / THE NEXT MOVE</span><h3>Refine it with your team.</h3><p>Use the concept to align stakeholders, brief designers, and decide what to build and test next.</p></article>
-      </div>
-      <div className="services-showcase"><div className="services-showcase-heading"><p className="services-eyebrow">Selected landing-page work</p><h3>From an idea to an experience.</h3><p>Selected campaign pages and concepts, from experience-led storytelling to guided cruise discovery.</p></div>{examples.map(example => <button type="button" key={example.image} className="services-example" aria-label={`Preview ${example.title}`} onClick={event => { previewTrigger.current = event.currentTarget; setZoomed(false); setPreview(example); }}><div className="services-browser-bar" aria-hidden="true"><i/><i/><i/></div><img src={`/images/services/${example.image}.webp`} alt={`${example.title} landing-page preview`} loading="lazy" width="1100" height="619"/><div><p className="services-eyebrow">{example.tag}</p><h3>{example.title} <ArrowUpRight size={20} aria-hidden="true"/></h3><p>{example.copy}</p><span className="services-text-link">Preview the page ↗</span></div></button>)}</div>
-      <div className="services-concept-footer"><p>Explore campaign and page concepts during a Strategy Sprint, or discuss a dedicated project. Production delivery and ongoing testing are scoped separately.</p><Link to="/strategy-sprint" className="services-text-link">Bring your campaign idea →</Link></div>
-    </section>
+    <CampaignWorkGallery pages={examples} onPreview={(example,trigger) => { previewTrigger.current = trigger; setZoomed(false); setPreview(example); }} />
 
     <section id="starting-points" className="services-offers-section">
       <div className="services-wrap">
