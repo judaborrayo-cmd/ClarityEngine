@@ -317,7 +317,7 @@ export default function GrowthClarityAudit() {
           <figure><blockquote>“During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.”</blockquote><figcaption><img src={mikeBerkmanPhoto} alt="" width="44" height="44" loading="lazy"/><div><strong>Mike Berkman</strong><span>VP of Performance</span></div></figcaption></figure>
         </div>
         <p className="audit-proof-context">From previous professional engagements with Juda.</p>
-        <Link className="dda-text-link" to="/testimonials">More from our partners →</Link>
+        <Link className="dda-text-link" to="/case-studies#colleague-reviews-cs">More from our partners →</Link>
       </section>
       <section className="dda-wrap dda-section dda-fit">
         <div>
