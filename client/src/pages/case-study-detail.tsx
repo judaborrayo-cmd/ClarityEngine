@@ -1,3 +1,4 @@
+import { Core40Hero, Core40Context, Core40Closing } from "@/components/case-study/Core40CaseFraming";
 import AolCaseStudy from "@/components/case-study/AolCaseStudy";
 import { HapiHero, HapiContext, HapiCreative, HapiClosing } from "@/components/case-study/HapiCaseFraming";
 import { PowersHero, PowersContext, PowersCreative, PowersClosing } from "@/components/case-study/PowersCaseFraming";
@@ -679,13 +680,13 @@ export default function CaseStudyDetail() {
   }
 
   const study = caseStudyData[slug as keyof typeof caseStudyData];
-  const isBrandedStudy = slug === "powers-gymnastics" || slug === "hapi-art";
+  const isBrandedStudy = slug === "powers-gymnastics" || slug === "hapi-art" || slug === "core-40";
   const relatedStudies = otherCaseStudies.filter(s => s.id !== slug).slice(0, 3);
 
   return (
     <div className={`min-h-screen bg-background ${isBrandedStudy ? "powers-hybrid" : ""} ${slug === "hapi-art" ? "hapi-hybrid" : ""}`}>
       {/* Header */}
-      {slug === "powers-gymnastics" ? <PowersHero /> : slug === "hapi-art" ? <HapiHero overview={study.overview}/> : <>
+      {slug === "powers-gymnastics" ? <PowersHero /> : slug === "hapi-art" ? <HapiHero overview={study.overview}/> : slug === "core-40" ? <Core40Hero overview={study.overview}/> : <>
       <section className="px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <Link 
@@ -940,7 +941,7 @@ export default function CaseStudyDetail() {
       {/* Challenge & Solution */}
       {slug === "powers-gymnastics" ? <PowersContext challenge={study.challenge} solutions={study.solution} /> : <section className="px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          {slug === "hapi-art" ? <HapiContext challenge={study.challenge} solutions={study.solution}/> : <div className="grid md:grid-cols-2 gap-12">
+          {slug === "hapi-art" ? <HapiContext challenge={study.challenge} solutions={study.solution}/> : slug === "core-40" ? <Core40Context challenge={study.challenge} solutions={study.solution}/> : <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-6">The Challenge</h2>
               <p className="text-muted-foreground leading-relaxed">
@@ -1057,6 +1058,7 @@ export default function CaseStudyDetail() {
         <section className="px-6 py-12 lg:px-8 bg-muted/30">
           <div className="mx-auto max-w-5xl">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
+              {slug === "core-40" && <div className="p-6 sm:p-8"><p className="powers-story-eyebrow">The work, in context</p><h2>Something you can see.</h2><p className="text-muted-foreground">The existing Core40 and Ascend portfolio presentation connects the creative direction with the wider growth-marketing approach.</p></div>}
               <img
                 src={(study as any).portfolioImage}
                 alt={slug === "powers-gymnastics" ? "Powers Gymnastics Creative - Professional Photography & Ad Formats" : "Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"}
@@ -1185,6 +1187,7 @@ export default function CaseStudyDetail() {
 
       {slug === "powers-gymnastics" && <PowersClosing />}
       {slug === "hapi-art" && <HapiClosing />}
+      {slug === "core-40" && <Core40Closing />}
 
       {/* Tags */}
       <section className="px-6 py-12 lg:px-8">
