@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Pause, Play, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { strategySprintOffer as offer, strategySprintBenefits } from "@shared/strategy-sprint-offer";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { SprintTestimonials } from "@/components/sprint-testimonials";
 import "./strategy-sprint.css";
 
 // Approved Sprint sorting animation: play once, with optional replay.
-const sprintMedia = { src: "/videos/strategy-sprint-hero.mp4", poster: "/videos/strategy-sprint-hero-poster.webp", loop: false };
+const sprintMedia = { src: "/videos/strategy-sprint-sunlit-v2.mp4", poster: "/videos/strategy-sprint-sunlit-v2-poster.webp", loop: false };
 function SprintMedia() {
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -30,7 +30,7 @@ function SprintMedia() {
   return <figure className="ss-media">
     <div className="ss-media-frame">
       {failed ? <img src={sprintMedia.poster} alt="Clarity Engine growth strategy visual" /> : <video ref={video} autoPlay={!reduced} muted playsInline loop={sprintMedia.loop} poster={sprintMedia.poster} preload={reduced ? "none" : "metadata"} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setFailed(true)} aria-label="Clarity Engine growth strategy animation"><source src={sprintMedia.src} type="video/mp4" /></video>}
-      {!failed && <button type="button" onClick={toggle} className="ss-media-control" aria-label={playing ? "Pause animation" : "Play animation"}>{playing ? <Pause size={16} /> : <Play size={16} />}<span>{playing ? "Pause" : "Play"}</span></button>}
+      {!failed && <button type="button" onClick={toggle} className="ss-media-toggle" aria-label={playing ? "Pause growth strategy animation" : "Play growth strategy animation"} />}
     </div>
     <figcaption>Clarity Engine · Growth strategy, brought into focus.</figcaption>
   </figure>;

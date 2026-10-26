@@ -8,3 +8,5 @@
 .ss-consultation>p{font-size:14px;line-height:1.7;color:#536078;margin:16px 0 0}
 .ss-consultation>p strong{color:#087b55}
 @media(min-width:768px){.ss-collaboration>.ss-consultation{grid-column:1;grid-row:1}.ss-collaboration>div:first-child{grid-column:2;grid-row:1}}
+
+.ss-media-toggle{position:absolute;inset:9px;border-radius:18px;background:transparent;border:0;cursor:pointer}.ss-media-toggle:focus-visible{outline:3px solid #7045ed;outline-offset:3px}
