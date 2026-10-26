@@ -55,7 +55,7 @@ const questions = [
 export default function StrategySprint() {
   return <main className="ss-page">
     <section className="ss-wrap ss-hero">
-      <div className="ss-hero-copy"><p className="ss-eyebrow">{offer.name}</p><h1>Get clear on what matters next.<br /><em>Move faster.</em></h1><p className="ss-lead">Work directly with Juda through three live strategy sessions over 30 days. Solve growth problems, sharpen your offer and funnel, and make stronger decisions.</p><p className="ss-price"><strong>${offer.price}</strong> <span>One-time payment · No subscription</span></p><PurchaseLink /><a className="ss-anchor" href="#sprint-inclusions">See what’s included ↓</a></div>
+      <div className="ss-hero-copy"><p className="ss-eyebrow">{offer.name}</p><h1>Get clear on what matters next.<br /><em>Move faster.</em></h1><div className="ss-lead ss-hero-benefits"><p>Work directly with Juda Borrayo, Clarity Engine’s founder and:</p><ul>{["Solve growth problems", "Get three live strategy sessions", "Sharpen your offer and funnel", "Get tangible solutions to current challenges"].map(benefit => <li key={benefit}><Check aria-hidden="true" /><span>{benefit}</span></li>)}</ul></div><p className="ss-price"><strong>${offer.price}</strong> <span>One-time payment · No subscription</span></p><PurchaseLink /><a className="ss-anchor" href="#sprint-inclusions">See what’s included ↓</a></div>
       <SprintMedia />
     </section>
     <div className="ss-band"><div className="ss-wrap ss-highlights"><span><Check aria-hidden="true" /> Three live sessions</span><span><Check aria-hidden="true" /> Your priorities, your focus</span><span><ShieldCheck aria-hidden="true" /> First-session guarantee</span></div></div>
