@@ -1,3 +1,4 @@
+import { HapiHero, HapiContext, HapiCreative, HapiClosing } from "@/components/case-study/HapiCaseFraming";
 import { PowersHero, PowersContext, PowersCreative, PowersClosing } from "@/components/case-study/PowersCaseFraming";
 import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -674,12 +675,13 @@ export default function CaseStudyDetail() {
   }
 
   const study = caseStudyData[slug as keyof typeof caseStudyData];
+  const isBrandedStudy = slug === "powers-gymnastics" || slug === "hapi-art";
   const relatedStudies = otherCaseStudies.filter(s => s.id !== slug).slice(0, 3);
 
   return (
-    <div className={`min-h-screen bg-background ${slug === "powers-gymnastics" ? "powers-hybrid" : ""}`}>
+    <div className={`min-h-screen bg-background ${isBrandedStudy ? "powers-hybrid" : ""} ${slug === "hapi-art" ? "hapi-hybrid" : ""}`}>
       {/* Header */}
-      {slug === "powers-gymnastics" ? <PowersHero /> : <>
+      {slug === "powers-gymnastics" ? <PowersHero /> : slug === "hapi-art" ? <HapiHero overview={study.overview}/> : <>
       <section className="px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <Link 
@@ -934,7 +936,7 @@ export default function CaseStudyDetail() {
       {/* Challenge & Solution */}
       {slug === "powers-gymnastics" ? <PowersContext challenge={study.challenge} solutions={study.solution} /> : <section className="px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <div className="grid md:grid-cols-2 gap-12">
+          {slug === "hapi-art" ? <HapiContext challenge={study.challenge} solutions={study.solution}/> : <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-6">The Challenge</h2>
               <p className="text-muted-foreground leading-relaxed">
@@ -954,6 +956,7 @@ export default function CaseStudyDetail() {
             </div>
           </div>
           
+          }
           {/* Before After - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
             <BeforeAfter />
@@ -962,6 +965,7 @@ export default function CaseStudyDetail() {
           {/* Profitable Advertising Card & Verified Metrics - Only for Hapi Art */}
           {slug === "hapi-art" && (
             <>
+              <HapiCreative />
               <ProfitableAdvertisingCard />
               <VerifiedMetrics />
             </>
@@ -1067,10 +1071,10 @@ export default function CaseStudyDetail() {
         <section className="px-6 py-16 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Tactics & Strategies</h2>
-            <div className={slug === "powers-gymnastics" ? "powers-story-tactics" : "space-y-8"}>
+            <div className={isBrandedStudy ? "powers-story-tactics" : "space-y-8"}>
               {(study as any).strategies.map((strategy: any, index: number) => (
-                <div key={index} className={slug === "powers-gymnastics" ? "powers-story-tactic-card" : "border-l-4 border-primary pl-6"}>
-                  {slug === "powers-gymnastics" && <span className="powers-story-tactic-number" aria-hidden="true">0{index + 1}</span>}
+                <div key={index} className={isBrandedStudy ? "powers-story-tactic-card" : "border-l-4 border-primary pl-6"}>
+                  {isBrandedStudy && <span className="powers-story-tactic-number" aria-hidden="true">0{index + 1}</span>}
                   <h3 className="text-xl font-bold text-foreground mb-4">{strategy.category}</h3>
                   <ul className="space-y-2">
                     {strategy.tactics.map((tactic: string, tacticIndex: number) => (
@@ -1176,6 +1180,7 @@ export default function CaseStudyDetail() {
       )}
 
       {slug === "powers-gymnastics" && <PowersClosing />}
+      {slug === "hapi-art" && <HapiClosing />}
 
       {/* Tags */}
       <section className="px-6 py-12 lg:px-8">

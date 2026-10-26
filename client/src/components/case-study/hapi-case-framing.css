@@ -1,0 +1,8 @@
+.hapi-hybrid .powers-story-heading h1{font-size:clamp(38px,4.1vw,58px)}
+.hapi-hybrid .powers-story-hero figure img{aspect-ratio:8/5;object-fit:contain;background:#6250ec}
+.hapi-hybrid .powers-story-intro>p{font-size:17px}
+.hapi-hybrid .powers-story-hero [aria-labelledby="stat-strip"]{margin-top:42px}
+.hapi-hybrid .powers-story-hero [aria-labelledby="stat-strip"] .text-2xl{color:var(--powers-purple)}
+.hapi-story-creative{margin-top:72px}.hapi-story-films{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.hapi-story-films figure{margin:0;border:1px solid #e0dbea;border-radius:20px;overflow:hidden;background:#fbf9ff}.hapi-story-films video{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#172b29}.hapi-story-films figcaption{padding:20px;margin:0}.hapi-story-films h3{font-size:18px;line-height:1.4;font-weight:700;color:#172b29;margin-bottom:10px}.hapi-story-films p{font-size:14px;line-height:1.8;color:#5c6970}
+.hapi-hybrid #bottom-cta h2{font-size:clamp(24px,2.5vw,32px)}
+@media(max-width:767px){.hapi-hybrid .powers-story-heading h1{font-size:38px}.hapi-story-films{grid-template-columns:1fr}.hapi-story-films video{max-height:390px}.hapi-story-creative{margin-top:48px}.hapi-hybrid .powers-story-hero [aria-labelledby="stat-strip"]{margin-top:32px}}
