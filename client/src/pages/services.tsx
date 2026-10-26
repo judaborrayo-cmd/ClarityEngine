@@ -1,3 +1,4 @@
+import RetainerPartnership from "@/components/RetainerPartnership";
 import CampaignWorkGallery from "@/components/CampaignWorkGallery";
 import { useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -52,6 +53,8 @@ export default function Services() {
     </section>
 
     <CampaignWorkGallery pages={examples} onPreview={(example,trigger) => { previewTrigger.current = trigger; setZoomed(false); setPreview(example); }} />
+
+    <RetainerPartnership />
 
     <section id="starting-points" className="services-offers-section">
       <div className="services-wrap">

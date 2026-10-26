@@ -256,10 +256,10 @@ export default function CaseStudies() {
                 Ambitious brands.<br /><span className="text-emerald-600">Making life better.</span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-600 max-w-3xl mx-auto">
-                Helping people move, learn, recharge, explore, and express themselves. These are some of the brands I’ve had the privilege of supporting—and the work we’ve done to help them reach more of the people they serve.
+                Helping people move, learn, recharge, explore, and express themselves. These are some of the brands we’ve had the privilege of supporting—and the work we’ve done to help them reach more of the people they serve.
               </p>
               <p className="mt-5 text-base leading-relaxed text-gray-600 max-w-2xl mx-auto">
-                I value every client and the ambition behind their business. Each partnership starts with understanding what makes that brand matter, then finding a practical way to help it grow.
+                We value every client and the ambition behind their business. Each partnership starts with understanding what makes that brand matter, then finding a practical way to help it grow.
               </p>
               <div className="mx-auto mt-7 h-1 w-20 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500" aria-hidden="true" />
             </div>
