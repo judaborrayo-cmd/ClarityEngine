@@ -44,3 +44,8 @@
 .experience-platforms{display:block;text-align:center;padding-top:21px}
 .experience-platforms p{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 12px;margin:7px 0 0!important;font-size:12px!important;line-height:1.7!important;color:#496477!important}
 .experience-platforms .experience-platform-heading{font-size:11px!important;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#536176!important;margin:0 0 10px!important}
+
+/* Keep seal geometry independent of wrapping proof labels. */
+.experience-seal{flex-shrink:0}.experience-badges{align-items:start}
+
+.experience-proof .experience-badges>li{margin-top:0}

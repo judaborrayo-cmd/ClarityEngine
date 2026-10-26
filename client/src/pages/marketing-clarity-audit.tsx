@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CreditCard, MessagesSquare, FileChartColumn, Signpost } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { auditRequest } from "@/lib/audit-api";
@@ -11,6 +12,7 @@ import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import AmbientFlame from "@/components/AmbientFlame";
 import { AssessmentPreview } from "@/components/assessment-preview";
 
+const stepIcons = [CreditCard, MessagesSquare, FileChartColumn, Signpost];
 const icons = [progressIcons.target, progressIcons.users, progressIcons.message, progressIcons.route, progressIcons.test, progressIcons.reporting];
 const descriptions = ["Is your offer clear enough to choose?", "Are you reaching the people most likely to benefit?", "Does your message communicate what matters to buyers?", "Can interested people take the next step with confidence?", "Does your traffic strategy match your goals?", "Can you trust the numbers you use to make decisions?"];
 
@@ -31,7 +33,7 @@ export default function MarketingClarityAudit() {
       <div className="gca-wrap"><div className="gca-hero-copy">
         <p className="gca-eyebrow">Get Clarity Assessment <span>by Clarity Engine</span></p>
         <h1>Know what to <em>focus on next.</em></h1>
-        <p className="gca-lead">Examine 6 essential areas to find the highest ROI low hanging fruit activities to focus on.</p>
+        <p className="gca-lead">Examine <strong className="text-emerald-700">six essential areas</strong> to find the highest ROI low hanging fruit activities to focus on.</p>
         <div className="gca-actions">{cta}<a href="#what-you-get" className="gca-secondary">See what you get</a></div>
         <p className="gca-small">$27 · One-time payment · A focused starting point</p>
         {error && <p role="alert" className="text-red-700 mt-4">{error}</p>}
@@ -68,8 +70,8 @@ export default function MarketingClarityAudit() {
       ["Share your context", "Enter your business details and answer 35 questions. Progress autosaves; keep your secure resume link."],
       ["Review your results", "Generate your personalized report after completing the assessment. Review findings, reasoning, and confidence."],
       ["Choose your next move", "Use your recommendations and Work Session to decide what to do, what to measure, and what to leave for later."],
-    ].map(([title,body],i)=><article key={title}><span>{i+1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
-    <section id="who-its-for" className="gca-wrap gca-section gca-split gca-fit"><div><p className="gca-eyebrow">A useful starting point</p><h2>For people making marketing decisions.</h2><div className="gca-audience-collage"><ServiceOptionVideo name="assessment-audience" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the assessment" /></div><p className="gca-intro">Built for founders, executives, business owners, marketing specialists, operations managers, and anyone responsible for marketing and operations.</p></div><div className="gca-prose"><h3>Answer from what you know.</h3><p>This is a structured diagnosis based on your inputs. It does not inspect your ad accounts, verify your tracking, or replace an expert review of your business.</p><h3>Get clear on your next move.</h3><p>Explore your six marketing areas and turn your answers into a personalized report and practical next steps.</p><div className="gca-actions">{cta}</div>{error && <p role="alert" className="text-red-700 mt-4">{error}</p>}</div></section>
+    ].map(([title,body],i)=>{ const Icon=stepIcons[i]; return <article key={title}><div className={`gca-step-seal gca-step-seal-${i+1}`} aria-hidden="true"><Icon size={30} strokeWidth={1.5}/><b>{i+1}</b></div><h3>{title}</h3><p>{body}</p></article>; })}</div></section>
+    <section id="who-its-for" className="gca-wrap gca-section gca-split gca-fit"><div><p className="gca-eyebrow">A useful starting point</p><h2>For people making marketing decisions.</h2><div className="gca-audience-collage"><ServiceOptionVideo mobileName="assessment-audience-mobile" name="assessment-audience" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the assessment" /></div><p className="gca-intro">Built for founders, executives, business owners, marketing specialists, operations managers, and anyone responsible for marketing and operations.</p><div className="gca-actions gca-fit-mobile-cta">{cta}</div></div><div className="gca-prose"><h3 className="gca-fit-focus-heading">Get clear on your next move.</h3><p>Our hands-on audits take a surgical look at your business and marketing. This $27 self-guided assessment starts with what you know: focused questions that help you connect the dots, uncover what needs attention, and decide where to go next. Your answers become a personalized report with practical recommendations to help you move forward.</p><div className="gca-actions gca-fit-desktop-cta">{cta}</div>{error && <p role="alert" className="text-red-700 mt-4">{error}</p>}</div></section>
     <section className="gca-wrap gca-section gca-split"><div><p className="gca-eyebrow">Before you begin</p><h2>A few practical answers.</h2><p className="gca-intro">Clarity Engine helps businesses connect marketing decisions with useful action. <Link className="gca-text-link" to="/case-studies">Explore our wider work.</Link></p></div><div className="gca-faq">{[
       ["What information do I need?", "The questions cover your offer, audience, message, conversion experience, traffic, and measurement. No ad-account connection is required."],
       ["What's the quiz length?", "The assessment is designed for approximately 12–18 minutes. Allow additional time if you need to check information or work through your results."],

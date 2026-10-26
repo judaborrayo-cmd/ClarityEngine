@@ -1,6 +1,7 @@
-import { useState, useMemo } from "react";
+import "./faq-budget.css";
+import { useState, useMemo, type ReactNode } from "react";
 
-type QA = { id: string; q: string; a: string; popular?: boolean };
+type QA = { id: string; q: string; a: ReactNode; popular?: boolean };
 type Category = { id: string; title: string; items: QA[] };
 
 const CATEGORIES: Category[] = [
@@ -10,8 +11,12 @@ const CATEGORIES: Category[] = [
     items: [
       {
         id: "budgets",
-        q: "What budgets do you work with?",
-        a: "Most clients invest $4k–$30k+/mo across Google, Meta, or YouTube. Below ~$4k, testing cycles slow down. Not there yet? We'll map a foundation until you're ready to scale.",
+        q: "What budget do you work with?",
+        a: <div className="faq-budget-answer"><p>We work with three kinds of clients. Your stage, ambition, and the support you need matter alongside your advertising budget.</p><ol className="faq-client-tiers">
+          <li><span className="faq-tier-label">Tier 1</span><h4>Enterprise & fast-growth teams</h4><p>Established businesses typically spending $60,000+ per month on advertising. You have a lot in motion, want to go beyond what’s worked so far, and need a fresh perspective on your strategy, creative, measurement, or next growth opportunity.</p></li>
+          <li><span className="faq-tier-label">Tier 2</span><h4>Ambitious brands making life better</h4><p>Fast-growing, strategic teams with a purpose: fitness centers, gyms, coaches and high-ticket coaching businesses, apps, software, and B2C or B2B brands. You want to turn your ambitions into a clearer plan, stronger campaigns, and a better customer experience.</p></li>
+          <li><span className="faq-tier-label">Tier 3</span><h4>Entrepreneurs ready for the next level</h4><p>Founders, marketers, and operators looking for the resources, know-how, coaching, and technical possibilities to make progress. We help you identify what to improve, choose useful tools, and turn your ideas into practical next steps.</p></li>
+        </ol><p className="faq-budget-closing">The goal is meaningful improvement—whether that means a clearer offer, more qualified leads, or a better conversion rate. We set targets around your channel, baseline, and business, then choose the right level of support.</p></div>,
       },
       {
         id: "brands",
@@ -180,7 +185,7 @@ export default function FaqHybrid({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
         {visibleCats.map((cat) => {
           const isExpanded = expandedCategories.has(cat.id);
           const visibleItems = isExpanded
@@ -201,8 +206,9 @@ export default function FaqHybrid({
                 {visibleItems.map((it) => {
                   const open = openMap[cat.id] === it.id;
                   return (
-                    <div key={it.id}>
+                    <div key={it.id} className={it.id === "budgets" ? `faq-budget-highlight${open ? " is-open" : ""}` : undefined}>
                       <button
+                        id={`faq-question-${it.id}`}
                         onClick={() => toggle(cat.id, it.id)}
                         aria-expanded={open}
                         aria-controls={`faq-${it.id}`}
@@ -224,10 +230,10 @@ export default function FaqHybrid({
                       <div
                         id={`faq-${it.id}`}
                         role="region"
-                        aria-labelledby={`faq-${it.id}`}
+                        aria-labelledby={`faq-question-${it.id}`}
                         data-testid={`answer-${it.id}`}
                         className={`text-slate-700 text-xs sm:text-sm px-2 overflow-y-auto transition-all duration-200 ${
-                          open ? "max-h-[200px] opacity-100 pb-2 pt-1" : "max-h-0 opacity-0"
+                          open ? `${it.id === "budgets" ? "max-h-none" : "max-h-[200px]"} opacity-100 pb-2 pt-1` : "max-h-0 opacity-0"
                         }`}
                       >
                         {it.a}

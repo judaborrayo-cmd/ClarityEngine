@@ -45,6 +45,14 @@ for(const [slug,title,description] of [
  const path='/case-study/'+slug;
  pageMetadataRegistry[path]=page(path,title+' Case Study',description,image,`Existing ${title} portfolio imagery, presented as a Clarity Engine case study`);
 }
+for(const [slug,title,description] of [
+ ['columbus-travel','Columbus Travel','Connecting travel creative, landing-page tests, and inquiry-to-sale measurement.'],
+ ['golden-galapagos-cruises','Golden Galápagos Cruises','Premium travel creative, paid media, and a clearer inquiry experience.'],
+ ['art-of-living-retreat-center','Art of Living Retreat Center','Audience-led messaging, campaign strategy, and retreat landing-page experiments.'],
+]) {
+ const path='/case-study/'+slug;
+ pageMetadataRegistry[path]={...page(path,title+' Case Study',description,slug,`${title} selected campaign imagery with Clarity Engine case-study branding`),noindex:false};
+}
 for(const [path,title,description] of [
  ['/checkout/strategy-sprint/thank-you','Strategy Sprint Next Steps','Your Strategy Sprint purchase next steps.'],
  ['/checkout/audit/thank-you','Deep-Dive Audit Next Steps','Your Deep-Dive Audit purchase next steps.'],
@@ -52,7 +60,6 @@ for(const [path,title,description] of [
 ]) {
  pageMetadataRegistry[path]={...page(path,title,description),noindex:true};
 }
-pageMetadataRegistry['/case-study/art-of-living-retreat-center']=page('/case-study/art-of-living-retreat-center','Art of Living Retreat Center Case Study','Panchakarma funnel improvements, collaborative page testing, creative development, and paid media optimization.','art-of-living-retreat-center','Art of Living Retreat Center landing-page concept presented with Clarity Engine case-study branding');
 export const publicPagePaths=Object.keys(pageMetadataRegistry).filter(p=>!pageMetadataRegistry[p].draft);
 export const pageHtmlFile=(path:string)=>path==='/'?'index.html':`pages/${path.slice(1)}.html`;
 export function getPageMetadata(pathname:string):PageMetadata {

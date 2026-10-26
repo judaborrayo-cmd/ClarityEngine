@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState, useEffect, forwardRef } from "react";
-import { MousePointer2, Video, Camera, Mic } from "lucide-react";
+import { MousePointer2, Video, Camera, Mic, Lightbulb, Palette, PanelsTopLeft, ChartNoAxesCombined, Users } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
@@ -40,19 +40,13 @@ const Arrow = ({ direction = "right", className = "" }) => (
   </svg>
 );
 
-const Pill = ({ label }) => (
-  <span className="inline-flex items-center rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs font-medium text-gray-700 backdrop-blur transition-colors hover:bg-white">
-    {label}
-  </span>
-);
-
 const StepCard = forwardRef(({
   index,
   active,
   onSelect,
   title,
   subtitle,
-  tools,
+  Illustration,
   gradientFrom,
   gradientTo,
   iconLabel,
@@ -81,11 +75,7 @@ const StepCard = forwardRef(({
           <p className="mt-1 text-sm text-gray-700/90 leading-relaxed">
             {subtitle}
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {tools.map((t) => (
-              <Pill key={t} label={t} />
-            ))}
-          </div>
+          <div className="mt-5 flex h-24 items-center justify-center rounded-xl border border-white/80 bg-white/60 text-violet-600" aria-hidden="true"><Illustration size={64} strokeWidth={1.3}/><span className="ml-4 h-px w-10 bg-emerald-300"/><span className="ml-3 grid h-10 w-10 place-items-center rounded-full bg-emerald-50 text-emerald-600"><Arrow/></span></div>
         </div>
       </div>
     </button>
@@ -94,41 +84,46 @@ const StepCard = forwardRef(({
 
 export default function HowWeBuildFasterSection() {
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollOffset, setScrollOffset] = useState(0);
+  const [tickerPaused, setTickerPaused] = useState(false);
   const tickerRef = useRef(null);
+  const dragRef = useRef(null);
+  const draggedRef = useRef(false);
+  const pauseRef = useRef(false);
   const sectionRef = useRef(null);
   const wasInViewRef = useRef(false);
   const activeRef = useRef(0);
   const scrollSyncFrameRef = useRef(null);
   const [pulseNextButton, setPulseNextButton] = useState(false);
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.clientX);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const diff = e.clientX - startX;
-    setScrollOffset(prev => prev + diff);
-    setStartX(e.clientX);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
+  useEffect(() => { pauseRef.current = tickerPaused || isDragging; }, [tickerPaused, isDragging]);
   useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
+    const el = tickerRef.current;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame, last = 0;
+    function tick(now) {
+      if (last && !pauseRef.current && !reduce.matches && !document.hidden && el) {
+        el.scrollLeft += Math.min(now-last,50) * .035;
+        const half = el.scrollWidth / 2;
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
+      }
+      last = now; frame = requestAnimationFrame(tick);
     }
-  }, [isDragging, startX]);
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  const startDrag = e => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    draggedRef.current = false;
+    dragRef.current = { x:e.clientX, left:e.currentTarget.scrollLeft, wasPaused:pauseRef.current };
+    pauseRef.current = true; setTickerPaused(true); setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const moveDrag = e => {
+    if (!dragRef.current) return;
+    const delta = e.clientX - dragRef.current.x;
+    if (Math.abs(delta)>4) draggedRef.current=true;
+    e.currentTarget.scrollLeft = dragRef.current.left-delta;
+  };
+  const endDrag = () => { const drag=dragRef.current; if(drag && !draggedRef.current) setTickerPaused(!drag.wasPaused); dragRef.current=null; setIsDragging(false); };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -161,7 +156,7 @@ export default function HowWeBuildFasterSection() {
         title: "Ideation & Strategy",
         subtitle:
           "Start with clarity. AI-assisted frameworks to define angles, priorities, and goals — fast.",
-        tools: ["ChatGPT", "Gemini", "Figma", "Replit"],
+        Illustration: Lightbulb,
         iconLabel: "Step 1",
         gradientFrom: "from-violet-50",
         gradientTo: "to-white",
@@ -169,8 +164,8 @@ export default function HowWeBuildFasterSection() {
       {
         title: "Visual Concepts",
         subtitle:
-          "Collaborate with developers and designers faster. Midjourney concepts refined in Figma/Photoshop and keep everyone on the same page.",
-        tools: ["Midjourney", "Photoshop", "Figma"],
+          "Make the direction visible. Explore creative concepts that help your team discuss, refine, and choose the strongest ideas.",
+        Illustration: Palette,
         iconLabel: "Step 2",
         gradientFrom: "from-pink-50",
         gradientTo: "to-white",
@@ -178,8 +173,8 @@ export default function HowWeBuildFasterSection() {
       {
         title: "Landing Page & CRO Concepts",
         subtitle:
-          "Prototype flows, copy, and look & feel in Replit to hand off clearly to your developers. Then iterate together.",
-        tools: ["Replit", "Figma", "YouTube"],
+          "Turn your message into a clear page experience. Develop flows, copy, and layouts your team can build, test, and improve.",
+        Illustration: PanelsTopLeft,
         iconLabel: "Step 3",
         gradientFrom: "from-indigo-50",
         gradientTo: "to-white",
@@ -188,7 +183,7 @@ export default function HowWeBuildFasterSection() {
         title: "Performance Analysis",
         subtitle:
           "Measure what matters. AI-assisted insights on ROI, cohorts, and experiments to guide the next move.",
-        tools: ["GA4", "Gemini", "ChatGPT"],
+        Illustration: ChartNoAxesCombined,
         iconLabel: "Step 4",
         gradientFrom: "from-emerald-50",
         gradientTo: "to-white",
@@ -197,7 +192,7 @@ export default function HowWeBuildFasterSection() {
         title: "Collaboration & Workflows",
         subtitle:
           "Keep momentum. Tight async loops and weekly cadence across the tools your team already uses.",
-        tools: ["Google Drive", "Slack", "Teams", "Dropbox"],
+        Illustration: Users,
         iconLabel: "Step 5",
         gradientFrom: "from-slate-50",
         gradientTo: "to-white",
@@ -282,8 +277,7 @@ export default function HowWeBuildFasterSection() {
           How We Get to Winning Results Faster
         </h2>
         <p className="mt-4 text-lg text-gray-700">
-          Strategy → visuals → prototypes → data → collaboration. We blend
-          people, process, and AI tools so your team ships faster.
+          Analysis → Strategy → Planning → Execution → Optimization
         </p>
         <p className="mt-1 text-sm text-gray-500 text-center" data-testid="trust-indicator">
           Used by founders and marketing teams managing $5k–$70k per month in ad spend.
@@ -339,7 +333,7 @@ export default function HowWeBuildFasterSection() {
               onSelect={() => setActive(i)}
               title={s.title}
               subtitle={s.subtitle}
-              tools={s.tools}
+              Illustration={s.Illustration}
               gradientFrom={s.gradientFrom}
               gradientTo={s.gradientTo}
               iconLabel={s.iconLabel}
@@ -366,17 +360,17 @@ export default function HowWeBuildFasterSection() {
         {/* Animated Tools Ticker */}
         <TooltipProvider delayDuration={200}>
           <div 
-            className="relative overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4 select-none"
-            onMouseDown={handleMouseDown}
-            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+            ref={tickerRef}
+            role="region" aria-label="Tools: tap to pause or resume; drag to explore" tabIndex={0}
+            onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}
+            onClickCapture={e=>{if(draggedRef.current){e.preventDefault();e.stopPropagation();}}}
+            onKeyDown={e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();setTickerPaused(v=>!v);}if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();setTickerPaused(true);e.currentTarget.scrollLeft+=e.key==="ArrowRight"?180:-180;}}}
+            className="relative overflow-x-auto bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4 select-none"
+            style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'pan-y', scrollbarWidth:'none' }}
           >
             <div 
-              ref={tickerRef}
-              className="tools-ticker-track whitespace-nowrap flex items-center gap-12"
-              style={{
-                animationPlayState: isDragging ? 'paused' : 'running',
-                transform: `translateX(${scrollOffset}px)`
-              }}
+              className="tools-ticker-track whitespace-nowrap flex w-max items-center gap-12"
+
             >
               {/* Tool descriptions mapping */}
               {(() => {
@@ -424,6 +418,7 @@ export default function HowWeBuildFasterSection() {
                           <div className="inline-flex items-center gap-2 shrink-0 cursor-pointer">
                             {tool.logo ? (
                               <img
+                                draggable={false}
                                 src={tool.logo}
                                 alt={tool.name}
                                 className="ce-readable-logo h-8 w-auto object-contain opacity-70 hover:opacity-100"
@@ -449,6 +444,7 @@ export default function HowWeBuildFasterSection() {
                           <div className="inline-flex items-center gap-2 shrink-0 cursor-pointer">
                             {tool.logo ? (
                               <img
+                                draggable={false}
                                 src={tool.logo}
                                 alt={tool.name}
                                 className="ce-readable-logo h-8 w-auto object-contain opacity-70 hover:opacity-100"
@@ -488,7 +484,7 @@ export default function HowWeBuildFasterSection() {
             animation: timeline-next-flash 1000ms ease-in-out 1;
           }
           .tools-ticker-track {
-            animation: tools-ticker-scroll 30s linear infinite;
+            animation: none;
           }
           @media (prefers-reduced-motion: reduce) {
             .tools-ticker-track { animation: none; }

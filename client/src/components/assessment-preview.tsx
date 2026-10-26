@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import ServiceOptionVideo from "./ServiceOptionVideo";
 import { ArrowUpRight, LockKeyhole } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AssessmentQuestion } from "@/components/assessment-question";
@@ -88,7 +89,7 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
         <div className="teaser-meta"><span>Try the assessment · Free sample</span><span role="status">{complete ? "Preview complete" : `Question ${position + 1} of 4`}</span></div>
         {complete ? <div className="teaser-complete">
           <LockKeyhole size={22} aria-hidden="true" />
-          <h3 ref={teaserTitleRef} tabIndex={-1}>Ready for the full picture?</h3>
+          <h3 ref={teaserTitleRef} tabIndex={-1}>Ready for the full picture?</h3><div className="preview-next-level"><ServiceOptionVideo name="assessment-next-level" label="one person helping another reach the next level" /></div>
           <p>Unlock all 35 questions and your personalized findings for $27.</p>
           <button type="button" onClick={back}>← Review sample answers</button>
         </div> : <>
@@ -119,7 +120,7 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
         </div>
         {complete ? <div className="preview-locked">
           <div className="preview-locked-background" aria-hidden="true"><p>Offer · Question 5 of 35</p><div className="preview-skeleton-title" />{[1, 2, 3, 4, 5].map(i => <div className="preview-skeleton-answer" key={i}><i /><span /></div>)}</div>
-          <div className="preview-unlock-card"><span className="preview-lock-icon"><LockKeyhole aria-hidden="true" /></span><p className="gca-eyebrow">You’ve completed the preview</p><h3 ref={titleRef} tabIndex={-1}>Ready for the full picture?</h3><p>Unlock all 35 questions and discover what your answers suggest about your business’s biggest marketing opportunities.</p><ul><li>Personalized findings across all six areas</li><li>Focused next moves and a 30-day plan</li><li>Your report and Clarity Work Session</li></ul>{purchaseButton}<p className="preview-price-note">$27 · One-time payment</p><p className="preview-restart-note">Your sample answers aren’t saved. After purchase, you’ll start the full assessment with your business details.</p><Button variant="ghost" onClick={back}>← Review my sample answers</Button></div>
+          <div className="preview-unlock-card"><span className="preview-lock-icon"><LockKeyhole aria-hidden="true" /></span><p className="gca-eyebrow">You’ve completed the preview</p><h3 ref={titleRef} tabIndex={-1}>Ready for the full picture?</h3><div className="preview-next-level"><ServiceOptionVideo name="assessment-next-level" label="one person helping another reach the next level" /></div><p>Unlock all 35 questions and discover what your answers suggest about your business’s biggest marketing opportunities.</p><ul><li>Personalized findings across all six areas</li><li>Focused next moves and a 30-day plan</li><li>Your report and Clarity Work Session</li></ul>{purchaseButton}<p className="preview-price-note">$27 · One-time payment</p><p className="preview-restart-note">Your sample answers aren’t saved. After purchase, you’ll start the full assessment with your business details.</p><Button variant="ghost" onClick={back}>← Review my sample answers</Button></div>
         </div> : <AssessmentQuestion question={question} selected={answers[question.id]} position={position} note={note} canContinue={Boolean(answers[question.id])} titleRef={titleRef} onAnswer={answer} onContinue={advance} onBack={back} />}
       </div>
       <aside className="preview-sidebar" aria-label="Assessment areas and example results"><DiagnosticClarityStack answers={answers} currentSection={1} /><div className="preview-examples"><p className="preview-sidebar-label">A glimpse of your results</p><p className="preview-sidebar-copy">Two examples. Different challenges.<br />A focused next move for each.</p>{examples.map(example => <ExampleCard key={example.name} example={example} />)}<p className="preview-examples-note">Read-only examples from fictional businesses. Your report is based on your full assessment.</p></div></aside>

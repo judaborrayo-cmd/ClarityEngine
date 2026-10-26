@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useId } from "react";
 
 /* =========================
    1) LOGO TICKER (SOCIAL PROOF)
@@ -53,7 +53,7 @@ export function LogoTicker({
 /* =========================
    2) CASE STUDY CAROUSEL (HERO)
    ========================= */
-type CS = {
+export type CS = {
   slug: string;
   title: string;
   impact: string;
@@ -71,34 +71,47 @@ export function CaseStudyCarousel({
   title?: string;
 }) {
   const scroller = useRef<HTMLDivElement | null>(null);
+  const headingId = useId();
+  const [position,setPosition] = useState({start:1,end:Math.min(2,items.length),atStart:true,atEnd:false});
+  const [dragging,setDragging] = useState(false);
+  const drag = useRef<{pointerId:number;x:number;left:number;moved:boolean}|null>(null);
+  const suppressClick = useRef(false);
+  const updatePosition = () => {
+    const el=scroller.current;
+    const first=el?.firstElementChild as HTMLElement|null;
+    if(!el || !first)return;
+    const step=first.getBoundingClientRect().width+16;
+    setPosition({start:Math.min(items.length,Math.round(el.scrollLeft/step)+1),end:Math.min(items.length,Math.ceil((el.scrollLeft+el.clientWidth)/step)),atStart:el.scrollLeft<2,atEnd:el.scrollLeft+el.clientWidth>=el.scrollWidth-2});
+  };
   const scrollBy = (dir: "prev" | "next") => {
     const el = scroller.current;
     if (!el) return;
-    const cardWidth = el.firstElementChild
-      ? (el.firstElementChild as HTMLElement).getBoundingClientRect().width
-      : 320;
-    el.scrollBy({ left: dir === "next" ? cardWidth : -cardWidth, behavior: "smooth" });
+    const cardWidth = el.firstElementChild ? (el.firstElementChild as HTMLElement).getBoundingClientRect().width+16 : 336;
+    el.scrollBy({ left: dir === "next" ? cardWidth : -cardWidth, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? "auto" : "smooth" });
   };
+  const endDrag = () => { drag.current=null;setDragging(false); };
 
   return (
-    <section aria-label={title} className="mt-6">
+    <section aria-labelledby={headingId} className="mt-6 case-study-rail">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-base font-semibold text-gray-800">{title}</h2>
-        <div className="hidden gap-2 sm:flex">
+        <div><h2 id={headingId} className="text-base font-semibold text-gray-800">{title}</h2><p className="mt-1 text-xs text-gray-500">{items.length} stories · Swipe, drag, or use the arrows</p></div>
+        <div className="flex gap-2">
           <button
             type="button"
-            aria-label="Previous case study"
+            aria-label={`Previous case study in ${title}`}
+            disabled={position.atStart}
             onClick={() => scrollBy("prev")}
-            className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+            className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 disabled:opacity-35 disabled:cursor-not-allowed"
             data-testid="button-carousel-prev"
           >
             ←
           </button>
           <button
             type="button"
-            aria-label="Next case study"
+            aria-label={`Next case study in ${title}`}
+            disabled={position.atEnd}
             onClick={() => scrollBy("next")}
-            className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
+            className="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 disabled:opacity-35 disabled:cursor-not-allowed"
             data-testid="button-carousel-next"
           >
             →
@@ -108,7 +121,19 @@ export function CaseStudyCarousel({
 
       <div
         ref={scroller}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
+        className={`flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 case-study-rail-track ${dragging ? "is-dragging" : ""}`}
+        tabIndex={0}
+        aria-label={`${title}: ${position.start}–${position.end} of ${items.length}`}
+        onScroll={updatePosition}
+        onKeyDown={event=>{if(event.target!==event.currentTarget)return;if(event.key==="ArrowRight"||event.key==="ArrowLeft"){event.preventDefault();scrollBy(event.key==="ArrowRight"?"next":"prev");}}}
+        onDragStart={event=>event.preventDefault()}
+        onPointerDown={event=>{if(event.pointerType!=="mouse" || event.button!==0)return;suppressClick.current=false;drag.current={pointerId:event.pointerId,x:event.clientX,left:event.currentTarget.scrollLeft,moved:false};}}
+        onPointerMove={event=>{const start=drag.current;if(!start || start.pointerId!==event.pointerId)return;const delta=event.clientX-start.x;if(!start.moved && Math.abs(delta)<6)return;if(!start.moved){start.moved=true;suppressClick.current=true;setDragging(true);event.currentTarget.setPointerCapture(event.pointerId);}event.preventDefault();event.currentTarget.scrollLeft=start.left-delta;}}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onLostPointerCapture={endDrag}
+        onPointerLeave={()=>{if(!drag.current?.moved)endDrag();}}
+        onClickCapture={event=>{if(suppressClick.current){event.preventDefault();event.stopPropagation();suppressClick.current=false;}}}
         role="group"
         aria-roledescription="Horizontal case study carousel"
         data-testid="carousel-case-studies"
@@ -168,6 +193,15 @@ export function CaseStudyCarousel({
       </div>
     </section>
   );
+}
+
+export function CaseStudyCollection({items}:{items:CS[]}) {
+  const firstRow=items.slice(0,Math.ceil(items.length/2));
+  const secondRow=items.slice(firstRow.length);
+  return <div className="case-study-collection">
+    <div className="hidden md:block"><CaseStudyCarousel items={firstRow} title="Featured case studies"/><div className="case-study-second-row"><CaseStudyCarousel items={secondRow} title="More client stories"/></div></div>
+    <div className="md:hidden"><CaseStudyCarousel items={items} title="Featured case studies"/><details className="case-study-directory"><summary>View all {items.length} case studies <span aria-hidden="true">↓</span></summary><div className="case-study-directory-grid">{items.map(item=><a href={item.slug} key={item.slug}><img src={item.image} alt="" loading="lazy"/><h3>{item.title}</h3><p>{item.impact}</p><span>Read case study →</span></a>)}</div></details></div>
+  </div>;
 }
 
 /* =========================

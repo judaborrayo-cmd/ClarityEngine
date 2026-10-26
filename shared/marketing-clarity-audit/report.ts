@@ -273,7 +273,7 @@ export function createFrozenReport(
       : !constraint
         ? "No clear constraint is indicated by your answers."
         : diagnosis.confidence.level === "high"
-          ? `Your strongest constraint appears to be ${constraint}.`
+          ? `We recommend focusing on your ${constraint.toLowerCase()}.`
           : diagnosis.confidence.level === "moderate"
             ? `${constraint} is the strongest constraint indicated by your answers.`
             : `Your answers point most strongly toward ${constraint}, but gaps in available evidence make the diagnosis less certain.`;

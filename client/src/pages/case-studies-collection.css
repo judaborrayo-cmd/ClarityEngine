@@ -1,0 +1,13 @@
+.case-study-second-row{margin-top:38px;padding-top:22px;border-top:1px solid #e5e9e8}
+.case-study-rail-track{cursor:grab;scrollbar-width:thin;scrollbar-color:#cdbbe7 #f5f5f5;scroll-padding-inline:1px;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+.case-study-rail-track.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none;scroll-behavior:auto}
+.case-study-rail-track img{-webkit-user-drag:none;user-select:none}
+.case-study-rail-track:focus-visible{outline:3px solid #9d79d0;outline-offset:5px;border-radius:18px}
+.case-study-rail button:focus-visible,.case-study-directory summary:focus-visible{outline:3px solid #9d79d0;outline-offset:3px}
+.case-study-directory{margin-top:22px;border:1px solid #e2dbea;border-radius:18px;background:linear-gradient(120deg,#fbf8ff,#f4faf7)}
+.case-study-directory summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:14px;font-weight:650;color:#694299;padding:18px 20px;list-style:none}
+.case-study-directory summary::-webkit-details-marker{display:none}.case-study-directory[open] summary span{transform:rotate(180deg)}
+.case-study-directory-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 14px 14px}.case-study-directory-grid>a{border:1px solid #e2e5e3;border-radius:13px;overflow:hidden;background:#fff;display:flex;flex-direction:column}.case-study-directory-grid img{width:100%;height:100px;object-fit:cover}.case-study-directory-grid h3{font-size:13px;font-weight:700;line-height:1.5;margin:12px 12px 6px;color:#172b29}.case-study-directory-grid p{font-size:11px;line-height:1.6;margin:0 12px 12px;color:#5a6a63}.case-study-directory-grid a>span{font-size:11px;font-weight:650;color:#078364;margin:auto 12px 12px}
+@media(min-width:768px){.case-study-rail-track>article{width:calc((100% - 32px)/2.5)}.case-study-rail-track>article img{height:285px}.case-study-rail-track>article .min-h-\[3\.25rem\]{min-height:3.25rem}}
+@media(max-width:767px){.case-study-rail-track>article{width:88%;max-width:430px}.case-study-rail-track>article img{height:220px}.case-study-rail h2{font-size:15px}.case-study-rail-track>article .text-sm{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.case-study-rail-track{scroll-behavior:auto}}

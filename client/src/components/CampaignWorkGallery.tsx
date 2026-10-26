@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { PanelsTopLeft, TextCursorInput, Megaphone, ArrowUpRight } from "lucide-react";
 import CampaignShowcase from "./CampaignShowcase";
@@ -20,7 +19,7 @@ export default function CampaignWorkGallery({pages,onPreview}:{pages:PageExample
       </div></TabsContent>
       <TabsContent value="ads"><CampaignShowcase/></TabsContent>
     </Tabs>
-    <div className="campaign-work-context"><div><p className="services-eyebrow">People + AI, directed by experience</p><h3>From a rough idea to something your team can act on.</h3><p>Conversion rate optimization connects the message, page experience, and next action. Our work spans years of human-led strategy and creative collaboration, alongside newer AI-assisted concepts. Audience research, copywriting principles, prompt engineering, and art direction guide the tools—so the work serves the campaign.</p><p>Move toward useful recommendations, mockups, and selected assets in weeks rather than months of open-ended planning. Timing and production scope depend on the project.</p></div><div className="campaign-work-paths"><Link to="/growth-clarity-audit"><strong>Investigate & develop direction <ArrowUpRight size={17}/></strong><span>A Deep Dive Growth Audit connects your current messaging and conversion experience to actionable findings and selected tangible concepts.</span></Link><Link to="/strategy-sprint"><strong>Work through it side by side <ArrowUpRight size={17}/></strong><span>A Strategy Sprint helps bridge the gap between what you have now and the campaign or customer experience you want to create.</span></Link><p>Create with your team, collaborate with Clarity Engine, or agree a dedicated production project.</p></div></div>
+
 
   </section>;
 }

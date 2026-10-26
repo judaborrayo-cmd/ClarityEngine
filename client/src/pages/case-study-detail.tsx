@@ -1,6 +1,7 @@
 import AolCaseStudy from "@/components/case-study/AolCaseStudy";
 import { HapiHero, HapiContext, HapiCreative, HapiClosing } from "@/components/case-study/HapiCaseFraming";
 import { PowersHero, PowersContext, PowersCreative, PowersClosing } from "@/components/case-study/PowersCaseFraming";
+import BrandCaseStory, { hasBrandCaseStory } from "@/components/case-study/BrandCaseStory";
 import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -661,8 +662,8 @@ function getYouTubeEmbedUrl(url: string): string {
 export default function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
   
-
   if (slug === "art-of-living-retreat-center") return <AolCaseStudy />;
+  if (slug && !caseStudyData[slug as keyof typeof caseStudyData] && hasBrandCaseStory(slug)) return <BrandCaseStory key={slug} slug={slug}/>;
 
   if (!slug || !caseStudyData[slug as keyof typeof caseStudyData]) {
     return (

@@ -1,6 +1,8 @@
+import "./scale-and-audit.css";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import ServiceOptionVideo from "./ServiceOptionVideo";
 import FounderHeroVideo from "./founder-hero-video";
 
 /** Compact month-by-month roadmap with color accents */
@@ -89,17 +91,16 @@ function TeardownGrid() {
   ];
 
   return (
-    <section className="mt-6">
-      <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4">
-        <div className="text-base font-semibold text-gray-900 mb-1">
-          Audit Teardown (What We Check)
-        </div>
+    <section className="mt-6 audit-checklist-section" aria-labelledby="audit-checklist-title">
+      <div className="audit-checklist-layout">
+        <div className="audit-checklist-visual"><img src="/images/audit-checklist-blueprint.webp" alt="A blueprint checklist becoming a finished clipboard with emerald check marks, showing audit findings taking shape" width="1024" height="1280" loading="lazy"/></div>
+        <div className="audit-checklist-content">
+        <p className="audit-checklist-eyebrow">The blueprint for a clearer next move</p><h3 id="audit-checklist-title" className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Audit Teardown <span className="text-purple-700">(What We Check)</span></h3>
         <div className="text-[13px] text-gray-600 mb-3">
           The core areas we evaluate to unlock fast wins and guide your 90-day plan.
         </div>
 
-        {/* 5×2 on xl, 3 cols on md, 2 on small */}
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {items.map(({ title, desc }, index) => {
             const isOpen = openIndex === index;
             return (
@@ -130,6 +131,7 @@ function TeardownGrid() {
             );
           })}
         </div>
+        </div>
       </div>
     </section>
   );
@@ -148,7 +150,7 @@ export default function ScaleAndAudit() {
         {/* Image (2 columns) */}
         <div className="lg:col-span-2">
           <div className="relative w-full overflow-hidden rounded-2xl shadow-sm border border-gray-200">
-            <div className="relative aspect-[16/9] w-full bg-white">
+            <div className="growth-roadmap-mobile"><ServiceOptionVideo name="growth-roadmap-mobile" label="growth chart, Pilates exercise, and presenter" /><p>Illustrative dashboard; 8x is an example, not a promised result.</p></div><div className="relative hidden lg:block aspect-[16/9] w-full bg-white">
               <FounderHeroVideo
                 variant="roadmap"
                 src="/videos/from-insight-to-scale-chart-motion.mp4"
@@ -164,11 +166,11 @@ export default function ScaleAndAudit() {
           {/* Primary CTA strip */}
           <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-4 sm:flex sm:items-center sm:justify-between">
             <div className="text-sm">
-              <div className="font-semibold text-gray-900">
-                See the Evidence. Set Your 90-Day Direction.
+              <div className="font-semibold text-base text-gray-900">
+                A lot can change in 90 days.
               </div>
-              <div className="text-gray-600 text-xs">
-                $3,725 USD one-time · strategic findings, a 90-day roadmap and personal walkthrough.
+              <div className="text-gray-600 text-sm leading-relaxed mt-1">
+                Find out what’s working, what needs improvement, where opportunities exist, and how competitors approach your market. Get strategic findings, a prioritized 90-day roadmap, and a personal walkthrough.
               </div>
             </div>
             <Link

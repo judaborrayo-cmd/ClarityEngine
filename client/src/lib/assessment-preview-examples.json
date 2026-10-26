@@ -1,7 +1,7 @@
 [
   {
     "name": "Traffic",
-    "summary": "Your strongest constraint appears to be Traffic.",
+    "summary": "We recommend focusing on your traffic.",
     "confidence": "high",
     "layers": [
       {
@@ -91,7 +91,7 @@
   },
   {
     "name": "Message",
-    "summary": "Your strongest constraint appears to be Message.",
+    "summary": "We recommend focusing on your message.",
     "confidence": "high",
     "layers": [
       {

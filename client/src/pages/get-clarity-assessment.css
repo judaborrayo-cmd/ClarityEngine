@@ -74,3 +74,11 @@
 
 .gca-audience-collage .archer-video{margin:0;overflow:visible}
 .gca-audience-collage .archer-video video{aspect-ratio:4/3;object-fit:contain;mix-blend-mode:normal}
+
+.gca-fit-mobile-cta{display:none}.preview-next-level{width:100%;max-width:300px;margin:12px auto}.preview-next-level .archer-video{margin:0}.preview-next-level video{aspect-ratio:16/9;mix-blend-mode:multiply}
+@media(max-width:767px){.gca-fit-mobile-cta{display:flex}.gca-fit-desktop-cta{display:none}.gca-queen-motion video{filter:brightness(1.4);mix-blend-mode:multiply;mask-image:radial-gradient(ellipse 30% 70% at center,#000 55%,transparent 100%)}.gca-queen-motion{mix-blend-mode:multiply}}
+
+/* Clarity Engine drafting-style process seals. */
+.gca-step-seal{--step-ink:#7241c6;--step-tint:#f3ecff;position:relative;display:grid;place-items:center;width:66px;height:66px;margin-bottom:19px;border:1px solid color-mix(in srgb,var(--step-ink) 38%,white);border-radius:19px;color:var(--step-ink);background:linear-gradient(140deg,#fff,var(--step-tint));box-shadow:0 5px 15px color-mix(in srgb,var(--step-ink) 9%,transparent)}.gca-step-seal:before{content:"";position:absolute;inset:6px;border:1px dashed color-mix(in srgb,var(--step-ink) 25%,white);border-radius:13px}.gca-step-seal b{position:absolute;right:-7px;bottom:-7px;display:grid;place-items:center;width:25px;height:25px;border:3px solid white;border-radius:50%;background:var(--step-ink);color:white;font-size:11px;font-weight:700}.gca-step-seal-2{--step-ink:#078064;--step-tint:#e8f8f0}.gca-step-seal-3{--step-ink:#495fc1;--step-tint:#edf0ff}.gca-step-seal-4{--step-ink:#a43e85;--step-tint:#fff0f8}
+
+.gca-fit .gca-fit-focus-heading{font-weight:750;color:#101d32;font-size:24px;line-height:1.3;margin-bottom:16px}

@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./archer-video.css";
 
-export default function ServiceOptionVideo({ name, label }: { name: string; label: string }) {
+export default function ServiceOptionVideo({ name, label, mobileName }: { name: string; label: string; mobileName?: string }) {
+  const [smallScreen, setSmallScreen] = useState(() => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches);
+  const activeName = smallScreen && mobileName ? mobileName : name;
+  useEffect(() => { const query=window.matchMedia("(max-width: 767px)"); const sync=()=>setSmallScreen(query.matches); query.addEventListener("change",sync); return ()=>query.removeEventListener("change",sync); }, []);
   const video = useRef<HTMLVideoElement>(null);
   const manuallyPaused = useRef(false);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
+    const element = video.current;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
     const sync = () => {
@@ -16,11 +20,11 @@ export default function ServiceOptionVideo({ name, label }: { name: string; labe
     if (video.current) observer.observe(video.current);
     preference.addEventListener("change", sync);
     document.addEventListener("visibilitychange", sync);
-    return () => { video.current?.pause(); observer.disconnect(); preference.removeEventListener("change", sync); document.removeEventListener("visibilitychange", sync); };
-  }, []);
+    return () => { element?.pause(); observer.disconnect(); preference.removeEventListener("change", sync); document.removeEventListener("visibilitychange", sync); };
+  }, [activeName]);
   return <div className="archer-video services-option-video">
-    <video ref={video} muted playsInline loop preload="none" poster={`/videos/${name}-poster.webp`} aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
-      <source src={`/videos/${name}.mp4`} type="video/mp4" />
+    <video key={activeName} ref={video} muted playsInline loop preload="none" poster={`/videos/${activeName}-poster.webp`} aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+      <source src={`/videos/${activeName}.mp4`} type="video/mp4" />
     </video>
     <button type="button" aria-label={playing ? `Pause ${label} animation` : `Play ${label} animation`} onClick={() => {
       if (playing) { manuallyPaused.current = true; video.current?.pause(); }

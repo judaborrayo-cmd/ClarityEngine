@@ -1,8 +1,10 @@
+import "./case-studies-collection.css";
+import caseStories from "@/components/case-study/case-stories.json";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Quote } from "lucide-react";
 import HowWeDeliverSection from "@/components/HowWeDeliverSection";
-import { CaseStudyCarousel, LogoTicker } from "@/components/CaseStudiesCRO";
+import { CaseStudyCollection, LogoTicker } from "@/components/CaseStudiesCRO";
 import { KPIChipsLinks } from "@/components/KPIChipsLinks";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
@@ -157,7 +159,7 @@ export default function CaseStudies() {
     {
       slug: "/case-study/powers-gymnastics",
       title: "Powers Gymnastics — Multi-location Growth",
-      impact: "2–3× more leads, 50% cheaper Google CPL, record trials & enrollments",
+      impact: "2–3× More Leads Across Locations",
       image: powersGymnasticsImage,
       imageAlt: "Powers Gymnastics multi-location growth",
       problem: "Fragmented accounts, seasonal focus, inconsistent CPL, lack of visibility from click → trial → enrollment.",
@@ -190,16 +192,14 @@ export default function CaseStudies() {
       problem: "Scaling personal brand beyond traditional speaking required digital transformation.",
       solution: "Comprehensive digital presence, multi-channel content distribution, and authentic audience engagement.",
     },
-    {
-      slug: "/case-study/art-of-living-retreat-center",
-      title: "Art of Living Retreat Center",
-      impact: "Panchakarma funnel improvements and collaborative testing",
-      image: "/images/services/art-of-living.webp",
-      imageAlt: "Art of Living Panchakarma landing-page concept",
-      problem: "Connect advertising, page messaging, and consultation booking into a clearer journey.",
-      solution: "Collaborative landing-page tests, embedded booking, creative development, and campaign optimization.",
-    },
   ];
+
+  const featuredOrder = ["/case-study/hapi-art", "/case-study/steel-fit-usa", "/case-study/lisa-nichols"];
+  const featuredCases = [...caseStudyItems].sort((a,b) => {
+    const ai=featuredOrder.indexOf(a.slug), bi=featuredOrder.indexOf(b.slug);
+    return (ai<0?99:ai)-(bi<0?99:bi);
+  });
+  const newerCases = caseStories.filter(story => story.slug !== "powers-gymnastics").map(story => ({slug:`/case-study/${story.slug}`, title:story.brand, impact:story.headline, image:story.hero, imageAlt:story.brand, problem:story.challenge, solution:story.decision}));
 
   const logoItems = [
     { src: mandaliLogo, alt: "Mandali" },
@@ -250,17 +250,22 @@ export default function CaseStudies() {
         {/* Hero Section with H1 */}
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl" data-testid="page-title">
-                Case Studies
+            <div className="text-center mb-12 max-w-4xl mx-auto">
+              <p className="text-xs font-bold tracking-[.14em] uppercase text-emerald-700 mb-5">Case studies · People behind the progress</p>
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl" data-testid="page-title">
+                Ambitious brands.<br /><span className="text-emerald-600">Making life better.</span>
               </h1>
-              <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-                Proven results and the strategic framework behind them. See how we've helped ambitious brands achieve measurable growth.
+              <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-600 max-w-3xl mx-auto">
+                Helping people move, learn, recharge, explore, and express themselves. These are some of the brands I’ve had the privilege of supporting—and the work we’ve done to help them reach more of the people they serve.
               </p>
+              <p className="mt-5 text-base leading-relaxed text-gray-600 max-w-2xl mx-auto">
+                I value every client and the ambition behind their business. Each partnership starts with understanding what makes that brand matter, then finding a practical way to help it grow.
+              </p>
+              <div className="mx-auto mt-7 h-1 w-20 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500" aria-hidden="true" />
             </div>
 
             {/* Case Study Carousel */}
-            <CaseStudyCarousel items={caseStudyItems} title="Featured Case Studies" />
+            <CaseStudyCollection items={[...featuredCases,...newerCases]} />
 
             {/* Logo Ticker */}
             <LogoTicker logos={logoItems} />
