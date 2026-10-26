@@ -658,6 +658,7 @@ function getYouTubeEmbedUrl(url: string): string {
 export default function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
   
+
   if (!slug || !caseStudyData[slug as keyof typeof caseStudyData]) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -702,6 +703,14 @@ export default function CaseStudyDetail() {
               {study.overview}
             </p>
             
+            {slug === "powers-gymnastics" && (
+              <aside className="mt-8 rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-violet-50 p-6">
+                <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Ambitious brands making life better</p>
+                <h2 className="mt-3 text-2xl font-bold">From first click to first class.</h2>
+                <p className="mt-3 text-muted-foreground">Helping families discover a place where children can build confidence, friendships, and a love of movement. The campaigns connected that experience with a practical next step for parents.</p>
+              </aside>
+            )}
+
             {/* Industry Icons - Only for Lamark Agency */}
             {slug === "lamark-agency" && (
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
@@ -877,8 +886,10 @@ export default function CaseStudyDetail() {
                 These e-commerce learnings now inform how Clarity Engine scales other shops—balancing creative velocity with precise attribution.
               </p>
               <MidPageCTA 
-                title="Curious what this could look like for your store?"
-                body="Book a Strategic Intro Call—get a quick teardown of your current setup and the fastest wins."
+                title="What could this look like for your business?"
+                body="Explore strategy, paid media, and creative support shaped around your next stage of growth."
+                href="/services"
+                buttonLabel="How We Help"
               />
             </>
           )}
@@ -1044,6 +1055,24 @@ export default function CaseStudyDetail() {
                 className="w-full h-auto"
                 data-testid="case-study-portfolio-image"
               />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {slug === "powers-gymnastics" && (
+        <section className="px-6 py-12 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">Selected campaign work</p>
+            <h2 className="mt-3 mb-6 text-2xl font-bold">Make the first class feel within reach.</h2>
+            <div className="mb-8 rounded-2xl border border-violet-100 bg-violet-50/50 p-6">
+              <h3 className="font-bold">A more recent view of trial conversion</h3>
+              <p className="mt-2 text-muted-foreground">The September 2026 client recap reported <strong className="text-foreground">74% trial conversion</strong>, compared with a <strong className="text-foreground">59% average over the previous three months</strong>.</p>
+              <p className="mt-3 text-sm text-muted-foreground">This is the client-reported trial conversion measure, rather than ad-click conversion. It covers a different period from the growth results above and reflects the wider team’s work.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <figure><img className="w-full rounded-2xl" src="/images/services/campaigns/scotts-school-0.webp" alt="Scottsdale Gymnastics back-to-school free-trial campaign" loading="lazy"/><figcaption className="mt-3 text-sm text-muted-foreground">Back-to-school creative connects the joy of gymnastics with a free trial.</figcaption></figure>
+              <figure><img className="w-full rounded-2xl" src="/images/services/gallery/powers-round-rock-1.webp" alt="Powers Round Rock gymnastics camp campaign" loading="lazy"/><figcaption className="mt-3 text-sm text-muted-foreground">Camp creative gives parents a glimpse of the experience.</figcaption></figure>
             </div>
           </div>
         </section>

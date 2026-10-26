@@ -81,11 +81,15 @@ export function AtAGlance() {
 }
 
 export function MidPageCTA({
+  href,
+  buttonLabel = "Book a Strategic Intro Call",
   title = "Curious what this could look like for you?",
   body = "Book a Strategic Intro Call — we'll review your current setup and outline the quickest wins.",
 }: {
   title?: string;
   body?: string;
+  href?: string;
+  buttonLabel?: string;
 } = {}) {
   return (
     <section
@@ -101,7 +105,7 @@ export function MidPageCTA({
           {body}
         </p>
         <div className="mt-4">
-          <CTAButton>Book a Strategic Intro Call</CTAButton>
+          <CTAButton href={href} ariaLabel={buttonLabel}>{buttonLabel}</CTAButton>
         </div>
       </div>
     </section>
