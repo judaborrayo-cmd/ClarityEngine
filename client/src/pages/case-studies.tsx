@@ -190,6 +190,15 @@ export default function CaseStudies() {
       problem: "Scaling personal brand beyond traditional speaking required digital transformation.",
       solution: "Comprehensive digital presence, multi-channel content distribution, and authentic audience engagement.",
     },
+    {
+      slug: "/case-study/art-of-living-retreat-center",
+      title: "Art of Living Retreat Center",
+      impact: "Panchakarma funnel improvements and collaborative testing",
+      image: "/images/services/art-of-living.webp",
+      imageAlt: "Art of Living Panchakarma landing-page concept",
+      problem: "Connect advertising, page messaging, and consultation booking into a clearer journey.",
+      solution: "Collaborative landing-page tests, embedded booking, creative development, and campaign optimization.",
+    },
   ];
 
   const logoItems = [

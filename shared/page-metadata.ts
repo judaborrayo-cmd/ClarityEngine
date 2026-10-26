@@ -52,6 +52,7 @@ for(const [path,title,description] of [
 ]) {
  pageMetadataRegistry[path]={...page(path,title,description),noindex:true};
 }
+pageMetadataRegistry['/case-study/art-of-living-retreat-center']=page('/case-study/art-of-living-retreat-center','Art of Living Retreat Center Case Study','Panchakarma funnel improvements, collaborative page testing, creative development, and paid media optimization.','art-of-living-retreat-center','Art of Living Retreat Center landing-page concept presented with Clarity Engine case-study branding');
 export const publicPagePaths=Object.keys(pageMetadataRegistry).filter(p=>!pageMetadataRegistry[p].draft);
 export const pageHtmlFile=(path:string)=>path==='/'?'index.html':`pages/${path.slice(1)}.html`;
 export function getPageMetadata(pathname:string):PageMetadata {
