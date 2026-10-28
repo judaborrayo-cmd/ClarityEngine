@@ -275,7 +275,7 @@ export default function Home() {
               </div>
               <HeroMotion />
             </div>
-            <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges animateOnScroll /></div>
+            <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges animateOnScroll showPlatforms={false} /></div>
           </div>
         </Section>
 
@@ -340,12 +340,6 @@ export default function Home() {
                 <LogoImage src={artOfLivingRetreatCenterLogo} alt="The Art of Living Retreat Center" />
               </div>
               
-              {/* Key metrics */}
-              <div className="flex flex-wrap items-center justify-center gap-8 pt-8 mt-4 border-t border-gray-200">
-                <div className="text-base font-semibold text-green-600" data-testid="metric-cpl">Serving B2B & B2C Clients</div>
-                <div className="text-base font-semibold text-green-600" data-testid="metric-calls">12+ Years Managing Paid Media Strategies</div>
-                <div className="text-base font-semibold text-green-600" data-testid="metric-revenue">Multi-million revenue driven through paid media</div>
-              </div>
             </motion.div>
           </Section>
         </div>
@@ -381,6 +375,15 @@ export default function Home() {
             <button type="button" className="home-partners-toggle" aria-expanded={showAllTestimonials} aria-controls="more-partner-reviews" onClick={() => setShowAllTestimonials(value => !value)}>
               {showAllTestimonials ? 'Show fewer testimonials' : 'Read 3 more testimonials'}
             </button>
+          </div>
+        </Section>
+
+        <Section id="hands-on-experience" className="home-experience-summary">
+          <div>
+            <p className="home-eyebrow">Strategy meets execution</p>
+            <h2>Experience that turns direction into action.</h2>
+            <p>12+ years helping B2B and B2C brands grow, with multi-million revenue driven through paid media.</p>
+            <p className="home-experience-tools">Hands-on across advertising, analytics, and websites—from Google and Meta Ads to Google Analytics, Shopify, and WordPress.</p>
           </div>
         </Section>
 

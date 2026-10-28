@@ -20,7 +20,7 @@ function FinishedIcon({ index }: { index: number }) {
   </svg>;
 }
 
-export default function ExperienceBadges({ animateOnScroll = false }: { animateOnScroll?: boolean }) {
+export default function ExperienceBadges({ animateOnScroll = false, showPlatforms = true }: { animateOnScroll?: boolean; showPlatforms?: boolean }) {
   const proofRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!animateOnScroll || !proofRef.current) return;
@@ -68,6 +68,6 @@ export default function ExperienceBadges({ animateOnScroll = false }: { animateO
       </div>
       <strong>{value}</strong><span>{label}</span><small>{detail}</small>
     </li>)}</ul>
-    <div className="experience-platforms"><p className="experience-platform-heading">Hands-on platform experience</p><p>Google Ads <i>·</i> YouTube Ads <i>·</i> Meta Ads <i>·</i> Google Analytics</p><p>LinkedIn Ads <i>·</i> Shopify <i>·</i> WordPress <i>·</i> Vibe coding</p></div>
+    {showPlatforms && <div className="experience-platforms"><p className="experience-platform-heading">Hands-on platform experience</p><p>Google Ads <i>·</i> YouTube Ads <i>·</i> Meta Ads <i>·</i> Google Analytics</p><p>LinkedIn Ads <i>·</i> Shopify <i>·</i> WordPress <i>·</i> Vibe coding</p></div>}
   </div>;
 }
