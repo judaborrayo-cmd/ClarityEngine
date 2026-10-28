@@ -92,7 +92,7 @@ const caseStudyData = {
     ],
     testimonial: {
       quote: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
-      author: "Mike Berkman, VP of Performance"
+      author: "Mike Berkman, VP of Performance · Lamark Media"
     },
     tags: ["PPC Management", "Multi-Industry", "$70K Monthly Budget", "Scalable Systems", "Diverse Verticals", "Consistent Growth"],
     featured: true,

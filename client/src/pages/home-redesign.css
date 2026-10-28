@@ -69,3 +69,22 @@
 
 /* One section-heading scale beneath the homepage hero. */
 .home-page h2{font-size:clamp(26px,2.65vw,34px);font-weight:700;line-height:1.2;letter-spacing:-.03em;text-wrap:balance}
+
+.home-hero-copy h1 span { white-space: normal; }
+.home-partners-toggle { display:block; margin:28px auto 0; padding:12px 22px; border:1px solid #d7c8e8; border-radius:12px; color:#694299; font-weight:650; background:#fff; min-height:48px; }
+.home-partners-toggle:hover { background:#f6f1fc; }
+.home-partners-toggle:focus-visible { outline:3px solid #946cc5; outline-offset:4px; }
+@media(max-width:600px) { .home-hero-visual { order:3; } .home-hero-description { order:4; } .home-booking-note { font-size:13px; line-height:1.6; } }
+
+/* Keep the longer positioning statement readable alongside the hero media. */
+.home-hero-copy h1 { font-size:clamp(40px,3.6vw,56px); text-wrap:balance; }
+@media(max-width:900px){.home-hero-copy h1{font-size:clamp(36px,6vw,52px)}}
+@media(max-width:600px){.home-hero-copy h1{font-size:clamp(30px,8.2vw,35px);line-height:1.12;letter-spacing:-.045em}}
+
+.home-experience-summary{padding-block:46px;background:#fff;border-top:1px solid #e6ede9}
+.home-experience-summary>div{max-width:780px;margin:auto;text-align:center}
+.home-experience-summary .home-eyebrow{margin-bottom:12px}
+.home-experience-summary h2{margin-bottom:18px}
+.home-experience-summary p:not(.home-eyebrow){font-size:17px;line-height:1.7;color:#586679}
+.home-experience-summary .home-experience-tools{font-size:14px!important;margin-top:14px;color:#697681!important}
+@media(max-width:600px){.home-experience-summary{padding-block:34px}.home-experience-summary p:not(.home-eyebrow){font-size:15px}}

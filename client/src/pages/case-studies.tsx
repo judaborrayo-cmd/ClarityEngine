@@ -77,8 +77,8 @@ const colleagueReviews = [
   },
   {
     id: 2,
-    name: "Lindsey Bast",
-    title: "Digital Strategist & Growth Marketer",
+    name: "Lindsay Bast",
+    title: "Fractional CMO",
     avatar: lindseyBassPhoto,
     review: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
     bgColor: "bg-gradient-to-br from-purple-400 to-purple-500",
@@ -108,7 +108,7 @@ const colleagueReviews = [
   {
     id: 5,
     name: "Mike Berkman",
-    title: "VP of Performance",
+    title: "VP of Performance · Lamark Media",
     avatar: mikeBerkmanPhoto,
     review: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
     bgColor: "bg-gradient-to-br from-pink-400 to-pink-500",
@@ -118,7 +118,7 @@ const colleagueReviews = [
   {
     id: 6,
     name: "Bill Bowman",
-    title: "Vice President of Marketing",
+    title: "Former Vice President of Marketing · Magaya Logistics",
     avatar: billBowmanPhoto,
     review: "Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way. While working with him, he continually suggested new and interesting ways to accomplish our team goals.",
     bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
@@ -250,18 +250,13 @@ export default function CaseStudies() {
         {/* Hero Section with H1 */}
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 max-w-4xl mx-auto">
-              <p className="text-xs font-bold tracking-[.14em] uppercase text-emerald-700 mb-5">Case studies · People behind the progress</p>
+            <div className="text-center mb-6 max-w-4xl mx-auto">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl" data-testid="page-title">
                 Ambitious brands.<br /><span className="text-emerald-600">Making life better.</span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-600 max-w-3xl mx-auto">
-                Helping people move, learn, recharge, explore, and express themselves. These are some of the brands we’ve had the privilege of supporting—and the work we’ve done to help them reach more of the people they serve.
+                Helping people move, learn, recharge, explore, and express themselves.
               </p>
-              <p className="mt-5 text-base leading-relaxed text-gray-600 max-w-2xl mx-auto">
-                We value every client and the ambition behind their business. Each partnership starts with understanding what makes that brand matter, then finding a practical way to help it grow.
-              </p>
-              <div className="mx-auto mt-7 h-1 w-20 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500" aria-hidden="true" />
             </div>
 
             {/* Case Study Carousel */}
