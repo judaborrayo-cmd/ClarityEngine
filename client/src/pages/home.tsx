@@ -265,7 +265,7 @@ export default function Home() {
               <div className="home-hero-copy">
                 <p className="home-eyebrow">Grow smarter. Go further.</p>
                 <h1 data-testid="hero-title">
-                  Helping ambitious brands make clear decisions.<br /><span>More focused growth.</span>
+                  Scaling Ambitious Brands with <span>People + AI</span><br />Growth Strategy
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
                   I help founders and teams get unstuck, decide what deserves attention next, and turn that into game-changing results.
