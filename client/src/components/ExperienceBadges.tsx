@@ -32,6 +32,9 @@ export default function ExperienceBadges({ animateOnScroll = false }: { animateO
       frame = 0;
       const progress = reduced.matches ? 0 : Math.max(0, Math.min(1, (window.scrollY - start) / 260));
       element.style.setProperty('--seal-progress', String(progress));
+      // One soft light pulse at the midpoint; reversible with scroll, no repeated flashing.
+      const glow = Math.sin(Math.PI * progress) ** 2;
+      element.style.setProperty('--seal-glow', String(glow));
     };
     const measure = () => {
       start = Math.max(0, element.getBoundingClientRect().top + window.scrollY - window.innerHeight * .82);
@@ -58,7 +61,7 @@ export default function ExperienceBadges({ animateOnScroll = false }: { animateO
     <ul className="experience-badges">{experience.map(({value,label,detail,Icon}, index) => <li key={value}>
       <div className={`experience-icon experience-icon-${index}`} aria-hidden="true">
         <div className="experience-seal"><Icon size={29} strokeWidth={1.3} /><span className="experience-cross experience-cross-a"/><span className="experience-cross experience-cross-b"/></div>
-        {animateOnScroll && <div className="experience-finished"><FinishedIcon index={index}/></div>}
+        {animateOnScroll && <><div className="experience-finished"><FinishedIcon index={index}/></div><div className="experience-morph-light" /></>}
       </div>
       <strong>{value}</strong><span>{label}</span><small>{detail}</small>
     </li>)}</ul>

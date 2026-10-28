@@ -268,7 +268,7 @@ export default function Home() {
                   Helping ambitious brands make clear decisions.<br /><span>More focused growth.</span>
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
-                  I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that into game-changing results.
+                  I help founders and teams get unstuck, decide what deserves attention next, and turn that into game-changing results.
                 </p>
                 <HeroCTAs />
                 <p className="home-booking-note">12+ years of growth marketing experience. People + AI to move the work forward.</p>

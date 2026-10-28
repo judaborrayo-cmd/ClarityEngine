@@ -63,3 +63,10 @@
 .experience-badges li:last-child .experience-finished{color:#8b6b2e;background:linear-gradient(145deg,#fffdf5,#f2e9d3);border-color:#d5bd84}
 @media(max-width:760px){.experience-finished{border-radius:19px}.experience-finished>svg{width:42px;height:42px}.experience-icon-0,.experience-icon-1,.experience-icon-3,.experience-icon-4{--seal-shift:0px}}
 @media(prefers-reduced-motion:reduce){.experience-scroll-morph .experience-icon{transform:none}.experience-scroll-morph .experience-seal{opacity:1}.experience-finished{display:none}}
+
+/* Clarity Engine light sweep: a single scroll-bound bloom during the morph. */
+.experience-scroll-morph{--seal-glow:0}
+.experience-morph-light{position:absolute;inset:-18px;pointer-events:none;border-radius:50%;opacity:var(--seal-glow);background:conic-gradient(from 30deg,#35c9ff70,#6454ff85,#bf35f58c,#f4a5ea65,#40d8bb75,#35c9ff70);filter:blur(12px);transform:rotate(calc(var(--seal-progress) * 130deg)) scale(calc(.75 + .35 * var(--seal-glow)));mix-blend-mode:multiply}
+.experience-morph-light:after{content:"";position:absolute;inset:17px;border-radius:35%;background:linear-gradient(115deg,transparent 15%,#ffffff00 30%,#fff 48%,#fff9 53%,transparent 72%);transform:translateX(calc(-25px + 50px * var(--seal-progress)));filter:blur(2px)}
+.experience-scroll-morph .experience-finished{box-shadow:0 7px 18px color-mix(in srgb,var(--seal-color) 18%,transparent),0 0 calc(26px * var(--seal-glow)) #a36fff80}
+@media(prefers-reduced-motion:reduce){.experience-morph-light{display:none}}
