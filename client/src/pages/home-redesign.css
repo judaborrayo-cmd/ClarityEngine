@@ -95,3 +95,5 @@
 @media(max-width:760px){.home-experience-summary{padding-block:36px}.home-experience-layout{grid-template-columns:1fr;gap:10px;max-width:560px}.home-experience-copy{display:contents}.home-experience-copy .home-eyebrow{order:1;text-align:center;margin-bottom:4px}.home-experience-copy h2{order:2;text-align:center;font-size:30px;margin-bottom:0}.home-experience-visual{order:3}.home-experience-copy>p:not(.home-eyebrow){order:4;text-align:center;font-size:15px;line-height:1.65;max-width:440px;margin:0 auto}.home-experience-principles{order:5;justify-content:center;margin-top:10px;font-size:11px;gap:10px 14px}}
 @media(max-width:600px){.home-partner-grid-featured{grid-template-columns:1fr}}
 .home-collaboration-art{mix-blend-mode:multiply}
+
+@media(max-width:767px){.home-booking-note{display:none}}

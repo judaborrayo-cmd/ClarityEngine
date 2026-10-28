@@ -97,7 +97,7 @@ function Router() {
 
   // Handle hash on page load (when navigating from other pages)
   useEffect(() => {
-    if (location.hash && location.pathname === '/') {
+    if (location.hash && ['/', '/services'].includes(location.pathname)) {
       const id = location.hash.substring(1);
       setTimeout(() => {
         const target = document.getElementById(id);
