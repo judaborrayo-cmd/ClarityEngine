@@ -1,3 +1,4 @@
+import LeadershipCollaboration from "@/components/LeadershipCollaboration";
 import ExperienceBadges from "@/components/ExperienceBadges";
 import { useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
@@ -362,28 +363,31 @@ export default function Home() {
                 Trusted by marketing professionals and industry leaders
               </p>
             </motion.div>
-            <div className="home-partner-grid">
-              {[testimonials[1], testimonials[4], testimonials[5]].map((testimonial) => (
+            <div className="home-partner-grid home-partner-grid-featured">
+              {[testimonials[4], testimonials[5]].map((testimonial) => (
                 <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />
               ))}
             </div>
             <div id="more-partner-reviews" hidden={!showAllTestimonials}>
               {showAllTestimonials && <div className="home-partner-grid mt-6">
-                {[testimonials[0], testimonials[2], testimonials[3]].map(testimonial => <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />)}
+                {[testimonials[1], testimonials[0], testimonials[2], testimonials[3]].map(testimonial => <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />)}
               </div>}
             </div>
             <button type="button" className="home-partners-toggle" aria-expanded={showAllTestimonials} aria-controls="more-partner-reviews" onClick={() => setShowAllTestimonials(value => !value)}>
-              {showAllTestimonials ? 'Show fewer testimonials' : 'Read 3 more testimonials'}
+              {showAllTestimonials ? 'Show fewer testimonials' : 'Read testimonials'}
             </button>
           </div>
         </Section>
 
         <Section id="hands-on-experience" className="home-experience-summary">
-          <div>
-            <p className="home-eyebrow">Strategy meets execution</p>
-            <h2>Experience that turns direction into action.</h2>
-            <p>12+ years helping B2B and B2C brands grow, with multi-million revenue driven through paid media.</p>
-            <p className="home-experience-tools">Hands-on across advertising, analytics, and websites—from Google and Meta Ads to Google Analytics, Shopify, and WordPress.</p>
+          <div className="home-experience-layout">
+            <div className="home-experience-copy">
+              <p className="home-eyebrow">People + AI. Shared ambition.</p>
+              <h2>Experienced leadership.<br /><span>Growth we build together.</span></h2>
+              <p>12+ years of digital marketing experience, amplified by AI. A hands-on partner committed to your next stage of growth.</p>
+              <div className="home-experience-principles" aria-label="How we work"><span>Clear direction</span><span>Real collaboration</span><span>Focused action</span></div>
+            </div>
+            <div className="home-experience-visual"><LeadershipCollaboration /></div>
           </div>
         </Section>
 

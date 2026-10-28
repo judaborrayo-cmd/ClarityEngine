@@ -52,7 +52,7 @@ function MenuContent({ category, onNavigate }: {
 <h2>Let’s put your next idea to work.</h2>
 <p>Strategy, campaigns, and creative support shaped around your business.</p>
 <FounderNavMotion />
-<Link to="/services" onClick={onNavigate}>Explore Services <ArrowUpRight size={16} aria-hidden="true"/></Link>
+<Link to="/services#starting-points" onClick={onNavigate}>Work Together <ArrowUpRight size={16} aria-hidden="true"/></Link>
 </aside>}
  </div></>;
 }
