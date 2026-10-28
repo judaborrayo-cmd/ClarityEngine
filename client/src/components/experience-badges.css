@@ -66,7 +66,7 @@
 
 /* Clarity Engine light sweep: a single scroll-bound bloom during the morph. */
 .experience-scroll-morph{--seal-glow:0}
-.experience-morph-light{position:absolute;inset:-18px;pointer-events:none;border-radius:50%;opacity:var(--seal-glow);background:conic-gradient(from 30deg,#35c9ff70,#6454ff85,#bf35f58c,#f4a5ea65,#40d8bb75,#35c9ff70);filter:blur(12px);transform:rotate(calc(var(--seal-progress) * 130deg)) scale(calc(.75 + .35 * var(--seal-glow)));mix-blend-mode:multiply}
+.experience-morph-light{position:absolute;inset:-9px;pointer-events:none;border-radius:50%;opacity:var(--seal-glow);background:conic-gradient(from 30deg,#35c9ff70,#6454ff85,#bf35f58c,#f4a5ea65,#40d8bb75,#35c9ff70);filter:blur(8px);transform:rotate(calc(var(--seal-progress) * 130deg)) scale(calc(.85 + .2 * var(--seal-glow)));mix-blend-mode:multiply}
 .experience-morph-light:after{content:"";position:absolute;inset:17px;border-radius:35%;background:linear-gradient(115deg,transparent 15%,#ffffff00 30%,#fff 48%,#fff9 53%,transparent 72%);transform:translateX(calc(-25px + 50px * var(--seal-progress)));filter:blur(2px)}
 .experience-scroll-morph .experience-finished{box-shadow:0 7px 18px color-mix(in srgb,var(--seal-color) 18%,transparent),0 0 calc(26px * var(--seal-glow)) #a36fff80}
 @media(prefers-reduced-motion:reduce){.experience-morph-light{display:none}}

@@ -33,7 +33,10 @@ export default function ExperienceBadges({ animateOnScroll = false }: { animateO
       const progress = reduced.matches ? 0 : Math.max(0, Math.min(1, (window.scrollY - start) / 260));
       element.style.setProperty('--seal-progress', String(progress));
       // One soft light pulse at the midpoint; reversible with scroll, no repeated flashing.
-      const glow = Math.sin(Math.PI * progress) ** 2;
+      const peak = .28;
+      const glow = progress < peak
+        ? .5 * Math.sin((progress / peak) * Math.PI / 2) ** 2
+        : .5 * ((1 - progress) / (1 - peak)) ** 2.4;
       element.style.setProperty('--seal-glow', String(glow));
     };
     const measure = () => {
