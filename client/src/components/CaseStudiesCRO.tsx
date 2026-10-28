@@ -196,12 +196,12 @@ export function CaseStudyCarousel({
 }
 
 export function CaseStudyCollection({items}:{items:CS[]}) {
-  const firstRow=items.slice(0,Math.ceil(items.length/2));
-  const secondRow=items.slice(firstRow.length);
-  return <div className="case-study-collection">
-    <div className="hidden md:block"><CaseStudyCarousel items={firstRow} title="Featured case studies"/><div className="case-study-second-row"><CaseStudyCarousel items={secondRow} title="More client stories"/></div></div>
-    <div className="md:hidden"><CaseStudyCarousel items={items} title="Featured case studies"/><details className="case-study-directory"><summary>View all {items.length} case studies <span aria-hidden="true">↓</span></summary><div className="case-study-directory-grid">{items.map(item=><a href={item.slug} key={item.slug}><img src={item.image} alt="" loading="lazy"/><h3>{item.title}</h3><p>{item.impact}</p><span>Read case study →</span></a>)}</div></details></div>
-  </div>;
+  return <section aria-label="All case studies" className="case-study-scan-grid">
+    {items.map(item => <a href={item.slug} key={item.slug} className="case-study-scan-card">
+      <img src={item.image} alt={item.imageAlt} loading="lazy" />
+      <div><h2>{item.title}</h2><p>{item.impact}</p><span>Read case study →</span></div>
+    </a>)}
+  </section>;
 }
 
 /* =========================

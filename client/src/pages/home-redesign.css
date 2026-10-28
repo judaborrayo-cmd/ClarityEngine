@@ -69,3 +69,9 @@
 
 /* One section-heading scale beneath the homepage hero. */
 .home-page h2{font-size:clamp(26px,2.65vw,34px);font-weight:700;line-height:1.2;letter-spacing:-.03em;text-wrap:balance}
+
+.home-hero-copy h1 span { white-space: normal; }
+.home-partners-toggle { display:block; margin:28px auto 0; padding:12px 22px; border:1px solid #d7c8e8; border-radius:12px; color:#694299; font-weight:650; background:#fff; min-height:48px; }
+.home-partners-toggle:hover { background:#f6f1fc; }
+.home-partners-toggle:focus-visible { outline:3px solid #946cc5; outline-offset:4px; }
+@media(max-width:600px) { .home-hero-visual { order:3; } .home-hero-description { order:4; } .home-booking-note { font-size:13px; line-height:1.6; } }

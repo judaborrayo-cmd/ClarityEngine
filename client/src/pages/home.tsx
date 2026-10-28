@@ -164,8 +164,8 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Lindsey Bast",
-    title: "Digital Strategist & Growth Marketer",
+    name: "Lindsay Bast",
+    title: "Fractional CMO",
     avatar: lindseyBassPhoto,
     review: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
     bgColor: "bg-gradient-to-br from-purple-400 to-purple-500",
@@ -192,7 +192,7 @@ const testimonials = [
   {
     id: 5,
     name: "Mike Berkman",
-    title: "VP of Performance",
+    title: "VP of Performance · Lamark Media",
     avatar: mikeBerkmanPhoto,
     review: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
     bgColor: "bg-gradient-to-br from-pink-400 to-pink-500",
@@ -201,7 +201,7 @@ const testimonials = [
   {
     id: 6,
     name: "Bill Bowman",
-    title: "Vice President of Marketing",
+    title: "Former Vice President of Marketing · Magaya Logistics",
     avatar: billBowmanPhoto,
     review: "Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way. While working with him, he continually suggested new and interesting ways to accomplish our team goals.",
     bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
@@ -236,6 +236,7 @@ const PartnerCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { t
 
 export default function Home() {
   const { hash } = useLocation();
+  const [showAllTestimonials, setShowAllTestimonials] = useState(false);
   const shouldReduceMotion = useReducedMotion() ?? false;
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -264,48 +265,19 @@ export default function Home() {
               <div className="home-hero-copy">
                 <p className="home-eyebrow">Grow smarter. Go further.</p>
                 <h1 data-testid="hero-title">
-                  Scaling Ambitions Brands with <span>People + AI</span> &amp; Growth Strategy
+                  Clear decisions.<br /><span>More focused growth.</span>
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
-                  Combine 12+ years of growth marketing experience with AI-powered strategy, campaign ideas, and conversion-focused landing pages—so you can find your next opportunity and move it forward.
+                  I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that direction into practical work.
                 </p>
                 <HeroCTAs />
-                <p className="home-booking-note">Choose the support that fits where you are.</p>
+                <p className="home-booking-note">12+ years of growth marketing experience. People + AI to move the work forward.</p>
               </div>
               <HeroMotion />
             </div>
             <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges /></div>
           </div>
         </Section>
-
-        {/* --- TESTIMONIALS AFTER HERO --- */}
-        <Section id="testimonials-hero" className="home-partners">
-          <TestimonialSmoke />
-          <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>
-                What Partners Say
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 font-normal">
-                Trusted by marketing professionals and industry leaders
-              </p>
-            </motion.div>
-            <div className="home-partner-grid">
-              {testimonials.map((testimonial) => (
-                <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />
-              ))}
-            </div>
-          </div>
-        </Section>
-
-        {/* --- PROBLEMS TICKER --- */}
-        <ProblemsTicker />
 
         {/* --- PROOF BAR --- */}
         <div className="bg-gray-50 py-16 lg:py-20">
@@ -377,6 +349,45 @@ export default function Home() {
             </motion.div>
           </Section>
         </div>
+
+        {/* --- TESTIMONIALS AFTER BRAND PROOF --- */}
+        <Section id="testimonials-hero" className="home-partners">
+          <TestimonialSmoke />
+          <div className="mx-auto max-w-6xl">
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+                What Partners Say
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 font-normal">
+                Trusted by marketing professionals and industry leaders
+              </p>
+            </motion.div>
+            <div className="home-partner-grid">
+              {[testimonials[1], testimonials[4], testimonials[5]].map((testimonial) => (
+                <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />
+              ))}
+            </div>
+            <div id="more-partner-reviews" hidden={!showAllTestimonials}>
+              {showAllTestimonials && <div className="home-partner-grid mt-6">
+                {[testimonials[0], testimonials[2], testimonials[3]].map(testimonial => <PartnerCard key={testimonial.id} testimonial={testimonial} shouldReduceMotion={shouldReduceMotion} />)}
+              </div>}
+            </div>
+            <button type="button" className="home-partners-toggle" aria-expanded={showAllTestimonials} aria-controls="more-partner-reviews" onClick={() => setShowAllTestimonials(value => !value)}>
+              {showAllTestimonials ? 'Show fewer testimonials' : 'Read 3 more testimonials'}
+            </button>
+          </div>
+        </Section>
+
+        {/* --- PROBLEMS TICKER --- */}
+        <ProblemsTicker />
+
+
 
         {/* --- START CARDS (CRO) --- */}
         <Section id="value-ladder" className="py-8 lg:py-12">

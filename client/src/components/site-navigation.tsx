@@ -31,7 +31,7 @@ function NavigationRow({ item, onNavigate }: {
 <Icon size={20} strokeWidth={1.7} aria-hidden="true"/>
 </span>
     <span className="ce-nav-copy">
-<span className="ce-nav-label">{item.label}{item.availability === 'coming-soon' && <span className="ce-nav-badge">Coming soon</span>}{item.availability === 'personalized-insights' && <span className="ce-nav-badge ce-nav-badge-insights"><span aria-hidden="true">✦</span> Personalized Insights</span>}</span>
+<span className="ce-nav-label">{item.label}{item.availability === 'coming-soon' && <span className="ce-nav-badge">Coming soon</span>}{item.availability === 'personalized-insights' && <span className="ce-nav-badge ce-nav-badge-insights"><span aria-hidden="true">✦</span> 20 minutes to clarity</span>}</span>
 <span className="ce-nav-description">{item.description}</span>
 </span>
   </Link>

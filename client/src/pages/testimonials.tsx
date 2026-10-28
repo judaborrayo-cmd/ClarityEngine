@@ -45,8 +45,8 @@ export default function Testimonials() {
     },
     {
       id: 2,
-      name: "Lindsey Bast",
-      title: "Digital Strategist & Growth Marketer",
+      name: "Lindsay Bast",
+      title: "Fractional CMO",
       avatar: lindseyBassPhoto,
       review: "I highly recommend Juda as a skilled and professional growth marketer. I've worked with him on multiple digital marketing strategies and media buying projects. Juda gives it his all for his clients.",
       bgColor: "bg-gradient-to-br from-purple-400 to-purple-500",
@@ -76,7 +76,7 @@ export default function Testimonials() {
     {
       id: 5,
       name: "Mike Berkman",
-      title: "VP of Performance",
+      title: "VP of Performance · Lamark Media",
       avatar: mikeBerkmanPhoto,
       review: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
       bgColor: "bg-gradient-to-br from-pink-400 to-pink-500",
@@ -86,7 +86,7 @@ export default function Testimonials() {
     {
       id: 6,
       name: "Bill Bowman",
-      title: "Vice President of Marketing",
+      title: "Former Vice President of Marketing · Magaya Logistics",
       avatar: billBowmanPhoto,
       review: "Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way. While working with him, he continually suggested new and interesting ways to accomplish our team goals.",
       bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",

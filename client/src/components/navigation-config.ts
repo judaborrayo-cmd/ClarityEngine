@@ -15,14 +15,14 @@ const websiteKit = item('website-kit', 'The Anti-AI Slop Website Kit', 'Build cl
 export const navigationGroups = {
     solutions: [
         { title: 'What do you need help with?', items: [
-                { ...assessmentItem, id: 'growth-block', label: "Find what's holding growth back", description: "Understand what's working and what deserves attention next." },
-                item('advertising', 'Improve advertising performance', 'Get a clearer strategy for your campaigns, creative, and spend.', '/services', 'chart'),
-                { ...websiteKit, id: 'better-website', label: 'Build a better website with AI', description: 'Create clearer, more distinctive pages without generic AI output.' },
+                { ...assessmentItem, id: 'growth-block', label: "Find what's holding you back", description: "Understand what's working and what deserves attention next." },
+                item('advertising', 'Get more out of advertising spend', 'Get a clearer strategy for your campaigns, creative, and spend.', '/services', 'chart'),
+                { ...websiteKit, id: 'better-website', label: 'Build websites faster with AI', description: 'Create clearer, more distinctive pages without generic AI output.' },
             ] },
         { title: 'Work with a strategist', items: [
                 item('sprint', strategySprintOffer.name, 'Work through priorities and practical next steps together.', '/strategy-sprint', 'plan'),
-                item('growth-plan', 'Create a focused growth plan', 'Work through priorities and next steps with an experienced strategist.', '/growth-clarity-audit', 'search', 'inquiry'),
-                item('retainer', 'Growth Retainer', 'Find out if a long-term retainer is right for your business.', '/ways-to-work-together#retainer', 'repeat', 'inquiry'),
+                item('growth-plan', 'Get personalized solutions', 'Create a 90-day roadmap with an experienced strategist.', '/growth-clarity-audit', 'search', 'inquiry'),
+                item('retainer', 'Apply to be a Clarity Engine client', 'Find out if a long-term retainer is right for your business.', '/ways-to-work-together#retainer', 'repeat', 'inquiry'),
             ] },
     ],
     tools: [
