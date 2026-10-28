@@ -49,3 +49,17 @@
 .experience-seal{flex-shrink:0}.experience-badges{align-items:start}
 
 .experience-proof .experience-badges>li{margin-top:0}
+
+/* Homepage-only, reversible blueprint → finished vector icon treatment.
+   Transform the artwork inside a stable footprint; text and page flow do not move. */
+.experience-icon{position:relative;flex-shrink:0;margin-bottom:15px}
+.experience-icon .experience-seal{margin-bottom:0}
+.experience-scroll-morph{--seal-progress:0}
+.experience-scroll-morph .experience-icon{transform:translateX(calc(var(--seal-shift, 0px) * var(--seal-progress))) scale(calc(1 - .24 * var(--seal-progress)));transform-origin:center}
+.experience-icon-0{--seal-shift:16px}.experience-icon-1{--seal-shift:8px}.experience-icon-3{--seal-shift:-8px}.experience-icon-4{--seal-shift:-16px}
+.experience-scroll-morph .experience-seal{opacity:calc(1 - var(--seal-progress))}
+.experience-finished{position:absolute;inset:0;display:grid;place-items:center;border-radius:23px;color:var(--seal-color);background:linear-gradient(145deg,#fff,var(--seal-light));border:1px solid color-mix(in srgb,var(--seal-color) 18%,transparent);box-shadow:0 7px 18px color-mix(in srgb,var(--seal-color) 12%,transparent);opacity:var(--seal-progress);transform:rotate(calc(-8deg * (1 - var(--seal-progress))))}
+.experience-finished>svg{width:48px;height:48px;filter:drop-shadow(0 2px 0 #ffffffb3)}
+.experience-badges li:last-child .experience-finished{color:#8b6b2e;background:linear-gradient(145deg,#fffdf5,#f2e9d3);border-color:#d5bd84}
+@media(max-width:760px){.experience-finished{border-radius:19px}.experience-finished>svg{width:42px;height:42px}.experience-icon-0,.experience-icon-1,.experience-icon-3,.experience-icon-4{--seal-shift:0px}}
+@media(prefers-reduced-motion:reduce){.experience-scroll-morph .experience-icon{transform:none}.experience-scroll-morph .experience-seal{opacity:1}.experience-finished{display:none}}

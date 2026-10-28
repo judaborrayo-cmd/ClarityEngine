@@ -275,7 +275,7 @@ export default function Home() {
               </div>
               <HeroMotion />
             </div>
-            <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges /></div>
+            <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges animateOnScroll /></div>
           </div>
         </Section>
 
