@@ -26,7 +26,9 @@ export default function ExitIntentModal() {
   }, []);
 
   useEffect(() => {
-    const eligibleAfter = Date.now() + 25_000;
+    // Touch/mobile visitors get more reading time; desktop timing stays unchanged.
+    const isMobile = window.matchMedia("(max-width: 767px), (hover: none) and (pointer: coarse)").matches;
+    const eligibleAfter = Date.now() + (isMobile ? 45_000 : 25_000);
     let shown = false;
     function showInvitation() {
       // Keep purchase and private assessment flows free of marketing interruptions.
@@ -47,7 +49,7 @@ export default function ExitIntentModal() {
       if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
       showInvitation();
     }
-    // Mounted above the routes: navigation does not restart the 25-second timer.
+    // Mounted above the routes: navigation does not restart the device-specific timer.
     // Retry if another dialog or hidden tab temporarily prevents the invitation.
     const timer = window.setInterval(() => {
       if (Date.now() >= eligibleAfter) showInvitation();
