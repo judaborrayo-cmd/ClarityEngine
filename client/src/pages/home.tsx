@@ -265,10 +265,10 @@ export default function Home() {
               <div className="home-hero-copy">
                 <p className="home-eyebrow">Grow smarter. Go further.</p>
                 <h1 data-testid="hero-title">
-                  Clear decisions.<br /><span>More focused growth.</span>
+                  Helping ambitious brands make clear decisions.<br /><span>More focused growth.</span>
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
-                  I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that direction into practical work.
+                  I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that into game-changing results.
                 </p>
                 <HeroCTAs />
                 <p className="home-booking-note">12+ years of growth marketing experience. People + AI to move the work forward.</p>

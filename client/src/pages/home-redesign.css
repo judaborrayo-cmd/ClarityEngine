@@ -75,3 +75,8 @@
 .home-partners-toggle:hover { background:#f6f1fc; }
 .home-partners-toggle:focus-visible { outline:3px solid #946cc5; outline-offset:4px; }
 @media(max-width:600px) { .home-hero-visual { order:3; } .home-hero-description { order:4; } .home-booking-note { font-size:13px; line-height:1.6; } }
+
+/* Keep the longer positioning statement readable alongside the hero media. */
+.home-hero-copy h1 { font-size:clamp(40px,3.6vw,56px); text-wrap:balance; }
+@media(max-width:900px){.home-hero-copy h1{font-size:clamp(36px,6vw,52px)}}
+@media(max-width:600px){.home-hero-copy h1{font-size:clamp(30px,8.2vw,35px);line-height:1.12;letter-spacing:-.045em}}
