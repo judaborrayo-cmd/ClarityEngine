@@ -191,7 +191,7 @@ export default function GrowthClarityAudit() {
           <ServiceOptionVideo name="audit-painter-action" label="artist painting the Colosseum then riding into action" />
         </div>
       </section>
-      <section className="dda-proof-strip"><div className="dda-wrap"><ExperienceBadges /></div></section>
+      <section className="dda-proof-strip"><div className="dda-wrap"><ExperienceBadges animateOnScroll /></div></section>
       <section className="dda-highlights" aria-labelledby="audit-highlights-title">
         <div className="dda-wrap">
           <h2 id="audit-highlights-title">A complete view. A focused <span className="dda-nowrap">90-day plan.</span></h2>
@@ -263,7 +263,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section id="who-its-for" className="dda-wrap dda-section dda-audience">
         <div><p className="dda-eyebrow">Expert-led clarity</p><h2>For people making marketing decisions.</h2>
-          <div className="dda-audience-art"><ServiceOptionVideo name="assessment-audience" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the audit" /></div>
+          <div className="dda-audience-art"><ServiceOptionVideo name="assessment-audience" mobileName="assessment-audience-mobile" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the audit" /></div>
           <p className="dda-audience-intro">Built for founders, executives, business owners, marketing specialists, operations managers, and anyone responsible for marketing and operations.</p>
         </div>
         <div className="dda-audience-copy"><h3>Receive a surgical audit.</h3><p>A structured, strategic analysis of your marketing channels, technology, messaging, and funnels. We directly inspect your relevant ad accounts, tracking, and customer journeys using authorized access, grounding recommendations in your real-world performance.</p>
