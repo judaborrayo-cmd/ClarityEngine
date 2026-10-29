@@ -264,7 +264,6 @@ export default function Home() {
           <div className="home-hero-shell">
             <div className="home-hero-grid">
               <div className="home-hero-copy">
-                <p className="home-eyebrow">Grow smarter. Go further.</p>
                 <h1 data-testid="hero-title">
                   Scaling Ambitious Brands with <span>People + AI</span><br />Growth Strategy
                 </h1>
