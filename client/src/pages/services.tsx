@@ -71,7 +71,8 @@ export default function Services() {
     </section>
     <section className="services-wrap services-ongoing" aria-labelledby="ongoing-heading">
       <div><h2 id="ongoing-heading">Ongoing growth support.<br /><em>Shaped around your business.</em></h2><p className="services-intro">Connect paid media, conversion, measurement, and growth strategy with continuing support. We’ll discuss your priorities and agree on the right scope together.</p></div>
-      <div className="services-ongoing-action"><p>Custom scope · Let’s discuss fit</p><Link to="/#book-intro" className="services-button">Discuss ongoing support </Link></div>
+      <div className="services-ongoing-action"><p>Discuss ongoing support.</p><Link to="/#book-intro" className="services-button">See if We're a Fit</Link></div>
+      <div className="services-retainer-animation"><ServiceOptionVideo name="retainer-growth-engine" label="ongoing strategy and execution" /></div>
     </section>
 
     <Dialog.Root open={preview !== null} onOpenChange={open => { if (!open) setPreview(null); }}>

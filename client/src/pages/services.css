@@ -55,3 +55,8 @@
 .services-next .services-option-video button{border-radius:16px}
 
 .services-final{scroll-margin-top:110px}
+
+/* Match the retainer animation to the service illustration cards. */
+.services-retainer-animation{grid-column:1/-1;width:100%;max-width:430px;justify-self:center;margin:12px auto 0;min-width:0}
+.services-retainer-animation .services-option-video{width:100%;aspect-ratio:16/9}
+.services-retainer-animation video{aspect-ratio:16/9;object-fit:contain}
