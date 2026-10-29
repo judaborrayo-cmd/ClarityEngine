@@ -1,12 +1,14 @@
 import "./scale-and-audit.css";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import ServiceOptionVideo from "./ServiceOptionVideo";
 import FounderHeroVideo from "./founder-hero-video";
 
 /** Compact month-by-month roadmap with color accents */
 function MonthRoadmap() {
+  const [openMonth, setOpenMonth] = useState<number | null>(null);
+  const roadmapId = useId();
   const rows = [
     {
       m: "Month 1 — Discover & Diagnose",
@@ -45,30 +47,45 @@ function MonthRoadmap() {
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-4">
-      <div className="text-base font-semibold text-gray-900 mb-1">How We Scale in 90 Days</div>
+      <h3 className="text-base font-semibold text-gray-900 mb-1">How We Scale in 90 Days</h3>
       <div className="text-[13px] text-gray-600 mb-3">
         A simple month-by-month plan we adapt to your brand.
       </div>
 
       <ul className="space-y-3">
-        {rows.map((r) => (
-          <li key={r.m} className={`rounded-xl border ${r.border} p-3`}>
-            <div className="flex items-start gap-2">
-              <span className={`mt-1 w-2.5 h-2.5 rounded-full ${r.dot}`} />
-              <div>
-                <div className="text-sm font-medium text-gray-900">{r.m}</div>
-                <ul className="mt-1 text-[12px] text-gray-700 grid grid-cols-1 gap-1">
+        {rows.map((r, index) => {
+          const isOpen = openMonth === index;
+          const triggerId = `${roadmapId}-month-${index}-trigger`;
+          const panelId = `${roadmapId}-month-${index}-panel`;
+          return (
+            <li key={r.m} className={`overflow-hidden rounded-xl border ${r.border} ${isOpen ? "bg-gray-50" : "bg-white"}`}>
+              <h4>
+                <button
+                  type="button"
+                  id={triggerId}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => setOpenMonth(isOpen ? null : index)}
+                  className="flex min-h-[76px] w-full items-center gap-3 p-4 text-left hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-purple-600"
+                >
+                  <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${r.dot}`} />
+                  <span className="flex-1 text-[15px] font-semibold leading-snug text-gray-900">{r.m}</span>
+                  <ChevronDown aria-hidden="true" className={`h-5 w-5 shrink-0 text-gray-500 transition-transform motion-reduce:transition-none ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+              </h4>
+              <div id={panelId} role="region" aria-labelledby={triggerId} hidden={!isOpen}>
+                <ul className="grid gap-2 px-4 pb-5 pl-[38px] text-[13px] leading-relaxed text-gray-700">
                   {r.pts.map((p) => (
-                    <li key={p} className="flex items-start gap-1">
-                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-gray-300" />
+                    <li key={p} className="flex items-start gap-2">
+                      <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gray-300" />
                       <span>{p}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
