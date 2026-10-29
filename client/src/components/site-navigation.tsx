@@ -48,7 +48,7 @@ function MenuContent({ category, onNavigate }: {
 <ul>{group.items.map(item => <NavigationRow key={item.id} item={item} onNavigate={onNavigate}/>)}</ul>
 </section>)}
    {category === 'solutions' && <aside className="ce-nav-feature">
-<p className="ce-nav-eyebrow">A useful next move</p>
+
 <h2>Let’s put your next idea to work.</h2>
 <p>Strategy, campaigns, and creative support shaped around your business.</p>
 <FounderNavMotion />

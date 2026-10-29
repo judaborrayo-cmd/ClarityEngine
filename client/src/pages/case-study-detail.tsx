@@ -1034,7 +1034,7 @@ export default function CaseStudyDetail() {
 
       }
 
-      {slug === "powers-gymnastics" && <section className="px-6 py-12 lg:px-8"><div className="mx-auto max-w-4xl"><p className="powers-story-eyebrow">The growth system, in context</p><img src={powersGymnasticsHeroImage} alt="Powers Gymnastics multi-location campaign overview and growth results" className="w-full h-auto rounded-2xl" loading="lazy"/></div></section>}
+      {slug === "powers-gymnastics" && <section className="px-6 py-12 lg:px-8"><div className="mx-auto max-w-4xl"><img src={powersGymnasticsHeroImage} alt="Powers Gymnastics multi-location campaign overview and growth results" className="w-full h-auto rounded-2xl" loading="lazy"/></div></section>}
 
       {/* Detailed Results - Only for Mandali */}
       {(study as any).detailedResults && (
@@ -1058,7 +1058,7 @@ export default function CaseStudyDetail() {
         <section className="px-6 py-12 lg:px-8 bg-muted/30">
           <div className="mx-auto max-w-5xl">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
-              {slug === "core-40" && <div className="p-6 sm:p-8"><p className="powers-story-eyebrow">The work, in context</p><h2>Something you can see.</h2><p className="text-muted-foreground">The existing Core40 and Ascend portfolio presentation connects the creative direction with the wider growth-marketing approach.</p></div>}
+              {slug === "core-40" && <div className="p-6 sm:p-8"><h2>Something you can see.</h2><p className="text-muted-foreground">The existing Core40 and Ascend portfolio presentation connects the creative direction with the wider growth-marketing approach.</p></div>}
               <img
                 src={(study as any).portfolioImage}
                 alt={slug === "powers-gymnastics" ? "Powers Gymnastics Creative - Professional Photography & Ad Formats" : "Core40 and Ascend Portfolio - Growth Marketing, Omnichannel, Creative Direction"}

@@ -12,7 +12,7 @@ export default function CheckoutAudit() {
            Back to the Audit
         </Link>
         <header className="dda-checkout-header">
-          <p className="dda-eyebrow">Review your engagement</p>
+
           <h1>{offer.name}</h1>
           <p className="dda-lead">
             Expert-led investigation of your business and marketing evidence,
@@ -40,7 +40,7 @@ export default function CheckoutAudit() {
             </p>
           </section>
           <aside className="dda-order" aria-label="Audit order summary">
-            <p className="dda-eyebrow">Deep Dive Growth Audit</p>
+
             <p className="dda-price">
               {offer.priceLabel}
               <span>USD · one-time</span>

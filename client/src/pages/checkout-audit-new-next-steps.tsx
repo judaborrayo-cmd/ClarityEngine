@@ -5,7 +5,7 @@ export default function CheckoutAuditNewNextSteps() {
   return (
     <main className="dda-page">
       <div className="dda-wrap dda-next">
-        <p className="dda-eyebrow">{offer.name} · next steps</p>
+
         <h1>
           Start with context.
           <br />

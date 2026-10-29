@@ -296,7 +296,7 @@ export default function Home() {
                 Partnering with ambitious companies across industries
               </p>
             </motion.div>
-            
+
             {/* Client logo rows */}
             <motion.div 
               initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
@@ -313,7 +313,7 @@ export default function Home() {
                 <LogoImage src={microsoftLogo} alt="Microsoft" />
                 <LogoImage src={denaGamesLogo} alt="Dena Games" />
               </div>
-              
+
               {/* Second row */}
               <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-12">
                 <LogoImage src={estrellaGymnasticsLogo} alt="Estrella Gymnastics" />
@@ -321,7 +321,7 @@ export default function Home() {
                 <LogoImage src={tigarGymnasticsLogo} alt="Tigar Gymnastics" />
                 <LogoImage src={houstonGymnasticsLogo} alt="Houston Gymnastics" />
               </div>
-              
+
               {/* Third row */}
               <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-12">
                 <LogoImage src={sgtMenuLogo} alt="SGT Menu" />
@@ -339,7 +339,7 @@ export default function Home() {
                 <LogoImage src={goldenExperiencesTravelLogo} alt="Golden Experiences and Travel" />
                 <LogoImage src={artOfLivingRetreatCenterLogo} alt="The Art of Living Retreat Center" />
               </div>
-              
+
             </motion.div>
           </Section>
         </div>
@@ -381,7 +381,7 @@ export default function Home() {
         <Section id="hands-on-experience" className="home-experience-summary">
           <div className="home-experience-layout">
             <div className="home-experience-copy">
-              <p className="home-eyebrow">People + AI. Shared ambition.</p>
+
               <h2>Experienced leadership.<br /><span>Growth we build together.</span></h2>
               <p>12+ years of digital marketing experience, amplified by AI. A hands-on partner committed to your next stage of growth.</p>
               <div className="home-experience-principles" aria-label="How we work"><span>Clear direction</span><span>Real collaboration</span><span>Focused action</span></div>

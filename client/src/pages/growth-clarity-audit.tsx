@@ -153,13 +153,13 @@ export default function GrowthClarityAudit() {
     <main className="dda-page">
       <section className="dda-wrap dda-hero">
         <div>
-          <p className="dda-eyebrow">Deep Dive Growth Audit</p>
+
           <h1>
             See the whole picture.
             <br />
             <em>Know your next move.</em>
           </h1>
-          <p className="dda-hero-proof">12+ years of experience · $5M+ in paid media managed</p>
+
           <p className="dda-lead">
             For established or ambitious businesses ready to move forward.
           </p>
@@ -200,7 +200,7 @@ export default function GrowthClarityAudit() {
         <div className="dda-wrap dda-alignment">
           <div className="dda-orchestra"><ServiceOptionVideo name="audit-team-alignment-nods" label="lightly bearded presenter explaining a shared plan to marketing, sales, and strategy teams" /></div>
           <div>
-            <p className="dda-eyebrow">Working in harmony</p>
+
             <h2>Align your <em>marketing, strategy, and sales.</em></h2>
             <p className="dda-alignment-copy">Your ads, website, tracking, and sales follow-up should support the same direction. The Deep Dive Growth Audit examines how they work together, then turns the findings into coordinated priorities and a practical 90-day roadmap.</p>
           </div>
@@ -211,7 +211,7 @@ export default function GrowthClarityAudit() {
           <ServiceOptionVideo name="audit-mountain-team" label="team mountain expedition" />
         </div>
         <div className="dda-wrap dda-section dda-map-content">
-        <p className="dda-eyebrow">What we investigate</p>
+
         <h2>
           Real business context.
           <br />
@@ -243,7 +243,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section className="dda-band">
         <div className="dda-wrap dda-section">
-          <p className="dda-eyebrow">Our methodology</p>
+
           <h2>
             Investigate. Identify. <em>Strategize.</em>
           </h2>
@@ -251,7 +251,7 @@ export default function GrowthClarityAudit() {
             {stages.map(({ icon: Icon, title, copy }, i) => (
               <article key={title}>
                 <Icon size={27} aria-hidden="true" />
-                <p className="dda-eyebrow">Stage 0{i + 1}</p>
+
                 <h3>{title}</h3>
                 <p>{copy}</p>
               </article>
@@ -260,7 +260,7 @@ export default function GrowthClarityAudit() {
         </div>
       </section>
       <section id="who-its-for" className="dda-wrap dda-section dda-audience">
-        <div><p className="dda-eyebrow">Expert-led clarity</p><h2>For people making marketing decisions.</h2>
+        <div><h2>For people making marketing decisions.</h2>
           <div className="dda-audience-art"><ServiceOptionVideo name="assessment-audience" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the audit" /></div>
           <p className="dda-audience-intro">Built for founders, executives, business owners, marketing specialists, operations managers, and anyone responsible for marketing and operations.</p>
         </div>
@@ -269,7 +269,7 @@ export default function GrowthClarityAudit() {
         </div>
       </section>
       <section className="dda-wrap dda-section" id="development">
-        <p className="dda-eyebrow">Strategic thinking, made tangible</p>
+
         <h2>More than a list of ideas.<br /><em>Something you can work with.</em></h2>
         <p className="dda-section-intro">Every Audit includes substantive strategic development. We choose what to develop around the evidence, your circumstances and the agreed scope—not around a fixed creative package.</p>
         <div className="dda-three dda-development">
@@ -283,7 +283,7 @@ export default function GrowthClarityAudit() {
         <p className="dda-note">A concept, functional variation and production implementation are different levels of work. A full website build, unlimited creative assets and live campaign launches are not standard Audit inclusions.</p>
       </section>
       <section className="dda-wrap dda-section" id="included">
-        <p className="dda-eyebrow">What you receive</p>
+
         <h2>
           Findings you can understand.
           <br />
@@ -308,7 +308,7 @@ export default function GrowthClarityAudit() {
       </section>
       <div className="dda-wrap dda-inline-purchase"><StartLink /></div>
       <section id="audit-partners" className="dda-wrap dda-section audit-partner-proof" aria-labelledby="audit-partner-proof-title">
-        <p className="dda-eyebrow">What partners say</p>
+
         <h2 id="audit-partner-proof-title">Experience people <em>can speak to.</em></h2>
         <div className="audit-partner-grid">
           <figure><blockquote>“Juda is an exceptional marketing talent. He is able to manage complex advertising campaigns in a calm and focused way.”</blockquote><figcaption><img src={billBowmanPhoto} alt="" width="44" height="44" loading="lazy"/><div><strong>Bill Bowman</strong><span>Former Vice President of Marketing · Magaya Logistics</span></div></figcaption></figure>
@@ -319,7 +319,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section className="dda-wrap dda-section dda-fit">
         <div>
-          <p className="dda-eyebrow">Who it's for</p>
+
           <h2>
             You have a business to grow.
             <br />
@@ -355,7 +355,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section className="dda-band">
         <div className="dda-wrap dda-section">
-          <p className="dda-eyebrow">How the engagement works</p>
+
           <h2>
             From your investment <em>to an actionable plan.</em>
           </h2>
@@ -382,7 +382,7 @@ export default function GrowthClarityAudit() {
         </div>
       </section>
       <section id="your-audit-plan" className="dda-wrap dda-section">
-        <p className="dda-eyebrow">What you leave with</p><h2>A detailed audit.<br /><em>A plan your team can use.</em></h2>
+        <h2>A detailed audit.<br /><em>A plan your team can use.</em></h2>
         <p className="dda-section-intro">Your findings connect the people you serve, the channels you use, and the next actions worth taking. The detail and selected work products follow your business, the evidence, and the agreed scope.</p>
         <div className="dda-audit-outputs">{[
           ["Competitive analysis & customer insight", "A detailed review of your competitive landscape, positioning, customer personas, and the people you serve—so your strategy reflects how buyers actually choose."],
@@ -394,7 +394,7 @@ export default function GrowthClarityAudit() {
         ].map(([title,copy])=><article key={title}><h3>{title}</h3><p>{copy}</p></article>)}</div><div className="dda-actions"><StartLink /></div>
       </section>
       <section className="dda-wrap dda-section">
-        <p className="dda-eyebrow">Experience behind the investigation</p>
+
         <h2>
           The experience came first.
           <br />
@@ -433,7 +433,7 @@ export default function GrowthClarityAudit() {
       </section>
       <section className="dda-band">
         <div className="dda-wrap dda-section">
-          <p className="dda-eyebrow">Choose the right kind of clarity</p>
+
           <h2>
             Different questions. <em>Different support.</em>
           </h2>
@@ -466,7 +466,7 @@ export default function GrowthClarityAudit() {
         </div>
       </section>
       <section className="dda-wrap dda-section">
-        <p className="dda-eyebrow">Questions, answered</p>
+
         <h2>
           Before your <em>next move.</em>
         </h2>
@@ -482,7 +482,7 @@ export default function GrowthClarityAudit() {
       <section className="dda-wrap dda-section" id="pricing">
         <div className="dda-pricing">
           <div>
-            <p className="dda-eyebrow">Deep Dive Growth Audit</p>
+
             <h2>
               A clearer picture.
               <br />

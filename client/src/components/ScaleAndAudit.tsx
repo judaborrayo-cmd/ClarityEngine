@@ -95,7 +95,7 @@ function TeardownGrid() {
       <div className="audit-checklist-layout">
         <div className="audit-checklist-visual"><img src="/images/audit-checklist-blueprint.webp" alt="A blueprint checklist becoming a finished clipboard with emerald check marks, showing audit findings taking shape" width="1024" height="1280" loading="lazy"/></div>
         <div className="audit-checklist-content">
-        <p className="audit-checklist-eyebrow">The blueprint for a clearer next move</p><h3 id="audit-checklist-title" className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Audit Teardown <span className="text-purple-700">(What We Check)</span></h3>
+        <h3 id="audit-checklist-title" className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Audit Teardown <span className="text-purple-700">(What We Check)</span></h3>
         <div className="text-[13px] text-gray-600 mb-3">
           The core areas we evaluate to unlock fast wins and guide your 90-day plan.
         </div>

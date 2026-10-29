@@ -33,7 +33,7 @@ export default function Services() {
   const previewTrigger = useRef<HTMLButtonElement | null>(null);
   return <main className="services-page">
     <section className="services-hero services-wrap">
-      <div className="services-hero-copy"><p className="services-eyebrow">Strategy, creative & growth</p>
+      <div className="services-hero-copy">
       <h1>Growth Marketing Services to <em>Build &amp; Scale Faster</em></h1>
       <p className="services-lead">Whether you’re working with a team, using AI, or building on your own, reach your goals faster with 12+ years of growth marketing experience, over $5 million in paid media managed, and the latest AI tools.</p>
       <div className="services-actions"><a href="#services" className="services-button">How we help you </a></div>
@@ -43,7 +43,7 @@ export default function Services() {
     <ServicesAtAGlance heading="Leverage People and People + Ai in Your Business" subheading="Shortcut your growth through 12+ years of experience and the power of Ai." note={null} />
 
     <section id="next-move" className="services-wrap services-final">
-      <p className="services-eyebrow">Make the next move useful</p><h2>What would help<br /><em>your business move forward?</em></h2>
+      <h2>What would help<br /><em>your business move forward?</em></h2>
       <div className="services-next">
         <article><ServiceOptionVideo name="services-sprint-bridge" label="runner jumping a bridge" /><Link to="/strategy-sprint"><span>I want to work through a challenge.</span><strong>Explore the Strategy Sprint </strong></Link></article>
         <article><ServiceOptionVideo name="services-audit-mechanic" label="mechanic fine-tuning a sports car" /><Link to="/growth-clarity-audit"><span>I need a deeper investigation.</span><strong>Explore the Deep Dive Audit </strong></Link></article>
@@ -58,11 +58,11 @@ export default function Services() {
 
     <section id="starting-points" className="services-offers-section">
       <div className="services-wrap">
-        <p className="services-eyebrow">Choose your starting point</p>
+
         <h2>Scale your business<br /><em>with people + AI.</em></h2>
         <p className="services-intro">Start with clarity, work through a challenge, or go deeper into the evidence. Choose the support that fits your business.</p>
         <div className="services-offers">{[offers[2], offers[0], offers[1]].map(offer => <article id={offer.id} key={offer.id} className={`services-offer ${offer.id === "sprint" ? "services-offer-featured" : ""}`}>
-          <div className="services-plan-heading"><p className="services-eyebrow">{offer.label}</p><h3>{offer.title}</h3><p className="services-plan-copy">{offer.copy}</p></div>
+          <div className="services-plan-heading"><h3>{offer.title}</h3><p className="services-plan-copy">{offer.copy}</p></div>
           <p className="services-price">{offer.price}<span>{offer.note}</span></p>
           <Link to={offer.href} className={`services-button ${offer.id !== "sprint" ? "services-button-outline" : ""}`}>{offer.cta}</Link>
           <div className="services-plan-includes"><p>What’s included</p><ul>{offer.points.map(point => <li key={point}><Check size={18} aria-hidden="true" /><span>{point}</span></li>)}</ul></div>
@@ -70,7 +70,7 @@ export default function Services() {
       </div>
     </section>
     <section className="services-wrap services-ongoing" aria-labelledby="ongoing-heading">
-      <div><p className="services-eyebrow">Build on your progress</p><h2 id="ongoing-heading">Ongoing growth support.<br /><em>Shaped around your business.</em></h2><p className="services-intro">Connect paid media, conversion, measurement, and growth strategy with continuing support. We’ll discuss your priorities and agree on the right scope together.</p></div>
+      <div><h2 id="ongoing-heading">Ongoing growth support.<br /><em>Shaped around your business.</em></h2><p className="services-intro">Connect paid media, conversion, measurement, and growth strategy with continuing support. We’ll discuss your priorities and agree on the right scope together.</p></div>
       <div className="services-ongoing-action"><p>Custom scope · Let’s discuss fit</p><Link to="/#book-intro" className="services-button">Discuss ongoing support </Link></div>
     </section>
 
