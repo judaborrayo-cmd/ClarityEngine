@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ServiceOptionVideo from "./ServiceOptionVideo";
-import { ArrowUpRight, LockKeyhole } from "lucide-react";
+import { LockKeyhole } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AssessmentQuestion } from "@/components/assessment-question";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -36,7 +36,7 @@ function ExampleCard({ example }: { example: Example }) {
     <HoverCard openDelay={180} closeDelay={150}>
       <HoverCardTrigger asChild>
         <button className="preview-example-trigger" onClick={() => setOpen(true)} aria-label={`Preview ${example.name} example result`}>
-          <span className="preview-example-heading"><span>{example.name} example</span><ArrowUpRight size={17} aria-hidden="true" /></span>
+          <span className="preview-example-heading"><span>{example.name} example</span></span>
           <span className="preview-report-thumbnail" aria-hidden="true"><ResultSample example={example} /></span>
           <span className="preview-example-hint">Hover or tap to preview</span>
         </button>
@@ -82,7 +82,7 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
   function back() {
     setNote(""); setPosition(p => Math.max(0, p - 1));
   }
-  const purchaseButton = <Button className="gca-cta" disabled={busy} onClick={onPurchase}>{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}<span aria-hidden="true"> →</span></Button>;
+  const purchaseButton = <Button className="gca-cta" disabled={busy} onClick={onPurchase}>{busy ? "Opening checkout…" : "Get My Clarity Assessment — $27"}</Button>;
   return <section id="assessment-preview" className="gca-wrap gca-section gca-preview-section" aria-label="Clarity Assessment sample">
     <div className="preview-desktop-teaser" data-assessment-preview-active={answered > 0 ? "true" : undefined} style={sectionStyle(1)}>
       <div className="teaser-question-pane">
@@ -91,13 +91,13 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
           <LockKeyhole size={22} aria-hidden="true" />
           <h3 ref={teaserTitleRef} tabIndex={-1}>Ready for the full picture?</h3><div className="preview-next-level"><ServiceOptionVideo name="assessment-next-level" label="one person helping another reach the next level" /></div>
           <p>Unlock all 35 questions and your personalized findings for $27.</p>
-          <button type="button" onClick={back}>← Review sample answers</button>
+          <button type="button" onClick={back}> Review sample answers</button>
         </div> : <>
           <h3 ref={teaserTitleRef} tabIndex={-1} className="teaser-question-title">{questionDisplay(question)}</h3>
           <fieldset className="teaser-answers"><legend className="sr-only">Choose your sample answer</legend>
             {question.options.map(option => <label key={option.value}><input type="radio" name={`teaser-${question.id}`} value={option.value} checked={answers[question.id] === option.value} onChange={() => answer(option.value as AnswerValue)} /><span>{option.text}</span></label>)}
           </fieldset>
-          <div className="teaser-navigation"><button type="button" disabled={position === 0} onClick={back}>← Back</button><span>Preview answers aren’t saved.</span>{answers[question.id] && <button type="button" onClick={advance}>Next →</button>}</div>
+          <div className="teaser-navigation"><button type="button" disabled={position === 0} onClick={back}> Back</button><span>Preview answers aren’t saved.</span>{answers[question.id] && <button type="button" onClick={advance}>Next </button>}</div>
         </>}
       </div>
       <aside className="teaser-progress-pane" aria-label="Sample progress and full assessment">
@@ -120,7 +120,7 @@ export function AssessmentPreview({ onPurchase, busy, error }: { onPurchase: () 
         </div>
         {complete ? <div className="preview-locked">
           <div className="preview-locked-background" aria-hidden="true"><p>Offer · Question 5 of 35</p><div className="preview-skeleton-title" />{[1, 2, 3, 4, 5].map(i => <div className="preview-skeleton-answer" key={i}><i /><span /></div>)}</div>
-          <div className="preview-unlock-card"><span className="preview-lock-icon"><LockKeyhole aria-hidden="true" /></span><p className="gca-eyebrow">You’ve completed the preview</p><h3 ref={titleRef} tabIndex={-1}>Ready for the full picture?</h3><div className="preview-next-level"><ServiceOptionVideo name="assessment-next-level" label="one person helping another reach the next level" /></div><p>Unlock all 35 questions and discover what your answers suggest about your business’s biggest marketing opportunities.</p><ul><li>Personalized findings across all six areas</li><li>Focused next moves and a 30-day plan</li><li>Your report and Clarity Work Session</li></ul>{purchaseButton}<p className="preview-price-note">$27 · One-time payment</p><p className="preview-restart-note">Your sample answers aren’t saved. After purchase, you’ll start the full assessment with your business details.</p><Button variant="ghost" onClick={back}>← Review my sample answers</Button></div>
+          <div className="preview-unlock-card"><span className="preview-lock-icon"><LockKeyhole aria-hidden="true" /></span><p className="gca-eyebrow">You’ve completed the preview</p><h3 ref={titleRef} tabIndex={-1}>Ready for the full picture?</h3><div className="preview-next-level"><ServiceOptionVideo name="assessment-next-level" label="one person helping another reach the next level" /></div><p>Unlock all 35 questions and discover what your answers suggest about your business’s biggest marketing opportunities.</p><ul><li>Personalized findings across all six areas</li><li>Focused next moves and a 30-day plan</li><li>Your report and Clarity Work Session</li></ul>{purchaseButton}<p className="preview-price-note">$27 · One-time payment</p><p className="preview-restart-note">Your sample answers aren’t saved. After purchase, you’ll start the full assessment with your business details.</p><Button variant="ghost" onClick={back}> Review my sample answers</Button></div>
         </div> : <AssessmentQuestion question={question} selected={answers[question.id]} position={position} note={note} canContinue={Boolean(answers[question.id])} titleRef={titleRef} onAnswer={answer} onContinue={advance} onBack={back} />}
       </div>
       <aside className="preview-sidebar" aria-label="Assessment areas and example results"><DiagnosticClarityStack answers={answers} currentSection={1} /><div className="preview-examples"><p className="preview-sidebar-label">A glimpse of your results</p><p className="preview-sidebar-copy">Two examples. Different challenges.<br />A focused next move for each.</p>{examples.map(example => <ExampleCard key={example.name} example={example} />)}<p className="preview-examples-note">Read-only examples from fictional businesses. Your report is based on your full assessment.</p></div></aside>

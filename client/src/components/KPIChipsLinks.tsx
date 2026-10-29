@@ -18,7 +18,7 @@ export function KPIChipsLinks({
   subtitle?: string;
 }) {
   const id = useMemo(() => `kpi-links-${Math.random().toString(36).slice(2)}`, []);
-  
+
   // Color variants for visual interest
   const colorVariants = [
     "border-l-4 border-l-purple-500 bg-gradient-to-br from-purple-50/50 to-white hover:from-purple-50 hover:to-purple-25",
@@ -62,7 +62,7 @@ export function KPIChipsLinks({
 
               <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-2">
                 <span className="text-[12px] font-medium text-gray-800">See case study</span>
-                <span aria-hidden className="text-[12px]">→</span>
+
               </div>
             </a>
           );

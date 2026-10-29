@@ -23,7 +23,7 @@ export default function StartCards() {
             <li>Recommended next moves when your answers establish a clear constraint</li>
           </ul>
           <p className="text-xs text-gray-500 mb-6">Based on your answers; does not inspect your ad accounts or replace an expert review.</p>
-          <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${assessment.product.priceCents / 100} <span className="text-sm font-normal text-gray-500">one-time payment</span></p><Link to="/marketing-clarity-assesment" className="inline-flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 text-white px-5 py-3 font-medium w-full" data-testid="button-start-assessment">Explore the assessment →</Link></div>
+          <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${assessment.product.priceCents / 100} <span className="text-sm font-normal text-gray-500">one-time payment</span></p><Link to="/marketing-clarity-assesment" className="inline-flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 text-white px-5 py-3 font-medium w-full" data-testid="button-start-assessment">Explore the assessment </Link></div>
         </article>
         <article className="rounded-2xl border border-gray-200 bg-purple-50/50 p-6 sm:p-8 flex flex-col" data-testid="card-strategy-sprint">
           <p className="text-xs font-semibold tracking-widest uppercase text-purple-700 mb-3">Work through it together</p>
@@ -35,10 +35,10 @@ export default function StartCards() {
             <li>Practical decisions and next actions you can work from</li>
           </ul>
           <p className="text-xs text-gray-500 mb-6">Ongoing execution and account management outside sessions require a separate agreement.</p>
-          <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${sprint.price} <span className="text-sm font-normal text-gray-500">one-time payment · no subscription</span></p><Link to="/strategy-sprint" className="inline-flex justify-center rounded-xl border border-purple-700 text-purple-800 hover:bg-purple-100 px-5 py-3 font-medium w-full" data-testid="button-start-sprint">Explore the Strategy Sprint →</Link></div>
+          <div className="mt-auto"><p className="font-semibold text-gray-900 mb-4">${sprint.price} <span className="text-sm font-normal text-gray-500">one-time payment · no subscription</span></p><Link to="/strategy-sprint" className="inline-flex justify-center rounded-xl border border-purple-700 text-purple-800 hover:bg-purple-100 px-5 py-3 font-medium w-full" data-testid="button-start-sprint">Explore the Strategy Sprint </Link></div>
         </article>
       </div>
-      <p className="text-sm text-gray-600 mt-7">Need a deeper review or ongoing support? <Link to="/services" className="text-purple-700 underline underline-offset-4">See all ways to work together →</Link></p>
+      <p className="text-sm text-gray-600 mt-7">Need a deeper review or ongoing support? <Link to="/services" className="text-purple-700 underline underline-offset-4">See all ways to work together </Link></p>
       {/* Metrics / Proof Row (unchanged) */}
       <div className="mt-10 text-sm text-gray-600 flex flex-col sm:flex-row gap-4 sm:gap-10 justify-center items-center">
         <div>

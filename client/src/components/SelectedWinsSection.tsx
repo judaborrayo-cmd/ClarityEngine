@@ -91,8 +91,7 @@ export function SelectedWinsSection() {
               </div>
 
               <div className="mt-3 border-t border-gray-100 pt-3 text-sm font-medium text-emerald-700 hover:underline">
-                View case study →
-              </div>
+                View case study </div>
             </a>
           ))}
         </div>

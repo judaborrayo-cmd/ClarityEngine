@@ -25,7 +25,7 @@ export function CTAButton({
   const content = (
     <>
       {children}
-      <span className="ml-2" aria-hidden="true">→</span>
+
     </>
   );
 
@@ -138,7 +138,7 @@ export function BeforeAfter({
     },
   ];
   const displayRows = rows || defaultRows;
-  
+
   return (
     <section aria-labelledby="before-after" className="my-12" data-testid="before-after-section">
       <h2 id="before-after" className="text-lg font-semibold text-foreground">

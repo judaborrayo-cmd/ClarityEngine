@@ -6,7 +6,7 @@ import BrandCaseStory, { hasBrandCaseStory } from "@/components/case-study/Brand
 import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, ExternalLink, Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
+import { Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
 import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
 import core40PortfolioImage from "@assets/Core40-Image_1761608258683.png";
 import powersGymnasticsHeroImage from "@assets/Black Yellow Modern Dynamic Copywriter Online Portfolio_1763650858659.png";
@@ -44,7 +44,7 @@ const caseStudyData = {
         description: "Successfully managed $70,000+ in monthly advertising budget across multiple client verticals, ensuring optimal allocation and performance tracking"
       },
       {
-        title: "Multi-Industry Campaign Excellence", 
+        title: "Multi-Industry Campaign Excellence",
         description: "Delivered consistent performance improvements across fitness, healthcare, e-commerce, travel, and logistics sectors through tailored strategies"
       },
       {
@@ -66,7 +66,7 @@ const caseStudyData = {
         ]
       },
       {
-        category: "Advanced Tracking & Attribution", 
+        category: "Advanced Tracking & Attribution",
         tactics: [
           "Implemented comprehensive tracking systems across client accounts",
           "Built custom attribution models for complex customer journey mapping",
@@ -128,7 +128,7 @@ const caseStudyData = {
         description: "Achieved 10× return on ad spend across the entire program, demonstrating profitable efficiency in e-commerce advertising"
       },
       {
-        title: "Cold Prospecting Success", 
+        title: "Cold Prospecting Success",
         description: "Generated 16× ROAS on cold prospecting campaigns through Meta, effectively reaching new art enthusiasts and collectors"
       },
       {
@@ -150,7 +150,7 @@ const caseStudyData = {
         ]
       },
       {
-        category: "Advanced Audience Targeting", 
+        category: "Advanced Audience Targeting",
         tactics: [
           "Built detailed personas targeting art enthusiasts, collectors, and creative professionals",
           "Implemented lookalike audiences based on high-value customer segments",
@@ -213,7 +213,7 @@ const caseStudyData = {
         description: "Reduced Google CPC by 42% and improved overall ad efficiency"
       },
       {
-        title: "Conversion Growth", 
+        title: "Conversion Growth",
         description: "Increased YouTube conversions by 140%; achieved stable CPL performance"
       },
       {
@@ -235,7 +235,7 @@ const caseStudyData = {
         ]
       },
       {
-        category: "Multi-Channel Content Strategy", 
+        category: "Multi-Channel Content Strategy",
         tactics: [
           "Implemented comprehensive content distribution across social media platforms and digital channels",
           "Developed systematic content creation processes for books, speaking materials, and digital products",
@@ -298,7 +298,7 @@ const caseStudyData = {
         description: "Generated over $2M+ in total revenue through high-performing ads and conversion funnels."
       },
       {
-        title: "Lead Quality", 
+        title: "Lead Quality",
         description: "Reduced cost per lead by 38%, increasing campaign efficiency."
       },
       {
@@ -320,7 +320,7 @@ const caseStudyData = {
         ]
       },
       {
-        category: "Targeted Digital Marketing & Acquisition", 
+        category: "Targeted Digital Marketing & Acquisition",
         tactics: [
           "Implemented precise audience targeting focusing on serious athletes and dedicated fitness enthusiasts",
           "Developed high-converting lead generation campaigns optimized for boutique fitness membership",
@@ -384,7 +384,7 @@ const caseStudyData = {
         description: "Significantly increased brand awareness and recognition within the competitive fitness equipment market through strategic paid media placement"
       },
       {
-        title: "Customer Acquisition Optimization", 
+        title: "Customer Acquisition Optimization",
         description: "Achieved cost-effective customer acquisition with improved conversion rates across all major product categories"
       },
       {
@@ -406,7 +406,7 @@ const caseStudyData = {
         ]
       },
       {
-        category: "Creative Strategy & Testing", 
+        category: "Creative Strategy & Testing",
         tactics: [
           "Produced high-quality product demonstration videos showcasing equipment in action",
           "Developed workout-focused content featuring Steel Fit USA products",
@@ -468,7 +468,7 @@ const caseStudyData = {
         description: "Closed the awareness-to-booking gap with unified tracking and CRM handoff, enabling faster follow-ups and better conversion rates"
       },
       {
-        title: "Geo-Targeted Campaign Success", 
+        title: "Geo-Targeted Campaign Success",
         description: "Focused spend on high-intent regions, delivering stronger lead quality and more efficient cost-per-acquisition"
       },
       {
@@ -494,7 +494,7 @@ const caseStudyData = {
         ]
       },
       {
-        category: "Tiered Remarketing Campaigns", 
+        category: "Tiered Remarketing Campaigns",
         tactics: [
           "Day 1-7: Highlighted retreat benefits and luxurious facilities",
           "Week 2-3: Showcased testimonials and social proof",
@@ -662,7 +662,7 @@ function getYouTubeEmbedUrl(url: string): string {
 
 export default function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
-  
+
   if (slug === "art-of-living-retreat-center") return <AolCaseStudy />;
   if (slug && !caseStudyData[slug as keyof typeof caseStudyData] && hasBrandCaseStory(slug)) return <BrandCaseStory key={slug} slug={slug}/>;
 
@@ -672,7 +672,7 @@ export default function CaseStudyDetail() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-foreground mb-4">Case Study Not Found</h1>
           <Link to="/case-studies" className="text-primary hover:underline">
-            ← Back to Case Studies
+             Back to Case Studies
           </Link>
         </div>
       </div>
@@ -689,12 +689,12 @@ export default function CaseStudyDetail() {
       {slug === "powers-gymnastics" ? <PowersHero /> : slug === "hapi-art" ? <HapiHero overview={study.overview}/> : slug === "core-40" ? <Core40Hero overview={study.overview}/> : <>
       <section className="px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <Link 
-            to="/case-studies" 
+          <Link
+            to="/case-studies"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
             data-testid="back-to-case-studies"
           >
-            <ArrowLeft className="w-4 h-4" />
+
             Back to Case Studies
           </Link>
 
@@ -711,7 +711,7 @@ export default function CaseStudyDetail() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               {study.overview}
             </p>
-            
+
             {/* Industry Icons - Only for Lamark Agency */}
             {slug === "lamark-agency" && (
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
@@ -748,18 +748,18 @@ export default function CaseStudyDetail() {
               </div>
             )}
           </div>
-          
+
           {/* At A Glance - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
             <div className="mx-auto max-w-4xl">
               <AtAGlance />
             </div>
           )}
-          
+
           {/* StatStrip - Only for Hapi Art */}
           {slug === "hapi-art" && (
             <div className="mx-auto max-w-4xl">
-              <StatStrip 
+              <StatStrip
                 items={[
                   { k: "10× ROAS", v: "Overall efficiency" },
                   { k: "16× ROAS", v: "Cold prospecting (Meta)" },
@@ -769,11 +769,11 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
-          
+
           {/* StatStrip - Only for Mandali Retreats */}
           {slug === "mandali-retreats" && (
             <div className="mx-auto max-w-4xl">
-              <StatStrip 
+              <StatStrip
                 items={[
                   { k: "+16.5× ROAS", v: "Social (Meta/YouTube)" },
                   { k: "+29.06× ROAS", v: "Google Search" },
@@ -783,11 +783,11 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
-          
+
           {/* StatStrip - Only for Lisa Nichols */}
           {slug === "lisa-nichols" && (
             <div className="mx-auto max-w-4xl">
-              <StatStrip 
+              <StatStrip
                 items={[
                   { k: "–42%", v: "Reduction in Google CPC" },
                   { k: "+52%", v: "Improvement in CPL efficiency" },
@@ -797,11 +797,11 @@ export default function CaseStudyDetail() {
               />
             </div>
           )}
-          
+
           {/* StatStrip - Only for Core40 */}
           {slug === "core-40" && (
             <div className="mx-auto max-w-4xl">
-              <StatStrip 
+              <StatStrip
                 items={[
                   { k: "$2M+", v: "Revenue generated" },
                   { k: "11K+", v: "New members acquired" },
@@ -871,7 +871,7 @@ export default function CaseStudyDetail() {
           <p className="text-center text-lg font-medium text-foreground">
             {study.results.primary}
           </p>
-          
+
           {/* Mid Page CTA - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
             <>
@@ -881,14 +881,14 @@ export default function CaseStudyDetail() {
               <MidPageCTA />
             </>
           )}
-          
+
           {/* Mid Page CTA - Only for Hapi Art */}
           {slug === "hapi-art" && (
             <>
               <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
                 These e-commerce learnings now inform how Clarity Engine scales other shops—balancing creative velocity with precise attribution.
               </p>
-              <MidPageCTA 
+              <MidPageCTA
                 title="What could this look like for your business?"
                 body="Explore strategy, paid media, and creative support shaped around your next stage of growth."
                 href="/services"
@@ -896,40 +896,40 @@ export default function CaseStudyDetail() {
               />
             </>
           )}
-          
+
           {/* Mid Page CTA - Only for Mandali Retreats */}
           {slug === "mandali-retreats" && (
             <>
               <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
                 These learnings now inform how Clarity Engine scales retreat & wellness brands—balancing creative velocity with precise targeting.
               </p>
-              <MidPageCTA 
+              <MidPageCTA
                 title="Curious what this could look like for your retreat or center?"
                 body="Book a Strategic Intro Call—get a quick teardown and the fastest wins."
               />
             </>
           )}
-          
+
           {/* Mid Page CTA - Only for Lisa Nichols */}
           {slug === "lisa-nichols" && (
             <>
               <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
                 These learnings now guide how Clarity Engine helps personal brands and thought leaders grow their reach efficiently.
               </p>
-              <MidPageCTA 
+              <MidPageCTA
                 title="Curious what this could look like for your brand?"
                 body="Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins."
               />
             </>
           )}
-          
+
           {/* Mid Page CTA - Only for Core40 */}
           {slug === "core-40" && (
             <>
               <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
                 These outcomes demonstrate how Clarity Engine helps fitness brands scale efficiently with creative testing and precise audience segmentation.
               </p>
-              <MidPageCTA 
+              <MidPageCTA
                 title="Curious what this could look like for your fitness brand?"
                 body="Book a Strategic Intro Call — get a quick teardown of your current setup and the fastest wins."
               />
@@ -960,13 +960,13 @@ export default function CaseStudyDetail() {
               </ul>
             </div>
           </div>
-          
+
           }
           {/* Before After - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
             <BeforeAfter />
           )}
-          
+
           {/* Profitable Advertising Card & Verified Metrics - Only for Hapi Art */}
           {slug === "hapi-art" && (
             <>
@@ -975,10 +975,10 @@ export default function CaseStudyDetail() {
               <VerifiedMetrics />
             </>
           )}
-          
+
           {/* Before After - Only for Hapi Art */}
           {slug === "hapi-art" && (
-            <BeforeAfter 
+            <BeforeAfter
               rows={[
                 { before: "One-off creatives, little iteration", after: "Creative testing sprints with winners rolled out" },
                 { before: "Shallow retargeting pools", after: "Multi-signal retargeting (views, carts, PDP depth, time-on-site)" },
@@ -987,10 +987,10 @@ export default function CaseStudyDetail() {
               title="Before vs After (E-commerce System)"
             />
           )}
-          
+
           {/* Before After - Only for Mandali Retreats */}
           {slug === "mandali-retreats" && (
-            <BeforeAfter 
+            <BeforeAfter
               rows={[
                 { before: "Awareness → booking gap; manual responses", after: "Unified tracking + CRM handoff; faster follow-ups" },
                 { before: "Broad targeting; scattered data", after: "Geo-targeted campaigns in high-intent regions" },
@@ -1001,10 +1001,10 @@ export default function CaseStudyDetail() {
               title="Before vs After (Retreats Growth System)"
             />
           )}
-          
+
           {/* Before After - Only for Lisa Nichols */}
           {slug === "lisa-nichols" && (
-            <BeforeAfter 
+            <BeforeAfter
               rows={[
                 { before: "Disconnected brand channels", after: "Unified Google + YouTube strategy" },
                 { before: "Rising ad costs & inconsistent conversions", after: "–42% CPC reduction and higher CTR" },
@@ -1015,10 +1015,10 @@ export default function CaseStudyDetail() {
               title="Before vs After (Personal Brand Growth System)"
             />
           )}
-          
+
           {/* Before After - Only for Core40 */}
           {slug === "core-40" && (
-            <BeforeAfter 
+            <BeforeAfter
               rows={[
                 { before: "High cost per lead and inconsistent ads", after: "–38% CPL with optimized tracking" },
                 { before: "Limited new member flow", after: "11K+ new members from retargeting & lookalike campaigns" },
@@ -1106,7 +1106,7 @@ export default function CaseStudyDetail() {
             {slug === "hapi-art" && <TestimonialIntroLine />}
             {slug === "mandali-retreats" && <TestimonialIntroLine />}
             {slug === "lisa-nichols" && <LisaNicholsTestimonialIntroLine />}
-            
+
             {(study.testimonial as any).isResultsSummary ? (
               <div data-testid="results-summary">
                 <h3 className="text-lg font-semibold mb-4 text-foreground">Results Summary</h3>
@@ -1136,48 +1136,48 @@ export default function CaseStudyDetail() {
           </div>
         </section>
       )}
-      
+
       {/* Bottom CTA - Only for Hapi Art */}
       {slug === "hapi-art" && (
         <section className="px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
-            <BottomCTA 
+            <BottomCTA
               title="Ready to apply a proven 10×-ready system to your store?"
               body="Let's review your ads, landing flow, and tracking to uncover the next 2–3 profit levers."
             />
           </div>
         </section>
       )}
-      
+
       {/* Bottom CTA - Only for Mandali Retreats */}
       {slug === "mandali-retreats" && (
         <section className="px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
-            <BottomCTA 
+            <BottomCTA
               title="Ready to apply a proven growth system to your retreat?"
               body="Let's review your ads, landing flow, and tracking to find the next 2–3 booking levers."
             />
           </div>
         </section>
       )}
-      
+
       {/* Bottom CTA - Only for Lisa Nichols */}
       {slug === "lisa-nichols" && (
         <section className="px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
-            <BottomCTA 
+            <BottomCTA
               title="Ready to scale your brand with a proven growth framework?"
               body="Let's review your ads, funnels, and tracking to uncover the next 2–3 high-impact wins."
             />
           </div>
         </section>
       )}
-      
+
       {/* Bottom CTA - Only for Core40 */}
       {slug === "core-40" && (
         <section className="px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
-            <BottomCTA 
+            <BottomCTA
               title="Ready to grow your studio with a proven fitness marketing framework?"
               body="Let's review your ads, funnels, and tracking to identify the next 2–3 high-impact wins."
             />
@@ -1221,12 +1221,12 @@ export default function CaseStudyDetail() {
                 </h3>
                 <div className="flex items-center gap-2 text-primary text-sm group-hover:gap-3 transition-all">
                   Read case study
-                  <ArrowRight className="w-4 h-4" />
+
                 </div>
               </Link>
             ))}
           </div>
-          
+
           <div className="text-center mt-8">
             <Link to="/case-studies">
               <Button variant="outline">

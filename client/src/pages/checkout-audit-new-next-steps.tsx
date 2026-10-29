@@ -54,8 +54,7 @@ export default function CheckoutAuditNewNextSteps() {
           support allowance or refund promise.
         </p>
         <Link to="/growth-clarity-audit" className="dda-text-link">
-          Return to the Audit →
-        </Link>
+          Return to the Audit </Link>
       </div>
     </main>
   );

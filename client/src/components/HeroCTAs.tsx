@@ -11,7 +11,7 @@ export default function HeroCTAs() {
           aria-label="How We Help"
           data-testid="hero-cta-book-call"
         >
-          <span className="mr-2">💬</span> How We Help
+           How We Help
         </a>
         <Link
           to="/growth-clarity-audit"
@@ -19,7 +19,7 @@ export default function HeroCTAs() {
           aria-label="Explore the Deep Dive Growth Audit"
           data-testid="hero-cta-order-audit"
         >
-          <span className="mr-2">🔍</span> Explore the Deep Dive Growth Audit
+           Explore the Deep Dive Growth Audit
         </Link>
       </div>
 

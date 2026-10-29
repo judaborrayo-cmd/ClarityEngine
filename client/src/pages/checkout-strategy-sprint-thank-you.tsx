@@ -1,6 +1,6 @@
 import { strategySprintOffer as offer } from "@shared/strategy-sprint-offer";
 import { Link } from "react-router-dom";
-import { CalendarDays, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 // Replace this placeholder with the scheduling link for this offer before launch.
 const strategySprintSchedulingUrl = "STRATEGY_SPRINT_SCHEDULING_URL";
@@ -75,12 +75,12 @@ export default function CheckoutStrategySprintThankYou() {
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
                 {isSchedulingConfigured ? (
                   <a href={strategySprintSchedulingUrl} target="_blank" rel="noopener noreferrer" className={`${schedulingButtonClasses} hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600`} data-testid="button-schedule-session">
-                    <CalendarDays aria-hidden="true" className="h-5 w-5 shrink-0" />
+
                     Schedule Your First Session
                   </a>
                 ) : (
                   <button type="button" disabled aria-describedby="scheduling-status" className={`${schedulingButtonClasses} cursor-not-allowed opacity-60`} data-testid="button-schedule-session">
-                    <CalendarDays aria-hidden="true" className="h-5 w-5 shrink-0" />
+
                     Schedule Your First Session
                   </button>
                 )}

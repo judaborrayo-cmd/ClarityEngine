@@ -4,7 +4,7 @@ import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
 import { useEffect } from "react";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Search, Compass, Layers, Megaphone, ScanLine, TextSearch, MousePointerClick, Swords, ChartLine, Network, Map } from "lucide-react";
+import { Search, Compass, Layers, Megaphone, ScanLine, TextSearch, MousePointerClick, Swords, ChartLine, Network, Map } from "lucide-react";
 import {
   deepDiveGrowthAuditOffer as offer,
 } from "@shared/deep-dive-growth-audit-offer";
@@ -127,7 +127,7 @@ const faqs = [
 function StartLink() {
   return (
     <Link className="dda-button" to={offer.checkoutPath}>
-      Get My Deep Dive Growth Audit <ArrowUpRight size={18} aria-hidden="true" />
+      Get My Deep Dive Growth Audit
     </Link>
   );
 }
@@ -177,11 +177,9 @@ export default function GrowthClarityAudit() {
           <div className="dda-actions">
             <StartLink />
             <a className="dda-text-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20fit%20conversation">
-              Request a Complimentary Fit Conversation ↗
-            </a>
+              Request a Complimentary Fit Conversation </a>
             <a className="dda-text-link" href="#included">
-              Explore What's Included ↓
-            </a>
+              Explore What's Included </a>
           </div>
           <p className="dda-note">
             Review your Deep Dive Growth Audit engagement and next steps before checkout.
@@ -317,7 +315,7 @@ export default function GrowthClarityAudit() {
           <figure><blockquote>“During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.”</blockquote><figcaption><img src={mikeBerkmanPhoto} alt="" width="44" height="44" loading="lazy"/><div><strong>Mike Berkman</strong><span>VP of Performance · Lamark Media</span></div></figcaption></figure>
         </div>
         <p className="audit-proof-context">From previous professional engagements with Juda.</p>
-        <Link className="dda-text-link" to="/case-studies#colleague-reviews-cs">More from our partners →</Link>
+        <Link className="dda-text-link" to="/case-studies#colleague-reviews-cs">More from our partners </Link>
       </section>
       <section className="dda-wrap dda-section dda-fit">
         <div>
@@ -428,7 +426,7 @@ export default function GrowthClarityAudit() {
             <Link key={slug} to={`/case-study/${slug}`}>
               <h3>{title}</h3>
               <p>{copy}</p>
-              <span className="dda-text-link">Explore the case study ↗</span>
+              <span className="dda-text-link">Explore the case study </span>
             </Link>
           ))}
         </div>
@@ -461,8 +459,7 @@ export default function GrowthClarityAudit() {
                 <h3>{title}</h3>
                 <p>{copy}</p>
                 <Link className="dda-text-link" to={path}>
-                  Explore this option ↗
-                </Link>
+                  Explore this option </Link>
               </article>
             ))}
           </div>
@@ -503,7 +500,7 @@ export default function GrowthClarityAudit() {
               <span>USD · one-time</span>
             </p>
             <StartLink />
-            <a className="dda-text-link dda-fit-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20fit%20conversation">Request a Complimentary Fit Conversation ↗</a>
+            <a className="dda-text-link dda-fit-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20fit%20conversation">Request a Complimentary Fit Conversation </a>
             <p className="dda-note">
               No prior Assessment, paid consultation or Sprint purchase required.
             </p>

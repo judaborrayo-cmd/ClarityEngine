@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, ShieldCheck } from "lucide-react";
+import { Check, ShieldCheck } from "lucide-react";
 import { strategySprintOffer as offer, strategySprintBenefits } from "@shared/strategy-sprint-offer";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { SprintTestimonials } from "@/components/sprint-testimonials";
@@ -35,7 +35,7 @@ function SprintMedia() {
     <figcaption>Clarity Engine · Growth strategy, brought into focus.</figcaption>
   </figure>;
 }
-function PurchaseLink() { return <a className="ss-cta" href={offer.checkoutUrl} target="_blank" rel="noopener noreferrer">Start My Strategy Sprint <ArrowRight aria-hidden="true" size={19} /></a>; }
+function PurchaseLink() { return <a className="ss-cta" href={offer.checkoutUrl} target="_blank" rel="noopener noreferrer">Start My Strategy Sprint </a>; }
 // Concise sales-page summaries; full checkout inclusions remain unchanged.
 const inclusionSummaries = [
   "Three sessions over 30 days, typically 60–120 minutes depending on the topic, availability, and work involved.",
@@ -55,7 +55,7 @@ const questions = [
 export default function StrategySprint() {
   return <main className="ss-page">
     <section className="ss-wrap ss-hero">
-      <div className="ss-hero-copy"><p className="ss-eyebrow">{offer.name}</p><h1>Get clear on what matters next.<br /><em>Move faster.</em></h1><div className="ss-lead ss-hero-benefits"><p>Work directly with Juda Borrayo, Clarity Engine’s founder and:</p><ul>{["Solve growth problems", "Get three live strategy sessions", "Sharpen your offer and funnel", "Get tangible solutions to current challenges"].map(benefit => <li key={benefit}><Check aria-hidden="true" /><span>{benefit}</span></li>)}</ul></div><p className="ss-price"><strong>${offer.price}</strong> <span>One-time payment · No subscription</span></p><PurchaseLink /><a className="ss-anchor" href="#sprint-inclusions">See what’s included ↓</a></div>
+      <div className="ss-hero-copy"><p className="ss-eyebrow">{offer.name}</p><h1>Get clear on what matters next.<br /><em>Move faster.</em></h1><div className="ss-lead ss-hero-benefits"><p>Work directly with Juda Borrayo, Clarity Engine’s founder and:</p><ul>{["Solve growth problems", "Get three live strategy sessions", "Sharpen your offer and funnel", "Get tangible solutions to current challenges"].map(benefit => <li key={benefit}><Check aria-hidden="true" /><span>{benefit}</span></li>)}</ul></div><p className="ss-price"><strong>${offer.price}</strong> <span>One-time payment · No subscription</span></p><PurchaseLink /><a className="ss-anchor" href="#sprint-inclusions">See what’s included </a></div>
       <SprintMedia />
     </section>
     <div className="ss-band"><div className="ss-wrap ss-highlights"><span><Check aria-hidden="true" /> Three live sessions</span><span><Check aria-hidden="true" /> Your priorities, your focus</span><span><ShieldCheck aria-hidden="true" /> First-session guarantee</span></div></div>
@@ -70,9 +70,9 @@ export default function StrategySprint() {
       ["Bring your context", "Share relevant pages, campaigns, analytics, and questions."],
       ["Work through it together", "Review the problem and weigh your options with Juda."],
       ["Leave with practical next actions", "Choose next steps; revisit them in later sessions."],
-    ].map(([title,copy],i) => <li key={title}><span className="ss-step-marker">{i+1}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol><div className="ss-scheduling"><div><strong>First, purchase and choose your times.</strong><p>${offer.price} once for three live sessions over 30 days. After purchase, we’ll arrange times that work for both of us. Sessions typically run 60–120 minutes.</p></div><a href="#ss-practical-questions" className="ss-anchor">Scheduling & preparation ↓</a></div></section>
+    ].map(([title,copy],i) => <li key={title}><span className="ss-step-marker">{i+1}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol><div className="ss-scheduling"><div><strong>First, purchase and choose your times.</strong><p>${offer.price} once for three live sessions over 30 days. After purchase, we’ll arrange times that work for both of us. Sessions typically run 60–120 minutes.</p></div><a href="#ss-practical-questions" className="ss-anchor">Scheduling & preparation </a></div></section>
     <section className="ss-wrap ss-section ss-split ss-fit"><div><p className="ss-eyebrow">Who it suits</p><h2>For founders with decisions <em>to make.</em></h2><p className="ss-intro">For founders and business owners ready to participate in solving a current business or marketing problem.</p></div><div><h3>Choose the level of help you need.</h3><p>Choose the self-guided Get Clarity Assessment for an initial diagnosis, or the Sprint for live advisory. Ongoing account management and done-for-you services are separate.</p></div></section>
-    <section className="ss-tint"><div className="ss-wrap ss-section ss-split"><div><p className="ss-eyebrow">Work directly with Juda</p><h2>Experience behind <em>the conversation.</em></h2></div><div><p className="ss-credential">12+ years in paid media & growth strategy.</p><p>Clarity Engine’s wider work includes $5M+ in ad spend managed across growth brands. That experience informs the questions and options we work through together.</p><Link to="/case-studies" className="ss-anchor">Explore Clarity Engine’s wider work →</Link><p className="ss-small">These credentials describe broader experience, rather than promised Sprint outcomes.</p></div></div></section>
+    <section className="ss-tint"><div className="ss-wrap ss-section ss-split"><div><p className="ss-eyebrow">Work directly with Juda</p><h2>Experience behind <em>the conversation.</em></h2></div><div><p className="ss-credential">12+ years in paid media & growth strategy.</p><p>Clarity Engine’s wider work includes $5M+ in ad spend managed across growth brands. That experience informs the questions and options we work through together.</p><Link to="/case-studies" className="ss-anchor">Explore Clarity Engine’s wider work </Link><p className="ss-small">These credentials describe broader experience, rather than promised Sprint outcomes.</p></div></div></section>
     <SprintTestimonials />
     <section id="ss-practical-questions" className="ss-wrap ss-section ss-split"><div><p className="ss-eyebrow">Practical questions</p><h2>Know what <em>you’re buying.</em></h2></div><div className="ss-faq">{questions.map(([q,a]) => <details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section>
     <section className="ss-final"><div className="ss-wrap"><p className="ss-eyebrow">{offer.name} · by Clarity Engine</p><h2>Bring your next decision.<br /><em>Let’s work through it.</em></h2><p>Three live sessions over 30 days, focused on your business priorities.</p><p className="ss-price"><strong>${offer.price}</strong> <span>One-time payment</span></p><PurchaseLink /><p className="ss-small">First-session guarantee: request a full refund within 24 hours after your first session if the engagement is not useful for your business.</p></div></section>

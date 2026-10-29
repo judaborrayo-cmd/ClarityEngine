@@ -144,8 +144,8 @@ export function CaseStudyCarousel({
             className="flex snap-start shrink-0 w-[88%] sm:w-[520px] flex-col self-stretch rounded-2xl border border-gray-200 bg-white shadow-sm"
             data-testid={`card-case-study-${c.slug.split('/').pop()}`}
           >
-            <a 
-              href={c.slug} 
+            <a
+              href={c.slug}
               aria-label={`Read case study: ${c.title}`}
               data-testid={`link-image-${c.slug.split('/').pop()}`}
             >
@@ -184,7 +184,7 @@ export function CaseStudyCarousel({
                   className="inline-flex items-center rounded-2xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-black/10 transition hover:-translate-y-[1px] hover:bg-black/90 hover:shadow-lg"
                   data-testid={`link-read-case-${c.slug.split('/').pop()}`}
                 >
-                  Read case study <span aria-hidden className="ml-2">→</span>
+                  Read case study
                 </a>
               </div>
             </div>
@@ -199,7 +199,7 @@ export function CaseStudyCollection({items}:{items:CS[]}) {
   return <section aria-label="All case studies" className="case-study-scan-grid">
     {items.map(item => <a href={item.slug} key={item.slug} className="case-study-scan-card">
       <img src={item.image} alt={item.imageAlt} loading="lazy" />
-      <div><h2>{item.title}</h2><p>{item.impact}</p><span>Read case study →</span></div>
+      <div><h2>{item.title}</h2><p>{item.impact}</p><span>Read case study </span></div>
     </a>)}
   </section>;
 }

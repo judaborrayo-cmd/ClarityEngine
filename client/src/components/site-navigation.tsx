@@ -2,7 +2,7 @@ import FounderNavMotion from "./FounderNavMotion";
 import { useEffect, useId, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ArrowUpRight, BookOpen, ChartNoAxesCombined, ChevronDown, Compass, FileText, Globe, Layers, LayoutTemplate, Menu, MessageCircle, MousePointer2, Newspaper, Repeat2, Search, Video, X } from 'lucide-react';
+import { BookOpen, ChartNoAxesCombined, ChevronDown, Compass, FileText, Globe, Layers, LayoutTemplate, Menu, MessageCircle, MousePointer2, Newspaper, Repeat2, Search, Video, X } from "lucide-react";
 import ClarityEngineLogo from '@assets/Clarity-Engine-Favicon_1758553782935.png';
 import LegacyFlowNavigation from './legacy-flow-navigation';
 import { categories, navigationGroups, type NavigationCategory, type NavigationItem } from './navigation-config';
@@ -52,7 +52,7 @@ function MenuContent({ category, onNavigate }: {
 <h2>Let’s put your next idea to work.</h2>
 <p>Strategy, campaigns, and creative support shaped around your business.</p>
 <FounderNavMotion />
-<Link to="/services#starting-points" onClick={onNavigate}>Work Together <ArrowUpRight size={16} aria-hidden="true"/></Link>
+<Link to="/services#starting-points" onClick={onNavigate}>Work Together </Link>
 </aside>}
  </div></>;
 }
@@ -120,7 +120,7 @@ function MarketingNavigation() {
    <Link to="/services" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
 <span className="ce-nav-desktop-label">How We Help</span>
 <span className="ce-nav-mobile-label">How We Help</span>
-<ArrowUpRight size={16} aria-hidden="true"/>
+
 </Link>
    <Dialog.Root open={mobile} onOpenChange={value => { routeSelected.current = false; popupTookFocus.current = false; resizeFocus.current = null; setMobile(value); setOpen(null); }}>
 <Dialog.Trigger asChild>
@@ -161,7 +161,7 @@ function MarketingNavigation() {
 <Link to="/about" onClick={close}>About</Link>
 </li>
 </ul>
-<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>How We Help <ArrowUpRight size={18} aria-hidden="true"/>
+<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>How We Help
 </Link>
 </div>
 </Dialog.Content>

@@ -9,7 +9,7 @@ export default function CheckoutAudit() {
     <main className="dda-page">
       <div className="dda-wrap dda-checkout">
         <Link to="/growth-clarity-audit" className="dda-text-link">
-          ← Back to the Audit
+           Back to the Audit
         </Link>
         <header className="dda-checkout-header">
           <p className="dda-eyebrow">Review your engagement</p>
@@ -60,7 +60,7 @@ export default function CheckoutAudit() {
                 inactive. No payment can be made from this page.
               </p>
             </div>
-            <p className="dda-note"><a className="dda-text-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20enquiry">Contact us about the Audit →</a></p>
+            <p className="dda-note"><a className="dda-text-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20enquiry">Contact us about the Audit </a></p>
             <p className="dda-note">
               Engagement scope and commercial details will be confirmed before
               purchase opens.
@@ -69,8 +69,7 @@ export default function CheckoutAudit() {
               to="/growth-clarity-audit#investigation"
               className="dda-text-link"
             >
-              Review the investigation scope →
-            </Link>
+              Review the investigation scope </Link>
           </aside>
         </div>
       </div>

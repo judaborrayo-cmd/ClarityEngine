@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Lightbulb, Check } from "lucide-react";
+import { Lightbulb, Check } from "lucide-react";
 import hapiArtImage from "@assets/Hapi Art Resized_1761591215292.png";
 import { StatStrip } from "./ConversionComponents";
 import "./powers-case-framing.css";
@@ -8,7 +8,7 @@ import "./hapi-case-framing.css";
 export function HapiHero({overview}:{overview:string}) {
   return <>
     <section className="powers-story-wrap powers-story-hero">
-      <Link className="powers-story-back" to="/case-studies"><ArrowLeft size={16}/>All case studies</Link>
+      <Link className="powers-story-back" to="/case-studies">All case studies</Link>
       <div className="powers-story-hero-grid">
         <div className="powers-story-heading"><p className="powers-story-eyebrow">Art & interiors · E-commerce · Meta advertising</p><p className="powers-story-client">Hapi Art · Kristi Kohut</p><h1 data-testid="case-study-title">Building a profitable<br/><em>10× ROAS.</em></h1></div>
         <figure><img src={hapiArtImage} alt="Hapi Art: vibrant fine art by Kristi Kohut" width="1600" height="1000"/><figcaption>Fine art. A distinct point of view. A system for reaching more collectors.</figcaption></figure>
@@ -35,5 +35,5 @@ export function HapiCreative() {
 }
 
 export function HapiClosing() {
-  return <section className="powers-story-closing"><div className="powers-story-wrap"><p className="powers-story-eyebrow">Your next chapter</p><h2>Make your next move<br/><em>meaningful.</em></h2><p>Build on what makes your brand worth discovering—with strategy, creative testing, and a clearer path from interest to action.</p><Link to="/services">How We Help <ArrowUpRight size={18}/></Link></div></section>;
+  return <section className="powers-story-closing"><div className="powers-story-wrap"><p className="powers-story-eyebrow">Your next chapter</p><h2>Make your next move<br/><em>meaningful.</em></h2><p>Build on what makes your brand worth discovering—with strategy, creative testing, and a clearer path from interest to action.</p><Link to="/services">How We Help </Link></div></section>;
 }

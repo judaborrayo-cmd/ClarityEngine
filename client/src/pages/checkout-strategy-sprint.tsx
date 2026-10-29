@@ -18,7 +18,7 @@ export default function CheckoutStrategySprint() {
         <section className="bg-white py-12 sm:py-16">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <Link to="/" className="mb-6 inline-block text-sm text-gray-600 hover:text-gray-900" data-testid="link-back-home">
-              ← Back to Home
+               Back to Home
             </Link>
             <p className="mb-3 text-sm font-semibold text-green-700">30-Day Growth Strategy Sprint</p>
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl" data-testid="page-title">

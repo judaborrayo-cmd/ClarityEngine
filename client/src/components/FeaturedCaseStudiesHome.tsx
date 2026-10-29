@@ -130,7 +130,7 @@ export function FeaturedCaseStudiesHome() {
   return (
     <section className="my-8 sm:my-14">
       <div className="mx-auto max-w-6xl px-4">
-        <motion.div 
+        <motion.div
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -148,8 +148,7 @@ export function FeaturedCaseStudiesHome() {
               aria-label="View all case studies"
               data-testid="link-all-case-studies"
             >
-              View all case studies →
-            </a>
+              View all case studies </a>
             <button
               type="button"
               onClick={() => scrollByCard("prev")}
@@ -226,7 +225,7 @@ export function FeaturedCaseStudiesHome() {
                       aria-label={`Read case study: ${c.title}`}
                       data-testid={`button-read-case-study-${c.slug.split('/').pop()}`}
                     >
-                      Read case study <span aria-hidden className="ml-2">→</span>
+                      Read case study
                     </a>
                   </div>
                 </div>

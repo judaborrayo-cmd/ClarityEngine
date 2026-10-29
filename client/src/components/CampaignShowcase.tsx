@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Play, X, Layers } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X, Layers } from "lucide-react";
 import copy from "./campaign-showcase-content.json";
 import adCopy from "./campaign-ad-content.json";
 import "./campaign-showcase.css";
@@ -37,9 +37,9 @@ export default function CampaignShowcase() {
     <article className={`campaign-stage ${campaign.theme}`}>
       <div className="campaign-stage-heading"><div><p className="campaign-stage-brand">{campaign.brand}</p><h3>{campaign.title}</h3><p>{campaign.description}</p></div><div className="campaign-channel-tags">{campaign.channels.map(channel=><span key={channel}>{channel}</span>)}</div></div>
       <div className={`campaign-placement-spread count-${Math.min(campaign.placements.length,3)}`}>
-        {campaign.placements.slice(0,3).map((item,i)=><button type="button" key={item.image} onClick={e=>inspect(e.currentTarget,i)} aria-label={`Explore ${campaign.brand}: ${item.label}`}><span className="campaign-placement-label">{item.label} <ArrowUpRight size={14}/></span><div className="campaign-placement-art"><img src={item.image} alt={`${campaign.brand} original ${item.label} preview`} loading="lazy"/></div></button>)}
+        {campaign.placements.slice(0,3).map((item,i)=><button type="button" key={item.image} onClick={e=>inspect(e.currentTarget,i)} aria-label={`Explore ${campaign.brand}: ${item.label}`}><span className="campaign-placement-label">{item.label} </span><div className="campaign-placement-art"><img src={item.image} alt={`${campaign.brand} original ${item.label} preview`} loading="lazy"/></div></button>)}
       </div>
-      <div className="campaign-stage-footer"><p><Layers size={17}/> {campaign.carousel ? `${campaign.carousel.length} carousel cards` : campaign.id==="selva" ? "From a 10-video flexible-media campaign" : "Selected campaign creative & placement previews"}</p><button type="button" onClick={e=>inspect(e.currentTarget)}>{campaign.carousel ? "Explore the carousel" : campaign.media.some(x=>x.video||x.youtube) ? "Explore placements & play videos" : "Explore the campaign"}<ArrowUpRight size={17}/></button></div>
+      <div className="campaign-stage-footer"><p><Layers size={17}/> {campaign.carousel ? `${campaign.carousel.length} carousel cards` : campaign.id==="selva" ? "From a 10-video flexible-media campaign" : "Selected campaign creative & placement previews"}</p><button type="button" onClick={e=>inspect(e.currentTarget)}>{campaign.carousel ? "Explore the carousel" : campaign.media.some(x=>x.video||x.youtube) ? "Explore placements & play videos" : "Explore the campaign"}</button></div>
     </article>
     <p className="campaign-showcase-caption">Selected work across past engagements. Placement previews are preserved examples; available videos and carousel cards are interactive.</p>
     <Dialog.Root open={open} onOpenChange={setOpen}><Dialog.Portal><Dialog.Overlay className="services-preview-overlay"/><Dialog.Content className={`services-preview-dialog campaign-studio-dialog ${campaign.theme}`} onCloseAutoFocus={e=>{e.preventDefault();returnFocus.current?.focus();}}><header className="services-preview-header"><div><Dialog.Title>{campaign.brand}</Dialog.Title><Dialog.Description>Selected campaign work · {campaign.channels.join(" / ")}</Dialog.Description></div><Dialog.Close className="services-preview-close" aria-label="Close campaign"><X size={22}/></Dialog.Close></header>

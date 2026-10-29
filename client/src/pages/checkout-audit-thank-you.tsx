@@ -1,15 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  CalendarDays,
-  CheckCircle2,
-  CheckCheck,
-  ClipboardList,
-  FileText,
-  ShieldCheck,
-  Sparkles,
-  Target,
-} from "lucide-react";
+import { CalendarDays, CheckCircle2, CheckCheck, ClipboardList, FileText, ShieldCheck, Sparkles, Target } from "lucide-react";
 
 const onboardingCallUrl =
   "https://calendly.com/juda-borrayo/deep-dive-audit-onboarding-call";
@@ -95,7 +85,7 @@ export default function CheckoutAuditThankYou() {
               className="mb-6 inline-block text-sm text-gray-600 transition hover:text-gray-900"
               data-testid="link-back-home"
             >
-              ← Back to Home
+               Back to Home
             </Link>
 
             <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_30px_90px_-50px_rgba(15,23,42,0.45)]">
@@ -138,7 +128,7 @@ export default function CheckoutAuditThankYou() {
                           className="inline-flex items-center justify-center gap-2 rounded-2xl bg-green-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
                         >
                           Book Your Onboarding Call
-                          <ArrowRight className="h-4 w-4" />
+
                         </a>
                         <a
                           href={prepDocumentUrl}
@@ -146,7 +136,7 @@ export default function CheckoutAuditThankYou() {
                           rel="noreferrer"
                           className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
                         >
-                          <FileText className="h-4 w-4 text-violet-600" />
+
                           Review the Audit Prep Document
                         </a>
                       </div>

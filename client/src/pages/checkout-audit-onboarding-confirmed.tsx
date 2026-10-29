@@ -15,7 +15,7 @@ export default function CheckoutAuditOnboardingConfirmed() {
               className="mb-6 inline-block text-sm text-gray-600 hover:text-gray-900"
               data-testid="link-back-home"
             >
-              ← Back to Home
+               Back to Home
             </Link>
 
             <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm sm:p-10">

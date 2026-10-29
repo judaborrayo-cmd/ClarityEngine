@@ -100,7 +100,7 @@ export default function ExitIntentModal() {
                   { text: "Practical next moves when your answers reveal a clear constraint", color: "bg-cyan-100 text-cyan-700" },
                 ].map(({ text, color }) => <li key={text} className="flex items-start gap-3 leading-relaxed"><span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${color}`}><Check size={16} strokeWidth={3} aria-hidden="true" /></span><span>{text}</span></li>)}
               </ul>
-              <Link ref={primaryLink} to="/marketing-clarity-assesment" onClick={close} className="flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 px-4 py-3 text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-700" data-testid="button-popup-assessment">Explore the assessment →</Link>
+              <Link ref={primaryLink} to="/marketing-clarity-assesment" onClick={close} className="flex justify-center rounded-xl bg-purple-700 hover:bg-purple-800 px-4 py-3 text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-700" data-testid="button-popup-assessment">Explore the assessment </Link>
               <p className="text-center text-xs text-gray-500 mt-3">${assessment.product.priceCents / 100} one-time · based on your answers</p>
               <button type="button" onClick={close} className="block mx-auto mt-5 text-sm text-gray-600 underline underline-offset-4">Keep exploring</button>
             </div>
