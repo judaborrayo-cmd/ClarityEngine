@@ -17,7 +17,7 @@ function page(path:string,title:string,description:string,image='default',imageA
 }
 const sprintDescription=`Three live sessions over 30 days to work through your growth priorities. $${strategySprintOffer.price} one-time payment, no subscription.`;
 export const pageMetadataRegistry: Record<string,PageMetadata> = {
- '/':page('/','Performance Marketing & Growth Strategy','Grow with clarity, better tracking, and smarter growth strategy, so you can scale what works and stop guessing.','home-clarity-in-motion',alts.home),
+ '/':page('/','Performance Marketing & Growth Strategy','Grow with clarity, better tracking, and smarter growth strategy, so you can scale what works and stop guessing.','home-clarity-in-motion-v2',alts.home),
  '/about':page('/about','Juda Borrayo · Founder of Clarity Engine','Growth marketing strategy, paid media management, conversion optimization, and analytics consulting for founders and teams.','about'),
  '/marketing-clarity-assesment':page('/marketing-clarity-assesment','Get Clarity Assessment — $27','Examine six essential marketing areas and identify where to focus next with Get Clarity Assessment by Clarity Engine. $27, one-time payment.','assessment'),
  '/strategy-sprint':page('/strategy-sprint','30-Day Growth Strategy Sprint',sprintDescription,'sprint'),
