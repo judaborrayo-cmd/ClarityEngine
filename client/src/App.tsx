@@ -29,6 +29,7 @@ import AuditAssessment from '@/pages/audit-assessment';
 import AuditResults from '@/pages/audit-results';
 
 import Navbar from "@/components/site-navigation";
+import WebsiteAnalytics from "@/components/website-analytics";
 
 function LegacyAssessmentRedirect() {
   const location = useLocation();
@@ -118,6 +119,7 @@ function Router() {
   return (
     <>
       <Navbar />
+      <WebsiteAnalytics />
       <ExitIntentModal />
       <div className={isHome ? "-mt-6 lg:mt-0" : "pt-28 lg:pt-20"}>
         <Routes>
