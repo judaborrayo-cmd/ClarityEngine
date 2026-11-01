@@ -39,6 +39,7 @@ export function updateAdvertising(pathname: string, consent: boolean) {
 }
 export function saveAdvertisingConsent(value: 'granted' | 'denied') {
   try { localStorage.setItem(advertisingConsentKey, value); } catch { /* Fail closed in the GTM tag if storage is unavailable. */ }
+  window.dispatchEvent(new Event('ce-advertising-consent-change'));
   if (value === 'denied') {
     (window as MetaWindow).fbq?.('consent', 'revoke');
     previousPage = '';

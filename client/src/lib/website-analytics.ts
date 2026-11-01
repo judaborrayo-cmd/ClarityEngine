@@ -1,3 +1,4 @@
+import { queueMetaPurchase } from './meta-conversions';
 import { getPageMetadata, indexablePagePaths, publicOrigin } from '../../../shared/page-metadata';
 
 export const measurementId = 'G-T4SMFB5CTF';
@@ -8,7 +9,7 @@ let initialized = false;
 let previousPage = '';
 const sentPurchases = new Set<string>();
 let pendingReceipt: Receipt | null = null;
-export type Receipt = { transaction_id: string; currency: 'USD'; value: number; items: { item_id: string; item_name: string; price: number; quantity: number }[] };
+export type Receipt = { meta_proof?: string; transaction_id: string; currency: 'USD'; value: number; items: { item_id: string; item_name: string; price: number; quantity: number }[] };
 export const assessmentItem = { item_id: 'clarity-assessment', item_name: 'Get Clarity Assessment', price: 27, quantity: 1 };
 export const deepDiveAuditItem = { item_id: 'deep-dive-growth-audit', item_name: 'Deep Dive Growth Audit', price: 3725, quantity: 1 };
 export const sprintItem = { item_id: 'strategy-sprint', item_name: '30-Day Growth Strategy Sprint', price: 697, quantity: 1 };
@@ -67,7 +68,7 @@ function pushEvent(name: string, page: NonNullable<ReturnType<typeof analyticsPa
   (window as AnalyticsWindow).dataLayer!.push({ ce_params: null });
   (window as AnalyticsWindow).dataLayer!.push({ event: 'ce_analytics', ce_event_name: name, ce_params: { ...page, page_referrer: safeReferrer(document.referrer), ...params } });
 }
-export function trackWebsiteEvent(name: 'form_submit' | 'assessment_complete' | 'file_download' | 'begin_checkout' | 'purchase', params: Record<string, unknown>) {
+export function trackWebsiteEvent(name: 'form_submit' | 'assessment_context_submit' | 'assessment_complete' | 'file_download' | 'begin_checkout' | 'purchase', params: Record<string, unknown>) {
   try {
     const page = enable(location.pathname, readAnalyticsConsent() === 'granted');
     if (!page) return false;
@@ -91,9 +92,11 @@ export function trackCheckout(item: Receipt["items"][number]): Promise<void> {
 }
 export function trackPurchase(receipt: Receipt) {
   if (!receipt || !/^ce_[a-f0-9]{64}$/.test(receipt.transaction_id) || receipt.currency !== 'USD' || !Number.isFinite(receipt.value) || receipt.value < 0) return;
+  queueMetaPurchase(receipt);
   const key = `ce-purchase-${receipt.transaction_id}`;
   try { if (sentPurchases.has(key) || localStorage.getItem(key)) return; } catch { if (sentPurchases.has(key)) return; }
-  if (!trackWebsiteEvent('purchase', receipt)) { pendingReceipt = receipt; return; }
+  const { meta_proof: _privateProof, ...analyticsReceipt } = receipt;
+  if (!trackWebsiteEvent('purchase', analyticsReceipt)) { pendingReceipt = receipt; return; }
   pendingReceipt = null;
   sentPurchases.add(key);
   try { localStorage.setItem(key, '1'); } catch { /* GA also deduplicates transaction IDs. */ }

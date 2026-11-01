@@ -1,3 +1,4 @@
+import { signMetaPurchase, verifyMetaPurchase, sendMetaPurchase } from './meta-conversions';
 import { discoverCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
 import express, { type Request } from "express";
@@ -199,22 +200,35 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       res.json({ url: checkout.url });
     }),
   );
+  router.post('/meta-purchase', handle(async (req,res,{store,tokenSecret}) => {
+    const input = z.object({proof:z.string().max(2000),consent:z.literal(true),fbp:z.string().regex(/^fb\.[012]\.\d{10,16}\.[A-Za-z0-9_-]{1,200}$/),fbc:z.string().regex(/^fb\.[012]\.\d{10,16}\.[A-Za-z0-9_-]{1,500}$/).optional()}).strict().parse(req.body);
+    const proof = verifyMetaPurchase(input.proof, tokenSecret);
+    if (!proof) { res.status(403).json({error:'Verified purchase required'}); return; }
+    const token = process.env.META_CONVERSIONS_API_TOKEN;
+    if (!token || !store.metaPurchaseOnce) { res.status(503).json({error:'Conversion delivery unavailable'}); return; }
+    const agent = req.get('user-agent')?.slice(0,1000);
+    if (!agent) { res.status(400).json({error:'Browser information required'}); return; }
+    await store.metaPurchaseOnce(proof.id, () => sendMetaPurchase(proof,{fbp:input.fbp,fbc:input.fbc,agent},token));
+    res.json({received:true});
+  }));
   router.post(
     "/deep-dive-receipt",
-    handle(async (req, res, { payment }) => {
+    handle(async (req, res, { payment, tokenSecret }) => {
       const { checkoutId } = z.object({ checkoutId: z.string().regex(/^cs_live_[A-Za-z0-9_]+$/).max(200) }).strict().parse(req.body);
       const receipt = await payment.deepDiveReceipt?.(checkoutId);
       if (!receipt) { res.status(403).json({ error: "Payment not verified" }); return; }
-      res.json({ transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: receipt.value, items: [{ item_id: "deep-dive-growth-audit", item_name: "Deep Dive Growth Audit", price: receipt.value, quantity: 1 }] });
+      const verified = { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: receipt.value, items: [{ item_id: "deep-dive-growth-audit", item_name: "Deep Dive Growth Audit", price: receipt.value, quantity: 1 }] };
+      res.json({ ...verified, meta_proof: signMetaPurchase(verified, tokenSecret) });
     }),
   );
   router.post(
     "/sprint-receipt",
-    handle(async (req, res, { payment }) => {
+    handle(async (req, res, { payment, tokenSecret }) => {
       const { checkoutId } = z.object({ checkoutId: z.string().regex(/^cs_live_[A-Za-z0-9_]+$/).max(200) }).strict().parse(req.body);
       const receipt = await payment.sprintReceipt?.(checkoutId);
       if (!receipt) { res.status(403).json({ error: "Payment not verified" }); return; }
-      res.json({ transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: receipt.value, items: [{ item_id: "strategy-sprint", item_name: "30-Day Growth Strategy Sprint", price: receipt.value, quantity: 1 }] });
+      const verified = { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: receipt.value, items: [{ item_id: "strategy-sprint", item_name: "30-Day Growth Strategy Sprint", price: receipt.value, quantity: 1 }] };
+      res.json({ ...verified, meta_proof: signMetaPurchase(verified, tokenSecret) });
     }),
   );
   router.post(
@@ -247,7 +261,8 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           .json({ error: "Purchase ownership could not be verified" });
         return;
       }
-      res.json({ token, receipt: checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: 27, quantity: 1 }] } : null });
+      const receipt = checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: 27, quantity: 1 }] } : null;
+      res.json({ token, receipt: receipt ? { ...receipt, meta_proof: signMetaPurchase(receipt, tokenSecret) } : null });
     }),
   );
   router.use("/:token", async (req, res, next) => {
