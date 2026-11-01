@@ -1,3 +1,4 @@
+import { captureAttribution } from '@/lib/campaign-attribution';
 import { useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { analyticsContext, readAnalyticsConsent, saveAnalyticsConsent, updateAnalytics } from '@/lib/website-analytics';
@@ -13,6 +14,7 @@ export default function WebsiteAnalytics() {
   const [analyticsSelected, setAnalyticsSelected] = useState(consent === 'granted');
   const [adsSelected, setAdsSelected] = useState(ads === 'granted');
   const [open, setOpen] = useState(false);
+  useLayoutEffect(() => { try { captureAttribution(new URL(location.href), document.referrer, consent === 'granted', ads === 'granted', localStorage); } catch {} }, [pathname, search, consent, ads]);
   useLayoutEffect(() => { updateAnalytics(pathname, consent === 'granted'); }, [pathname, consent]);
   useLayoutEffect(() => { updateAdvertising(pathname, ads === 'granted'); }, [pathname, search, hash, consent, ads]);
   if (!analyticsContext(pathname)) return null;
