@@ -12,3 +12,5 @@ playwright-report
 tmp/pdfs
 
 server/audit/runtime.mjs
+
+.prerender

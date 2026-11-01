@@ -77,6 +77,7 @@ export function serveStatic(app: Express) {
     );
   }
 
+  app.get('/marketing-clarity-audit', (req, res) => res.redirect(308, '/marketing-clarity-assesment' + req.url.slice(req.path.length)));
   app.use(express.static(distPath));
   app.get('/audit/*', (_req, res) => { res.sendFile(path.resolve(distPath, 'audit-private.html')); });
 
@@ -84,8 +85,8 @@ export function serveStatic(app: Express) {
     app.get(route, (_req, res) => res.sendFile(path.resolve(distPath, pageHtmlFile(route))));
   }
 
-  // fall through to index.html if the file doesn't exist
+  // Unknown URLs must not look like successful homepage responses.
   app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+    res.status(404).sendFile(path.resolve(distPath, "404.html"));
   });
 }

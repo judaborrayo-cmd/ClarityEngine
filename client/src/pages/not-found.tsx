@@ -12,8 +12,9 @@ export default function NotFound() {
           </div>
 
           <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
+            We couldn’t find that page. It may have moved or the address may be incorrect.
           </p>
+          <a href="/" className="mt-4 inline-block underline">Return to Clarity Engine</a>
         </CardContent>
       </Card>
     </div>

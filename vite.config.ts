@@ -11,6 +11,7 @@ export default defineConfig({
     runtimeErrorOverlay(),
     {
       name: "strategy-sprint-metadata",
+      apply: (config) => !config.build?.ssr,
       enforce: "post",
       transformIndexHtml(html, context) {
         const pathname = (context.originalUrl ?? context.path).split('?')[0];
@@ -22,7 +23,7 @@ export default defineConfig({
         if (!index || index.type !== "asset") {
           this.error("Strategy Sprint metadata requires the built index.html asset.");
         }
-        this.emitFile({ type:'asset', fileName:'not-found.html',source:pageMetadataHtml(String(index.source),'/not-found') });
+        this.emitFile({ type:'asset', fileName:'404.html',source:pageMetadataHtml(String(index.source),'/not-found') });
         this.emitFile({ type: 'asset', fileName: 'audit-private.html', source: privateAuditHtml(pageMetadataHtml(String(index.source), '/audit/start')) });
         for (const pathname of publicPagePaths.filter(p => p !== '/')) {
           this.emitFile({type:'asset',fileName:pageHtmlFile(pathname),source:pageMetadataHtml(String(index.source),pathname)});
