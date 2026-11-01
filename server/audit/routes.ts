@@ -1,3 +1,4 @@
+import { HubSpotPurchases } from './hubspot-purchases';
 import { signMetaPurchase, verifyMetaPurchase, sendMetaPurchase } from './meta-conversions';
 import { discoverCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
@@ -22,6 +23,7 @@ export interface AuditDependencies {
   payment: AuditPayment;
   origin: string;
   tokenSecret: string;
+  crm?: Pick<HubSpotPurchases, "sync">;
   discoverLogo?: (website: string) => Promise<Buffer | null>;
 }
 const cookieName = "clarity_audit_purchase";
@@ -70,6 +72,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       !AUDIT_APP_ORIGIN
     )
       throw new Error("Audit configuration unavailable");
+    if (process.env.HUBSPOT_PURCHASE_SYNC_ENABLED === "true" && !process.env.HUBSPOT_SERVICE_KEY) throw new Error("HubSpot configuration unavailable");
     configured = {
       store: new PostgresAuditStore(DATABASE_URL),
       payment: new StripeAuditPayment(
@@ -79,6 +82,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       ),
       origin: new URL(AUDIT_APP_ORIGIN).origin,
       tokenSecret: AUDIT_TOKEN_SECRET,
+      ...(process.env.HUBSPOT_PURCHASE_SYNC_ENABLED === "true" && process.env.HUBSPOT_SERVICE_KEY ? { crm: new HubSpotPurchases(process.env.HUBSPOT_SERVICE_KEY) } : {}),
     };
     return configured;
   };
@@ -95,7 +99,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     express.raw({ type: "application/json", limit: "100kb" }),
     async (req, res) => {
       try {
-        const { payment, store } = getDependencies();
+        const { payment, store, crm } = getDependencies();
         let event;
         try {
           event = payment.webhook(
@@ -108,6 +112,11 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         }
         if (event.checkoutId && ((await payment.isPaid(event.checkoutId)) || (await payment.deepDiveReceipt?.(event.checkoutId))))
           await store.paymentEvent(event.id, event.checkoutId);
+        if (crm && event.checkoutId && event.paidAt) {
+          if (!payment.crmPurchase || !store.crmPurchaseOnce) throw new Error('CRM sync is not configured');
+          const purchase = await payment.crmPurchase(event.checkoutId, event.paidAt);
+          if (purchase) await store.crmPurchaseOnce(purchase.checkoutId, tokenHash(purchase.email), async () => { await crm.sync(purchase); });
+        }
         res.json({ received: true });
       } catch {
         res.status(503).json({

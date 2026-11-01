@@ -1,3 +1,4 @@
+import { websitePurchase, type CrmPurchase } from './hubspot-purchases';
 import Stripe from "stripe";
 
 export interface AuditPayment {
@@ -8,7 +9,8 @@ export interface AuditPayment {
   deepDiveReceipt?(id: string): Promise<{ value: number } | null>;
   sprintReceipt?(id: string): Promise<{ value: number } | null>;
   isPaid(id: string, claimHash?: string): Promise<boolean>;
-  webhook(body: Buffer, signature: string): { id: string; checkoutId?: string };
+  crmPurchase?(id: string, paidAt: number): Promise<CrmPurchase | null>;
+  webhook(body: Buffer, signature: string): { id: string; checkoutId?: string; paidAt?: number };
 }
 export class StripeAuditPayment implements AuditPayment {
   private stripe: Stripe;
@@ -58,6 +60,9 @@ export class StripeAuditPayment implements AuditPayment {
     if (!session.livemode || session.payment_status !== "paid" || session.status !== "complete" || session.mode !== "payment" || session.currency !== "usd" || session.payment_link !== "plink_1UQE5yF2Vf3NGmY3we6iSUab" || session.amount_total !== 372500 || session.line_items?.data.length !== 1 || item?.price?.id !== "price_1UQE5mF2Vf3NGmY3417ombIk" || item.quantity !== 1) return null;
     return { value: (session.amount_total - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100 };
   }
+  async crmPurchase(id: string, paidAt: number) {
+    return websitePurchase(await this.stripe.checkout.sessions.retrieve(id, { expand: ["line_items"] }), this.priceId, paidAt);
+  }
   webhook(body: Buffer, signature: string) {
     const event = this.stripe.webhooks.constructEvent(
       body,
@@ -70,6 +75,7 @@ export class StripeAuditPayment implements AuditPayment {
     ].includes(event.type);
     return {
       id: event.id,
+      paidAt: event.created * 1000,
       checkoutId: recognized
         ? (event.data.object as Stripe.Checkout.Session).id
         : undefined,

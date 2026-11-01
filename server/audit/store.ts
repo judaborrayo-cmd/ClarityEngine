@@ -64,6 +64,7 @@ export interface AuditStore {
     value: string,
   ): Promise<boolean>;
   metaPurchaseOnce?(id: string, send: () => Promise<void>): Promise<void>;
+  crmPurchaseOnce?(checkoutId: string, contactKey: string, sync: () => Promise<void>): Promise<void>;
   paymentEvent(id: string, checkoutId: string): Promise<void>;
   rateLimit(key: string): Promise<boolean>;
   event(
@@ -353,6 +354,22 @@ export class PostgresAuditStore implements AuditStore {
       }
       await connection.query('COMMIT');
     } catch(error) { await connection.query('ROLLBACK'); throw error; }
+    finally { connection.release(); }
+  }
+  async crmPurchaseOnce(checkoutId: string, contactKey: string, sync: () => Promise<void>) {
+    const connection = await this.pool.connect();
+    const key = `hubspot-purchase:${checkoutId}`;
+    try {
+      await connection.query('BEGIN');
+      // Serialize purchases for a contact so merging multi-select values cannot lose a purchase.
+      await connection.query('SELECT pg_advisory_xact_lock(hashtext($1))', [`hubspot-contact:${contactKey}`]);
+      const existing = await connection.query('SELECT event_id FROM marketing_audit_payment_events WHERE event_id=$1', [key]);
+      if (!existing.rows.length) {
+        await sync();
+        await connection.query('INSERT INTO marketing_audit_payment_events(event_id,checkout_id) VALUES($1,$2)', [key,checkoutId]);
+      }
+      await connection.query('COMMIT');
+    } catch (error) { await connection.query('ROLLBACK'); throw error; }
     finally { connection.release(); }
   }
   async paymentEvent(id: string, checkoutId: string) {

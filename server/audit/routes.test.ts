@@ -487,3 +487,25 @@ test('Deep Dive receipt and webhook verify payments without granting assessment 
   assert.equal(store.events.size,1);
   assert.equal(store.records.size,0);
 });
+
+test('verified Stripe webhook syncs CRM and returns retry status on CRM failure', async (t) => {
+  const store = new TestAuditStore() as TestAuditStore & {crmPurchaseOnce: (id:string,key:string,send:()=>Promise<void>)=>Promise<void>};
+  const payment = new TestAuditPayment() as TestAuditPayment & {crmPurchase: (id:string,at:number)=>Promise<any>};
+  const originalWebhook=payment.webhook.bind(payment);
+  payment.webhook = (body, signature) => ({...originalWebhook(body,signature),paidAt:Date.UTC(2026,10,1)});
+  payment.crmPurchase=async(id,paidAt)=> id==='cs_website' ? {checkoutId:id,email:'buyer@example.com',product:'assessment',productName:'Assessment',amount:27,paidAt}:null;
+  const completed=new Set<string>();
+  store.crmPurchaseOnce=async(id,key,send)=>{assert.equal(key,tokenHash('buyer@example.com'));if(!completed.has(id)){await send();completed.add(id);}};
+  let calls=0;let fail=true;
+  const app=express();const server=app.listen(0,'127.0.0.1');
+  await new Promise<void>(resolve=>server.once('listening',resolve));
+  t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
+  const origin=`http://127.0.0.1:${(server.address() as {port:number}).port}`;
+  app.use('/api/audit',createAuditRouter({store,payment,origin,tokenSecret:'isolated-test-secret-that-is-long-enough',crm:{sync:async()=>{calls++;if(fail)throw new Error('CRM unavailable');return {contactId:'1',dealId:'2'};}}}));
+  const send=(id:string,signature='test-signature')=>fetch(`${origin}/api/audit/webhook`,{method:'POST',headers:{'Content-Type':'application/json','stripe-signature':signature},body:JSON.stringify({id:'evt_crm',checkoutId:id})});
+  assert.equal((await send('cs_website','invalid')).status,400);assert.equal(calls,0);
+  assert.equal((await send('cs_other')).status,200);assert.equal(calls,0);
+  assert.equal((await send('cs_website')).status,503);assert.equal(calls,1);
+  fail=false;assert.equal((await send('cs_website')).status,200);assert.equal(calls,2);
+  assert.equal((await send('cs_website')).status,200);assert.equal(calls,2);
+});
