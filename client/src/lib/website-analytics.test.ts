@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { analyticsPage, analyticsContext, safeReferrer, updateAnalytics, trackWebsiteEvent, trackPurchase, saveAnalyticsConsent, consentKey, containerId, assessmentItem } from './website-analytics';
+import { analyticsPage, analyticsContext, safeReferrer, updateAnalytics, trackWebsiteEvent, trackPurchase, saveAnalyticsConsent, consentKey, containerId, assessmentItem, deepDiveAuditItem } from './website-analytics';
 
 test('private URL credentials and query strings never become event context', () => {
   for (const path of ['/audit/results/secret', '/audit/start', '/checkout/strategy-sprint/thank-you', '/unknown', '/about?email=private@example.com']) assert.equal(analyticsPage(path), null);
@@ -34,8 +34,23 @@ test('consent gates GTM and conversions; purchases deduplicate; private events a
   assert.equal(events().filter((e:any)=>e.ce_event_name==='purchase').length,1);
   assert.equal(JSON.stringify(w.dataLayer).includes('secret'),false);
   assert.equal(events().at(-1).ce_params.value,27);
+  loc.pathname='/checkout/audit/new-next-steps';
+  const auditReceipt = {transaction_id:'ce_'+'b'.repeat(64),currency:'USD' as const,value:3725,items:[deepDiveAuditItem]};
+  trackPurchase(auditReceipt); trackPurchase(auditReceipt);
+  const auditEvents = events().filter((e:any)=>e.ce_event_name==='purchase' && e.ce_params.value===3725);
+  assert.equal(auditEvents.length,1);
+  assert.equal(auditEvents[0].ce_params.items[0].item_id,'deep-dive-growth-audit');
+  assert.equal(auditEvents[0].ce_params.page_location,'https://www.clarity-engine.org/growth-clarity-audit');
   saveAnalyticsConsent('denied');
   assert.equal(trackWebsiteEvent('form_submit',{form_id:'assessment_context'}),false);
   loc.hostname='localhost';values.set(consentKey,'granted');
   assert.equal(trackWebsiteEvent('form_submit',{form_id:'assessment_context'}),false);
+});
+
+test('Deep Dive checkout tracking uses public offer context and excludes legacy receipts', () => {
+  for (const path of ['/checkout/audit', '/checkout/audit/new-next-steps']) {
+    assert.equal(analyticsContext(path)?.page_location, 'https://www.clarity-engine.org/growth-clarity-audit');
+    assert.equal(analyticsPage(path), null);
+  }
+  assert.equal(analyticsContext('/checkout/audit/thank-you'), null);
 });

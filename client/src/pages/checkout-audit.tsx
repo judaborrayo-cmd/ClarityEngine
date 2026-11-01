@@ -1,7 +1,9 @@
+import { trackCheckout, deepDiveAuditItem } from "@/lib/website-analytics";
 import { Link } from "react-router-dom";
 import {
   deepDiveGrowthAuditOffer as offer,
   deepDiveGrowthAuditDeliverables as deliverables,
+  deepDiveAuditTerms,
 } from "@shared/deep-dive-growth-audit-offer";
 import "./deep-dive-growth-audit.css";
 export default function CheckoutAudit() {
@@ -45,26 +47,11 @@ export default function CheckoutAudit() {
               {offer.priceLabel}
               <span>USD · one-time</span>
             </p>
-            <button
-              className="dda-button"
-              disabled
-              aria-describedby="audit-checkout-status"
-              data-testid="button-proceed-checkout"
-            >
-              Checkout not yet available
-            </button>
-            <div className="dda-review-notice" id="audit-checkout-status">
-              <strong>Online purchasing is not yet available</strong>
-              <p>
-                Purchasing is unavailable while the new payment link is
-                inactive. No payment can be made from this page.
-              </p>
-            </div>
-            <p className="dda-note"><a className="dda-text-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20enquiry">Contact us about the Audit </a></p>
-            <p className="dda-note">
-              Engagement scope and commercial details will be confirmed before
-              purchase opens.
-            </p>
+            <a className="dda-button" href={offer.paymentLink} data-testid="button-proceed-checkout"
+              onClick={async event => { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); await trackCheckout(deepDiveAuditItem); window.location.assign(offer.paymentLink); }}>
+              Purchase for {offer.priceLabel}
+            </a>
+            <p className="dda-note">Secure one-time payment through Stripe. Review the <a href="#terms" className="dda-text-link">engagement and cancellation terms</a> before purchasing.</p>
             <Link
               to="/growth-clarity-audit#investigation"
               className="dda-text-link"
@@ -72,6 +59,11 @@ export default function CheckoutAudit() {
               Review the investigation scope </Link>
           </aside>
         </div>
+        <section id="terms" aria-labelledby="audit-terms-heading" style={{ marginTop: '3rem', scrollMarginTop: '8rem' }}>
+          <h2 id="audit-terms-heading">Engagement & cancellation terms</h2>
+          <p className="dda-note">Effective November 1, 2026 · Deep Dive Growth Audit · $3,725 USD</p>
+          {deepDiveAuditTerms.map(term => <article key={term.title} style={{ marginTop: '1.5rem' }}><h3>{term.title}</h3><p>{term.copy}</p></article>)}
+        </section>
       </div>
     </main>
   );

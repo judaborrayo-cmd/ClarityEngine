@@ -87,9 +87,11 @@ const stages = [
   },
 ];
 const faqs = [
+  ["What support is included afterward?", "Two weeks of clarification support after the final walkthrough: up to two calls totaling 90 minutes, including reasonable guidance for your team. Implementation is purchased separately."],
+  ["Can I cancel?", "Yes. You can cancel and receive the unused portion of your payment, less the value of completed work and 3% of the original payment. The kickoff counts as work. Review the full engagement and cancellation terms on the checkout page."],
   [
     "What will you investigate?",
-    "We agree the priorities around your business, available evidence and relevant marketing systems. The scope depends on those priorities and authorized access; it is not an exhaustive inspection of every asset, record or competitor.",
+    "We agree the priorities around your business, available evidence and relevant marketing systems. SEO services are excluded. The scope depends on those priorities and authorized access; it is not an exhaustive inspection of every asset, record or competitor.",
   ],
   [
     "Does the Audit include implementation?",
@@ -109,11 +111,11 @@ const faqs = [
   ],
   [
     "How long does the Audit take?",
-    "Proposed delivery is approximately three weeks after complete onboarding and sufficient authorized access, with a normal extended window of approximately five weeks where needed. Timing exceptions are communicated.",
+    "Plan for completion within three weeks after the kickoff and receipt of required information, documents and access, unless otherwise agreed. Delays in required inputs may move the delivery date.",
   ],
   [
     "How do you keep the scope clear?",
-    "A short engagement-specific scope confirmation identifies the selected brands, locations, markets, channels, conversion journeys, competitors, evidence and tangible work products. Research, creative production, functional development and revisions are bounded by that agreement.",
+    "A short engagement-specific scope confirmation covers one brand or business and identifies the relevant locations, markets, channels, conversion journeys, competitors, evidence and tangible work products. Research, creative production, functional development and revisions are bounded by that agreement.",
   ],
   [
     "Do I need a consultation before purchasing?",
@@ -377,7 +379,7 @@ export default function GrowthClarityAudit() {
             ))}
           </ol>
           <p className="dda-note">
-            Proposed delivery: approximately three weeks after complete onboarding and sufficient access, with a normal extended window of approximately five weeks where needed. Timing exceptions are communicated. No account passwords or unnecessary sensitive customer information.
+            Delivery: within three weeks after kickoff and receipt of required information, documents and access, unless otherwise agreed. No account passwords or unnecessary sensitive customer information.
           </p>
         </div>
       </section>

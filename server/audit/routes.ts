@@ -105,7 +105,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           res.status(400).json({ error: "Invalid webhook signature" });
           return;
         }
-        if (event.checkoutId && (await payment.isPaid(event.checkoutId)))
+        if (event.checkoutId && ((await payment.isPaid(event.checkoutId)) || (await payment.deepDiveReceipt?.(event.checkoutId))))
           await store.paymentEvent(event.id, event.checkoutId);
         res.json({ received: true });
       } catch {
@@ -197,6 +197,15 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       );
       res.locals.auditStage = "checkout_ready";
       res.json({ url: checkout.url });
+    }),
+  );
+  router.post(
+    "/deep-dive-receipt",
+    handle(async (req, res, { payment }) => {
+      const { checkoutId } = z.object({ checkoutId: z.string().regex(/^cs_live_[A-Za-z0-9_]+$/).max(200) }).strict().parse(req.body);
+      const receipt = await payment.deepDiveReceipt?.(checkoutId);
+      if (!receipt) { res.status(403).json({ error: "Payment not verified" }); return; }
+      res.json({ transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: receipt.value, items: [{ item_id: "deep-dive-growth-audit", item_name: "Deep Dive Growth Audit", price: receipt.value, quantity: 1 }] });
     }),
   );
   router.post(

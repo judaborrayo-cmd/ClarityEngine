@@ -5,6 +5,7 @@ export interface AuditPayment {
     origin: string,
     claimHash: string,
   ): Promise<{ id: string; url: string }>;
+  deepDiveReceipt?(id: string): Promise<{ value: number } | null>;
   sprintReceipt?(id: string): Promise<{ value: number } | null>;
   isPaid(id: string, claimHash?: string): Promise<boolean>;
   webhook(body: Buffer, signature: string): { id: string; checkoutId?: string };
@@ -49,6 +50,12 @@ export class StripeAuditPayment implements AuditPayment {
   async sprintReceipt(id: string) {
     const session = await this.stripe.checkout.sessions.retrieve(id);
     if (!session.livemode || session.payment_status !== "paid" || session.status !== "complete" || session.mode !== "payment" || session.currency !== "usd" || session.payment_link !== "plink_1UPQoSF2Vf3NGmY34kdTmiTC" || session.amount_total !== 69700) return null;
+    return { value: (session.amount_total - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100 };
+  }
+  async deepDiveReceipt(id: string) {
+    const session = await this.stripe.checkout.sessions.retrieve(id, { expand: ["line_items"] });
+    const item = session.line_items?.data[0];
+    if (!session.livemode || session.payment_status !== "paid" || session.status !== "complete" || session.mode !== "payment" || session.currency !== "usd" || session.payment_link !== "plink_1UQE5yF2Vf3NGmY3we6iSUab" || session.amount_total !== 372500 || session.line_items?.data.length !== 1 || item?.price?.id !== "price_1UQE5mF2Vf3NGmY3417ombIk" || item.quantity !== 1) return null;
     return { value: (session.amount_total - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100 };
   }
   webhook(body: Buffer, signature: string) {

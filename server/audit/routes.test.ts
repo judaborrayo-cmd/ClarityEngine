@@ -457,3 +457,33 @@ test("paid ownership, autosave/resume, two frozen reports, retake enforcement, n
   assert.equal(refreshes, 1); // same validated cache path in web and PDF
 
 });
+
+test('Deep Dive receipt and webhook verify payments without granting assessment access', async (t) => {
+  const store = new TestAuditStore();
+  const payment = new TestAuditPayment() as TestAuditPayment & { deepDiveReceipt(id:string):Promise<{value:number}|null> };
+  payment.deepDiveReceipt = async id => id === 'cs_live_deepdive' ? {value:3725} : null;
+  const app = express();
+  const server = app.listen(0, '127.0.0.1');
+  await new Promise<void>(resolve => server.once('listening',resolve));
+  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
+  const origin = `http://127.0.0.1:${(server.address() as {port:number}).port}`;
+  app.use('/api/audit',createAuditRouter({store,payment,origin,tokenSecret:'isolated-test-secret-that-is-long-enough',discoverLogo:async()=>null}));
+  const receipt = (checkoutId:string) => fetch(`${origin}/api/audit/deep-dive-receipt`, {method:'POST',headers:{origin,'Content-Type':'application/json'},body:JSON.stringify({checkoutId})});
+  assert.equal((await receipt('cs_test_fake')).status,400);
+  assert.equal((await receipt('cs_live_unpaid')).status,403);
+  const verified = await receipt('cs_live_deepdive');
+  assert.equal(verified.status,200);
+  const body = await verified.json();
+  assert.equal(body.value,3725);
+  assert.equal(body.currency,'USD');
+  assert.equal(body.items[0].item_id,'deep-dive-growth-audit');
+  assert.equal(body.transaction_id,`ce_${tokenHash('cs_live_deepdive')}`);
+  assert.equal(JSON.stringify(body).includes('cs_live'),false);
+  const webhook = (checkoutId:string) => fetch(`${origin}/api/audit/webhook`,{method:'POST',headers:{'Content-Type':'application/json','stripe-signature':'test-signature'},body:JSON.stringify({id:'evt_deepdive',checkoutId})});
+  assert.equal((await webhook('cs_live_unpaid')).status,200);
+  assert.equal(store.events.size,0);
+  assert.equal((await webhook('cs_live_deepdive')).status,200);
+  assert.equal((await webhook('cs_live_deepdive')).status,200);
+  assert.equal(store.events.size,1);
+  assert.equal(store.records.size,0);
+});

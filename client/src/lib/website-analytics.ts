@@ -10,6 +10,7 @@ const sentPurchases = new Set<string>();
 let pendingReceipt: Receipt | null = null;
 export type Receipt = { transaction_id: string; currency: 'USD'; value: number; items: { item_id: string; item_name: string; price: number; quantity: number }[] };
 export const assessmentItem = { item_id: 'clarity-assessment', item_name: 'Get Clarity Assessment', price: 27, quantity: 1 };
+export const deepDiveAuditItem = { item_id: 'deep-dive-growth-audit', item_name: 'Deep Dive Growth Audit', price: 3725, quantity: 1 };
 export const sprintItem = { item_id: 'strategy-sprint', item_name: '30-Day Growth Strategy Sprint', price: 697, quantity: 1 };
 
 export function analyticsPage(pathname: string) {
@@ -20,7 +21,7 @@ export function analyticsPage(pathname: string) {
 export function analyticsContext(pathname: string) {
   return analyticsPage(pathname) || (/^\/audit\/(start|resume\/[^/?]+|results\/[^/?]+)$/.test(pathname)
     ? analyticsPage('/marketing-clarity-assesment')
-    : /^\/checkout\/strategy-sprint(?:\/thank-you)?$/.test(pathname) ? analyticsPage('/strategy-sprint') : null);
+    : /^\/checkout\/strategy-sprint(?:\/thank-you)?$/.test(pathname) ? analyticsPage('/strategy-sprint') : /^\/checkout\/audit(?:\/new-next-steps)?$/.test(pathname) ? analyticsPage('/growth-clarity-audit') : null);
 }
 export function readAnalyticsConsent(): 'granted' | 'denied' | null {
   try { const value = localStorage.getItem(consentKey); return value === 'granted' || value === 'denied' ? value : null; } catch { return null; }
@@ -75,7 +76,8 @@ export function trackWebsiteEvent(name: 'form_submit' | 'assessment_complete' | 
   } catch { return false; }
 }
 // Give GTM time to dispatch before navigating to Stripe; never block checkout on analytics.
-export function trackAssessmentCheckout(): Promise<void> {
+export function trackAssessmentCheckout(): Promise<void> { return trackCheckout(assessmentItem); }
+export function trackCheckout(item: Receipt["items"][number]): Promise<void> {
   return new Promise(resolve => {
     try {
       const page = enable(location.pathname, readAnalyticsConsent() === 'granted');
@@ -83,7 +85,7 @@ export function trackAssessmentCheckout(): Promise<void> {
       const timer = setTimeout(resolve, 1200);
       const layer = (window as AnalyticsWindow).dataLayer!;
       layer.push({ ce_params: null });
-      layer.push({ event: 'ce_analytics', ce_event_name: 'begin_checkout', ce_params: { ...page, page_referrer: safeReferrer(document.referrer), currency: 'USD', value: 27, items: [assessmentItem] }, eventCallback: () => { clearTimeout(timer); resolve(); }, eventTimeout: 1000 });
+      layer.push({ event: 'ce_analytics', ce_event_name: 'begin_checkout', ce_params: { ...page, page_referrer: safeReferrer(document.referrer), currency: 'USD', value: item.price * item.quantity, items: [item] }, eventCallback: () => { clearTimeout(timer); resolve(); }, eventTimeout: 1000 });
     } catch { resolve(); }
   });
 }
