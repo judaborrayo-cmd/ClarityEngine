@@ -26,8 +26,8 @@ export const pageMetadataRegistry: Record<string,PageMetadata> = {
  '/case-studies':page('/case-studies','Selected Growth Marketing Case Studies','Explore the challenges, decisions, and work behind selected paid media and growth marketing engagements.','case-studies'),
  '/testimonials':page('/testimonials','Professional Recommendations','Read existing colleague recommendations about working with Juda Borrayo.'),
  '/growth-clarity-audit':{...page('/growth-clarity-audit',`${auditOffer.name} — ${auditOffer.priceLabel}`, 'Expert-led investigation, tangible strategic development, a tailored Strategic Growth Blueprint and a prioritized 90-day roadmap. $3,725 USD one-time; contact us about fit.')},
- '/checkout/audit':{...page('/checkout/audit',`${auditOffer.name} — Checkout Preview`,`${auditOffer.priceLabel} USD one-time. Review the proposed engagement. Purchasing is not yet available.`),noindex:true},
- '/checkout/audit/new-next-steps':{...page('/checkout/audit/new-next-steps',`${auditOffer.name} — Next Steps Preview`,'Preview onboarding context and investigation priorities. This page does not verify payment or confirm a booking.'),noindex:true},
+ '/checkout/audit':{...page('/checkout/audit',`${auditOffer.name} — Checkout`,`${auditOffer.priceLabel} USD one-time. Review the engagement, delivery and cancellation terms, then purchase securely.`),noindex:true},
+ '/checkout/audit/new-next-steps':{...page('/checkout/audit/new-next-steps',`${auditOffer.name} — Next Steps`,'Verify your payment and prepare for your Deep Dive Growth Audit kickoff.'),noindex:true},
  '/steven':page('/steven','Steven is Awesome','Steven is Awesome.'),
  '/ways-to-work-together':page('/ways-to-work-together','Ways to Work Together','Find your starting point with Get Clarity Assessment, a Strategy Sprint, an intro call, the Deep Dive Growth Audit, or ongoing growth support.','ways'),
 };
