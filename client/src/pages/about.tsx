@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./about-founder.css";
+import InquiryForm from "@/components/inquiry-form";
 import FounderHeroVideo from "@/components/founder-hero-video";
 
 
@@ -42,7 +43,7 @@ export function OfferPreview({ index, title }: { index: number; title: string })
 export default function About() {
   return <main className="founder-page">
     <section className="founder-wrap founder-hero">
-      <div><p className="founder-relationship">Founder of Clarity Engine</p><p className="founder-title">Senior Growth Marketing Strategist | Paid Media, CRO &amp; Full-Funnel Growth</p><h1>Clearer decisions.<br /><em>More focused growth.</em></h1><p className="founder-lead">I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that direction into practical work.</p><div className="founder-actions"><a className="founder-button" href="#ways-to-work">Explore ways to work together </a><Link className="founder-link" to="/case-studies">View case studies </Link></div><div className="founder-contact"><a href="mailto:Juda.Borrayo@gmail.com">Email Juda</a><a href="https://www.linkedin.com/in/judaborrayo" target="_blank" rel="noopener noreferrer">LinkedIn </a></div></div>
+      <div><p className="founder-relationship">Founder of Clarity Engine</p><p className="founder-title">Senior Growth Marketing Strategist | Paid Media, CRO &amp; Full-Funnel Growth</p><h1>Clearer decisions.<br /><em>More focused growth.</em></h1><p className="founder-lead">I help founders and teams understand where their marketing is getting stuck, decide what deserves attention next, and turn that direction into practical work.</p><div className="founder-actions"><a className="founder-button" href="#ways-to-work">Explore ways to work together </a><Link className="founder-link" to="/case-studies">View case studies </Link></div><div className="founder-contact"><a href="#inquiry">Ask a question</a><a href="https://www.linkedin.com/in/judaborrayo" target="_blank" rel="noopener noreferrer">LinkedIn </a></div></div>
       <div className="founder-visual"><FounderHeroVideo startAt={2.5} /><aside className="founder-perspective"><p>Through Clarity Engine, I connect paid media, messaging, landing pages, and measurement to the bigger picture of how people discover your business, understand your offer, and become customers.</p><div className="founder-journey" aria-label="Customer journey"><span>Discover</span><span aria-hidden="true">→</span><span>Understand</span><span aria-hidden="true">→</span><span>Become a customer</span></div></aside></div>
     </section>
     <section className="founder-wrap founder-section founder-split"><div><h2>Looking beyond<br /><em>the ad account.</em></h2></div><div className="founder-prose"><p>We provide growth marketing strategy, paid media management, conversion optimization, and analytics consulting for founders and teams.</p><p>We work across Google Ads, YouTube, Meta, funnel strategy, conversion optimization, analytics, attribution, audience strategy, and creative testing, including ongoing campaigns and launches.</p><p>A large part of our work is diagnosing where performance breaks down across the customer journey; sometimes the issue is traffic quality, sometimes it’s the offer, the message, the landing page, or what happens after someone enquires.</p><p>Understanding those connections helps us choose a useful next step instead of adding activity without a clear reason.</p></div></section>
@@ -59,5 +60,6 @@ export default function About() {
       ["30-Day Growth Strategy Sprint", "Three live sessions to work through your priorities, solve practical problems, and leave with clearer next actions.", "Explore the Strategy Sprint", "/strategy-sprint"],
       ["Ongoing growth support", "For businesses looking for continuing help with paid media, CRO, measurement, and growth strategy.", "Explore services", "/services"],
     ].map(([title,body,label,to],i) => <article key={to}><span className="founder-eyebrow">0{i+1}</span><h3>{title}</h3><OfferPreview index={i} title={title} /><p>{body}</p><Link to={to} className="founder-link">{label} →</Link></article>)}</div></section>
+    <InquiryForm />
   </main>;
 }

@@ -16,7 +16,7 @@ export const sprintItem = { item_id: 'strategy-sprint', item_name: '30-Day Growt
 
 export function analyticsPage(pathname: string) {
   const path = pathname.replace(/\/$/, '') || '/';
-  return indexablePagePaths.includes(path) ? { page_location: publicOrigin + path, page_title: getPageMetadata(path).title } : null;
+  return (indexablePagePaths.includes(path) || path === '/inquiry/thank-you') ? { page_location: publicOrigin + path, page_title: getPageMetadata(path).title } : null;
 }
 // Private workflow events use the public offer as context; never expose tokens or query strings.
 export function analyticsContext(pathname: string) {
@@ -42,19 +42,21 @@ function enable(pathname: string, consent: boolean) {
 export function initializeTagManager(analyticsConsent: boolean) {
   if (location.hostname !== 'www.clarity-engine.org') return;
   const w = window as AnalyticsWindow;
+  let advertising: 'granted' | 'denied' = 'denied';
+  try { if (localStorage.getItem('ce-meta-consent-v1') === 'granted') advertising = 'granted'; } catch {}
   if (!initialized) {
     initialized = true;
     w.dataLayer = w.dataLayer || [];
     w.gtag = function () { w.dataLayer!.push(arguments); };
-    // Google advertising stays denied; Meta has its own explicit consent gate.
-    w.gtag('consent', 'default', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    // Advertising remains denied unless explicitly chosen in Cookie settings.
+    w.gtag('consent', 'default', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: advertising, ad_user_data: advertising, ad_personalization: advertising });
     w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
     const script = document.createElement('script');
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtm.js?id=${containerId}`;
     document.head.appendChild(script);
   }
-  w.gtag?.('consent', 'update', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  w.gtag?.('consent', 'update', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: advertising, ad_user_data: advertising, ad_personalization: advertising });
 }
 export function updateAnalytics(pathname: string, consent: boolean) {
   const page = enable(pathname, consent);
@@ -68,7 +70,7 @@ function pushEvent(name: string, page: NonNullable<ReturnType<typeof analyticsPa
   (window as AnalyticsWindow).dataLayer!.push({ ce_params: null });
   (window as AnalyticsWindow).dataLayer!.push({ event: 'ce_analytics', ce_event_name: name, ce_params: { ...page, page_referrer: safeReferrer(document.referrer), ...params } });
 }
-export function trackWebsiteEvent(name: 'form_submit' | 'assessment_context_submit' | 'assessment_complete' | 'file_download' | 'begin_checkout' | 'purchase', params: Record<string, unknown>) {
+export function trackWebsiteEvent(name: 'generate_lead' | 'form_submit' | 'assessment_context_submit' | 'assessment_complete' | 'file_download' | 'begin_checkout' | 'purchase', params: Record<string, unknown>) {
   try {
     const page = enable(location.pathname, readAnalyticsConsent() === 'granted');
     if (!page) return false;
