@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { analyticsContext, readAnalyticsConsent, saveAnalyticsConsent, updateAnalytics } from '@/lib/website-analytics';
 import { readAdvertisingConsent, saveAdvertisingConsent, updateAdvertising } from '@/lib/website-advertising';
@@ -6,20 +6,16 @@ import { readAdvertisingConsent, saveAdvertisingConsent, updateAdvertising } fro
 type Choice = 'granted' | 'denied' | null;
 export default function WebsiteAnalytics() {
   const { pathname, search, hash } = useLocation();
-  const [consent, setConsent] = useState<Choice>(null);
-  const [ads, setAds] = useState<Choice>(null);
-  const [analyticsSelected, setAnalyticsSelected] = useState(false);
-  const [adsSelected, setAdsSelected] = useState(false);
-  const [ready, setReady] = useState(false);
+  // Read persisted choices before layout effects initialize tags. A temporary
+  // denied state can otherwise race the thank-you page's lead event on reload.
+  const [consent, setConsent] = useState<Choice>(readAnalyticsConsent);
+  const [ads, setAds] = useState<Choice>(readAdvertisingConsent);
+  const [analyticsSelected, setAnalyticsSelected] = useState(consent === 'granted');
+  const [adsSelected, setAdsSelected] = useState(ads === 'granted');
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const analytics = readAnalyticsConsent(); const advertising = readAdvertisingConsent();
-    setConsent(analytics); setAds(advertising);
-    setAnalyticsSelected(analytics === 'granted'); setAdsSelected(advertising === 'granted'); setReady(true);
-  }, []);
-  useLayoutEffect(() => { updateAnalytics(pathname, ready && consent === 'granted'); }, [pathname, consent, ready]);
-  useLayoutEffect(() => { updateAdvertising(pathname, ready && ads === 'granted'); }, [pathname, search, hash, consent, ads, ready]);
-  if (!ready || !analyticsContext(pathname)) return null;
+  useLayoutEffect(() => { updateAnalytics(pathname, consent === 'granted'); }, [pathname, consent]);
+  useLayoutEffect(() => { updateAdvertising(pathname, ads === 'granted'); }, [pathname, search, hash, consent, ads]);
+  if (!analyticsContext(pathname)) return null;
   const choose = (analytics: boolean, advertising: boolean) => {
     const a = analytics ? 'granted' : 'denied'; const m = advertising ? 'granted' : 'denied';
     saveAnalyticsConsent(a); saveAdvertisingConsent(m); setConsent(a); setAds(m);
