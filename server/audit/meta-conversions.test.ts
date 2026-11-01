@@ -10,7 +10,13 @@ test('only intact, unexpired server-signed purchase proofs are accepted',()=>{
   assert.equal(verifyMetaPurchase(signed,secret,4601),null);
   assert.equal(verifyMetaPurchase(signed,'wrong-key',1100),null);
   assert.equal(verifyMetaPurchase(signed+'x',secret,1100),null);
-  assert.equal(signMetaPurchase({...receipt,value:1},secret),undefined);
+  for (const value of [1, 0, 13.50]) {
+    const discounted = {...receipt, value, items:[{item_id:'clarity-assessment'}]};
+    const proof = verifyMetaPurchase(signMetaPurchase(discounted,secret,1000)!,secret,1100)!;
+    assert.equal(metaPurchasePayload(proof,{fbp:'fb.1.1793562000000.12345',agent:'test'}).custom_data.value,value);
+  }
+  for (const value of [-1,NaN,Infinity]) assert.equal(signMetaPurchase({...receipt,value},secret),undefined);
+  assert.equal(signMetaPurchase({...receipt,items:[{item_id:'unknown'}]},secret),undefined);
   const [payload,sig]=signed.split('.');
   const altered=JSON.parse(Buffer.from(payload,'base64url').toString());altered.value=1;
   assert.equal(verifyMetaPurchase(Buffer.from(JSON.stringify(altered)).toString('base64url')+'.'+sig,secret,1100),null);
