@@ -1,29 +1,41 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { analyticsPage, safeReferrer, updateAnalytics, measurementId } from './website-analytics';
+import { analyticsPage, analyticsContext, safeReferrer, updateAnalytics, trackWebsiteEvent, trackPurchase, saveAnalyticsConsent, consentKey, containerId, assessmentItem } from './website-analytics';
 
-test('only registered public paths are measurable; tokens and queries never become page locations', () => {
-  for (const path of ['/audit/results/secret', '/audit/resume/secret', '/audit/start', '/checkout/strategy-sprint/thank-you', '/unknown', '/about?email=private@example.com']) assert.equal(analyticsPage(path), null);
+test('private URL credentials and query strings never become event context', () => {
+  for (const path of ['/audit/results/secret', '/audit/start', '/checkout/strategy-sprint/thank-you', '/unknown', '/about?email=private@example.com']) assert.equal(analyticsPage(path), null);
   assert.equal(analyticsPage('/about/')?.page_location, 'https://www.clarity-engine.org/about');
+  assert.equal(analyticsContext('/audit/results/secret')?.page_location, 'https://www.clarity-engine.org/marketing-clarity-assesment');
+  assert.equal(analyticsContext('/unknown'), null);
   assert.equal(safeReferrer('https://www.clarity-engine.org/audit/results/secret?email=private@example.com'), 'https://www.clarity-engine.org/');
 });
-
-test('requires consent and production, deduplicates views, disables collection on private routes', () => {
-  const scripts: unknown[] = [];
-  const w: any = {};
-  Object.assign(globalThis, { window: w, location: { hostname: 'www.clarity-engine.org' }, document: { referrer: '', createElement: () => ({}), head: { appendChild: (script: unknown) => scripts.push(script) } } });
+test('consent gates GTM and conversions; purchases deduplicate; private events are sanitized', () => {
+  const scripts: any[] = [];
+  const values = new Map<string,string>();
+  const w: any = { dispatchEvent() {} };
+  const loc = { hostname: 'www.clarity-engine.org', pathname: '/' };
+  Object.assign(globalThis, { window: w, location: loc, localStorage: { getItem: (k:string) => values.get(k), setItem: (k:string,v:string) => values.set(k,v) }, document: { referrer: '', cookie: '', createElement: () => ({}), head: { appendChild: (script:unknown) => scripts.push(script) } } });
   updateAnalytics('/', false);
   assert.equal(scripts.length, 0);
+  assert.equal(trackWebsiteEvent('form_submit', {form_id:'assessment_context'}), false);
+  values.set(consentKey,'granted');
   updateAnalytics('/', true);
   updateAnalytics('/', true);
   assert.equal(scripts.length, 1);
-  const views = () => w.dataLayer.filter((args: any) => args[0] === 'event' && args[1] === 'page_view');
-  assert.equal(views().length, 1);
-  updateAnalytics('/about', true);
-  assert.equal(views().length, 2);
-  updateAnalytics('/audit/results/secret', true);
-  assert.equal(w[`ga-disable-${measurementId}`], true);
-  assert.equal(JSON.stringify(w.dataLayer).includes('secret'), false);
-  updateAnalytics('/about', false);
-  assert.equal(views().length, 2);
+  assert.equal(scripts[0].src, `https://www.googletagmanager.com/gtm.js?id=${containerId}`);
+  const events = () => w.dataLayer.filter((e:any) => e.event === 'ce_analytics');
+  assert.equal(events().length, 1);
+  loc.pathname='/audit/results/secret';
+  updateAnalytics(loc.pathname,true);
+  assert.equal(events().length, 1);
+  trackWebsiteEvent('file_download',{resource_id:'report',file_extension:'pdf'});
+  const receipt = {transaction_id:'ce_'+'a'.repeat(64),currency:'USD' as const,value:27,items:[assessmentItem]};
+  trackPurchase(receipt);trackPurchase(receipt);
+  assert.equal(events().filter((e:any)=>e.ce_event_name==='purchase').length,1);
+  assert.equal(JSON.stringify(w.dataLayer).includes('secret'),false);
+  assert.equal(events().at(-1).ce_params.value,27);
+  saveAnalyticsConsent('denied');
+  assert.equal(trackWebsiteEvent('form_submit',{form_id:'assessment_context'}),false);
+  loc.hostname='localhost';values.set(consentKey,'granted');
+  assert.equal(trackWebsiteEvent('form_submit',{form_id:'assessment_context'}),false);
 });

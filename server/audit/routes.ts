@@ -200,6 +200,15 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     }),
   );
   router.post(
+    "/sprint-receipt",
+    handle(async (req, res, { payment }) => {
+      const { checkoutId } = z.object({ checkoutId: z.string().regex(/^cs_live_[A-Za-z0-9_]+$/).max(200) }).strict().parse(req.body);
+      const receipt = await payment.sprintReceipt?.(checkoutId);
+      if (!receipt) { res.status(403).json({ error: "Payment not verified" }); return; }
+      res.json({ transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: receipt.value, items: [{ item_id: "strategy-sprint", item_name: "30-Day Growth Strategy Sprint", price: receipt.value, quantity: 1 }] });
+    }),
+  );
+  router.post(
     "/exchange",
     handle(async (req, res, { payment, store, tokenSecret }) => {
       const { checkoutId } = z
@@ -229,7 +238,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           .json({ error: "Purchase ownership could not be verified" });
         return;
       }
-      res.json({ token });
+      res.json({ token, receipt: checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: 27, quantity: 1 }] } : null });
     }),
   );
   router.use("/:token", async (req, res, next) => {

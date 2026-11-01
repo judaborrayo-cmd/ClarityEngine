@@ -1,3 +1,4 @@
+import { trackWebsiteEvent, trackPurchase, type Receipt } from "@/lib/website-analytics";
 import { assessmentSections, assessmentInsights } from "@/lib/assessment-copy";
 import "./audit-assessment.css";
 import { AssessmentQuestion } from "@/components/assessment-question";
@@ -63,12 +64,13 @@ export default function AuditAssessment() {
             throw new Error(
               "Purchase the Get Clarity Assessment to get started, or open your secure resume link.",
             );
-          const result = await auditRequest<{ token: string }>(
+          const result = await auditRequest<{ token: string; receipt: Receipt | null }>(
             "/exchange",
             "POST",
             { checkoutId },
           );
           trackAudit("purchase_success", result.token);
+          if (result.receipt) trackPurchase(result.receipt);
           if (active)
             navigate(`/audit/resume/${result.token}`, { replace: true });
           return;
@@ -193,6 +195,7 @@ export default function AuditAssessment() {
     setBusy(true);
     try {
       await auditRequest(`/${token}/context`, "PUT", parsed.data);
+      if (!session?.localQa) trackWebsiteEvent("form_submit", { form_id: isRetake ? "assessment_context_update" : "assessment_context" });
       setSession((current) =>
         current ? { ...current, context: parsed.data } : current,
       );
@@ -209,6 +212,7 @@ export default function AuditAssessment() {
     setError("");
     try {
       await auditRequest(`/${token}/complete`, "POST", {});
+      if (!session?.localQa) trackWebsiteEvent("assessment_complete", { form_id: "clarity_assessment" });
       navigate(`/audit/results/${token}`);
     } catch (e) {
       setError((e as Error).message);

@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { auditRequest } from "@/lib/audit-api";
+import { trackPurchase, type Receipt } from "@/lib/website-analytics";
 import { strategySprintOffer as offer } from "@shared/strategy-sprint-offer";
 import { Link } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
@@ -28,6 +31,11 @@ const purchaseSummary = [
 ];
 
 export default function CheckoutStrategySprintThankYou() {
+  useEffect(() => {
+    const checkoutId = new URLSearchParams(window.location.search).get("session_id");
+    if (!checkoutId) return;
+    void auditRequest<Receipt>("/sprint-receipt", "POST", { checkoutId }).then(trackPurchase).catch(() => { /* Never count unverified payments or interfere with next steps. */ });
+  }, []);
   const schedulingButtonClasses = "inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-base font-semibold text-white transition sm:w-auto";
 
   return (
