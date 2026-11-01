@@ -515,15 +515,19 @@ test('discounted assessment exchanges verified ownership for access and actual p
   const payment = new StripeAuditPayment('sk_test_fake', 'price_assessment', 'whsec_fake');
   let session:any;
   (payment as any).stripe={checkout:{sessions:{
-    create:async(params:any)=>{session={id:'cs_live_discounted',livemode:true,status:'complete',payment_status:'paid',mode:'payment',currency:'usd',amount_total:100,metadata:params.metadata,line_items:{data:[{quantity:1,price:{id:'price_assessment'}}]}};assert.equal(params.allow_promotion_codes,true);return {...session,url:params.success_url.replace('{CHECKOUT_SESSION_ID}',session.id)};},
+    create:async(params:any)=>{session={id:'cs_live_discounted',livemode:true,status:'complete',payment_status:'paid',mode:'payment',currency:'usd',amount_total:100,metadata:params.metadata,client_reference_id:params.client_reference_id,line_items:{data:[{quantity:1,price:{id:'price_assessment'}}]}};assert.equal(params.allow_promotion_codes,true);return {...session,url:params.success_url.replace('{CHECKOUT_SESSION_ID}',session.id)};},
     retrieve:async()=>session,
   }}};
-  const app=express(), store=new TestAuditStore();
+  const app=express(), store=new TestAuditStore() as TestAuditStore & {saveAttribution:(ref:string,fields:any)=>Promise<void>};
+  const captures=new Map<string,any>(); store.saveAttribution=async(ref,fields)=>{captures.set(ref,fields);};
   const server=app.listen(0,'127.0.0.1'); await new Promise<void>(resolve=>server.once('listening',resolve));
   t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
   const origin=`http://127.0.0.1:${(server.address() as {port:number}).port}`;
   app.use('/api/audit',createAuditRouter({store,payment,origin,tokenSecret:'isolated-test-secret-that-is-long-enough',discoverLogo:async()=>null}));
-  const checkout=await fetch(origin+'/api/audit/checkout',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:'{}'});
+  const checkout=await fetch(origin+'/api/audit/checkout',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:JSON.stringify({attribution:{ce_utm_source:'google',ce_utm_medium:'cpc',ce_utm_campaign:'assessment',ce_submission_page:'https://www.clarity-engine.org/',ce_first_attribution:'',ce_latest_attribution:JSON.stringify({at:'2026-11-01T23:00:00Z',landing:'https://www.clarity-engine.org/',referrer:'',parameters:{utm_source:'google'}})}})});
+  assert.equal(captures.get(session.client_reference_id).ce_utm_source,'google');
+  const linkCapture=await fetch(origin+'/api/audit/purchase-attribution',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:JSON.stringify(captures.get(session.client_reference_id))});
+  assert.equal(linkCapture.status,200);assert.ok(captures.has((await linkCapture.json()).reference));
   const cookie=checkout.headers.get('set-cookie')!.split(';')[0];
   assert.equal(new URL((await checkout.json()).url).pathname,'/audit/start');
   const exchange=(c:string)=>fetch(origin+'/api/audit/exchange',{method:'POST',headers:{origin,cookie:c,'Content-Type':'application/json'},body:JSON.stringify({checkoutId:session.id})});

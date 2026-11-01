@@ -1,7 +1,9 @@
+import { cleanPurchaseAttribution, type PurchaseAttribution } from './purchase-attribution';
 import type Stripe from 'stripe';
 
 export type CrmPurchase = {
   checkoutId: string; email: string; product: 'assessment' | 'strategy_sprint' | 'deep_dive_audit';
+  attributionReference?: string; attribution?: PurchaseAttribution;
   productName: string; amount: number; paidAt: number;
 };
 // Only the three website offers are eligible. Retainers and unrelated Stripe sales stay out.
@@ -21,7 +23,7 @@ export function websitePurchase(session: Stripe.Checkout.Session, assessmentPric
   if (!email) throw new Error('Website purchase is missing its customer email');
   const amount = ((session.amount_total ?? 0) - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100;
   if (!Number.isFinite(amount) || amount < 0 || !Number.isFinite(paidAt)) throw new Error('Invalid website purchase');
-  return { checkoutId: session.id, email: email.trim().toLowerCase(), product, productName, amount, paidAt };
+  return { checkoutId: session.id, email: email.trim().toLowerCase(), product, productName, amount, paidAt, ...(session.client_reference_id?.startsWith("ce_attr_") ? {attributionReference:session.client_reference_id} : {}) };
 }
 
 export class HubSpotPurchases {
@@ -37,7 +39,7 @@ export class HubSpotPurchases {
     return response.status === 204 ? null : response.json();
   }
   async sync(p: CrmPurchase) {
-    const contactPath = `/crm/v3/objects/contacts/${encodeURIComponent(p.email)}?idProperty=email&properties=ce_products_purchased,ce_last_purchase_date`;
+    const contactPath = `/crm/v3/objects/contacts/${encodeURIComponent(p.email)}?idProperty=email&properties=ce_products_purchased,ce_last_purchase_date,ce_latest_attribution,ce_first_attribution`;
     let contact = await this.api(contactPath, 'GET', undefined, true);
     if (!contact) {
       try { contact = await this.api('/crm/v3/objects/contacts', 'POST', { properties: { email: p.email } }); }
@@ -47,7 +49,11 @@ export class HubSpotPurchases {
     products.add(p.product);
     const previousDate = Date.parse(contact.properties?.ce_last_purchase_date || '') || 0;
     const purchaseDate = Math.floor(p.paidAt / 86400000) * 86400000;
+    const attribution=cleanPurchaseAttribution(p.attribution);
+    let previousAt=0; try {previousAt=Date.parse(JSON.parse(contact.properties?.ce_latest_attribution||'{}').at)||0;}catch{}
+    const incomingAt=attribution?Date.parse(JSON.parse(attribution.ce_latest_attribution).at):0;
     await this.api(`/crm/v3/objects/contacts/${contact.id}`, 'PATCH', { properties: {
+      ...(attribution && incomingAt>=previousAt ? {...attribution, ...(contact.properties?.ce_first_attribution ? {ce_first_attribution:contact.properties.ce_first_attribution} : {})} : {}),
       ce_products_purchased: Array.from(products).join(';'),
       ce_last_purchase_date: String(Math.max(previousDate, purchaseDate)),
     } });
@@ -56,7 +62,7 @@ export class HubSpotPurchases {
       idProperty: 'ce_stripe_checkout_id', id: p.checkoutId,
       properties: { ce_stripe_checkout_id: p.checkoutId, dealname: `${p.productName} — ${p.checkoutId}`,
         pipeline: 'default', dealstage: 'closedwon', amount: String(p.amount), closedate: new Date(p.paidAt).toISOString(),
-        description: `Confirmed Clarity Engine website purchase. Product: ${p.productName}. Currency: USD. Stripe checkout: ${p.checkoutId}. Amount excludes tax and shipping. Historical payment; refunds are managed in Stripe.`,
+        description: `Confirmed Clarity Engine website purchase. Product: ${p.productName}. Currency: USD. Stripe checkout: ${p.checkoutId}. Amount excludes tax and shipping. Historical payment; refunds are managed in Stripe.${attribution ? "\nCampaign attribution at checkout (consent-aware): " + JSON.stringify(attribution) : "\nCampaign attribution unavailable (no captured consented campaign)."}`,
       },
     }] });
     const deal = result.results?.[0];

@@ -1,3 +1,4 @@
+import { cleanPurchaseAttribution } from './purchase-attribution';
 import { HubSpotPurchases } from './hubspot-purchases';
 import { signMetaPurchase, verifyMetaPurchase, sendMetaPurchase } from './meta-conversions';
 import { discoverCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
@@ -115,6 +116,10 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         if (crm && event.checkoutId && event.paidAt) {
           if (!payment.crmPurchase || !store.crmPurchaseOnce) throw new Error('CRM sync is not configured');
           const purchase = await payment.crmPurchase(event.checkoutId, event.paidAt);
+          if (purchase?.attributionReference && /^ce_attr_[A-Za-z0-9_-]{20,100}$/.test(purchase.attributionReference)) {
+            if (!store.readAttribution) throw new Error('Attribution store unavailable');
+            purchase.attribution=await store.readAttribution(purchase.attributionReference);
+          }
           if (purchase) await store.crmPurchaseOnce(purchase.checkoutId, tokenHash(purchase.email), async () => { await crm.sync(purchase); });
         }
         res.json({ received: true });
@@ -186,6 +191,14 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       res.json({ recorded: true });
     }),
   );
+  router.post('/purchase-attribution', handle(async(req,res,{store})=>{
+    const fields=cleanPurchaseAttribution(req.body);
+    if(!fields) {res.json({reference:null});return;}
+    if(!store.saveAttribution) throw new Error('Attribution store unavailable');
+    const reference='ce_attr_'+opaqueToken();
+    await store.saveAttribution(reference,fields);
+    res.json({reference});
+  }));
   router.post(
     "/checkout",
     handle(async (req, res, { payment, store, origin, tokenSecret }) => {
@@ -198,7 +211,13 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         maxAge: 30 * 24 * 60 * 60 * 1000,
       });
       res.locals.auditStage = "stripe_checkout";
-      const checkout = await payment.checkout(origin, tokenHash(claim));
+      const fields=cleanPurchaseAttribution(req.body?.attribution);
+      let reference:string|undefined;
+      if(fields) {
+        if(!store.saveAttribution) throw new Error('Attribution store unavailable');
+        reference='ce_attr_'+opaqueToken(); await store.saveAttribution(reference,fields);
+      }
+      const checkout = await payment.checkout(origin, tokenHash(claim), reference);
       res.locals.auditStage = "pending_audit_save";
       await store.initiate(
         checkout.id,

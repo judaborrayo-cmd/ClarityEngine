@@ -1,3 +1,4 @@
+import type { PurchaseAttribution } from "./purchase-attribution";
 import { Pool, neonConfig } from "@neondatabase/serverless";
 import ws from "ws";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
@@ -27,6 +28,8 @@ export interface AuditRecord {
   reports: { number: 1 | 2; report: FrozenAuditReport; answers: Answers }[];
 }
 export interface AuditStore {
+  saveAttribution?(reference:string, fields:PurchaseAttribution):Promise<void>;
+  readAttribution?(reference:string):Promise<PurchaseAttribution|undefined>;
   companyLogo?(
     hash: string,
   ): Promise<{ png: Buffer | null; checkedAt: Date } | undefined>;
@@ -86,6 +89,18 @@ export class PostgresAuditStore implements AuditStore {
   private pool: AuditDatabase;
   constructor(url: string, database?: AuditDatabase) {
     this.pool = database ?? new Pool({ connectionString: url });
+  }
+  private async attributionTable() {
+    await this.pool.query("CREATE TABLE IF NOT EXISTS website_purchase_attribution (reference text PRIMARY KEY, fields jsonb NOT NULL, created_at timestamptz NOT NULL DEFAULT now())");
+  }
+  async saveAttribution(reference:string, fields:PurchaseAttribution) {
+    await this.attributionTable();
+    await this.pool.query('INSERT INTO website_purchase_attribution(reference,fields) VALUES($1,$2) ON CONFLICT DO NOTHING',[reference,JSON.stringify(fields)]);
+  }
+  async readAttribution(reference:string) {
+    await this.attributionTable();
+    const result=await this.pool.query('SELECT fields FROM website_purchase_attribution WHERE reference=$1',[reference]);
+    return result.rows[0]?.fields as PurchaseAttribution|undefined;
   }
   async initiate(checkoutId: string, claimHash: string, hash: string) {
     await this.pool.query(

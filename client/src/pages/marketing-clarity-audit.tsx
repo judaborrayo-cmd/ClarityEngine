@@ -1,3 +1,4 @@
+import { inquiryAttributionFields } from '@/lib/campaign-attribution';
 import { trackAssessmentCheckout } from "@/lib/website-analytics";
 import { useEffect, useState } from "react";
 import { CreditCard, MessagesSquare, FileChartColumn, Signpost } from "lucide-react";
@@ -24,7 +25,7 @@ export default function MarketingClarityAudit() {
   async function purchase() {
     setBusy(true); setError(""); trackAudit("checkout_start");
     try {
-      const checkout = await auditRequest<{ url: string }>("/checkout", "POST", {});
+      const checkout = await auditRequest<{ url: string }>("/checkout", "POST", {attribution:inquiryAttributionFields()});
       await trackAssessmentCheckout();
       window.location.assign(checkout.url);
     } catch (e) { setError((e as Error).message); setBusy(false); }

@@ -5,6 +5,7 @@ export interface AuditPayment {
   checkout(
     origin: string,
     claimHash: string,
+    attributionReference?: string,
   ): Promise<{ id: string; url: string }>;
   deepDiveReceipt?(id: string): Promise<{ value: number } | null>;
   sprintReceipt?(id: string): Promise<{ value: number } | null>;
@@ -22,13 +23,14 @@ export class StripeAuditPayment implements AuditPayment {
   ) {
     this.stripe = new Stripe(secret);
   }
-  async checkout(origin: string, claimHash: string) {
+  async checkout(origin: string, claimHash: string, attributionReference?: string) {
     const session = await this.stripe.checkout.sessions.create({
       mode: "payment",
       allow_promotion_codes: true,
       line_items: [{ price: this.priceId, quantity: 1 }],
       custom_text: { submit: { message: "Get Clarity Assessment by Clarity Engine examines six marketing areas to help you identify where to focus next." } },
       metadata: { product: "marketing-clarity-audit", claimHash },
+      ...(attributionReference ? {client_reference_id:attributionReference} : {}),
       success_url: `${origin}/audit/start?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/marketing-clarity-assesment`,
     });
