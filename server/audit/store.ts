@@ -66,6 +66,7 @@ export interface AuditStore {
     id: string,
     value: string,
   ): Promise<boolean>;
+  metaPurchaseDelivered?(id: string): Promise<boolean>;
   metaPurchaseOnce?(id: string, send: () => Promise<void>): Promise<void>;
   crmPurchaseOnce?(checkoutId: string, contactKey: string, sync: () => Promise<void>): Promise<void>;
   paymentEvent(id: string, checkoutId: string): Promise<void>;
@@ -355,6 +356,10 @@ export class PostgresAuditStore implements AuditStore {
       [hash, run, id, value],
     );
     return result.rowCount === 1;
+  }
+  async metaPurchaseDelivered(id: string) {
+    const result = await this.pool.query('SELECT 1 FROM marketing_audit_payment_events WHERE event_id=$1', [`meta-purchase:${id}`]);
+    return result.rows.length > 0;
   }
   async metaPurchaseOnce(id: string, send: () => Promise<void>) {
     const connection = await this.pool.connect();

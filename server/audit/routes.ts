@@ -321,6 +321,16 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     }
   });
   router.get(
+    "/:token/purchase-delivery",
+    handle(async (_req, res) => {
+      const row = res.locals.audit;
+      const { store } = getDependencies();
+      if (!store.metaPurchaseDelivered) { res.status(503).json({error: "Delivery status unavailable"}); return; }
+      res.setHeader("Cache-Control", "no-store");
+      res.json({metaAccepted: await store.metaPurchaseDelivered(`ce_${tokenHash(row.checkout_id)}`)});
+    }),
+  );
+  router.get(
     "/:token",
     handle(async (_req, res) => {
       const row = res.locals.audit;
