@@ -34,19 +34,25 @@ function enable(pathname: string, consent: boolean) {
   const enabled = consent && !!page && location.hostname === 'www.clarity-engine.org';
   w[`ga-disable-${measurementId}`] = !enabled;
   if (!enabled || !page) return null;
+  initializeTagManager(true);
+  return page;
+}
+export function initializeTagManager(analyticsConsent: boolean) {
+  if (location.hostname !== 'www.clarity-engine.org') return;
+  const w = window as AnalyticsWindow;
   if (!initialized) {
     initialized = true;
     w.dataLayer = w.dataLayer || [];
     w.gtag = function () { w.dataLayer!.push(arguments); };
-    // Basic consent mode: GTM is not loaded until analytics consent. Advertising stays denied.
-    w.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    // Google advertising stays denied; Meta has its own explicit consent gate.
+    w.gtag('consent', 'default', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
     const script = document.createElement('script');
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtm.js?id=${containerId}`;
     document.head.appendChild(script);
   }
-  return page;
+  w.gtag?.('consent', 'update', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
 }
 export function updateAnalytics(pathname: string, consent: boolean) {
   const page = enable(pathname, consent);
@@ -95,6 +101,7 @@ export function saveAnalyticsConsent(value: 'granted' | 'denied') {
   if (value === 'denied') {
     pendingReceipt = null;
     (window as AnalyticsWindow)[`ga-disable-${measurementId}`] = true;
+    (window as AnalyticsWindow).gtag?.('consent', 'update', { analytics_storage: 'denied' });
     for (const cookie of document.cookie.split(';')) {
       const name = cookie.trim().split('=')[0];
       if (name === '_ga' || name.startsWith('_ga_')) for (const domain of ['', '; domain=www.clarity-engine.org', '; domain=.clarity-engine.org']) document.cookie = `${name}=; Max-Age=0; path=/${domain}; SameSite=Lax`;
