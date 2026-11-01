@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { Parser } from 'htmlparser2';
+import { plannedDestinations } from '../client/src/components/navigation-config';
 import { indexablePagePaths, pageHtmlFile, publicOrigin, publicPagePaths } from '../shared/page-metadata';
 const base = process.env.SEO_BASE;
 async function get(route: string, file: string, status = 200) {
@@ -37,6 +38,7 @@ for (const route of indexablePagePaths) {
   const graph=JSON.parse(schema)['@graph'];
   assert.equal(graph.find((n: Record<string,string>)=>n['@type']==='WebPage').url, publicOrigin+route);
   assert.ok(!html.includes('/@fs/'));
+  for (const planned of plannedDestinations) assert.ok(!html.includes(`href="${planned}"`), 'No links to planned pages');
   for (const asset of assets) await fs.access('dist'+decodeURIComponent(new URL(asset,publicOrigin).pathname));
 }
 const missing = await get('/seo-verification-missing-page', '404.html', 404);

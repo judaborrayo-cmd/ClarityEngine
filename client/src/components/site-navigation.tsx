@@ -25,8 +25,7 @@ function NavigationRow({ item, onNavigate }: {
     onNavigate: () => void;
 }) {
     const Icon = icons[item.icon];
-    return <li>
-<Link to={item.to} onClick={onNavigate} className={`ce-nav-row ce-tone-${item.icon}`} data-destination-status={item.destinationStatus}>
+    const content = <>
     <span className="ce-nav-icon">
 <Icon size={20} strokeWidth={1.7} aria-hidden="true"/>
 </span>
@@ -34,8 +33,12 @@ function NavigationRow({ item, onNavigate }: {
 <span className="ce-nav-label">{item.label}{item.availability === 'coming-soon' && <span className="ce-nav-badge">Coming soon</span>}{item.availability === 'personalized-insights' && <span className="ce-nav-badge ce-nav-badge-insights"><span aria-hidden="true">✦</span> 20 minutes to clarity</span>}</span>
 <span className="ce-nav-description">{item.description}</span>
 </span>
-  </Link>
-</li>;
+  </>;
+    const className = `ce-nav-row ce-tone-${item.icon}`;
+    return <li>{item.destinationStatus === 'planned'
+      ? <div className={className} aria-disabled="true" data-destination-status="planned">{content}</div>
+      : <Link to={item.to} onClick={onNavigate} className={className} data-destination-status="implemented">{content}</Link>}
+    </li>;
 }
 function MenuContent({ category, onNavigate }: {
     category: NavigationCategory;
