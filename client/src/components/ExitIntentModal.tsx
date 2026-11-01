@@ -10,7 +10,7 @@ export default function ExitIntentModal() {
   const { pathname } = useLocation();
   const currentPath = useRef(pathname);
   currentPath.current = pathname;
-  const [open, setOpen] = useState(() => import.meta.env.DEV && new URLSearchParams(window.location.search).get("preview") === "assessment-popup");
+  const [open, setOpen] = useState(() => typeof window !== "undefined" && import.meta.env.DEV && new URLSearchParams(window.location.search).get("preview") === "assessment-popup");
   const [reduceMotion, setReduceMotion] = useState(true);
   const [playing, setPlaying] = useState(false);
   const video = useRef<HTMLVideoElement>(null);

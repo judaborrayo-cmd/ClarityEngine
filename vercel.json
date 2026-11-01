@@ -194,8 +194,28 @@
       "destination": "/pages/checkout/audit/new-next-steps.html"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/case-study/columbus-travel",
+      "destination": "/pages/case-study/columbus-travel.html"
+    },
+    {
+      "source": "/case-study/columbus-travel/",
+      "destination": "/pages/case-study/columbus-travel.html"
+    },
+    {
+      "source": "/case-study/golden-galapagos-cruises",
+      "destination": "/pages/case-study/golden-galapagos-cruises.html"
+    },
+    {
+      "source": "/case-study/golden-galapagos-cruises/",
+      "destination": "/pages/case-study/golden-galapagos-cruises.html"
+    },
+    {
+      "source": "/case-study/art-of-living-retreat-center",
+      "destination": "/pages/case-study/art-of-living-retreat-center.html"
+    },
+    {
+      "source": "/case-study/art-of-living-retreat-center/",
+      "destination": "/pages/case-study/art-of-living-retreat-center.html"
     }
   ],
   "headers": [

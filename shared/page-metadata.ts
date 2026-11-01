@@ -60,6 +60,10 @@ for(const [path,title,description] of [
 ]) {
  pageMetadataRegistry[path]={...page(path,title,description),noindex:true};
 }
+for (const [path, metadata] of Object.entries(pageMetadataRegistry)) {
+ if (path.startsWith('/checkout/') || path === '/steven') metadata.noindex = true;
+}
+export const indexablePagePaths = Object.keys(pageMetadataRegistry).filter(path => !pageMetadataRegistry[path].draft && !pageMetadataRegistry[path].noindex);
 export const publicPagePaths=Object.keys(pageMetadataRegistry).filter(p=>!pageMetadataRegistry[p].draft);
 export const pageHtmlFile=(path:string)=>path==='/'?'index.html':`pages/${path.slice(1)}.html`;
 export function getPageMetadata(pathname:string):PageMetadata {
@@ -72,10 +76,25 @@ export function metadataTags(m:PageMetadata):Record<string,string> {
  return {description:m.description,'og:title':m.title,'og:description':m.description,'og:type':'website','og:url':m.canonical??publicOrigin+'/', 'og:site_name':'Clarity Engine','og:image':m.image,'og:image:secure_url':m.image,'og:image:type':m.imageType,'og:image:width':String(m.imageWidth),'og:image:height':String(m.imageHeight),'og:image:alt':m.imageAlt,'twitter:card':'summary_large_image','twitter:title':m.title,'twitter:description':m.description,'twitter:image':m.image,'twitter:image:alt':m.imageAlt,...(m.noindex?{robots:'noindex, nofollow'}:{})};
 }
 const escape=(s:string)=>s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+export function pageStructuredData(pathname: string) {
+ const m = getPageMetadata(pathname);
+ if (m.noindex || m.draft || !m.canonical) return null;
+ return {
+  '@context': 'https://schema.org',
+  '@graph': [
+   { '@type': 'Organization', '@id': publicOrigin+'/#organization', name: 'Clarity Engine', url: publicOrigin+'/', founder: { '@id': publicOrigin+'/#founder' } },
+   { '@type': 'Person', '@id': publicOrigin+'/#founder', name: 'Juda Borrayo', url: publicOrigin+'/about', jobTitle: 'Senior Growth Marketing Strategist', sameAs: ['https://www.linkedin.com/in/judaborrayo'] },
+   { '@type': 'WebSite', '@id': publicOrigin+'/#website', name: 'Clarity Engine', url: publicOrigin+'/', publisher: { '@id': publicOrigin+'/#organization' } },
+   { '@type': 'WebPage', '@id': m.canonical+'#webpage', url: m.canonical, name: m.title, description: m.description, isPartOf: { '@id': publicOrigin+'/#website' }, ...(m.canonical === publicOrigin+'/about' ? { about: { '@id': publicOrigin+'/#founder' } } : {}) },
+  ],
+ };
+}
 export function pageMetadataHtml(html:string,pathname:string) {
  const m=getPageMetadata(pathname);
  // Remove all managed tags before inserting one authoritative set, including inherited tags.
  const clean=html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi,'').replace(/<meta\b[^>]*\b(?:name|property)=["'](?:description|og:[^"']+|twitter:[^"']+|robots)["'][^>]*>/gi,'').replace(/<link\b[^>]*\brel=["']canonical["'][^>]*>/gi,'');
  const tags=Object.entries(metadataTags(m)).map(([key,value])=>`<meta ${key.startsWith('og:')?'property':'name'}="${key}" content="${escape(value)}" />`).join('\n');
- return clean.replace('</head>',`<title>${escape(m.title)}</title>\n${tags}\n${m.canonical?`<link rel="canonical" href="${escape(m.canonical)}" />`:''}\n</head>`);
+ const data = pageStructuredData(pathname);
+ const schema = data ? `<script id="page-structured-data" type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>` : '';
+ return clean.replace(/<script\b[^>]*id="page-structured-data"[^>]*>[\s\S]*?<\/script>/gi,'').replace('</head>',`<title>${escape(m.title)}</title>\n${tags}\n${m.canonical?`<link rel="canonical" href="${escape(m.canonical)}" />`:''}\n${schema}\n</head>`);
 }
