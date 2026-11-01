@@ -623,3 +623,11 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 .dda-blueprint-copy h3{margin:0 0 12px}
 .dda-blueprint-copy p{margin:0}
 @media(max-width:680px){.dda-deliverables{grid-template-columns:1fr;gap:24px}.dda-blueprint-copy{padding:22px 24px 26px}}
+
+/* Checkout cards contain text directly, without the sales-page image/copy wrapper. */
+.dda-checkout .dda-deliverables article {
+  padding: 24px;
+}
+.dda-checkout .dda-deliverables .dda-number {
+  line-height: 1.5;
+}
