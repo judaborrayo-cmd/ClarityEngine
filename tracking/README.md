@@ -1,20 +1,28 @@
 # Clarity Engine measurement
 
 GA4: G-T4SMFB5CTF / property 561791210. GTM: GTM-N4JXQLWJ.
+Meta dataset: 1726701150950329. Google Ads: 967-554-4521.
 
-Import clarity-engine-gtm.json into the Clarity Engine web container, validate the two native Google tags, and publish before deploying the website migration. No Custom HTML tags are used. The Google tag runs once as setup for the GA4 event tag; automatic page views are disabled. The custom ce_analytics trigger is sent only after analytics consent, on the production domain. Private assessment routes use the public offer URL as event context and never send tokens, answers, company details or contact information.
+GTM's native Google tags consume the consent-gated `ce_analytics` custom event. Automatic page views and enhanced measurement are disabled; registered public routes supply safe page context. Private assessment and checkout routes use their public offer URL and never send tokens, answers, company details or contact information. The Meta Pixel base tag supplies consented public page views through GTM.
 
 | Event | Source |
 | --- | --- |
-| page_view | Registered public marketing route, deduplicated during navigation |
-| begin_checkout | Successful assessment checkout creation or Sprint checkout link click |
-| form_submit | Assessment context API confirms save |
+| page_view | Registered public marketing route |
+| begin_checkout | Successful assessment checkout creation or paid-offer checkout link click |
+| form_submit | Reserved for confirmed lead inquiries; currently no lead-form integration |
+| assessment_context_submit | Paid assessment context API confirms save; not a lead |
 | assessment_complete | Assessment completion API succeeds |
 | file_download | PDF response successfully read and browser download initiated |
-| purchase | Server verifies Stripe payment; live sessions only; stable hashed transaction ID |
+| purchase | Server verifies live Stripe payment; stable hashed transaction ID |
 
-Purchase receipts include USD value and item ID/name/price/quantity. Browser storage and GA4 transaction ID deduplication prevent repeat counting. Website reporting is consent-based and browser-based: declined consent, blockers, or buyers not returning from Stripe can prevent events. Stripe remains the financial source of truth. This does not implement refunds, server-side Measurement Protocol, Meta Pixel, ad personalization, or enhanced conversions.
+Purchase receipts include USD value and item ID/name/price/quantity. Browser storage and GA4 transaction ID deduplication prevent repeat counting. The GA4 purchase event is imported into Google Ads as a primary Purchase action using dynamic value/currency, every conversion, and zero fallback value. Downloads and assessment questionnaires are not lead conversions.
 
-Sprint's active Stripe payment link is plink_1UPQoSF2Vf3NGmY34kdTmiTC. After deploying receipt verification, its after_completion must redirect to https://www.clarity-engine.org/checkout/strategy-sprint/thank-you?session_id={CHECKOUT_SESSION_ID}. Do not alter pricing. Unpaid, incomplete, test-mode, wrong-link, or wrong-value sessions produce no purchase event. Deep Dive Audit is a preview and has no purchase event.
+## Meta server purchase delivery
 
-Consent key v2 requests consent for the expanded measurement purposes. Advertising consent remains denied. Enhanced measurement must remain off, and automatically detected user-provided data must be disabled before launch. No customer emails/phones are sent. No booking-completed event is configured because the Sprint scheduling URL is still a placeholder; contact link clicks are not leads.
+Set `META_CONVERSIONS_API_TOKEN` as a production-only Vercel Secret. Never place it in GTM, browser code, source control, or a public-prefixed environment variable. Production code sends no test_event_code.
+
+After verified payment, the server signs a short-lived purchase proof. With advertising consent and an existing Meta browser cookie, the browser forwards that proof to `/api/audit/meta-purchase`. The server verifies the signature, expiry, product and value before sending Purchase through Meta Conversions API. The proof never enters the GA4 data layer. Meta receives the product, value, currency, hashed transaction ID, public offer URL, browser agent and available `_fbp`/`_fbc` identifiers. No email, phone, assessment answers or private URL is sent.
+
+Database locking and persisted delivery records prevent repeated submissions; stable event IDs also allow Meta deduplication after ambiguous network failures. Rejected consent suppresses delivery. This remains dependent on the buyer returning to the site and allowing advertising cookies; it is not webhook-only attribution. GA4 independently requires analytics consent. Stripe remains the financial source of truth.
+
+Deep Dive Audit is live at $3,725; Sprint is $697 and assessment is $27. Only the exact expected live payment links, completed paid sessions, products and amounts qualify. Legacy Deep Dive receipts are excluded. Refund tracking and enhanced conversions are not implemented. Contact clicks and scheduling-link clicks are not successful lead submissions or completed bookings.

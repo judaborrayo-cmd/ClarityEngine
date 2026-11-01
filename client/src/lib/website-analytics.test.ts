@@ -12,12 +12,12 @@ test('private URL credentials and query strings never become event context', () 
 test('consent gates GTM and conversions; purchases deduplicate; private events are sanitized', () => {
   const scripts: any[] = [];
   const values = new Map<string,string>();
-  const w: any = { dispatchEvent() {} };
+  const w: any = { dispatchEvent() {}, addEventListener() {} };
   const loc = { hostname: 'www.clarity-engine.org', pathname: '/' };
   Object.assign(globalThis, { window: w, location: loc, localStorage: { getItem: (k:string) => values.get(k), setItem: (k:string,v:string) => values.set(k,v) }, document: { referrer: '', cookie: '', createElement: () => ({}), head: { appendChild: (script:unknown) => scripts.push(script) } } });
   updateAnalytics('/', false);
   assert.equal(scripts.length, 0);
-  assert.equal(trackWebsiteEvent('form_submit', {form_id:'assessment_context'}), false);
+  assert.equal(trackWebsiteEvent('assessment_context_submit', {form_id:'assessment_context'}), false);
   values.set(consentKey,'granted');
   updateAnalytics('/', true);
   updateAnalytics('/', true);
@@ -35,16 +35,17 @@ test('consent gates GTM and conversions; purchases deduplicate; private events a
   assert.equal(JSON.stringify(w.dataLayer).includes('secret'),false);
   assert.equal(events().at(-1).ce_params.value,27);
   loc.pathname='/checkout/audit/new-next-steps';
-  const auditReceipt = {transaction_id:'ce_'+'b'.repeat(64),currency:'USD' as const,value:3725,items:[deepDiveAuditItem]};
+  const auditReceipt = {transaction_id:'ce_'+'b'.repeat(64),currency:'USD' as const,value:3725,items:[deepDiveAuditItem],meta_proof:'private-signed-proof'};
   trackPurchase(auditReceipt); trackPurchase(auditReceipt);
   const auditEvents = events().filter((e:any)=>e.ce_event_name==='purchase' && e.ce_params.value===3725);
   assert.equal(auditEvents.length,1);
   assert.equal(auditEvents[0].ce_params.items[0].item_id,'deep-dive-growth-audit');
   assert.equal(auditEvents[0].ce_params.page_location,'https://www.clarity-engine.org/growth-clarity-audit');
+  assert.equal(JSON.stringify(w.dataLayer).includes('private-signed-proof'),false);
   saveAnalyticsConsent('denied');
-  assert.equal(trackWebsiteEvent('form_submit',{form_id:'assessment_context'}),false);
+  assert.equal(trackWebsiteEvent('assessment_context_submit',{form_id:'assessment_context'}),false);
   loc.hostname='localhost';values.set(consentKey,'granted');
-  assert.equal(trackWebsiteEvent('form_submit',{form_id:'assessment_context'}),false);
+  assert.equal(trackWebsiteEvent('assessment_context_submit',{form_id:'assessment_context'}),false);
 });
 
 test('Deep Dive checkout tracking uses public offer context and excludes legacy receipts', () => {

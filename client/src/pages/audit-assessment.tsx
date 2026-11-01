@@ -195,7 +195,7 @@ export default function AuditAssessment() {
     setBusy(true);
     try {
       await auditRequest(`/${token}/context`, "PUT", parsed.data);
-      if (!session?.localQa) trackWebsiteEvent("form_submit", { form_id: isRetake ? "assessment_context_update" : "assessment_context" });
+      if (!session?.localQa) trackWebsiteEvent("assessment_context_submit", { form_id: isRetake ? "assessment_context_update" : "assessment_context" });
       setSession((current) =>
         current ? { ...current, context: parsed.data } : current,
       );

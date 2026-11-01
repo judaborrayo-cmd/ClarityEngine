@@ -63,6 +63,7 @@ export interface AuditStore {
     id: string,
     value: string,
   ): Promise<boolean>;
+  metaPurchaseOnce?(id: string, send: () => Promise<void>): Promise<void>;
   paymentEvent(id: string, checkoutId: string): Promise<void>;
   rateLimit(key: string): Promise<boolean>;
   event(
@@ -338,6 +339,21 @@ export class PostgresAuditStore implements AuditStore {
       [hash, run, id, value],
     );
     return result.rowCount === 1;
+  }
+  async metaPurchaseOnce(id: string, send: () => Promise<void>) {
+    const connection = await this.pool.connect();
+    const key = `meta-purchase:${id}`;
+    try {
+      await connection.query('BEGIN');
+      await connection.query('SELECT pg_advisory_xact_lock(hashtext($1))', [key]);
+      const existing = await connection.query('SELECT event_id FROM marketing_audit_payment_events WHERE event_id=$1', [key]);
+      if (!existing.rows.length) {
+        await send();
+        await connection.query('INSERT INTO marketing_audit_payment_events(event_id,checkout_id) VALUES($1,$2)', [key,id]);
+      }
+      await connection.query('COMMIT');
+    } catch(error) { await connection.query('ROLLBACK'); throw error; }
+    finally { connection.release(); }
   }
   async paymentEvent(id: string, checkoutId: string) {
     await this.pool.query(
