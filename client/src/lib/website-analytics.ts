@@ -1,65 +1,104 @@
 import { getPageMetadata, indexablePagePaths, publicOrigin } from '../../../shared/page-metadata';
 
 export const measurementId = 'G-T4SMFB5CTF';
-export const consentKey = 'ce-analytics-consent-v1';
+export const containerId = 'GTM-N4JXQLWJ';
+export const consentKey = 'ce-analytics-consent-v2';
 type AnalyticsWindow = Window & { dataLayer?: unknown[]; gtag?: (...args: any[]) => void; 'ga-disable-G-T4SMFB5CTF'?: boolean };
 let initialized = false;
 let previousPage = '';
+const sentPurchases = new Set<string>();
+let pendingReceipt: Receipt | null = null;
+export type Receipt = { transaction_id: string; currency: 'USD'; value: number; items: { item_id: string; item_name: string; price: number; quantity: number }[] };
+export const assessmentItem = { item_id: 'clarity-assessment', item_name: 'Get Clarity Assessment', price: 27, quantity: 1 };
+export const sprintItem = { item_id: 'strategy-sprint', item_name: '30-Day Growth Strategy Sprint', price: 697, quantity: 1 };
 
 export function analyticsPage(pathname: string) {
   const path = pathname.replace(/\/$/, '') || '/';
   return indexablePagePaths.includes(path) ? { page_location: publicOrigin + path, page_title: getPageMetadata(path).title } : null;
 }
-
-export function readAnalyticsConsent(): 'granted' | 'denied' | null {
-  try {
-    const value = localStorage.getItem(consentKey);
-    return value === 'granted' || value === 'denied' ? value : null;
-  } catch { return null; }
+// Private workflow events use the public offer as context; never expose tokens or query strings.
+export function analyticsContext(pathname: string) {
+  return analyticsPage(pathname) || (/^\/audit\/(start|resume\/[^/?]+|results\/[^/?]+)$/.test(pathname)
+    ? analyticsPage('/marketing-clarity-assesment')
+    : /^\/checkout\/strategy-sprint(?:\/thank-you)?$/.test(pathname) ? analyticsPage('/strategy-sprint') : null);
 }
-
-export function updateAnalytics(pathname: string, consent: boolean) {
+export function readAnalyticsConsent(): 'granted' | 'denied' | null {
+  try { const value = localStorage.getItem(consentKey); return value === 'granted' || value === 'denied' ? value : null; } catch { return null; }
+}
+export function safeReferrer(value: string) {
+  try { const url = new URL(value); return /^https?:$/.test(url.protocol) ? url.origin + '/' : ''; } catch { return ''; }
+}
+function enable(pathname: string, consent: boolean) {
   const w = window as AnalyticsWindow;
-  const page = analyticsPage(pathname);
+  const page = analyticsContext(pathname);
   const enabled = consent && !!page && location.hostname === 'www.clarity-engine.org';
   w[`ga-disable-${measurementId}`] = !enabled;
-  if (!enabled || !page) { previousPage = ''; return; }
+  if (!enabled || !page) return null;
   if (!initialized) {
     initialized = true;
     w.dataLayer = w.dataLayer || [];
     w.gtag = function () { w.dataLayer!.push(arguments); };
+    // Basic consent mode: GTM is not loaded until analytics consent. Advertising stays denied.
     w.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-    w.gtag('js', new Date());
-    // Automatic enhanced measurement is disabled on this web stream. Supply only
-    // registered public URLs, never query strings, form answers, or private tokens.
-    w.gtag('config', measurementId, { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false, ...page, page_referrer: safeReferrer(document.referrer) });
+    w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
     const script = document.createElement('script');
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${containerId}`;
     document.head.appendChild(script);
   }
+  return page;
+}
+export function updateAnalytics(pathname: string, consent: boolean) {
+  const page = enable(pathname, consent);
+  if (page && pendingReceipt) trackPurchase(pendingReceipt);
+  if (!page || !analyticsPage(pathname)) { previousPage = ''; return; }
   if (previousPage === page.page_location) return;
-  const referrer = previousPage || safeReferrer(document.referrer);
-  w.gtag!('config', measurementId, { ...page, page_referrer: referrer, send_page_view: false });
-  w.gtag!('event', 'page_view', { ...page, page_referrer: referrer, send_to: measurementId });
+  pushEvent('page_view', page, { page_referrer: previousPage || safeReferrer(document.referrer) });
   previousPage = page.page_location;
 }
-
-export function safeReferrer(value: string) {
-  try { const url = new URL(value); return /^https?:$/.test(url.protocol) ? url.origin + '/' : ''; } catch { return ''; }
+function pushEvent(name: string, page: NonNullable<ReturnType<typeof analyticsPage>>, params: Record<string, unknown>) {
+  (window as AnalyticsWindow).dataLayer!.push({ ce_params: null });
+  (window as AnalyticsWindow).dataLayer!.push({ event: 'ce_analytics', ce_event_name: name, ce_params: { ...page, page_referrer: safeReferrer(document.referrer), ...params } });
 }
-
+export function trackWebsiteEvent(name: 'form_submit' | 'assessment_complete' | 'file_download' | 'begin_checkout' | 'purchase', params: Record<string, unknown>) {
+  try {
+    const page = enable(location.pathname, readAnalyticsConsent() === 'granted');
+    if (!page) return false;
+    pushEvent(name, page, params);
+    return true;
+  } catch { return false; }
+}
+// Give GTM time to dispatch before navigating to Stripe; never block checkout on analytics.
+export function trackAssessmentCheckout(): Promise<void> {
+  return new Promise(resolve => {
+    try {
+      const page = enable(location.pathname, readAnalyticsConsent() === 'granted');
+      if (!page) { resolve(); return; }
+      const timer = setTimeout(resolve, 1200);
+      const layer = (window as AnalyticsWindow).dataLayer!;
+      layer.push({ ce_params: null });
+      layer.push({ event: 'ce_analytics', ce_event_name: 'begin_checkout', ce_params: { ...page, page_referrer: safeReferrer(document.referrer), currency: 'USD', value: 27, items: [assessmentItem] }, eventCallback: () => { clearTimeout(timer); resolve(); }, eventTimeout: 1000 });
+    } catch { resolve(); }
+  });
+}
+export function trackPurchase(receipt: Receipt) {
+  if (!receipt || !/^ce_[a-f0-9]{64}$/.test(receipt.transaction_id) || receipt.currency !== 'USD' || !Number.isFinite(receipt.value) || receipt.value < 0) return;
+  const key = `ce-purchase-${receipt.transaction_id}`;
+  try { if (sentPurchases.has(key) || localStorage.getItem(key)) return; } catch { if (sentPurchases.has(key)) return; }
+  if (!trackWebsiteEvent('purchase', receipt)) { pendingReceipt = receipt; return; }
+  pendingReceipt = null;
+  sentPurchases.add(key);
+  try { localStorage.setItem(key, '1'); } catch { /* GA also deduplicates transaction IDs. */ }
+}
 export function saveAnalyticsConsent(value: 'granted' | 'denied') {
-  try { localStorage.setItem(consentKey, value); } catch { /* Choice still applies to this visit. */ }
+  try { localStorage.setItem(consentKey, value); } catch { /* Storage may be unavailable. */ }
   if (value === 'denied') {
+    pendingReceipt = null;
     (window as AnalyticsWindow)[`ga-disable-${measurementId}`] = true;
     for (const cookie of document.cookie.split(';')) {
       const name = cookie.trim().split('=')[0];
-      if (name === '_ga' || name.startsWith('_ga_')) {
-        for (const domain of ['', '; domain=www.clarity-engine.org', '; domain=.clarity-engine.org']) {
-          document.cookie = `${name}=; Max-Age=0; path=/${domain}; SameSite=Lax`;
-        }
-      }
+      if (name === '_ga' || name.startsWith('_ga_')) for (const domain of ['', '; domain=www.clarity-engine.org', '; domain=.clarity-engine.org']) document.cookie = `${name}=; Max-Age=0; path=/${domain}; SameSite=Lax`;
     }
   }
+  window.dispatchEvent(new Event('ce-consent-change'));
 }

@@ -1,3 +1,4 @@
+import { trackWebsiteEvent, sprintItem } from "@/lib/website-analytics";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { strategySprintOffer, strategySprintBenefits as benefits } from "@shared/strategy-sprint-offer";
@@ -79,6 +80,7 @@ export default function CheckoutStrategySprint() {
                   </div>
                   <a
                     href={strategySprintCheckoutUrl}
+                    onClick={() => trackWebsiteEvent("begin_checkout", { currency: "USD", value: 697, items: [sprintItem] })}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex w-full items-center justify-center rounded-xl bg-green-600 px-4 py-3 text-base font-semibold text-white transition hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"

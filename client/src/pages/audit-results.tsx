@@ -1,3 +1,4 @@
+import { trackWebsiteEvent } from "@/lib/website-analytics";
 import "./audit-results.css";
 import { useEffect, useState } from "react";
 import {
@@ -102,6 +103,7 @@ export default function AuditResults() {
       link.href = url;
       link.download = `marketing-clarity-${kind}-${runInfo?.runNumber ?? 1}.pdf`;
       link.click();
+      if (!runInfo?.localQa) trackWebsiteEvent("file_download", { file_name: `clarity-${kind}.pdf`, file_extension: "pdf", resource_id: kind });
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       trackAudit(
         kind === "report" ? "report_downloaded" : "work_session_downloaded",

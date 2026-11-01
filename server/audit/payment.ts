@@ -5,6 +5,7 @@ export interface AuditPayment {
     origin: string,
     claimHash: string,
   ): Promise<{ id: string; url: string }>;
+  sprintReceipt?(id: string): Promise<{ value: number } | null>;
   isPaid(id: string, claimHash?: string): Promise<boolean>;
   webhook(body: Buffer, signature: string): { id: string; checkoutId?: string };
 }
@@ -44,6 +45,11 @@ export class StripeAuditPayment implements AuditPayment {
       session.line_items.data[0].price?.id === this.priceId &&
       session.line_items.data[0].quantity === 1
     );
+  }
+  async sprintReceipt(id: string) {
+    const session = await this.stripe.checkout.sessions.retrieve(id);
+    if (!session.livemode || session.payment_status !== "paid" || session.status !== "complete" || session.mode !== "payment" || session.currency !== "usd" || session.payment_link !== "plink_1UPQoSF2Vf3NGmY34kdTmiTC" || session.amount_total !== 69700) return null;
+    return { value: (session.amount_total - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100 };
   }
   webhook(body: Buffer, signature: string) {
     const event = this.stripe.webhooks.constructEvent(

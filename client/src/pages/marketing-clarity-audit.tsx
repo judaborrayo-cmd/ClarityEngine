@@ -1,3 +1,4 @@
+import { trackAssessmentCheckout } from "@/lib/website-analytics";
 import { useEffect, useState } from "react";
 import { CreditCard, MessagesSquare, FileChartColumn, Signpost } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -24,6 +25,7 @@ export default function MarketingClarityAudit() {
     setBusy(true); setError(""); trackAudit("checkout_start");
     try {
       const checkout = await auditRequest<{ url: string }>("/checkout", "POST", {});
+      await trackAssessmentCheckout();
       window.location.assign(checkout.url);
     } catch (e) { setError((e as Error).message); setBusy(false); }
   }
