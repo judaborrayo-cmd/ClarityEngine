@@ -25,3 +25,21 @@ test('Deep Dive receipts reject unpaid, legacy, altered and test sessions', asyn
     assert.equal(await payment.deepDiveReceipt('cs_live_test'),null);
   }
 });
+
+test('Assessment discounts preserve product and browser ownership checks and report net revenue', async () => {
+  const payment = new StripeAuditPayment('sk_test_fake', 'price_assessment', 'whsec_fake');
+  const claim = 'a'.repeat(64);
+  const valid = {livemode:true,status:'complete',payment_status:'paid',mode:'payment',currency:'usd',amount_total:100,metadata:{product:'marketing-clarity-audit',claimHash:claim},line_items:{data:[{quantity:1,price:{id:'price_assessment'}}]},total_details:{amount_tax:0,amount_shipping:0}};
+  let session:any=valid;
+  (payment as any).stripe={checkout:{sessions:{retrieve:async()=>session}}};
+  assert.equal(await payment.isPaid('cs_live_test',claim),true);
+  assert.deepEqual(await payment.assessmentReceipt('cs_live_test',claim),{value:1});
+  assert.equal(await payment.assessmentReceipt('cs_live_test','b'.repeat(64)),null);
+  for (const change of [{livemode:false},{status:'open'},{payment_status:'unpaid'},{amount_total:null},{amount_total:-1},{metadata:{product:'marketing-clarity-audit'}},{line_items:{data:[{quantity:1,price:{id:'price_other'}}]}},{line_items:{data:[{quantity:2,price:{id:'price_assessment'}}]}}]) {
+    session={...valid,...change}; assert.equal(await payment.isPaid('cs_live_test',claim),false);
+  }
+  session={...valid,amount_total:0,payment_status:'no_payment_required'};
+  assert.deepEqual(await payment.assessmentReceipt('cs_live_test',claim),{value:0});
+  session={...valid,amount_total:108,total_details:{amount_tax:8,amount_shipping:0}};
+  assert.deepEqual(await payment.assessmentReceipt('cs_live_test',claim),{value:1});
+});

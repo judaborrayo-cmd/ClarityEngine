@@ -6,7 +6,7 @@ export type CrmPurchase = {
 };
 // Only the three website offers are eligible. Retainers and unrelated Stripe sales stay out.
 export function websitePurchase(session: Stripe.Checkout.Session, assessmentPrice: string, paidAt: number): CrmPurchase | null {
-  if (!session.livemode || session.payment_status !== 'paid' || session.status !== 'complete' || session.mode !== 'payment' || session.currency !== 'usd') return null;
+  if (!session.livemode || !(session.payment_status === 'paid' || (session.payment_status === 'no_payment_required' && session.amount_total === 0)) || session.status !== 'complete' || session.mode !== 'payment' || session.currency !== 'usd') return null;
   const items = session.line_items?.data;
   if (!items || items.length !== 1 || items[0].quantity !== 1) return null;
   let product: CrmPurchase['product']; let productName: string;

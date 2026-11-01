@@ -8,6 +8,7 @@ export interface AuditPayment {
   ): Promise<{ id: string; url: string }>;
   deepDiveReceipt?(id: string): Promise<{ value: number } | null>;
   sprintReceipt?(id: string): Promise<{ value: number } | null>;
+  assessmentReceipt?(id: string, claimHash: string): Promise<{ value: number } | null>;
   isPaid(id: string, claimHash?: string): Promise<boolean>;
   crmPurchase?(id: string, paidAt: number): Promise<CrmPurchase | null>;
   webhook(body: Buffer, signature: string): { id: string; checkoutId?: string; paidAt?: number };
@@ -24,6 +25,7 @@ export class StripeAuditPayment implements AuditPayment {
   async checkout(origin: string, claimHash: string) {
     const session = await this.stripe.checkout.sessions.create({
       mode: "payment",
+      allow_promotion_codes: true,
       line_items: [{ price: this.priceId, quantity: 1 }],
       custom_text: { submit: { message: "Get Clarity Assessment by Clarity Engine examines six marketing areas to help you identify where to focus next." } },
       metadata: { product: "marketing-clarity-audit", claimHash },
@@ -37,17 +39,24 @@ export class StripeAuditPayment implements AuditPayment {
     const session = await this.stripe.checkout.sessions.retrieve(id, {
       expand: ["line_items"],
     });
-    return (
-      session.payment_status === "paid" &&
-      session.mode === "payment" &&
-      session.currency === "usd" &&
-      session.amount_total === 2700 &&
+    return this.validAssessment(session, claimHash);
+  }
+  private validAssessment(session: Stripe.Checkout.Session, claimHash?: string) {
+    return session.livemode && session.status === "complete" &&
+      (session.payment_status === "paid" || (session.payment_status === "no_payment_required" && session.amount_total === 0)) &&
+      session.mode === "payment" && session.currency === "usd" &&
+      Number.isSafeInteger(session.amount_total) && session.amount_total! >= 0 &&
       session.metadata?.product === "marketing-clarity-audit" &&
+      typeof session.metadata.claimHash === "string" && /^[a-f0-9]{64}$/.test(session.metadata.claimHash) &&
       (!claimHash || session.metadata.claimHash === claimHash) &&
       session.line_items?.data.length === 1 &&
       session.line_items.data[0].price?.id === this.priceId &&
-      session.line_items.data[0].quantity === 1
-    );
+      session.line_items.data[0].quantity === 1;
+  }
+  async assessmentReceipt(id: string, claimHash: string) {
+    const session = await this.stripe.checkout.sessions.retrieve(id, { expand: ["line_items"] });
+    if (!this.validAssessment(session, claimHash)) return null;
+    return { value: (session.amount_total! - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100 };
   }
   async sprintReceipt(id: string) {
     const session = await this.stripe.checkout.sessions.retrieve(id);

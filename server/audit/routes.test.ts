@@ -509,3 +509,27 @@ test('verified Stripe webhook syncs CRM and returns retry status on CRM failure'
   fail=false;assert.equal((await send('cs_website')).status,200);assert.equal(calls,2);
   assert.equal((await send('cs_website')).status,200);assert.equal(calls,2);
 });
+
+test('discounted assessment exchanges verified ownership for access and actual paid revenue', async (t) => {
+  const { StripeAuditPayment } = await import('./payment');
+  const payment = new StripeAuditPayment('sk_test_fake', 'price_assessment', 'whsec_fake');
+  let session:any;
+  (payment as any).stripe={checkout:{sessions:{
+    create:async(params:any)=>{session={id:'cs_live_discounted',livemode:true,status:'complete',payment_status:'paid',mode:'payment',currency:'usd',amount_total:100,metadata:params.metadata,line_items:{data:[{quantity:1,price:{id:'price_assessment'}}]}};assert.equal(params.allow_promotion_codes,true);return {...session,url:params.success_url.replace('{CHECKOUT_SESSION_ID}',session.id)};},
+    retrieve:async()=>session,
+  }}};
+  const app=express(), store=new TestAuditStore();
+  const server=app.listen(0,'127.0.0.1'); await new Promise<void>(resolve=>server.once('listening',resolve));
+  t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
+  const origin=`http://127.0.0.1:${(server.address() as {port:number}).port}`;
+  app.use('/api/audit',createAuditRouter({store,payment,origin,tokenSecret:'isolated-test-secret-that-is-long-enough',discoverLogo:async()=>null}));
+  const checkout=await fetch(origin+'/api/audit/checkout',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:'{}'});
+  const cookie=checkout.headers.get('set-cookie')!.split(';')[0];
+  assert.equal(new URL((await checkout.json()).url).pathname,'/audit/start');
+  const exchange=(c:string)=>fetch(origin+'/api/audit/exchange',{method:'POST',headers:{origin,cookie:c,'Content-Type':'application/json'},body:JSON.stringify({checkoutId:session.id})});
+  assert.equal((await exchange('')).status,403);
+  const result=await (await exchange(cookie)).json();
+  assert.ok(validToken(result.token)); assert.equal(result.receipt.value,1); assert.equal(result.receipt.items[0].price,1);
+  const assessment=await fetch(origin+'/api/audit/'+result.token); assert.equal(assessment.status,200);
+  assert.equal((await assessment.json()).completed,false);
+});

@@ -253,7 +253,8 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         .strict()
         .parse(req.body);
       const claim = claimCookie(req);
-      if (!claim || !(await payment.isPaid(checkoutId, tokenHash(claim)))) {
+      const paidReceipt = claim && payment.assessmentReceipt ? await payment.assessmentReceipt(checkoutId, tokenHash(claim)) : null;
+      if (!claim || (payment.assessmentReceipt ? !paidReceipt : !(await payment.isPaid(checkoutId, tokenHash(claim))))) {
         res.status(403).json({
           error:
             "Purchase is not yet verified in this browser. Retry after payment confirmation.",
@@ -270,7 +271,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           .json({ error: "Purchase ownership could not be verified" });
         return;
       }
-      const receipt = checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: 27, quantity: 1 }] } : null;
+      const receipt = checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: paidReceipt?.value ?? 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: paidReceipt?.value ?? 27, quantity: 1 }] } : null;
       res.json({ token, receipt: receipt ? { ...receipt, meta_proof: signMetaPurchase(receipt, tokenSecret) } : null });
     }),
   );
