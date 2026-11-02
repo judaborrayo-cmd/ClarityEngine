@@ -178,7 +178,7 @@ export default function GrowthClarityAudit() {
           </p>
           <div className="dda-actions">
             <StartLink />
-            <a className="dda-text-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20fit%20conversation">
+            <a className="dda-text-link" href="/about#inquiry">
               Request a Complimentary Fit Conversation </a>
             <a className="dda-text-link" href="#included">
               Explore What's Included </a>
@@ -502,7 +502,7 @@ export default function GrowthClarityAudit() {
               <span>USD · one-time</span>
             </p>
             <StartLink />
-            <a className="dda-text-link dda-fit-link" href="mailto:Juda.Borrayo@gmail.com?subject=Deep%20Dive%20Growth%20Audit%20fit%20conversation">Request a Complimentary Fit Conversation </a>
+            <a className="dda-text-link dda-fit-link" href="/about#inquiry">Request a Complimentary Fit Conversation </a>
             <p className="dda-note">
               No prior Assessment, paid consultation or Sprint purchase required.
             </p>

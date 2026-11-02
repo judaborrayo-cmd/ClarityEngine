@@ -235,7 +235,14 @@ export default function AuditAssessment() {
           reports and included retake are untouched.
         </p>
       )}
-      <h1 className="assessment-heading mb-4 text-2xl font-bold">Get Clarity Assessment</h1>
+      {session && !session.localQa && !session.context && (
+        <div role="status" className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
+          <p className="font-semibold">Purchase confirmed. Thank you for choosing Get Clarity Assessment.</p>
+          <p className="mt-2">Set aside about 20 minutes to gain greater clarity on where to focus in your business.</p>
+        </div>
+      )}
+      <h1 className="assessment-heading mb-4 text-2xl font-bold">{session && !session.context ? "The journey begins with a single step." : "Get Clarity Assessment"}</h1>
+      {session && !session.context && <p className="mb-6">Enter your company, website, and other business details to get started.</p>}
       {!session && !error && (
         <p role="status">Verifying purchase and loading your assessment…</p>
       )}
@@ -267,13 +274,13 @@ export default function AuditAssessment() {
       {session && !session.context && (
         <section className="rounded-2xl border border-gray-200 p-5 sm:p-8">
           <h2 className="text-2xl font-semibold">
-            Start with your business. Find your next growth opportunity.
+            Find your next growth opportunity.
           </h2>
           <p className="mt-3">
             35 questions look at six growth levers: what you sell, who buys, how you explain it, the path to taking action, how people find you, and how you learn from results. Together, your answers help identify where to focus next—with three practical moves and a 30-day plan.
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            Allow 12–18 minutes. Answer for how your business works today. Your answers save automatically; use your secure resume link to return. Scores appear after you finish.
+            Allow about 20 minutes. Answer for how your business works today. Your answers save automatically; use your secure resume link to return. Scores appear after you finish.
           </p>
           <form onSubmit={saveContext} className="mt-6 space-y-5">
             {[

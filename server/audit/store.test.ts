@@ -126,6 +126,11 @@ test("PostgreSQL migrations, immutable reports, one retake, identity locks and a
     (await query("SELECT * FROM marketing_audit_payment_events")).rows.length,
     1,
   );
+  let crmCalls = 0;
+  await assert.rejects(store.crmPurchaseOnce('cs_crm', 'hashed-email', async () => { crmCalls++; throw new Error('retry'); }));
+  await store.crmPurchaseOnce('cs_crm', 'hashed-email', async () => { crmCalls++; });
+  await store.crmPurchaseOnce('cs_crm', 'hashed-email', async () => { crmCalls++; });
+  assert.equal(crmCalls, 2, 'failed sync retries; successful sync does not repeat');
   assert.equal(await store.rateLimit("test"), true);
   const insightHash = tokenHash(opaqueToken());
   await store.initiate("cs_test_insights", "claim", insightHash);

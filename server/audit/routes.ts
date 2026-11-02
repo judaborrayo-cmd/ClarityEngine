@@ -1,3 +1,5 @@
+import { cleanPurchaseAttribution } from './purchase-attribution';
+import { HubSpotPurchases } from './hubspot-purchases';
 import { signMetaPurchase, verifyMetaPurchase, sendMetaPurchase } from './meta-conversions';
 import { discoverCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
@@ -22,6 +24,7 @@ export interface AuditDependencies {
   payment: AuditPayment;
   origin: string;
   tokenSecret: string;
+  crm?: Pick<HubSpotPurchases, "sync">;
   discoverLogo?: (website: string) => Promise<Buffer | null>;
 }
 const cookieName = "clarity_audit_purchase";
@@ -70,6 +73,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       !AUDIT_APP_ORIGIN
     )
       throw new Error("Audit configuration unavailable");
+    if (process.env.HUBSPOT_PURCHASE_SYNC_ENABLED === "true" && !process.env.HUBSPOT_SERVICE_KEY) throw new Error("HubSpot configuration unavailable");
     configured = {
       store: new PostgresAuditStore(DATABASE_URL),
       payment: new StripeAuditPayment(
@@ -79,6 +83,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       ),
       origin: new URL(AUDIT_APP_ORIGIN).origin,
       tokenSecret: AUDIT_TOKEN_SECRET,
+      ...(process.env.HUBSPOT_PURCHASE_SYNC_ENABLED === "true" && process.env.HUBSPOT_SERVICE_KEY ? { crm: new HubSpotPurchases(process.env.HUBSPOT_SERVICE_KEY) } : {}),
     };
     return configured;
   };
@@ -95,7 +100,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     express.raw({ type: "application/json", limit: "100kb" }),
     async (req, res) => {
       try {
-        const { payment, store } = getDependencies();
+        const { payment, store, crm } = getDependencies();
         let event;
         try {
           event = payment.webhook(
@@ -108,6 +113,15 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         }
         if (event.checkoutId && ((await payment.isPaid(event.checkoutId)) || (await payment.deepDiveReceipt?.(event.checkoutId))))
           await store.paymentEvent(event.id, event.checkoutId);
+        if (crm && event.checkoutId && event.paidAt) {
+          if (!payment.crmPurchase || !store.crmPurchaseOnce) throw new Error('CRM sync is not configured');
+          const purchase = await payment.crmPurchase(event.checkoutId, event.paidAt);
+          if (purchase?.attributionReference && /^ce_attr_[A-Za-z0-9_-]{20,100}$/.test(purchase.attributionReference)) {
+            if (!store.readAttribution) throw new Error('Attribution store unavailable');
+            purchase.attribution=await store.readAttribution(purchase.attributionReference);
+          }
+          if (purchase) await store.crmPurchaseOnce(purchase.checkoutId, tokenHash(purchase.email), async () => { await crm.sync(purchase); });
+        }
         res.json({ received: true });
       } catch {
         res.status(503).json({
@@ -177,6 +191,14 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       res.json({ recorded: true });
     }),
   );
+  router.post('/purchase-attribution', handle(async(req,res,{store})=>{
+    const fields=cleanPurchaseAttribution(req.body);
+    if(!fields) {res.json({reference:null});return;}
+    if(!store.saveAttribution) throw new Error('Attribution store unavailable');
+    const reference='ce_attr_'+opaqueToken();
+    await store.saveAttribution(reference,fields);
+    res.json({reference});
+  }));
   router.post(
     "/checkout",
     handle(async (req, res, { payment, store, origin, tokenSecret }) => {
@@ -189,7 +211,13 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         maxAge: 30 * 24 * 60 * 60 * 1000,
       });
       res.locals.auditStage = "stripe_checkout";
-      const checkout = await payment.checkout(origin, tokenHash(claim));
+      const fields=cleanPurchaseAttribution(req.body?.attribution);
+      let reference:string|undefined;
+      if(fields) {
+        if(!store.saveAttribution) throw new Error('Attribution store unavailable');
+        reference='ce_attr_'+opaqueToken(); await store.saveAttribution(reference,fields);
+      }
+      const checkout = await payment.checkout(origin, tokenHash(claim), reference);
       res.locals.auditStage = "pending_audit_save";
       await store.initiate(
         checkout.id,
@@ -244,7 +272,8 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         .strict()
         .parse(req.body);
       const claim = claimCookie(req);
-      if (!claim || !(await payment.isPaid(checkoutId, tokenHash(claim)))) {
+      const paidReceipt = claim && payment.assessmentReceipt ? await payment.assessmentReceipt(checkoutId, tokenHash(claim)) : null;
+      if (!claim || (payment.assessmentReceipt ? !paidReceipt : !(await payment.isPaid(checkoutId, tokenHash(claim))))) {
         res.status(403).json({
           error:
             "Purchase is not yet verified in this browser. Retry after payment confirmation.",
@@ -261,7 +290,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           .json({ error: "Purchase ownership could not be verified" });
         return;
       }
-      const receipt = checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: 27, quantity: 1 }] } : null;
+      const receipt = checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: paidReceipt?.value ?? 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: paidReceipt?.value ?? 27, quantity: 1 }] } : null;
       res.json({ token, receipt: receipt ? { ...receipt, meta_proof: signMetaPurchase(receipt, tokenSecret) } : null });
     }),
   );
@@ -291,6 +320,16 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         .json({ error: "Unable to load the audit. Please retry." });
     }
   });
+  router.get(
+    "/:token/purchase-delivery",
+    handle(async (_req, res) => {
+      const row = res.locals.audit;
+      const { store } = getDependencies();
+      if (!store.metaPurchaseDelivered) { res.status(503).json({error: "Delivery status unavailable"}); return; }
+      res.setHeader("Cache-Control", "no-store");
+      res.json({metaAccepted: await store.metaPurchaseDelivered(`ce_${tokenHash(row.checkout_id)}`)});
+    }),
+  );
   router.get(
     "/:token",
     handle(async (_req, res) => {

@@ -1,3 +1,4 @@
+import type { PurchaseAttribution } from "./purchase-attribution";
 import { Pool, neonConfig } from "@neondatabase/serverless";
 import ws from "ws";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
@@ -27,6 +28,8 @@ export interface AuditRecord {
   reports: { number: 1 | 2; report: FrozenAuditReport; answers: Answers }[];
 }
 export interface AuditStore {
+  saveAttribution?(reference:string, fields:PurchaseAttribution):Promise<void>;
+  readAttribution?(reference:string):Promise<PurchaseAttribution|undefined>;
   companyLogo?(
     hash: string,
   ): Promise<{ png: Buffer | null; checkedAt: Date } | undefined>;
@@ -63,7 +66,9 @@ export interface AuditStore {
     id: string,
     value: string,
   ): Promise<boolean>;
+  metaPurchaseDelivered?(id: string): Promise<boolean>;
   metaPurchaseOnce?(id: string, send: () => Promise<void>): Promise<void>;
+  crmPurchaseOnce?(checkoutId: string, contactKey: string, sync: () => Promise<void>): Promise<void>;
   paymentEvent(id: string, checkoutId: string): Promise<void>;
   rateLimit(key: string): Promise<boolean>;
   event(
@@ -85,6 +90,18 @@ export class PostgresAuditStore implements AuditStore {
   private pool: AuditDatabase;
   constructor(url: string, database?: AuditDatabase) {
     this.pool = database ?? new Pool({ connectionString: url });
+  }
+  private async attributionTable() {
+    await this.pool.query("CREATE TABLE IF NOT EXISTS website_purchase_attribution (reference text PRIMARY KEY, fields jsonb NOT NULL, created_at timestamptz NOT NULL DEFAULT now())");
+  }
+  async saveAttribution(reference:string, fields:PurchaseAttribution) {
+    await this.attributionTable();
+    await this.pool.query('INSERT INTO website_purchase_attribution(reference,fields) VALUES($1,$2) ON CONFLICT DO NOTHING',[reference,JSON.stringify(fields)]);
+  }
+  async readAttribution(reference:string) {
+    await this.attributionTable();
+    const result=await this.pool.query('SELECT fields FROM website_purchase_attribution WHERE reference=$1',[reference]);
+    return result.rows[0]?.fields as PurchaseAttribution|undefined;
   }
   async initiate(checkoutId: string, claimHash: string, hash: string) {
     await this.pool.query(
@@ -340,6 +357,10 @@ export class PostgresAuditStore implements AuditStore {
     );
     return result.rowCount === 1;
   }
+  async metaPurchaseDelivered(id: string) {
+    const result = await this.pool.query('SELECT 1 FROM marketing_audit_payment_events WHERE event_id=$1', [`meta-purchase:${id}`]);
+    return result.rows.length > 0;
+  }
   async metaPurchaseOnce(id: string, send: () => Promise<void>) {
     const connection = await this.pool.connect();
     const key = `meta-purchase:${id}`;
@@ -353,6 +374,22 @@ export class PostgresAuditStore implements AuditStore {
       }
       await connection.query('COMMIT');
     } catch(error) { await connection.query('ROLLBACK'); throw error; }
+    finally { connection.release(); }
+  }
+  async crmPurchaseOnce(checkoutId: string, contactKey: string, sync: () => Promise<void>) {
+    const connection = await this.pool.connect();
+    const key = `hubspot-purchase:${checkoutId}`;
+    try {
+      await connection.query('BEGIN');
+      // Serialize purchases for a contact so merging multi-select values cannot lose a purchase.
+      await connection.query('SELECT pg_advisory_xact_lock(hashtext($1))', [`hubspot-contact:${contactKey}`]);
+      const existing = await connection.query('SELECT event_id FROM marketing_audit_payment_events WHERE event_id=$1', [key]);
+      if (!existing.rows.length) {
+        await sync();
+        await connection.query('INSERT INTO marketing_audit_payment_events(event_id,checkout_id) VALUES($1,$2)', [key,checkoutId]);
+      }
+      await connection.query('COMMIT');
+    } catch (error) { await connection.query('ROLLBACK'); throw error; }
     finally { connection.release(); }
   }
   async paymentEvent(id: string, checkoutId: string) {

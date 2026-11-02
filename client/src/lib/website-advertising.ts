@@ -10,7 +10,7 @@ export function readAdvertisingConsent(): 'granted' | 'denied' | null {
 // Meta reads the browser URL itself. Block private paths and arbitrary URL payloads,
 // including private links in the referrer, rather than trying to override those fields.
 export function advertisingPageAllowed(pathname: string, search: string, hash: string, referrer: string) {
-  if (!analyticsPage(pathname) || hash) return false;
+  if (!analyticsPage(pathname) || (hash && hash !== '#inquiry')) return false;
   let unknownQuery = false;
   new URLSearchParams(search).forEach((value, key) => {
     if (!/^(gtm_debug|fbclid|gclid|gbraid|wbraid|utm_source|utm_medium|utm_campaign|utm_id|utm_content|utm_term)$/.test(key) || !/^[a-zA-Z0-9_.~ +\-]{0,512}$/.test(value)) unknownQuery = true;
@@ -39,6 +39,10 @@ export function updateAdvertising(pathname: string, consent: boolean) {
 }
 export function saveAdvertisingConsent(value: 'granted' | 'denied') {
   try { localStorage.setItem(advertisingConsentKey, value); } catch { /* Fail closed in the GTM tag if storage is unavailable. */ }
+  if (location.hostname === 'www.clarity-engine.org') {
+    const w = window as Window & {gtag?: (...args: unknown[]) => void};
+    w.gtag?.('consent', 'update', {ad_storage:value,ad_user_data:value,ad_personalization:value});
+  }
   window.dispatchEvent(new Event('ce-advertising-consent-change'));
   if (value === 'denied') {
     (window as MetaWindow).fbq?.('consent', 'revoke');

@@ -1,3 +1,4 @@
+import { attributedCheckout } from '@/lib/attributed-checkout';
 import { trackCheckout, deepDiveAuditItem } from "@/lib/website-analytics";
 import { Link } from "react-router-dom";
 import {
@@ -48,7 +49,7 @@ export default function CheckoutAudit() {
               <span>USD · one-time</span>
             </p>
             <a className="dda-button" href={offer.paymentLink} data-testid="button-proceed-checkout"
-              onClick={async event => { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); await trackCheckout(deepDiveAuditItem); window.location.assign(offer.paymentLink); }}>
+              onClick={async event => { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); await trackCheckout(deepDiveAuditItem); try {window.location.assign(await attributedCheckout(offer.paymentLink));} catch {window.alert("Checkout could not be opened. Please try again.");} }}>
               Purchase for {offer.priceLabel}
             </a>
             <p className="dda-note">Secure one-time payment through Stripe. Review the <a href="#terms" className="dda-text-link">engagement and cancellation terms</a> before purchasing.</p>

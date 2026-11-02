@@ -487,3 +487,53 @@ test('Deep Dive receipt and webhook verify payments without granting assessment 
   assert.equal(store.events.size,1);
   assert.equal(store.records.size,0);
 });
+
+test('verified Stripe webhook syncs CRM and returns retry status on CRM failure', async (t) => {
+  const store = new TestAuditStore() as TestAuditStore & {crmPurchaseOnce: (id:string,key:string,send:()=>Promise<void>)=>Promise<void>};
+  const payment = new TestAuditPayment() as TestAuditPayment & {crmPurchase: (id:string,at:number)=>Promise<any>};
+  const originalWebhook=payment.webhook.bind(payment);
+  payment.webhook = (body, signature) => ({...originalWebhook(body,signature),paidAt:Date.UTC(2026,10,1)});
+  payment.crmPurchase=async(id,paidAt)=> id==='cs_website' ? {checkoutId:id,email:'buyer@example.com',product:'assessment',productName:'Assessment',amount:27,paidAt}:null;
+  const completed=new Set<string>();
+  store.crmPurchaseOnce=async(id,key,send)=>{assert.equal(key,tokenHash('buyer@example.com'));if(!completed.has(id)){await send();completed.add(id);}};
+  let calls=0;let fail=true;
+  const app=express();const server=app.listen(0,'127.0.0.1');
+  await new Promise<void>(resolve=>server.once('listening',resolve));
+  t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
+  const origin=`http://127.0.0.1:${(server.address() as {port:number}).port}`;
+  app.use('/api/audit',createAuditRouter({store,payment,origin,tokenSecret:'isolated-test-secret-that-is-long-enough',crm:{sync:async()=>{calls++;if(fail)throw new Error('CRM unavailable');return {contactId:'1',dealId:'2'};}}}));
+  const send=(id:string,signature='test-signature')=>fetch(`${origin}/api/audit/webhook`,{method:'POST',headers:{'Content-Type':'application/json','stripe-signature':signature},body:JSON.stringify({id:'evt_crm',checkoutId:id})});
+  assert.equal((await send('cs_website','invalid')).status,400);assert.equal(calls,0);
+  assert.equal((await send('cs_other')).status,200);assert.equal(calls,0);
+  assert.equal((await send('cs_website')).status,503);assert.equal(calls,1);
+  fail=false;assert.equal((await send('cs_website')).status,200);assert.equal(calls,2);
+  assert.equal((await send('cs_website')).status,200);assert.equal(calls,2);
+});
+
+test('discounted assessment exchanges verified ownership for access and actual paid revenue', async (t) => {
+  const { StripeAuditPayment } = await import('./payment');
+  const payment = new StripeAuditPayment('sk_test_fake', 'price_assessment', 'whsec_fake');
+  let session:any;
+  (payment as any).stripe={checkout:{sessions:{
+    create:async(params:any)=>{session={id:'cs_live_discounted',livemode:true,status:'complete',payment_status:'paid',mode:'payment',currency:'usd',amount_total:100,metadata:params.metadata,client_reference_id:params.client_reference_id,line_items:{data:[{quantity:1,price:{id:'price_assessment'}}]}};assert.equal(params.allow_promotion_codes,true);return {...session,url:params.success_url.replace('{CHECKOUT_SESSION_ID}',session.id)};},
+    retrieve:async()=>session,
+  }}};
+  const app=express(), store=new TestAuditStore() as TestAuditStore & {saveAttribution:(ref:string,fields:any)=>Promise<void>};
+  const captures=new Map<string,any>(); store.saveAttribution=async(ref,fields)=>{captures.set(ref,fields);};
+  const server=app.listen(0,'127.0.0.1'); await new Promise<void>(resolve=>server.once('listening',resolve));
+  t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
+  const origin=`http://127.0.0.1:${(server.address() as {port:number}).port}`;
+  app.use('/api/audit',createAuditRouter({store,payment,origin,tokenSecret:'isolated-test-secret-that-is-long-enough',discoverLogo:async()=>null}));
+  const checkout=await fetch(origin+'/api/audit/checkout',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:JSON.stringify({attribution:{ce_utm_source:'google',ce_utm_medium:'cpc',ce_utm_campaign:'assessment',ce_submission_page:'https://www.clarity-engine.org/',ce_first_attribution:'',ce_latest_attribution:JSON.stringify({at:'2026-11-01T23:00:00Z',landing:'https://www.clarity-engine.org/',referrer:'',parameters:{utm_source:'google'}})}})});
+  assert.equal(captures.get(session.client_reference_id).ce_utm_source,'google');
+  const linkCapture=await fetch(origin+'/api/audit/purchase-attribution',{method:'POST',headers:{origin,'Content-Type':'application/json'},body:JSON.stringify(captures.get(session.client_reference_id))});
+  assert.equal(linkCapture.status,200);assert.ok(captures.has((await linkCapture.json()).reference));
+  const cookie=checkout.headers.get('set-cookie')!.split(';')[0];
+  assert.equal(new URL((await checkout.json()).url).pathname,'/audit/start');
+  const exchange=(c:string)=>fetch(origin+'/api/audit/exchange',{method:'POST',headers:{origin,cookie:c,'Content-Type':'application/json'},body:JSON.stringify({checkoutId:session.id})});
+  assert.equal((await exchange('')).status,403);
+  const result=await (await exchange(cookie)).json();
+  assert.ok(validToken(result.token)); assert.equal(result.receipt.value,1); assert.equal(result.receipt.items[0].price,1);
+  const assessment=await fetch(origin+'/api/audit/'+result.token); assert.equal(assessment.status,200);
+  assert.equal((await assessment.json()).completed,false);
+});

@@ -252,7 +252,7 @@ export default function Home() {
     document.dispatchEvent(evt);
   };
 
-  if (["#book-intro", "#book-call", "#retainer"].includes(hash)) return <Navigate replace to="/about" />;
+  if (["#book-intro", "#book-call", "#retainer"].includes(hash)) return <Navigate replace to="/about#inquiry" />;
   if (hash === "#audit") return <Navigate replace to="/growth-clarity-audit" />;
 
   return (

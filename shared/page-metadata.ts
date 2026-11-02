@@ -54,6 +54,7 @@ for(const [slug,title,description] of [
  pageMetadataRegistry[path]={...page(path,title+' Case Study',description,slug,`${title} selected campaign imagery with Clarity Engine case-study branding`),noindex:false};
 }
 for(const [path,title,description] of [
+ ['/inquiry/thank-you','Thank You for Your Inquiry','Clarity Engine inquiry confirmation and next steps.'],
  ['/checkout/strategy-sprint/thank-you','Strategy Sprint Next Steps','Your Strategy Sprint purchase next steps.'],
  ['/checkout/audit/thank-you','Deep-Dive Audit Next Steps','Your Deep-Dive Audit purchase next steps.'],
  ['/checkout/audit/onboarding-confirmed','Deep-Dive Audit Onboarding','Deep-Dive Audit onboarding confirmation and next steps.'],

@@ -12,6 +12,7 @@ import Services from "@/pages/services";
 import CaseStudies from "@/pages/case-studies";
 import CaseStudyDetail from "@/pages/case-study-detail";
 import GrowthClarityAudit from "@/pages/growth-clarity-audit";
+import InquiryThankYou from "@/pages/inquiry-thank-you";
 import About from "@/pages/about";
 import WaysToWorkTogether from "@/pages/ways-to-work-together";
 import Testimonials from "@/pages/testimonials";
@@ -140,6 +141,7 @@ function Router() {
           <Route path="/checkout/strategy-sprint/thank-you" element={<CheckoutStrategySprintThankYou />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
+          <Route path="/inquiry/thank-you" element={<InquiryThankYou />} />
           <Route path="/about" element={<About />} />
           <Route path="/ways-to-work-together" element={<WaysToWorkTogether />} />
           <Route path="/testimonials" element={<Testimonials />} />

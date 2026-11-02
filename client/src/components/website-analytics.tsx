@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { captureAttribution } from '@/lib/campaign-attribution';
+import { useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { analyticsContext, readAnalyticsConsent, saveAnalyticsConsent, updateAnalytics } from '@/lib/website-analytics';
 import { readAdvertisingConsent, saveAdvertisingConsent, updateAdvertising } from '@/lib/website-advertising';
@@ -6,20 +7,17 @@ import { readAdvertisingConsent, saveAdvertisingConsent, updateAdvertising } fro
 type Choice = 'granted' | 'denied' | null;
 export default function WebsiteAnalytics() {
   const { pathname, search, hash } = useLocation();
-  const [consent, setConsent] = useState<Choice>(null);
-  const [ads, setAds] = useState<Choice>(null);
-  const [analyticsSelected, setAnalyticsSelected] = useState(false);
-  const [adsSelected, setAdsSelected] = useState(false);
-  const [ready, setReady] = useState(false);
+  // Read persisted choices before layout effects initialize tags. A temporary
+  // denied state can otherwise race the thank-you page's lead event on reload.
+  const [consent, setConsent] = useState<Choice>(readAnalyticsConsent);
+  const [ads, setAds] = useState<Choice>(readAdvertisingConsent);
+  const [analyticsSelected, setAnalyticsSelected] = useState(consent === 'granted');
+  const [adsSelected, setAdsSelected] = useState(ads === 'granted');
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const analytics = readAnalyticsConsent(); const advertising = readAdvertisingConsent();
-    setConsent(analytics); setAds(advertising);
-    setAnalyticsSelected(analytics === 'granted'); setAdsSelected(advertising === 'granted'); setReady(true);
-  }, []);
-  useLayoutEffect(() => { updateAnalytics(pathname, ready && consent === 'granted'); }, [pathname, consent, ready]);
-  useLayoutEffect(() => { updateAdvertising(pathname, ready && ads === 'granted'); }, [pathname, search, hash, consent, ads, ready]);
-  if (!ready || !analyticsContext(pathname)) return null;
+  useLayoutEffect(() => { try { captureAttribution(new URL(location.href), document.referrer, consent === 'granted', ads === 'granted', localStorage); } catch {} }, [pathname, search, consent, ads]);
+  useLayoutEffect(() => { updateAnalytics(pathname, consent === 'granted'); }, [pathname, consent]);
+  useLayoutEffect(() => { updateAdvertising(pathname, ads === 'granted'); }, [pathname, search, hash, consent, ads]);
+  if (!analyticsContext(pathname)) return null;
   const choose = (analytics: boolean, advertising: boolean) => {
     const a = analytics ? 'granted' : 'denied'; const m = advertising ? 'granted' : 'denied';
     saveAnalyticsConsent(a); saveAdvertisingConsent(m); setConsent(a); setAds(m);
@@ -30,7 +28,7 @@ export default function WebsiteAnalytics() {
     <h2 className="mb-2 text-base font-semibold">Choose how we use cookies</h2>
     <p className="text-sm leading-relaxed">Optional cookies help us understand visits and measure advertising. You can choose each purpose separately and change your choices in Cookie settings.</p>
     <label className="mt-3 flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1" checked={analyticsSelected} onChange={e => setAnalyticsSelected(e.target.checked)} /><span><strong>Analytics</strong> — Google Analytics measures visits, completed forms, downloads, and purchases, including products and revenue. Browser and device information is shared with Google; assessment answers, form contents, and private report links are excluded.</span></label>
-    <label className="mt-3 flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1" checked={adsSelected} onChange={e => setAdsSelected(e.target.checked)} /><span><strong>Advertising</strong> — Meta Pixel and server-side conversion tracking share eligible public-page visits, confirmed purchases (product, value and currency), browser information, and cookie identifiers with Meta to measure ads and support relevant advertising on Facebook and Instagram. Private assessment and report pages are excluded.</span></label>
+    <label className="mt-3 flex items-start gap-3 text-sm"><input type="checkbox" className="mt-1" checked={adsSelected} onChange={e => setAdsSelected(e.target.checked)} /><span><strong>Advertising</strong> — Google Ads, Meta Pixel, and server-side conversion tracking use eligible public-page visits, successful inquiries, confirmed purchases (product, value and currency), browser information, and cookie identifiers to measure ads and support relevant advertising. Inquiry messages and contact details are excluded from conversion reports. Private assessment and report pages are excluded.</span></label>
     <div className="mt-4 flex flex-wrap gap-3">
       <button type="button" onClick={() => choose(false, false)} className="rounded-lg border border-slate-400 px-4 py-2 text-sm font-medium">Reject optional</button>
       <button type="button" onClick={() => choose(analyticsSelected, adsSelected)} className="rounded-lg border border-slate-400 px-4 py-2 text-sm font-medium">Save choices</button>
