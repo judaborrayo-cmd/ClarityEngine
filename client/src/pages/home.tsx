@@ -1,3 +1,4 @@
+import HomeExplorerScenes from "@/components/HomeExplorerScenes";
 import LeadershipCollaboration from "@/components/LeadershipCollaboration";
 import ExperienceBadges from "@/components/ExperienceBadges";
 import { useState, useEffect } from "react";
@@ -274,6 +275,7 @@ export default function Home() {
                 <p className="home-booking-note">12+ years of growth marketing experience. People + AI to move the work forward.</p>
               </div>
               <HeroMotion />
+              <HomeExplorerScenes />
             </div>
             <div className="home-credibility" data-testid="hero-badges"><ExperienceBadges animateOnScroll showPlatforms={false} /></div>
           </div>
