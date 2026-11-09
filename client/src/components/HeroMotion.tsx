@@ -34,7 +34,7 @@ export default function HeroMotion() {
   }, [allowed, failed, userPaused]);
 
   return (
-    <div className="home-hero-visual">
+    <figure className="home-hero-visual">
       <div className="home-hero-media" data-ready={ready} data-playing={playing}>
         <img src="/videos/clarity-hero-expressive-poster.jpg" width="1280" height="720"
           fetchPriority="high" alt="Illustrative green and violet marketing growth visualization" />
@@ -51,6 +51,7 @@ export default function HeroMotion() {
             onClick={() => setUserPaused(paused => !paused)}><span className="sr-only">Toggle homepage animation</span></button>
         )}
       </div>
-    </div>
+      <figcaption className="home-hero-audience">Growth marketing for <strong>retreats, travel, hospitality, and wellness businesses.</strong></figcaption>
+    </figure>
   );
 }

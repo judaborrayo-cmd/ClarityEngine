@@ -97,3 +97,7 @@
 .home-collaboration-art{mix-blend-mode:multiply}
 
 @media(max-width:767px){.home-booking-note{display:none}}
+
+.home-hero-audience { margin: 18px auto 0; max-width: 620px; text-align: center; font-size: 14px; line-height: 1.6; color: #586679; text-wrap: balance; }
+.home-hero-audience strong { color: #285e48; font-weight: 600; }
+@media(max-width:600px) { .home-hero-audience { margin-top: 12px; padding-inline: 8px; font-size: 12px; line-height: 1.5; } }

@@ -209,7 +209,7 @@ export default function Home() {
                   Help more of the right people <span>choose your experience.</span>
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
-                  Growth marketing for retreats, travel, hospitality, and wellness businesses. We combine senior marketing expertise with the latest AI tools to build campaigns, test landing pages, and uncover opportunities faster—helping turn more interest into inquiries, bookings, and revenue.
+                  We combine senior marketing expertise with the latest AI tools to build campaigns, test landing pages, and uncover opportunities faster—helping turn more interest into inquiries, bookings, and revenue.
                 </p>
                 <HeroCTAs />
                 <p className="home-booking-note">People + AI. Experienced direction. Faster execution. Continuous improvement.</p>
