@@ -8,7 +8,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Target, TrendingUp, Users, DollarSign, Dumbbell, Heart, ShoppingCart, Plane, Package } from "lucide-react";
-import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, VerifiedMetrics, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
+import { AtAGlance, MidPageCTA, BeforeAfter, BottomCTA, TestimonialIntro, StatStrip, TestimonialIntroLine, ProfitableAdvertisingCard, LisaNicholsTestimonialIntroLine } from "@/components/case-study/ConversionComponents";
 import core40PortfolioImage from "@assets/Core40-Image_1761608258683.png";
 import powersGymnasticsHeroImage from "@assets/Black Yellow Modern Dynamic Copywriter Online Portfolio_1763650858659.png";
 import powersGymnasticsCreativeImage from "@assets/Graphic Designer Online Portfolio_1763651229848.png";
@@ -16,81 +16,28 @@ import powersGymnasticsCreativeImage from "@assets/Graphic Designer Online Portf
 // This would typically come from an API or CMS
 const caseStudyData = {
   "lamark-agency": {
-    title: "Growth Across Industries",
-    subtitle: "Pay Per Click at Lamark Performance Marketing Agency",
+    title: "Help different businesses reach the people who need them.",
+    subtitle: "Lamark Media · Paid-media experience across industries",
     category: "PPC Management",
-    overview: "Clarity Engine's scalable PPC framework was developed and refined within a fast-paced, multi-industry performance environment—managing significant monthly ad spend across fitness, healthcare, e-commerce, travel, and logistics. The result: repeatable systems that deliver measurable growth across verticals.",
-    challenge: "Lamark Agency faced the complex challenge of managing PPC campaigns across vastly different industries, each with unique customer behaviors, acquisition costs, and conversion patterns. The agency needed a unified system that could adapt to various business models while providing accurate performance tracking, budget allocation, and ROI measurement across multiple client accounts and verticals. The solution required seamless integration with existing workflows while maintaining the flexibility to scale efficiently as the agency grew.",
+    overview: "A person searching for a fitness studio has different questions from someone choosing a healthcare provider or a logistics service. Juda’s work at Lamark brought paid-media analysis and campaign management to that range of needs, with responsibility for significant advertising budgets and collaboration across the agency team.",
+    challenge: "Multiple client accounts meant different audiences, offers, conversion goals, and business constraints. Effective management depended on understanding each customer decision while keeping budget reviews and campaign analysis consistent enough for the team to act on.",
     solution: [
-      "Developed comprehensive multi-industry PPC framework adaptable to different business sectors and customer acquisition models",
-      "Implemented advanced tracking systems enabling precise performance measurement and attribution across client accounts",
-      "Created scalable campaign structures allowing efficient management across diverse client portfolios",
-      "Established industry-specific performance benchmarks and optimization protocols tailored to each vertical",
-      "Built automated reporting systems providing real-time insights across all client accounts",
-      "Designed flexible budget allocation strategies optimized for different industry seasonality and customer lifecycles",
-      "Implemented cross-industry learning protocols to apply successful strategies across different business sectors"
-    ],
+      "Adapt search themes and campaign structure to each client’s offer and audience.",
+      "Review spend and conversion reporting in the context of each account’s goals.",
+      "Share campaign findings with colleagues so analysis informs the next practical change.",
+      "Bring the discipline of agency account management into Clarity Engine’s ongoing client work."
+],
     results: {
-      primary: "Successfully managed $70K+ monthly ad spend across diverse industries with scalable PPC systems",
+      primary: "Historical portfolio scope: $70K+ in monthly advertising spend across client accounts.",
       metrics: [
         { label: "Monthly Ad Spend", value: "$70K+", icon: DollarSign },
         { label: "Client Portfolio", value: "Multi-Industry", icon: Users },
         { label: "Industries Served", value: "10+", icon: Target },
-        { label: "Performance", value: "Consistent CPL Growth", icon: TrendingUp }
+        { label: "Performance", value: "Campaign analysis", icon: TrendingUp }
       ]
     },
-    detailedResults: [
-      {
-        title: "Large-Scale Budget Management",
-        description: "Successfully managed $70,000+ in monthly advertising budget across multiple client verticals, ensuring optimal allocation and performance tracking"
-      },
-      {
-        title: "Multi-Industry Campaign Excellence",
-        description: "Delivered consistent performance improvements across fitness, healthcare, e-commerce, travel, and logistics sectors through tailored strategies"
-      },
-      {
-        title: "Scalable System Development",
-        description: "Built comprehensive PPC management systems enabling the agency to efficiently handle growing client portfolios without compromising quality"
-      },
-      {
-        title: "Consistent Lead Generation Growth",
-        description: "Achieved consistent cost-per-lead reductions and conversion improvements across all verticals through systematic optimization"
-      }
-    ],
-    strategies: [
-      {
-        category: "Multi-Industry Framework Development",
-        tactics: [
-          "Created adaptable PPC templates customizable for different business sectors",
-          "Developed industry-specific keyword research and targeting methodologies",
-          "Established flexible campaign structures accommodating various business models"
-        ]
-      },
-      {
-        category: "Advanced Tracking & Attribution",
-        tactics: [
-          "Implemented comprehensive tracking systems across client accounts",
-          "Built custom attribution models for complex customer journey mapping",
-          "Created automated reporting dashboards for real-time performance monitoring"
-        ]
-      },
-      {
-        category: "Scalable Campaign Management",
-        tactics: [
-          "Designed efficient campaign structures enabling portfolio-level optimization",
-          "Implemented automated bid management strategies across multiple accounts",
-          "Created standardized optimization protocols adaptable to different industries"
-        ]
-      },
-      {
-        category: "Performance Optimization & Growth",
-        tactics: [
-          "Established industry-specific performance benchmarks and KPIs",
-          "Implemented cross-industry learning protocols for strategy optimization",
-          "Developed seasonal campaign strategies aligned with industry-specific trends"
-        ]
-      }
-    ],
+    detailedResults: [{"title": "Responsibility across accounts", "description": "The historical portfolio records management of more than $70,000 in monthly advertising spend across industries. That scope required account-specific priorities and a consistent way to review performance with the agency team."}],
+    strategies: [{ category: "What the work taught us", tactics: ["A consistent review process is useful; identical marketing is not. The customer, offer, and next meaningful action determine what a good campaign should do."] }],
     testimonial: {
       quote: "I had the pleasure of working with Juda during his tenure at Lamark. During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.",
       author: "Mike Berkman, VP of Performance · Lamark Media"
@@ -100,22 +47,19 @@ const caseStudyData = {
     heroImage: "/images/lamark-agency-collage.webp"
   },
   "hapi-art": {
-    title: "Building a Profitable 10X ROAS",
-    subtitle: "Hapi Art Advertising System",
+    title: "Help more people find art they want to live with.",
+    subtitle: "Hapi Art · Discovery, creative testing, and collector growth",
     category: "ROI Optimization",
-    overview: "Clarity Engine's scalable e-commerce advertising framework was refined in a fast-moving multi-industry environment and applied to Hapi Art's marketplace—optimizing creative testing, funnel structure, and attribution. The result: a profitable system achieving 10× ROAS with systematic creative testing and precise attribution across Meta.",
-    challenge: "Hapi Art faced the challenge of marketing digital art products in a highly competitive e-commerce landscape where visual appeal and audience targeting are critical. The brand needed an advertising system that could effectively showcase their artistic products, reach art enthusiasts and collectors, while achieving profitable returns on ad spend. The challenge was to create a scalable system that could consistently deliver high ROAS across multiple channels while building brand recognition in the digital art market.",
+    overview: "Art is a personal choice. For Hapi Art, the work helped more people discover Kristi Kohut’s colorful originals and imagine them in their own homes. Meta campaigns connected that inspiration with product discovery and a return visit, while reporting kept sales and advertising investment in view.",
+    challenge: "The artwork already had a distinctive voice. The marketing needed to bring it to new collectors, help them picture the work in their space, and reconnect with people who needed time to choose. The challenge was to make that journey commercially effective without flattening the brand into a generic product ad.",
     solution: [
-      "Designed comprehensive advertising system architecture optimized for visual product marketing and art e-commerce",
-      "Implemented advanced audience targeting strategies focused on art enthusiasts, collectors, and creative professionals",
-      "Developed systematic creative testing protocols featuring high-quality art visuals and compelling ad formats",
-      "Created sophisticated funnel optimization strategies to maximize conversion rates from awareness to purchase",
-      "Built automated bid management and budget allocation systems for optimal ROAS performance",
-      "Established comprehensive tracking and attribution systems for accurate performance measurement",
-      "Implemented strategic remarketing campaigns targeting users based on art preferences and engagement behavior"
-    ],
+      "Show original artwork, expressive color, and room context as distinct creative approaches.",
+      "Connect prospecting with remarketing so discovery can lead to a later purchase.",
+      "Review sales, spend, clicks, and reported return together to guide campaign decisions.",
+      "Reconcile platform reporting with the sales record, including offline-conversion tracking."
+],
     results: {
-      primary: "10× ROAS achieved with systematic creative testing, funnel structure, and precise attribution across Meta.",
+      primary: "Historical Meta portfolio results, supported by creative testing, prospecting, and remarketing.",
       metrics: [
         { label: "Overall ROAS", value: "10×", icon: TrendingUp },
         { label: "Cold Prospecting", value: "16× ROAS", icon: Target },
@@ -123,82 +67,29 @@ const caseStudyData = {
         { label: "Top Creatives", value: "5–6% CTR", icon: Users }
       ]
     },
-    detailedResults: [
-      {
-        title: "Overall ROAS Performance",
-        description: "Achieved 10× return on ad spend across the entire program, demonstrating profitable efficiency in e-commerce advertising"
-      },
-      {
-        title: "Cold Prospecting Success",
-        description: "Generated 16× ROAS on cold prospecting campaigns through Meta, effectively reaching new art enthusiasts and collectors"
-      },
-      {
-        title: "Retargeting Optimization",
-        description: "Delivered 6.9× ROAS on retargeting campaigns, converting interested visitors into customers through strategic remarketing"
-      },
-      {
-        title: "Creative Performance Excellence",
-        description: "Maintained 5–6% CTR consistently on top-performing creatives, significantly exceeding industry benchmarks through systematic testing and optimization"
-      }
-    ],
-    strategies: [
-      {
-        category: "Visual Creative Strategy & Testing",
-        tactics: [
-          "Developed high-impact visual advertising featuring Hapi Art's unique digital art pieces",
-          "Implemented systematic creative testing across multiple ad formats and visual styles",
-          "Created compelling storytelling approaches highlighting artist stories and creative processes"
-        ]
-      },
-      {
-        category: "Advanced Audience Targeting",
-        tactics: [
-          "Built detailed personas targeting art enthusiasts, collectors, and creative professionals",
-          "Implemented lookalike audiences based on high-value customer segments",
-          "Created interest-based targeting focusing on art, design, and creative lifestyle preferences"
-        ]
-      },
-      {
-        category: "Conversion Funnel Optimization",
-        tactics: [
-          "Optimized entire customer journey from initial art discovery to final purchase completion",
-          "Implemented strategic remarketing sequences based on product browsing and engagement behavior",
-          "Developed time-sensitive promotional strategies to create urgency and drive conversions"
-        ]
-      },
-      {
-        category: "Performance Tracking & Optimization",
-        tactics: [
-          "Established comprehensive attribution modeling for accurate ROAS measurement",
-          "Implemented automated bid management strategies optimized for profitability",
-          "Created real-time performance monitoring dashboards for continuous optimization"
-        ]
-      }
-    ],
+    detailedResults: [{"title": "A dated view of collector response", "description": "October 2023 reporting records 4,341 clicks, 9 sales, and $19,605 in revenue on $1,159.21 in ad spend. The reported monthly return was 16.91×; this is a monthly total, separate from the prospecting and remarketing figures in the historical portfolio."}],
+    strategies: [{ category: "What the work taught us", tactics: ["Art can earn attention before someone is ready to buy. Creative that shows the work in a home answers a different question from creative that introduces the artist’s visual world. Both belong in a considered purchase journey."] }],
     testimonial: {
       quote: "Hapi Art achieved 10× ROAS overall efficiency across the program. Cold prospecting on Meta delivered 16× ROAS, while retargeting campaigns achieved 6.9× ROAS. Top-performing creatives consistently maintained 5–6% CTR throughout the program.",
       author: "Results Summary",
       isResultsSummary: true
     },
-    tags: ["10× ROAS", "16× Cold ROAS", "Meta Ads", "E-commerce", "Digital Art", "Visual Marketing", "Conversion Optimization"],
+    tags: ["10× ROAS", "16× Cold ROAS", "Meta Ads", "E-commerce", "Original Art", "Visual Marketing", "Conversion Optimization"],
     featured: true,
     videoUrl: "https://www.youtube.com/watch?v=Hlea7gYuSvw"
   },
   "lisa-nichols": {
-    title: "Motivating the Masses",
-    subtitle: "Lisa Nichols — Personal Brand Growth",
+    title: "Help an inspiring message reach people ready to act.",
+    subtitle: "Lisa Nichols / Motivating the Masses · Google and YouTube",
     category: "Personal Brand Growth",
-    overview: "Clarity Engine developed a global paid media system for Lisa Nichols—best-selling author, speaker, and founder of Motivating the Masses. Through creative testing, funnel optimization, and multi-channel scaling across YouTube and Google, campaigns achieved lower acquisition costs, consistent conversions, and global audience growth.",
-    challenge: "Lisa Nichols faced the challenge of scaling her personal brand beyond traditional speaking engagements and book sales in an increasingly digital landscape. The challenge was to create a comprehensive digital presence that could authentically represent her transformational message while reaching millions of people seeking personal development and empowerment. She needed a system that could maintain the personal connection and authenticity that made her successful while achieving massive scale.",
+    overview: "Lisa Nichols brings the message. Paid media helps people discover it and find a clear next step. The work connected Google and YouTube campaign optimization with audience growth and lead generation, keeping the cost of reaching people and the actions they took visible alongside the creative.",
+    challenge: "An inspiring video can capture attention without creating a clear path forward. The opportunity was to reach relevant audiences, connect the message to an appropriate destination, and understand which campaigns generated meaningful action at a sustainable cost.",
     solution: [
-      "Developed comprehensive personal brand strategy optimized for digital transformation and audience engagement",
-      "Implemented multi-channel content distribution system across social media, speaking platforms, and digital channels",
-      "Created systematic audience development strategies targeting personal development enthusiasts and aspiring entrepreneurs",
-      "Built strategic partnership and collaboration frameworks to expand reach and credibility",
-      "Established thought leadership positioning through strategic content marketing and media appearances",
-      "Developed revenue diversification strategies including digital products, courses, and speaking opportunities",
-      "Implemented advanced analytics and tracking systems to measure brand growth and audience engagement"
-    ],
+      "Coordinate Google and YouTube campaigns around discovery and response.",
+      "Review creative and audience performance alongside click and conversion costs.",
+      "Connect each campaign’s message to the offer and next step on its landing destination.",
+      "Use regular performance reviews to guide refinements and budget decisions."
+],
     results: {
       primary: "Consistent audience growth, global reach, and improved cost efficiency through systemized paid media optimization.",
       metrics: [
@@ -208,58 +99,8 @@ const caseStudyData = {
         { label: "Audience Expansion", value: "+25% YoY", icon: Users }
       ]
     },
-    detailedResults: [
-      {
-        title: "Paid Media Optimization",
-        description: "Reduced Google CPC by 42% and improved overall ad efficiency"
-      },
-      {
-        title: "Conversion Growth",
-        description: "Increased YouTube conversions by 140%; achieved stable CPL performance"
-      },
-      {
-        title: "Audience Expansion",
-        description: "Extended reach across multiple regions with consistent ROI improvements"
-      },
-      {
-        title: "Funnel Systemization",
-        description: "Implemented end-to-end tracking and weekly optimization cycles"
-      }
-    ],
-    strategies: [
-      {
-        category: "Personal Brand Development & Positioning",
-        tactics: [
-          "Developed authentic personal brand strategy highlighting Lisa's transformation story and expertise",
-          "Created compelling brand messaging focused on empowerment, transformation, and personal growth",
-          "Established thought leadership positioning through strategic content and media appearances"
-        ]
-      },
-      {
-        category: "Multi-Channel Content Strategy",
-        tactics: [
-          "Implemented comprehensive content distribution across social media platforms and digital channels",
-          "Developed systematic content creation processes for books, speaking materials, and digital products",
-          "Created engaging storytelling approaches that connect with audiences seeking personal transformation"
-        ]
-      },
-      {
-        category: "Audience Development & Engagement",
-        tactics: [
-          "Built targeted audience development strategies focusing on personal development enthusiasts",
-          "Implemented community building initiatives to foster deep connections with followers",
-          "Created systematic engagement processes to maintain authentic relationships at scale"
-        ]
-      },
-      {
-        category: "Revenue Growth & Monetization",
-        tactics: [
-          "Developed diversified revenue strategies including books, speaking, coaching, and digital products",
-          "Implemented strategic pricing and packaging for various service offerings and products",
-          "Created systematic sales funnels optimized for personal development and transformation services"
-        ]
-      }
-    ],
+    detailedResults: [{"title": "Reaching people more efficiently", "description": "The historical portfolio reports a 42% reduction in Google CPC and a 140% increase in YouTube conversions. Those measures describe different stages: the cost of a click and the volume of recorded conversion actions."}, {"title": "A wider audience", "description": "The portfolio also records 25% year-over-year audience growth and a 52% CPL-efficiency improvement. The latter label needs its original calculation before it can be interpreted as a specific reduction in lead cost."}],
+    strategies: [{ category: "What the work taught us", tactics: ["Reach matters most when people can do something with the message. Click costs, lead costs, and conversions describe different parts of that journey; reviewing them together keeps attention connected to action."] }],
     testimonial: {
       quote: "",
       author: "",
@@ -270,20 +111,17 @@ const caseStudyData = {
     videoUrl: "https://youtu.be/Mv9aaF1ISXQ"
   },
   "core-40": {
-    title: "Maximizing ROI in Fitness",
-    subtitle: "High-Performance Training Studio Growth",
+    title: "Make the first class easier to choose.",
+    subtitle: "Core40 · From studio discovery to membership",
     category: "Fitness Marketing",
-    overview: "Clarity Engine partnered with Core40—a boutique, high-performance fitness brand—to create a growth system that increased memberships, stabilized ad costs, and built brand recognition. Through strategic positioning, creative testing, and funnel optimization across Google and Meta, Core40 achieved measurable ROI improvements and long-term retention.",
-    challenge: "Core 40 faced the challenge of establishing their boutique fitness studio in a highly competitive market dominated by large gym chains and fitness franchises. The studio needed to differentiate itself as a premium, high-performance training facility while attracting the right audience of dedicated athletes and serious fitness enthusiasts. The challenge was to build brand awareness, drive membership growth, and establish Core 40 as the go-to destination for elite fitness training in their local market.",
+    overview: "For someone considering a new fitness routine, the first question is often whether the studio feels right for them. Core40’s campaign work connected its distinctive training experience with local discovery, creative testing, and the path toward membership—with acquisition results kept in view.",
+    challenge: "A boutique studio needs to communicate what the experience feels like before asking someone to commit. The work needed to connect relevant local audiences with a clear offer and next step, then review acquisition performance as people moved from interest toward membership.",
     solution: [
-      "Developed comprehensive brand positioning strategy emphasizing high-performance training and elite fitness culture",
-      "Implemented targeted digital marketing campaigns focused on serious athletes and fitness enthusiasts",
-      "Created community-building initiatives to foster strong member engagement and loyalty",
-      "Built strategic content marketing showcasing training methodologies and member success stories",
-      "Established local market dominance through strategic partnerships and community outreach",
-      "Developed systematic member acquisition and retention strategies optimized for boutique fitness",
-      "Implemented performance tracking and optimization systems for continuous growth measurement"
-    ],
+      "Bring the studio experience into audience targeting and campaign messaging.",
+      "Connect creative with a clear first step for prospective members.",
+      "Review lead generation and membership conversion as separate stages.",
+      "Use performance analysis to refine acquisition decisions with the studio team."
+],
     results: {
       primary: "Sustained membership growth and measurable ROI gains through integrated digital campaigns and refined audience targeting.",
       metrics: [
@@ -311,40 +149,7 @@ const caseStudyData = {
         description: "Improved consistency across visuals and landing experiences, boosting trust and retention."
       }
     ],
-    strategies: [
-      {
-        category: "Premium Brand Positioning & Differentiation",
-        tactics: [
-          "Developed compelling brand messaging emphasizing high-performance training and elite athlete culture",
-          "Created premium visual identity and marketing materials reflecting boutique fitness excellence",
-          "Established thought leadership through expert training content and methodology showcases"
-        ]
-      },
-      {
-        category: "Targeted Digital Marketing & Acquisition",
-        tactics: [
-          "Implemented precise audience targeting focusing on serious athletes and dedicated fitness enthusiasts",
-          "Developed high-converting lead generation campaigns optimized for boutique fitness membership",
-          "Created strategic social media presence showcasing training intensity and member achievements"
-        ]
-      },
-      {
-        category: "Community Building & Member Engagement",
-        tactics: [
-          "Built systematic community engagement programs fostering strong member loyalty and retention",
-          "Implemented member success story campaigns highlighting transformation and performance improvements",
-          "Created exclusive member events and challenges to strengthen studio community bonds"
-        ]
-      },
-      {
-        category: "Local Market Dominance & Growth",
-        tactics: [
-          "Established strategic partnerships with local athletic organizations and sports teams",
-          "Implemented referral programs leveraging satisfied member networks for organic growth",
-          "Created systematic local market outreach and community involvement initiatives"
-        ]
-      }
-    ],
+    strategies: [{ category: "What the work taught us", tactics: ["The first class is both a customer decision and a business handoff. Marketing can help someone picture themselves in the studio; the offer, booking experience, and studio team carry that interest forward."] }],
     testimonial: {
       quote: "",
       author: "",
@@ -356,169 +161,56 @@ const caseStudyData = {
     portfolioImage: core40PortfolioImage
   },
   "steel-fit-usa": {
-    title: "Steel Fit USA",
-    subtitle: "Exceptional Growth with Paid Media Strategy",
+    title: "Help shoppers find the right next step for their fitness goals.",
+    subtitle: "SteelFit USA · Product discovery and return visits",
     category: "Paid Media",
-    overview: "Steel Fit USA, a leading fitness equipment and supplement brand, partnered with us to develop a transformative paid media strategy that would drive exceptional growth in the highly competitive fitness industry. Through comprehensive audience development, strategic campaign optimization, and data-driven performance tracking, we delivered remarkable results that exceeded growth expectations and established Steel Fit USA as a dominant force in their market segment.",
-    challenge: "Steel Fit USA faced intense competition in the saturated fitness equipment market, needing to differentiate their brand while achieving cost-effective customer acquisition. The challenge was to develop a paid media strategy that could cut through the noise, reach high-intent fitness enthusiasts, and drive meaningful conversions across multiple product categories while maintaining profitable customer acquisition costs in a highly competitive advertising landscape.",
+    overview: "SteelFit’s advertising connected product discovery with reasons to return and buy. The original campaign export shows a mix of product-led creative, catalogs, promotions, prospecting, and retargeting. That gives the case study something concrete to examine: how an interested shopper moves from an ad to a purchase.",
+    challenge: "Different shoppers arrive with different levels of familiarity. A new visitor needs a reason to explore the product; someone who has already shown interest may need a reminder or a relevant offer. Campaign structure and creative needed to reflect those differences, with purchases and spend used to judge performance.",
     solution: [
-      "Developed comprehensive paid media strategy tailored specifically for the fitness equipment industry",
-      "Implemented advanced audience segmentation targeting fitness enthusiasts, athletes, and home gym builders",
-      "Created strategic campaign optimization frameworks focusing on high-converting product categories",
-      "Established robust performance tracking systems to monitor customer acquisition costs and lifetime value",
-      "Designed creative testing protocols for fitness equipment demonstrations and workout content",
-      "Built strategic remarketing funnels targeting users based on product interest and engagement level",
-      "Implemented seasonal campaign strategies aligning with fitness trends and New Year resolutions"
-    ],
+      "Use product-led creative and catalog formats to support discovery.",
+      "Separate prospecting and retargeting so messages reflect the shopper’s relationship with the brand.",
+      "Compare promotional and evergreen creative using purchase results and spend.",
+      "Review grouped creative results without treating them as account-wide performance."
+],
     results: {
-      primary: "Exceptional growth through strategic paid media with significant ROI improvements",
+      primary: "One evergreen retargeting creative group · January 1–July 31, 2020 · original Meta export",
       metrics: [
-        { label: "Growth Rate", value: "Exceptional", icon: TrendingUp },
-        { label: "Industry Focus", value: "Fitness", icon: Target },
-        { label: "Strategy Type", value: "Paid Media", icon: DollarSign },
-        { label: "Customer Acquisition", value: "Optimized", icon: Users }
+        { label: "Website purchases", value: "432", icon: ShoppingCart },
+        { label: "Unique link clicks", value: "1,223", icon: Users },
+        { label: "Purchase ROAS", value: "7.83×", icon: TrendingUp },
+        { label: "Ad spend", value: "$3,346.27", icon: DollarSign }
       ]
     },
-    detailedResults: [
-      {
-        title: "Brand Recognition Growth",
-        description: "Significantly increased brand awareness and recognition within the competitive fitness equipment market through strategic paid media placement"
-      },
-      {
-        title: "Customer Acquisition Optimization",
-        description: "Achieved cost-effective customer acquisition with improved conversion rates across all major product categories"
-      },
-      {
-        title: "Market Penetration",
-        description: "Successfully penetrated new market segments including home gym enthusiasts and professional athletes"
-      },
-      {
-        title: "Revenue Performance",
-        description: "Delivered exceptional revenue growth that exceeded initial projections through strategic campaign optimization"
-      }
-    ],
-    strategies: [
-      {
-        category: "Audience Development & Segmentation",
-        tactics: [
-          "Developed detailed personas for fitness enthusiasts, athletes, and home gym builders",
-          "Implemented lookalike audiences based on high-value customer data",
-          "Created custom audiences targeting specific fitness interests and behaviors"
-        ]
-      },
-      {
-        category: "Creative Strategy & Testing",
-        tactics: [
-          "Produced high-quality product demonstration videos showcasing equipment in action",
-          "Developed workout-focused content featuring Steel Fit USA products",
-          "Implemented systematic creative testing across multiple ad formats and messaging angles"
-        ]
-      },
-      {
-        category: "Campaign Optimization & Performance",
-        tactics: [
-          "Established data-driven bidding strategies optimized for customer acquisition cost",
-          "Implemented seasonal campaign strategies aligned with fitness industry trends",
-          "Created sophisticated remarketing funnels based on product interest and engagement"
-        ]
-      },
-      {
-        category: "Performance Tracking & Analytics",
-        tactics: [
-          "Built comprehensive tracking systems monitoring customer lifetime value",
-          "Established performance benchmarks across product categories",
-          "Implemented attribution modeling to optimize cross-channel performance"
-        ]
-      }
-    ],
-    testimonial: {
-      quote: "The paid media strategy delivered exceptional growth for our fitness brand. The targeted approach and strategic optimization exceeded all our expectations, helping us reach new customers and significantly grow our market presence.",
-      author: "Steel Fit USA Marketing Team"
-    },
+    detailedResults: [{"title": "Interest translated into recorded purchases", "description": "The selected evergreen retargeting group recorded 1,223 unique link clicks and 432 website purchases. These are separate platform metrics, not a cohort conversion rate."}, {"title": "A defined return on a defined investment", "description": "The same group recorded $3,346.27 in spend and 7.83× purchase ROAS during January–July 2020. Its scope is the grouped creative entry; it does not represent all SteelFit advertising."}],
+    strategies: [{ category: "What the work taught us", tactics: ["The export shows why the role of the creative matters. Evergreen retargeting, product discovery, and promotional campaigns address different moments in the buying journey; their returns should be read in that context."] }],
+    testimonial: { quote: "", author: "", isResultsSummary: false },
     tags: ["Paid Media", "Fitness Equipment", "Audience Segmentation", "Growth Strategy", "Performance Marketing", "Customer Acquisition"],
     featured: true,
     videoUrl: "https://www.youtube.com/watch?v=CKo1HNxanuk"
   },
   "mandali-retreats": {
-    title: "Crafting Success: Mandali Retreats",
-    subtitle: "Journey to 16.5× Social & 29.06× Search ROAS",
+    title: "Help the right guests find their next retreat.",
+    subtitle: "Mandali · Search discovery, remarketing, and completed bookings",
     category: "Wellness Marketing",
-    overview: "Clarity Engine implemented a repeatable, multi-channel system for Mandali Retreats—combining creative testing, geo-targeted campaigns, and structured remarketing. The result: +16.5× ROAS across social and +29.06× ROAS on Google Search, with stronger lead quality and steady monthly demand.",
-    challenge: "Mandali Retreats needed to bridge the gap between online advertising and offline booking behavior while ensuring seamless data integration. The luxury wellness market required sophisticated targeting to reach high-value prospects across multiple touchpoints, from initial awareness through booking conversion, while maintaining cost efficiency across all channels.",
+    overview: "Choosing a retreat begins with a personal intention: time to pause, practice, or experience a different pace. For Mandali, Google Search helped people find relevant retreat experiences, while Meta reconnected with people who already knew the center. The results show the commercial value of that connected journey.",
+    challenge: "Guests do not always book on their first visit. Search, retreat-specific promotions, and remarketing needed to work together while reporting distinguished completed purchases from earlier steps such as adding a retreat to a cart.",
     solution: [
-      "Implemented unified tracking and CRM handoff for faster follow-ups, closing the awareness-to-booking gap",
-      "Developed geo-targeted campaigns in high-intent regions to maximize booking quality and reduce wasted spend",
-      "Created creative testing cadence with structured remarketing to deliver consistent ROAS",
-      "Built split Google Search campaigns separating brand vs high-intent non-brand queries for +29.06× ROAS",
-      "Established systematic social campaigns across Meta and YouTube achieving +16.5× ROAS with steady month-over-month growth",
-      "Designed tiered remarketing sequences based on user behavior and engagement stages",
-      "Implemented comprehensive tracking architecture enabling precise attribution and campaign optimization"
-    ],
+      "Use branded Search to serve people looking for Mandali and non-branded Search to reach people exploring retreat options.",
+      "Reconnect with interested visitors through Meta remarketing and selected retreat-specific promotions.",
+      "Review completed purchases and recorded purchase revenue alongside advertising spend.",
+      "Use campaign mix, demand, and retreat capacity to guide selective budget decisions."
+],
     results: {
-      primary: "+16.5× ROAS across social and +29.06× ROAS on Google Search with stronger lead quality",
+      primary: "Completed-purchase reporting · January–September 2026 · revised October 9 performance review",
       metrics: [
-        { label: "Social ROAS", value: "+16.5×", icon: TrendingUp },
-        { label: "Google Search ROAS", value: "+29.06×", icon: Target },
-        { label: "Geo-targeted wins", value: "High-intent regions", icon: Target },
-        { label: "Lead quality", value: "Consistent MoM", icon: Users }
+        { label: "Google purchase revenue", value: "$261,440", icon: DollarSign },
+        { label: "Google ROAS", value: "32.3×", icon: TrendingUp },
+        { label: "Meta purchase revenue", value: "$334,971", icon: DollarSign },
+        { label: "Meta ROAS", value: "20.1×", icon: TrendingUp }
       ]
     },
-    detailedResults: [
-      {
-        title: "Unified Tracking & CRM Integration",
-        description: "Closed the awareness-to-booking gap with unified tracking and CRM handoff, enabling faster follow-ups and better conversion rates"
-      },
-      {
-        title: "Geo-Targeted Campaign Success",
-        description: "Focused spend on high-intent regions, delivering stronger lead quality and more efficient cost-per-acquisition"
-      },
-      {
-        title: "Creative Testing & Remarketing",
-        description: "Implemented structured creative testing cadence with systematic remarketing, achieving consistent ROAS performance"
-      },
-      {
-        title: "Search Campaign Optimization",
-        description: "Split brand vs high-intent non-brand search campaigns, achieving +29.06× ROAS on Google Search"
-      },
-      {
-        title: "Social Media Excellence",
-        description: "+16.5× ROAS across Meta and YouTube with steady month-over-month growth and reliable performance"
-      }
-    ],
-    strategies: [
-      {
-        category: "Conversion Tracking & Data Integration",
-        tactics: [
-          "Implemented comprehensive offline conversion tracking",
-          "Ensured seamless data integration eliminating delays",
-          "Enabled precise attribution and campaign optimization"
-        ]
-      },
-      {
-        category: "Tiered Remarketing Campaigns",
-        tactics: [
-          "Day 1-7: Highlighted retreat benefits and luxurious facilities",
-          "Week 2-3: Showcased testimonials and social proof",
-          "Week 4+: Created urgency with time-sensitive promotions"
-        ]
-      },
-      {
-        category: "Creative Content & Testing",
-        tactics: [
-          "Utilized high-quality content using CapCut for diverse ad formats",
-          "Designed multiple ad variations by altering the first few seconds",
-          "Provided strategic direction for new promotional video shoots"
-        ]
-      },
-      {
-        category: "Geographic & Search Optimization",
-        tactics: [
-          "Optimized targeting by focusing on high-performing regions",
-          "Built Google Search campaigns to capture branded and high-intent search terms",
-          "Strategically boosted key posts to amplify reach at pivotal funnel stages"
-        ]
-      }
-    ],
+    detailedResults: [{"title": "A record across two reporting periods", "description": "The revised review records 2025 purchase ROAS of 21.6× for Google and 16.8× for Meta. For January–September 2026, those figures were 32.3× and 20.1× respectively. These are platform-reported periods, not a controlled lift comparison."}, {"title": "Discovery takes more than one form", "description": "In July 2026, Google recorded 27 purchases: 17 branded, 6 non-branded, and 4 retreat-specific. August recorded 24: 20 branded, 1 non-branded, and 3 retreat-specific. The mix shows why branded demand and new discovery need separate review."}],
+    strategies: [{ category: "What the work taught us", tactics: ["Search can introduce a future guest and also replenish the audience remarketing reaches later. The channels have different roles, so their results should inform a coordinated decision rather than be added together as unique revenue."] }],
     testimonial: {
       quote: "Juda is an exciting person to work with - his passion for tackling problems and facing challenges is a joy to experience. Juda is constantly learning, which means his work is always on the cutting edge of innovation - an invaluable skill in the world of digital media strategy.",
       author: "Beth Amant, Founder & Chief Creative"
@@ -528,17 +220,17 @@ const caseStudyData = {
     videoUrl: "https://www.youtube.com/watch?v=g7yVF5F6l9s"
   },
   "fitness-roi": {
-    title: "Maximizing ROI in Fitness",
-    subtitle: "$2M Revenue, 11K New Members",
+    title: "Connect fitness discovery with the decision to join.",
+    subtitle: "Fitness acquisition · Historical portfolio results",
     category: "Revenue Growth",
-    overview: "Comprehensive fitness marketing strategy that generated over $2M in revenue while acquiring more than 11,000 new members through strategic campaign optimization and growth frameworks.",
-    challenge: "The fitness business needed a comprehensive marketing strategy that could drive both significant revenue growth and substantial member acquisition while maintaining sustainable growth patterns.",
+    overview: "Fitness marketing starts with a person looking for a routine, a challenge, or a place to belong. This portfolio summary keeps the reported revenue and member-acquisition results visible while explaining the journey behind them: discovery, inquiry, and the decision to join.",
+    challenge: "Revenue and membership totals are useful outcomes, but they do not explain where people hesitate or which next step needs attention. A useful growth review connects those totals to the offer, campaign experience, and enrollment process.",
     solution: [
-      "Developed comprehensive fitness marketing strategy",
-      "Implemented revenue-focused campaign optimization",
-      "Created member acquisition and retention systems",
-      "Established sustainable growth frameworks for fitness industry"
-    ],
+      "Connect campaign messaging with the reasons people consider joining.",
+      "Review the path from first interest to membership.",
+      "Keep revenue, member acquisition, and advertising costs visible together.",
+      "Use those findings to prioritize the next campaign or conversion improvement."
+],
     results: {
       primary: "$2M+ revenue and 11K+ new members acquired",
       metrics: [
@@ -548,33 +240,27 @@ const caseStudyData = {
         { label: "Growth Type", value: "Sustainable", icon: TrendingUp }
       ]
     },
-    testimonial: {
-      quote: "The results speak for themselves - $2M in revenue and over 11,000 new members. The comprehensive strategy transformed our entire business growth trajectory.",
-      author: "Fitness Business Owner"
-    },
+    testimonial: { quote: "", author: "", isResultsSummary: false },
     tags: ["$2M Revenue", "11K Members", "Fitness Marketing", "ROI Maximization"],
     featured: true
   },
   "powers-gymnastics": {
-    title: "Scaling Powers Gymnastics: 2–3× More Leads Across Locations",
-    subtitle: "Multi-location gymnastics & youth programs",
+    title: "From first click to first class.",
+    subtitle: "Powers Gymnastics · Helping more local families take the next step",
     category: "Gyms & Youth Programs",
-    overview: "Clarity Engine rebuilt Powers Gymnastics' multi-location paid media and funnel systems across Google and Meta—turning fragmented, seasonal campaigns into an always-on growth engine. The result: 2–3× more leads, record trials and enrollments, and nearly 50% cheaper Google cost per lead.",
-    challenge: "Powers Gymnastics faced the complex challenge of managing fragmented advertising accounts across multiple locations with a heavy seasonal focus on summer camps. The business struggled with inconsistent cost per lead, lack of visibility from click → trial → enrollment, and the complexity of coordinating campaigns across different gym locations. Without a unified system, the brand couldn't effectively track which campaigns drove actual enrollments or optimize for the full customer journey from initial interest to paid membership.",
+    overview: "For parents, a gymnastics class can mean a place for their child to build confidence, make friends, and try something new. Across Powers locations, the work connected those motivations with local campaigns, seasonal creative, and a clearer view of leads, trials, and enrollments.",
+    challenge: "Each location serves different families and has its own programs and personality. Seasonal camps and ongoing classes need different messages, while the team needs to know whether new inquiries become booked trials, attended classes, and enrollments.",
     solution: [
-      "Rebuilt Google Search & Performance Max campaigns with evergreen structure post-summer season",
-      "Launched Meta lead-generation campaigns optimized for both leads and sales conversions",
-      "Created multi-format creative system with seasonal promotions and higher testing velocity",
-      "Developed targeted campaigns for Summer, Back-to-School & school-year camp programs",
-      "Implemented 5-email nurture sequence aligned to parent psychology and common objections",
-      "Built consolidated dashboards tracking leads, trials, enrollments, and ROAS across all locations",
-      "Established consistent brand messaging and creative standards across all gym locations"
-    ],
+      "Coordinate Google and Meta campaigns around local programs and seasonal demand.",
+      "Develop creative around confidence, belonging, and skill development.",
+      "Connect the ad message with the trial offer and landing-page experience.",
+      "Review leads, attendance, and enrollment together to find where the next improvement matters."
+],
     results: {
       primary: "2–3× lead growth with 50% cheaper Google CPL and record trial attendance",
       metrics: [
         { label: "Monthly Leads", value: "2–3×", icon: TrendingUp },
-        { label: "Trial Attendance", value: "2.6×", icon: Users },
+        { label: "Trial Attendance", value: "~2.2×", icon: Users },
         { label: "Google CPL", value: "~50% ↓", icon: DollarSign },
         { label: "Evergreen ROAS", value: "3–4×", icon: Target }
       ]
@@ -586,7 +272,7 @@ const caseStudyData = {
       },
       {
         title: "Trial & Enrollment Engine",
-        description: "Trial attendance surged 2.6× (from ~350/month to 785 in August peak), while enrollments grew 2.3× (from ~180/month to 400–550/month, peaking at 555)"
+        description: "Trial attendance rose from approximately 350 per month to 785 at the August peak (about 2.2×), while enrollments grew 2.3× (from ~180/month to 400–550/month, peaking at 555)"
       },
       {
         title: "Acquisition Cost Efficiency",
@@ -597,44 +283,7 @@ const caseStudyData = {
         description: "Achieved 3–4× ROAS on evergreen Google campaigns during summer months, with seasonal and evergreen systems working together to maintain consistent growth year-round"
       }
     ],
-    strategies: [
-      {
-        category: "Platform Restructures",
-        tactics: [
-          "Rebuilt Google Search & Performance Max with evergreen structure post-summer",
-          "Optimized Meta campaigns for both lead generation and sales conversions",
-          "Created location-specific targeting while maintaining unified brand messaging",
-          "Implemented automated bid strategies aligned to cost per enrollment targets"
-        ]
-      },
-      {
-        category: "Creative System Overhaul",
-        tactics: [
-          "Developed multi-format Meta creative library for diverse ad placements",
-          "Created seasonal promotional campaigns for Summer, Back-to-School, and school-year programs",
-          "Increased creative testing velocity with systematic winner identification",
-          "Established consistent brand guidelines across all gym locations and campaigns"
-        ]
-      },
-      {
-        category: "Funnel & Email Improvements",
-        tactics: [
-          "Provided landing page optimization recommendations to improve conversion rates",
-          "Built 5-email nurture sequence addressing parent psychology and common objections",
-          "Implemented lead scoring to identify high-intent prospects for priority follow-up",
-          "Created automated workflows to streamline trial booking and enrollment processes"
-        ]
-      },
-      {
-        category: "Measurement & Reporting",
-        tactics: [
-          "Consolidated multi-location performance into unified dashboards",
-          "Established end-to-end tracking from ad click → lead → trial → enrollment",
-          "Built ROAS reporting across all locations and campaign types",
-          "Created weekly performance reviews identifying optimization opportunities"
-        ]
-      }
-    ],
+    strategies: [{ category: "What the work taught us", tactics: ["A lead is the start of a family’s decision. Looking at attended trials and enrollment alongside campaign volume makes it easier to see whether the marketing is helping more children reach their first class."] }],
     testimonial: {
       quote: "",
       author: ""
@@ -644,6 +293,17 @@ const caseStudyData = {
     heroImage: powersGymnasticsHeroImage,
     portfolioImage: powersGymnasticsCreativeImage
   }
+};
+
+const resultContext: Record<string, string> = {
+  "hapi-art": "Historical portfolio results above retain their original scope labels. The monthly KPI sheet independently records October 2023 revenue of $19,605 on $1,159.21 spend (16.91× reported ROAS), 9 sales, and 4,341 clicks. That monthly total is distinct from the historical 16× cold-prospecting figure. ROAS measures attributed revenue relative to ad spend, not profit.",
+  "powers-gymnastics": "The headline figures are historical portfolio comparisons, separate from the dated trial-conversion example below. Trial attendance of approximately 350 rising to 785 is about 2.2×; baseline dates and location mix are not established here. These are observed business outcomes, not an isolated estimate of advertising impact.",
+  "core-40": "Historical portfolio figures retained from the existing case study. The original reporting period and attribution definitions are not specified; the matching Fitness ROI summary is not a separate result to add to these totals.",
+  "fitness-roi": "Historical portfolio summary. These totals also appear on Core40; engagement scope and reporting period need confirmation before treating them as independent results.",
+  "lisa-nichols": "Historical portfolio comparisons retained from the existing case study. Baseline dates, attribution windows, and the definition of “CPL efficiency” are not available in this summary; the figures should be read as reported historical results.",
+  "lamark-agency": "Professional experience at Lamark Media. Budget responsibility describes scope, not revenue or return. The work and client outcomes reflect the agency team’s collaboration.",
+  "mandali-retreats": "The revised October 9, 2026 review uses completed purchases and recorded purchase revenue. Google spend was $8,082; Meta spend was $16,663 for January–September 2026. Platform attribution can overlap; do not add these revenues as unique sales. For context, 2025 reported ROAS was 21.6× for Google and 16.8× for Meta.",
+  "steel-fit-usa": "Source: original SteelFit creative export, January 1–July 31, 2020. Figures describe “EVERGREEN - DYNAMIC-SLIDE-SHOW-RTG; …and 5 more ads,” one grouped entry, not the whole account or a single ad. Website purchases are not distinct customers; the export separately records 393 unique purchases."
 };
 
 const otherCaseStudies = [
@@ -777,8 +437,8 @@ export default function CaseStudyDetail() {
             <div className="mx-auto max-w-4xl">
               <StatStrip
                 items={[
-                  { k: "+16.5× ROAS", v: "Social (Meta/YouTube)" },
-                  { k: "+29.06× ROAS", v: "Google Search" },
+                  { k: "20.1× ROAS", v: "Meta · Jan–Sep 2026" },
+                  { k: "32.3× ROAS", v: "Google · Jan–Sep 2026" },
                   { k: "Geo-targeted wins", v: "High-intent regions" },
                   { k: "Lead quality ↑", v: "Consistent month-over-month" },
                 ]}
@@ -873,6 +533,7 @@ export default function CaseStudyDetail() {
           <p className="text-center text-lg font-medium text-foreground">
             {study.results.primary}
           </p>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{resultContext[slug || ""]}</p>
 
           {/* Mid Page CTA - Only for Lamark Agency */}
           {slug === "lamark-agency" && (
@@ -888,7 +549,7 @@ export default function CaseStudyDetail() {
           {slug === "hapi-art" && (
             <>
               <p className="text-center text-gray-700 dark:text-gray-300 mt-8 mb-4">
-                These e-commerce learnings now inform how Clarity Engine scales other shops—balancing creative velocity with precise attribution.
+                These e-commerce learnings now inform how Clarity Engine supports other shops—connecting creative, the buying journey, and measurement.
               </p>
               <MidPageCTA
                 title="What could this look like for your business?"
@@ -974,7 +635,7 @@ export default function CaseStudyDetail() {
             <>
               <HapiCreative />
               <ProfitableAdvertisingCard />
-              <VerifiedMetrics />
+
             </>
           )}
 
@@ -983,8 +644,8 @@ export default function CaseStudyDetail() {
             <BeforeAfter
               rows={[
                 { before: "One-off creatives, little iteration", after: "Creative testing sprints with winners rolled out" },
-                { before: "Shallow retargeting pools", after: "Multi-signal retargeting (views, carts, PDP depth, time-on-site)" },
-                { before: "Unclear ROAS and budget confidence", after: "Trusted ROAS with LTV overlays and budget guardrails" },
+                { before: "Shallow retargeting pools", after: "Remarketing that reconnects with interested visitors" },
+                { before: "Unclear ROAS and budget confidence", after: "Sales and advertising spend reviewed together" },
               ]}
               title="Before vs After (E-commerce System)"
             />
@@ -997,8 +658,8 @@ export default function CaseStudyDetail() {
                 { before: "Awareness → booking gap; manual responses", after: "Unified tracking + CRM handoff; faster follow-ups" },
                 { before: "Broad targeting; scattered data", after: "Geo-targeted campaigns in high-intent regions" },
                 { before: "One-off creatives; inconsistent ROAS", after: "Creative testing cadence; structured remarketing" },
-                { before: "Search mixed low/high intent", after: "Split brand vs high-intent non-brand; +29.06× ROAS" },
-                { before: "Social spend lacked reliability", after: "+16.5× ROAS across social; steady MoM" },
+                { before: "Search mixed low/high intent", after: "Separate branded, non-branded, and retreat-specific Search" },
+                { before: "Social spend lacked reliability", after: "Meta remarketing reviewed against completed purchases" },
               ]}
               title="Before vs After (Retreats Growth System)"
             />
@@ -1023,10 +684,10 @@ export default function CaseStudyDetail() {
             <BeforeAfter
               rows={[
                 { before: "High cost per lead and inconsistent ads", after: "–38% CPL with optimized tracking" },
-                { before: "Limited new member flow", after: "11K+ new members from retargeting & lookalike campaigns" },
+                { before: "Limited new member flow", after: "11K+ new members reported in the historical portfolio" },
                 { before: "Fragmented local targeting", after: "Unified strategy across high-performing regions" },
                 { before: "Lack of brand consistency", after: "Strong positioning as a premium fitness experience" },
-                { before: "Low conversion from lead to member", after: "+26% conversion rate and sustained retention" },
+                { before: "Low conversion from lead to member", after: "+26% conversion-rate improvement reported in the portfolio" },
               ]}
               title="Before vs After (Fitness Growth Framework)"
             />
@@ -1144,7 +805,7 @@ export default function CaseStudyDetail() {
         <section className="px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <BottomCTA
-              title="Ready to apply a proven 10×-ready system to your store?"
+              title="Help more people discover what makes your brand worth choosing."
               body="Let's review your ads, landing flow, and tracking to uncover the next 2–3 profit levers."
             />
           </div>

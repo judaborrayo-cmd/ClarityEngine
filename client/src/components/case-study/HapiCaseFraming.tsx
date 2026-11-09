@@ -10,11 +10,11 @@ export function HapiHero({overview}:{overview:string}) {
     <section className="powers-story-wrap powers-story-hero">
       <Link className="powers-story-back" to="/case-studies">All case studies</Link>
       <div className="powers-story-hero-grid">
-        <div className="powers-story-heading"><p className="powers-story-client">Hapi Art · Kristi Kohut</p><h1 data-testid="case-study-title">Building a profitable<br/><em>10× ROAS.</em></h1></div>
+        <div className="powers-story-heading"><p className="powers-story-client">Hapi Art · Kristi Kohut</p><h1 data-testid="case-study-title">Help more people find<br/><em>art they love.</em></h1></div>
         <figure><img src={hapiArtImage} alt="Hapi Art: vibrant fine art by Kristi Kohut" width="1600" height="1000"/><figcaption>Fine art. A distinct point of view. A system for reaching more collectors.</figcaption></figure>
         <div className="powers-story-intro"><p>{overview}</p><div className="powers-story-tags"><span>Meta Ads</span><span>Creative testing</span><span>E-commerce</span><span>Conversion optimization</span></div></div>
       </div>
-      <StatStrip items={[{k:"10× ROAS",v:"Overall efficiency"},{k:"16× ROAS",v:"Cold prospecting (Meta)"},{k:"6.9× ROAS",v:"Retargeting (Meta)"},{k:"5–6% CTR",v:"Top creatives"}]}/>
+      <StatStrip items={[{k:"10× ROAS",v:"Historical reported return"},{k:"16× ROAS",v:"Cold prospecting (Meta)"},{k:"6.9× ROAS",v:"Retargeting (Meta)"},{k:"5–6% CTR",v:"Top creatives"}]}/>
     </section>
     <section className="powers-story-purpose"><div className="powers-story-wrap"><h2>Making room for more color, self-expression, and art that feels personal.</h2></div></section>
   </>;
@@ -24,7 +24,7 @@ export function HapiContext({challenge,solutions}:{challenge:string;solutions:st
   return <>
     <div className="powers-story-context">
       <div><h2>A distinctive brand.<br/><em>A specific growth challenge.</em></h2><p>{challenge}</p></div>
-      <aside><span className="powers-story-seal"><Lightbulb size={28}/></span><h3>Our contribution</h3><p>We connected creative testing, audience strategy, funnel optimization, and performance measurement into a more systematic advertising approach.</p><p>The work balanced the brand’s expressive visual identity with the practical decisions behind profitable acquisition: which creative to test, who to reach, how to follow up, and where to allocate budget.</p><p className="powers-story-collaboration">The brand, artwork, and creative identity belong to Hapi Art. Campaign work was developed with the client and collaborators.</p></aside>
+      <aside><span className="powers-story-seal"><Lightbulb size={28}/></span><h3>Our contribution</h3><p>We connected creative testing, audience strategy, funnel optimization, and performance measurement into a more systematic advertising approach.</p><p>The work balanced the brand’s expressive visual identity with the practical decisions behind customer acquisition: which creative to test, who to reach, how to follow up, and where to allocate budget.</p><p className="powers-story-collaboration">The brand, artwork, and creative identity belong to Hapi Art. Campaign work was developed with the client and collaborators.</p></aside>
     </div>
     <div className="powers-story-solution"><h2>Let the art stand out.<br/><em>Give performance a repeatable system.</em></h2><ul>{solutions.map(item=><li key={item}><Check size={18} aria-hidden="true"/><span>{item}</span></li>)}</ul></div>
   </>;

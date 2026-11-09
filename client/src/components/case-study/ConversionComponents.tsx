@@ -250,7 +250,7 @@ export function ProfitableAdvertisingCard() {
           />
           <figcaption className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
             <span className="font-medium text-gray-800 dark:text-gray-200">
-              Profitable Advertising (Meta)
+              Historical campaign results (Meta)
             </span>
             {" — "}
             Cold Prospecting ROAS 16× · Retargeting ROAS 6.9× · Top-creative CTR 5–6%.

@@ -55,8 +55,8 @@
     "slug": "golden-galapagos-cruises",
     "brand": "Golden Galápagos Cruises",
     "sector": "Luxury travel · Cruise experiences",
-    "headline": "Let the whole experience tell the story.",
-    "intro": "A premium cruise is more than a vessel. Suites, wildlife, itineraries, service, and the feeling of being there all have a role in helping the right traveler take the next step.",
+    "headline": "Help travelers picture the voyage—and take the next step.",
+    "intro": "For a traveler considering the Galápagos, the choice is both emotional and practical. The wildlife and ocean views create the desire to go; vessel details, itineraries, and a clear inquiry path help turn that desire into a plan.",
     "purpose": "Bringing exceptional Galápagos experiences within reach of travelers looking for a meaningful, carefully considered journey.",
     "role": "Google and Meta campaign strategy and optimization, collaborative creative development, landing-page CRO, and inquiry-path testing.",
     "challenge": "The campaign needs to express a high-value experience while making choices and next steps feel simple. More images alone do not resolve questions about which itinerary fits or what happens after an inquiry.",
@@ -85,10 +85,15 @@
         "$29",
         "Previous-month comparison",
         "September 2026 · reported in the same agenda"
+      ],
+      [
+        "$30,475",
+        "Paid-search-attributed sales value",
+        "October 2026 · GGC-only figure reported in the November 3 agenda"
       ]
     ],
-    "measurement": "The October 20, 2026 working agenda reports these Meta cost-per-form figures. October is a partial month, so this is a directional comparison, not a controlled test or a claim of incremental revenue. Revenue totals shared with La Selva are intentionally excluded.",
-    "learning": "Premium creative and disciplined testing work together. A strong visual story still benefits from simpler page flow, clearer choices, and a measured rollout.",
+    "measurement": "The October 20, 2026 working agenda reports these Meta cost-per-form figures. October is a partial month, so this is a directional comparison, not a controlled test or a claim of incremental revenue. Revenue totals shared with La Selva are intentionally excluded. The October sales value is a separate full-month, Google paid-search attribution figure; it is not evidence that the Meta CPL change caused those sales.",
+    "learning": "The most useful creative does two jobs: it helps someone imagine being there and gives them a reason to take the next step. Reviewing inquiries alongside sales feedback helps the team see where inspiration needs more practical support.",
     "hero": "/images/case-stories/golden-galapagos-cruises.webp",
     "preview": "/images/services/golden-galapagos.webp",
     "previewCaption": "Selected landing-page experience for Golden Galápagos Cruises.",
