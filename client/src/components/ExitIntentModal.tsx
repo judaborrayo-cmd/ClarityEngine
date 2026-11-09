@@ -31,8 +31,8 @@ export default function ExitIntentModal() {
     const eligibleAfter = Date.now() + (isMobile ? 45_000 : 25_000);
     let shown = false;
     function showInvitation() {
-      // Keep purchase and private assessment flows free of marketing interruptions.
-      if (shown || document.hidden || /^\/(checkout|audit)(\/|$)/.test(currentPath.current)) return;
+      // Keep purchase, consultation, and private assessment flows free of marketing interruptions.
+      if (shown || document.hidden || /^\/(checkout|audit|growth-partnership)(\/|$)/.test(currentPath.current)) return;
       if (document.querySelector('[role="dialog"][data-state="open"], [aria-modal="true"], [data-assessment-preview-active="true"]')) return;
       try {
         const until = localStorage.getItem(STORAGE_KEY);
