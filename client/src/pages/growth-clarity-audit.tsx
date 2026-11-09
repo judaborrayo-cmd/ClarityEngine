@@ -1,3 +1,4 @@
+import VisualAuditPlan from "@/components/VisualAuditPlan";
 import ExperienceBadges from "@/components/ExperienceBadges";
 import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
 import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
@@ -385,15 +386,8 @@ export default function GrowthClarityAudit() {
       </section>
       <section id="your-audit-plan" className="dda-wrap dda-section">
         <h2>A detailed audit.<br /><em>A plan your team can use.</em></h2>
-        <p className="dda-section-intro">Your findings connect the people you serve, the channels you use, and the next actions worth taking. The detail and selected work products follow your business, the evidence, and the agreed scope.</p>
-        <div className="dda-audit-outputs">{[
-          ["Competitive analysis & customer insight", "A detailed review of your competitive landscape, positioning, customer personas, and the people you serve—so your strategy reflects how buyers actually choose."],
-          ["Messaging & copy refinements", "Recommendations and selected refinements to your copy, offer, message hierarchy, and conversion experience, focused on the gaps the investigation reveals."],
-          ["Technical & channel audit", "Direct review of relevant Google Ads, Meta Ads, YouTube Ads, Google Analytics, Google Tag Manager, and other agreed growth systems, including performance and tracking limitations."],
-          ["Campaign & creative direction", "Highly personalized campaign ideas, creative recommendations, and testing priorities based on the opportunities and constraints found during the Audit."],
-          ["Prioritized 90-day roadmap", "A practical sequence of actions, dependencies, responsibilities, and useful KPIs. Give it to your team or chosen partner and start executing with shared context."],
-          ["Personal findings walkthrough", "Review the reasoning, ask questions, and agree where to focus. Execute independently or explore separately scoped support with someone who already understands your business."],
-        ].map(([title,copy])=><article key={title}><h3>{title}</h3><p>{copy}</p></article>)}</div><div className="dda-actions"><StartLink /></div>
+        <p className="dda-section-intro">See what we investigate—and how it becomes a clearer next step for your retreat, wellness, or travel business.</p>
+        <VisualAuditPlan /><div className="dda-actions"><StartLink /></div>
       </section>
       <section className="dda-wrap dda-section">
 
