@@ -69,9 +69,9 @@ function MarketingNavigation() {
     const pagePath = location.pathname.replace(/\/$/, '') || '/';
     const offerCtas: Record<string, { to: string; label: string; mobileLabel: string }> = {
       '/growth-partnership': { to: '/growth-partnership#consultation', label: 'Book a Growth Call', mobileLabel: 'Book a Call' },
-      '/marketing-clarity-assesment': { to: '/marketing-clarity-assesment#assessment-purchase', label: 'Get My Clarity Assessment', mobileLabel: 'Get My Assessment' },
-      '/strategy-sprint': { to: '/strategy-sprint#sprint-purchase', label: 'Start My Strategy Sprint', mobileLabel: 'Start My Sprint' },
-      '/growth-clarity-audit': { to: '/growth-clarity-audit#pricing', label: 'Get My Deep Dive Growth Audit', mobileLabel: 'Get My Audit' },
+      '/marketing-clarity-assesment': { to: '/marketing-clarity-assesment#assessment-purchase', label: 'Get My Clarity Assessment', mobileLabel: 'Start' },
+      '/strategy-sprint': { to: '/strategy-sprint#sprint-purchase', label: 'Start My Strategy Sprint', mobileLabel: 'Start Sprint' },
+      '/growth-clarity-audit': { to: '/growth-clarity-audit#pricing', label: 'Get My Deep Dive Growth Audit', mobileLabel: 'Get Audit' },
     };
     const primaryCta = offerCtas[pagePath] || { to: '/services', label: 'How We Help', mobileLabel: 'How We Help' };
     const [open, setOpen] = useState<NavigationCategory | null>(null), [mobile, setMobile] = useState(false);
