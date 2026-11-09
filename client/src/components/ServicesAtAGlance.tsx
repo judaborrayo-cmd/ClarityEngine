@@ -154,6 +154,7 @@ type Service = {
 };
 
 type ServicesAtAGlanceProps = {
+  content?: Record<string, Pick<Service, "bottomTitle" | "paragraph" | "bullets">>;
   sectionId?: string;
   eyebrow?: React.ReactNode | null;
   heading?: React.ReactNode;
@@ -164,6 +165,7 @@ type ServicesAtAGlanceProps = {
 };
 
 export default function ServicesAtAGlance({
+  content,
   sectionId = "services",
   eyebrow = "Services at a glance",
   heading = (
@@ -203,7 +205,7 @@ export default function ServicesAtAGlance({
   };
 
   const services = useMemo<Service[]>(
-    () => [
+    () => ([
       {
         id: "google-ads",
         topTitle: "Google Ads Advertising",
@@ -306,8 +308,8 @@ export default function ServicesAtAGlance({
         ],
         tools: ["Figma", "Replit (prototype)", "Dev handoff"],
       },
-    ],
-    []
+    ] satisfies Service[]).map(service => ({ ...service, ...content?.[service.id] })),
+    [content]
   );
 
   const sectionRef = useRef<HTMLElement | null>(null);

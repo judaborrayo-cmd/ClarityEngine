@@ -60,3 +60,7 @@
 .services-retainer-animation{grid-column:1/-1;width:100%;max-width:430px;justify-self:center;margin:12px auto 0;min-width:0}
 .services-retainer-animation .services-option-video{width:100%;aspect-ratio:16/9}
 .services-retainer-animation video{aspect-ratio:16/9;object-fit:contain}
+
+/* Keep the supporting experience line separate from the hero message. */
+.services-proof{font-size:13px;line-height:1.6;color:#596579;margin-top:22px}
+@media(max-width:767px){.services-hero .services-proof{grid-row:6;margin:0;font-size:12px}.services-hero .services-eyebrow{font-size:10px;line-height:1.6;letter-spacing:.08em}}
