@@ -12,3 +12,7 @@
 .ss-media-toggle{position:absolute;inset:9px;border-radius:18px;background:transparent;border:0;cursor:pointer}.ss-media-toggle:focus-visible{outline:3px solid #7045ed;outline-offset:3px}
 
 .ss-hero-benefits ul{display:grid;gap:10px;margin-top:16px;list-style:none;padding:0}.ss-hero-benefits li{display:flex;align-items:flex-start;gap:10px;line-height:1.45}.ss-hero-benefits li svg{width:19px;height:19px;flex-shrink:0;color:#087b55;margin-top:3px}
+
+/* Keep the Sprint artwork visible early on phones while the copy remains readable. */
+.ss-inline-link{color:#087b55;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:767px){.ss-hero .ss-media{order:3}.ss-hero .ss-lead{order:4}.ss-hero .ss-price{order:5}.ss-hero .ss-cta{order:6}.ss-hero .ss-anchor{order:7}}
