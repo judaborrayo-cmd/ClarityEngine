@@ -1,3 +1,4 @@
+import AuditAdGallery from "./AuditAdGallery";
 import { useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import './visual-audit-plan.css';
@@ -16,7 +17,8 @@ export default function VisualAuditPlan() {
  return <div className="vap" role="region" aria-label="Explore your audit deliverables" aria-roledescription="carousel">
   <div className="vap-topics" aria-label="Choose an audit area">{slides.map((s,i)=><button type="button" key={s.topic} aria-pressed={index===i} onClick={()=>setIndex(i)}>{s.topic}</button>)}</div>
   <article className="vap-slide" aria-roledescription="slide" aria-label={`${index+1} of 6: ${slide.category}`} onTouchStart={e=>{start.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(start.current){const dx=e.changedTouches[0].clientX-start.current.x;const dy=e.changedTouches[0].clientY-start.current.y;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5)move(dx<0?1:-1);}start.current=null;}} onTouchCancel={()=>{start.current=null;}}>
-   <figure className={`vap-image ${[1,2,3,5].includes(index) ? "vap-image-page" : ""}`}><img src={slide.image} alt={slide.alt} width="1200" height="900" loading="lazy"/><figcaption>{slide.client}</figcaption><div className="vap-image-notes">{slide.tags.map((t,i)=><span key={t}><b>{i+1}</b>{t}</span>)}</div></figure>
+   {index===3 ? <AuditAdGallery /> : <figure className={`vap-image ${[1,2,3,5].includes(index) ? "vap-image-page" : ""}`}><img src={slide.image} alt={slide.alt} width="1200" height="900" loading="lazy"/><figcaption>{slide.client}</figcaption></figure>}
+
    <div className="vap-copy"><p className="vap-eyebrow">{slide.category}</p><h3>{slide.title}</h3><ol>{slide.points.map(([title,copy],i)=><li key={title}><span>{i+1}</span><div><h4>{title}</h4><p>{copy}</p></div></li>)}</ol><div className="vap-takeaway"><strong>What you receive</strong><p>{slide.takeaway}</p></div></div>
   </article>
   <div className="vap-controls"><p>Real client imagery. Illustrative audit questions—not claims of findings or results.</p><div><button type="button" aria-label="Previous audit area" onClick={()=>move(-1)}><ArrowLeft size={20}/></button><span aria-live="polite" aria-atomic="true">{String(index+1).padStart(2,'0')} / 06<span className="sr-only"> {slide.topic}</span></span><button type="button" aria-label="Next audit area" onClick={()=>move(1)}><ArrowRight size={20}/></button></div></div>
