@@ -439,8 +439,8 @@ export default function CaseStudyDetail() {
                 items={[
                   { k: "20.1× ROAS", v: "Meta · Jan–Sep 2026" },
                   { k: "32.3× ROAS", v: "Google · Jan–Sep 2026" },
-                  { k: "Geo-targeted wins", v: "High-intent regions" },
-                  { k: "Lead quality ↑", v: "Consistent month-over-month" },
+                  { k: "16.8× ROAS", v: "Meta · 2025" },
+                  { k: "21.6× ROAS", v: "Google · 2025" },
                 ]}
               />
             </div>

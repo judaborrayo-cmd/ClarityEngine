@@ -58,7 +58,7 @@ export function AtAGlance() {
   const items = [
     { k: "$25k-$70K+", v: "Monthly ad spend across portfolios" },
     { k: "10+", v: "Industries served" },
-    { k: "Consistent", v: "CPL performance at scale" },
+    { k: "Account reviews", v: "Campaign and budget decisions" },
     { k: "Frameworks", v: "Multi-account & clear attribution" },
   ];
   return (
