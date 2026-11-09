@@ -1,0 +1,487 @@
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { Target, BarChart3, FlaskConical } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
+// Import brand logos
+import googleAdsLogo from '@assets/Google-Ads-Logo-Trans_1761062080038.png';
+import metaLogo from '@assets/Meta Logo_1761062070889.png';
+import youtubeLogo from '@assets/YouTube-logo-video-platform-social-media-transparent-PNG-image_1761062130515.png';
+
+/**
+ * ServicesAtAGlance.tsx
+ * Top row = big pressable buttons (single large logo + new title)
+ * Bottom panel = detailed gradient view that swaps per selection
+ */
+
+function Media({ src, alt = "", fit = "cover" }: { src: string; alt?: string; fit?: "cover" | "contain" }) {
+  const isVideo = src?.endsWith(".mp4") || src?.endsWith(".webm");
+  if (isVideo) {
+    return (
+      <video
+        className="h-full w-full rounded-xl object-cover"
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        role="button"
+        tabIndex={0}
+        aria-label={`Play or pause ${alt || "service animation"}`}
+        onClick={event => { const video = event.currentTarget; if (video.paused) void video.play().catch(() => {}); else video.pause(); }}
+        onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); const video = event.currentTarget; if (video.paused) void video.play().catch(() => {}); else video.pause(); } }}
+        data-testid="media-video"
+      />
+    );
+  }
+  return (
+    <img
+      className={`h-full w-full rounded-xl ${fit === "contain" ? "object-contain" : "object-cover"}`}
+      src={src}
+      alt={alt}
+      data-testid="media-image"
+    />
+  );
+}
+
+function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-800 ring-1 ring-black/10 backdrop-blur">
+      {children}
+    </span>
+  );
+}
+
+function ToolTooltipChip({ label, tooltip }: { label: string; tooltip: string }) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<number | null>(null);
+  const clickHoldActive = useRef(false);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) {
+        window.clearTimeout(closeTimer.current);
+      }
+    };
+  }, []);
+
+  const showForThreeSeconds = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+    }
+
+    clickHoldActive.current = true;
+    setOpen(true);
+    closeTimer.current = window.setTimeout(() => {
+      setOpen(false);
+      clickHoldActive.current = false;
+      closeTimer.current = null;
+    }, 3000);
+  };
+
+  const clearTimedHold = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    clickHoldActive.current = false;
+  };
+
+  return (
+    <Tooltip
+      open={open}
+      onOpenChange={(nextOpen) => {
+        if (clickHoldActive.current) {
+          return;
+        }
+
+        setOpen(nextOpen);
+      }}
+    >
+      <TooltipTrigger asChild>
+        <button
+          type="button"
+          className="ce-logo group cursor-pointer appearance-none border-0 bg-transparent p-0"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => {
+            if (!clickHoldActive.current) setOpen(false);
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => {
+            if (!clickHoldActive.current) setOpen(false);
+          }}
+          onClick={() => {
+            clearTimedHold();
+            showForThreeSeconds();
+          }}
+          aria-label={`Show note for ${label}`}
+        >
+          <Pill>{label}</Pill>
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        className="max-w-[200px] rounded-lg bg-gray-900 px-3 py-2 text-center text-xs text-white shadow-lg"
+      >
+        {tooltip}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
+interface ServiceLogo {
+  type: 'image' | 'icon';
+  src?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
+
+type Service = {
+  id: string;
+  topTitle: string;
+  bottomTitle: string;
+  logo: ServiceLogo;
+  media: {
+    src: string;
+    alt: string;
+    fit?: "cover" | "contain";
+  };
+  gradient: {
+    from: string;
+    to: string;
+  };
+  paragraph: string;
+  bullets: string[];
+  tools: string[];
+};
+
+type ServicesAtAGlanceProps = {
+  sectionId?: string;
+  eyebrow?: React.ReactNode | null;
+  heading?: React.ReactNode;
+  subheading?: React.ReactNode;
+  note?: React.ReactNode | null;
+  headingTestId?: string;
+  subheadingTestId?: string;
+};
+
+export default function ServicesAtAGlance({
+  sectionId = "services",
+  eyebrow = "Services at a glance",
+  heading = (
+    <>
+      Connect the work that<br />brings customers closer.
+    </>
+  ),
+  subheading = "Your ads, landing pages, follow-up, and reporting all influence the outcome. We bring them into a shared plan, with support shaped around your priorities and your team.",
+  note = "Priorities and delivery are agreed around your business and team.",
+  headingTestId = "services-heading",
+  subheadingTestId = "services-subheading",
+}: ServicesAtAGlanceProps = {}) {
+  // Tool tooltip mapping
+  const toolTooltips: Record<string, string> = {
+    "Figma": "Prototype, share, get approval.",
+    "Replit (prototype)": "Ship pages at sprint speed.",
+    "Prototype": "Quickly test real ideas.",
+    "Dev handoff": "Clean specs, fewer revisions.",
+    "GA4": "In God we trust, all others bring data.",
+    "Hotjar": "See friction. Fix flow.",
+    "Mouseflow": "See friction. Fix flow.",
+    "Sheets": "Fast models, clear numbers.",
+    "Looker": "Answers, not dashboards.",
+    "Cohorts": "Retention tells the truth.",
+    "In-Stream": "Tell the story mid-scroll.",
+    "Discovery": "Meet buyers researching.",
+    "Retargeting": "Don't waste warm attention.",
+    "Catalog": "Dynamic creatives at scale.",
+    "DCT": "Test creatives systematically.",
+    "UGC": "Social proof that sells.",
+    "Search": "Show up when they search.",
+    "PMax": "Omnipresence without chaos.",
+    "YouTube": "Turn attention into demand.",
+    "Meta": "Scale what works across platforms.",
+    "CRO": "See friction. Fix flow.",
+    "AB": "Test smarter. Scale faster.",
+  };
+
+  const services = useMemo<Service[]>(
+    () => [
+      {
+        id: "google-ads",
+        topTitle: "Google Ads Advertising",
+        bottomTitle: "Be there when people are looking.",
+        logo: { type: 'image' as const, src: googleAdsLogo },
+        media: { src: "/images/google-ads-chart.png", alt: "Google Ads performance chart", fit: "contain" },
+        gradient: { from: "from-violet-50", to: "to-emerald-50" },
+        paragraph: "Reach people actively searching for experiences like yours. Connect their search with relevant ads and landing pages, then use conversion data to guide improvements.",
+        bullets: ["Reach people searching for your experience", "Align ads with relevant landing pages", "Guide improvements with conversion data"],
+        tools: ["Search", "PMax", "YouTube", "GA4"],
+      },
+      {
+        id: "meta",
+        topTitle: "Meta Advertising",
+        bottomTitle: "Give the right people a reason to stop—and explore.",
+        logo: { type: 'image' as const, src: metaLogo },
+        media: { src: "/images/meta-ads-chart.png", alt: "Meta advertising campaign performance chart", fit: "contain" },
+        gradient: { from: "from-fuchsia-50", to: "to-indigo-50" },
+        paragraph: "Bring your experience to life through fresh creative, relevant offers, and ongoing testing. Help new audiences discover you and give interested visitors a reason to return.",
+        bullets: ["Develop fresh creative and offers", "Test messages with relevant audiences", "Reconnect with interested visitors"],
+        tools: ["Meta", "Catalog", "DCT", "UGC"],
+      },
+      {
+        id: "cro",
+        topTitle: "Conversion Rate Optimization",
+        bottomTitle: "Make the next step easier to take.",
+        logo: { type: 'icon' as const, icon: Target },
+        media: { src: "/images/cro-optimization-doc.png", alt: "Conversion rate optimization planning document", fit: "contain" },
+        gradient: { from: "from-indigo-50", to: "to-sky-50" },
+        paragraph: "Find where visitors hesitate or drop away. Improve messaging, page flow, forms, and follow-up so more interested people can move toward an inquiry or booking.",
+        bullets: ["Identify friction in the customer journey", "Improve messages, forms, and next steps", "Test changes against meaningful goals"],
+        tools: ["CRO", "Hotjar", "GA4", "AB"],
+      },
+      {
+        id: "reporting",
+        topTitle: "Strategic Reporting & KPI Optimization",
+        bottomTitle: "Know what deserves your next marketing dollar.",
+        logo: { type: 'icon' as const, icon: BarChart3 },
+        media: { src: "/images/strategic-reporting-chart.png", alt: "Strategic reporting and KPI dashboard chart", fit: "contain" },
+        gradient: { from: "from-emerald-50", to: "to-violet-50" },
+        paragraph: "Bring campaign and customer data together to understand what’s working, where the gaps are, and which decisions need better evidence.",
+        bullets: ["Connect campaign and customer data", "Monitor qualified inquiries and bookings", "Make spending priorities easier to assess"],
+        tools: ["GA4", "Looker", "Sheets", "Cohorts"],
+      },
+      {
+        id: "youtube",
+        topTitle: "YouTube Advertising",
+        bottomTitle: "Help people see themselves in your experience.",
+        logo: { type: 'image' as const, src: youtubeLogo },
+        media: { src: "/images/youtube-ad-placements.png", alt: "YouTube advertising placement previews", fit: "contain" },
+        gradient: { from: "from-rose-50", to: "to-amber-50" },
+        paragraph: "Use video to communicate the setting, people, and value behind your offer. Build campaigns around a clear audience and next step, with measurement suited to the customer journey.",
+        bullets: ["Communicate the experience through video", "Connect creative with a clear next step", "Measure progress across the customer journey"],
+        tools: ["In-Stream", "Discovery", "Retargeting"],
+      },
+      {
+        id: "landing-pages",
+        topTitle: "A/B Testing",
+        bottomTitle: "Turn “we should try that” into something you can learn from.",
+        logo: { type: 'icon' as const, icon: FlaskConical },
+        media: { src: "/images/ab-testing-placements.png", alt: "A/B testing ad placement previews", fit: "contain" },
+        gradient: { from: "from-slate-50", to: "to-violet-50" },
+        paragraph: "Develop and test different messages, creative, and landing pages. Use AI to speed up production and experienced judgment to design meaningful tests and interpret the results.",
+        bullets: ["Build purposeful creative and page variations", "Use AI to accelerate production", "Let the evidence guide the next decision"],
+        tools: ["Figma", "Replit (prototype)", "Dev handoff"],
+      },
+    ],
+    []
+  );
+
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const hasPlayedMobileCue = useRef(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [flashServiceArrows, setFlashServiceArrows] = useState(false);
+  
+  // Show hovered service if hovering, otherwise show the locked/active selection
+  const displayedId = hoveredId || activeId;
+  const active = displayedId ? services.find((s) => s.id === displayedId) : null;
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1023px)");
+
+    const syncDefaultPanel = () => {
+      setActiveId((current) => {
+        if (media.matches) return null;
+        return current ?? services[0].id;
+      });
+    };
+
+    syncDefaultPanel();
+    media.addEventListener("change", syncDefaultPanel);
+    return () => media.removeEventListener("change", syncDefaultPanel);
+  }, [services]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const media = window.matchMedia("(max-width: 1023px)");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const timers: number[] = [];
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (
+          !entry.isIntersecting ||
+          hasPlayedMobileCue.current ||
+          !media.matches ||
+          reduceMotion.matches
+        ) {
+          return;
+        }
+
+        hasPlayedMobileCue.current = true;
+        setActiveId(services[0].id);
+
+        timers.push(
+          window.setTimeout(() => {
+            setActiveId(null);
+            setFlashServiceArrows(true);
+            timers.push(window.setTimeout(() => setFlashServiceArrows(false), 900));
+          }, 1000)
+        );
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [services]);
+
+  const renderServicePanel = (service: Service, variant: "mobile" | "desktop") => (
+    <div
+      id={`${variant}-service-panel-${service.id}`}
+      role="region"
+      aria-labelledby={`service-button-${service.id}`}
+      data-testid={variant === "desktop" ? "service-panel" : `mobile-service-panel-${service.id}`}
+      className={`rounded-lg bg-gradient-to-br ${service.gradient.from} ${service.gradient.to} p-5 sm:p-6 lg:p-10 shadow-[0_12px_50px_-20px_rgba(0,0,0,0.3)]`}
+    >
+      <div className="grid items-center gap-6 lg:grid-cols-2">
+        <div className="order-2 hidden aspect-video w-full overflow-hidden rounded-lg bg-white/40 ring-1 ring-black/5 md:block lg:order-1">
+          <Media src={service.media.src} alt={service.media.alt} fit={service.media.fit} />
+        </div>
+
+        <div className="order-1 lg:order-2">
+          <h3 className="text-xl font-semibold text-gray-900 sm:text-2xl" data-testid="panel-title">
+            {service.bottomTitle}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-gray-800/90 sm:text-base" data-testid="panel-description">
+            {service.paragraph}
+          </p>
+          <ul className="mt-4 space-y-2 text-gray-800">
+            {service.bullets.map((b, i) => (
+              <li key={i} className="flex gap-2">
+                <span className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-violet-600" />
+                <span className="text-sm leading-relaxed">{b}</span>
+              </li>
+            ))}
+          </ul>
+          <TooltipProvider delayDuration={200}>
+            <div className="mt-5 flex flex-wrap gap-2 sm:gap-3">
+              {service.tools.map((t, i) => (
+                <ToolTooltipChip key={i} label={t} tooltip={toolTooltips[t] || t} />
+              ))}
+            </div>
+          </TooltipProvider>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <section ref={sectionRef} id={sectionId} className="relative mx-auto max-w-7xl px-4 pt-6 pb-12 sm:px-6 sm:pt-10 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20">
+      <div className="mx-auto max-w-4xl text-center">
+        {eyebrow && (
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4" data-testid="services-label">
+            {eyebrow}
+          </p>
+        )}
+        <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl" data-testid={headingTestId}>
+          {heading}
+        </h2>
+        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto" data-testid={subheadingTestId}>
+          {subheading}
+        </p>
+        {note && (
+          <p className="mt-3 text-sm text-gray-500 italic" data-testid="services-note">
+            {note}
+          </p>
+        )}
+      </div>
+
+      {/* TOP: Pressable button cards (one big logo + title) */}
+      <div aria-label="Services" className="mt-8 grid gap-3 md:grid-cols-2 lg:mt-10 lg:grid-cols-3 lg:gap-4">
+        {services.map((s, index) => {
+          const selected = s.id === activeId;
+          return (
+            <Fragment key={s.id}>
+              <button
+                id={`service-button-${s.id}`}
+                aria-pressed={selected}
+                onClick={() => setActiveId((current) => current === s.id ? null : s.id)}
+                onMouseEnter={() => setHoveredId(s.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                data-testid={`tab-${s.id}`}
+                className={`group flex min-h-[86px] items-center justify-between gap-4 rounded-lg border bg-white p-4 text-left shadow-sm transition-all duration-200 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/70 lg:min-h-[132px] lg:flex-col lg:justify-center lg:gap-3 lg:p-5 lg:text-center ${
+                  selected
+                    ? "border-violet-300 ring-2 ring-violet-500/70 shadow-md"
+                    : "border-black/10"
+                }`}
+              >
+                <span className="flex min-w-0 items-center gap-4 lg:flex-col lg:gap-2">
+                  {s.logo.type === 'image' && s.logo.src ? (
+                    <img
+                      src={s.logo.src}
+                      alt={s.topTitle}
+                      className="ce-readable-logo h-9 w-12 shrink-0 object-contain sm:h-10 lg:h-12 lg:w-auto"
+                      data-testid={`logo-${s.id}`}
+                    />
+                  ) : s.logo.type === 'icon' && s.logo.icon ? (
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-violet-50 to-indigo-50 ring-1 ring-violet-200 lg:h-12 lg:w-12">
+                      {(() => {
+                        const Icon = s.logo.icon;
+                        return <Icon className="h-5 w-5 text-violet-600 lg:h-6 lg:w-6" />;
+                      })()}
+                    </span>
+                  ) : (
+                    <span className="h-10 w-10 shrink-0 rounded-lg bg-white/80 ring-1 ring-black/10 lg:h-12 lg:w-12" />
+                  )}
+                  <span className="min-w-0 text-base font-semibold leading-snug text-gray-900 sm:text-lg lg:text-lg" data-testid={`tab-title-${s.id}`}>
+                    {s.topTitle}
+                  </span>
+                </span>
+                <span
+                  className={`text-xl leading-none text-gray-400 lg:hidden ${
+                    flashServiceArrows ? "service-arrow-flash" : ""
+                  }`}
+                  style={flashServiceArrows ? { animationDelay: `${index * 80}ms` } : undefined}
+                  aria-hidden
+                >
+                  {selected ? "×" : "→"}
+                </span>
+              </button>
+
+              {selected && (
+                <div className="md:col-span-2 lg:hidden">
+                  {renderServicePanel(s, "mobile")}
+                </div>
+              )}
+            </Fragment>
+          );
+        })}
+      </div>
+
+      {/* BOTTOM: Detailed gradient panel */}
+      {active && <div className="mt-8 hidden lg:block">
+        {renderServicePanel(active, "desktop")}
+      </div>}
+
+      {/* Tooltip hover effects */}
+      <style>{`
+        .ce-logo { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+        .ce-logo > * { transition: transform 0.18s ease, filter 0.18s ease; }
+        .ce-logo:hover > * { transform: scale(var(--ce-logo-hover-scale, 1.65)); filter: saturate(1.15) drop-shadow(0 12px 24px rgb(15 23 42 / 0.14)); }
+        @keyframes service-arrow-brand-flash {
+          0%, 100% { color: rgb(156 163 175); }
+          38% { color: rgb(124 58 237); }
+          68% { color: rgb(34 197 94); }
+        }
+        .service-arrow-flash {
+          animation: service-arrow-brand-flash 760ms ease-in-out 1;
+        }
+      `}</style>
+    </section>
+  );
+}

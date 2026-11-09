@@ -5,14 +5,14 @@ import ExperienceBadges from "@/components/ExperienceBadges";
 import { useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import ProblemsTicker from "@/components/ProblemsTicker";
+import ProblemsTicker from "@/components/ProblemsTicker.home-variation";
 import HeroCTAs from "@/components/HeroCTAs";
-import StartCards from "@/components/StartCards";
-import ScaleAndAudit from "@/components/ScaleAndAudit";
-import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection";
-import ServicesAtAGlance from "@/components/ServicesAtAGlance";
-import FaqHybrid from "@/components/FaqHybrid";
-import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome";
+import StartCards from "@/components/StartCards.home-variation";
+import ScaleAndAudit from "@/components/ScaleAndAudit.home-variation";
+import HowWeBuildFasterSection from "@/components/HowWeBuildFasterSection.home-variation";
+import ServicesAtAGlance from "@/components/ServicesAtAGlance.home-variation";
+import FaqHybrid from "@/components/FaqHybrid.home-variation";
+import { FeaturedCaseStudiesHome } from "@/components/FeaturedCaseStudiesHome.home-variation";
 import { Quote } from "lucide-react";
 import HeroMotion from "@/components/HeroMotion";
 import TestimonialSmoke from "@/components/TestimonialSmoke";
@@ -232,10 +232,10 @@ export default function Home() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>
-                Trusted by Leading Brands
+                Experience across businesses built around people.
               </h2>
               <p className="mt-4 text-lg text-gray-600 font-normal">
-                Partnering with ambitious companies across industries
+                From retreats and travel to fitness and hospitality, our work connects marketing with the experiences people choose.
               </p>
             </motion.div>
 
@@ -298,10 +298,10 @@ export default function Home() {
               className="text-center mb-12"
             >
               <h2 className="text-4xl font-bold sm:text-5xl text-gray-900 tracking-tight" style={{ letterSpacing: "-0.02em" }}>
-                What Partners Say
+                What it’s like to have Clarity Engine on your team.
               </h2>
               <p className="mt-4 text-lg text-gray-600 font-normal">
-                Trusted by marketing professionals and industry leaders
+                Hear from clients and colleagues who have worked with our founder on strategy, execution, and performance.
               </p>
             </motion.div>
             <div className="home-partner-grid home-partner-grid-featured">
@@ -324,9 +324,9 @@ export default function Home() {
           <div className="home-experience-layout">
             <div className="home-experience-copy">
 
-              <h2>Experienced leadership.<br /><span>Growth we build together.</span></h2>
-              <p>12+ years of digital marketing experience, amplified by AI. A hands-on partner committed to your next stage of growth.</p>
-              <div className="home-experience-principles" aria-label="How we work"><span>Clear direction</span><span>Real collaboration</span><span>Focused action</span></div>
+              <h2>The direction you need.<br /><span>The support to move it forward.</span></h2>
+              <p>Bring 12+ years of marketing experience into your business, with a partner who can lead the strategy and help get the work done. Clarity Engine works alongside your team—or takes ownership of agreed priorities—using AI to accelerate research, creative development, and implementation.</p>
+              <div className="home-experience-principles" aria-label="How we work"><span>Clear priorities</span><span>Hands-on support</span><span>Shared accountability</span></div>
             </div>
             <div className="home-experience-visual"><LeadershipCollaboration /></div>
           </div>
@@ -365,10 +365,17 @@ export default function Home() {
             transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
             className="mx-auto max-w-5xl"
           >
-            <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={3} />
+            <FaqHybrid defaultVisibleCategories={2} defaultVisibleQuestionsPerCategory={4} />
           </motion.div>
         </Section>
 
+        <Section id="next-growth-opportunity" className="py-12 sm:py-20">
+          <div className="rounded-3xl border border-purple-100 bg-purple-50/50 p-8 sm:p-12 text-center max-w-5xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">Give your next growth opportunity<br className="hidden sm:block" /> a way forward.</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-5 mb-7">Bring the challenge, the unfinished idea, or the results you want to improve. Let’s talk about where experienced direction and hands-on support could help.</p>
+            <Link to="/growth-partnership#consultation" className="inline-flex rounded-xl bg-violet-600 hover:bg-violet-700 px-6 py-3 font-semibold text-white">Book a Growth Call</Link>
+          </div>
+        </Section>
       </main>
     </div>
   );
