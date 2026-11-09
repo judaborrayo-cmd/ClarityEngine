@@ -68,6 +68,7 @@ function MarketingNavigation() {
     const location = useLocation(), id = useId();
     const pagePath = location.pathname.replace(/\/$/, '') || '/';
     const offerCtas: Record<string, { to: string; label: string; mobileLabel: string }> = {
+      '/services': { to: '/growth-partnership', label: 'Growth Partnership', mobileLabel: 'Growth Partnership' },
       '/growth-partnership': { to: '/growth-partnership#consultation', label: 'Book a Growth Call', mobileLabel: 'Book a Call' },
       '/marketing-clarity-assesment': { to: '/marketing-clarity-assesment#assessment-purchase', label: 'Get My Clarity Assessment', mobileLabel: 'Get My Assessment' },
       '/strategy-sprint': { to: '/strategy-sprint#sprint-purchase', label: 'Start My Strategy Sprint', mobileLabel: 'Start My Sprint' },
