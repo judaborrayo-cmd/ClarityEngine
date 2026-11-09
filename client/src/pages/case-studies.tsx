@@ -252,10 +252,10 @@ export default function CaseStudies() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-6 max-w-4xl mx-auto">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl" data-testid="page-title">
-                Ambitious brands.<br /><span className="text-emerald-600">Making life better.</span>
+                See the work.<br /><span className="text-emerald-600">Understand what moved it forward.</span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-600 max-w-3xl mx-auto">
-                Helping people move, learn, recharge, explore, and express themselves.
+                Explore growth marketing for retreats, travel, wellness, fitness, and beyond. See the challenges, decisions, and work behind campaigns, landing-page tests, and measurement improvements—then find the examples most relevant to your business.
               </p>
             </div>
 
@@ -263,7 +263,7 @@ export default function CaseStudies() {
             <CaseStudyCollection items={[...featuredCases,...newerCases]} />
 
             {/* Logo Ticker */}
-            <LogoTicker logos={logoItems} />
+            <LogoTicker logos={logoItems} caption="Brand experience across 12+ years of client and agency work." />
           </div>
         </section>
 
@@ -275,7 +275,7 @@ export default function CaseStudies() {
         {/* KPI Chips Links - Clickable Results */}
         <section className="py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <KPIChipsLinks items={kpiLinkItems} />
+            <KPIChipsLinks items={kpiLinkItems} title="The numbers are part of the story." subtitle="Open a result to explore the engagement behind it. Each case has its own scope, measurement, and business context." />
           </div>
         </section>
 
@@ -284,10 +284,10 @@ export default function CaseStudies() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900" data-testid="colleague-reviews-title">
-                Colleague Reviews
+                What it’s like to work together.
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                What industry professionals say about working with me
+                Marketing leaders and collaborators share their experience working with Juda across previous professional engagements.
               </p>
             </div>
             
@@ -334,10 +334,10 @@ export default function CaseStudies() {
         <section className="py-16 bg-green-50">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Ready to see similar results for your brand?
+              What would you like to improve in your business?
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Let's discuss your growth goals and map out a strategy that delivers measurable ROI.
+              Whether you need clearer priorities, a focused plan, or ongoing help with implementation, Clarity Engine can help you choose a practical next step. Explore the support that fits your goals and your team.
             </p>
             <div className="flex justify-center">
               <Link 
@@ -345,7 +345,7 @@ export default function CaseStudies() {
                 className="inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary/90 shadow-lg ring-2 ring-primary/20 hover:-translate-y-0.5 transition-all duration-200"
                 data-testid="cta-book-strategic-call"
               >
-                Work Together
+                Find your next step
               </Link>
             </div>
           </div>

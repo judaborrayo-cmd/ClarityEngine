@@ -7,16 +7,18 @@ export function LogoTicker({
   logos,
   speed = 35,
   ariaLabel = "Client logos",
+  caption = "Serving ambitious brands across verticals for 12+ years.",
 }: {
   logos: { src: string; alt: string }[];
   speed?: number;
   ariaLabel?: string;
+  caption?: string;
 }) {
   return (
     <section aria-label={ariaLabel} className="my-8">
       <p className="mb-3 text-center text-sm text-gray-600">
         <span className="font-medium text-gray-800">
-          Serving ambitious brands across verticals for 12+ years.
+          {caption}
         </span>
       </p>
       <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white">
