@@ -319,18 +319,14 @@ export default function GrowthClarityAudit() {
         </button>
       </section>
       <section className="dda-wrap dda-section dda-fit" id="your-growth-plan">
-        <div>
-
-          <h2>
-            You have a business to grow.
-            <br />
-            <em>Get a marketing plan worth putting into action.</em>
-          </h2>
+        <h2 className="dda-fit-heading">
+          Free up your team to focus on their zones of excellence
+          <em> with an actionable marketing plan.</em>
+        </h2>
           <figure className="dda-fit-photo">
             <img src="/images/mandali-peace-of-mind.webp" alt="A guest relaxing beside Mandali’s pool with a view over the mountains and lake" width="1200" height="800" loading="lazy" />
             <figcaption>Mandali Retreats · Photography by Sofia Gomez Fonzo</figcaption>
           </figure>
-        </div>
         <div>
           <p>
             A strong fit for established businesses with meaningful acquisition

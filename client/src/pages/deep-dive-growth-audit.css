@@ -633,3 +633,8 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 }
 
 .dda-fit-photo{margin:28px 0 0}.dda-fit-photo img{display:block;width:100%;height:auto;border-radius:16px}.dda-fit-photo figcaption{margin-top:9px;font-size:11px;line-height:1.5;color:#6a7b73}
+
+.dda-fit { column-gap: 48px; row-gap: 32px; align-items: center; }
+.dda-fit-heading { grid-column: 1 / -1; max-width: 1000px; margin-bottom: 0 !important; }
+.dda-fit-photo { margin: 0; }
+@media (max-width: 760px) { .dda-fit { gap: 24px; } }
