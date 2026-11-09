@@ -194,12 +194,21 @@ export default function CaseStudies() {
     },
   ];
 
-  const featuredOrder = ["/case-study/hapi-art", "/case-study/steel-fit-usa", "/case-study/lisa-nichols"];
-  const featuredCases = [...caseStudyItems].sort((a,b) => {
-    const ai=featuredOrder.indexOf(a.slug), bi=featuredOrder.indexOf(b.slug);
-    return (ai<0?99:ai)-(bi<0?99:bi);
-  });
   const newerCases = caseStories.filter(story => story.slug !== "powers-gymnastics").map(story => ({slug:`/case-study/${story.slug}`, title:story.brand, impact:story.headline, image:story.hero, imageAlt:story.brand, problem:story.challenge, solution:story.decision}));
+  const featuredOrder = [
+    "/case-study/mandali-retreats",
+    "/case-study/columbus-travel",
+    "/case-study/art-of-living-retreat-center",
+    "/case-study/core-40",
+    "/case-study/powers-gymnastics",
+    "/case-study/hapi-art",
+    "/case-study/steel-fit-usa",
+    "/case-study/lisa-nichols",
+  ];
+  const featuredCases = [...caseStudyItems, ...newerCases].sort((a, b) => {
+    const ai = featuredOrder.indexOf(a.slug), bi = featuredOrder.indexOf(b.slug);
+    return (ai < 0 ? featuredOrder.length : ai) - (bi < 0 ? featuredOrder.length : bi);
+  });
 
   const logoItems = [
     { src: mandaliLogo, alt: "Mandali" },
@@ -260,7 +269,7 @@ export default function CaseStudies() {
             </div>
 
             {/* Case Study Carousel */}
-            <CaseStudyCollection items={[...featuredCases,...newerCases]} />
+            <CaseStudyCollection items={featuredCases} />
 
             {/* Logo Ticker */}
             <LogoTicker logos={logoItems} caption="Brand experience across 12+ years of client and agency work." />
