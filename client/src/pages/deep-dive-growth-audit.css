@@ -631,3 +631,5 @@ html.audit-sales-view .dda-page :is(a, summary) { scroll-margin-top: 0; }
 .dda-checkout .dda-deliverables .dda-number {
   line-height: 1.5;
 }
+
+.dda-fit-photo{margin:28px 0 0}.dda-fit-photo img{display:block;width:100%;height:auto;border-radius:16px}.dda-fit-photo figcaption{margin-top:9px;font-size:11px;line-height:1.5;color:#6a7b73}
