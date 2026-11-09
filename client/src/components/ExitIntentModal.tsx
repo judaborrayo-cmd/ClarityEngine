@@ -1,3 +1,4 @@
+import { reserveAssessmentPopupView } from "@/lib/assessment-popup-frequency";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -10,7 +11,7 @@ export default function ExitIntentModal() {
   const { pathname } = useLocation();
   const currentPath = useRef(pathname);
   currentPath.current = pathname;
-  const [open, setOpen] = useState(() => typeof window !== "undefined" && import.meta.env.DEV && new URLSearchParams(window.location.search).get("preview") === "assessment-popup");
+  const [open, setOpen] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(true);
   const [playing, setPlaying] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
@@ -38,6 +39,9 @@ export default function ExitIntentModal() {
         const until = localStorage.getItem(STORAGE_KEY);
         if (until && Date.parse(until) > Date.now()) return;
       } catch { /* Still allow dismissal when storage is unavailable. */ }
+      try {
+        if (!reserveAssessmentPopupView(window.sessionStorage)) return;
+      } catch { return; }
       shown = true;
       previousFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       setOpen(true);
