@@ -1,5 +1,5 @@
 import HomeExplorerScenes from "@/components/HomeExplorerScenes";
-import LeadershipCollaboration from "@/components/LeadershipCollaboration";
+import AudienceGrowthCarousel from "@/components/AudienceGrowthCarousel";
 import ExperienceBadges from "@/components/ExperienceBadges";
 import { useState, useEffect } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
@@ -381,15 +381,7 @@ export default function Home() {
         </Section>
 
         <Section id="hands-on-experience" className="home-experience-summary">
-          <div className="home-experience-layout">
-            <div className="home-experience-copy">
-
-              <h2>Experienced leadership.<br /><span>Growth we build together.</span></h2>
-              <p>12+ years of digital marketing experience, amplified by AI. A hands-on partner committed to your next stage of growth.</p>
-              <div className="home-experience-principles" aria-label="How we work"><span>Clear direction</span><span>Real collaboration</span><span>Focused action</span></div>
-            </div>
-            <div className="home-experience-visual"><LeadershipCollaboration /></div>
-          </div>
+          <AudienceGrowthCarousel />
         </Section>
 
         {/* --- PROBLEMS TICKER --- */}
