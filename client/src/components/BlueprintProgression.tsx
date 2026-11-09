@@ -1,0 +1,20 @@
+import { useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import './blueprint-progression.css';
+const steps = [
+ {label:'Find the direction', phase:'Evidence becomes clarity', art:'blueprint-progress', title:'Your Strategic Growth Blueprint', copy:'A tailored written investigation connecting evidence, business implications, prioritized recommendations and the decisions ahead.', outcome:'Understand what matters—and why.', alt:'An open strategy book in blueprint linework, with a lightbulb and mountain destination emerging as colored vector artwork.'},
+ {label:'Develop the ideas', phase:'Clarity becomes something tangible', art:'development-progress', title:'Tangible strategic development', copy:'Selected recommendations developed into agreed concepts, copy, structures, functional variations or specifications—chosen for your circumstances, not a standard asset bundle.', outcome:'See what the recommendations could become.', alt:'Blueprint ideas and plans becoming a finished, colored structure.'},
+ {label:'Map the next moves', phase:'Ideas become an actionable sequence', art:'roadmap-progress', title:'Your prioritized 90-day roadmap', copy:'A practical implementation sequence with dependencies, suggested responsibilities, validation KPIs and decisions about what to test, improve or defer.', outcome:'Know what comes first, next, and later.', alt:'Blueprint foundations transitioning into a mostly finished vector roadmap, test cards, and summit steps.'},
+ {label:'Make the plan yours', phase:'A shared plan, ready to use', art:'walkthrough-vector', title:'Strategy walkthrough', copy:'Work through the findings, tangible development and next steps so your team or chosen partners can act with context.', outcome:'Leave with shared understanding and clear next steps.', alt:'Fully colored vector-style illustration of a strategist and client reviewing their roadmap together.'},
+];
+export default function BlueprintProgression(){
+ const [index,setIndex]=useState(0);const touch=useRef<{x:number;y:number}|null>(null);const step=steps[index];const move=(n:number)=>setIndex(i=>Math.max(0,Math.min(3,i+n)));
+ return <div className="bp-progress" role="region" aria-roledescription="carousel" aria-label="From Blueprint to shared plan">
+  <div className="bp-steps" aria-label="Choose a deliverable">{steps.map((s,i)=><button type="button" key={s.art} aria-current={i===index?'step':undefined} aria-label={`Step ${i+1}: ${s.label}`} onClick={()=>setIndex(i)} className={i<index?'bp-past':''}><span className="bp-step-number">{i<index?<Check size={17} aria-hidden="true"/>:`0${i+1}`}</span><span>{s.label}</span></button>)}</div>
+  <div className="bp-story" onTouchStart={e=>{touch.current={x:e.touches[0].clientX,y:e.touches[0].clientY};}} onTouchEnd={e=>{if(touch.current){const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)move(dx<0?1:-1);}touch.current=null;}} onTouchCancel={()=>{touch.current=null;}}>
+   <figure className={`bp-art bp-art-${index}`}><img key={step.art} src={`/images/audit-blueprint-${step.art}.webp`} alt={step.alt} width="1200" height="800" loading="lazy"/><figcaption><span>{index===3?'From ideas to shared direction':'The shape of your strategy'}</span><b>0{index+1} / 04</b></figcaption></figure>
+   <div className="bp-copy" key={step.title} role="group" aria-roledescription="slide" aria-label={`${index+1} of 4: ${step.title}`}><p className="bp-phase">{step.phase}</p><h3>{step.title}</h3><p className="bp-description">{step.copy}</p><p className="bp-outcome">{step.outcome}</p></div>
+  </div>
+  <div className="bp-footer"><p aria-live="polite" aria-atomic="true"><span>0{index+1}</span> / 04 <b>{step.label}</b></p><div className="bp-arrows"><button type="button" disabled={index===0} onClick={()=>move(-1)} aria-label="Previous Blueprint step"><ArrowLeft size={19}/></button><button type="button" disabled={index===3} onClick={()=>move(1)} aria-label="Next Blueprint step"><ArrowRight size={19}/></button></div></div>
+ </div>;
+}

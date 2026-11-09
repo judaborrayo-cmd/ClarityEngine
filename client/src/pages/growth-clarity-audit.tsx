@@ -1,3 +1,4 @@
+import BlueprintProgression from "@/components/BlueprintProgression";
 import VisualAuditPlan from "@/components/VisualAuditPlan";
 import ExperienceBadges from "@/components/ExperienceBadges";
 import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
@@ -22,12 +23,6 @@ const auditHighlights = [
   { label: "90-day roadmap", Icon: Map, color: "#6844d9", tint: "#f2edff" },
 ];
 
-const deliverables = [
-  { title: "Your Strategic Growth Blueprint", copy: "A tailored written investigation connecting evidence, business implications, prioritized recommendations and the decisions ahead." },
-  { title: "Tangible strategic development", copy: "Selected recommendations developed into agreed concepts, copy, structures, functional variations or specifications—chosen for your circumstances, not a standard asset bundle." },
-  { title: "Your prioritized 90-day roadmap", copy: "A practical implementation sequence with dependencies, suggested responsibilities, validation KPIs and decisions about what to test, improve or defer." },
-  { title: "Strategy walkthrough", copy: "Work through the findings, tangible development and next steps so your team or chosen partners can act with context." },
-];
 const investigation = [
   {
     number: "01",
@@ -292,18 +287,7 @@ export default function GrowthClarityAudit() {
           <br />
           <em>A Blueprint you can use.</em>
         </h2>
-        <div className="dda-deliverables">
-          {deliverables.map((item, i) => (
-            <article key={item.title}>
-              <img className="dda-blueprint-art" src={`/images/audit-blueprint-${["blueprint", "development", "roadmap", "walkthrough"][i]}.webp`} alt="" width="1536" height="1024" loading="lazy" decoding="async" />
-              <div className="dda-blueprint-copy">
-                <span className="dda-number">0{i + 1}</span>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <BlueprintProgression />
         <p className="dda-note">
           The roadmap is yours to execute internally, with another provider, or
           through separately agreed implementation or ongoing Growth Retainer services. The Audit stands on its own; further services are optional.
