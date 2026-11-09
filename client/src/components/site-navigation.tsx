@@ -66,6 +66,11 @@ export default function SiteNavigation() {
 }
 function MarketingNavigation() {
     const location = useLocation(), id = useId();
+    const primaryCta = location.pathname === '/growth-partnership'
+      ? { to: '/growth-partnership#consultation', label: 'Book a Growth Call', mobileLabel: 'Book a Call' }
+      : location.pathname === '/marketing-clarity-assesment'
+        ? { to: '/marketing-clarity-assesment#assessment-purchase', label: 'Get My Clarity Assessment', mobileLabel: 'Get My Assessment' }
+        : { to: '/services', label: 'How We Help', mobileLabel: 'How We Help' };
     const [open, setOpen] = useState<NavigationCategory | null>(null), [mobile, setMobile] = useState(false);
     const [accordion, setAccordion] = useState<NavigationCategory | null>(null);
     const nav = useRef<HTMLElement>(null), triggers = useRef<Partial<Record<NavigationCategory, HTMLButtonElement | null>>>({});
@@ -120,9 +125,9 @@ function MarketingNavigation() {
 </li>
 </ul>
 </div>
-   <Link to="/services" className="ce-nav-primary ce-nav-header-cta" onClick={close}>
-<span className="ce-nav-desktop-label">How We Help</span>
-<span className="ce-nav-mobile-label">How We Help</span>
+   <Link to={primaryCta.to} className="ce-nav-primary ce-nav-header-cta" onClick={close}>
+<span className="ce-nav-desktop-label">{primaryCta.label}</span>
+<span className="ce-nav-mobile-label">{primaryCta.mobileLabel}</span>
 
 </Link>
    <Dialog.Root open={mobile} onOpenChange={value => { routeSelected.current = false; popupTookFocus.current = false; resizeFocus.current = null; setMobile(value); setOpen(null); }}>
@@ -164,7 +169,7 @@ function MarketingNavigation() {
 <Link to="/about" onClick={close}>About</Link>
 </li>
 </ul>
-<Link to="/services" className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>How We Help
+<Link to={primaryCta.to} className="ce-nav-primary ce-nav-mobile-cta" onClick={close}>{primaryCta.label}
 </Link>
 </div>
 </Dialog.Content>

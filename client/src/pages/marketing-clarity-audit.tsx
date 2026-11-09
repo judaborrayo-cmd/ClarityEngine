@@ -83,6 +83,6 @@ export default function MarketingClarityAudit() {
       ["Does it guarantee growth?", "No. It helps you decide where to focus based on the answers you provide. Outcomes depend on your evidence, decisions, implementation, and market."],
       ["Do I need to buy another service?", "No. The assessment includes your report and Clarity Work Session. A deeper service is an optional next step if you need hands-on review."],
     ].map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section>
-    <section className="gca-final"><div className="gca-wrap"><h2>Waste Less Time. Find More Answers. Perform</h2><p>Six marketing areas. Practical findings. A more focused next move.</p>{cta}<p className="gca-small">$27 · One-time payment</p>{error && <p role="alert" className="text-red-700">{error}</p>}</div></section>
+    <section id="assessment-purchase" className="gca-final" style={{scrollMarginTop: 110}}><div className="gca-wrap"><h2>Waste Less Time. Find More Answers. Perform</h2><p>Six marketing areas. Practical findings. A more focused next move.</p>{cta}<p className="gca-small">$27 · One-time payment</p>{error && <p role="alert" className="text-red-700">{error}</p>}</div></section>
   </main>;
 }

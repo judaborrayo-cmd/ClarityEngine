@@ -5,6 +5,7 @@ const exploreLinks = [
   ["Services", "/services"], ["Case Studies", "/case-studies"], ["How We Scale", "/#how-we-scale"], ["About", "/about"],
 ];
 const productLinks = [
+  ["Growth Partnership", "/growth-partnership"],
   ["Get Clarity Assessment", "/marketing-clarity-assesment"],
   ["Strategy Sprint", "/strategy-sprint"],
 ];

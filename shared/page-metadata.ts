@@ -22,6 +22,7 @@ export const pageMetadataRegistry: Record<string,PageMetadata> = {
  '/marketing-clarity-assesment':page('/marketing-clarity-assesment','Get Clarity Assessment — $27','Examine six essential marketing areas and identify where to focus next with Get Clarity Assessment by Clarity Engine. $27, one-time payment.','assessment'),
  '/strategy-sprint':page('/strategy-sprint','30-Day Growth Strategy Sprint',sprintDescription,'sprint'),
  '/checkout/strategy-sprint':page('/checkout/strategy-sprint',`Strategy Sprint Checkout — $${strategySprintOffer.price}`,`Review the 30-Day Growth Strategy Sprint offer and proceed to secure checkout. ${sprintDescription}`,'sprint-checkout'),
+ '/growth-partnership':page('/growth-partnership','Growth Partnership for Retreats & Travel','Ongoing strategy, paid media, conversion improvements, and measurement for retreats, travel, and experience-led businesses. Book a free growth call.'),
  '/services':page('/services','Growth Marketing Services','Explore strategy sprints, Deep Dive Growth Audits, the Get Clarity Assessment, and AI-built campaign and landing-page concepts.'),
  '/case-studies':page('/case-studies','Selected Growth Marketing Case Studies','Explore the challenges, decisions, and work behind selected paid media and growth marketing engagements.','case-studies'),
  '/testimonials':page('/testimonials','Professional Recommendations','Read existing colleague recommendations about working with Juda Borrayo.'),

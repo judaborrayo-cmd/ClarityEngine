@@ -22,7 +22,7 @@ export const navigationGroups = {
         { title: 'Work with a strategist', items: [
                 item('sprint', strategySprintOffer.name, 'Work through priorities and practical next steps together.', '/strategy-sprint', 'plan'),
                 item('growth-plan', 'Get personalized solutions', 'Create a 90-day roadmap with an experienced strategist.', '/growth-clarity-audit', 'search', 'inquiry'),
-                item('retainer', 'Apply to be a Clarity Engine client', 'Find out if a long-term retainer is right for your business.', '/ways-to-work-together#retainer', 'repeat', 'inquiry'),
+                item('retainer', 'Growth Partnership', 'Ongoing strategy and execution to improve bookings and growth.', '/growth-partnership', 'repeat', 'inquiry'),
             ] },
     ],
     tools: [
