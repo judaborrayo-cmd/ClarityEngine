@@ -75,3 +75,7 @@ body .dda-artwork .archer-video{max-width:none;width:100%;margin:0;border-radius
 body .dda-artwork .archer-video video{aspect-ratio:16/9;object-fit:contain}
 @media(min-width:1440px){body .dda-hero.dda-wrap{max-width:1800px;padding-inline:64px;grid-template-columns:minmax(0,.4fr) minmax(0,.6fr);gap:48px}}
 @media(min-width:901px){body .dda-hero .dda-artwork{align-self:start;margin-top:48px}}
+
+/* Shared solid primary actions across marketing pages and navigation. */
+body :is(.ce-nav-primary,.services-button,.founder-button,.ss-cta,.dda-button,.gca-cta,.growth-partnership .button,[data-testid="hero-cta-book-call"]){background:#6549e8 !important;background-image:none !important;color:#fff;animation:none}
+body :is(.ce-nav-primary,.services-button,.founder-button,.ss-cta,.dda-button,.gca-cta,.growth-partnership .button,[data-testid="hero-cta-book-call"]):hover{background:#5135ce !important;background-image:none !important}
