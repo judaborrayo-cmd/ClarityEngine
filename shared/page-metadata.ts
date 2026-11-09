@@ -49,7 +49,7 @@ for(const [slug,title,description] of [
 for(const [slug,title,description] of [
  ['columbus-travel','Columbus Travel','See Columbus Travel campaign creative, landing-page work, and dated results connecting paid media to inquiries and recorded sales.'],
  ['golden-galapagos-cruises','Golden Galápagos Cruises','Premium travel creative, paid media, and a clearer inquiry experience.'],
- ['art-of-living-retreat-center','Art of Living Retreat Center','Audience-led messaging, campaign strategy, and retreat landing-page experiments.'],
+ ['art-of-living-retreat-center','Art of Living Retreat Center','Panchakarma growth, tested landing-page improvements, and clearer cross-program measurement for Art of Living Retreat Center.'],
 ]) {
  const path='/case-study/'+slug;
  pageMetadataRegistry[path]={...page(path,title+' Case Study',description,slug,`${title} selected campaign imagery with Clarity Engine case-study branding`),noindex:false};
