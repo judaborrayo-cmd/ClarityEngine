@@ -28,7 +28,7 @@ const investigation = [
   {
     number: "01",
     title: "Business & competitive landscape",
-    summary: "Understand the business behind the campaigns.",
+    summary: "Understand why someone would choose your experience.",
     items: [
       "Business model, acquisition economics, offers and differentiation",
       "Competitor messaging, positioning, advertising and creative",
@@ -38,7 +38,7 @@ const investigation = [
   {
     number: "02",
     title: "Advertising & acquisition",
-    summary: "See the role each channel plays.",
+    summary: "See whether your budget supports the right opportunities.",
     items: [
       "Relevant Google, Meta, Instagram, YouTube and other acquisition activity",
       "Campaign structure, keyword strategy, targeting and objectives",
@@ -48,7 +48,7 @@ const investigation = [
   {
     number: "03",
     title: "Creative, messaging & conversion",
-    summary: "Follow the path from attention to action.",
+    summary: "Find what helps—or holds back—the next inquiry.",
     items: [
       "Hooks, creative effectiveness, offers and messaging consistency",
       "Landing pages, website experience and calls to action",
@@ -58,7 +58,7 @@ const investigation = [
   {
     number: "04",
     title: "Email, follow-up & measurement",
-    summary: "Look beyond the first click.",
+    summary: "See what happens after someone expresses interest.",
     items: [
       "Relevant lead capture, email, nurture and follow-up sequences",
       "Conversion tracking, analytics and attribution limitations",
@@ -155,21 +155,19 @@ export default function GrowthClarityAudit() {
         <div>
 
           <h1>
-            See the whole picture.
+            Know what to improve.
             <br />
-            <em>Know your next move.</em>
+            <em>Give your team a plan.</em>
           </h1>
 
           <p className="dda-lead">
-            For established or ambitious businesses ready to move forward.
+            A Deep Dive Growth Audit for retreats, travel, hospitality, and wellness businesses ready to make better marketing decisions.
           </p>
           <p>
-            Understand what is working, what is underperforming, and what may be
-            broken. Turn your most important opportunities into tangible
-            strategies and a prioritized 90-day implementation roadmap.
+            Find where your advertising, website, and follow-up may be losing opportunities. Clarity Engine investigates the evidence and develops a practical 90-day plan—so your team knows what to improve, why it matters, and where to start.
           </p>
           <p className="dda-promise">
-            Don't just recommend what's possible. Make it tangible.
+            Experienced strategy. AI-assisted analysis. Recommendations made tangible.
           </p>
           <p className="dda-price">
             {offer.priceLabel} <span>USD · one-time</span>
@@ -192,7 +190,7 @@ export default function GrowthClarityAudit() {
       <section className="dda-proof-strip"><div className="dda-wrap"><ExperienceBadges /></div></section>
       <section className="dda-highlights" aria-labelledby="audit-highlights-title">
         <div className="dda-wrap">
-          <h2 id="audit-highlights-title">A complete view. A focused <span className="dda-nowrap">90-day plan.</span></h2>
+          <h2 id="audit-highlights-title">Connect the evidence. Build your <span className="dda-nowrap">90-day plan.</span></h2>
           <ul className="dda-highlight-grid">{auditHighlights.map(({ label, Icon, color, tint }) => <li key={label} style={{ color, background: tint }}><Icon size={23} aria-hidden="true" /><span>{label}</span></li>)}</ul>
         </div>
       </section>
@@ -201,8 +199,8 @@ export default function GrowthClarityAudit() {
           <div className="dda-orchestra"><ServiceOptionVideo name="audit-team-alignment-nods" label="lightly bearded presenter explaining a shared plan to marketing, sales, and strategy teams" /></div>
           <div>
 
-            <h2>Align your <em>marketing, strategy, and sales.</em></h2>
-            <p className="dda-alignment-copy">Your ads, website, tracking, and sales follow-up should support the same direction. The Deep Dive Growth Audit examines how they work together, then turns the findings into coordinated priorities and a practical 90-day roadmap.</p>
+            <h2>Give your marketing and sales <em>a shared direction.</em></h2>
+            <p className="dda-alignment-copy">A promising inquiry can stall at the landing page, the booking form, or the follow-up. We examine the connections so your team can see where the journey breaks down—and agree on the improvements that deserve attention first.</p>
           </div>
         </div>
       </section>
@@ -213,13 +211,12 @@ export default function GrowthClarityAudit() {
         <div className="dda-wrap dda-section dda-map-content">
 
         <h2>
-          Real business context.
+          Where are opportunities slipping away?
           <br />
-          <em>Relevant evidence.</em>
+          <em>Follow the customer journey.</em>
         </h2>
         <p className="dda-section-intro">
-          We focus on the systems that matter to your priorities, rather than
-          treating every account as the same checklist.
+          From the first ad to the next inquiry, we investigate the parts of your marketing that matter to your goals. The scope follows your business, your evidence, and the decisions you need to make.
         </p>
         <div className="dda-investigation">
           {investigation.map((area) => (
@@ -260,18 +257,18 @@ export default function GrowthClarityAudit() {
         </div>
       </section>
       <section id="who-its-for" className="dda-wrap dda-section dda-audience">
-        <div><h2>For people making marketing decisions.</h2>
+        <div><h2>Make your next marketing decision with more confidence.</h2>
           <div className="dda-audience-art"><ServiceOptionVideo name="assessment-audience" label="founder, executive, business owner, marketing specialist, and operations manager smiling and pointing toward the audit" /></div>
-          <p className="dda-audience-intro">Built for founders, executives, business owners, marketing specialists, operations managers, and anyone responsible for marketing and operations.</p>
+          <p className="dda-audience-intro">For owners and marketing leaders balancing bookings, budgets, and a team with limited time. Get an outside perspective grounded in how your business actually works.</p>
         </div>
-        <div className="dda-audience-copy"><h3>Receive a surgical audit.</h3><p>A structured, strategic analysis of your marketing channels, technology, messaging, and funnels. We directly inspect your relevant ad accounts, tracking, and customer journeys using authorized access, grounding recommendations in your real-world performance.</p>
-          <h3>Get a plan built on experience.</h3><p>Bring 12+ years of account management and business experience, including more than $5 million in managed paid media spend, to the decisions ahead. Receive a personalized plan your team can execute, with optional collaboration or implementation support agreed separately.</p><div className="dda-actions"><StartLink /></div>
+        <div className="dda-audience-copy"><h3>Understand what needs attention.</h3><p>We inspect your relevant ad accounts, tracking, messaging, and customer journeys using authorized access. See which findings are supported by evidence, what remains uncertain, and what is worth investigating or testing next.</p>
+          <h3>Give your team a practical starting point.</h3><p>Clarity Engine brings 12+ years of growth marketing experience and more than $5 million in managed paid media spend to your priorities. Leave with a personalized plan your team or chosen implementation partner can use.</p><div className="dda-actions"><StartLink /></div>
         </div>
       </section>
       <section className="dda-wrap dda-section" id="development">
 
-        <h2>More than a list of ideas.<br /><em>Something you can work with.</em></h2>
-        <p className="dda-section-intro">Every Audit includes substantive strategic development. We choose what to develop around the evidence, your circumstances and the agreed scope—not around a fixed creative package.</p>
+        <h2>See what the recommendations<br /><em>could look like in practice.</em></h2>
+        <p className="dda-section-intro">Selected recommendations become concrete work your team can evaluate: a landing-page concept, campaign direction, or measurement plan. What we develop depends on the findings and your agreed scope.</p>
         <div className="dda-three dda-development">
           {[
             ["Conversion & customer experience", "Landing-page concepts or functional variations, message hierarchies and funnel improvements that make a proposed customer experience clear."],
@@ -279,7 +276,7 @@ export default function GrowthClarityAudit() {
             ["Measurement & decisions", "Measurement specifications and test plans that explain what to track, which evidence is missing and how to judge progress."],
           ].map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
         </div>
-        <div className="dda-development-note"><strong>Experience drives the strategy. AI makes more possible.</strong><p>We combine years of growth marketing experience with AI-assisted research, creative development, and technical execution to turn meaningful opportunities into strategies and tangible solutions.</p></div>
+        <div className="dda-development-note"><strong>Senior expertise sets the direction. AI helps develop it faster.</strong><p>We use the latest AI tools to help analyze evidence, explore messaging, and develop page or creative concepts faster. Experienced review keeps the work relevant to your business and clear about what still needs testing.</p></div>
         <p className="dda-note">A concept, functional variation and production implementation are different levels of work. A full website build, unlimited creative assets and live campaign launches are not standard Audit inclusions.</p>
       </section>
       <section className="dda-wrap dda-section" id="included">
@@ -292,7 +289,7 @@ export default function GrowthClarityAudit() {
         <BlueprintProgression />
         <p className="dda-note">
           The roadmap is yours to execute internally, with another provider, or
-          through separately agreed implementation or ongoing Growth Retainer services. The Audit stands on its own; further services are optional.
+          through separately agreed implementation or an ongoing Growth Partnership. The Audit stands on its own; further services are optional.
         </p>
       </section>
       <div className="dda-wrap dda-inline-purchase"><StartLink /></div>
@@ -462,7 +459,7 @@ export default function GrowthClarityAudit() {
       <section className="dda-wrap dda-section">
 
         <h2>
-          Before your <em>next move.</em>
+          Questions before <em>you get started.</em>
         </h2>
         <div className="dda-faq">
           {faqs.map(([q, a]) => (
@@ -478,14 +475,12 @@ export default function GrowthClarityAudit() {
           <div>
 
             <h2>
-              A clearer picture.
+              Know where to focus.
               <br />
-              <em>A practical direction.</em>
+              <em>Leave with a plan to act on.</em>
             </h2>
             <p>
-              Expert-led investigation, client-specific tangible development, your
-              Strategic Growth Blueprint, a prioritized 90-day roadmap and a
-              strategy walkthrough.
+              Get an expert investigation of your marketing, selected strategic work products, and a prioritized 90-day roadmap. We walk through your Strategic Growth Blueprint together so your team understands the findings and the next steps.
             </p>
           </div>
           <div>
