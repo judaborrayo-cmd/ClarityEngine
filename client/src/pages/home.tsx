@@ -206,13 +206,13 @@ export default function Home() {
             <div className="home-hero-grid">
               <div className="home-hero-copy">
                 <h1 data-testid="hero-title">
-                  Scaling Ambitious Brands with <span>People + AI</span><br />Growth Strategy
+                  Help more of the right people <span>choose your experience.</span>
                 </h1>
                 <p className="home-hero-description" data-testid="hero-description">
-                  I help founders and teams get unstuck, decide what deserves attention next, and turn that into game-changing results.
+                  Growth marketing for retreats, travel, hospitality, and wellness businesses. We combine senior marketing expertise with the latest AI tools to build campaigns, test landing pages, and uncover opportunities faster—helping turn more interest into inquiries, bookings, and revenue.
                 </p>
                 <HeroCTAs />
-                <p className="home-booking-note">12+ years of growth marketing experience. People + AI to move the work forward.</p>
+                <p className="home-booking-note">People + AI. Experienced direction. Faster execution. Continuous improvement.</p>
               </div>
               <HeroMotion />
               <HomeExplorerScenes />
