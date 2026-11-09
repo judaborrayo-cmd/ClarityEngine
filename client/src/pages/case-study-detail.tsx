@@ -1,3 +1,4 @@
+import ColumbusCaseStudy from "@/components/case-study/ColumbusCaseStudy";
 import { Core40Hero, Core40Context, Core40Closing } from "@/components/case-study/Core40CaseFraming";
 import AolCaseStudy from "@/components/case-study/AolCaseStudy";
 import { HapiHero, HapiContext, HapiCreative, HapiClosing } from "@/components/case-study/HapiCaseFraming";
@@ -664,6 +665,7 @@ export default function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
 
   if (slug === "art-of-living-retreat-center") return <AolCaseStudy />;
+  if (slug === "columbus-travel") return <ColumbusCaseStudy/>;
   if (slug && !caseStudyData[slug as keyof typeof caseStudyData] && hasBrandCaseStory(slug)) return <BrandCaseStory key={slug} slug={slug}/>;
 
   if (!slug || !caseStudyData[slug as keyof typeof caseStudyData]) {
