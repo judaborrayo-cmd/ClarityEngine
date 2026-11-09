@@ -1,9 +1,10 @@
+import { testimonials } from "@/lib/partner-testimonials";
 import BlueprintProgression from "@/components/BlueprintProgression";
 import VisualAuditPlan from "@/components/VisualAuditPlan";
 import ExperienceBadges from "@/components/ExperienceBadges";
 import billBowmanPhoto from "@assets/Bill_Bowman_1758572440823.jpg";
 import mikeBerkmanPhoto from "@assets/Mike_Berkman_1758572440825.jpg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ServiceOptionVideo from "@/components/ServiceOptionVideo";
 import { Link } from "react-router-dom";
 import { Search, Compass, Layers, Megaphone, ScanLine, TextSearch, MousePointerClick, Swords, ChartLine, Network, Map } from "lucide-react";
@@ -131,6 +132,7 @@ function StartLink() {
 }
 
 export default function GrowthClarityAudit() {
+  const [showAllTestimonials, setShowAllTestimonials] = useState(false);
   useEffect(() => {
     const root = document.documentElement;
     const navigation = document.querySelector<HTMLElement>('nav[aria-label="Main navigation"]');
@@ -302,7 +304,19 @@ export default function GrowthClarityAudit() {
           <figure><blockquote>“During his interview, I knew he would bring a different level of thinking and analysis to the team that we were needing. He did not disappoint.”</blockquote><figcaption><img src={mikeBerkmanPhoto} alt="" width="44" height="44" loading="lazy"/><div><strong>Mike Berkman</strong><span>VP of Performance · Lamark Media</span></div></figcaption></figure>
         </div>
         <p className="audit-proof-context">From previous professional engagements with Juda.</p>
-        <Link className="dda-text-link" to="/case-studies#colleague-reviews-cs">More from our partners </Link>
+        <div id="audit-more-testimonials" hidden={!showAllTestimonials}>
+          {showAllTestimonials && <div className="audit-partner-grid">
+            {[testimonials[1], testimonials[0], testimonials[2], testimonials[3]].map(testimonial => (
+              <figure key={testimonial.id}>
+                <blockquote>“{testimonial.review}”</blockquote>
+                <figcaption><img src={testimonial.avatar} alt="" width="44" height="44" loading="lazy"/><div><strong>{testimonial.name}</strong><span>{testimonial.title}</span></div></figcaption>
+              </figure>
+            ))}
+          </div>}
+        </div>
+        <button type="button" className="audit-testimonials-toggle" aria-expanded={showAllTestimonials} aria-controls="audit-more-testimonials" onClick={() => setShowAllTestimonials(value => !value)}>
+          {showAllTestimonials ? 'Show fewer testimonials' : 'Read testimonials'}
+        </button>
       </section>
       <section className="dda-wrap dda-section dda-fit">
         <div>
