@@ -15,9 +15,17 @@ import dropboxLogo from '@assets/Dropbox_(service)-Logo.wine_1759865428146.png';
 
 const tools = [
                   { name: "ChatGPT", logo: chatgptLogo },
+                  { name: "Astra", logo: "/images/tools/openai.svg", showName: true },
+                  { name: "Codex", logo: "/images/tools/codex-text.svg" },
+                  { name: "Seedance", logo: "/images/tools/bytedance-seed.ico", showName: true },
+                  { name: "Claude", logo: "/images/tools/claude-text.svg" },
+                  { name: "Runway", logo: "/images/tools/runway-text.svg" },
+                  { name: "Kling", logo: "/images/tools/kling-text.svg" },
+                  { name: "fal.ai", logo: "/images/tools/fal-text.svg" },
+                  { name: "Canva", logo: "/images/tools/canva.svg" },
                   { name: "Gemini", logo: geminiLogo },
                   { name: "Mouseflow", icon: MousePointer2 },
-                  { name: "CapCut", icon: Video },
+                  { name: "CapCut", logo: "/images/tools/capcut-text.svg" },
                   { name: "Midjourney", logo: midjourneyLogo },
                   { name: "Photoshop", logo: photoshopLogo },
                   { name: "Zoom", icon: Camera },
@@ -338,7 +346,7 @@ export default function HowWeBuildFasterSection() {
           <div data-continuous-track className="tools-ticker-track flex w-max items-center">
             {[0, 1].map(copy => <div key={copy} aria-hidden={copy === 1 || undefined} className="flex shrink-0 items-center gap-12 pr-12">
               {tools.map(tool => <div key={tool.name} className="inline-flex shrink-0 items-center gap-2">
-                {tool.logo ? <img draggable={false} src={tool.logo} alt={tool.name} className="ce-readable-logo h-8 w-auto object-contain opacity-80" /> : <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
+                {tool.logo ? <><img draggable={false} src={tool.logo} alt={tool.showName ? "" : tool.name} className="ce-readable-logo h-8 w-auto object-contain opacity-80" />{tool.showName && <span className="text-xl font-semibold text-gray-800">{tool.name}</span>}</> : <div className="flex items-center gap-2">
                   {tool.icon && <tool.icon aria-hidden="true" className="h-5 w-5 text-violet-600" />}
                   <span className="text-sm font-medium text-gray-700">{tool.name}</span>
                 </div>}
