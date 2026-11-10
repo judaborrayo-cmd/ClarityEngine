@@ -7,8 +7,9 @@ export type CrmPurchase = {
   productName: string; amount: number; paidAt: number;
 };
 // Only the three website offers are eligible. Retainers and unrelated Stripe sales stay out.
-export function websitePurchase(session: Stripe.Checkout.Session, assessmentPrice: string, paidAt: number): CrmPurchase | null {
-  if (!session.livemode || !(session.payment_status === 'paid' || (session.payment_status === 'no_payment_required' && session.amount_total === 0)) || session.status !== 'complete' || session.mode !== 'payment' || session.currency !== 'usd') return null;
+export function websitePurchase(session: Stripe.Checkout.Session, assessmentPrice: string, paidAt: number, stagingTest = false): CrmPurchase | null {
+  const isIsolatedTest = stagingTest && !session.livemode && session.metadata?.product === "marketing-clarity-audit" && session.metadata?.integrationTest === "combined-staging" && /^clarity-staging-[a-z0-9-]+@example\.com$/.test(session.customer_details?.email ?? session.customer_email ?? "");
+  if ((!session.livemode && !isIsolatedTest) || !(session.payment_status === 'paid' || (session.payment_status === 'no_payment_required' && session.amount_total === 0)) || session.status !== 'complete' || session.mode !== 'payment' || session.currency !== 'usd') return null;
   const items = session.line_items?.data;
   if (!items || items.length !== 1 || items[0].quantity !== 1) return null;
   let product: CrmPurchase['product']; let productName: string;
@@ -60,7 +61,7 @@ export class HubSpotPurchases {
     // A unique Stripe reference makes retries safe even if a prior response was lost.
     const result = await this.api('/crm/v3/objects/deals/batch/upsert', 'POST', { inputs: [{
       idProperty: 'ce_stripe_checkout_id', id: p.checkoutId,
-      properties: { ce_stripe_checkout_id: p.checkoutId, dealname: `${p.productName} — ${p.checkoutId}`,
+      properties: { ce_stripe_checkout_id: p.checkoutId, dealname: `${p.checkoutId.startsWith('cs_test_') ? '[STAGING TEST — NO REAL REVENUE] ' : ''}${p.productName} — ${p.checkoutId}`,
         pipeline: 'default', dealstage: 'closedwon', amount: String(p.amount), closedate: new Date(p.paidAt).toISOString(),
         description: `Confirmed Clarity Engine website purchase. Product: ${p.productName}. Currency: USD. Stripe checkout: ${p.checkoutId}. Amount excludes tax and shipping. Historical payment; refunds are managed in Stripe.${attribution ? "\nCampaign attribution at checkout (consent-aware): " + JSON.stringify(attribution) : "\nCampaign attribution unavailable (no captured consented campaign)."}`,
       },

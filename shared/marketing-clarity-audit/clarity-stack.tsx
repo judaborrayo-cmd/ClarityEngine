@@ -1,9 +1,16 @@
 import React from "react";
 import { questionnaire, type Answers } from "./scoring";
 import { sectionColors } from "./sections";
-export function diagnosticLayers(answers: Answers, currentSection?: number) {
+export function diagnosticLayers(
+  answers: Record<string, unknown>,
+  currentSection?: number,
+  questions: readonly {
+    id: string;
+    sectionId: number;
+  }[] = questionnaire.questions,
+) {
   return questionnaire.sections.map((section) => {
-    const completed = questionnaire.questions
+    const completed = questions
       .filter((q) => q.sectionId === section.id)
       .every((q) => Boolean(answers[q.id]));
     return {
@@ -22,12 +29,14 @@ export function DiagnosticClarityStack({
   answers,
   currentSection,
   sectionProgress,
+  questions,
 }: {
-  answers: Answers;
+  answers: Record<string, unknown>;
   currentSection?: number;
   sectionProgress?: { sectionId: number; answered: number; total: number };
+  questions?: readonly { id: string; sectionId: number }[];
 }) {
-  const layers = diagnosticLayers(answers, currentSection);
+  const layers = diagnosticLayers(answers, currentSection, questions);
   const complete = layers.every((layer) => layer.completed);
   return (
     <div className="diagnostic-clarity-stack">

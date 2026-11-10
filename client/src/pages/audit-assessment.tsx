@@ -1,4 +1,19 @@
 import { trackWebsiteEvent, trackPurchase, type Receipt } from "@/lib/website-analytics";
+import {AuditV2PriorityCustomer} from '@/components/audit-v2-priority-customer';
+import {versions as priorityVersions} from '@shared/marketing-clarity-audit/v2-priority/questionnaire';
+import {AuditV2GoalsCustomer} from '@/components/audit-v2-goals-customer';
+import {versions as goalsVersions} from '@shared/marketing-clarity-audit/v2-goals/questionnaire';
+import {customerContextGoalsSchema} from '@shared/marketing-clarity-audit/v2-goals/goals';
+import {AuditV2NextCustomer} from "@/components/audit-v2-next-customer";
+import {versions as nextVersions} from "@shared/marketing-clarity-audit/v2-next/questionnaire";
+import {customerContextNextSchema} from "@shared/marketing-clarity-audit/v2-next/goals";
+import { AuditCompletionCard } from "@/components/audit-completion-card";
+import { customerCopy } from "@shared/marketing-clarity-audit/v2/customer-copy";
+import { AuditV2Customer } from "@/components/audit-v2-customer";
+import {
+  versions,
+  type Setup,
+} from "@shared/marketing-clarity-audit/v2/questionnaire";
 import { assessmentSections, assessmentInsights } from "@/lib/assessment-copy";
 import "./audit-assessment.css";
 import { AssessmentQuestion } from "@/components/assessment-question";
@@ -29,6 +44,8 @@ import {
 } from "@shared/marketing-clarity-audit/context";
 
 type Session = {
+  version?: string;
+  setup?: Setup;
   localQa?: boolean;
   context: CustomerContext | null;
   answers: Answers;
@@ -122,7 +139,9 @@ export default function AuditAssessment() {
   const section =
     question &&
     questionnaire.sections.find((s) => s.id === question.sectionId)!;
-  const progress = assessmentProgress(session?.answers ?? {});
+  const progress = assessmentProgress(
+    [versions.questionnaire,nextVersions.questionnaire,goalsVersions.questionnaire,priorityVersions.questionnaire].includes(session?.version as any) ? {} : (session?.answers ?? {}),
+  );
   const companyName = session?.context?.companyName?.trim();
   const isRetake = session?.runNumber === 2;
   const localQuestions = section
@@ -185,7 +204,7 @@ export default function AuditAssessment() {
     const data = Object.fromEntries(
       new FormData(event.currentTarget).entries(),
     );
-    const parsed = customerContextSchema.safeParse(
+    const parsed = ([goalsVersions.questionnaire,priorityVersions.questionnaire].includes(session?.version as any)?customerContextGoalsSchema:session?.version===nextVersions.questionnaire?customerContextNextSchema:customerContextSchema).safeParse(
       isRetake ? { ...session?.context, ...data } : data,
     );
     if (!parsed.success) {
@@ -197,7 +216,7 @@ export default function AuditAssessment() {
       await auditRequest(`/${token}/context`, "PUT", parsed.data);
       if (!session?.localQa) trackWebsiteEvent("assessment_context_submit", { form_id: isRetake ? "assessment_context_update" : "assessment_context" });
       setSession((current) =>
-        current ? { ...current, context: parsed.data } : current,
+        current ? { ...current, context: parsed.data as any } : current,
       );
       if (isRetake) setStatus("Business focus saved");
       else trackAudit("audit_start", token);
@@ -227,6 +246,11 @@ export default function AuditAssessment() {
     setPosition((p) => Math.max(0, p - 1));
   };
 
+  if(session?.context&&token&&session.version===priorityVersions.questionnaire)return <AuditV2PriorityCustomer token={token} initial={session as any}/>;
+  if(session?.context&&token&&session.version===goalsVersions.questionnaire)return <AuditV2GoalsCustomer token={token} initial={session as any}/>;
+  if(session?.context&&token&&session.version===nextVersions.questionnaire)return <AuditV2NextCustomer token={token} initial={session as any}/>;
+  if (session?.context && token && session.version === versions.questionnaire)
+    return <AuditV2Customer token={token} initial={session as any} />;
   return (
     <main className="assessment-shell mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
       {session?.localQa && (
@@ -277,10 +301,21 @@ export default function AuditAssessment() {
             Find your next growth opportunity.
           </h2>
           <p className="mt-3">
-            35 questions look at six growth levers: what you sell, who buys, how you explain it, the path to taking action, how people find you, and how you learn from results. Together, your answers help identify where to focus next—with three practical moves and a 30-day plan.
+            {[versions.questionnaire,nextVersions.questionnaire,goalsVersions.questionnaire,priorityVersions.questionnaire].includes(session.version as any)
+              ? customerCopy.introduction
+              : "Answer 35 questions to find your next growth opportunity."}{" "}
+            Explore six growth levers: what you sell, who buys, how you explain
+            it, the path to taking action, how people find you, and how you
+            learn from results. Together, your answers help identify where to
+            focus next—with three practical moves and a 30-day plan.
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            Allow about 20 minutes. Answer for how your business works today. Your answers save automatically; use your secure resume link to return. Scores appear after you finish.
+            {[versions.questionnaire,nextVersions.questionnaire,goalsVersions.questionnaire,priorityVersions.questionnaire].includes(session.version as any)
+              ? "Allow about 15–25 minutes."
+              : "Allow 12–18 minutes."}{" "}
+            Answer for how your business works today. Your answers save
+            automatically; use your secure resume link to return. Scores appear
+            after you finish.
           </p>
           <form onSubmit={saveContext} className="mt-6 space-y-5">
             {[
@@ -321,7 +356,7 @@ export default function AuditAssessment() {
                 ))}
               </select>
             </label>
-            <label className="block font-medium">
+            {![nextVersions.questionnaire,goalsVersions.questionnaire,priorityVersions.questionnaire].includes(session.version as any)&&<label className="block font-medium">
               Primary marketing goal
               <select
                 name="primaryMarketingGoal"
@@ -336,6 +371,7 @@ export default function AuditAssessment() {
                 ))}
               </select>
             </label>
+            }
             <Button disabled={busy} type="submit">
               {busy ? "Saving…" : "Start My Assessment"}
             </Button>
@@ -428,7 +464,9 @@ export default function AuditAssessment() {
               </details>
             </div>
           )}
-          <div className={`assessment-workspace${!question ? " assessment-workspace-complete" : ""}`}>
+          <div
+            className={`assessment-workspace${!question ? " assessment-workspace-complete" : ""}`}
+          >
             <div
               style={sectionStyle(section?.id)}
               className="assessment-companion sticky top-28 z-20 mb-6 rounded-xl border border-gray-200 bg-white/95 p-4 backdrop-blur md:top-20"
@@ -441,7 +479,8 @@ export default function AuditAssessment() {
                     </p>
                   )}
                   <p className="text-sm font-semibold">
-                    {section?.name ?? "Review"} · Section {section?.id ?? 6} of 6
+                    {section?.name ?? "Review"} · Section {section?.id ?? 6} of
+                    6
                   </p>
                   <p className="mt-1 text-sm">
                     {question
@@ -475,8 +514,12 @@ export default function AuditAssessment() {
                     {section?.name} complete
                   </span>
                 </h2>
-                <p className="my-4">{section && assessmentSections[section.id]?.completion}</p>
-                <p className="mb-4 text-sm text-muted-foreground">Your answers are saved.</p>
+                <p className="my-4">
+                  {section && assessmentSections[section.id]?.completion}
+                </p>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Your answers are saved.
+                </p>
                 <Button
                   onClick={() => {
                     setTransition(false);
@@ -504,133 +547,15 @@ export default function AuditAssessment() {
                 onBack={back}
               />
             ) : (
-              <section className="assessment-ready relative overflow-hidden rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50 via-white to-emerald-50 p-6 shadow-sm sm:p-10">
-                <div
-                  aria-hidden="true"
-                  className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-violet-100"
-                >
-                  <svg width="42" height="42" viewBox="0 0 48 48" fill="none">
-                    <path
-                      d="M5 40L24 7L43 40H5Z"
-                      stroke="#6d4ce8"
-                      strokeWidth="2.5"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M16 40L29 21L24 7"
-                      stroke="#16734b"
-                      strokeWidth="2.5"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M20 15L24 20L28 15"
-                      stroke="#6d4ce8"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                </div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-800">
-                  Six growth levers explored · All 35 answers saved
-                </p>
-                <h2
-                  ref={titleRef}
-                  tabIndex={-1}
-                  className="max-w-xl text-3xl font-bold leading-tight outline-none sm:text-4xl"
-                >
-                  Your Clarity Stack is complete. Let's turn it into a plan.
-                </h2>
-                <p className="mt-5 leading-relaxed text-muted-foreground">
-                  You've just looked at six of the most important drivers of marketing growth. Now comes the interesting part: connecting the dots.
-                </p>
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  Let's see what's working in your favor, where your biggest opportunities may be hiding, and which three moves deserve your attention first.
-                </p>
-                <p className="break-words text-sm text-muted-foreground">
-                  Prepared specifically for {companyName || "your business"}
-                </p>
-                <div className="assessment-ready-review my-6 rounded-xl border border-violet-100 bg-white/80 p-4">
-                  <h3 className="font-semibold">
-                    Review before generating your report
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed">
-                    {isRetake
-                      ? "You can still edit any answer before continuing. This is your included retake. Generating your report freezes Report 2; your original report will remain available."
-                      : "You can still edit any answer before continuing. Your purchase also includes one complete retake in case you want to reassess your business after reviewing your first results."}
-                  </p>
-                </div>
-                <ol
-                  aria-label="Your Clarity Stack"
-                  className="clarity-stack mb-6 flex flex-col gap-3"
-                >
-                  {[
-                    [
-                      "Your First Growth Opportunity",
-                      "Where to focus first, based on the patterns across your answers.",
-                      "#5541BF",
-                      "#F7F4FF",
-                    ],
-                    [
-                      "Your First 3 Moves",
-                      "Three practical actions, why they matter, and how to know when each is done.",
-                      "#145C43",
-                      "#F2FAF5",
-                    ],
-                    [
-                      "Your Marketing Clarity Snapshot",
-                      "How the six levers compare, including strengths you can build on.",
-                      "#14636B",
-                      "#F1F9FA",
-                    ],
-                    [
-                      "Your 30-Day Clarity Plan",
-                      "A weekly sequence for turning your first opportunity into progress.",
-                      "#5541BF",
-                      "#F7F4FF",
-                    ],
-                  ].map(([title, description, color, tint], index) => (
-                    <li
-                      key={title}
-                      className="flex w-full items-start gap-4 rounded-xl border border-white p-5 shadow-sm sm:items-center sm:p-6"
-                      style={{
-                        backgroundColor: tint,
-                        borderLeft: `4px solid ${color}`,
-                        boxShadow:
-                          "0 3px 0 rgba(37, 28, 69, 0.05), 0 8px 20px rgba(37, 28, 69, 0.025)",
-                      }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border bg-white text-sm font-semibold tracking-wide"
-                        style={{ color, borderColor: `${color}30` }}
-                      >
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div className="min-w-0">
-                        <h3 className="font-semibold leading-snug text-gray-900">
-                          {title}
-                        </h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-gray-600">
-                          {description}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-                <div className="assessment-ready-actions flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Button
-                    className="h-auto min-h-12 whitespace-normal px-5 py-3"
-                    disabled={busy}
-                    onClick={complete}
-                  >
-                    {busy
-                      ? "Generating your report…"
-                      : "Generate My High Growth Opportunities Report"}
-                  </Button>
-                  <Button variant="ghost" disabled={busy} onClick={back}>
-                    Back
-                  </Button>
-                </div>
-              </section>
+              <AuditCompletionCard
+                titleRef={titleRef}
+                companyName={companyName}
+                isRetake={isRetake}
+                busy={busy}
+                complete={complete}
+                back={back}
+                completionLabel="All 35 answers saved"
+              />
             )}
           </div>
         </>

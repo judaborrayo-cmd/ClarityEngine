@@ -1,4 +1,6 @@
 import { trackWebsiteEvent } from "@/lib/website-analytics";
+import { isV2Report } from "@shared/marketing-clarity-audit/v2/customer-report";
+import { AuditV2Results } from "@/components/audit-v2-results";
 import "./audit-results.css";
 import { useEffect, useState } from "react";
 import {
@@ -71,6 +73,7 @@ export default function AuditResults() {
       .catch((e) => {
         if (active) setError(e.message);
       });
+
     return () => {
       active = false;
     };
@@ -126,6 +129,8 @@ export default function AuditResults() {
       setBusy(false);
     }
   }
+  if (isV2Report(report) && token && runInfo)
+    return <AuditV2Results report={report} token={token} info={runInfo} />;
   return (
     <main className="report-workspace mx-auto max-w-6xl px-4 py-8 sm:px-6">
       {runInfo?.localQa && (
@@ -199,9 +204,18 @@ export default function AuditResults() {
                 {" "}
                 {report && (
                   <div className="private-link-control print:hidden">
-                    <Button variant="outline" onClick={copyPrivateLink}>Copy Private Link</Button>
-                    <span className="text-xs text-gray-600">Keep this link private so you can return to your report and saved notes.</span>
-                    {copyStatus && <p role="status" aria-live="polite" className="text-sm">{copyStatus}</p>}
+                    <Button variant="outline" onClick={copyPrivateLink}>
+                      Copy Private Link
+                    </Button>
+                    <span className="text-xs text-gray-600">
+                      Keep this link private so you can return to your report
+                      and saved notes.
+                    </span>
+                    {copyStatus && (
+                      <p role="status" aria-live="polite" className="text-sm">
+                        {copyStatus}
+                      </p>
+                    )}
                   </div>
                 )}
                 {report && runInfo && !runInfo.localQa && (
@@ -319,7 +333,8 @@ export default function AuditResults() {
                 Your High Growth Opportunities
               </h3>
               <p className="my-4 text-sm leading-relaxed">
-                Your opportunities, six growth levers, first three moves, real-world example, progress signals, and 30-day plan.
+                Your opportunities, six growth levers, first three moves,
+                real-world example, progress signals, and 30-day plan.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a

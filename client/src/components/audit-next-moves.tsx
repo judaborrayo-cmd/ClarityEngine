@@ -11,8 +11,17 @@ export default function AuditNextMoves({
   token,
   run,
   onPendingChange,
+  moves,
 }: {
-  report: FrozenAuditReport;
+  report?: FrozenAuditReport;
+  moves?: {
+    id: string;
+    title: string;
+    whatToDo: string;
+    doneWhen: string;
+    why: string;
+    supportingDetails?: string[];
+  }[];
   token: string;
   run: number;
   onPendingChange?: (pending: boolean) => void;
@@ -88,6 +97,13 @@ export default function AuditNextMoves({
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
   }, []);
+  const displayedMoves =
+    moves ??
+    recommendationsPresentation(report!).map((move) => ({
+      ...move,
+      why: recommendationWhyCritical(move),
+      supportingDetails: undefined as string[] | undefined,
+    }));
   return (
     <>
       <p role="status" className="checklist-status">
@@ -106,7 +122,7 @@ export default function AuditNextMoves({
         </button>
       )}
       <div className="moves-grid">
-        {recommendationsPresentation(report).map((move, index) => (
+        {displayedMoves.map((move, index) => (
           <div className="recommendation checklist-move" key={move.id}>
             <label className="move-check">
               <input
@@ -129,11 +145,20 @@ export default function AuditNextMoves({
             <h3>{move.title}</h3>
             <h4>What to do</h4>
             <p>{move.whatToDo}</p>
+            {move.supportingDetails && (
+              <ul className="list-disc space-y-2 pl-5">
+                {move.supportingDetails.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            )}
             <h4>Done when</h4>
             <p>{move.doneWhen}</p>
             <details>
-              <summary>Why this is critical</summary>
-              <p>{recommendationWhyCritical(move)}</p>
+              <summary>
+                {moves ? "Why this matters" : "Why this is critical"}
+              </summary>
+              <p>{move.why}</p>
             </details>
           </div>
         ))}

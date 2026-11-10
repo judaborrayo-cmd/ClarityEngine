@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { analyticsPage, analyticsContext, safeReferrer, updateAnalytics, trackWebsiteEvent, trackPurchase, saveAnalyticsConsent, consentKey, containerId, assessmentItem, deepDiveAuditItem } from './website-analytics';
+import { analyticsPage, analyticsContext, safeReferrer, updateAnalytics, trackWebsiteEvent, trackPurchase, saveAnalyticsConsent, consentKey, containerId, assessmentItem, deepDiveAuditItem, trackAssessmentCompletion } from './website-analytics';
 
 test('private URL credentials and query strings never become event context', () => {
   for (const path of ['/audit/results/secret', '/audit/start', '/checkout/strategy-sprint/thank-you', '/unknown', '/about?email=private@example.com']) assert.equal(analyticsPage(path), null);
@@ -11,10 +11,11 @@ test('private URL credentials and query strings never become event context', () 
 });
 test('consent gates GTM and conversions; purchases deduplicate; private events are sanitized', () => {
   const scripts: any[] = [];
+  const policies:any[]=[];
   const values = new Map<string,string>();
   const w: any = { dispatchEvent() {}, addEventListener() {} };
   const loc = { hostname: 'www.clarity-engine.org', pathname: '/' };
-  Object.assign(globalThis, { window: w, location: loc, localStorage: { getItem: (k:string) => values.get(k), setItem: (k:string,v:string) => values.set(k,v) }, document: { referrer: '', cookie: '', createElement: () => ({}), head: { appendChild: (script:unknown) => scripts.push(script) } } });
+  Object.assign(globalThis, { window: w, location: loc, localStorage: { getItem: (k:string) => values.get(k), setItem: (k:string,v:string) => values.set(k,v) }, document: { referrer: '', cookie: '', querySelector:()=>policies[0], createElement: () => ({setAttribute(){}}), head: { prepend:(policy:unknown)=>policies.push(policy), appendChild: (script:unknown) => scripts.push(script) } } });
   updateAnalytics('/', false);
   assert.equal(scripts.length, 0);
   assert.equal(trackWebsiteEvent('assessment_context_submit', {form_id:'assessment_context'}), false);
@@ -28,6 +29,9 @@ test('consent gates GTM and conversions; purchases deduplicate; private events a
   loc.pathname='/audit/results/secret';
   updateAnalytics(loc.pathname,true);
   assert.equal(events().length, 1);
+  assert.equal(policies.length,1);
+  assert.match(policies[0].content,/connect-src 'self'/);
+  assert.doesNotMatch(policies[0].content,/https:\/\/www\.google\.com/);
   trackWebsiteEvent('file_download',{resource_id:'report',file_extension:'pdf'});
   const receipt = {transaction_id:'ce_'+'a'.repeat(64),currency:'USD' as const,value:27,items:[assessmentItem]};
   trackPurchase(receipt);trackPurchase(receipt);
@@ -42,7 +46,15 @@ test('consent gates GTM and conversions; purchases deduplicate; private events a
   assert.equal(auditEvents[0].ce_params.items[0].item_id,'deep-dive-growth-audit');
   assert.equal(auditEvents[0].ce_params.page_location,'https://www.clarity-engine.org/growth-clarity-audit');
   assert.equal(JSON.stringify(w.dataLayer).includes('private-signed-proof'),false);
+  loc.pathname='/audit/resume/private-resume';
+  const completionId='ce_'+'c'.repeat(64);
+  assert.equal(trackAssessmentCompletion(completionId),true);
+  assert.equal(trackAssessmentCompletion(completionId),false);
+  assert.equal(trackAssessmentCompletion('private-resume'),false);
+  assert.equal(events().filter((e:any)=>e.ce_event_name==='assessment_complete').length,1);
+  assert.equal(JSON.stringify(w.dataLayer).includes('private-resume'),false);
   saveAnalyticsConsent('denied');
+  assert.equal(trackAssessmentCompletion('ce_'+'d'.repeat(64)),false);
   assert.equal(trackWebsiteEvent('assessment_context_submit',{form_id:'assessment_context'}),false);
   loc.hostname='localhost';values.set(consentKey,'granted');
   assert.equal(trackWebsiteEvent('assessment_context_submit',{form_id:'assessment_context'}),false);

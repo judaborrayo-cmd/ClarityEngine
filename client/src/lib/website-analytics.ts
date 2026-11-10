@@ -1,4 +1,6 @@
-import { queueMetaPurchase } from './meta-conversions';
+import {protectPrivateWorkflow} from "./private-analytics-privacy";
+import {analyticsHost,integrationStaging} from "./integration-staging";
+import { queueMetaCompletion, queueMetaPurchase } from './meta-conversions';
 import { getPageMetadata, indexablePagePaths, publicOrigin } from '../../../shared/page-metadata';
 
 export const measurementId = 'G-T4SMFB5CTF';
@@ -31,16 +33,17 @@ export function safeReferrer(value: string) {
   try { const url = new URL(value); return /^https?:$/.test(url.protocol) ? url.origin + '/' : ''; } catch { return ''; }
 }
 function enable(pathname: string, consent: boolean) {
+  protectPrivateWorkflow();
   const w = window as AnalyticsWindow;
   const page = analyticsContext(pathname);
-  const enabled = consent && !!page && location.hostname === 'www.clarity-engine.org';
+  const enabled = consent && !!page && analyticsHost();
   w[`ga-disable-${measurementId}`] = !enabled;
   if (!enabled || !page) return null;
   initializeTagManager(true);
   return page;
 }
 export function initializeTagManager(analyticsConsent: boolean) {
-  if (location.hostname !== 'www.clarity-engine.org') return;
+  if (!analyticsHost()) return;
   const w = window as AnalyticsWindow;
   let advertising: 'granted' | 'denied' = 'denied';
   try { if (localStorage.getItem('ce-meta-consent-v1') === 'granted') advertising = 'granted'; } catch {}
@@ -49,6 +52,7 @@ export function initializeTagManager(analyticsConsent: boolean) {
     w.dataLayer = w.dataLayer || [];
     w.gtag = function () { w.dataLayer!.push(arguments); };
     // Advertising remains denied unless explicitly chosen in Cookie settings.
+    if (integrationStaging()) w.gtag('set', {debug_mode:true,traffic_type:'staging_test'});
     w.gtag('consent', 'default', { analytics_storage: analyticsConsent ? 'granted' : 'denied', ad_storage: advertising, ad_user_data: advertising, ad_personalization: advertising });
     w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
     const script = document.createElement('script');
@@ -68,7 +72,7 @@ export function updateAnalytics(pathname: string, consent: boolean) {
 }
 function pushEvent(name: string, page: NonNullable<ReturnType<typeof analyticsPage>>, params: Record<string, unknown>) {
   (window as AnalyticsWindow).dataLayer!.push({ ce_params: null });
-  (window as AnalyticsWindow).dataLayer!.push({ event: 'ce_analytics', ce_event_name: name, ce_params: { ...page, page_referrer: safeReferrer(document.referrer), ...params } });
+  (window as AnalyticsWindow).dataLayer!.push({ event: 'ce_analytics', ce_event_name: name, ce_params: { ...page, page_referrer: safeReferrer(document.referrer), ...params, ...(integrationStaging()?{debug_mode:true,traffic_type:"staging_test"}:{}) } });
 }
 export function trackWebsiteEvent(name: 'generate_lead' | 'form_submit' | 'assessment_context_submit' | 'assessment_complete' | 'file_download' | 'begin_checkout' | 'purchase', params: Record<string, unknown>) {
   try {
@@ -115,4 +119,17 @@ export function saveAnalyticsConsent(value: 'granted' | 'denied') {
     }
   }
   window.dispatchEvent(new Event('ce-consent-change'));
+}
+
+// Completion and purchase have separate stable IDs. No answers or resume tokens enter analytics.
+const sentCompletions = new Set<string>();
+export function trackAssessmentCompletion(completionId: string, completionProof?: string) {
+  if(completionProof) void queueMetaCompletion(completionId,completionProof);
+  if (!/^ce_[a-f0-9]{64}$/.test(completionId)) return false;
+  const key = `ce-assessment-complete-${completionId}`;
+  try { if (sentCompletions.has(key) || localStorage.getItem(key)) return false; } catch { if(sentCompletions.has(key)) return false; }
+  if (!trackWebsiteEvent('assessment_complete', {form_id:'clarity_assessment',event_id:completionId})) return false;
+  sentCompletions.add(key);
+  try {localStorage.setItem(key,'1');} catch {}
+  return true;
 }

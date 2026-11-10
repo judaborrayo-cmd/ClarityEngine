@@ -42,6 +42,7 @@ export interface AuditStore {
     checkoutId: string,
     claimHash: string,
     tokenHash: string,
+    version?: string,
   ): Promise<void>;
   verify(
     checkoutId: string,

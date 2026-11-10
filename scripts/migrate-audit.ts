@@ -16,6 +16,7 @@ try {
       "0003_marketing_audit_work_notes.sql",
       "0004_marketing_audit_checklist.sql",
       "0005_marketing_audit_company_logo.sql",
+      "0006_marketing_audit_v2_preview.sql",
     ]) {
       await connection.query(
         await readFile(

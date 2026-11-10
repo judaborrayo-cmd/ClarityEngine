@@ -1,0 +1,778 @@
+{
+  "name": "Additional business goals",
+  "draft": {
+    "versions": {
+      "questionnaire": "2.0.0-preview.5",
+      "scoring": "2.0.0-preview.5",
+      "report": "2.0.0-preview.5"
+    },
+    "setup": {
+      "nonUseReason": "running",
+      "paidStatus": "running",
+      "outcome": [
+        "trials_demos",
+        "registrations",
+        "store_visits",
+        "subscribers",
+        "other"
+      ],
+      "platforms": "multiple",
+      "owner": "Dedicated internal specialist",
+      "trend": "Generally stable",
+      "testReadiness": "ready"
+    },
+    "answers": {
+      "O1": "A",
+      "O2": "A",
+      "O3": "A",
+      "O4": "A",
+      "O5": "A",
+      "O6": "A",
+      "A1": "A",
+      "A2": "A",
+      "A3": "A",
+      "A4": "A",
+      "A5": "A",
+      "M1": "A",
+      "M2": "A",
+      "M3": "A",
+      "M4": "A",
+      "M5": "A",
+      "M6": "A",
+      "C1": "A",
+      "C2": "A",
+      "C3": "A",
+      "C4": "A",
+      "C5": "A",
+      "C6": "A",
+      "T1": "A",
+      "T2": "A",
+      "T3": "A",
+      "T4": "A",
+      "T5": "A",
+      "T6": "A",
+      "T7": "A",
+      "T8": "A",
+      "T9": "A",
+      "T10": "A",
+      "ML1": "A",
+      "ML2": "A",
+      "ML3": "A",
+      "ML4": "A",
+      "ML5": "A",
+      "ML6": "A"
+    }
+  },
+  "selectedAnswers": [
+    {
+      "id": "O1",
+      "prompt": "Can a new potential customer understand what you sell within a few seconds of hearing or reading your explanation?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. I can explain our primary offer clearly in one simple sentence.",
+        "score": 5
+      }
+    },
+    {
+      "id": "O2",
+      "prompt": "Does your primary offer promise a clear outcome or improvement for the customer?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. The desired customer outcome is specific and central to the offer.",
+        "score": 5
+      }
+    },
+    {
+      "id": "O3",
+      "prompt": "How clearly defined is the customer your primary offer is intended for?",
+      "selected": {
+        "value": "A",
+        "text": "Extremely clear. We know who benefits most and who generally isn\u2019t a good fit.",
+        "score": 5
+      }
+    },
+    {
+      "id": "O4",
+      "prompt": "How frequently do qualified prospects question the value, price, or reason they should choose your offer?",
+      "selected": {
+        "value": "A",
+        "text": "Rarely. Qualified prospects generally understand why the offer is valuable.",
+        "score": 5
+      }
+    },
+    {
+      "id": "O5",
+      "prompt": "How much evidence do you have that people actually want this offer?",
+      "selected": {
+        "value": "A",
+        "text": "Strong evidence. We consistently sell it and/or customers repeatedly seek it out.",
+        "score": 5
+      }
+    },
+    {
+      "id": "O6",
+      "prompt": "If qualified traffic to your offer doubled tomorrow, how confident would you feel sending those people into the current sales experience?",
+      "selected": {
+        "value": "A",
+        "text": "Very confident. More qualified traffic would be welcome.",
+        "score": 5
+      }
+    },
+    {
+      "id": "A1",
+      "prompt": "How clearly can you identify the type of customer who gets the most value from your primary offer?",
+      "selected": {
+        "value": "A",
+        "text": "Very clearly. Our best customers share identifiable characteristics, problems, circumstances, or goals.",
+        "score": 5
+      }
+    },
+    {
+      "id": "A2",
+      "prompt": "Do your best customers tend to share a specific problem, trigger, or situation that causes them to start looking for a solution like yours?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We understand the specific situations or problems that typically create demand.",
+        "score": 5
+      }
+    },
+    {
+      "id": "A3",
+      "prompt": "How often are the leads or prospects reaching you actually a good fit for what you sell?",
+      "selected": {
+        "value": "A",
+        "text": "Most are reasonably well qualified.",
+        "score": 5
+      }
+    },
+    {
+      "id": "A4",
+      "prompt": "How well do you understand what your customer is ultimately trying to accomplish beyond simply buying your product or service?",
+      "selected": {
+        "value": "A",
+        "text": "Very well. We understand the larger business, professional, practical, or personal outcome they want.",
+        "score": 5
+      }
+    },
+    {
+      "id": "A5",
+      "prompt": "If you needed to put your offer in front of 1,000 ideal prospects, do you know who those people would be and where you could realistically reach them?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We know who they are and have several realistic ways to reach them.",
+        "score": 5
+      }
+    },
+    {
+      "id": "M1",
+      "prompt": "Can a new visitor understand the main value you provide within the first few seconds of seeing your website, landing page, ad, or profile?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. The main outcome and value are immediately clear.",
+        "score": 5
+      }
+    },
+    {
+      "id": "M2",
+      "prompt": "Does your marketing emphasize what changes for the customer, or mostly describe what you provide?",
+      "selected": {
+        "value": "A",
+        "text": "We strongly emphasize customer outcomes and transformation.",
+        "score": 5
+      }
+    },
+    {
+      "id": "M3",
+      "prompt": "How closely does your marketing language reflect the actual problems, goals, and words your customers use?",
+      "selected": {
+        "value": "A",
+        "text": "Very closely. Our messaging is informed by sales conversations, reviews, research, search behavior, or other direct evidence.",
+        "score": 5
+      }
+    },
+    {
+      "id": "M4",
+      "prompt": "Can a potential customer quickly understand why they should choose you instead of another reasonable alternative?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. Our differentiation is clear, relevant, and meaningful to the customer.",
+        "score": 5
+      }
+    },
+    {
+      "id": "M5",
+      "prompt": "Does your marketing create a meaningful emotional reason for the customer to care?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. Our messaging connects clearly to meaningful ambitions, frustrations, fears, desires, identity, or relief.",
+        "score": 5
+      }
+    },
+    {
+      "id": "M6",
+      "prompt": "How much credible evidence supports the important claims you make in your marketing?",
+      "selected": {
+        "value": "A",
+        "text": "A lot. We regularly use relevant testimonials, reviews, results, case studies, demonstrations, data, associations, or other proof.",
+        "score": 5
+      }
+    },
+    {
+      "id": "C1",
+      "prompt": "When someone reaches your main conversion page or experience, is the primary action you want them to take immediately clear?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. There is one obvious primary action.",
+        "score": 5
+      }
+    },
+    {
+      "id": "C2",
+      "prompt": "How much work does a visitor have to do before they understand why taking the next step is worthwhile?",
+      "selected": {
+        "value": "A",
+        "text": "Very little. The value and next step are clear near the beginning.",
+        "score": 5
+      }
+    },
+    {
+      "id": "C3",
+      "prompt": "How well does the promise that gets someone to your website or landing page match what they encounter once they arrive?",
+      "selected": {
+        "value": "A",
+        "text": "Very closely. The promise, language, offer, and next step feel consistent.",
+        "score": 5
+      }
+    },
+    {
+      "id": "C4",
+      "prompt": "How much unnecessary friction exists between interest and conversion?",
+      "selected": {
+        "value": "A",
+        "text": "Very little. The process is simple and intentional.",
+        "score": 5
+      }
+    },
+    {
+      "id": "C5",
+      "prompt": "How strong is the proof or reassurance around the point where you\u2019re asking someone to take action?",
+      "selected": {
+        "value": "A",
+        "text": "Strong. Relevant proof and reassurance are located close to the decision.",
+        "score": 5
+      }
+    },
+    {
+      "id": "C6",
+      "prompt": "How well does your conversion experience match the level of commitment you\u2019re asking from the visitor?",
+      "selected": {
+        "value": "A",
+        "text": "Very well. The amount of information, proof, and friction fits the decision.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T1",
+      "prompt": "Do you know which traffic sources primarily introduce new people to your business versus bringing back people who already know you?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We clearly understand which channels play prospecting, retargeting, branded, referral, organic, or similar roles.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T2",
+      "prompt": "Do you know whether enough new demand is entering the system to support the conversions and growth you want?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We understand how much new traffic or lead volume enters the funnel and approximately what happens afterward.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T3",
+      "prompt": "When performance changes, how confidently can you determine whether the cause is traffic, the offer, the website, product or merchandising changes, pricing, tracking, follow-up, or something else?",
+      "selected": {
+        "value": "A",
+        "text": "Very confidently. We have enough data and process to investigate across the customer journey.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T4",
+      "prompt": "Are your acquisition channels intentionally assigned different roles, or are you expecting every channel to do everything?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. Different channels have clear strategic roles.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T5",
+      "prompt": "Do you have someone with dedicated responsibility and time to keep improving your paid advertising through testing?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. Someone has clear responsibility and protected time, runs a prioritized testing program, and regularly applies what we learn.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T6",
+      "prompt": "Do you know what you can afford to pay for a customer and a qualified lead\u2014and the target that makes advertising worthwhile?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We calculate and regularly review affordable customer and qualified-lead costs using close rates, customer value, costs, and margins.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T7",
+      "prompt": "Do you review both the return from individual advertising platforms and the overall return from your advertising investment?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We regularly review both and use them together to guide budget and growth decisions.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T8",
+      "prompt": "How clearly can you explain those results and what they mean for the business?",
+      "selected": {
+        "value": "A",
+        "text": "We review changes alongside spend, customer volume, customer quality, and profitability, and can explain our decisions.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T9",
+      "prompt": "How consistently do you develop and test new advertising ideas to find your next opportunity?",
+      "selected": {
+        "value": "A",
+        "text": "We have an ongoing pipeline of ideas informed by customers and performance, and use each round of testing to improve the next.",
+        "score": 5
+      }
+    },
+    {
+      "id": "T10",
+      "prompt": "Are your campaigns optimizing for the results that create real value for your business?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We verify that the outcomes and values used for optimization reflect valuable purchases or qualified opportunities, or the intended role of awareness campaigns.",
+        "score": 5
+      }
+    },
+    {
+      "id": "ML1",
+      "prompt": "Have you clearly defined the small number of business outcomes that matter most for judging whether marketing is working?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We have a small, clearly defined set of primary business KPIs.",
+        "score": 5
+      }
+    },
+    {
+      "id": "ML2",
+      "prompt": "Do you distinguish between outcome KPIs and diagnostic KPIs?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We intentionally use both and understand their different purposes.",
+        "score": 5
+      }
+    },
+    {
+      "id": "ML3",
+      "prompt": "Do you maintain a KPI report or dashboard that lets you compare the same important metrics over time?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. It is consistently updated and actively used for decisions.",
+        "score": 5
+      }
+    },
+    {
+      "id": "ML4",
+      "prompt": "Does your team agree on where important KPIs come from, which sources should be treated as authoritative, and whether the data is reliable enough to make decisions?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We have clear sources of truth and regularly validate important tracking.",
+        "score": 5
+      }
+    },
+    {
+      "id": "ML5",
+      "prompt": "Can you connect marketing activity to meaningful downstream business outcomes?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We can connect acquisition to meaningful downstream outcomes.",
+        "score": 5
+      }
+    },
+    {
+      "id": "ML6",
+      "prompt": "When performance changes, do you have a consistent process for reviewing the data, recent changes, and customer journey before making major marketing decisions?",
+      "selected": {
+        "value": "A",
+        "text": "Yes. We review business outcomes, diagnostic KPIs, tracking, recent changes, and the broader funnel before acting.",
+        "score": 5
+      }
+    }
+  ],
+  "report": {
+    "versions": {
+      "questionnaire": "2.0.0-preview.5",
+      "scoring": "2.0.0-preview.5",
+      "report": "2.0.0-preview.5"
+    },
+    "createdAt": "2026-11-02T17:00:00.000Z",
+    "setup": {
+      "paidStatus": "running",
+      "outcome": [
+        "trials_demos",
+        "registrations",
+        "store_visits",
+        "subscribers",
+        "other"
+      ],
+      "nonUseReason": "running",
+      "platforms": "multiple",
+      "owner": "Dedicated internal specialist",
+      "trend": "Generally stable",
+      "testReadiness": "ready"
+    },
+    "answers": {
+      "O1": "A",
+      "O2": "A",
+      "O3": "A",
+      "O4": "A",
+      "O5": "A",
+      "O6": "A",
+      "A1": "A",
+      "A2": "A",
+      "A3": "A",
+      "A4": "A",
+      "A5": "A",
+      "M1": "A",
+      "M2": "A",
+      "M3": "A",
+      "M4": "A",
+      "M5": "A",
+      "M6": "A",
+      "C1": "A",
+      "C2": "A",
+      "C3": "A",
+      "C4": "A",
+      "C5": "A",
+      "C6": "A",
+      "T1": "A",
+      "T2": "A",
+      "T3": "A",
+      "T4": "A",
+      "T5": "A",
+      "T6": "A",
+      "T7": "A",
+      "T8": "A",
+      "T9": "A",
+      "T10": "A",
+      "ML1": "A",
+      "ML2": "A",
+      "ML3": "A",
+      "ML4": "A",
+      "ML5": "A",
+      "ML6": "A"
+    },
+    "diagnosis": {
+      "sectionScores": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100,
+        "5": 100,
+        "6": 100
+      },
+      "nonUseScoring": {
+        "questionIds": [],
+        "combinedWeight": 0,
+        "readinessCombinedWeight": 0,
+        "reason": "running"
+      },
+      "overallScore": 100,
+      "opportunities": [],
+      "lowestSectionId": 1,
+      "contradictions": [],
+      "path": "strong, balanced foundations",
+      "priorityReason": "No specific gap is established by these self-reported answers. Validate the evidence and test one useful improvement."
+    },
+    "businessGoals": [
+      {
+        "id": "trials_demos",
+        "label": "Trials or demos",
+        "measure": "Qualified trials or demos and the share that become customers"
+      },
+      {
+        "id": "registrations",
+        "label": "Registrations",
+        "measure": "Relevant completed registrations and the next useful customer action"
+      },
+      {
+        "id": "store_visits",
+        "label": "Store visits",
+        "measure": "Meaningful store visits and resulting sales, with measurement limits recorded"
+      },
+      {
+        "id": "subscribers",
+        "label": "Subscribers",
+        "measure": "Relevant subscribers, engagement and downstream customer value"
+      },
+      {
+        "id": "other",
+        "label": "Another business outcome",
+        "measure": "A clearly named business outcome, its definition and a trustworthy source"
+      }
+    ],
+    "introduction": "Your selected goals are trials or demos, registrations, store visits, subscribers, another business outcome. Your answers point to direct evidence of demand, a useful understanding of your best-fit customers, and a clear next step. Those are useful foundations to keep. No specific weakness is identified. For your lead-generation business, the next opportunity is to validate the quality of opportunities behind reported lead results. The three moves will check a recent evidence sample, define one useful testable idea and complete a small, clearly defined validation exercise or an explicit no-change decision.",
+    "trendNote": "You reported advertising returns as \u201cGenerally stable\u201d. This is context, not a score or proof of a cause. Check spend, volume, customer quality, margins, seasonality, and conversion delays before interpreting it; improving returns can coexist with shrinking total profit, and declining returns can accompany deliberate expansion.",
+    "recommendations": [
+      {
+        "id": "validate_1",
+        "title": "Validate the quality of opportunities behind reported lead results",
+        "whatToDo": "Trace a feasible sample of qualified opportunities to sales and customer value, allowing for close rates and sales delays.",
+        "why": "No specific weakness is established. Check the evidence behind the capability rather than assuming it needs repair.",
+        "doneWhen": "A recent evidence sample documents the quality of opportunities behind reported lead results, including limitations.",
+        "selectionReason": "Your answers do not identify a specific gap. This move supports validate the quality of opportunities behind reported lead results within the reported context.",
+        "evidenceIds": [],
+        "preserveQuestionIds": [
+          "O1",
+          "O2",
+          "O3",
+          "O4",
+          "O5",
+          "O6",
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "M1",
+          "M2",
+          "M3",
+          "M4",
+          "M5",
+          "M6",
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "T1",
+          "T2",
+          "T3",
+          "T4",
+          "T5",
+          "T6",
+          "T7",
+          "T8",
+          "T9",
+          "T10",
+          "ML1",
+          "ML2",
+          "ML3",
+          "ML4",
+          "ML5",
+          "ML6"
+        ]
+      },
+      {
+        "id": "validate_2",
+        "title": "Choose one small, testable improvement",
+        "whatToDo": "Choose one customer-quality or message testable idea that the existing process can evaluate; define the useful customer action and follow-up period.",
+        "why": "The next learning question should fit your business outcome and the process you already report as effective.",
+        "doneWhen": "A testable idea names the business outcome, comparison, owner, limits and review period.",
+        "selectionReason": "Your answers do not identify a specific gap. This move supports choose one small, testable improvement within the reported context.",
+        "evidenceIds": [],
+        "preserveQuestionIds": [
+          "O1",
+          "O2",
+          "O3",
+          "O4",
+          "O5",
+          "O6",
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "M1",
+          "M2",
+          "M3",
+          "M4",
+          "M5",
+          "M6",
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "T1",
+          "T2",
+          "T3",
+          "T4",
+          "T5",
+          "T6",
+          "T7",
+          "T8",
+          "T9",
+          "T10",
+          "ML1",
+          "ML2",
+          "ML3",
+          "ML4",
+          "ML5",
+          "ML6"
+        ]
+      },
+      {
+        "id": "validate_3",
+        "title": "Check the idea while keeping current activity stable",
+        "whatToDo": "Use the existing advertising owner and testing process you report as effective. Prepare or run the small, clearly defined validation exercise only within the confirmed resources, keeping successful activity stable; record a no-change decision if no useful testable idea is supported. Review the selected business goals separately; one goal\u2019s volume or cost target does not establish success for another.",
+        "why": "A small validation exercise or a no-change decision can be useful even when reported capabilities are strong.",
+        "doneWhen": "A small, clearly defined validation exercise or an evidence-supported no-change decision is documented with an owner, comparison, limits and review date.",
+        "selectionReason": "Your answers do not identify a specific gap. This move supports check the idea while keeping current activity stable within the reported context.",
+        "evidenceIds": [],
+        "preserveQuestionIds": [
+          "O1",
+          "O2",
+          "O3",
+          "O4",
+          "O5",
+          "O6",
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "M1",
+          "M2",
+          "M3",
+          "M4",
+          "M5",
+          "M6",
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "T1",
+          "T2",
+          "T3",
+          "T4",
+          "T5",
+          "T6",
+          "T7",
+          "T8",
+          "T9",
+          "T10",
+          "ML1",
+          "ML2",
+          "ML3",
+          "ML4",
+          "ML5",
+          "ML6"
+        ]
+      }
+    ],
+    "thirtyDayPlan": [
+      {
+        "week": 1,
+        "title": "Establish the evidence",
+        "objective": "Understand the quality of opportunities behind reported lead results before making changes.",
+        "actions": [
+          "Trace a feasible sample of qualified opportunities to sales and customer value, allowing for close rates and sales delays.",
+          "Record observed facts, assumptions and missing information.",
+          "Record a separate baseline and useful measure for each selected business goal."
+        ],
+        "completionCriteria": "A relevant baseline and its limits are documented before the decision.",
+        "recommendationIds": [
+          "validate_1",
+          "validate_2",
+          "validate_3"
+        ]
+      },
+      {
+        "week": 2,
+        "title": "Choose the improvement",
+        "objective": "Choose a response the evidence and available resources can support.",
+        "actions": [
+          "Choose one customer-quality or message testable idea that the existing process can evaluate; define the useful customer action and follow-up period."
+        ],
+        "completionCriteria": "A small, clearly defined decision records its evidence, owner, resources, success/review criteria and any reason to defer.",
+        "recommendationIds": [
+          "validate_1",
+          "validate_2",
+          "validate_3"
+        ]
+      },
+      {
+        "week": 3,
+        "title": "Complete the agreed work",
+        "objective": "Carry out the agreed improvement, validation or readiness work; a live campaign or website change is not required.",
+        "actions": [
+          "Use the existing advertising owner and testing process you report as effective. Prepare or run the small, clearly defined validation exercise only within the confirmed resources, keeping successful activity stable; record a no-change decision if no useful testable idea is supported."
+        ],
+        "completionCriteria": "A recent evidence sample documents the quality of opportunities behind reported lead results, including limitations. A testable idea names the business outcome, comparison, owner, limits and review period. A small, clearly defined validation exercise or an evidence-supported no-change decision is documented with an owner, comparison, limits and review date.",
+        "recommendationIds": [
+          "validate_1",
+          "validate_2",
+          "validate_3"
+        ]
+      },
+      {
+        "week": 4,
+        "title": "Evaluate the completed work",
+        "objective": "Review the work already completed and what you learned before deciding what comes next.",
+        "actions": [
+          "Review qualified opportunity volume, close rates, customer value, resource use and uncertainty; allow more time if sales have not matured.",
+          "Compare the completed work with the agreed completion criteria. Record the result, limitations and a keep, refine, defer or stop decision; any further implementation belongs in a later plan.",
+          "Evaluate each selected business goal against its own baseline; record tradeoffs rather than combining unlike results."
+        ],
+        "completionCriteria": "A review note evaluates the completed work and records a decision without claiming unsupported performance gains.",
+        "recommendationIds": [
+          "validate_1",
+          "validate_2",
+          "validate_3"
+        ]
+      }
+    ],
+    "progressMeasures": [
+      "Qualified trials or demos and the share that become customers",
+      "Relevant completed registrations and the next useful customer action",
+      "Meaningful store visits and resulting sales, with measurement limits recorded",
+      "Relevant subscribers, engagement and downstream customer value",
+      "A clearly named business outcome, its definition and a trustworthy source",
+      "Completion of the agreed action, a dated evidence log and remaining measurement limits."
+    ],
+    "workSession": [
+      "Which recent example could validate the quality of opportunities behind reported lead results?",
+      "What evidence supports this interpretation, and what would change your mind?",
+      "Who owns the next decision and how much time can they protect?",
+      "Which one hypothesis is worth testing within your resources?",
+      "What baseline, budget limit, review date, and stop conditions will you use?",
+      "What will you keep, change, or stop after reviewing the evidence?"
+    ],
+    "caveat": "This review is based on your answers. Check the findings against your records and customer experience before making decisions; the review does not guarantee a business result.",
+    "context": {
+      "companyName": "Synthetic Example Company",
+      "name": "Synthetic Reviewer",
+      "websiteUrl": "https://example.com"
+    }
+  },
+  "pillarDescriptions": [
+    "Your answers report a clear offer supported by useful customer and demand evidence.",
+    "Your answers report a useful understanding of customer fit, buying situations and ways to reach suitable people.",
+    "Your answers report a clear, relevant message with credible support for the claims you make.",
+    "Your answers report a clear next step, useful reassurance and a customer path that has been checked.",
+    "Your answers report clear channel roles, affordable targets and a repeatable way to review and learn from paid activity.",
+    "Your answers report defined business measures, trusted sources and a consistent review and learning process."
+  ]
+}

@@ -192,7 +192,7 @@ function BrandedPage({
   editorial = false,
   children,
 }: {
-  report: FrozenAuditReport;
+  report: {context:{companyName:string}};
   title: string;
   compact?: boolean;
   editorial?: boolean;
@@ -892,3 +892,6 @@ export async function renderAuditPdf(
   });
   return Buffer.from(await document.save());
 }
+
+// Shared visual primitives: v2 supplies its own frozen content, never the v1 diagnosis.
+export {BrandedPage, Text as AuditPdfText, Heading as AuditPdfHeading, Paragraph as AuditPdfParagraph, styles as auditPdfStyles};

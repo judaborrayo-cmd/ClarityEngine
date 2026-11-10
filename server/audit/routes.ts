@@ -1,7 +1,26 @@
+import {integrationStaging} from "./integration-staging";
 import { cleanPurchaseAttribution } from './purchase-attribution';
 import { HubSpotPurchases } from './hubspot-purchases';
-import { signMetaPurchase, verifyMetaPurchase, sendMetaPurchase } from './meta-conversions';
-import { discoverCompanyLogo, validatedCachedCompanyLogo } from "./company-logo";
+import { signMetaCompletion, verifyMetaCompletion, sendMetaCompletion, signMetaPurchase, verifyMetaPurchase, sendMetaPurchase } from './meta-conversions';
+import {assessmentModel,isV2Version,currentAssessmentVersion} from "../../shared/marketing-clarity-audit/versioning";
+import {isSetupAnswered} from "../../shared/marketing-clarity-audit/v2-next/customer-sequence";
+import { Pool } from "@neondatabase/serverless";
+import { VersionedAuditStore } from "./versioned-store";
+import {
+  versions as v2Versions,
+  assessmentQuestions as v2Questions,
+  requiredSetupFields,
+} from "../../shared/marketing-clarity-audit/v2/questionnaire";
+import {
+  validateAnswers as validateV2Answers,
+  draftSchema as v2Draft,
+} from "../../shared/marketing-clarity-audit/v2/engine";
+import { isV2Report } from "../../shared/marketing-clarity-audit/v2/customer-report";
+import { renderPreviewPdf } from "./v2-pdf";
+import {
+  discoverCompanyLogo,
+  validatedCachedCompanyLogo,
+} from "./company-logo";
 import { isLocalQaCheckout, localQaEnabled } from "./local-qa";
 import express, { type Request } from "express";
 import { ZodError, z } from "zod";
@@ -26,6 +45,15 @@ export interface AuditDependencies {
   tokenSecret: string;
   crm?: Pick<HubSpotPurchases, "sync">;
   discoverLogo?: (website: string) => Promise<Buffer | null>;
+}
+function customerReport(report: unknown) {
+  if (!isV2Report(report)) return report;
+  return {
+    ...report,
+    recommendations: report.recommendations.map(
+      ({ selectionReason, evidenceIds, preserveQuestionIds, ...move }) => move,
+    ),
+  };
 }
 const cookieName = "clarity_audit_purchase";
 function claimCookie(req: Request) {
@@ -75,7 +103,42 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       throw new Error("Audit configuration unavailable");
     if (process.env.HUBSPOT_PURCHASE_SYNC_ENABLED === "true" && !process.env.HUBSPOT_SERVICE_KEY) throw new Error("HubSpot configuration unavailable");
     configured = {
-      store: new PostgresAuditStore(DATABASE_URL),
+      store:
+        process.env.AUDIT_V2_PREVIEW === "true"
+          ? (() => {
+              if (
+                process.env.VERCEL_ENV !== "preview" &&
+                process.env.NODE_ENV !== "development"
+              )
+                throw new Error("V2 is preview only");
+              if (
+                !STRIPE_SECRET_KEY.startsWith("sk_test_") &&
+                !STRIPE_SECRET_KEY.startsWith("rk_test_")
+              )
+                throw new Error("Preview requires Stripe test mode");
+              if (
+                !new URL(DATABASE_URL).searchParams
+                  .get("options")
+                  ?.includes("search_path=clarity_audit_v2_staging")
+              )
+                throw new Error("Preview requires isolated staging schema");
+              return new VersionedAuditStore(
+                DATABASE_URL,
+                new Pool({ connectionString: DATABASE_URL }),
+                process.env.AUDIT_V2_NEW_PURCHASES === "true"
+                  ? currentAssessmentVersion
+                  : "1.0.0",
+              );
+            })()
+          : process.env.AUDIT_VERSIONED_ENABLED === "true"
+            ? new VersionedAuditStore(
+                DATABASE_URL,
+                new Pool({ connectionString: DATABASE_URL }),
+                process.env.AUDIT_V2_NEW_PURCHASES === "true"
+                  ? currentAssessmentVersion
+                  : "1.0.0",
+              )
+            : new PostgresAuditStore(DATABASE_URL),
       payment: new StripeAuditPayment(
         STRIPE_SECRET_KEY,
         MARKETING_AUDIT_STRIPE_PRICE_ID,
@@ -111,8 +174,19 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           res.status(400).json({ error: "Invalid webhook signature" });
           return;
         }
-        if (event.checkoutId && ((await payment.isPaid(event.checkoutId)) || (await payment.deepDiveReceipt?.(event.checkoutId))))
+        if (event.checkoutId && ((await payment.isPaid(event.checkoutId)) || (await payment.deepDiveReceipt?.(event.checkoutId)))) {
           await store.paymentEvent(event.id, event.checkoutId);
+          if (store instanceof VersionedAuditStore && payment.receipt) {
+            const row = await store.verify(event.checkoutId),
+              receipt = await payment.receipt(event.checkoutId);
+            if (row && receipt)
+              await store.purchaseReceipt(
+                row.id,
+                receipt.amount,
+                receipt.currency,
+              );
+          }
+        }
         if (crm && event.checkoutId && event.paidAt) {
           if (!payment.crmPurchase || !store.crmPurchaseOnce) throw new Error('CRM sync is not configured');
           const purchase = await payment.crmPurchase(event.checkoutId, event.paidAt);
@@ -199,6 +273,17 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     await store.saveAttribution(reference,fields);
     res.json({reference});
   }));
+  router.get(
+    "/preview-status",
+    handle(async (_req, res, { store }) => {
+      res.json({
+        enabled:
+          store instanceof VersionedAuditStore &&
+          isV2Version(store.newVersion),
+        testMode: process.env.AUDIT_V2_PREVIEW === "true",
+      });
+    }),
+  );
   router.post(
     "/checkout",
     handle(async (req, res, { payment, store, origin, tokenSecret }) => {
@@ -217,13 +302,32 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         if(!store.saveAttribution) throw new Error('Attribution store unavailable');
         reference='ce_attr_'+opaqueToken(); await store.saveAttribution(reference,fields);
       }
-      const checkout = await payment.checkout(origin, tokenHash(claim), reference);
+      const checkout = await payment.checkout(origin, tokenHash(claim), reference, store instanceof VersionedAuditStore ? store.newVersion : "1.0.0");
       res.locals.auditStage = "pending_audit_save";
       await store.initiate(
         checkout.id,
         tokenHash(claim),
         tokenHash(resumeToken(claim, checkout.id, tokenSecret)),
       );
+      if (store instanceof VersionedAuditStore && req.body?.attribution?.consent === true) {
+        const attribution = z
+          .object({
+            consent: z.literal(true),
+            utm_source: z.string().max(100).optional(),
+            utm_medium: z.string().max(100).optional(),
+            utm_campaign: z.string().max(100).optional(),
+          })
+          .strict()
+          .optional()
+          .parse(req.body?.attribution);
+        if (attribution)
+          await store.saveCheckoutAttribution(
+            checkout.id,
+            Object.fromEntries(
+              Object.entries(attribution).filter(([k]) => k !== "consent"),
+            ) as Record<string, string>,
+          );
+      }
       res.locals.auditStage = "checkout_ready";
       res.json({ url: checkout.url });
     }),
@@ -237,6 +341,16 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     const agent = req.get('user-agent')?.slice(0,1000);
     if (!agent) { res.status(400).json({error:'Browser information required'}); return; }
     await store.metaPurchaseOnce(proof.id, () => sendMetaPurchase(proof,{fbp:input.fbp,fbc:input.fbc,agent},token));
+    res.json({received:true});
+  }));  router.post('/meta-completion', handle(async (req,res,{store,tokenSecret}) => {
+    const input = z.object({proof:z.string().max(2000),consent:z.literal(true),fbp:z.string().regex(/^fb\.[012]\.\d{10,16}\.[A-Za-z0-9_-]{1,200}$/),fbc:z.string().regex(/^fb\.[012]\.\d{10,16}\.[A-Za-z0-9_-]{1,500}$/).optional()}).strict().parse(req.body);
+    const proof = verifyMetaCompletion(input.proof, tokenSecret);
+    if (!proof) { res.status(403).json({error:'Verified completion required'}); return; }
+    const token = process.env.META_CONVERSIONS_API_TOKEN;
+    if (!token || !store.metaPurchaseOnce) { res.status(503).json({error:'Conversion delivery unavailable'}); return; }
+    const agent = req.get('user-agent')?.slice(0,1000);
+    if (!agent) { res.status(400).json({error:'Browser information required'}); return; }
+    await store.metaPurchaseOnce(proof.id, () => sendMetaCompletion(proof,{fbp:input.fbp,fbc:input.fbc,agent},token));
     res.json({received:true});
   }));
   router.post(
@@ -282,7 +396,15 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       }
       const token = resumeToken(claim, checkoutId, tokenSecret);
       // Recover after a paid checkout whose initial database creation failed.
-      await store.initiate(checkoutId, tokenHash(claim), tokenHash(token));
+      await store.initiate(
+        checkoutId,
+        tokenHash(claim),
+        tokenHash(token),
+        payment.receipt
+          ? ((await payment.receipt(checkoutId, tokenHash(claim)))?.version ??
+              "1.0.0")
+          : undefined,
+      );
       const row = await store.verify(checkoutId, tokenHash(claim));
       if (!row || (isLocalQaCheckout(row.checkout_id) && !localQaEnabled())) {
         res
@@ -290,13 +412,20 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
           .json({ error: "Purchase ownership could not be verified" });
         return;
       }
-      const receipt = checkoutId.startsWith("cs_live_") ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: paidReceipt?.value ?? 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: paidReceipt?.value ?? 27, quantity: 1 }] } : null;
+      if (store instanceof VersionedAuditStore && payment.receipt) {
+        const receipt = await payment.receipt(checkoutId, tokenHash(claim));
+        if (receipt)
+          await store.purchaseReceipt(row.id, receipt.amount, receipt.currency);
+      }
+      const receipt = (checkoutId.startsWith("cs_live_") || (integrationStaging() && checkoutId.startsWith("cs_test_"))) ? { transaction_id: `ce_${tokenHash(checkoutId)}`, currency: "USD", value: paidReceipt?.value ?? 27, items: [{ item_id: "clarity-assessment", item_name: "Get Clarity Assessment", price: paidReceipt?.value ?? 27, quantity: 1 }] } : null;
       res.json({ token, receipt: receipt ? { ...receipt, meta_proof: signMetaPurchase(receipt, tokenSecret) } : null });
+
     }),
   );
   router.use("/:token", async (req, res, next) => {
     try {
       const token = req.params.token;
+      if (integrationStaging() && process.env.AUDIT_REVOKED_TEST_TOKEN_HASH === tokenHash(token)) {res.status(404).json({error:"Test assessment retired"});return;}
       if (!validToken(token)) {
         res.status(404).json({
           error:
@@ -336,13 +465,23 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       const row = res.locals.audit;
       res.json({
         localQa: isLocalQaCheckout(row.checkout_id),
+        version: row.content_version ?? "1.0.0",
+        setup: row.setup ?? {},
         context: row.context,
         answers: row.answers,
         completed: Boolean(row.report),
         runNumber: row.run_number,
         completedReports: row.reports.map((r: { number: number }) => r.number),
         savedAt: row.saved_at,
-        progress: assessmentProgress(row.answers),
+        progress:
+          isV2Version(row.content_version)
+            ? {
+                answered:
+                  Object.keys(row.answers).length +
+                  requiredSetupFields.filter((f) => isSetupAnswered(row.setup[f])).length,
+                total: 46,
+              }
+            : assessmentProgress(row.answers),
       });
     }),
   );
@@ -356,9 +495,20 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         })
         .strict()
         .parse(req.body);
+      if (["purchase_success", "diagnostic_complete"].includes(event)) {
+        res.json({ recorded: false, serverOwned: true });
+        return;
+      }
       if (questionId) {
         try {
-          validateAnswers({ [questionId]: "A" });
+          if (isV2Version(res.locals.audit.content_version)) {
+            if (
+              !(assessmentModel(res.locals.audit.content_version).questions as (s:any)=>ReturnType<typeof v2Questions>)(res.locals.audit.setup).some(
+                (q) => q.id === questionId,
+              )
+            )
+              throw new Error("Invalid event question");
+          } else validateAnswers({ [questionId]: "A" });
         } catch {
           res.status(400).json({ error: "Invalid event question" });
           return;
@@ -371,12 +521,32 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
   router.put(
     "/:token/context",
     handle(async (req, res, { store }) => {
-      const context = customerContextSchema.parse(req.body);
-      if (!(await store.saveContext(res.locals.auditHash, context))) {
+      const context = (isV2Version(res.locals.audit.content_version)?assessmentModel(res.locals.audit.content_version).contextSchema:customerContextSchema).parse(req.body);
+      if (!(await store.saveContext(res.locals.auditHash, context as any))) {
         res.status(409).json({
           error:
             "Completed reports and purchaser/business identity cannot be changed.",
         });
+        return;
+      }
+      res.json({ saved: true });
+    }),
+  );
+  router.put(
+    "/:token/setup",
+    handle(async (req, res, { store }) => {
+      const input = z
+        .object({
+          field: z.enum([...requiredSetupFields, "trendContext"]),
+          value: z.union([z.string().max(1200),z.array(z.string().max(80)).max(10)]),
+        })
+        .strict()
+        .parse(req.body);
+      if (
+        !(store instanceof VersionedAuditStore) ||
+        !(await store.saveSetup(res.locals.auditHash, input.field, input.value))
+      ) {
+        res.status(409).json({ error: "This context cannot be changed." });
         return;
       }
       res.json({ saved: true });
@@ -388,12 +558,18 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       const input = z
         .object({
           questionId: z.string(),
-          answer: z.enum(["A", "B", "C", "D", "E"]),
+          answer: z.enum(["A", "B", "C", "D", "E", "F"]),
         })
         .strict()
         .parse(req.body);
       try {
-        validateAnswers({ [input.questionId]: input.answer });
+        if (isV2Version(res.locals.audit.content_version)) {
+          const q = (assessmentModel(res.locals.audit.content_version).questions as (s:any)=>ReturnType<typeof v2Questions>)(res.locals.audit.setup).find(
+            (q) => q.id === input.questionId,
+          );
+          if (!q?.options.some((o) => o.value === input.answer))
+            throw new Error("Invalid answer");
+        } else validateAnswers({ [input.questionId]: input.answer });
       } catch {
         res.status(400).json({ error: "Invalid question" });
         return;
@@ -411,6 +587,10 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         res.status(409).json({
           error: "Add your details first, or open your completed report.",
         });
+        return;
+      }
+      if (isV2Version(res.locals.audit.content_version)) {
+        res.json({ saved: true });
         return;
       }
       const saved = await store.read(res.locals.auditHash);
@@ -453,10 +633,16 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
   };
   router.post(
     "/:token/complete",
-    handle(async (_req, res, { store }) => {
+    handle(async (_req, res, { store, tokenSecret }) => {
       try {
-        validateAnswers(res.locals.audit.answers, true);
-        customerContextSchema.parse(res.locals.audit.context);
+        if (isV2Version(res.locals.audit.content_version))
+          (assessmentModel(res.locals.audit.content_version).validate as (s:any,a:any,c:boolean)=>unknown)(
+            res.locals.audit.setup,
+            res.locals.audit.answers,
+            true,
+          );
+        else validateAnswers(res.locals.audit.answers, true);
+        (isV2Version(res.locals.audit.content_version)?assessmentModel(res.locals.audit.content_version).contextSchema:customerContextSchema).parse(res.locals.audit.context);
       } catch {
         res.status(400).json({
           error:
@@ -465,7 +651,8 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         return;
       }
       const report = await store.complete(res.locals.auditHash);
-      res.json({ report });
+      const completionId = `ce_${tokenHash(`${res.locals.audit.id}:${res.locals.audit.run_number}:assessment_complete`)}`;
+      res.json({ report: customerReport(report), completionId, completionProof: signMetaCompletion(completionId,tokenSecret) });
     }),
   );
   router.get(
@@ -549,7 +736,13 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
         .strict()
         .parse(req.body);
       if (
-        !workPrompts(selected.report).some((p) => p.id === req.params.entryId)
+        !(
+          isV2Report(selected.report)
+            ? selected.report.workSession.map((_: string, i: number) => ({
+                id: `work-${i + 1}`,
+              }))
+            : workPrompts(selected.report)
+        ).some((p: { id: string }) => p.id === req.params.entryId)
       ) {
         res.status(400).json({ error: "Unknown Work Session prompt." });
         return;
@@ -569,18 +762,31 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
     }),
   );
   const logoJobs = new Map<string, Promise<Buffer | null>>();
-  async function currentCompanyLogo(store: AuditStore, hash: string, website: string) {
+  async function currentCompanyLogo(
+    store: AuditStore,
+    hash: string,
+    website: string,
+  ) {
     if (!store.companyLogo || !store.saveCompanyLogo) return null;
     const cached = await store.companyLogo(hash);
-    const verified = cached?.png ? await validatedCachedCompanyLogo(cached.png, website) : null;
-    if (cached && Date.now() - cached.checkedAt.getTime() <= 86400000 && (!cached.png || verified)) return verified;
+    const verified = cached?.png
+      ? await validatedCachedCompanyLogo(cached.png, website)
+      : null;
+    if (
+      cached &&
+      Date.now() - cached.checkedAt.getTime() <= 86400000 &&
+      (!cached.png || verified)
+    )
+      return verified;
     const jobKey = `${hash}:${website}`;
     let job = logoJobs.get(jobKey);
     if (!job && logoJobs.size < 4) {
-      job = (dependencies?.discoverLogo ?? discoverCompanyLogo)(website).then(async (logo) => {
-        await store.saveCompanyLogo!(hash, website, logo);
-        return logo;
-      }).finally(() => logoJobs.delete(jobKey));
+      job = (dependencies?.discoverLogo ?? discoverCompanyLogo)(website)
+        .then(async (logo) => {
+          await store.saveCompanyLogo!(hash, website, logo);
+          return logo;
+        })
+        .finally(() => logoJobs.delete(jobKey));
       logoJobs.set(jobKey, job);
     }
     return job ? await job : null;
@@ -627,7 +833,7 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       }
       res.json({
         localQa: isLocalQaCheckout(res.locals.audit.checkout_id),
-        report: selected.report,
+        report: customerReport(selected.report),
         frozenAnswers: selected.answers,
         runNumber: selected.number,
         activeRun: res.locals.audit.run_number,
@@ -661,16 +867,22 @@ export function createAuditRouter(dependencies?: AuditDependencies) {
       let companyLogo: Buffer | undefined;
       try {
         companyLogo =
-          (await currentCompanyLogo(store, res.locals.auditHash, res.locals.audit.context.websiteUrl)) ?? undefined;
+          (await currentCompanyLogo(
+            store,
+            res.locals.auditHash,
+            res.locals.audit.context.websiteUrl,
+          )) ?? undefined;
       } catch {}
-      const pdf = await renderAuditPdf(
-        selected.report,
-        req.params.kind !== "report",
-        origin,
-        "LETTER",
-        notes,
-        companyLogo,
-      );
+      const pdf = isV2Report(selected.report)
+        ? await renderPreviewPdf(selected.report, notes)
+        : await renderAuditPdf(
+            selected.report,
+            req.params.kind !== "report",
+            origin,
+            "LETTER",
+            notes,
+            companyLogo,
+          );
       res.set({
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="marketing-clarity-${req.params.kind}-${selected.number}.pdf"`,

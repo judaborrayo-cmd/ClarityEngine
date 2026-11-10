@@ -34,43 +34,67 @@ export function snapshotLayers(report: FrozenAuditReport) {
   });
 }
 export function rankedSnapshotLayers(report: FrozenAuditReport) {
-  return snapshotLayers(report).map(layer => ({
-    ...layer,
-    label: layer.state === "primary" ? "First opportunity" : layer.state === "supporting" ? "Next opportunity" : layer.state === "strength" ? "Strength" : "Review",
-    score: Math.round(report.diagnosis.sectionScores[layer.id]),
-    description: growthLeverCopy(layer.id, report.diagnosis.sectionScores[layer.id]),
-  })).sort((a, b) => report.diagnosis.sectionScores[b.id] - report.diagnosis.sectionScores[a.id] || a.id - b.id);
+  return snapshotLayers(report)
+    .map((layer) => ({
+      ...layer,
+      label:
+        layer.state === "primary"
+          ? "First opportunity"
+          : layer.state === "supporting"
+            ? "Next opportunity"
+            : layer.state === "strength"
+              ? "Strength"
+              : "Review",
+      score: Math.round(report.diagnosis.sectionScores[layer.id]),
+      description: growthLeverCopy(
+        layer.id,
+        report.diagnosis.sectionScores[layer.id],
+      ),
+    }))
+    .sort(
+      (a, b) =>
+        report.diagnosis.sectionScores[b.id] -
+          report.diagnosis.sectionScores[a.id] || a.id - b.id,
+    );
 }
 export function SnapshotClarityStack({
   report,
 }: {
   report: FrozenAuditReport;
 }) {
+  return <SnapshotLayers layers={rankedSnapshotLayers(report)} />;
+}
+export function SnapshotLayers({
+  layers,
+}: {
+  layers: ReturnType<typeof rankedSnapshotLayers>;
+}) {
   return (
     <figure className="snapshot-clarity-stack">
       <figcaption>{reportLanguage.stack}</figcaption>
       <ol aria-label="Snapshot Clarity Stack">
-        {rankedSnapshotLayers(report).map((layer) => (
+        {layers.map((layer) => (
           <li
             key={layer.id}
             data-layer-id={layer.id}
             data-state={layer.state}
             style={{
-              background:
-                layer.state === "primary"
-                  ? layer.color
-                  : layer.tint,
-              color:
-                layer.state === "primary"
-                  ? "white"
-                  : layer.color,
+              background: layer.state === "primary" ? layer.color : layer.tint,
+              color: layer.state === "primary" ? "white" : layer.color,
               borderColor:
                 layer.state === "muted" || layer.state === "strength"
-                    ? layer.border
-                    : layer.color,
+                  ? layer.border
+                  : layer.color,
             }}
           >
-            <span><strong>{layer.name} · {layer.score} / 100</strong><small className="snapshot-layer-description">{layer.description}</small></span>
+            <span>
+              <strong>
+                {layer.name} · {layer.score} / 100
+              </strong>
+              <small className="snapshot-layer-description">
+                {layer.description}
+              </small>
+            </span>
             {layer.label && (
               <span className="snapshot-layer-state">{layer.label}</span>
             )}

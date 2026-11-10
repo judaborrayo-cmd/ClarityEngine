@@ -1,0 +1,89 @@
+.audit-v2-customer {
+  max-width: 980px;
+  margin: 100px auto 50px;
+  padding: 24px;
+  color: #172330;
+  line-height: 1.65;
+  background: #f7f6fa;
+}
+.audit-v2-customer h1 {
+  font-size: 2.2rem;
+}
+.audit-v2-customer h2 {
+  font-size: 1.65rem;
+}
+.audit-v2-customer h3 {
+  font-size: 1.2rem;
+}
+.audit-v2-customer .card {
+  background: white;
+  border: 1px solid #ddd6e6;
+  border-radius: 14px;
+  padding: 24px;
+  margin: 22px 0;
+}
+.audit-v2-customer label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid #d8d2e1;
+  border-radius: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.audit-v2-customer input {
+  margin-top: 6px;
+}
+.audit-v2-customer button,
+.audit-v2-customer .download {
+  display: inline-block;
+  border: 1px solid #513475;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin: 6px;
+  background: #fff;
+  color: #39234e;
+}
+.audit-v2-customer button:disabled {
+  opacity: 0.5;
+}
+.audit-v2-customer .scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.audit-v2-customer .scores strong,
+.audit-v2-customer .scores span {
+  display: block;
+}
+.audit-v2-customer .move {
+  padding: 16px 0;
+  border-bottom: 1px solid #ddd;
+}
+.audit-v2-customer textarea {
+  display: block;
+  width: 100%;
+  min-height: 110px;
+  padding: 12px;
+  border: 1px solid #aaa;
+}
+.audit-v2-customer .preview-label {
+  font-weight: 700;
+  color: #68412d;
+}
+.audit-v2-customer progress {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .audit-v2-customer {
+    margin-top: 75px;
+    padding: 15px;
+  }
+  .audit-v2-customer .card {
+    padding: 16px;
+  }
+  .audit-v2-customer .scores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

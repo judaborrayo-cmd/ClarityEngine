@@ -1,3 +1,6 @@
+import {integrationStaging} from "./integration-staging";
+import { customerCopy } from "../../shared/marketing-clarity-audit/v2/customer-copy";
+import { isV2Version } from "../../shared/marketing-clarity-audit/versioning";
 import { websitePurchase, type CrmPurchase } from './hubspot-purchases';
 import Stripe from "stripe";
 
@@ -6,7 +9,9 @@ export interface AuditPayment {
     origin: string,
     claimHash: string,
     attributionReference?: string,
+    version?: string,
   ): Promise<{ id: string; url: string }>;
+  receipt?(id: string, claimHash?: string): Promise<{amount:number;currency:string;version?:string}|undefined>;
   deepDiveReceipt?(id: string): Promise<{ value: number } | null>;
   sprintReceipt?(id: string): Promise<{ value: number } | null>;
   assessmentReceipt?(id: string, claimHash: string): Promise<{ value: number } | null>;
@@ -23,13 +28,13 @@ export class StripeAuditPayment implements AuditPayment {
   ) {
     this.stripe = new Stripe(secret);
   }
-  async checkout(origin: string, claimHash: string, attributionReference?: string) {
+  async checkout(origin: string, claimHash: string, attributionReference?: string, version = "1.0.0") {
     const session = await this.stripe.checkout.sessions.create({
       mode: "payment",
       allow_promotion_codes: true,
       line_items: [{ price: this.priceId, quantity: 1 }],
-      custom_text: { submit: { message: "Get Clarity Assessment by Clarity Engine examines six marketing areas to help you identify where to focus next." } },
-      metadata: { product: "marketing-clarity-audit", claimHash },
+      custom_text: { submit: { message: isV2Version(version) ? customerCopy.introduction : "Get Clarity Assessment by Clarity Engine examines six marketing areas to help you identify where to focus next." } },
+      metadata: { product: "marketing-clarity-audit", claimHash, assessmentVersion: version, ...(integrationStaging() ? {integrationTest: "combined-staging"} : {}) },
       ...(attributionReference ? {client_reference_id:attributionReference} : {}),
       success_url: `${origin}/audit/start?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/marketing-clarity-assesment`,
@@ -44,7 +49,7 @@ export class StripeAuditPayment implements AuditPayment {
     return this.validAssessment(session, claimHash);
   }
   private validAssessment(session: Stripe.Checkout.Session, claimHash?: string) {
-    return session.livemode && session.status === "complete" &&
+    return (session.livemode || (process.env.AUDIT_V2_PREVIEW === "true" && process.env.VERCEL_ENV === "preview")) && session.status === "complete" &&
       (session.payment_status === "paid" || (session.payment_status === "no_payment_required" && session.amount_total === 0)) &&
       session.mode === "payment" && session.currency === "usd" &&
       Number.isSafeInteger(session.amount_total) && session.amount_total! >= 0 &&
@@ -54,6 +59,11 @@ export class StripeAuditPayment implements AuditPayment {
       session.line_items?.data.length === 1 &&
       session.line_items.data[0].price?.id === this.priceId &&
       session.line_items.data[0].quantity === 1;
+  }
+  async receipt(id: string, claimHash?: string) {
+    const session = await this.stripe.checkout.sessions.retrieve(id, {expand:["line_items"]});
+    if (!this.validAssessment(session,claimHash)) return undefined;
+    return {amount:session.amount_total!,currency:session.currency!,version:session.metadata?.assessmentVersion ?? "1.0.0"};
   }
   async assessmentReceipt(id: string, claimHash: string) {
     const session = await this.stripe.checkout.sessions.retrieve(id, { expand: ["line_items"] });
@@ -72,7 +82,7 @@ export class StripeAuditPayment implements AuditPayment {
     return { value: (session.amount_total - (session.total_details?.amount_tax ?? 0) - (session.total_details?.amount_shipping ?? 0)) / 100 };
   }
   async crmPurchase(id: string, paidAt: number) {
-    return websitePurchase(await this.stripe.checkout.sessions.retrieve(id, { expand: ["line_items"] }), this.priceId, paidAt);
+    return websitePurchase(await this.stripe.checkout.sessions.retrieve(id, { expand: ["line_items"] }), this.priceId, paidAt, integrationStaging());
   }
   webhook(body: Buffer, signature: string) {
     const event = this.stripe.webhooks.constructEvent(

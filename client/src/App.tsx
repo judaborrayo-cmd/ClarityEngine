@@ -1,4 +1,5 @@
 import ExitIntentModal from "@/components/ExitIntentModal";
+import AuditStaging from "@/pages/audit-staging";
 import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -125,8 +126,9 @@ function Router() {
       <ExitIntentModal />
       <div className={isHome ? "-mt-6 lg:mt-0" : "pt-28 lg:pt-20"}>
         <Routes>
-          <Route path="/marketing-clarity-assesment" element={<MarketingClarityAudit />} />
+          <Route path="/marketing-clarity-assesment" element={import.meta.env.VITE_AUDIT_V2_PREVIEW === "true" ? <AuditStaging /> : <MarketingClarityAudit />} />
           <Route path="/marketing-clarity-audit" element={<LegacyAssessmentRedirect />} />
+          <Route path="/audit/preview" element={<AuditStaging />} />
           <Route path="/audit/start" element={<AuditAssessment />} />
           <Route path="/audit/resume/:token" element={<AuditAssessment />} />
           <Route path="/audit/results/:token" element={<AuditResults />} />
