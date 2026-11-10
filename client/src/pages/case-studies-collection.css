@@ -24,3 +24,18 @@
 @media(max-width:767px){.case-library-wrap{width:calc(100% - 40px)}.case-library-intro{padding:30px 0 24px}.case-library-intro .case-kicker{font-size:10px!important;margin-bottom:14px}.case-library-lead{display:block;margin-top:18px}.case-library-lead p{font-size:15px;line-height:1.65}.case-library-lead p+p{display:none}.case-explorer{padding-top:25px}.case-explorer-bar h2{font-size:23px}.case-explorer-bar>p,.case-explorer-bar .case-kicker{display:none}.case-filters{gap:7px;margin-top:16px}.case-filters button{font-size:12px;padding:9px 11px}.case-count{margin-bottom:17px}.case-explorer-grid{grid-template-columns:1fr;gap:24px}.case-work-copy{padding:22px}.case-work-copy h3,.case-work-featured h3{font-size:27px}.case-work-image img,.case-work-featured .case-work-image img{aspect-ratio:16/10}.case-work-proof strong{font-size:28px}}
 @media(prefers-reduced-motion:reduce){.case-work-image img,.case-filters button{transition:none}.case-work-image:hover img{transform:none}}
 @media(min-width:768px){.case-library-intro{padding:34px 0 28px}.case-library-intro h1{font-size:clamp(40px,4.6vw,60px)}.case-library-lead{margin-top:20px}.case-explorer{padding-top:30px}}
+
+/* Echo the homepage's emerald and violet palette with restrained color. */
+.case-library-intro{
+  background:radial-gradient(ellipse at 92% 18%,#dfd4ff99,transparent 48%),radial-gradient(ellipse at 76% 100%,#c8f4dfb3,transparent 56%),linear-gradient(112deg,#f3f6ff,#f6fff9 62%,#ecfaf3);
+  border-bottom:1px solid #dbe7e7;
+}
+.case-library-intro h1 em{color:#7650a9;background:linear-gradient(105deg,#7041b8 10%,#5d48ba 45%,#138255 95%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.case-filters button[aria-pressed=true]{background:linear-gradient(120deg,#6940ad,#4765a0 62%,#187459);border-color:#7155b0;box-shadow:0 3px 12px #7350ac20}
+.case-work-card{border:2px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(140deg,#a487db,#cfbcec 36%,#8bd8b6) border-box;box-shadow:0 6px 22px #57337e08}
+.case-work-card:nth-child(even){background:linear-gradient(#fff,#fff) padding-box,linear-gradient(140deg,#68cfa8,#afe2d7 36%,#b49ade) border-box}
+.case-work-card::before{content:"";display:block;height:4px;background:linear-gradient(90deg,#8b5bd1,#9b8ee0 48%,#38b984)}
+.case-work-card:nth-child(even)::before{background:linear-gradient(90deg,#2bb887,#72c5cf 48%,#a079d5)}
+.case-work-proof{background:linear-gradient(115deg,#f0e8fc,#f7f4fc 65%,#f0faf5);border-left-color:#9462c8}
+.case-work-image>span{border:1px solid #e2d6f0;box-shadow:0 2px 8px #39225412}
+@media(forced-colors:active){.case-library-intro h1 em{background:none;-webkit-text-fill-color:currentColor}.case-work-card{border-color:CanvasText}.case-filters button[aria-pressed=true]{background:Highlight;color:HighlightText}}
