@@ -52,10 +52,10 @@ function MenuContent({ category, onNavigate }: {
 </section>)}
    {category === 'solutions' && <aside className="ce-nav-feature">
 
-<h2>Let’s put your next idea to work.</h2>
-<p>Strategy, campaigns, and creative support shaped around your business.</p>
+<h2>Find your next growth move.</h2>
+<p>Choose a focused starting point or ongoing help with your marketing.</p>
 <FounderNavMotion />
-<Link to="/services#starting-points" onClick={onNavigate}>Work Together </Link>
+<Link to="/services#starting-points" onClick={onNavigate}>Explore Your Options </Link>
 </aside>}
  </div></>;
 }
@@ -74,7 +74,7 @@ function MarketingNavigation() {
       '/strategy-sprint': { to: '/strategy-sprint#sprint-purchase', label: 'Start My Strategy Sprint', mobileLabel: 'Start My Sprint' },
       '/growth-clarity-audit': { to: '/growth-clarity-audit#pricing', label: 'Get My Deep Dive Growth Audit', mobileLabel: 'Get My Audit' },
     };
-    const primaryCta = offerCtas[pagePath] || { to: '/services', label: 'How We Help', mobileLabel: 'How We Help' };
+    const primaryCta = offerCtas[pagePath] || { to: '/services', label: 'Find Your Next Step', mobileLabel: 'Get Started' };
     const [open, setOpen] = useState<NavigationCategory | null>(null), [mobile, setMobile] = useState(false);
     const [accordion, setAccordion] = useState<NavigationCategory | null>(null);
     const nav = useRef<HTMLElement>(null), triggers = useRef<Partial<Record<NavigationCategory, HTMLButtonElement | null>>>({});
@@ -121,7 +121,7 @@ function MarketingNavigation() {
 <Link to="/case-studies" onClick={close}>Case Studies</Link>
 </li>
 <li>
-<button ref={el => { triggers.current.resources = el; }} aria-expanded={open === 'resources'} aria-controls={`${id}-resources`} onClick={() => setOpen(open === 'resources' ? null : 'resources')}>Resources<ChevronDown size={14} aria-hidden="true"/>
+<button ref={el => { triggers.current.resources = el; }} aria-expanded={open === 'resources'} aria-controls={`${id}-resources`} onClick={() => setOpen(open === 'resources' ? null : 'resources')}>Learn<ChevronDown size={14} aria-hidden="true"/>
 </button>
 </li>
 <li>
@@ -163,7 +163,7 @@ function MarketingNavigation() {
 <Link to="/case-studies" onClick={close}>Case Studies</Link>
 </li>
 <li>
-<button aria-expanded={accordion === 'resources'} aria-controls={`${id}-mobile-resources`} onClick={() => setAccordion(accordion === 'resources' ? null : 'resources')}>Resources<ChevronDown size={19} aria-hidden="true"/>
+<button aria-expanded={accordion === 'resources'} aria-controls={`${id}-mobile-resources`} onClick={() => setAccordion(accordion === 'resources' ? null : 'resources')}>Learn<ChevronDown size={19} aria-hidden="true"/>
 </button>
 <div id={`${id}-mobile-resources`} hidden={accordion !== 'resources'}>
 <MenuContent category="resources" onNavigate={close}/>
