@@ -1,10 +1,14 @@
+import { useRef } from "react";
+import { useContinuousTicker } from "./use-continuous-ticker";
 import "./problems-ticker.css";
 
 const rows = [{"category": "Revenue", "items": [["Unclear advertising returns", "Connect spending with business outcomes"], ["Different results across locations", "See where support is needed"], ["Clicks without enough inquiries", "Improve the path from interest to action"]]}, {"category": "Growth", "items": [["Same ads, month after month", "Fresh ideas to test"], ["Too much on your team’s plate", "Add experienced direction and execution"], ["Scattered campaigns", "Bring your message and priorities together"]]}, {"category": "Conversion", "items": [["Landing pages waiting for updates", "Get improvements ready to test sooner"], ["Plenty of ideas, little follow-through", "Give the next steps an owner"], ["Clicks without enough inquiries", "Improve the path from interest to action"]]}];
 
 export default function ProblemsTicker() {
+  const tickerRef = useRef<HTMLElement>(null);
+  useContinuousTicker(tickerRef);
   return (
-    <section id="growth-challenges" className="problems-section" aria-labelledby="problems-heading">
+    <section ref={tickerRef} id="growth-challenges" className="problems-section" aria-labelledby="problems-heading">
       <div className="problems-intro">
         <p className="problems-eyebrow">Your challenges. A clearer way forward.</p>
         <h2 id="problems-heading">Your marketing is running.<br /><span>Is it moving your business forward?</span></h2>
@@ -14,8 +18,8 @@ export default function ProblemsTicker() {
         {rows.map(({ category, items }) => (
           <div key={category} className={`problems-row problems-row-${category.toLowerCase()}`}>
             <h3 className="problems-category">{category}</h3>
-            <div className="problems-viewport" tabIndex={0} role="region" aria-label={`${category} challenges and potential solutions. Focus or hover to pause movement.`}>
-              <div className="problems-track">
+            <div className="problems-viewport" role="region" aria-label={`${category} challenges and potential solutions.`}>
+              <div data-continuous-track className="problems-track">
                 {[0, 1].map(copy => (
                   <ul className="problems-group" key={copy} aria-hidden={copy === 1 || undefined}>
                     {items.map(([problem, solution]) => (

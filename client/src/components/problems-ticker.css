@@ -11,13 +11,11 @@
 .problems-viewport{min-width:0;flex:1;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(to right,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
 .problems-viewport::-webkit-scrollbar{display:none}
 .problems-viewport:focus-visible{outline:2px solid var(--row-color);outline-offset:-3px}
-.problems-track{display:flex;width:max-content;animation:problems-flow 100s linear infinite}
-.problems-row-growth .problems-track{animation-direction:reverse;animation-duration:110s}
-.problems-row-conversion .problems-track{animation-duration:105s}
+.problems-track{display:flex;width:max-content;animation:problems-flow var(--ticker-duration, 60s) linear infinite;will-change:transform}
+.problems-row-growth .problems-track{animation-direction:reverse}
 .problems-group{display:flex;align-items:center;flex-shrink:0;list-style:none;padding:0;margin:0}
 .problems-pair{display:flex;align-items:center;white-space:nowrap;gap:14px;padding:22px 0 22px 24px;font-size:15px;line-height:1.5}
 .problems-challenge{color:#596574}.problems-arrow{color:var(--row-color);font-size:20px}.problems-solution{color:var(--row-color);font-weight:700}.problems-separator{margin:0 14px 0 24px;color:var(--row-color);opacity:.35;font-size:12px}
-.problems-section:hover .problems-track,.problems-section:focus-within .problems-track,.problems-section:active .problems-track{animation-play-state:paused}
 @keyframes problems-flow{to{transform:translateX(-50%)}}
 @media(max-width:600px){.problems-section{padding:40px 0}.problems-intro{padding:0 20px;margin-bottom:24px}.problems-intro>p:last-child{font-size:14px}.problems-category{flex-basis:92px;padding:20px 12px;font-size:12px}.problems-pair{padding-block:19px;font-size:14px;gap:10px}.problems-rows{gap:8px}}
 @media(prefers-reduced-motion:reduce){.problems-track{animation:none;width:auto}.problems-group{flex-wrap:wrap;gap:8px;padding:16px}.problems-group[aria-hidden="true"]{display:none}.problems-pair{white-space:normal;padding:0;font-size:14px;flex-wrap:wrap;gap:6px}.problems-separator{margin:0 8px}.problems-viewport{mask-image:none}.problems-category{align-self:stretch}}

@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect, forwardRef } from "react";
 import { MousePointer2, Video, Camera, Mic, Lightbulb, Palette, PanelsTopLeft, ChartNoAxesCombined, Users } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useContinuousTicker } from "./use-continuous-ticker";
 
 import chatgptLogo from '@assets/Chat GPT Logo_1759865417145.png';
 import geminiLogo from '@assets/gemini-logo_brandlogos.net_fwajr-512x512_1759865458230.png';
@@ -12,6 +12,23 @@ import googleAnalyticsLogo from '@assets/Logo_Google_Analytics_1759865466930.png
 import googleDriveLogo from '@assets/Google_Drive_-_New_Logo_1759865428146.png';
 import microsoftTeamsLogo from '@assets/Microsoft-Teams-Symbol_1759865428146.png';
 import dropboxLogo from '@assets/Dropbox_(service)-Logo.wine_1759865428146.png';
+
+const tools = [
+                  { name: "ChatGPT", logo: chatgptLogo },
+                  { name: "Gemini", logo: geminiLogo },
+                  { name: "Mouseflow", icon: MousePointer2 },
+                  { name: "CapCut", icon: Video },
+                  { name: "Midjourney", logo: midjourneyLogo },
+                  { name: "Photoshop", logo: photoshopLogo },
+                  { name: "Zoom", icon: Camera },
+                  { name: "Krisp.ai", icon: Mic },
+                  { name: "Figma", logo: figmaLogo },
+                  { name: "Replit", logo: replitLogo },
+                  { name: "GA4", logo: googleAnalyticsLogo },
+                  { name: "Google Drive", logo: googleDriveLogo },
+                  { name: "Teams", logo: microsoftTeamsLogo },
+                  { name: "Dropbox", logo: dropboxLogo },
+                ];
 
 const Arrow = ({ direction = "right", className = "" }) => (
   <svg
@@ -83,48 +100,13 @@ const StepCard = forwardRef(({
 });
 
 export default function HowWeBuildFasterSection() {
-  const [isDragging, setIsDragging] = useState(false);
-  const [tickerPaused, setTickerPaused] = useState(false);
   const tickerRef = useRef(null);
-  const dragRef = useRef(null);
-  const draggedRef = useRef(false);
-  const pauseRef = useRef(false);
+  useContinuousTicker(tickerRef);
   const sectionRef = useRef(null);
   const wasInViewRef = useRef(false);
   const activeRef = useRef(0);
   const scrollSyncFrameRef = useRef(null);
   const [pulseNextButton, setPulseNextButton] = useState(false);
-  useEffect(() => { pauseRef.current = tickerPaused || isDragging; }, [tickerPaused, isDragging]);
-  useEffect(() => {
-    const el = tickerRef.current;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let frame, last = 0;
-    function tick(now) {
-      if (last && !pauseRef.current && !reduce.matches && !document.hidden && el) {
-        el.scrollLeft += Math.min(now-last,50) * .035;
-        const half = el.scrollWidth / 2;
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-      }
-      last = now; frame = requestAnimationFrame(tick);
-    }
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, []);
-  const startDrag = e => {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-    draggedRef.current = false;
-    dragRef.current = { x:e.clientX, left:e.currentTarget.scrollLeft, wasPaused:pauseRef.current };
-    pauseRef.current = true; setTickerPaused(true); setIsDragging(true);
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-  const moveDrag = e => {
-    if (!dragRef.current) return;
-    const delta = e.clientX - dragRef.current.x;
-    if (Math.abs(delta)>4) draggedRef.current=true;
-    e.currentTarget.scrollLeft = dragRef.current.left-delta;
-  };
-  const endDrag = () => { const drag=dragRef.current; if(drag && !draggedRef.current) setTickerPaused(!drag.wasPaused); dragRef.current=null; setIsDragging(false); };
-
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -352,118 +334,18 @@ export default function HowWeBuildFasterSection() {
           Experienced people directing the work. AI helping move it forward.
         </p>
         
-        {/* Animated Tools Ticker */}
-        <TooltipProvider delayDuration={200}>
-          <div 
-            ref={tickerRef}
-            role="region" aria-label="Tools: tap to pause or resume; drag to explore" tabIndex={0}
-            onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}
-            onClickCapture={e=>{if(draggedRef.current){e.preventDefault();e.stopPropagation();}}}
-            onKeyDown={e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();setTickerPaused(v=>!v);}if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();setTickerPaused(true);e.currentTarget.scrollLeft+=e.key==="ArrowRight"?180:-180;}}}
-            className="relative overflow-x-auto bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6 px-4 select-none"
-            style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'pan-y', scrollbarWidth:'none' }}
-          >
-            <div 
-              className="tools-ticker-track whitespace-nowrap flex w-max items-center gap-12"
-
-            >
-              {/* Tool descriptions mapping */}
-              {(() => {
-                const toolDescriptions = {
-                  "Photoshop": "Polish creatives for conversion.",
-                  "ChatGPT": "Draft, iterate, decide faster.",
-                  "Gemini": "Cross-check strategy with AI.",
-                  "Mouseflow": "See friction. Fix flow.",
-                  "CapCut": "Edit fast. Test faster.",
-                  "Midjourney": "Concept visuals in hours.",
-                  "Zoom": "Meet, align, move forward.",
-                  "Krisp.ai": "Clean audio, clearer calls.",
-                  "Figma": "Prototype, share, get approval.",
-                  "Replit": "Ship pages at sprint speed.",
-                  "GA4": "All others bring data.",
-                  "Google Drive": "We work in your drive.",
-                  "Microsoft Teams": "We plug into Teams.",
-                  "Teams": "We plug into Teams.",
-                  "Dropbox": "Assets ready when needed.",
-                };
-
-                const tools = [
-                  { name: "ChatGPT", logo: chatgptLogo },
-                  { name: "Gemini", logo: geminiLogo },
-                  { name: "Mouseflow", icon: MousePointer2 },
-                  { name: "CapCut", icon: Video },
-                  { name: "Midjourney", logo: midjourneyLogo },
-                  { name: "Photoshop", logo: photoshopLogo },
-                  { name: "Zoom", icon: Camera },
-                  { name: "Krisp.ai", icon: Mic },
-                  { name: "Figma", logo: figmaLogo },
-                  { name: "Replit", logo: replitLogo },
-                  { name: "GA4", logo: googleAnalyticsLogo },
-                  { name: "Google Drive", logo: googleDriveLogo },
-                  { name: "Teams", logo: microsoftTeamsLogo },
-                  { name: "Dropbox", logo: dropboxLogo },
-                ];
-
-                return (
-                  <>
-                    {/* First set of tools */}
-                    {tools.map((tool) => (
-                      <Tooltip key={`${tool.name}-1`}>
-                        <TooltipTrigger asChild>
-                          <div className="inline-flex items-center gap-2 shrink-0 cursor-pointer">
-                            {tool.logo ? (
-                              <img
-                                draggable={false}
-                                src={tool.logo}
-                                alt={tool.name}
-                                className="ce-readable-logo h-8 w-auto object-contain opacity-70 hover:opacity-100"
-                              />
-                            ) : (
-                              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200 hover:border-violet-400 transition-colors">
-                                {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
-                                <span className="text-sm font-medium text-gray-700">{tool.name}</span>
-                              </div>
-                            )}
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p className="font-medium">{tool.name}</p>
-                          <p className="text-xs text-muted-foreground">{toolDescriptions[tool.name]}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                    {/* Duplicate set for seamless loop */}
-                    {tools.map((tool) => (
-                      <Tooltip key={`${tool.name}-2`}>
-                        <TooltipTrigger asChild>
-                          <div className="inline-flex items-center gap-2 shrink-0 cursor-pointer">
-                            {tool.logo ? (
-                              <img
-                                draggable={false}
-                                src={tool.logo}
-                                alt={tool.name}
-                                className="ce-readable-logo h-8 w-auto object-contain opacity-70 hover:opacity-100"
-                              />
-                            ) : (
-                              <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200 hover:border-violet-400 transition-colors">
-                                {tool.icon && <tool.icon className="h-5 w-5 text-violet-600" />}
-                                <span className="text-sm font-medium text-gray-700">{tool.name}</span>
-                              </div>
-                            )}
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p className="font-medium">{tool.name}</p>
-                          <p className="text-xs text-muted-foreground">{toolDescriptions[tool.name]}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </>
-                );
-              })()}
-            </div>
+        <div ref={tickerRef} role="region" aria-label="Tools we work with" className="overflow-hidden bg-gradient-to-r from-violet-50 via-white to-violet-50 rounded-xl py-6">
+          <div data-continuous-track className="tools-ticker-track flex w-max items-center">
+            {[0, 1].map(copy => <div key={copy} aria-hidden={copy === 1 || undefined} className="flex shrink-0 items-center gap-12 pr-12">
+              {tools.map(tool => <div key={tool.name} className="inline-flex shrink-0 items-center gap-2">
+                {tool.logo ? <img draggable={false} src={tool.logo} alt={tool.name} className="ce-readable-logo h-8 w-auto object-contain opacity-80" /> : <div className="flex items-center gap-2 px-3 py-2 bg-white/80 rounded-lg border border-violet-200">
+                  {tool.icon && <tool.icon aria-hidden="true" className="h-5 w-5 text-violet-600" />}
+                  <span className="text-sm font-medium text-gray-700">{tool.name}</span>
+                </div>}
+              </div>)}
+            </div>)}
           </div>
-        </TooltipProvider>
+        </div>
 
         {/* Inline styles for ticker animation */}
         <style>{`
@@ -479,10 +361,13 @@ export default function HowWeBuildFasterSection() {
             animation: timeline-next-flash 1000ms ease-in-out 1;
           }
           .tools-ticker-track {
-            animation: none;
+            animation: tools-ticker-scroll var(--ticker-duration, 60s) linear infinite;
+            will-change: transform;
           }
           @media (prefers-reduced-motion: reduce) {
-            .tools-ticker-track { animation: none; }
+            .tools-ticker-track { animation: none; width: auto; }
+            .tools-ticker-track > div { flex-wrap: wrap; padding: 0 16px; gap: 24px; }
+            .tools-ticker-track > div[aria-hidden="true"] { display: none; }
           }
         `}</style>
       </div>
