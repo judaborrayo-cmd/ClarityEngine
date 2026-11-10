@@ -1,3 +1,10 @@
+node_modules
+dist
+.git
+.vercel
+.env*
+server-dist
+test-results
+playwright-report
 scripts/assessment-release-review.ts
 output
-.env*.local
