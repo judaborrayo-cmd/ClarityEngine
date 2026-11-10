@@ -186,7 +186,7 @@ function RotatingHeroHeadline() {
     if (reduceMotion !== false) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setIndex(value => (value + 1) % HERO_OUTCOMES.length);
-    }, 3200);
+    }, 2370);
     return () => window.clearInterval(timer);
   }, [reduceMotion]);
 
