@@ -157,7 +157,7 @@ export default function ScaleAndAudit() {
         {/* Image (2 columns) */}
         <div className="lg:col-span-2">
           <div className="relative w-full overflow-hidden rounded-2xl shadow-sm border border-gray-200">
-            <div className="growth-roadmap-mobile"><ServiceOptionVideo name="growth-roadmap-mobile" label="growth chart, Pilates exercise, and presenter" /><p>Illustrative dashboard; 8x is an example, not a promised result.</p></div><div className="relative hidden lg:block aspect-[16/9] w-full bg-white">
+            <div className="growth-roadmap-mobile"><ServiceOptionVideo name="growth-roadmap-retreats-mobile" label="growth chart, Pilates exercise, and wellness retreat" eager /><p>Illustrative dashboard; 8x is an example, not a promised result.</p></div><div className="relative hidden lg:block aspect-[16/9] w-full bg-white">
               <FounderHeroVideo
                 variant="roadmap"
                 src="/videos/from-insight-to-scale-chart-motion.mp4"
