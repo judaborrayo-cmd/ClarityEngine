@@ -3,9 +3,8 @@ import caseStories from "@/components/case-study/case-stories.json";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Quote } from "lucide-react";
-import HowWeDeliverSection from "@/components/HowWeDeliverSection";
-import { CaseStudyCollection, LogoTicker } from "@/components/CaseStudiesCRO";
-import { KPIChipsLinks } from "@/components/KPIChipsLinks";
+import CaseStudyExplorer from "@/components/case-study/CaseStudyExplorer";
+import { LogoTicker } from "@/components/CaseStudiesCRO";
 import amaWaterwaysLogo from "@assets/ama-waterways-seeklogo_1758461361953.png";
 import popcornIndianaLogo from "@assets/Popcorn-Indiana-logo-Hartley-Berg_1758463163430.png";
 import ascendLogo from "@assets/ascend-logojpg-x-small_1759067902299.jpeg";
@@ -234,59 +233,23 @@ export default function CaseStudies() {
     { src: artOfLivingRetreatCenterLogo, alt: "The Art of Living Retreat Center" },
   ];
 
-  const kpiLinkItems = [
-    { metric: "10× ROAS", context: "Overall campaign", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
-    { metric: "16× ROAS", context: "Prospecting · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
-    { metric: "6.9× ROAS", context: "Retargeting · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
-    { metric: "5–6% CTR", context: "Top creatives · Meta", client: "Hapi Art", href: "/case-study/hapi-art", type: "Metric" as const },
-    { metric: "$70K+ monthly ad spend", context: "Portfolio mgmt", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
-    { metric: "Consistent CPL at scale", context: "Multi-industry", client: "Lamark Agency", href: "/case-study/lamark-agency", type: "Outcome" as const },
-    { metric: "20.1× ROAS", context: "Meta · Jan–Sep 2026", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
-    { metric: "32.3× ROAS", context: "Google · Jan–Sep 2026", client: "Mandali Retreats", href: "/case-study/mandali-retreats", type: "Metric" as const },
-    { metric: "2–3× leads", context: "Monthly growth", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
-    { metric: "~50% cheaper CPL", context: "Google Ads", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
-    { metric: "2.6× trials", context: "Attendance lift", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
-    { metric: "3–4× ROAS", context: "Evergreen Google", client: "Powers Gymnastics", href: "/case-study/powers-gymnastics", type: "Metric" as const },
-    { metric: "$2M+ revenue", context: "Member growth", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
-    { metric: "11K+ new members", context: "Acquisition campaign", client: "Core40", href: "/case-study/core-40", type: "Metric" as const },
-  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <ProgressBar />
       <main className="relative">
         
-        {/* Hero Section with H1 */}
-        <section className="py-16 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-6 max-w-4xl mx-auto">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl" data-testid="page-title">
-                See the work.<br /><span className="text-emerald-600">Understand what moved it forward.</span>
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl leading-relaxed text-gray-600 max-w-3xl mx-auto">
-                Explore growth marketing for retreats, travel, wellness, fitness, and beyond. See the challenges, decisions, and work behind campaigns, landing-page tests, and measurement improvements—then find the examples most relevant to your business.
-              </p>
-            </div>
-
-            {/* Case Study Carousel */}
-            <CaseStudyCollection items={featuredCases} />
-
-            {/* Logo Ticker */}
-            <LogoTicker logos={logoItems} caption="Brand experience across 12+ years of client and agency work." />
+        <section className="case-library-intro">
+          <div className="case-library-wrap">
+            <p className="case-kicker">Clarity Engine · Selected client work</p>
+            <h1 data-testid="page-title">Good work helps people<br/><em>take the next step.</em></h1>
+            <div className="case-library-lead"><p>Discover how we turn real marketing challenges into clearer messages, better experiences, and measurable progress.</p><p>Explore the campaigns, pages, and decisions behind the results. Find an idea for what could move your business forward.</p></div>
           </div>
         </section>
-
-        {/* How We Deliver Section (Untouched) */}
-        <section className="bg-white">
-          <HowWeDeliverSection />
-        </section>
-
-        {/* KPI Chips Links - Clickable Results */}
-        <section className="py-16 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <KPIChipsLinks items={kpiLinkItems} title="The numbers are part of the story." subtitle="Open a result to explore the engagement behind it. Each case has its own scope, measurement, and business context." />
-          </div>
-        </section>
+        <div className="case-library-wrap">
+          <CaseStudyExplorer items={featuredCases} />
+          <LogoTicker logos={logoItems} caption="Brand experience across 12+ years of client and agency work." />
+        </div>
 
         {/* Colleague Reviews Section (Untouched) */}
         <section id="colleague-reviews-cs" className="scroll-mt-24 py-16 bg-gray-50">
