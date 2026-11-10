@@ -157,11 +157,11 @@ export default function ScaleAndAudit() {
         {/* Image (2 columns) */}
         <div className="lg:col-span-2">
           <div className="relative w-full overflow-hidden rounded-2xl shadow-sm border border-gray-200">
-            <div className="growth-roadmap-mobile"><ServiceOptionVideo name="growth-roadmap-retreats-mobile" label="growth chart, Pilates exercise, and wellness retreat" eager /><p>Illustrative dashboard; 8x is an example, not a promised result.</p></div><div className="relative hidden lg:block aspect-[16/9] w-full bg-white">
+            <div className="growth-roadmap-mobile"><ServiceOptionVideo name="growth-roadmap-retreats-mobile-v2" label="growth chart, Pilates exercise, and wellness retreat" eager /><p>Illustrative dashboard; 8x is an example, not a promised result.</p></div><div className="relative hidden lg:block aspect-[16/9] w-full bg-white">
               <FounderHeroVideo
                 variant="roadmap"
-                src="/videos/from-insight-to-scale-chart-motion.mp4"
-                poster="/videos/from-insight-to-scale-chart-motion-poster.webp"
+                src="/videos/from-insight-to-scale-retreats.mp4"
+                poster="/videos/from-insight-to-scale-retreats-poster.webp"
                 width={1916}
                 height={1080}
                 description="From Insight to Scale: illustrative growth chart and dashboard. Illustrative growth, not a promised result."
