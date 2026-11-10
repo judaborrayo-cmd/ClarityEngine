@@ -176,6 +176,41 @@ const PartnerCard = ({ testimonial, delay = 0, shouldReduceMotion = false }: { t
   </motion.div>
 );
 
+const HERO_OUTCOMES = ["choose you.", "book with you.", "stay with you.", "grow with you."];
+
+// Reserve the widest ending so rotation never moves the surrounding content.
+function RotatingHeroHeadline() {
+  const [index, setIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  useEffect(() => {
+    if (reduceMotion !== false) return;
+    const timer = window.setInterval(() => {
+      if (!document.hidden) setIndex(value => (value + 1) % HERO_OUTCOMES.length);
+    }, 3200);
+    return () => window.clearInterval(timer);
+  }, [reduceMotion]);
+
+  return (
+    <h1 data-testid="hero-title" aria-label="Help more of the right people choose you.">
+      Help more of the right people{" "}
+      <span aria-hidden="true" style={{ display: "inline-grid", verticalAlign: "bottom" }}>
+        {HERO_OUTCOMES.map(ending => (
+          <span key={ending} style={{ gridArea: "1 / 1", visibility: "hidden" }}>{ending}</span>
+        ))}
+        <motion.span
+          key={reduceMotion ? 0 : index}
+          initial={{ opacity: 1 }}
+          animate={reduceMotion ? { opacity: 1 } : { opacity: [0, 1] }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.24, ease: "easeOut" }}
+          style={{ gridArea: "1 / 1" }}
+        >
+          {HERO_OUTCOMES[reduceMotion ? 0 : index]}
+        </motion.span>
+      </span>
+    </h1>
+  );
+}
+
 export default function Home() {
   const { hash } = useLocation();
   const [showAllTestimonials, setShowAllTestimonials] = useState(false);
@@ -205,9 +240,7 @@ export default function Home() {
           <div className="home-hero-shell">
             <div className="home-hero-grid">
               <div className="home-hero-copy">
-                <h1 data-testid="hero-title">
-                  Help more of the right people <span>choose your experience.</span>
-                </h1>
+                <RotatingHeroHeadline />
                 <p className="home-hero-description" data-testid="hero-description">
                   We combine senior marketing expertise with the latest AI tools to build campaigns, test landing pages, and uncover opportunities faster—helping turn more interest into inquiries, bookings, and revenue.
                 </p>
