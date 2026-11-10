@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { rankCaseStudies } from "./case-study-search";
 import { Link } from "react-router-dom";
 import type { CS } from "../CaseStudiesCRO";
 
@@ -81,18 +82,30 @@ const order = Object.keys(stories);
 
 export default function CaseStudyExplorer({ items }: { items: CS[] }) {
   const [active, setActive] = useState<Filter>("All work");
+  const [draft, setDraft] = useState("");
+  const [question, setQuestion] = useState("");
+  const ask = (value: string) => { setDraft(value); setQuestion(value.trim()); setActive("All work"); };
   const available = order.flatMap(slug => {
     const item = items.find(item => item.slug === `/case-study/${slug}`);
     return item ? [{ ...item, ...stories[slug] }] : [];
   });
-  const shown = available.filter(item => active === "All work" || item.topics.includes(active));
+  const matches = question ? rankCaseStudies(question, available) : [];
+  const shown = question ? matches.map(match => match.story) : available.filter(item => active === "All work" || item.topics.includes(active));
   return <section className="case-explorer" aria-labelledby="explore-work">
     <div className="case-explorer-bar"><div><p className="case-kicker">Explore the work</p><h2 id="explore-work">What would you like to improve?</h2></div><p>Start with a challenge that feels familiar.</p></div>
-    <div className="case-filters" role="group" aria-label="Filter case studies by challenge">{filters.map(filter => <button key={filter} type="button" aria-pressed={active === filter} onClick={() => setActive(filter)}>{filter}</button>)}</div>
-    <p className="case-count" role="status">{shown.length} client stories{active !== "All work" ? ` · ${active}` : " · challenges, decisions, and results"}</p>
-    <div className="case-explorer-grid">{shown.map((item, i) => <article className={`case-work-card ${active === "All work" && i < 2 ? "case-work-featured" : ""}`} key={item.slug}>
-      <Link to={item.slug} className="case-work-image" aria-label={`Explore ${item.brand}: ${item.headline}`}><img src={item.image} alt={item.imageAlt} loading={i < 2 ? "eager" : "lazy"}/><span>{active === "All work" && i < 2 ? "Inside the engagement" : "Selected work"} ↗</span></Link>
-      <div className="case-work-copy"><p className="case-kicker">{item.brand}</p><h3><Link to={item.slug}>{item.headline}</Link></h3>
+    <form className="case-question" onSubmit={event=>{event.preventDefault(); ask(draft);}} role="search" aria-label="Find relevant case studies">
+      <label htmlFor="case-question">Tell us what you’re trying to improve.</label>
+      <p id="case-question-help">Ask in your own words. We’ll find relevant work and show why it fits.</p>
+      <div className="case-question-input"><input id="case-question" type="search" maxLength={400} value={draft} onChange={event=>setDraft(event.target.value)} placeholder="We get website traffic, but not enough bookings…" aria-describedby="case-question-help"/><button type="submit" disabled={!draft.trim()}>Find relevant work <span aria-hidden="true">↗</span></button></div>
+      <div className="case-question-examples"><span>Try a question:</span>{["How can we turn more clicks into bookings?","Our ads need fresh creative.","Which campaigns are actually driving sales?"].map(example=><button key={example} type="button" onClick={()=>ask(example)}>{example}</button>)}</div>
+      <small>Matches come from the published case studies. No sign-up needed.</small>
+    </form>
+    <div className="case-filters" role="group" aria-label="Filter case studies by challenge">{filters.map(filter => <button key={filter} type="button" aria-pressed={active === filter} onClick={() => { setActive(filter); setQuestion(""); setDraft(""); }}>{filter}</button>)}</div>
+    <div className="case-search-status"><p className="case-count" role="status">{question ? shown.length ? `${shown.length} relevant stories for “${question}”` : `No close match for “${question}”` : `${shown.length} client stories${active !== "All work" ? ` · ${active}` : " · challenges, decisions, and results"}`}</p>{question && <button type="button" onClick={()=>{setQuestion("");setDraft("");}}>Show all stories</button>}</div>
+    {question && !shown.length && <div className="case-search-empty"><h3>Let’s try a different angle.</h3><p>Describe your marketing challenge or industry—for example, landing-page conversion, retreat bookings, creative testing, or campaign reporting. You can also browse all the work below.</p><button type="button" onClick={()=>{setQuestion("");setDraft("");}}>Browse all case studies</button></div>}
+    <div className="case-explorer-grid">{shown.map((item, i) => <article className={`case-work-card ${!question && active === "All work" && i < 2 ? "case-work-featured" : ""}`} key={item.slug}>
+      <Link to={item.slug} className="case-work-image" aria-label={`Explore ${item.brand}: ${item.headline}`}><img src={item.image} alt={item.imageAlt} loading={i < 2 ? "eager" : "lazy"}/><span>{!question && active === "All work" && i < 2 ? "Inside the engagement" : "Selected work"} ↗</span></Link>
+      <div className="case-work-copy">{question && <p className="case-match-reason"><strong>Why this matches</strong>{matches.find(match=>match.story.slug===item.slug)?.reason}</p>}<p className="case-kicker">{item.brand}</p><h3><Link to={item.slug}>{item.headline}</Link></h3>
         <dl className="case-work-decisions"><div><dt>The challenge</dt><dd>{item.problem}</dd></div><div><dt>The work</dt><dd>{item.solution}</dd></div></dl>
         <div className="case-work-proof"><strong>{item.result}</strong><p>{item.scope}</p></div>
         <div className="case-work-foot"><p>{item.examples}</p><Link to={item.slug}>Explore the case study <span aria-hidden="true">↗</span></Link></div>
